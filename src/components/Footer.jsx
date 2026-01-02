@@ -13,9 +13,9 @@ export default function Footer() {
                 <img src={logoWhite} className="block dark:hidden h-8 w-8" alt="Surogate" />
                 <img src={logoBlack} className="hidden dark:block h-8 w-8" alt="Surogate" />
               </span>
-              <span className="font-semibold tracking-wide text-white dark:text-zinc-700">Surogate</span>
-              <span className="hidden text-sm text-zinc-300 dark:text-zinc-700 sm:inline">Insanely fast LLM training</span>
-              <span className="hidden text-sm text-zinc-400 dark:text-zinc-700 sm:inline">Apache 2.0 License</span>
+              <span className="font-semibold tracking-wide text-white">Surogate</span>
+              <span className="hidden text-sm text-zinc-300 sm:inline">Insanely fast LLM training</span>
+              <span className="hidden text-sm text-zinc-400 sm:inline">Apache 2.0 License</span>
             </a>
           </div>
           <div className="flex flex-wrap gap-3 text-sm">
