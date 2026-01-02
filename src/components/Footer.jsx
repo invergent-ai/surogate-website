@@ -1,4 +1,6 @@
 import { ArrowUp, Github } from 'lucide-react';
+import logoWhite from '../assets/logo-white.svg';
+import logoBlack from '../assets/logo-black.svg';
 
 export default function Footer() {
   return (
@@ -8,8 +10,8 @@ export default function Footer() {
           <div>
             <a href="#" className="flex min-w-0 items-center gap-2">
               <span>
-                <img src="/images/logo-white.svg" className="block dark:hidden h-8 w-8" alt="Surogate" />
-                <img src="/images/logo-black.svg" className="hidden dark:block h-8 w-8" alt="Surogate" />
+                <img src={logoWhite} className="block dark:hidden h-8 w-8" alt="Surogate" />
+                <img src={logoBlack} className="hidden dark:block h-8 w-8" alt="Surogate" />
               </span>
               <span className="font-semibold tracking-wide text-white dark:text-zinc-700">Surogate</span>
               <span className="hidden text-sm text-zinc-300 dark:text-zinc-700 sm:inline">Insanely fast LLM training</span>

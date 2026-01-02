@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X, BookOpen, Globe, Github } from 'lucide-react';
+import logoWhite from '../assets/logo-white.svg';
+import logoBlack from '../assets/logo-black.svg';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,8 +58,8 @@ export default function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <a href="#" className="flex min-w-0 items-center gap-2">
           <span>
-            <img src="/images/logo-white.svg" className="hidden dark:block h-8 w-8" alt="Surogate" />
-            <img src="/images/logo-black.svg" className="block dark:hidden h-8 w-8" alt="Surogate" />
+            <img src={logoWhite} className="hidden dark:block h-8 w-8" alt="Surogate" />
+            <img src={logoBlack} className="block dark:hidden h-8 w-8" alt="Surogate" />
           </span>
           <span className="font-semibold tracking-wide text-zinc-950 dark:text-white">Surogate</span>
           <span className="hidden text-sm text-zinc-700 dark:text-zinc-400 sm:inline">Insanely fast LLM training</span>
