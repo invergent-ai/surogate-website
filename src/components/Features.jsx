@@ -1,0 +1,87 @@
+import { Code, Zap, Network, HardDrive, Aperture, Sliders, CheckCircle } from 'lucide-react';
+
+export default function Features() {
+  return (
+    <section id="features" className="scroll-mt-24 border-t border-zinc-200 dark:border-white/10 bg-white/95 dark:bg-zinc-950/70">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14">
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white">Built to move fast — and stay stable</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+              Surogate combines a low‑overhead Python frontend with a native C++/CUDA execution engine and an optimized
+              multi‑threaded scheduler.
+            </p>
+          </div>
+          <div className="hidden md:flex">
+            <span className="inline-flex items-center gap-2 rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-xs text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-200 dark:ring-white/10">
+              <Code className="h-4 w-4" />
+              Python API • C++/CUDA core
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
+            <div className="flex items-center gap-3">
+              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
+                <Zap className="h-5 w-5" />
+              </span>
+              <h3 className="text-base font-semibold ">Near‑SOL throughput</h3>
+            </div>
+            <p className="mt-3 text-sm">A native engine engineered for practical hardware limits and low overhead.</p>
+          </div>
+
+          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
+            <div className="flex items-center gap-3">
+              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
+                <Network className="h-5 w-5" />
+              </span>
+              <h3 className="text-base font-semibold">Native multi‑GPU</h3>
+            </div>
+            <p className="mt-3 text-sm">Predictable scaling with an execution model designed for distributed training.</p>
+          </div>
+
+          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-30">
+            <div className="flex items-center gap-3">
+              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
+                <HardDrive className="h-5 w-5" />
+              </span>
+              <h3 className="text-base font-semibold 0">Smart CPU offloading</h3>
+            </div>
+            <p className="mt-3 text-sm">Offload weights, gradients, activations, and quant states to stretch memory.</p>
+          </div>
+
+          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
+            <div className="flex items-center gap-3">
+              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
+                <Aperture className="h-5 w-5" />
+              </span>
+              <h3 className="text-base font-semibold">Mixed‑precision modes</h3>
+            </div>
+            <p className="mt-3 text-sm">BF16 for accuracy, FP8 for performance, and NVFP4 for extreme efficiency.</p>
+          </div>
+
+          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
+            <div className="flex items-center gap-3">
+              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
+                <Sliders className="h-5 w-5" />
+              </span>
+              <h3 className="text-base font-semibold">Fine‑tuning choices</h3>
+            </div>
+            <p className="mt-3 text-sm">Full fine‑tuning, LoRA/QLoRA, and recipe‑guided setups for repeatability.</p>
+          </div>
+
+          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
+            <div className="flex items-center gap-3">
+              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10 ">
+                <CheckCircle className="h-5 w-5" />
+              </span>
+              <h3 className="text-base font-semibold">Reliability by design</h3>
+            </div>
+            <p className="mt-3 text-sm">Deterministic configs, explicit recipes, and a clear separation of concerns.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
