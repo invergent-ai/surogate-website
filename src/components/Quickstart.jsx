@@ -26,11 +26,12 @@ export default function Quickstart() {
               </span>
               <h3 className="text-base font-semibold ">1) Install</h3>
             </div>
-            <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">Recommended script install:</p>
+            <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">Run the following command:</p>
             <pre className="codeblock mt-3 overflow-x-auto rounded-2xl border border-zinc-200 dark:border-white/10 p-3 sm:p-4 text-xs sm:text-sm text-zinc-950 dark:text-zinc-100">
               <SyntaxHighlightedContent language='bash' style={a11yDark} content={installScript}></SyntaxHighlightedContent>
             </pre>
             <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">This installs the CLI so you can run training with simple commands.</p>
+            <p className="mt-3 text-xs text-zinc-700 dark:text-zinc-300 font-semibold">*Requires Ubuntu 24.04 x64 with CUDA 12.8/12.9/13.0</p>
           </div>
 
           {/* Run */}
