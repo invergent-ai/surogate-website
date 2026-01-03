@@ -1,8 +1,12 @@
 import { Download, PlayCircle, FileText } from 'lucide-react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import SyntaxHighlightedContent  from './SyntaxHighlightedContent'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 export default function Quickstart() {
+  const installScript = `curl -sSL https://surogate.ai/install.sh | bash`;
+  const runScript = `surogate sft --config examples/sft/qwen3-lora-bf16.yaml`;
+
   return (
     <section id="quickstart" className="scroll-mt-24 border-t border-zinc-200 dark:border-white/10 bg-white/95 dark:bg-zinc-950/70">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14">
@@ -24,7 +28,7 @@ export default function Quickstart() {
             </div>
             <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">Recommended script install:</p>
             <pre className="codeblock mt-3 overflow-x-auto rounded-2xl border border-zinc-200 dark:border-white/10 p-3 sm:p-4 text-xs sm:text-sm text-zinc-950 dark:text-zinc-100">
-              <SyntaxHighlighter language='bash' style={a11yDark}>curl -LsSf https://surogate.ai/install.sh | sh</SyntaxHighlighter>
+              <SyntaxHighlightedContent language='bash' style={a11yDark} content={installScript}></SyntaxHighlightedContent>
             </pre>
             <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">This installs the CLI so you can run training with simple commands.</p>
           </div>
@@ -39,7 +43,7 @@ export default function Quickstart() {
             </div>
             <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">Start the SFT job using your config:</p>
             <pre className="codeblock mt-3 overflow-x-auto rounded-2xl border border-zinc-200 dark:border-white/10 p-3 sm:p-4 text-xs sm:text-sm text-zinc-950 dark:text-zinc-100">
-              <SyntaxHighlighter language="bash" style={a11yDark}>surogate sft --config path/to/config.yaml</SyntaxHighlighter>
+              <SyntaxHighlightedContent language="bash" style={a11yDark} content={runScript}></SyntaxHighlightedContent>
             </pre>
             <div className="mt-4 rounded-2xl bg-zinc-100 dark:bg-zinc-950/40 p-4 ring-1 ring-zinc-200 dark:ring-white/10 text-zinc-700 dark:text-zinc-300">
               <p className="text-sm font-semibold">Output</p>
