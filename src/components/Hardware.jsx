@@ -52,7 +52,7 @@ export default function Hardware() {
               </li>
               <li className="flex items-start gap-3">
                 <ArrowRight className="mt-0.5 h-4 w-4" />
-                <span>CPU offload helps fit larger runs when VRAM is tight.</span>
+                <span>QLoRA & CPU offloading helps fit larger runs when VRAM is tight.</span>
               </li>
             </ul>
           </div>

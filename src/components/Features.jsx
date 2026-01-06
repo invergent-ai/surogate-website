@@ -9,7 +9,7 @@ export default function Features() {
             <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white">Built to move fast — and stay stable</h2>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
               Surogate combines a low‑overhead Python frontend with a native C++/CUDA execution engine and an optimized
-              multi‑threaded scheduler.
+              multi‑threaded/MPI scheduler.
             </p>
           </div>
           <div className="hidden md:flex">
@@ -38,7 +38,7 @@ export default function Features() {
               </span>
               <h3 className="text-base font-semibold">Native multi‑GPU</h3>
             </div>
-            <p className="mt-3 text-sm">Predictable scaling with an execution model designed for distributed training.</p>
+            <p className="mt-3 text-sm">Two execution models (multi-threaded/MPI) designed for high-performance distributed training.</p>
           </div>
 
           <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-30">
@@ -48,7 +48,7 @@ export default function Features() {
               </span>
               <h3 className="text-base font-semibold 0">Smart CPU offloading</h3>
             </div>
-            <p className="mt-3 text-sm">Offload weights, gradients, activations, and quant states to stretch memory.</p>
+            <p className="mt-3 text-sm">Offload weights, gradients, activations and recomputes to stretch memory.</p>
           </div>
 
           <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
@@ -58,7 +58,7 @@ export default function Features() {
               </span>
               <h3 className="text-base font-semibold">Mixed‑precision modes</h3>
             </div>
-            <p className="mt-3 text-sm">BF16 for accuracy, FP8 for performance, and NVFP4 for extreme efficiency.</p>
+            <p className="mt-3 text-sm">BF16 for accuracy, FP8 for performance, NF4 for aggressive memory optimization and NVFP4 for extreme Blackwell efficiency.</p>
           </div>
 
           <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
@@ -66,9 +66,9 @@ export default function Features() {
               <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
                 <Sliders className="h-5 w-5" />
               </span>
-              <h3 className="text-base font-semibold">Fine‑tuning choices</h3>
+              <h3 className="text-base font-semibold">Training choices</h3>
             </div>
-            <p className="mt-3 text-sm">Full fine‑tuning, LoRA/QLoRA, and recipe‑guided setups for repeatability.</p>
+            <p className="mt-3 text-sm">Pre-training, Full fine‑tuning, LoRA/QLoRA, and recipe‑guided setups for repeatability.</p>
           </div>
 
           <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
@@ -76,11 +76,11 @@ export default function Features() {
               <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10 ">
                 <CheckCircle className="h-5 w-5" />
               </span>
-              <h3 className="text-base font-semibold">Reliability by design</h3>
+              <h3 className="text-base font-semibold">Experimentation by design</h3>
             </div>
-            <p className="mt-3 text-sm">Deterministic configs, explicit recipes, and a clear separation of concerns.</p>
+            <p className="mt-3 text-sm">Mix different dtypes for GEMMs, model, gradients and LoRA recipes to create your own flavor.</p>
           </div>
-        </div>
+        </div> 
       </div>
     </section>
   );

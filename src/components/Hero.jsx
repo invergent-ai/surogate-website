@@ -74,8 +74,8 @@ export default function Hero() {
               <div className="flex items-start gap-3 rounded-2xl bg-zinc-50 p-4 ring-1 ring-zinc-200 dark:bg-zinc-950/40 dark:ring-white/10">
                 <GitMerge className="mt-0.5 h-5 w-5 text-zinc-700 dark:text-zinc-200" />
                 <div>
-                  <p className="text-sm font-semibold text-zinc-950 dark:text-white">Predictable multi‑GPU scaling</p>
-                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Native multi‑GPU training with deterministic, explicit recipes.</p>
+                  <p className="text-sm font-semibold text-zinc-950 dark:text-white">Optimized multi‑GPU scaling</p>
+                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Threading/MPI engines for super-efficient parallelism.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-2xl bg-zinc-50 p-4 ring-1 ring-zinc-200 dark:bg-zinc-950/40 dark:ring-white/10">
@@ -88,8 +88,8 @@ export default function Hero() {
                <div className="flex items-start gap-3 rounded-2xl bg-zinc-50 p-4 ring-1 ring-zinc-200 dark:bg-zinc-950/40 dark:ring-white/10">
                 <Box className="mt-0.5 h-5 w-5 text-zinc-700 dark:text-zinc-200" />
                 <div>
-                  <p className="text-sm font-semibold text-zinc-950 dark:text-white">Supported Models</p>
-                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Qwen2.5, Qwen3 Dense, Llama 3.2 (and more coming).</p>
+                  <p className="text-sm font-semibold text-zinc-950 dark:text-white">Experimentation by design</p>
+                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Mix different dtypes for GEMMs, model, gradients and LoRA recipes to create your own flavor.</p>
                 </div>
               </div>
             </div>
