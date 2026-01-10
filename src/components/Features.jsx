@@ -14,8 +14,12 @@ export default function Features() {
           </div>
           <div className="hidden md:flex">
             <span className="inline-flex items-center gap-2 rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-xs text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-200 dark:ring-white/10">
-              <Code className="h-4 w-4" />
-              Python API • C++/CUDA core
+              <Code className="h-4 w-4" /> Python API
+            </span>
+          </div>
+          <div className="hidden md:flex">
+            <span className="inline-flex items-center gap-2 rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-xs text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-200 dark:ring-white/10">
+              <Code className="h-4 w-4" /> C++/CUDA core
             </span>
           </div>
         </div>
@@ -36,19 +40,19 @@ export default function Features() {
               <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
                 <Network className="h-5 w-5" />
               </span>
-              <h3 className="text-base font-semibold">Native multi‑GPU</h3>
+              <h3 className="text-base font-semibold">Native multi‑GPU/multi-Node</h3>
             </div>
-            <p className="mt-3 text-sm">Two execution models (multi-threaded/MPI) designed for high-performance distributed training.</p>
+            <p className="mt-3 text-sm">Multi multi-threaded + Ray GPU schedulers designed for high-performance distributed training.</p>
           </div>
 
-          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-30">
+          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
             <div className="flex items-center gap-3">
               <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
-                <HardDrive className="h-5 w-5" />
+                <Network className="h-5 w-5" />
               </span>
-              <h3 className="text-base font-semibold 0">Smart CPU offloading</h3>
+              <h3 className="text-base font-semibold">Smart RAM offloading</h3>
             </div>
-            <p className="mt-3 text-sm">Offload weights, gradients, activations and recomputes to stretch memory.</p>
+            <p className="mt-3 text-sm">Offload weights, gradients, activations and granular checkpointing to stretch memory</p>
           </div>
 
           <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">

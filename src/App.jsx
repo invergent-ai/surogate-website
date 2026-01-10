@@ -19,7 +19,6 @@ function App() {
 
       <Header />
       <Hero />
-      <Features />
       <Recipes />
       <Quickstart />
       <Hardware />

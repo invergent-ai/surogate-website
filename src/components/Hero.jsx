@@ -1,4 +1,4 @@
-import { Zap, Play, Layers, Cpu, Gauge, GitMerge, ShieldCheck, Box } from 'lucide-react';
+import { Code, Zap, Play, Layers, Cpu, Gauge, GitMerge, ShieldCheck, Box } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -16,7 +16,7 @@ export default function Hero() {
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-3 py-1 text-sm text-zinc-900 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:text-white dark:ring-white/10">
               <Zap className="h-3.5 w-3.5" />
-              Multi‑GPU
+              Multi‑GPU/Multi-Node
             </span>
           </div>
 
@@ -41,11 +41,12 @@ export default function Hero() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-2 text-xs text-zinc-700 dark:text-zinc-300">
-            <span className="rounded-full bg-zinc-100 px-3 py-1 ring-1 ring-zinc-200 dark:bg-white/5 dark:ring-white/10">Pre‑training + SFT</span>
+            <span className="rounded-full bg-zinc-100 px-3 py-1 ring-1 ring-zinc-200 dark:bg-white/5 dark:ring-white/10">Pre‑training+SFT</span>
             <span className="rounded-full bg-zinc-100 px-3 py-1 ring-1 ring-zinc-200 dark:bg-white/5 dark:ring-white/10">LoRA / QLoRA</span>
             <span className="rounded-full bg-zinc-100 px-3 py-1 ring-1 ring-zinc-200 dark:bg-white/5 dark:ring-white/10">BF16 • FP8 • NVFP4</span>
-            <span className="rounded-full bg-zinc-100 px-3 py-1 ring-1 ring-zinc-200 dark:bg-white/5 dark:ring-white/10">CPU offload</span>
-            <span className="rounded-full bg-zinc-100 px-3 py-1 ring-1 ring-zinc-200 dark:bg-white/5 dark:ring-white/10">SM80 → SM121</span>
+            <span className="rounded-full bg-zinc-100 px-3 py-1 ring-1 ring-zinc-200 dark:bg-white/5 dark:ring-white/10">RAM offloading</span>
+            <span className="rounded-full bg-zinc-100 px-3 py-1 ring-1 ring-zinc-200 dark:bg-white/5 dark:ring-white/10">Python API</span>
+            <span className="rounded-full bg-zinc-100 px-3 py-1 ring-1 ring-zinc-200 dark:bg-white/5 dark:ring-white/10">C++/CUDA core</span>
           </div>
         </div>
 
@@ -56,7 +57,7 @@ export default function Hero() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold text-zinc-950 dark:text-white">What Surogate optimizes for</p>
-                <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Throughput, reliability, and scaling — without fragile glue.</p>
+                <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Throughput, mixed-precision and scaling — without fragile glue.</p>
               </div>
               <span className="rounded-2xl bg-sky-50 p-2 ring-1 ring-sky-200 dark:bg-sky-400/10 dark:ring-sky-400/25">
                 <Cpu className="h-5 w-5 text-sky-600 dark:text-sky-200" />
@@ -74,22 +75,22 @@ export default function Hero() {
               <div className="flex items-start gap-3 rounded-2xl bg-zinc-50 p-4 ring-1 ring-zinc-200 dark:bg-zinc-950/40 dark:ring-white/10">
                 <GitMerge className="mt-0.5 h-5 w-5 text-zinc-700 dark:text-zinc-200" />
                 <div>
-                  <p className="text-sm font-semibold text-zinc-950 dark:text-white">Optimized multi‑GPU scaling</p>
-                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Threading/MPI engines for super-efficient parallelism.</p>
+                  <p className="text-sm font-semibold text-zinc-950 dark:text-white">Optimized multi‑GPU/multi-Node scaling</p>
+                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Threading+Ray for super-efficient parallelism.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-2xl bg-zinc-50 p-4 ring-1 ring-zinc-200 dark:bg-zinc-950/40 dark:ring-white/10">
                 <ShieldCheck className="mt-0.5 h-5 w-5 text-zinc-700 dark:text-zinc-200" />
                 <div>
-                  <p className="text-sm font-semibold text-zinc-950 dark:text-white">Production‑minded ergonomics</p>
-                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Clear configs, explicit precision modes, and a stable C++ core.</p>
+                  <p className="text-sm font-semibold text-zinc-950 dark:text-white">Native mixed-precision</p>
+                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Native training/fine-tuning wiht FP8 and NVFP4</p>
                 </div>
               </div>
                <div className="flex items-start gap-3 rounded-2xl bg-zinc-50 p-4 ring-1 ring-zinc-200 dark:bg-zinc-950/40 dark:ring-white/10">
                 <Box className="mt-0.5 h-5 w-5 text-zinc-700 dark:text-zinc-200" />
                 <div>
                   <p className="text-sm font-semibold text-zinc-950 dark:text-white">Experimentation by design</p>
-                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Mix different dtypes for GEMMs, model, gradients and LoRA recipes to create your own flavor.</p>
+                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Mix dtypes across GEMMs, model, gradients, and LoRA.</p>
                 </div>
               </div>
             </div>

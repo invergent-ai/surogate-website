@@ -5,13 +5,13 @@ import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 export default function Quickstart() {
   const installScript = `curl -sSL https://surogate.ai/install.sh | bash`;
-  const runScript = `surogate sft --config examples/sft/qwen3-lora-bf16.yaml`;
+  const runScript = `surogate sft examples/sft/qwen3-lora-qbnb.yaml`;
 
   return (
     <section id="quickstart" className="scroll-mt-24 border-t border-zinc-200 dark:border-white/10 bg-white/95 dark:bg-zinc-950/70">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white">Quickstart: install + run a simple SFT</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white">Quickstart</h2>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
             Below is a minimal flow: install the package, create a small YAML config, and start a supervised fine‑tune.
           </p>

@@ -91,8 +91,8 @@ export default function Recipes() {
         <div className="mt-10 rounded-3xl border border-zinc-200 dark:border-white/10 bg-gradient-to-b from-zinc-50 dark:from-white/5 to-transparent p-6">
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-sm font-semibold text-zinc-950 dark:text-white">Adaptive QLoRA</p>
-              <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">BitsAndBytes, FP8 and NVFP4 live quantization to help maximize SOL on Ampere/Hopper/Blackwell hardware.</p>
+              <p className="text-sm font-semibold text-zinc-950 dark:text-white mb-2">QLoRA</p>
+              <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300"><span className='font-semibold'>BitsAndBytes</span>, <span className='font-semibold'>FP8</span> and <span className='font-semibold'>NVFP4</span> dynamic quantization to help maximize SOL on Ampere/Hopper/Blackwell hardware.</p>
             </div>
             <a href="#quickstart" className="mt-3 inline-flex items-center justify-center rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-950 dark:text-white ring-1 ring-zinc-200 dark:ring-white/10 hover:bg-zinc-200 dark:hover:bg-white/10 md:mt-0">
               <Terminal className="mr-2 h-4 w-4" />
