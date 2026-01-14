@@ -1,4 +1,4 @@
-import { Scale, Rocket, Cpu, Dot, Terminal } from 'lucide-react';
+import { Scale, Rocket, Cpu, Dot, BookOpenText } from 'lucide-react';
 
 export default function Recipes() {
   return (
@@ -35,6 +35,9 @@ export default function Recipes() {
                 Great for validation baselines
               </li>
             </ul>
+            <div className='flex justify-end'>
+              <p className="text-xs mt-3"><a href="https://docs.surogate.ai/guides/precision-and-recipes#bf16">Learn more...</a></p>
+            </div>
           </article>
 
           <article className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6">
@@ -48,7 +51,7 @@ export default function Recipes() {
               <span className="rounded-full bg-sky-400/10 px-3 py-1 text-xs text-sky-600 dark:text-sky-200 ring-1 ring-sky-400/25">Performance</span>
             </div>
             <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">
-              Native FP8 training (E4M3 for activations/weights, E5M2 for gradients) with delayed scaling for stability.
+              Native FP8 training (E4M3 for weights & activations, E5M2 for gradients) with delayed scaling for stability.
             </p>
             <ul className="mt-4 space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
               <li className="flex items-start gap-2">
@@ -60,6 +63,9 @@ export default function Recipes() {
                 Works well with QLoRA
               </li>
             </ul>
+            <div className='flex justify-end'>
+              <p className="text-xs mt-3"><a href="https://docs.surogate.ai/guides/precision-and-recipes#fp8-hybrid">Learn more...</a></p>
+            </div>
           </article>
 
           <article className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6">
@@ -85,6 +91,9 @@ export default function Recipes() {
                 Max memory efficiency + SOL
               </li>
             </ul>
+            <div className='flex justify-end'>
+              <p className="text-xs mt-3"><a href="https://docs.surogate.ai/guides/precision-and-recipes#fp4-nvfp4">Learn more...</a></p>
+            </div>
           </article>
         </div>
 
@@ -94,9 +103,9 @@ export default function Recipes() {
               <p className="text-sm font-semibold text-zinc-950 dark:text-white mb-2">QLoRA</p>
               <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300"><span className='font-semibold'>BitsAndBytes</span>, <span className='font-semibold'>FP8</span> and <span className='font-semibold'>NVFP4</span> dynamic quantization to help maximize SOL on Ampere/Hopper/Blackwell hardware.</p>
             </div>
-            <a href="#quickstart" className="mt-3 inline-flex items-center justify-center rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-950 dark:text-white ring-1 ring-zinc-200 dark:ring-white/10 hover:bg-zinc-200 dark:hover:bg-white/10 md:mt-0">
-              <Terminal className="mr-2 h-4 w-4" />
-              See the quickstart
+            <a href="https://docs.surogate.ai/guides/qlora" className="mt-3 inline-flex items-center justify-center rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-950 dark:text-white ring-1 ring-zinc-200 dark:ring-white/10 hover:bg-zinc-200 dark:hover:bg-white/10 md:mt-0">
+              <BookOpenText className="mr-2 h-4 w-4" />
+              Learn more on QLoRA
             </a>
           </div>
         </div>

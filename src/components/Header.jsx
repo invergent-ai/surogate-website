@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, X, BookOpen, Globe, Github } from 'lucide-react';
+import { Sun, Moon, Menu, X, BookOpen, Globe, Github, BookOpenText } from 'lucide-react';
 import logoWhite from '../assets/logo-white.svg';
 import logoBlack from '../assets/logo-black.svg';
 
@@ -97,6 +97,15 @@ export default function Header() {
               <Menu className="h-5 w-5" />
             )}
           </button>
+          <a
+            href="https://docs.surogate.ai"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden items-center rounded-xl bg-zinc-100 px-3 py-2 text-sm font-medium text-zinc-900 ring-1 ring-zinc-200 hover:bg-zinc-200 dark:bg-white/5 dark:text-zinc-100 dark:ring-white/10 dark:hover:bg-white/10 sm:inline-flex"
+          >
+            <BookOpenText className="mr-2 h-4 w-4" />
+            Read Docs
+          </a>
           <a
             href="https://github.com/invergent-ai/surogate"
             target="_blank"

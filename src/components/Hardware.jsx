@@ -66,13 +66,13 @@ export default function Hardware() {
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
-                href="https://github.com/invergent-ai/surogate/tree/master/examples"
+                href="https://docs.surogate.ai/examples"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center rounded-2xl bg-zinc-100 dark:bg-white/5 px-5 py-3 text-sm font-semibold text-zinc-950 dark:text-white ring-1 ring-zinc-200 dark:ring-white/10 hover:bg-zinc-200 dark:hover:bg-white/10"
               >
                 <Folder className="mr-2 h-4 w-4" />
-                Examples
+                More Examples
               </a>
             </div>
           </div>

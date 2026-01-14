@@ -1,4 +1,4 @@
-import { Download, PlayCircle, FileText } from 'lucide-react';
+import { Download, PlayCircle, FileText, BookOpenText} from 'lucide-react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import SyntaxHighlightedContent  from './SyntaxHighlightedContent'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
@@ -55,12 +55,19 @@ export default function Quickstart() {
 
         {/* Config example */}
         <div className="mt-4 rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6">
-          <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
-            <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
-              <FileText className="h-5 w-5" />
-            </span>
-            <h3 className="font-semibold ">Config example (YAML)</h3>
-            <span className="ml-2 rounded-full bg-zinc-100 dark:bg-white/5 px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-200 dark:ring-white/10">LoRA enabled</span>
+          <div className='flex justify-between'>
+            <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
+              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
+                <FileText className="h-5 w-5" />
+              </span>
+              <h3 className="font-semibold ">Config example (YAML)</h3>
+              <span className="ml-2 rounded-full bg-zinc-100 dark:bg-white/5 px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-200 dark:ring-white/10">LoRA enabled</span>
+            </div>
+
+            <a href="https://docs.surogate.ai/reference/config" className="mt-3 inline-flex items-center justify-center rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-950 dark:text-white ring-1 ring-zinc-200 dark:ring-white/10 hover:bg-zinc-200 dark:hover:bg-white/10 md:mt-0">
+              <BookOpenText className="mr-2 h-4 w-4" />
+              Config reference
+            </a>
           </div>
 
           <pre className="codeblock mt-4 overflow-x-auto rounded-2xl border border-zinc-200 dark:border-white/10 p-3 sm:p-4 text-xs sm:text-sm text-zinc-950 dark:text-zinc-100">
