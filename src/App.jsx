@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Hero from './components/Hero';
+import WhatIsSurogate from './components/WhatIsSurogate';
 import Features from './components/Features';
 import Recipes from './components/Recipes';
 import Quickstart from './components/Quickstart';
@@ -19,6 +20,7 @@ function App() {
 
       <Header />
       <Hero />
+      <WhatIsSurogate />
       <Recipes />
       <Quickstart />
       <Hardware />

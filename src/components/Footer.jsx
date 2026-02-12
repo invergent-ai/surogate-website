@@ -1,19 +1,16 @@
 import { ArrowUp, Github } from 'lucide-react';
-import logoWhite from '../assets/logo-white.svg';
-import logoBlack from '../assets/logo-black.svg';
+import logoWhite from '../assets/surogateWhite.svg';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-300">
+    <footer className="border-t border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-300 bg-[var(--accent-purple)] dark:bg-transparent">
       <div className="mx-auto max-w-6xl px-4 py-10">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
             <a href="#" className="flex min-w-0 items-center gap-2">
-              <span>
-                <img src={logoWhite} className="block dark:hidden h-8 w-8" alt="Surogate" />
-                <img src={logoBlack} className="hidden dark:block h-8 w-8" alt="Surogate" />
+              <span className="flex h-10 items-center">
+                <img src={logoWhite} className="h-full w-auto object-contain" alt="Surogate" />
               </span>
-              <span className="font-semibold tracking-wide text-white">Surogate</span>
               <span className="hidden text-sm text-zinc-300 sm:inline">Insanely fast LLM training</span>
               <span className="hidden text-sm text-zinc-400 sm:inline">Apache 2.0 License</span>
             </a>
@@ -21,7 +18,7 @@ export default function Footer() {
           <div className="flex flex-wrap gap-3 text-sm">
             <a
               href="#"
-              className="inline-flex items-center gap-2 rounded-xl bg-zinc-100 dark:bg-white/5 px-3 py-2 text-zinc-900 dark:text-zinc-200 ring-1 ring-zinc-200 dark:ring-white/10 hover:bg-zinc-200 dark:hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-2xl bg-[var(--accent-orange)] dark:bg-[var(--accent-orange)] px-3 py-2 text-black hover:opacity-90 dark:hover:opacity-90"
             >
               <ArrowUp className="h-4 w-4" />
               Back to top
@@ -30,7 +27,7 @@ export default function Footer() {
               href="https://github.com/invergent-ai/surogate"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-zinc-100 dark:bg-white/5 px-3 py-2 text-zinc-900 dark:text-zinc-200 ring-1 ring-zinc-200 dark:ring-white/10 hover:bg-zinc-200 dark:hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-2xl bg-[var(--accent-orange)] dark:bg-[var(--accent-orange)] px-3 py-2 text-black hover:opacity-90 dark:hover:opacity-90"
             >
               <Github className="h-4 w-4" />
               GitHub

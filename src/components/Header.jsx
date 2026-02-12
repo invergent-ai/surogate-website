@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X, BookOpen, Globe, Github, BookOpenText } from 'lucide-react';
-import logoWhite from '../assets/logo-white.svg';
-import logoBlack from '../assets/logo-black.svg';
+import logoWhite from '../assets/surogateWhite.svg';
+import logoBlack from '../assets/surogateBlack.svg';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,13 +56,14 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur dark:border-white/10 dark:bg-zinc-950/70">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <a href="#" className="flex min-w-0 items-center gap-2">
-          <span>
-            <img src={logoWhite} className="hidden dark:block h-8 w-8" alt="Surogate" />
-            <img src={logoBlack} className="block dark:hidden h-8 w-8" alt="Surogate" />
+        <a href="#" className="flex min-w-0 items-center">
+          <span className="flex h-10 items-center">
+            <img
+              src={theme === 'dark' ? logoWhite : logoBlack}
+              className="h-full w-auto object-contain"
+              alt="Surogate"
+            />
           </span>
-          <span className="font-semibold tracking-wide text-zinc-950 dark:text-white">Surogate</span>
-          <span className="hidden text-sm text-zinc-700 dark:text-zinc-400 sm:inline">Insanely fast LLM training</span>
         </a>
 
         <nav className="hidden items-center gap-6 text-sm text-zinc-700 dark:text-zinc-300 md:flex">

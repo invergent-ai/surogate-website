@@ -2,9 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --accent-orange: #ffaf10;
+  --accent-purple: #2a102d;
+  --accent-grey: #bdccd4;
+  --accent-lightgrey: #f2f3f5;
+  --secondary-yellow: #ffe845;
+  --secondary-purple: #8e2b5f;
+  --secondary-lightgrey: #fafafa;
+  --secondary-darkgrey: #8e999f;
+  --secondary-darker-grey: #403e4a;
+  --gradient-purple-horizontal: linear-gradient(90deg, #8e2b5f, #2a102d);
+  --gradient-yellow-horizontal: linear-gradient(90deg, #ffe845, #ffaf10);
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 18px;
+  font-family: "Inter", sans-serif;
 }
 
 @layer base {
@@ -17,37 +32,35 @@ html {
   }
 }
 
+.inter-regular {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 .noise {
-  background-image: radial-gradient(
-      circle at 20% 10%,
+  background-image: radial-gradient(circle at 20% 10%,
       rgba(255, 255, 255, 0.08),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 80% 15%,
+      transparent 35%),
+    radial-gradient(circle at 80% 15%,
       rgba(120, 119, 198, 0.18),
-      transparent 35%
-    ),
+      transparent 35%),
     radial-gradient(circle at 50% 80%, rgba(14, 165, 233, 0.1), transparent 40%),
     radial-gradient(circle at 10% 90%, rgba(34, 197, 94, 0.1), transparent 35%);
 }
 
 :not(.dark) .noise {
-  background-image: radial-gradient(
-      circle at 20% 10%,
+  background-image: radial-gradient(circle at 20% 10%,
       rgba(120, 119, 198, 0.12),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 80% 15%,
+      transparent 35%),
+    radial-gradient(circle at 80% 15%,
       rgba(120, 119, 198, 0.2),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 50% 80%,
+      transparent 35%),
+    radial-gradient(circle at 50% 80%,
       rgba(14, 165, 233, 0.15),
-      transparent 40%
-    ),
+      transparent 40%),
     radial-gradient(circle at 10% 90%, rgba(34, 197, 94, 0.12), transparent 35%);
 }
 
@@ -56,5 +69,14 @@ html {
 }
 
 .language-bash {
-    @apply text-[10px] sm:text-[12px] md:text-[14px];
+  @apply text-[10px] sm:text-[12px] md:text-[14px];
+}
+
+pre {
+  background-color: var(--accent-purple) !important;
+  border: none !important;
+}
+
+pre code {
+  background-color: var(--accent-purple) !important;
 }
