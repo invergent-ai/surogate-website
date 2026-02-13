@@ -5,7 +5,7 @@ export default function Recipes() {
     <section id="recipes" className="scroll-mt-24 border-t border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14">
         <div className="flex flex-col gap-2">
-          <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white">Training recipes</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white">Precision recipes</h2>
           <p className="max-w-3xl text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
             Choose a precision recipe that matches your hardware and goals — from maximum numerical stability to maximum SOL.
           </p>
