@@ -12,9 +12,9 @@ export default function Hero() {
         <div>
           <h1 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
             <span className="block text-4xl sm:text-6xl font-extrabold">TRAIN AND</span>
-            <span className="block text-4xl sm:text-6xl font-extrabold">FINE-TUNE LLMS,</span>
-            <span className="block text-3xl sm:text-5xl font-normal">at practical,</span>
-            <span className="block text-2xl sm:text-4xl text-black pl-10">hardware limits.</span>
+            <span className="block text-4xl sm:text-6xl font-extrabold">FINE-TUNE LLMS</span>
+            <span className="block text-3xl sm:text-5xl font-normal">at practical</span>
+            <span className="block text-2xl sm:text-4xl text-black pl-10">hardware limits</span>
           </h1>
           <div className="mt-16 flex flex-col gap-2 sm:flex-row">
             <a
@@ -27,10 +27,10 @@ export default function Hero() {
               Run a first training
             </a>
             <a
-              href="#features"
-              className="inline-flex items-center justify-center rounded-3xl bg-[#FFBB33] px-4 py-1 text-xs font-semibold text-white border border-white hover:bg-[#ffb000] transition-colors"
+              href="#studio"
+              className="inline-flex items-center justify-center rounded-3xl bg-[#FFBB33] px-4 py-1 text-xs font-semibold text-zinc-950 border border-zinc-950 hover:bg-[#ffb000] transition-colors"
             >
-              Explore features
+              Run with Surogate Studio
             </a>
           </div>
 
@@ -74,6 +74,13 @@ export default function Hero() {
                 <div>
                   <p className="text-sm font-semibold text-black">Experimentation by design</p>
                   <p className="mt-1 text-sm text-black">Mix dtypes across GEMMs, model, gradients, and LoRA.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 rounded-[10px] bg-[#FFBB33] p-4">
+                <img src="/recipes-2.svg" alt="" className="mt-0.5 h-10 w-10" />
+                <div>
+                  <p className="text-sm font-semibold text-black">Surogate Studio</p>
+                  <p className="mt-1 text-sm text-black">Complete model development envrionment, from training to production.</p>
                 </div>
               </div>
             </div>
