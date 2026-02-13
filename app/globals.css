@@ -80,3 +80,38 @@ pre {
 pre code {
   background-color: var(--accent-purple) !important;
 }
+
+.tab-icon {
+  display: inline-block;
+  background-color: var(--accent-orange);
+}
+
+.tab-icon-dashboard {
+  -webkit-mask: url('/dashboard.svg') no-repeat center / contain;
+  mask: url('/dashboard.svg') no-repeat center / contain;
+}
+
+.tab-icon-optimized {
+  -webkit-mask: url('/optimized.svg') no-repeat center / contain;
+  mask: url('/optimized.svg') no-repeat center / contain;
+}
+
+.tab-icon-native {
+  -webkit-mask: url('/native.svg') no-repeat center / contain;
+  mask: url('/native.svg') no-repeat center / contain;
+}
+
+.tab-icon-experimentation {
+  -webkit-mask: url('/experimentation.svg') no-repeat center / contain;
+  mask: url('/experimentation.svg') no-repeat center / contain;
+}
+
+.tab-icon-datahub {
+  -webkit-mask: url('/datahub.svg') no-repeat center / contain;
+  mask: url('/datahub.svg') no-repeat center / contain;
+}
+
+.tab-icon-recipes-3 {
+  -webkit-mask: url('/recipes-3.svg') no-repeat center / contain;
+  mask: url('/recipes-3.svg') no-repeat center / contain;
+}
