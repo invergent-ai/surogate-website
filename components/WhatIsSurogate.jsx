@@ -1,5 +1,3 @@
-import surogateMascot from '../assets/surogate-mascot.svg';
-
 export default function WhatIsSurogate() {
   return (
     <section className="bg-[var(--accent-lightgrey)] dark:bg-[var(--accent-purple)]">
@@ -38,7 +36,7 @@ export default function WhatIsSurogate() {
             <div className="relative">
               <div className="absolute -inset-4 -z-10 rounded-3xl bg-white/60 dark:bg-white/10 shadow-lg" />
               <img
-                src={surogateMascot}
+                src="/surogate-mascot.svg"
                 alt="Surogate mascot"
                 className="relative z-10 h-auto max-w-xs w-full"
               />
@@ -49,4 +47,3 @@ export default function WhatIsSurogate() {
     </section>
   );
 }
-

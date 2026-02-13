@@ -1,7 +1,4 @@
 import { Dot, BookOpenText } from 'lucide-react';
-import recipes1 from '../assets/recipes-1.svg';
-import recipes2 from '../assets/recipes-2.svg';
-import recipes3 from '../assets/recipes-3.svg';
 
 export default function Recipes() {
   return (
@@ -18,7 +15,7 @@ export default function Recipes() {
           <article className="relative overflow-visible rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 pt-10 pb-5 px-5 sm:pt-12 sm:pb-6 sm:px-6">
             <div className="absolute inset-x-0 -top-6 flex justify-center">
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent-orange)] p-3">
-                <img src={recipes1} alt="" className="h-8 w-8" />
+                <img src="/recipes-1.svg" alt="" className="h-8 w-8" />
               </span>
             </div>
             <div className="flex items-center justify-between text-zinc-700 dark:text-zinc-300">
@@ -48,7 +45,7 @@ export default function Recipes() {
           <article className="relative overflow-visible rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 mt-8 lg:mt-0 pt-10 pb-5 px-5 sm:pt-12 sm:pb-6 sm:px-6">
             <div className="absolute inset-x-0 -top-6 flex justify-center">
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent-orange)] p-3">
-                <img src={recipes2} alt="" className="h-8 w-8" />
+                <img src="/recipes-2.svg" alt="" className="h-8 w-8" />
               </span>
             </div>
             <div className="flex items-center justify-between text-zinc-700 dark:text-zinc-300">
@@ -78,7 +75,7 @@ export default function Recipes() {
           <article className="relative overflow-visible rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 mt-8 lg:mt-0 pt-10 pb-5 px-5 sm:pt-12 sm:pb-6 sm:px-6">
             <div className="absolute inset-x-0 -top-6 flex justify-center">
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent-orange)] p-3">
-                <img src={recipes3} alt="" className="h-8 w-8" />
+                <img src="/recipes-3.svg" alt="" className="h-8 w-8" />
               </span>
             </div>
             <div className="flex items-center justify-between text-zinc-700 dark:text-zinc-300">

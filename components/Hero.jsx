@@ -1,15 +1,10 @@
-import { Code, Zap, Play, Layers, Cpu, Gauge, GitMerge, ShieldCheck, Box } from 'lucide-react';
-import heroBg from '../assets/heroBg.svg';
-import dashboard from '../assets/dashboard.svg';
-import optimized from '../assets/optimized.svg';
-import native from '../assets/native.svg';
-import experimentation from '../assets/experimentation.svg';
+import { Play } from 'lucide-react';
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-[var(--accent-orange)]">
       <img
-        src={heroBg}
+        src="/heroBg.svg"
         alt=""
         className="pointer-events-none select-none absolute bottom-0 left-0 w-64 md:w-80 h-auto"
       />
@@ -54,28 +49,28 @@ export default function Hero() {
 
             <div className="mt-6 grid gap-3">
               <div className="flex items-start gap-3 rounded-[10px] bg-[#FFBB33] p-4">
-                <img src={dashboard} alt="" className="mt-0.5 h-10 w-10" />
+                <img src="/dashboard.svg" alt="" className="mt-0.5 h-10 w-10" />
                 <div>
                   <p className="text-sm font-semibold text-black">Speed‑of‑Light utilization</p>
                   <p className="mt-1 text-sm text-black">A native engine and scheduler designed to push NVIDIA GPUs hard.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-[10px] bg-[#FFBB33] p-4">
-                <img src={optimized} alt="" className="mt-0.5 h-10 w-10" />
+                <img src="/optimized.svg" alt="" className="mt-0.5 h-10 w-10" />
                 <div>
                   <p className="text-sm font-semibold text-black">Optimized multi‑GPU/multi-Node scaling</p>
                   <p className="mt-1 text-sm text-black">Threading+Ray for super-efficient parallelism.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-[10px] bg-[#FFBB33] p-4">
-                <img src={native} alt="" className="mt-0.5 h-10 w-10" />
+                <img src="/native.svg" alt="" className="mt-0.5 h-10 w-10" />
                 <div>
                   <p className="text-sm font-semibold text-black">Native mixed-precision</p>
                   <p className="mt-1 text-sm text-black">Native training/fine-tuning wiht FP8 and NVFP4</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-[10px] bg-[#FFBB33] p-4">
-                <img src={experimentation} alt="" className="mt-0.5 h-10 w-10" />
+                <img src="/experimentation.svg" alt="" className="mt-0.5 h-10 w-10" />
                 <div>
                   <p className="text-sm font-semibold text-black">Experimentation by design</p>
                   <p className="mt-1 text-sm text-black">Mix dtypes across GEMMs, model, gradients, and LoRA.</p>

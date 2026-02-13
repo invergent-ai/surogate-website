@@ -1,13 +1,12 @@
-import Header from './components/Header';
-import Hero from './components/Hero';
-import WhatIsSurogate from './components/WhatIsSurogate';
-import Features from './components/Features';
-import Recipes from './components/Recipes';
-import Quickstart from './components/Quickstart';
-import Hardware from './components/Hardware';
-import Footer from './components/Footer';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import WhatIsSurogate from '@/components/WhatIsSurogate';
+import Recipes from '@/components/Recipes';
+import Quickstart from '@/components/Quickstart';
+import Hardware from '@/components/Hardware';
+import Footer from '@/components/Footer';
 
-function App() {
+export default function Home() {
   return (
     <div className="bg-zinc-950 text-zinc-100 antialiased overflow-x-hidden">
       {/* Top Glow */}
@@ -28,5 +27,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

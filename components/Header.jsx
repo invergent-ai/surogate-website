@@ -1,19 +1,23 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X, BookOpen, Globe, Github, BookOpenText } from 'lucide-react';
-import logoWhite from '../assets/surogateWhite.svg';
-import logoBlack from '../assets/surogateBlack.svg';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [theme, setTheme] = useState(() => {
+  const [theme, setTheme] = useState('dark');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
     const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
     if (savedTheme === 'light') {
       document.documentElement.classList.remove('dark');
     } else {
       document.documentElement.classList.add('dark');
     }
-    return savedTheme;
-  });
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -53,13 +57,15 @@ export default function Header() {
     }
   };
 
+  const logoSrc = mounted && theme === 'light' ? '/surogateBlack.svg' : '/surogateWhite.svg';
+
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur dark:border-white/10 dark:bg-zinc-950/70">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <a href="#" className="flex min-w-0 items-center">
           <span className="flex h-10 items-center">
             <img
-              src={theme === 'dark' ? logoWhite : logoBlack}
+              src={logoSrc}
               className="h-full w-auto object-contain"
               alt="Surogate"
             />

@@ -1,4 +1,4 @@
-import { Code, Zap, Network, HardDrive, Aperture, Sliders, CheckCircle } from 'lucide-react';
+import { Code, Zap, Network, Aperture, Sliders, CheckCircle } from 'lucide-react';
 
 export default function Features() {
   return (
@@ -84,7 +84,7 @@ export default function Features() {
             </div>
             <p className="mt-3 text-sm">Mix different dtypes for GEMMs, model, gradients and LoRA recipes to create your own flavor.</p>
           </div>
-        </div> 
+        </div>
       </div>
     </section>
   );

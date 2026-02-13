@@ -1,4 +1,4 @@
-import { Cpu as GpuIcon, Check, ArrowRight, Book, Folder } from 'lucide-react';
+import { Cpu as GpuIcon, Check, ArrowRight, Folder } from 'lucide-react';
 
 export default function Hardware() {
   return (

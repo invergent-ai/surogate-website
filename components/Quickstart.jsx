@@ -1,9 +1,9 @@
+'use client';
+
 import { FileText, BookOpenText } from 'lucide-react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import SyntaxHighlightedContent from './SyntaxHighlightedContent'
-import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-import InstallSvg from '../assets/install.svg';
-import RunSvg from '../assets/run.svg';
+import SyntaxHighlightedContent from './SyntaxHighlightedContent';
+import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 export default function Quickstart() {
   const installScript = `curl -sSL https://surogate.ai/install.sh | bash`;
@@ -29,7 +29,7 @@ export default function Quickstart() {
               <h3 className="text-base font-semibold">Install</h3>
             </div>
             <img
-              src={InstallSvg}
+              src="/install.svg"
               alt="Install"
               className="pointer-events-none absolute -top-6 right-5 h-24 w-auto z-10"
             />
@@ -50,7 +50,7 @@ export default function Quickstart() {
               <h3 className="text-base font-semibold">Run</h3>
             </div>
             <img
-              src={RunSvg}
+              src="/run.svg"
               alt="Run"
               className="pointer-events-none absolute -top-6 right-5 h-24 w-auto z-10"
             />
