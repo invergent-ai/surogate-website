@@ -13,6 +13,12 @@ const tabImages = [
   '/studio.png',
 ];
 
+const cloudImages = [
+  '/studio.png',
+  '/Cloud-OnPrem.png',
+  '/Cloud.png',
+];
+
 const deploymentImages = [
   '/Deployment-Inference-config_deployment.png',
   '/Deployment-Inference-deploy_from_lakefs.png',
@@ -29,6 +35,14 @@ const trainingImages = [
   '/Training-recipe-1.png',
   '/Training-metrics.png',
   '/Training-recipe.png',
+];
+
+const dataHubImages = [
+  '/Data-Hub-AddModelOrDataset.png',
+  '/Data-Hub-Datasets.png',
+  '/Data-Hub-Models.png',
+  '/Data-Hub-viewDatasets.png',
+  '/Data-hub.png',
 ];
 
 export default function Studio() {
@@ -55,7 +69,7 @@ export default function Studio() {
 
   const imagesForTab =
     activeTab === 0
-      ? ['/studio.png']
+      ? cloudImages
       : activeTab === 1
         ? trainingImages
         : activeTab === 2
@@ -63,7 +77,7 @@ export default function Studio() {
           : activeTab === 3
             ? deploymentImages
             : activeTab === 4
-              ? ['/Data-hub.png']
+              ? dataHubImages
               : [tabImages[activeTab % tabImages.length]];
 
   return (
