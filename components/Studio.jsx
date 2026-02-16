@@ -23,15 +23,24 @@ const deploymentImages = [
 ];
 
 const evaluationImages = [
-  '/Evaluation-acuracy.png',
-  '/Evaluation-customEvalExactMatchResults.png',
-  '/Evaluation-security.png',
+  '/Evaluation-BasicDescEval.png',
+  '/Evaluation-BenchmarksEvalP1.png',
+  '/Evaluation-BenchmarksResults.png',
+  '/Evaluation-CustomEvalExactMatchResults.png',
+  '/Evaluation-ReportEvalP1.png',
+  '/Evaluation-ReportEvalP2.png',
+  '/Evaluation-SecEval2.png',
+  '/Evaluation-SecResults.png',
+  '/Evaluation-SummaryResults.png',
 ];
 
 const trainingImages = [
-  '/Training-recipe-1.png',
-  '/Training-metrics.png',
-  '/Training-recipe.png',
+  '/Training-1.png',
+  '/Training-2.png',
+  '/Training-3.png',
+  '/Training-4.png',
+  '/Training-5.png',
+  '/Training-6.png',
 ];
 
 const dataHubImages = [
@@ -196,7 +205,7 @@ export default function Studio() {
                 onClick={() => setActiveTab(3)}
                 className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 3 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
-                 <span className='tab-icon'>
+                <span className='tab-icon'>
                   <SquarePlay size={32} />
                 </span>
                 <div>
