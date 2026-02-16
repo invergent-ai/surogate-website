@@ -83,7 +83,7 @@ pre code {
 
 .tab-icon {
   display: inline-block;
-  background-color: var(--accent-orange);
+  color: var(--accent-orange);
 }
 
 .tab-icon-dashboard {

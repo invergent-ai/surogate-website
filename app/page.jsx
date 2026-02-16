@@ -22,8 +22,8 @@ export default function Home() {
       <Hero />
       <WhatIsSurogate />
       <Recipes />
-      <Quickstart />
       <Studio/>
+      <Quickstart />
       <Hardware />
       <Footer />
     </div>

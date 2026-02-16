@@ -1,10 +1,7 @@
 "use client";
 
-import { FileText, BookOpenText, X } from 'lucide-react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import SyntaxHighlightedContent from './SyntaxHighlightedContent';
-import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { useState, useEffect } from 'react';
+import { Cloudy, WandSparkles, ShieldCheck, SquarePlay, FolderGit, X, ArrowRight } from 'lucide-react';
 
 const tabImages = [
   '/acuracy.png',
@@ -154,50 +151,75 @@ export default function Studio() {
                 onClick={() => setActiveTab(0)}
                 className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 0 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
-                <span className="h-10 w-10 flex-shrink-0 tab-icon tab-icon-dashboard" />
+                <span className='tab-icon'>
+                  <Cloudy size={28} />
+                </span>
                 <div>
                   <p className="text-sm font-semibold">Cloud & On-Prem Infrastructure</p>
-                  <p className="mt-1 text-xs">Run tasks on cloud or your on-prem GPU infrastructure</p>
+                  <p className="mt-1 text-xs">Run jobs on your preferred cloud or local GPU infrastructure</p>
+                </div>
+                <div className="flex justify-end flex-grow">
+                  <ArrowRight size={20} />
                 </div>
               </div>
               <div
                 onClick={() => setActiveTab(1)}
                 className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 1 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
-                <span className="h-10 w-10 flex-shrink-0 tab-icon tab-icon-optimized" />
+                <span className='tab-icon'>
+                  <WandSparkles size={28} />
+                </span>
                 <div>
                   <p className="text-sm font-semibold">Training, Fine-Tuning and Alignment</p>
-                  <p className="mt-1 text-xs">Train, fine-tune, and align LLMs</p>
+                  <p className="mt-1 text-xs">Train, fine-tune, and align LLMs and bare-metal speed</p>
+                </div>
+                <div className="flex justify-end flex-grow">
+                  <ArrowRight size={20} />
                 </div>
               </div>
               <div
                 onClick={() => setActiveTab(2)}
                 className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 2 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
-                <span className="h-10 w-10 flex-shrink-0 tab-icon tab-icon-native" />
+                <span className='tab-icon'>
+                  <ShieldCheck size={32} />
+                </span>
                 <div>
                   <p className="text-sm font-semibold">Evaluation</p>
                   <p className="mt-1 text-xs">Run comprehensive evaluations of LLMs for performance, accuracy, security and alignment</p>
+                </div>
+                <div className="flex justify-end flex-grow">
+                  <ArrowRight size={20} />
                 </div>
               </div>
               <div
                 onClick={() => setActiveTab(3)}
                 className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 3 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
-                <span className="h-10 w-10 flex-shrink-0 tab-icon tab-icon-experimentation" />
+                 <span className='tab-icon'>
+                  <SquarePlay size={32} />
+                </span>
                 <div>
                   <p className="text-sm font-semibold">Deployment & Inference</p>
                   <p className="mt-1 text-xs">Deploy and run LLMs on multiple GPUs using KV-aware routing, GPU sharding, replicas, and disaggregated serving for production-grade performance</p>
+                </div>
+                <div className="flex justify-end flex-grow">
+                  <ArrowRight size={20} />
                 </div>
               </div>
               <div
                 onClick={() => setActiveTab(4)}
                 className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 4 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
-                <span className="h-10 w-10 flex-shrink-0 tab-icon tab-icon-recipes-3" />
+                <span className='tab-icon'>
+                  <FolderGit size={32} />
+                </span>
                 <div>
                   <p className="text-sm font-semibold">Data Hub</p>
-                  <p className="mt-1 text-xs">Your own, personal HuggingFace Hub for managing and sharing datasets and models</p>
+                  <p className="mt-1 text-xs">Your own, personal, private HuggingFace Hub for managing and sharing datasets and models</p>
+                </div>
+                <div className="flex justify-end flex-grow">
+                  <ArrowRight size={20} />
                 </div>
               </div>
             </div>
