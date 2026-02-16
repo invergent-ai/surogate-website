@@ -26,7 +26,7 @@ const evaluationImages = [
   '/Evaluation-BasicDescEval.png',
   '/Evaluation-BenchmarksEvalP1.png',
   '/Evaluation-BenchmarksResults.png',
-  '/Evaluation-CustomEvalExactMatchResults.png',
+  '/Evaluation-CustomEvalExactMatchResults-1.png',
   '/Evaluation-ReportEvalP1.png',
   '/Evaluation-ReportEvalP2.png',
   '/Evaluation-SecEval2.png',
