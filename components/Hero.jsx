@@ -66,7 +66,7 @@ export default function Hero() {
                 <img src="/native.svg" alt="" className="mt-0.5 h-10 w-10" />
                 <div>
                   <p className="text-sm font-semibold text-black">Native mixed-precision</p>
-                  <p className="mt-1 text-sm text-black">Native training/fine-tuning wiht FP8 and NVFP4</p>
+                  <p className="mt-1 text-sm text-black">Native training/fine-tuning with FP8 and NVFP4</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-[10px] bg-[#FFBB33] p-4">
@@ -80,7 +80,7 @@ export default function Hero() {
                 <img src="/recipes-2.svg" alt="" className="mt-0.5 h-10 w-10" />
                 <div>
                   <p className="text-sm font-semibold text-black">Surogate Studio</p>
-                  <p className="mt-1 text-sm text-black">Complete model development envrionment, from training to production.</p>
+                  <p className="mt-1 text-sm text-black">Complete model development environment, from training to production.</p>
                 </div>
               </div>
             </div>
