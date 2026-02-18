@@ -66,6 +66,8 @@ export default function Header() {
           <span className="flex h-10 items-center">
             <img
               src={logoSrc}
+              width={632}
+              height={205}
               className="h-full w-auto object-contain"
               alt="Surogate"
             />

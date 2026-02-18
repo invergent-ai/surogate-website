@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <a href="#" className="flex min-w-0 items-center gap-2">
               <span className="flex h-10 items-center">
-                <img src="/surogateWhite.svg" className="h-full w-auto object-contain" alt="Surogate" />
+                <img src="/surogateWhite.svg" width={632} height={205} className="h-full w-auto object-contain" alt="Surogate" />
               </span>
               <span className="hidden text-sm text-zinc-300 sm:inline">Insanely fast LLM training</span>
               <span className="hidden text-sm text-zinc-400 sm:inline">Apache 2.0 License</span>

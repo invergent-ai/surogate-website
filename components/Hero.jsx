@@ -6,15 +6,17 @@ export default function Hero() {
       <img
         src="/heroBg.svg"
         alt=""
+        width={1609}
+        height={2527}
         className="pointer-events-none select-none absolute bottom-0 left-0 w-64 md:w-80 h-auto"
       />
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:gap-10 sm:py-14 md:grid-cols-2 md:py-20 items-center">
         <div>
-          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-black sm:text-5xl">
             <span className="block text-4xl sm:text-6xl font-extrabold">TRAIN AND</span>
             <span className="block text-4xl sm:text-6xl font-extrabold">FINE-TUNE LLMS</span>
             <span className="block text-3xl sm:text-5xl font-normal">at practical</span>
-            <span className="block text-2xl sm:text-4xl text-black pl-10">hardware limits</span>
+            <span className="block text-2xl sm:text-4xl pl-10">hardware limits</span>
           </h1>
           <div className="mt-16 flex flex-col gap-2 sm:flex-row">
             <a

@@ -38,6 +38,8 @@ export default function WhatIsSurogate() {
               <img
                 src="/surogate-mascot.svg"
                 alt="Surogate mascot"
+                width={917}
+                height={917}
                 className="relative z-10 h-auto max-w-xs w-full"
               />
             </div>

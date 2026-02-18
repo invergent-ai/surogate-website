@@ -103,6 +103,9 @@ export default function Studio() {
               <img
                 src={imagesForTab[currentSlide % imagesForTab.length]}
                 alt="Surogate Studio"
+                width={1845}
+                height={1052}
+                loading="lazy"
                 className="w-full max-h-full object-contain z-10 cursor-pointer hover:opacity-90 transition-opacity"
                 onClick={() => {
                   setLightboxImageIndex(currentSlide);
@@ -125,19 +128,25 @@ export default function Studio() {
                 >
                   Prev
                 </button>
-                <div className="flex gap-1">
+                <div className="flex gap-1.5">
                   {imagesForTab.map((_, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setCurrentSlide(idx)}
-                      className={
+                      className={`h-6 w-6 flex items-center justify-center rounded-full ${
                         idx === currentSlide
-                          ? 'h-2 w-2 rounded-full bg-[var(--accent-orange)]'
-                          : 'h-2 w-2 rounded-full bg-white/30'
-                      }
+                          ? 'bg-[var(--accent-orange)]'
+                          : 'bg-white/30'
+                      }`}
                       aria-label={`Go to slide ${idx + 1}`}
-                    />
+                    >
+                      <span className={`block h-2 w-2 rounded-full ${
+                        idx === currentSlide
+                          ? 'bg-[var(--accent-orange)]'
+                          : 'bg-white/60'
+                      }`} />
+                    </button>
                   ))}
                 </div>
                 <button
@@ -327,12 +336,17 @@ export default function Studio() {
                     setLightboxImageIndex(idx);
                     setCurrentSlide(idx);
                   }}
-                  className={`h-2 w-2 rounded-full transition-colors ${idx === lightboxImageIndex
-                    ? 'bg-white'
-                    : 'bg-white/30 hover:bg-white/50'
+                  className={`h-6 w-6 flex items-center justify-center rounded-full transition-colors ${idx === lightboxImageIndex
+                    ? 'bg-white/20'
+                    : 'hover:bg-white/10'
                     }`}
                   aria-label={`Go to image ${idx + 1}`}
-                />
+                >
+                  <span className={`block h-2 w-2 rounded-full transition-colors ${idx === lightboxImageIndex
+                    ? 'bg-white'
+                    : 'bg-white/30'
+                    }`} />
+                </button>
               ))}
             </div>
           )}

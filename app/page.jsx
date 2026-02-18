@@ -19,12 +19,14 @@ export default function Home() {
       </div>
 
       <Header />
-      <Hero />
-      <WhatIsSurogate />
-      <Recipes />
-      <Studio/>
-      <Quickstart />
-      <Hardware />
+      <main>
+        <Hero />
+        <WhatIsSurogate />
+        <Recipes />
+        <Studio/>
+        <Quickstart />
+        <Hardware />
+      </main>
       <Footer />
     </div>
   );
