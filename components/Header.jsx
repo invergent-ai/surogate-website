@@ -2,12 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { Sun, Moon, Menu, X, BookOpen, Globe, Github, BookOpenText } from 'lucide-react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState('dark');
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -50,6 +53,15 @@ export default function Header() {
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
+    
+    // If we're not on the home page, navigate to home page with the anchor
+    if (pathname !== '/') {
+      router.push(`/${href}`);
+      setIsMenuOpen(false);
+      return;
+    }
+    
+    // If we're on the home page, scroll to the element
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
