@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Sun, Moon, Menu, X, BookOpen, Globe, Github, BookOpenText } from 'lucide-react';
 
 export default function Header() {
@@ -70,6 +71,7 @@ export default function Header() {
               height={205}
               className="h-full w-auto object-contain"
               alt="Surogate"
+              suppressHydrationWarning
             />
           </span>
         </a>
@@ -79,6 +81,8 @@ export default function Header() {
           <a className="hover:font-semibold" href="#recipes" onClick={(e) => handleNavClick(e, '#recipes')}>Recipes</a>
           <a className="hover:font-semibold" href="#quickstart" onClick={(e) => handleNavClick(e, '#quickstart')}>Quickstart</a>
           <a className="hover:font-semibold" href="#hardware" onClick={(e) => handleNavClick(e, '#hardware')}>Hardware</a>
+          <Link className="hover:font-semibold" href="/pricing">Pricing</Link>
+          <Link className="hover:font-semibold" href="/about">About</Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -115,15 +119,19 @@ export default function Header() {
             <BookOpenText className="mr-2 h-4 w-4" />
             Read Docs
           </a>
-          <a
-            href="https://github.com/invergent-ai/surogate"
-            target="_blank"
-            rel="noreferrer"
-            className="hidden items-center rounded-xl bg-zinc-100 px-3 py-2 text-sm font-medium text-zinc-900 ring-1 ring-zinc-200 hover:bg-zinc-200 dark:bg-white/5 dark:text-zinc-100 dark:ring-white/10 dark:hover:bg-white/10 sm:inline-flex"
-          >
-            <Github className="mr-2 h-4 w-4" />
-            GitHub
-          </a>
+          {mounted && (
+            <div className="hidden items-center rounded-xl bg-zinc-100 px-3 py-2 text-sm font-medium text-zinc-900 ring-1 ring-zinc-200 hover:bg-zinc-200 dark:bg-white/5 dark:text-zinc-100 dark:ring-white/10 dark:hover:bg-white/10 sm:inline-flex">
+              <Github className="mr-2 h-4 w-4" />
+              <iframe 
+                src="https://ghbtns.com/github-btn.html?user=invergent-ai&repo=surogate&type=star&count=true" 
+                frameBorder="0" 
+                scrolling="0" 
+                width="90" 
+                height="20" 
+                title="GitHub"
+              ></iframe>
+            </div>
+          )}
         </div>
       </div>
 
@@ -136,6 +144,8 @@ export default function Header() {
               <a className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="#recipes" onClick={(e) => handleNavClick(e, '#recipes')}>Recipes</a>
               <a className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="#quickstart" onClick={(e) => handleNavClick(e, '#quickstart')}>Quickstart</a>
               <a className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="#hardware" onClick={(e) => handleNavClick(e, '#hardware')}>Hardware</a>
+              <Link className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="/pricing">Pricing</Link>
+              <Link className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="/about">About</Link>
             </nav>
             <div className="mt-3 flex flex-wrap gap-2">
               <a

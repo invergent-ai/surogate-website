@@ -134,18 +134,16 @@ export default function Studio() {
                       key={idx}
                       type="button"
                       onClick={() => setCurrentSlide(idx)}
-                      className={`h-6 w-6 flex items-center justify-center rounded-full ${
-                        idx === currentSlide
+                      className={`h-6 w-6 flex items-center justify-center rounded-full ${idx === currentSlide
                           ? 'bg-[var(--accent-orange)]'
                           : 'bg-white/30'
-                      }`}
+                        }`}
                       aria-label={`Go to slide ${idx + 1}`}
                     >
-                      <span className={`block h-2 w-2 rounded-full ${
-                        idx === currentSlide
+                      <span className={`block h-2 w-2 rounded-full ${idx === currentSlide
                           ? 'bg-[var(--accent-orange)]'
                           : 'bg-white/60'
-                      }`} />
+                        }`} />
                     </button>
                   ))}
                 </div>
