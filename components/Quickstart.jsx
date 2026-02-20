@@ -74,17 +74,17 @@ export default function Quickstart() {
             <FileText className="h-7 w-7" />
           </span>
 
-          <div className="flex justify-between">
-            <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
+          <div className="flex flex-col gap-3 md:flex-row md:justify-between md:items-center">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center pt-4 md:pt-0 text-zinc-700 dark:text-zinc-300">
               <h3 className="font-semibold">Config example (YAML)</h3>
-              <span className="ml-2 rounded-full bg-zinc-100 dark:bg-white/5 px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-200 dark:ring-white/10">
+              <span className="rounded-full bg-zinc-100 dark:bg-white/5 px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-200 dark:ring-white/10 sm:ml-2">
                 LoRA enabled
               </span>
             </div>
 
             <a
               href="https://docs.surogate.ai/reference/config"
-              className="mt-3 inline-flex items-center justify-center rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-950 dark:text-white ring-1 ring-zinc-200 dark:ring-white/10 hover:bg-zinc-200 dark:hover:bg-white/10 md:mt-0"
+              className="inline-flex items-center justify-center rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-950 dark:text-white ring-1 ring-zinc-200 dark:ring-white/10 hover:bg-zinc-200 dark:hover:bg-white/10"
             >
               <BookOpenText className="mr-2 h-4 w-4" />
               Config reference

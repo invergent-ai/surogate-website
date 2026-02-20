@@ -75,7 +75,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur dark:border-white/10 dark:bg-zinc-950/70">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <a href="#" className="flex min-w-0 items-center">
+        <Link href="/" className="flex min-w-0 items-center">
           <span className="flex h-10 items-center">
             <img
               src={logoSrc}
@@ -86,7 +86,7 @@ export default function Header() {
               suppressHydrationWarning
             />
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-zinc-700 dark:text-zinc-300 md:flex">
           <a className="hover:font-semibold" href="#features" onClick={(e) => handleNavClick(e, '#features')}>Features</a>

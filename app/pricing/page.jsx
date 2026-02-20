@@ -21,7 +21,7 @@ export default function Pricing() {
     'Data Hub with Git-like versioning',
     'Team collaboration',
     'Live training monitoring',
-    'GPU & node monitorin',
+    'GPU & node monitoring',
     'Quantization recipes',
     'Advanced model serving (KV-aware cache routing, GPU sharding, replicas, disaggregated serving)',
     'Model gateway (usage tracking & security)',

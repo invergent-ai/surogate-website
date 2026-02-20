@@ -21,7 +21,7 @@ export default function Hero() {
           <div className="mt-16 flex flex-col gap-2 sm:flex-row">
             <a
               href="#quickstart"
-              className="inline-flex items-center justify-center rounded-3xl bg-white pl-1 pr-5 py-1 text-xs font-semibold text-zinc-950 hover:bg-zinc-100 dark:bg-black dark:text-white dark:hover:bg-zinc-900 transition-colors"
+              className="inline-flex items-center justify-start rounded-3xl bg-white pl-1 pr-5 py-1 text-xs font-semibold text-zinc-950 hover:bg-zinc-100 dark:bg-black dark:text-white dark:hover:bg-zinc-900 transition-colors"
             >
               <span className="mr-2 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFBB33]">
                 <Play className="h-4 w-4 text-white" />
@@ -30,7 +30,7 @@ export default function Hero() {
             </a>
             <a
               href="#studio"
-              className="inline-flex items-center justify-center rounded-3xl bg-[#FFBB33] px-4 py-1 text-xs font-semibold text-zinc-950 border border-zinc-950 hover:bg-[#ffb000] transition-colors"
+              className="inline-flex items-center justify-start rounded-3xl bg-[#FFBB33] px-4 py-2 sm:py-1 text-xs font-semibold text-zinc-950 border border-zinc-950 hover:bg-[#ffb000] transition-colors"
             >
               Run with Surogate Studio
             </a>
