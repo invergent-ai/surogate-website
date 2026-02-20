@@ -106,7 +106,7 @@ export default function Studio() {
                 width={1845}
                 height={1052}
                 loading="lazy"
-                className="w-full max-h-full object-contain z-10 cursor-pointer hover:opacity-90 transition-opacity"
+                className="w-full max-h-full object-contain z-10 cursor-pointer hover:opacity-90 transition-opacity rounded-[8px]"
                 onClick={() => {
                   setLightboxImageIndex(currentSlide);
                   setLightboxOpen(true);
@@ -135,14 +135,14 @@ export default function Studio() {
                       type="button"
                       onClick={() => setCurrentSlide(idx)}
                       className={`h-6 w-6 flex items-center justify-center rounded-full ${idx === currentSlide
-                          ? 'bg-[var(--accent-orange)]'
-                          : 'bg-white/30'
+                        ? 'bg-[var(--accent-orange)]'
+                        : 'bg-white/30'
                         }`}
                       aria-label={`Go to slide ${idx + 1}`}
                     >
                       <span className={`block h-2 w-2 rounded-full ${idx === currentSlide
-                          ? 'bg-[var(--accent-orange)]'
-                          : 'bg-white/60'
+                        ? 'bg-[var(--accent-orange)]'
+                        : 'bg-white/60'
                         }`} />
                     </button>
                   ))}
@@ -165,7 +165,7 @@ export default function Studio() {
             <div className="grid gap-3">
               <div
                 onClick={() => setActiveTab(0)}
-                className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 0 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
+                className={`flex items-center gap-3 rounded-[8px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 0 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
                 <span className='tab-icon'>
                   <Cloudy size={28} />
@@ -180,7 +180,7 @@ export default function Studio() {
               </div>
               <div
                 onClick={() => setActiveTab(1)}
-                className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 1 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
+                className={`flex items-center gap-3 rounded-[8px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 1 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
                 <span className='tab-icon'>
                   <WandSparkles size={28} />
@@ -195,7 +195,7 @@ export default function Studio() {
               </div>
               <div
                 onClick={() => setActiveTab(2)}
-                className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 2 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
+                className={`flex items-center gap-3 rounded-[8px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 2 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
                 <span className='tab-icon'>
                   <ShieldCheck size={32} />
@@ -210,7 +210,7 @@ export default function Studio() {
               </div>
               <div
                 onClick={() => setActiveTab(3)}
-                className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 3 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
+                className={`flex items-center gap-3 rounded-[8px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 3 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
                 <span className='tab-icon'>
                   <SquarePlay size={32} />
@@ -225,7 +225,7 @@ export default function Studio() {
               </div>
               <div
                 onClick={() => setActiveTab(4)}
-                className={`flex items-center gap-3 rounded-[10px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 4 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
+                className={`flex items-center gap-3 rounded-[8px] bg-[var(--accent-purple)] p-4 cursor-pointer transition-opacity ${activeTab === 4 ? 'opacity-100' : 'opacity-70 hover:opacity-90'}`}
               >
                 <span className='tab-icon'>
                   <FolderGit size={32} />
