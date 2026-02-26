@@ -89,11 +89,10 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-zinc-700 dark:text-zinc-300 md:flex">
-          <a className="hover:font-semibold" href="#features" onClick={(e) => handleNavClick(e, '#features')}>Features</a>
           <a className="hover:font-semibold" href="#recipes" onClick={(e) => handleNavClick(e, '#recipes')}>Recipes</a>
           <a className="hover:font-semibold" href="#quickstart" onClick={(e) => handleNavClick(e, '#quickstart')}>Quickstart</a>
           <a className="hover:font-semibold" href="#hardware" onClick={(e) => handleNavClick(e, '#hardware')}>Hardware</a>
-          <Link className="hover:font-semibold" href="/pricing">Pricing</Link>
+          <Link className="hover:font-semibold" href="/features">Features</Link>
           <Link className="hover:font-semibold" href="/about">About</Link>
         </nav>
 
@@ -152,11 +151,10 @@ export default function Header() {
         <div id="mobileMenu" className="border-t border-zinc-200 bg-white/95 backdrop-blur dark:border-white/10 dark:bg-zinc-950/80 md:hidden">
           <div className="mx-auto max-w-6xl px-4 py-3">
             <nav className="grid gap-1 text-sm text-zinc-700 dark:text-zinc-200">
-              <a className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="#features" onClick={(e) => handleNavClick(e, '#features')}>Features</a>
               <a className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="#recipes" onClick={(e) => handleNavClick(e, '#recipes')}>Recipes</a>
               <a className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="#quickstart" onClick={(e) => handleNavClick(e, '#quickstart')}>Quickstart</a>
               <a className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="#hardware" onClick={(e) => handleNavClick(e, '#hardware')}>Hardware</a>
-              <Link className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="/pricing">Pricing</Link>
+              <Link className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="/features">Features</Link>
               <Link className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="/about">About</Link>
             </nav>
             <div className="mt-3 flex flex-wrap gap-2">
