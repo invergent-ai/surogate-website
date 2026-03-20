@@ -30,14 +30,14 @@ export default function Hero() {
         height={2527}
         className="pointer-events-none select-none absolute bottom-0 left-0 w-64 md:w-80 h-auto"
       />
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:gap-10 sm:py-14 md:grid-cols-2 md:py-20 items-center">
-        <div>
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:gap-10 sm:py-14 md:grid-cols-2 md:py-20 items-stretch">
+        <div className="flex h-full flex-col">
           <h1 className="mt-5 text-3xl font-semibold tracking-tight text-black sm:text-5xl">
             <span className="block text-4xl sm:text-6xl font-extrabold">
-              TRAIN AND
+              TRAIN MODELS AND
             </span>
             <span className="block text-4xl sm:text-6xl font-extrabold">
-              FINE-TUNE LLMS
+              BUILD AGENTS
             </span>
             <span className="block text-3xl sm:text-5xl font-normal">
               at practical
@@ -46,7 +46,8 @@ export default function Hero() {
               hardware limits
             </span>
           </h1>
-          <div className="mt-16 flex flex-col gap-2 sm:flex-row">
+          <p className="text-black mt-5">The open-source AgentOps platform. Train and fine-tune models with a native C++/CUDA engine — then build, deploy, and operate autonomous AI agents on your own infrastructure.</p>
+          <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
             <a
               href="https://github.com/invergent-ai/surogate"
               target="_blank"
@@ -58,7 +59,8 @@ export default function Hero() {
               </span>
               Give us a star
             </a>
-            <button
+            {/* Subscribe for Surogate Studio (disabled) */}
+            {/* <button
               type="button"
               onClick={() => {
                 setIsSubscribeOpen(true);
@@ -67,7 +69,46 @@ export default function Hero() {
               className="inline-flex items-center justify-start rounded-3xl bg-[#FFBB33] px-4 py-2 sm:py-1 text-xs font-semibold text-zinc-950 border border-zinc-950 hover:bg-[#ffb000] transition-colors"
             >
               Subscribe for Surogate Studio
-            </button>
+            </button> */}
+            <a
+              href="http://discord.gg/surogate"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-start rounded-3xl bg-[#FFBB33] pl-1 pr-5 py-1 text-xs font-semibold text-zinc-950 border border-zinc-950 hover:bg-[#ffb000] transition-colors"
+            >
+              <span className="mr-2 flex h-9 w-9 items-center justify-center rounded-full bg-black">
+                <img
+                  src="/discord.svg"
+                  alt="Discord"
+                  className="h-4 w-4 brightness-0 invert"
+                />
+              </span>
+              join discord
+            </a>
+            <a
+              href="http://surogate.ai/docs"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-start rounded-3xl bg-[#FFBB33] px-4 py-1 text-xs font-semibold text-zinc-950 border border-zinc-950 hover:bg-[#ffb000] transition-colors"
+            >
+              Read Docs
+            </a>
+          </div>
+          <div className="mt-auto flex flex-wrap gap-3">
+            {[
+              "Apache 2.0",
+              "C++/CUDA core",
+              "Autonomous Agents",
+              "Multi-GPU",
+              "Self-Hosted",
+            ].map((label) => (
+              <span
+                key={label}
+                className="inline-flex items-center rounded-full bg-black px-3 py-1 text-[10px] font-medium text-white/90"
+              >
+                {label}
+              </span>
+            ))}
           </div>
         </div>
 
@@ -78,7 +119,7 @@ export default function Hero() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-[2rem] font-bold text-black">
-                  What Surogate optimizes for
+                  What Surogate does
                 </p>
               </div>
             </div>
@@ -88,11 +129,10 @@ export default function Hero() {
                 <img src="/dashboard.svg" alt="" className="mt-0.5 h-10 w-10" />
                 <div>
                   <p className="text-sm font-semibold text-black">
-                    Speed‑of‑Light utilization
+                    Near hardware-limit training
                   </p>
                   <p className="mt-1 text-sm text-black">
-                    A native engine and scheduler designed to push NVIDIA GPUs
-                    hard.
+                    A native C++/CUDA engine that pushes your NVIDIA GPUs to their practical limits — from single-GPU rigs to multi-node clusters.
                   </p>
                 </div>
               </div>
@@ -100,10 +140,10 @@ export default function Hero() {
                 <img src="/optimized.svg" alt="" className="mt-0.5 h-10 w-10" />
                 <div>
                   <p className="text-sm font-semibold text-black">
-                    Optimized multi‑GPU/multi-Node scaling
+                    Autonomous agent runtime
                   </p>
                   <p className="mt-1 text-sm text-black">
-                    Threading+Ray for super-efficient parallelism.
+                    Compose agents from skills, tools, MCP servers, and sub-agents. Agents reason, plan, and execute complex multi-step workflows.
                   </p>
                 </div>
               </div>
@@ -111,10 +151,10 @@ export default function Hero() {
                 <img src="/native.svg" alt="" className="mt-0.5 h-10 w-10" />
                 <div>
                   <p className="text-sm font-semibold text-black">
-                    Native mixed-precision
+                    Closed improvement loop
                   </p>
                   <p className="mt-1 text-sm text-black">
-                    Native training/fine-tuning with FP8 and NVFP4
+                    Production traces become training data. Fine-tune Specialized Language Models from agent trajectories. Agents get better automatically.
                   </p>
                 </div>
               </div>
@@ -126,10 +166,10 @@ export default function Hero() {
                 />
                 <div>
                   <p className="text-sm font-semibold text-black">
-                    Experimentation by design
+                    Full agent observability
                   </p>
                   <p className="mt-1 text-sm text-black">
-                    Mix dtypes across GEMMs, model, gradients, and LoRA.
+                    Complete execution traces for every agent run — every LLM call, tool invocation, sub-agent step, and failure. Visual trace viewer included.
                   </p>
                 </div>
               </div>
@@ -137,12 +177,10 @@ export default function Hero() {
                 <img src="/recipes-2.svg" alt="" className="mt-0.5 h-10 w-10" />
                 <div>
                   <p className="text-sm font-semibold text-black">
-                    Surogate Studio
+                    Self-hosted, full control
                   </p>
                   <p className="mt-1 text-sm text-black">
-                    Complete model development environment, from training to
-                    production.
-                  </p>
+                    Runs on Kubernetes. Your infrastructure, your models, your data. On-premise or cloud. Air-gap capable for regulated environments.                  </p>
                 </div>
               </div>
             </div>

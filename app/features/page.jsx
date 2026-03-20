@@ -4,34 +4,41 @@ import Footer from '@/components/Footer';
 
 export default function Features() {
   const features = [
-    'Pretraining; full fine-tuning; LoRA / QLoRA',
-    'BF16, FP8, NVFP4, BnB; mixed-precision training',
-    'Multi-GPU; Multi-node (Ray-based)',
+    'Pre-training; full fine-tuning; LoRA / QLoRA',
+    'BF16, FP8, NVFP4; mixed-precision training',
+    'Multi-GPU; multi-node (Ray-based)',
     'Smart CPU offloading',
-    'Native C++/CUDA engine; kernel fusions; multi-threaded scheduler',
+    'Native C++/CUDA engine; kernel fusions',
     'Deterministic configs + predefined recipes',
-    'DDP efficiency (comm/compute overlap)',
-    'Optimizer options (e.g., 8-bit AdamW)',
     'Dense + MoE model support',
-    'Broad NVIDIA SM coverage',
-    'GUI workflows; no-code pretraining & fine-tuning; predefined recipes',
-    'Reinforcement fine-tuning; alignment: DPO / PPO / GRPO / GDP',
-    'Chinchilla scaling rules for pretraining',
-    'Model distillation',
-    'Data Hub with Git-like versioning',
-    'Team collaboration',
-    'Live training monitoring',
-    'GPU & node monitoring',
-    'Quantization recipes',
-    'Advanced model serving (KV-aware cache routing, GPU sharding, replicas, disaggregated serving)',
-    'Model gateway (usage tracking & security)',
-    'Evaluation suite + red-teaming(bias/toxicity/leakage, etc.)',
-    'Synthetic data generation; embeddings training; reward function tooling',
-    'Alerts/logging',
+    'Broad NVIDIA SM coverage (sm80–sm121)',
+    'Autonomous agent runtime (skills, tools, sub-agents)',
+    'MCP server integration',
+    'Agent deployment on Kubernetes',
+    'Execution traces - basic viewer + export',
+    'Skill development + test suites',
+    'Data Hub with Git-style versioning',
+    'GPU-accelerated serving (vLLM)',
+    'Session replay, anomaly alerts, advanced dashboards',
+    'Auto CI benchmarking; leaderboard; regression guards',
+    'Skill improvement: GEPA optimization, failure analysis, A/B testing',
+    'Continuous agent improvement (scheduler + auto-promotion)',
+    'Full RLHF UI; preference datasets; feedback routing',
+    'Reinforcement learning: DPO / PPO / GRPO',
+    'Model distillation from agent trajectories (SLMs)',
+    'Synthetic data generation; reward function tooling',
+    'Fine-grained guardrails; content filters; compliance audit',
+    'Advanced RBAC; SSO; audit logs',
+    'Budget caps; per-team allocation; billing',
+    'Live training monitoring; GPU & node monitoring',
+    'Evaluation suite + red-teaming (bias/toxicity/PII/jailbreak)',
     'Workload/container isolation',
   ];
 
-  const guiWorkflowsIndex = features.findIndex(f => f.includes('GUI workflows'));
+  // Free column (Surogate OSS) is disabled starting from this capability.
+  const freeCutoffIndex = features.findIndex(
+    f => f.includes('Session replay, anomaly alerts, advanced dashboards')
+  );
 
   return (
     <div className="bg-zinc-950 text-zinc-100 antialiased overflow-x-hidden">
@@ -94,7 +101,7 @@ export default function Features() {
                           {feature}
                         </td>
                         <td className="border-l border-black bg-[var(--accent-orange)] px-4 text-center text-lg">
-                          {index < guiWorkflowsIndex ? '✔' : '✖'}
+                          {freeCutoffIndex === -1 ? '✔' : index < freeCutoffIndex ? '✔' : '✖'}
                         </td>
                         <td className="border-l border-black bg-[var(--accent-orange)] px-4 text-center text-lg">
                           ✔

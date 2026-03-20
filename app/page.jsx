@@ -5,6 +5,7 @@ import Recipes from '@/components/Recipes';
 import Quickstart from '@/components/Quickstart';
 import Hardware from '@/components/Hardware';
 import Studio from '@/components/Studio';
+import JoinCommunity from '@/components/JoinCommunity';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
         <WhatIsSurogate />
         <Recipes />
         <Studio/>
+        <JoinCommunity />
         <Quickstart />
         <Hardware />
       </main>

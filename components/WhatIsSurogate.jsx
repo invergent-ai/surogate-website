@@ -8,23 +8,29 @@ export default function WhatIsSurogate() {
               What is Surogate?
             </h2>
             <p className="mt-4 text-base leading-relaxed text-zinc-800 dark:text-zinc-300">
-              Surogate is the fastest production-grade LLM training framework engineered for near speed-of-light
-              throughput, low-latency execution, and predictable scaling on modern NVIDIA GPUs - from single-GPU rigs
-              to multi-GPU nodes.
+              Surogate is the open-source AgentOps platform by Invergent. It combines a high-performance LLM training engine with a full autonomous agent runtime — so you can train the models that power your agents, and operate those agents at production scale, all in one self-hosted system.
             </p>
-
+            <p>
+              The training core is built in native C++/CUDA, engineered for near hardware-limit throughput on modern NVIDIA GPUs. The agent layer runs on Kubernetes, with full execution tracing, skill lifecycle management, and a continuous improvement loop from production data.
+            </p>
             <div className="mt-6 flex flex-wrap gap-2 text-xs">
               <span className="rounded-full bg-white px-3 py-1 text-zinc-900 ring-1 ring-zinc-200">
-                Pre-training+SFT
+                Pre-training + SFT
               </span>
               <span className="rounded-full bg-white px-3 py-1 text-zinc-900 ring-1 ring-zinc-200">
-                LoRA / QLoRA
+               LoRA / QLoRA
               </span>
               <span className="rounded-full bg-white px-3 py-1 text-zinc-900 ring-1 ring-zinc-200">
-                BF16 • FP8 • NVFP4
+               BF16 • FP8 • NVFP4
               </span>
               <span className="rounded-full bg-white px-3 py-1 text-zinc-900 ring-1 ring-zinc-200">
-                Python API
+                Autonomous Agents
+              </span>
+              <span className="rounded-full bg-white px-3 py-1 text-zinc-900 ring-1 ring-zinc-200">
+                Skill Framework
+              </span>
+              <span className="rounded-full bg-white px-3 py-1 text-zinc-900 ring-1 ring-zinc-200">
+                MCP Support
               </span>
               <span className="rounded-full bg-white px-3 py-1 text-zinc-900 ring-1 ring-zinc-200">
                 C++/CUDA core

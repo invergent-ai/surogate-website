@@ -93,6 +93,7 @@ export default function Header() {
           <a className="hover:font-semibold" href="#quickstart" onClick={(e) => handleNavClick(e, '#quickstart')}>Quickstart</a>
           <a className="hover:font-semibold" href="#hardware" onClick={(e) => handleNavClick(e, '#hardware')}>Hardware</a>
           <Link className="hover:font-semibold" href="/features">Features</Link>
+          <Link className="hover:font-semibold" href="/agents">Agents</Link>
           <Link className="hover:font-semibold" href="/about">About</Link>
         </nav>
 
@@ -155,6 +156,7 @@ export default function Header() {
               <a className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="#quickstart" onClick={(e) => handleNavClick(e, '#quickstart')}>Quickstart</a>
               <a className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="#hardware" onClick={(e) => handleNavClick(e, '#hardware')}>Hardware</a>
               <Link className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="/features">Features</Link>
+              <Link className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="/agents">Agents</Link>
               <Link className="rounded-xl px-3 py-2 hover:bg-zinc-100 dark:hover:bg-white/5" href="/about">About</Link>
             </nav>
             <div className="mt-3 flex flex-wrap gap-2">

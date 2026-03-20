@@ -92,8 +92,7 @@ export default function Studio() {
         <div>
           <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white">Surogate Studio</h2>
           <p className="mt-2 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
-            The open-source, enterprise-grade LLMOps platform built to accelerate the development and deployment of generative AI applications. Read more on the <a href="https://github.com/invergent-ai/surogate-studio" className="underline">Github page</a>
-          </p>
+            The full-stack AgentOps platform — built on the open-source core.           </p>
         </div>
 
         <div className="mt-10 grid gap-y-10 gap-x-4 lg:grid-cols-2 lg:gap-y-4 items-stretch">
@@ -171,8 +170,8 @@ export default function Studio() {
                   <Cloudy size={28} />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold">Cloud & On-Prem Infrastructure</p>
-                  <p className="mt-1 text-xs">Run jobs on your preferred cloud or local GPU infrastructure</p>
+                  <p className="text-sm font-semibold">Autonomous Agent Runtime</p>
+                  <p className="mt-1 text-xs">Compose agents from skills, tools, MCP servers, and custom LLMs. Agents reason, coordinate sub-agents, and execute complex workflows — deployed as containerized Kubernetes applications.</p>
                 </div>
                 <div className="flex justify-end flex-grow">
                   <ArrowRight size={20} />
@@ -186,8 +185,8 @@ export default function Studio() {
                   <WandSparkles size={28} />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold">Training, Fine-Tuning and Alignment</p>
-                  <p className="mt-1 text-xs">Train, fine-tune, and align LLMs and bare-metal speed</p>
+                  <p className="text-sm font-semibold">Full Agent Observability</p>
+                  <p className="mt-1 text-xs">Every agent run generates a complete execution trace — LLM calls, tool invocations, sub-agent steps, memory operations, errors. Visual trace viewer, session replay, anomaly alerts, performance dashboards.</p>
                 </div>
                 <div className="flex justify-end flex-grow">
                   <ArrowRight size={20} />
@@ -201,8 +200,8 @@ export default function Studio() {
                   <ShieldCheck size={32} />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold">Evaluation</p>
-                  <p className="mt-1 text-xs">Run comprehensive evaluations of LLMs for performance, accuracy, security and alignment</p>
+                  <p className="text-sm font-semibold">Continuous Improvement Loop</p>
+                  <p className="mt-1 text-xs">Collect production traces → convert to training datasets → fine-tune Specialized Language Models (SLMs) from agent trajectories → evaluate → promote to production. Agents improve automatically over time.</p>
                 </div>
                 <div className="flex justify-end flex-grow">
                   <ArrowRight size={20} />
@@ -216,8 +215,8 @@ export default function Studio() {
                   <SquarePlay size={32} />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold">Deployment & Inference</p>
-                  <p className="mt-1 text-xs">Deploy and run LLMs on multiple GPUs using KV-aware routing, GPU sharding, replicas, and disaggregated serving for production-grade performance</p>
+                  <p className="text-sm font-semibold">High-Performance Training & Serving</p>
+                  <p className="mt-1 text-xs">Full fine-tuning, LoRA/QLoRA, RL alignment (GRPO, DPO, PPO), multi-GPU/multi-node. GPU-accelerated inference with vLLM, KV-cache offloading, tensor parallelism, LoRA adapter stacking.</p>
                 </div>
                 <div className="flex justify-end flex-grow">
                   <ArrowRight size={20} />
@@ -231,8 +230,8 @@ export default function Studio() {
                   <FolderGit size={32} />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold">Data Hub</p>
-                  <p className="mt-1 text-xs">Your own, personal, private HuggingFace Hub for managing and sharing datasets and models</p>
+                  <p className="text-sm font-semibold">Data Hub — Git-style Artifact Registry</p>
+                  <p className="mt-1 text-xs">Central versioned registry for models, datasets, agent definitions, skills, and tools. Git-style branches, commits, tags, PRs, diffs. Import/export from HuggingFace and ModelScope. Single source of truth across the entire platform.</p>
                 </div>
                 <div className="flex justify-end flex-grow">
                   <ArrowRight size={20} />
