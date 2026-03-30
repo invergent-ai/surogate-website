@@ -86,7 +86,7 @@ export default function Hero() {
               join discord
             </a>
             <a
-              href="http://surogate.ai/docs"
+              href="https://docs.surogate.ai/"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-start rounded-3xl bg-[#FFBB33] px-4 py-1 text-xs font-semibold text-zinc-950 border border-zinc-950 hover:bg-[#ffb000] transition-colors"
