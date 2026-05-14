@@ -308,9 +308,7 @@ export default function PricingPlans({ billing }) {
             Why running more than one agent costs you nothing extra
           </div>
           <p className="mt-3 font-serif text-[22px] sm:text-[26px] font-semibold leading-[1.25] tracking-[-0.014em] text-white max-w-[44ch]">
-            Most platforms charge per agent. We don&apos;t. Max alone runs{' '}
-            <span className="italic font-medium text-brand-orange">12 agents for $119/month</span> —
-            roughly what others charge for two.
+            Most platforms charge per agent. We don&apos;t. 
           </p>
           <p className="mt-4 text-[14.5px] leading-[1.6] text-white/72 max-w-[68ch]">
             Once you have a useful agent, you want more of them — one watching your inbox, one writing the
