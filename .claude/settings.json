@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(frontend-design)",
+      "Skill(frontend-design:*)",
+      "WebFetch(domain:api.anthropic.com)"
+    ]
+  }
+}

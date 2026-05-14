@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 91.81 106.01">
+  <defs>
+    
+    <clipPath id="clippath">
+      <ellipse class="cls-4" cx="44.28" cy="48.93" rx="42.45" ry="11.93"></ellipse>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <path class="cls-1" d="M86.73,48.93c0,6.59-19.01,11.93-42.45,11.93S1.83,55.52,1.83,48.93-7.11-1.81,30.86.66c12.57.82,42.51-3.01,50.24,1.86,20.2,12.7,5.64,41.65,5.64,46.42Z"></path>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g>
+        <ellipse class="cls-6" cx="44.28" cy="48.93" rx="42.45" ry="11.93"></ellipse>
+        <g class="cls-7">
+          <ellipse class="cls-3" cx="44.28" cy="56.66" rx="42.45" ry="11.93"></ellipse>
+        </g>
+        <ellipse class="cls-2" cx="44.28" cy="48.93" rx="42.45" ry="11.93"></ellipse>
+      </g>
+      <g class="cls-5">
+        <g>
+          <path class="cls-4" d="M35.67,44.25C50.69,10.48,74.15,9.18,77.42,9.17c.19,0,.34.2.28.41-.6,2.32-3.89,14.49-11.15,30.82-11.21,25.2-28.7,59.35-30.9,63.63-.11.21-.37.22-.49.02-2.01-3.35-14.41-26.25.51-59.79Z"></path>
+          <path class="cls-4" d="M24.07,57.29C10.27,23.01,27.04,7.55,29.29,5.68c.13-.11.32-.08.41.08,1.13,1.84,7.73,12.88,14.45,29.59,10.15,25.22,22.19,60.74,23.86,65.68.08.25-.12.49-.35.42-4.07-1.25-30.02-10.4-43.59-44.15Z"></path>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

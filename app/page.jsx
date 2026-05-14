@@ -1,35 +1,30 @@
-import Header from '@/components/Header';
+import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
-import WhatIsSurogate from '@/components/WhatIsSurogate';
-import Recipes from '@/components/Recipes';
-import Quickstart from '@/components/Quickstart';
-import Hardware from '@/components/Hardware';
-import Studio from '@/components/Studio';
-import JoinCommunity from '@/components/JoinCommunity';
+import ChipsStrip from '@/components/ChipsStrip';
+import Manifesto from '@/components/Manifesto';
+import UseCases from '@/components/UseCases';
+import HowItWorks from '@/components/HowItWorks';
+import Features from '@/components/Features';
+import CtaHandover from '@/components/CtaHandover';
 import Footer from '@/components/Footer';
+import RevealRoot from '@/components/RevealRoot';
 
 export default function Home() {
   return (
-    <div className="bg-zinc-950 text-zinc-100 antialiased overflow-x-hidden">
-      {/* Top Glow */}
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <div
-          className="absolute -top-40 left-1/2 h-[520px] w-[900px] -translate-x-1/2 rounded-full blur-3xl opacity-30"
-          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(56,189,248,.35), transparent 60%)' }}
-        ></div>
+    <RevealRoot>
+      <div className="bg-white text-brand-aubergine antialiased overflow-x-hidden">
+        <Nav />
+        <main id="top">
+          <Hero />
+          <ChipsStrip />
+          <Manifesto />
+          <UseCases />
+          <HowItWorks />
+          <Features />
+          <CtaHandover />
+        </main>
+        <Footer />
       </div>
-
-      <Header />
-      <main>
-        <Hero />
-        <WhatIsSurogate />
-        <Recipes />
-        <Studio/>
-        <JoinCommunity />
-        <Quickstart />
-        <Hardware />
-      </main>
-      <Footer />
-    </div>
+    </RevealRoot>
   );
 }

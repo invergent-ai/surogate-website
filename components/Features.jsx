@@ -1,89 +1,76 @@
-import { Code, Zap, Network, Aperture, Sliders, CheckCircle } from 'lucide-react';
+const FEATURES = [
+  {
+    num: '01',
+    title: 'Agent Builder — build from your workflow, not from scratch.',
+    body: "Create Surogate agents using skills, tools, and MCP servers — no Python, no ML background required. Start from a template or define your agent's behavior in plain language.",
+  },
+  {
+    num: '02',
+    title: "Cloud Execution — your agent runs. You don't have to.",
+    body: "Surogate agents execute in the cloud, independently. They don't need your machine running, your tab open, or your presence. They work when you don't.",
+  },
+  {
+    num: '03',
+    title: 'Autonomous Coordination — multiple Surogate agents, one coherent workflow.',
+    body: 'Deploy multiple agents that communicate and coordinate with each other. One handles research, one handles writing, one handles outreach — all running in parallel, all reporting to you.',
+  },
+  {
+    num: '04',
+    title: 'No-Code Configuration — modify, equip, redeploy without touching code.',
+    body: "Change your agent's goals, connect new tools, adjust its behavior — all through a visual interface. You own the configuration. You control what it can and cannot do.",
+  },
+  {
+    num: '05',
+    title: 'Reporting and Monitoring — you check the work, not every step.',
+    body: 'Your Surogate agent sends summaries, alerts, and reports. You see what it did, what it found, and what needs your decision — without sitting through every execution.',
+  },
+  {
+    num: '06',
+    title: 'Integrations — connected to the tools you already use.',
+    body: "Gmail, Slack, calendar, databases, document stores — your Surogate agent works with your existing stack. You don't change how you work. You just stop doing it manually.",
+  },
+  {
+    num: '07',
+    title: 'Continuous Improvement — the more it runs, the better it gets.',
+    body: 'Your Surogate agent improves with every execution — learning from your feedback, adapting to new data, getting smarter about how you work. It is not a static tool.',
+  },
+];
 
 export default function Features() {
   return (
-    <section id="features" className="scroll-mt-24 border-t border-zinc-200 dark:border-white/10 bg-white/95 dark:bg-zinc-950/70">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14">
-        <div className="flex items-end justify-between gap-6">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white">Built to move fast — and stay stable</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
-              Surogate combines a low‑overhead Python frontend with a native C++/CUDA execution engine and an optimized
-              multi‑threaded/MPI scheduler.
-            </p>
+    <section
+      id="features"
+      data-screen-label="06 Features"
+      className="bg-brand-aubergine text-white py-20 sm:py-24 lg:py-32"
+    >
+      <div className="max-w-container mx-auto px-8">
+        <div className="mb-16 max-w-[720px]">
+          <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-yellow/85">
+            <span className="font-mono text-brand-yellow mr-2 font-bold">04</span>
+            Features
           </div>
-          <div className="hidden md:flex">
-            <span className="inline-flex items-center gap-2 rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-xs text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-200 dark:ring-white/10">
-              <Code className="h-4 w-4" /> Python API
-            </span>
-          </div>
-          <div className="hidden md:flex">
-            <span className="inline-flex items-center gap-2 rounded-2xl bg-zinc-100 dark:bg-white/5 px-4 py-2 text-xs text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-200 dark:ring-white/10">
-              <Code className="h-4 w-4" /> C++/CUDA core
-            </span>
-          </div>
+          <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-white">
+            Everything you need to run agents that actually work.
+          </h2>
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
-            <div className="flex items-center gap-3">
-              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
-                <Zap className="h-5 w-5" />
-              </span>
-              <h3 className="text-base font-semibold ">Near‑SOL throughput</h3>
+        <div className="grid grid-cols-1">
+          {FEATURES.map((f, i) => (
+            <div
+              key={f.num}
+              className={`reveal grid gap-4 lg:gap-8 py-8 grid-cols-1 lg:[grid-template-columns:80px_1fr_1.2fr] items-start border-t border-white/10 ${
+                i === FEATURES.length - 1 ? 'border-b border-white/10' : ''
+              }`}
+            >
+              <div className="font-mono text-xs font-semibold tracking-wider-2 text-brand-yellow pt-1.5">
+                {f.num}
+              </div>
+              <h4 className="m-0 font-serif text-2xl font-semibold tracking-[-0.014em] leading-[1.18] text-white">
+                {f.title}
+              </h4>
+              <p className="m-0 text-[15.5px] leading-[1.6] text-white/72 max-w-[56ch]">{f.body}</p>
             </div>
-            <p className="mt-3 text-sm">A native engine engineered for practical hardware limits and low overhead.</p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
-            <div className="flex items-center gap-3">
-              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
-                <Network className="h-5 w-5" />
-              </span>
-              <h3 className="text-base font-semibold">Native multi‑GPU/multi-Node</h3>
-            </div>
-            <p className="mt-3 text-sm">Multi multi-threaded + Ray GPU schedulers designed for high-performance distributed training.</p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
-            <div className="flex items-center gap-3">
-              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
-                <Network className="h-5 w-5" />
-              </span>
-              <h3 className="text-base font-semibold">Smart RAM offloading</h3>
-            </div>
-            <p className="mt-3 text-sm">Offload weights, gradients, activations and granular checkpointing to stretch memory</p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
-            <div className="flex items-center gap-3">
-              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
-                <Aperture className="h-5 w-5" />
-              </span>
-              <h3 className="text-base font-semibold">Mixed‑precision modes</h3>
-            </div>
-            <p className="mt-3 text-sm">BF16 for accuracy, FP8 for performance, NF4 for aggressive memory optimization and NVFP4 for extreme Blackwell efficiency.</p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
-            <div className="flex items-center gap-3">
-              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10">
-                <Sliders className="h-5 w-5" />
-              </span>
-              <h3 className="text-base font-semibold">Training choices</h3>
-            </div>
-            <p className="mt-3 text-sm">Pre-training, Full fine‑tuning, LoRA/QLoRA, and recipe‑guided setups for repeatability.</p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 sm:p-6 text-zinc-700 dark:text-zinc-300">
-            <div className="flex items-center gap-3">
-              <span className="rounded-2xl bg-zinc-100 dark:bg-white/5 p-2 ring-1 ring-zinc-200 dark:ring-white/10 ">
-                <CheckCircle className="h-5 w-5" />
-              </span>
-              <h3 className="text-base font-semibold">Experimentation by design</h3>
-            </div>
-            <p className="mt-3 text-sm">Mix different dtypes for GEMMs, model, gradients and LoRA recipes to create your own flavor.</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
