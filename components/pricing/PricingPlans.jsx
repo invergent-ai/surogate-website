@@ -109,7 +109,6 @@ function PlanCard({ plan, billing }) {
 
   const monthly = plan.price.monthly;
   const annual = plan.price.annual;
-  const shownPrice = billing === 'annual' ? annual : monthly;
 
   return (
     <article
@@ -125,33 +124,62 @@ function PlanCard({ plan, billing }) {
       )}
 
       <div className="px-7 pt-8 pb-6">
-        <div className={`font-mono text-[10px] font-semibold uppercase tracking-wider-2 ${tone.label}`}>
-          {plan.name}
+        <div className="flex items-center justify-between gap-2">
+          <div className={`font-mono text-[10px] font-semibold uppercase tracking-wider-2 ${tone.label}`}>
+            {plan.name}
+          </div>
+          {!isFree && billing === 'monthly' && (
+            <span
+              className={`inline-flex items-center px-2 h-5 font-mono text-[10px] font-bold uppercase tracking-wider-2 ${
+                featured
+                  ? 'bg-brand-yellow text-brand-aubergine'
+                  : 'bg-brand-aubergine text-brand-yellow'
+              }`}
+            >
+              ${monthly - plan.price.first} off month 1
+            </span>
+          )}
+          {!isFree && billing === 'annual' && (
+            <span
+              className={`inline-flex items-center px-2 h-5 font-mono text-[10px] font-bold uppercase tracking-wider-2 ${
+                featured
+                  ? 'bg-brand-yellow text-brand-aubergine'
+                  : 'bg-brand-aubergine text-brand-yellow'
+              }`}
+            >
+              Save {Math.round((1 - annual / monthly) * 100)}%
+            </span>
+          )}
         </div>
 
-        <div className="mt-4 flex items-baseline gap-1.5">
+        <div className="mt-4 flex items-baseline gap-2.5 flex-wrap">
           <span className={`font-serif font-semibold leading-none tracking-display text-[52px] ${tone.price}`}>
-            {fmtPrice(shownPrice)}
+            {fmtPrice(isFree ? 0 : billing === 'annual' ? annual : plan.price.first)}
           </span>
           {!isFree && (
             <span className={`font-mono text-[12px] ${tone.muted}`}>
               /mo
             </span>
           )}
+          {!isFree && (
+            <span className={`font-serif text-[22px] font-medium leading-none ${tone.muted} line-through decoration-[1.5px] decoration-brand-orange/80`}>
+              {fmtPrice(monthly)}
+            </span>
+          )}
         </div>
 
-        <div className={`mt-2 min-h-[36px] text-[12.5px] leading-[1.5] ${tone.muted}`}>
+        <div className={`mt-2.5 min-h-[36px] text-[12.5px] leading-[1.45] ${tone.muted}`}>
           {isFree ? (
             <span>Free forever — no credit card.</span>
           ) : billing === 'annual' ? (
             <span>
-              Billed annually as {fmtPrice(annual * 12)}/yr ·{' '}
-              <span className={tone.body}>{fmtPrice(plan.price.first)} first month on monthly</span>
+              Billed annually as <span className={tone.body}>{fmtPrice(annual * 12)}/yr</span>.
+              You save {fmtPrice((monthly - annual) * 12)} a year.
             </span>
           ) : (
             <span>
-              <span className={tone.body}>{fmtPrice(plan.price.first)} first month</span>, then {fmtPrice(monthly)}
-              /mo
+              <span className={tone.body}>{fmtPrice(plan.price.first)} first month</span>, then{' '}
+              <span className={tone.body}>{fmtPrice(monthly)}/mo</span> from month 2.
             </span>
           )}
         </div>
