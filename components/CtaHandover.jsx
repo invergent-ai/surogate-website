@@ -7,13 +7,13 @@ const TIMELINE = [
 
 export default function CtaHandover() {
   return (
-    <section data-screen-label="07 CTA" className="relative overflow-hidden bg-brand-aubergine text-white py-24 sm:py-28 lg:py-32">
+    <section data-screen-label="07 CTA" className="relative overflow-hidden bg-brand-aubergine text-white pt-10 sm:pt-12 lg:pt-14 pb-24 sm:pb-28 lg:pb-32">
       <div className="absolute inset-0 bg-evening-glow pointer-events-none" />
       <div className="relative max-w-[880px] mx-auto px-8 text-center">
         <img
           src="/brand/Surogate-Logo-White.png"
           alt="Surogate"
-          className="reveal block mx-auto mb-6 w-56 sm:w-72 lg:w-[clamp(220px,28vw,360px)] h-auto opacity-95"
+          className="reveal block mx-auto -mt-10 sm:-mt-12 lg:-mt-14 mb-6 w-56 sm:w-72 lg:w-[clamp(220px,28vw,360px)] h-auto opacity-95"
         />
         <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-white/55">
           <span className="font-mono text-brand-orange mr-2 font-bold">05</span>

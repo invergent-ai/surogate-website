@@ -41,9 +41,10 @@ export default function Features() {
     <section
       id="features"
       data-screen-label="06 Features"
-      className="bg-brand-aubergine text-white py-20 sm:py-24 lg:py-32"
+      className="relative overflow-hidden bg-brand-aubergine text-white py-20 sm:py-24 lg:py-32"
     >
-      <div className="max-w-container mx-auto px-8">
+      <div className="absolute inset-0 bg-evening-glow-flip pointer-events-none" />
+      <div className="relative max-w-container mx-auto px-8">
         <div className="mb-16 max-w-[720px]">
           <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-yellow/85">
             <span className="font-mono text-brand-yellow mr-2 font-bold">04</span>
@@ -58,9 +59,7 @@ export default function Features() {
           {FEATURES.map((f, i) => (
             <div
               key={f.num}
-              className={`reveal grid gap-4 lg:gap-8 py-8 grid-cols-1 lg:[grid-template-columns:80px_1fr_1.2fr] items-start border-t border-white/10 ${
-                i === FEATURES.length - 1 ? 'border-b border-white/10' : ''
-              }`}
+              className="reveal grid gap-4 lg:gap-8 py-8 grid-cols-1 lg:[grid-template-columns:80px_1fr_1.2fr] items-start border-t border-white/10"
             >
               <div className="font-mono text-xs font-semibold tracking-wider-2 text-brand-yellow pt-1.5">
                 {f.num}
@@ -72,6 +71,11 @@ export default function Features() {
             </div>
           ))}
         </div>
+
+        <div
+          aria-hidden="true"
+          className="relative mt-16 pt-16 border-t border-white/10 before:content-[''] before:absolute before:-top-px before:left-0 before:right-0 before:h-px before:bg-timeline-rail"
+        />
       </div>
     </section>
   );

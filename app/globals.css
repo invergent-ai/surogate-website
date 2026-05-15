@@ -8,11 +8,12 @@
   --accent-grey: #bdccd4;
   --accent-lightgrey: #f2f3f5;
   --secondary-yellow: #ffe845;
-  --secondary-purple: #8e2b5f;
+  --secondary-purple: #9b1f61;
+  --brand-wine: #9b1f61;
   --secondary-lightgrey: #fafafa;
   --secondary-darkgrey: #8e999f;
   --secondary-darker-grey: #403e4a;
-  --gradient-purple-horizontal: linear-gradient(90deg, #8e2b5f, #2a102d);
+  --gradient-purple-horizontal: linear-gradient(90deg, #9b1f61, #2a102d);
   --gradient-yellow-horizontal: linear-gradient(90deg, #ffe845, #ffaf10);
 }
 

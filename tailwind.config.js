@@ -19,7 +19,7 @@ export default {
           aubergine: '#2a102d',
           'aubergine-2': '#1a0a1c',
           'aubergine-hover': '#3d1d42',
-          wine: '#8e2b5f',
+          wine: '#9b1f61',
           powder: '#bdccd4',
           fog: '#f2f3f5',
           mist: '#fafafa',
@@ -34,10 +34,11 @@ export default {
       backgroundImage: {
         'grad-sun': 'linear-gradient(135deg, #ffaf10 0%, #ffe845 100%)',
         'grad-sun-horiz': 'linear-gradient(90deg, #ffe845 0%, #ffaf10 100%)',
-        'grad-wine': 'linear-gradient(135deg, #8e2b5f 0%, #2a102d 100%)',
+        'grad-wine': 'linear-gradient(135deg, #9b1f61 0%, #2a102d 100%)',
         'grad-dusk': 'linear-gradient(180deg, #2a102d 0%, #1a0a1c 100%)',
         'grad-payoff': 'linear-gradient(180deg, #fff7e6 0%, #ffffff 100%)',
-        'evening-glow': 'radial-gradient(ellipse 60% 60% at 50% 100%, rgba(255, 175, 16, 0.22) 0%, transparent 60%), radial-gradient(ellipse 80% 50% at 50% 0%, rgba(142, 43, 95, 0.35) 0%, transparent 55%)',
+        'evening-glow': 'radial-gradient(ellipse 60% 60% at 50% 100%, rgba(255, 175, 16, 0.22) 0%, transparent 60%), radial-gradient(ellipse 80% 50% at 50% 0%, rgba(155, 31, 97, 0.35) 0%, transparent 55%)',
+        'evening-glow-flip': 'radial-gradient(ellipse 60% 60% at 50% 0%, rgba(255, 175, 16, 0.22) 0%, transparent 60%), radial-gradient(ellipse 80% 50% at 50% 100%, rgba(155, 31, 97, 0.35) 0%, transparent 55%)',
         'timeline-rail': 'linear-gradient(90deg, transparent 0%, rgba(255, 175, 16, 0.55) 12%, rgba(255, 232, 69, 0.55) 50%, rgba(255, 175, 16, 0.55) 92%, transparent 100%)',
       },
       letterSpacing: {

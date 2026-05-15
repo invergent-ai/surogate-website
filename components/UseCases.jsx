@@ -449,9 +449,18 @@ function DeveloperTile({ tile }) {
   );
 }
 
-function IncomeExample({ ex }) {
+function IncomeExample({ ex, index }) {
+  const hairlineClass =
+    index < 2
+      ? 'shadow-[inset_0.5px_0_0_0_rgba(255,175,16,0.25),inset_0_-0.5px_0_0_rgba(255,175,16,0.25)]'
+      : index === 2
+        ? 'shadow-[inset_0.5px_0_0_0_rgba(255,175,16,0.25),inset_0_-0.5px_0_0_rgba(255,175,16,0.25)] lg:shadow-[inset_0.5px_0_0_0_rgba(255,175,16,0.25)]'
+        : 'shadow-[inset_0.5px_0_0_0_rgba(255,175,16,0.25)]';
+
   return (
-    <article className="reveal bg-brand-aubergine-2 p-7 lg:p-9 flex flex-col gap-5 border-l-2 border-brand-orange">
+    <article
+      className={`reveal bg-brand-aubergine text-white p-7 lg:p-9 flex flex-col gap-5 min-h-[260px] relative ${hairlineClass}`}
+    >
       <div className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-brand-orange">
         {ex.sector}
       </div>
@@ -460,29 +469,29 @@ function IncomeExample({ ex }) {
       </h3>
 
       <div className="flex flex-col gap-1.5">
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-white/55">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-brand-steel">
           The Problem
         </span>
-        <p className="m-0 text-[14.5px] leading-[1.6] text-white/78">{ex.problem}</p>
+        <p className="m-0 text-[14.5px] leading-[1.6] text-white">{ex.problem}</p>
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-white/55">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-brand-steel">
           What The Agent Does
         </span>
-        <p className="m-0 text-[14.5px] leading-[1.6] text-white/78">{ex.does}</p>
+        <p className="m-0 text-[14.5px] leading-[1.6] text-white">{ex.does}</p>
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-white/55">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-brand-steel">
           Your Business Model
         </span>
-        <p className="m-0 text-[14.5px] leading-[1.6] text-white/78">{ex.model}</p>
+        <p className="m-0 text-[14.5px] leading-[1.6] text-white">{ex.model}</p>
       </div>
 
-      <div className="mt-1 border-t border-white/10 pt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <div className="mt-1 pt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <span className="font-mono text-[14px] font-semibold text-emerald-400">{ex.math}</span>
-        <span className="text-[13.5px] text-white/72">{ex.tagline}</span>
+        <span className="text-[13.5px] text-white">{ex.tagline}</span>
       </div>
     </article>
   );
@@ -606,25 +615,25 @@ export default function UseCases() {
       <section
         id="multiply-income"
         data-screen-label="04b Multiply income"
-        className="relative overflow-hidden bg-[#8e999f] text-white py-20 sm:py-24 lg:py-28 border-t border-white/5"
+        className="relative overflow-hidden bg-grad-sun-horiz py-20 sm:py-24 lg:py-28"
       >
         <div className="relative max-w-container mx-auto px-8">
           <div className="mb-12 max-w-[820px]">
-            <div className="font-serif text-[16px] font-semibold uppercase tracking-wider-2 text-white/55">
-              <span className="font-mono text-brand-orange mr-2 font-bold">02b</span>
+            <div className="font-serif text-[16px] font-semibold uppercase tracking-wider-2 text-brand-aubergine">
+              <span className="font-mono text-brand-wine mr-2 font-bold">02b</span>
               Multiply your income
             </div>
-            <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-white">
+            <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-brand-aubergine">
               Multiply your income.
               <br />
-              <span className="text-brand-orange italic font-medium">Not just your output.</span>
+              <span className="text-brand-wine italic font-medium">Not just your output.</span>
             </h2>
 
-            <div className="reveal mt-8 bg-brand-aubergine border-l-2 border-brand-orange px-7 py-6">
-              <p className="m-0 font-serif text-[20px] sm:text-[22px] font-semibold leading-[1.25] text-white">
+            <div className="reveal mt-8 bg-brand-aubergine border-l-2 border-brand-wine px-7 py-6">
+              <p className="m-0 font-serif text-[20px] sm:text-[22px] font-semibold leading-[1.25] text-brand-orange">
                 Build it once. Deploy it for your clients. Earn while it runs.
               </p>
-              <p className="mt-3 mb-0 text-[14.5px] leading-[1.6] text-white/72">
+              <p className="mt-3 mb-0 text-[14.5px] leading-[1.6] text-white">
                 A Surogate agent you build for a client runs their business — answers their calls,
                 books their appointments, qualifies their leads — 24 hours a day. They pay you a
                 monthly fee. You monitor in 30 minutes a week. That&apos;s not a side project.
@@ -632,7 +641,7 @@ export default function UseCases() {
               </p>
             </div>
 
-            <p className="reveal mt-8 text-[15.5px] leading-[1.65] text-white/72 max-w-[68ch]">
+            <p className="reveal mt-8 text-[15.5px] leading-[1.65] text-brand-aubergine max-w-[68ch]">
               You build a Surogate agent template for a specific niche — a medical receptionist, a
               property manager, a sales qualifier. You deploy it to 15–20 businesses in that niche.
               Each one pays you a monthly fee. The agent runs their operations around the clock.
@@ -641,27 +650,27 @@ export default function UseCases() {
             </p>
           </div>
 
-          <div className="mb-8 font-serif text-[13px] font-semibold uppercase tracking-wider-2 text-white/55">
+          <div className="mb-8 font-serif text-[13px] font-semibold uppercase tracking-wider-2 text-brand-aubergine">
             Four real examples
           </div>
 
-          <div className="grid gap-px bg-white/10 border border-white/10 grid-cols-1 lg:grid-cols-2">
-            {INCOME_EXAMPLES.map((ex) => (
-              <IncomeExample key={ex.title} ex={ex} />
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            {INCOME_EXAMPLES.map((ex, i) => (
+              <IncomeExample key={ex.title} ex={ex} index={i} />
             ))}
           </div>
 
           <div className="reveal mt-16 text-center">
-            <h3 className="m-0 font-serif text-[28px] sm:text-[36px] lg:text-[44px] font-semibold leading-[1.1] tracking-hl-tight text-white">
+            <h3 className="m-0 font-serif text-[28px] sm:text-[36px] lg:text-[44px] font-semibold leading-[1.1] tracking-hl-tight text-brand-aubergine">
               One platform. Fifteen niches.{' '}
-              <span className="italic font-medium text-brand-orange">Unlimited income.</span>
+              <span className="italic font-medium text-brand-wine">Unlimited income.</span>
             </h3>
-            <p className="mt-4 text-[15.5px] leading-[1.6] text-white/72 max-w-[52ch] mx-auto">
+            <p className="mt-4 text-[15.5px] leading-[1.6] text-brand-aubergine max-w-[52ch] mx-auto">
               Build your first Surogate agent. Deploy it for a client. Then build the next one.
             </p>
             <a
               href="#cta"
-              className="inline-flex items-center gap-2 mt-8 font-serif text-[15px] font-semibold uppercase tracking-wider-2 text-brand-orange hover:text-brand-yellow transition-colors"
+              className="inline-flex items-center gap-2 mt-8 font-serif text-[15px] font-semibold uppercase tracking-wider-2 text-brand-wine hover:text-brand-aubergine transition-colors"
             >
               Get started free
               <span aria-hidden="true">→</span>
