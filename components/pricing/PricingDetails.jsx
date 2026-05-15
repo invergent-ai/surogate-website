@@ -168,8 +168,12 @@ function OveragesBlock() {
 
 function ComputeBlock() {
   return (
-    <section data-screen-label="07 Compute" className="bg-brand-aubergine text-white py-20 sm:py-24 lg:py-28">
-      <div className="max-w-container mx-auto px-8">
+    <section
+      data-screen-label="07 Compute"
+      className="relative overflow-hidden bg-brand-aubergine text-white py-20 sm:py-24 lg:py-28"
+    >
+      <div className="absolute inset-0 bg-evening-glow pointer-events-none" />
+      <div className="relative max-w-container mx-auto px-8">
         <SectionHeader
           idx="07"
           dark

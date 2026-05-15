@@ -32,9 +32,10 @@ export default function PricingDeveloperKit() {
     <section
       id="developer-kit"
       data-screen-label="03 Developer kit"
-      className="bg-brand-aubergine text-white py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden bg-brand-aubergine text-white py-20 sm:py-24 lg:py-28"
     >
-      <div className="max-w-container mx-auto px-8">
+      <div className="absolute inset-0 bg-evening-glow pointer-events-none" />
+      <div className="relative max-w-container mx-auto px-8">
         <div className="mb-12 max-w-[820px]">
           <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-yellow/85">
             <span className="font-mono text-brand-yellow mr-2 font-bold">03</span>

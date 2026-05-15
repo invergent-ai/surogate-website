@@ -61,7 +61,7 @@ export default function PricingModels() {
         </div>
 
         <div className="reveal grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-brand-fog border border-brand-border p-8 lg:p-9 flex flex-col gap-4">
+          <div className="border border-brand-border p-8 lg:p-9 flex flex-col gap-4">
             <h3 className="font-serif text-[24px] font-semibold tracking-[-0.014em] text-brand-aubergine">
               Token packs
             </h3>
@@ -93,7 +93,7 @@ export default function PricingModels() {
             </p>
           </div>
 
-          <div className="bg-brand-fog border border-brand-border p-8 lg:p-9 flex flex-col gap-5">
+          <div className="bg-grad-payoff border border-brand-border p-8 lg:p-9 flex flex-col gap-5">
             <div>
               <h3 className="font-serif text-[24px] font-semibold tracking-[-0.014em] text-brand-aubergine">
                 Bring your own LLM
