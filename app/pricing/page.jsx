@@ -3,7 +3,7 @@ import PricingClient from './PricingClient';
 export const metadata = {
   title: 'Pricing — Surogate',
   description:
-    'Run agents and build models on a single platform. Free tier with 500K tokens, paid plans from $29/mo. Bring your own cloud for fine-tuning and serving.',
+    'Run agents and build models on a single platform. Free tier with 500K tokens, paid plans from $19/mo. Tokens are optional — bring your own LLM if you prefer.',
   alternates: {
     canonical: 'https://surogate.ai/pricing/',
   },
@@ -12,7 +12,7 @@ export const metadata = {
     url: 'https://surogate.ai/pricing/',
     title: 'Pricing — Surogate',
     description:
-      'Run agents and build models on a single platform. Free tier with 500K tokens, paid plans from $29/mo.',
+      'Run agents and build models on a single platform. Free tier with 500K tokens, paid plans from $19/mo. Tokens optional, BYO LLM supported.',
     siteName: 'Surogate',
   },
 };

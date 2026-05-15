@@ -1,81 +1,108 @@
+const TOKEN_PACKS = [
+  { name: 'Starter', tokens: '10M', price: '+$18 / mo' },
+  { name: 'Standard', tokens: '25M', price: '+$42 / mo' },
+  { name: 'Heavy', tokens: '50M', price: '+$80 / mo' },
+];
+
 const PLANS = [
   {
     id: 'free',
     name: 'Free',
     price: { monthly: 0, annual: 0, first: 0 },
-    blurb: 'Try it without a card.',
+    eyebrow: 'No card required',
+    best: 'For kicking the tires, demos, and trying out your own LLM.',
     cta: { label: 'Start free', href: '/#signup' },
-    best: 'Kicking the tires, building a quick demo, browsing the model hub.',
     features: [
-      '500K tokens per month',
-      'Starter compute (burst), 1 concurrent agent',
+      '1 concurrent agent',
+      'Starter compute (burst)',
       '10 GB agent workspace',
-      '30 minutes of browser-agent time',
+      '30 min browser-agent time',
+      '1 GB hub storage',
       'Community support',
     ],
+    tokens: {
+      label: 'Model access',
+      included: { pack: '500K trial tokens', price: 'included' },
+      byo: { pack: 'Bring your own LLM', price: 'free' },
+    },
   },
   {
     id: 'standard',
     name: 'Standard',
-    price: { monthly: 29, annual: 24, first: 14 },
-    blurb: 'Personal projects, entry-level automations, experimenters.',
+    price: { monthly: 19, annual: 15, first: 9 },
+    eyebrow: '$9 first month',
+    best: 'For personal projects and developers experimenting with custom models.',
     cta: { label: 'Choose Standard', href: '/#signup' },
-    best: 'Personal projects, entry-level automations, developers experimenting with custom models.',
     features: [
-      '10M tokens per month',
-      'Starter compute: 2 vCPU / 4 GB RAM (burst)',
-      '50 GB agent workspace',
-      '5 hours of browser-agent time',
       { strong: '2 concurrent agents' },
-      { strong: '5 GB hub storage for private models, datasets, checkpoints' },
-      'Fine-tuning, dataset generation, eval (1 parallel training job)',
+      'Starter compute (2 vCPU / 4 GB)',
+      '50 GB agent workspace',
+      '5 hours browser-agent time',
+      { strong: '5 GB hub storage' },
+      'Fine-tuning, datasets, eval',
+      '1 parallel training job',
       'Email support',
     ],
+    tokens: {
+      label: '+ Tokens (optional)',
+      packs: TOKEN_PACKS,
+      byo: { pack: 'Or bring your own LLM', price: 'free' },
+    },
   },
   {
     id: 'pro',
     name: 'Pro',
     featured: true,
     badge: 'Most popular',
-    price: { monthly: 55, annual: 46, first: 27 },
-    blurb: 'Daily workflows, integrations, model builders.',
+    price: { monthly: 39, annual: 32, first: 19 },
+    eyebrow: '$19 first month',
+    best: 'For daily workflows, integrating agents into your work, and builders shipping custom models.',
     cta: { label: 'Choose Pro', href: '/#signup' },
-    best: 'Daily workflows, integrating agents into your work, builders shipping custom models.',
     features: [
-      '20M tokens per month',
-      'Standard compute: 4 vCPU / 8 GB RAM (burst)',
-      '100 GB agent workspace',
-      '15 hours of browser-agent time',
       { strong: '5 concurrent agents' },
-      { strong: '25 GB hub storage for private models, datasets, checkpoints' },
-      'Fine-tuning, dataset generation, eval (3 parallel training jobs)',
-      'Private model serving via your own cloud',
+      'Standard compute (4 vCPU / 8 GB)',
+      '100 GB agent workspace',
+      '15 hours browser-agent time',
+      { strong: '25 GB hub storage' },
+      'Fine-tuning, datasets, eval',
+      '3 parallel training jobs',
+      'Private model serving',
       'Priority email support',
     ],
+    tokens: {
+      label: '+ Tokens (optional)',
+      packs: TOKEN_PACKS,
+      byo: { pack: 'Or bring your own LLM', price: 'free' },
+    },
   },
   {
     id: 'max',
     name: 'Max',
-    price: { monthly: 119, annual: 99, first: 59 },
-    blurb: 'One-person companies, multi-agent setups, always-on agents.',
+    price: { monthly: 79, annual: 65, first: 39 },
+    eyebrow: '$39 first month',
+    best: 'For OPCs, multi-agent setups, serious ML builders, and always-on agents.',
     cta: { label: 'Choose Max', href: '/#signup' },
-    best: 'One-person companies, multi-agent setups, serious ML builders, always-on agents.',
     features: [
-      '40M tokens per month',
-      'Premium compute: 8 vCPU / 16 GB RAM (burst)',
-      '200 GB agent workspace',
-      '40 hours of browser-agent time',
       { strong: '12 concurrent agents' },
-      { strong: '100 GB hub storage for private models, datasets, checkpoints' },
-      'Fine-tuning, dataset generation, eval (10 parallel training jobs)',
-      'Private model serving via your own cloud',
+      'Premium compute (8 vCPU / 16 GB)',
+      '200 GB agent workspace',
+      '40 hours browser-agent time',
+      { strong: '100 GB hub storage' },
+      'Fine-tuning, datasets, eval',
+      '10 parallel training jobs',
+      'Private model serving',
       'Priority orchestration queue',
-      'Priority support + faster cold starts',
+      'Priority support',
     ],
+    tokens: {
+      label: '+ Tokens (optional)',
+      packs: TOKEN_PACKS,
+      byo: { pack: 'Or bring your own LLM', price: 'free' },
+    },
   },
 ];
 
-function fmtPrice(n) {
+function fmt(n) {
   return `$${n}`;
 }
 
@@ -88,10 +115,13 @@ function PlanCard({ plan, billing }) {
         wrap: 'bg-brand-aubergine text-white border-brand-aubergine',
         label: 'text-brand-yellow',
         price: 'text-white',
-        muted: 'text-white/60',
+        muted: 'text-white/55',
         body: 'text-white/72',
         check: 'text-brand-yellow',
         divider: 'border-white/12',
+        dashed: 'border-white/15',
+        packPrice: 'text-brand-yellow',
+        byoPrice: 'text-white/45',
         cta:
           'bg-grad-sun text-brand-aubergine border-brand-orange hover:brightness-105',
       }
@@ -103,12 +133,28 @@ function PlanCard({ plan, billing }) {
         body: 'text-brand-graphite',
         check: 'text-brand-orange',
         divider: 'border-brand-border',
+        dashed: 'border-brand-border',
+        packPrice: 'text-brand-orange',
+        byoPrice: 'text-brand-steel',
         cta:
           'bg-brand-aubergine text-white border-brand-aubergine hover:bg-brand-aubergine-hover',
       };
 
   const monthly = plan.price.monthly;
   const annual = plan.price.annual;
+  const annualSavingsPct = monthly > 0 ? Math.round((1 - annual / monthly) * 100) : 0;
+
+  const big = isFree ? 0 : billing === 'annual' ? annual : monthly;
+  const eyebrow = isFree
+    ? plan.eyebrow
+    : billing === 'annual'
+      ? `Save ~${annualSavingsPct}% billed yearly`
+      : plan.eyebrow;
+  const subline = isFree
+    ? <>&nbsp;</>
+    : billing === 'annual'
+      ? <>Billed as <span className={tone.body}>{fmt(annual * 12)}/yr</span> — save {fmt((monthly - annual) * 12)}.</>
+      : <><span className={tone.body}>{fmt(monthly)}/mo</span>, or {fmt(annual)}/mo billed annually.</>;
 
   return (
     <article
@@ -123,91 +169,48 @@ function PlanCard({ plan, billing }) {
         </span>
       )}
 
-      <div className="px-7 pt-8 pb-6">
-        <div className="flex items-center justify-between gap-2">
-          <div className={`font-mono text-[10px] font-semibold uppercase tracking-wider-2 ${tone.label}`}>
-            {plan.name}
-          </div>
-          {!isFree && billing === 'monthly' && (
-            <span
-              className={`inline-flex items-center px-2 h-5 font-mono text-[10px] font-bold uppercase tracking-wider-2 ${
-                featured
-                  ? 'bg-brand-yellow text-brand-aubergine'
-                  : 'bg-brand-aubergine text-brand-yellow'
-              }`}
-            >
-              ${monthly - plan.price.first} off month 1
-            </span>
-          )}
-          {!isFree && billing === 'annual' && (
-            <span
-              className={`inline-flex items-center px-2 h-5 font-mono text-[10px] font-bold uppercase tracking-wider-2 ${
-                featured
-                  ? 'bg-brand-yellow text-brand-aubergine'
-                  : 'bg-brand-aubergine text-brand-yellow'
-              }`}
-            >
-              Save {Math.round((1 - annual / monthly) * 100)}%
-            </span>
-          )}
+      <div className="px-7 pt-8 pb-2 flex flex-col gap-3.5">
+        <div className={`font-mono text-[10px] font-semibold uppercase tracking-wider-2 ${tone.label}`}>
+          {plan.name}
         </div>
 
-        <div className="mt-4 flex items-baseline gap-2.5 flex-wrap">
-          <span className={`font-serif font-semibold leading-none tracking-display text-[52px] ${tone.price}`}>
-            {fmtPrice(isFree ? 0 : billing === 'annual' ? annual : plan.price.first)}
+        <div className={`font-mono text-[10.5px] uppercase tracking-wider-2 ${tone.muted}`}>
+          {eyebrow}
+        </div>
+
+        <div className="flex items-baseline gap-1.5 flex-wrap">
+          <span className={`font-serif text-[22px] font-semibold leading-none ${tone.price} -translate-y-3.5`}>$</span>
+          <span className={`font-serif font-semibold leading-none tracking-display text-[56px] ${tone.price}`}>
+            {big}
           </span>
           {!isFree && (
             <span className={`font-mono text-[12px] ${tone.muted}`}>
-              /mo
-            </span>
-          )}
-          {!isFree && (
-            <span className={`font-serif text-[22px] font-medium leading-none ${tone.muted} line-through decoration-[1.5px] decoration-brand-orange/80`}>
-              {fmtPrice(monthly)}
+              /month
             </span>
           )}
         </div>
 
-        <div className={`mt-2.5 min-h-[36px] text-[12.5px] leading-[1.45] ${tone.muted}`}>
-          {isFree ? (
-            <span>Free forever — no credit card.</span>
-          ) : billing === 'annual' ? (
-            <span>
-              Billed annually as <span className={tone.body}>{fmtPrice(annual * 12)}/yr</span>.
-              You save {fmtPrice((monthly - annual) * 12)} a year.
-            </span>
-          ) : (
-            <span>
-              <span className={tone.body}>{fmtPrice(plan.price.first)} first month</span>, then{' '}
-              <span className={tone.body}>{fmtPrice(monthly)}/mo</span> from month 2.
-            </span>
-          )}
+        <div className={`min-h-[18px] font-mono text-[11px] ${tone.muted}`}>
+          {subline}
         </div>
 
-        <p className={`mt-4 text-[13.5px] leading-[1.55] ${tone.body}`}>{plan.blurb}</p>
-
-        <a
-          href={plan.cta.href}
-          className={`mt-6 inline-flex items-center justify-center gap-2 h-11 w-full px-5 border font-sans text-[11px] font-semibold uppercase tracking-wider-2 transition-colors ${tone.cta}`}
-        >
-          {plan.cta.label}{' '}
-          <span className="font-serif font-normal text-base leading-none translate-y-px">→</span>
-        </a>
+        <p className={`mt-1 italic text-[13px] leading-[1.45] py-3.5 border-y border-dashed ${tone.dashed} ${tone.body}`}>
+          {plan.best}
+        </p>
       </div>
 
-      <div className={`px-7 py-6 border-t ${tone.divider}`}>
-        <ul className="m-0 p-0 list-none flex flex-col gap-2.5">
-          {plan.features.map((f, i) => {
+      <div className="px-7 py-2">
+        <ul className="m-0 p-0 list-none flex flex-col gap-1.5">
+          {plan.features.map((f) => {
             const text = typeof f === 'string' ? f : f.strong;
             const strong = typeof f === 'object';
+            const strongTone = featured ? 'text-white' : 'text-brand-aubergine';
             return (
-              <li key={i} className={`flex gap-2.5 text-[13.5px] leading-[1.5] ${tone.body}`}>
-                <span aria-hidden="true" className={`shrink-0 mt-[3px] ${tone.check}`}>
-                  <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="3 8.5 6.5 12 13 4.5" />
-                  </svg>
+              <li key={text} className={`flex gap-2.5 text-[13.5px] leading-[1.5] ${tone.body}`}>
+                <span aria-hidden="true" className={`shrink-0 mt-[2px] font-mono ${tone.check}`}>
+                  →
                 </span>
-                <span className={strong ? 'font-semibold ' + (featured ? 'text-white' : 'text-brand-aubergine') : ''}>
+                <span className={strong ? `font-semibold ${strongTone}` : ''}>
                   {text}
                 </span>
               </li>
@@ -215,62 +218,125 @@ function PlanCard({ plan, billing }) {
           })}
         </ul>
       </div>
+
+      <div className="px-7 py-4">
+        <div className={`py-4 border-y border-dashed ${tone.dashed} flex flex-col gap-1.5`}>
+          <div className={`font-mono text-[10px] uppercase tracking-wider-2 ${tone.muted} mb-1`}>
+            {plan.tokens.label}
+          </div>
+          {plan.tokens.included && (
+            <TokenLine
+              pack={plan.tokens.included.pack}
+              price={plan.tokens.included.price}
+              priceClass={tone.byoPrice}
+              packClass={tone.body}
+            />
+          )}
+          {plan.tokens.packs?.map((p) => (
+            <TokenLine
+              key={p.name}
+              pack={`${p.name} · ${p.tokens}`}
+              price={p.price}
+              priceClass={tone.packPrice}
+              packClass={tone.body}
+            />
+          ))}
+          <div className={`mt-1 pt-2 border-t border-dashed ${tone.dashed}`}>
+            <TokenLine
+              pack={plan.tokens.byo.pack}
+              price={plan.tokens.byo.price}
+              priceClass={tone.byoPrice}
+              packClass={`italic ${tone.body}`}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="px-7 pb-7 mt-auto">
+        <a
+          href={plan.cta.href}
+          className={`inline-flex items-center justify-center gap-2 h-11 w-full px-5 border font-sans text-[11px] font-semibold uppercase tracking-wider-2 transition-colors ${tone.cta}`}
+        >
+          {plan.cta.label}{' '}
+          <span className="font-serif font-normal text-base leading-none translate-y-px">→</span>
+        </a>
+      </div>
     </article>
+  );
+}
+
+function TokenLine({ pack, price, priceClass, packClass }) {
+  return (
+    <div className="flex items-baseline justify-between gap-2.5">
+      <span className={`text-[12.5px] leading-[1.4] ${packClass}`}>{pack}</span>
+      <span className={`font-mono text-[11.5px] font-semibold whitespace-nowrap ${priceClass}`}>{price}</span>
+    </div>
   );
 }
 
 function EnterpriseCard() {
   return (
-    <article className="reveal relative flex flex-col lg:flex-row gap-8 lg:items-stretch bg-brand-fog border border-brand-border p-9 lg:p-10">
-      <div className="lg:max-w-[48%]">
-        <div className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-brand-graphite">
+    <article className="reveal relative flex flex-col lg:flex-row gap-8 lg:items-center bg-brand-fog border border-brand-border p-9 lg:p-10">
+      <div className="lg:max-w-[36%]">
+        <h3 className="font-serif text-[34px] sm:text-[40px] font-semibold leading-[1.02] tracking-hl-tight text-brand-aubergine">
           Enterprise
-        </div>
-        <h3 className="mt-3.5 font-serif text-[36px] sm:text-[44px] font-semibold leading-[1.02] tracking-hl-tight text-brand-aubergine">
-          Let&apos;s talk.
         </h3>
-        <p className="mt-4 text-[14.5px] leading-[1.6] text-brand-graphite max-w-[40ch]">
-          Teams of 5+, regulated industries, and ML teams shipping production models. We&apos;ll size it
-          to your usage, your compliance, and your buying preferences.
-        </p>
-        <a
-          href="mailto:sales@surogate.ai"
-          className="mt-6 inline-flex items-center justify-center gap-2 h-11 px-6 bg-brand-aubergine text-white font-sans text-[11px] font-semibold uppercase tracking-wider-2 border border-brand-aubergine hover:bg-brand-aubergine-hover transition-colors"
-        >
-          Contact sales{' '}
-          <span className="font-serif font-normal text-base leading-none translate-y-px">→</span>
-        </a>
+        <div className="mt-2 font-mono text-[11px] font-medium uppercase tracking-wider-2 text-brand-steel">
+          Let&apos;s talk.
+        </div>
       </div>
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 lg:flex-1 lg:border-l lg:border-brand-border lg:pl-10 self-center">
-        {[
-          'Custom token volume',
-          'Ultra compute (12 vCPU / 32 GB RAM) or dedicated nodes',
-          'Custom storage (agent workspace + hub)',
-          'Unlimited or custom browser-agent time',
-          'Unlimited parallel training jobs',
-          'SSO, audit logs, role-based access',
-          'SLA, dedicated support, custom contracts',
-          'Volume discounts',
-        ].map((f) => (
-          <li
-            key={f}
-            className="flex gap-2.5 text-[13.5px] leading-[1.5] text-brand-graphite"
-          >
-            <span aria-hidden="true" className="shrink-0 mt-[3px] text-brand-orange">
-              <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="3 8.5 6.5 12 13 4.5" />
-              </svg>
-            </span>
-            {f}
-          </li>
-        ))}
-      </ul>
+      <p className="lg:flex-1 text-[14.5px] leading-[1.6] text-brand-graphite max-w-[64ch]">
+        Ultra compute or dedicated nodes. Unlimited parallel training. Custom token rates or
+        pass-through billing. SSO, audit logs, RBAC. SLA, dedicated support, custom contracts. For
+        teams of 5+, regulated industries, and ML teams shipping production models.
+      </p>
+
+      <a
+        href="mailto:sales@surogate.ai"
+        className="self-start lg:self-center inline-flex items-center justify-center gap-2 h-11 px-6 bg-brand-aubergine text-white font-sans text-[11px] font-semibold uppercase tracking-wider-2 border border-brand-aubergine hover:bg-brand-aubergine-hover transition-colors whitespace-nowrap"
+      >
+        Contact sales{' '}
+        <span className="font-serif font-normal text-base leading-none translate-y-px">→</span>
+      </a>
     </article>
   );
 }
 
-export default function PricingPlans({ billing }) {
+function BillingToggle({ billing, setBilling }) {
+  return (
+    <div
+      role="tablist"
+      aria-label="Billing cycle"
+      className="inline-flex items-center bg-brand-aubergine p-1 border border-brand-aubergine"
+    >
+      {[
+        { id: 'monthly', label: 'Monthly' },
+        { id: 'annual', label: 'Annual' },
+      ].map((opt) => {
+        const on = billing === opt.id;
+        return (
+          <button
+            key={opt.id}
+            role="tab"
+            aria-selected={on}
+            type="button"
+            onClick={() => setBilling(opt.id)}
+            className={`relative h-9 px-4 font-sans text-[11px] font-semibold uppercase tracking-wider-2 transition-colors ${
+              on
+                ? 'bg-brand-orange text-brand-aubergine'
+                : 'bg-transparent text-white/70 hover:text-white'
+            }`}
+          >
+            {opt.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+export default function PricingPlans({ billing, setBilling }) {
   return (
     <section
       id="plans"
@@ -278,19 +344,30 @@ export default function PricingPlans({ billing }) {
       className="relative bg-white py-20 sm:py-24 lg:py-28"
     >
       <div className="max-w-container mx-auto px-8">
-        <div className="mb-12 max-w-[720px]">
-          <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-graphite">
-            <span className="font-mono text-brand-orange mr-2 font-bold">01</span>
-            Plans
+        <div className="mb-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-[720px]">
+            <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-graphite">
+              <span className="font-mono text-brand-orange mr-2 font-bold">01</span>
+              Plans
+            </div>
+            <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-brand-aubergine">
+              Pick a plan. Add tokens{' '}
+              <span className="italic font-medium text-brand-orange">only if you need them</span>.
+            </h2>
+            <p className="reveal mt-5 text-[15.5px] leading-[1.6] text-brand-graphite max-w-[64ch]">
+              Every paid plan ships the whole platform — runtime, hub, dev toolkit. Tokens are sold
+              separately as packs, or bring your own LLM provider and pay them directly.
+            </p>
           </div>
-          <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-brand-aubergine">
-            Pick a plan. Keep the{' '}
-            <span className="has-sun-mark">whole platform</span>.
-          </h2>
-          <p className="reveal mt-5 text-[15.5px] leading-[1.6] text-brand-graphite max-w-[64ch]">
-            Every tier — Free included — comes with the full agent runtime, the hub, and an API. You scale
-            tokens, compute, and concurrency. You never lose features.
-          </p>
+
+          <div className="reveal flex flex-col items-start gap-2.5 lg:items-end lg:pb-1">
+            <BillingToggle billing={billing} setBilling={setBilling} />
+            <span className="font-mono text-[11px] uppercase tracking-wider-2 text-brand-steel">
+              {billing === 'annual'
+                ? 'Save up to ~17% with annual billing'
+                : 'First month discounted on every paid plan'}
+            </span>
+          </div>
         </div>
 
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-stretch">
@@ -303,19 +380,15 @@ export default function PricingPlans({ billing }) {
           <EnterpriseCard />
         </div>
 
-        <aside className="reveal mt-14 bg-brand-aubergine text-white border-l-2 border-brand-orange px-7 py-7 lg:px-9 lg:py-8">
-          <div className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-brand-orange">
-            Why running more than one agent costs you nothing extra
-          </div>
-          <p className="mt-3 font-serif text-[22px] sm:text-[26px] font-semibold leading-[1.25] tracking-[-0.014em] text-white max-w-[44ch]">
-            Most platforms charge per agent. We don&apos;t. 
-          </p>
-          <p className="mt-4 text-[14.5px] leading-[1.6] text-white/72 max-w-[68ch]">
-            Once you have a useful agent, you want more of them — one watching your inbox, one writing the
-            report, one monitoring a competitor&apos;s site. Every plan above bundles multiple concurrent
-            agents at no extra cost.
-          </p>
-        </aside>
+        <p className="reveal mt-10 text-center font-mono text-[12px] text-brand-graphite tracking-[0.03em]">
+          Tokens are optional.{' '}
+          <a
+            href="#models"
+            className="text-brand-orange underline underline-offset-2 decoration-dashed decoration-brand-orange/60 hover:decoration-brand-orange"
+          >
+            Learn more about model options ↓
+          </a>
+        </p>
       </div>
     </section>
   );
