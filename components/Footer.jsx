@@ -12,10 +12,10 @@ export default function Footer() {
             </p>
           </div>
           <FootCol heading="Product" links={[
-            { href: '#features', label: 'Features' },
-            { href: '#usecases', label: 'Use cases' },
-            { href: '#how', label: 'How it works' },
-            { href: '#', label: 'Pricing' },
+            { href: '/#features', label: 'Features' },
+            { href: '/#usecases', label: 'Use cases' },
+            { href: '/#how', label: 'How it works' },
+            { href: '/pricing', label: 'Pricing' },
           ]} />
           <FootCol heading="Resources" links={[
             { href: 'https://docs.surogate.ai', label: 'Docs' },
