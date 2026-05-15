@@ -55,18 +55,7 @@ export default function Nav() {
         </div>
 
         <div className="flex items-center gap-2">
-          <a
-            href={home('#signup')}
-            className="hidden sm:inline-flex items-center text-[13px] text-brand-graphite hover:text-brand-aubergine px-3 py-2"
-          >
-            Sign in
-          </a>
-          <a
-            href={home('#signup')}
-            className="inline-flex items-center justify-center gap-2 h-9 px-4 bg-brand-aubergine text-white text-[11px] font-semibold uppercase tracking-wider-2 border border-brand-aubergine hover:bg-brand-aubergine-hover transition-colors"
-          >
-            Get started
-          </a>
+         
         </div>
       </div>
     </header>
