@@ -3,49 +3,30 @@ const INCLUDED = [
   'Tool use & code execution',
   'Sandboxed shell environments',
   'Real Chromium browser',
-  'Persistent agent workspace',
+  'Persistent workspace storage',
   'Hub access (read public)',
   'API access',
   'Real-time usage dashboard',
 ];
 
-const OVERAGES = [
-  { resource: 'Tokens beyond your pack', rate: '$2', unit: 'per 1M tokens' },
-  { resource: 'Browser-agent time (Standard, Pro)', rate: '$0.04', unit: '/ minute' },
-  { resource: 'Browser-agent time (Max)', rate: '$0.03', unit: '/ minute' },
-  { resource: 'Agent workspace storage', rate: '$0.05', unit: '/ GB / month' },
-  { resource: 'Hub storage', rate: '$0.05', unit: '/ GB / month' },
-  { resource: 'Extra concurrent agent', rate: '$12', unit: '/ month / slot' },
-  { resource: 'Extra parallel training job', rate: '$10', unit: '/ month / slot' },
+const WALLET_TOPUPS = [
+  { resource: 'Tokens', rate: '$2.42', unit: 'per 1M' },
+  { resource: 'Web browsing time', rate: '$0.0484', unit: '/ minute' },
 ];
 
-const ADDONS = [
-  {
-    name: 'Compute tier upgrade',
-    price: '+$15 / mo',
-    body: 'Bump your plan’s compute one tier up — e.g., Pro with Premium compute.',
-  },
-  {
-    name: 'Reserved browser',
-    price: '+$10 / mo',
-    body: 'Skip cold starts. A warm Chromium instance pinned to your account, ready in under a second.',
-  },
-];
-
-const COMPUTE_TIERS = [
-  { tier: 'Starter', spec: '2 vCPU · 4 GB RAM · 40 GB', use: 'Single agent tasks, light research, scripting' },
-  { tier: 'Standard', spec: '4 vCPU · 8 GB RAM · 60 GB', use: 'Daily workflows, code agents, document work' },
-  { tier: 'Premium', spec: '8 vCPU · 16 GB RAM · 80 GB', use: 'Multi-agent coordination, heavy data work' },
-  { tier: 'Ultra', spec: '12 vCPU · 32 GB RAM · 120 GB', use: 'Small teams, enterprise workloads, parallel agents' },
+const RECURRING_ADDONS = [
+  { resource: 'Extra concurrent agent', rate: '+$14.52', unit: '/ month / slot' },
+  { resource: 'Extra workspace storage', rate: '+$0.0605', unit: '/ GB / month' },
 ];
 
 const TOKEN_RANGES = [
   { label: 'A quick question + answer', range: '1–5K' },
-  { label: 'Research task with browsing', range: '20–100K' },
+  { label: 'Research task with web browsing', range: '20–100K' },
   { label: 'Multi-step coding task', range: '50–500K' },
-  { label: 'Synthetic dataset generation', range: '200K–2M' },
   { label: 'Full day of heavy agent use', range: '300K–1M+' },
-  { label: 'Standard token pack covers', range: '25M' },
+  { label: 'Standard plan covers', range: '10M / mo' },
+  { label: 'Pro plan covers', range: '25M / mo' },
+  { label: 'Max plan covers', range: '50M / mo' },
 ];
 
 function SectionHeader({ idx, eyebrow, headline, sub, dark }) {
@@ -69,10 +50,10 @@ function SectionHeader({ idx, eyebrow, headline, sub, dark }) {
 
 function IncludedBlock() {
   return (
-    <section data-screen-label="05 Included" className="bg-brand-fog py-20 sm:py-24 lg:py-28">
+    <section data-screen-label="04 Included" className="bg-brand-fog py-20 sm:py-24 lg:py-28">
       <div className="max-w-container mx-auto px-8">
         <SectionHeader
-          idx="05"
+          idx="04"
           eyebrow="Included with every plan"
           headline={
             <>
@@ -101,105 +82,88 @@ function IncludedBlock() {
   );
 }
 
-function OveragesBlock() {
+function WalletBlock() {
   return (
-    <section data-screen-label="06 Overages" className="bg-white py-20 sm:py-24 lg:py-28">
+    <section id="wallets" data-screen-label="05 Wallets" className="bg-white py-20 sm:py-24 lg:py-28">
       <div className="max-w-container mx-auto px-8">
         <SectionHeader
-          idx="06"
-          eyebrow="Pay as you go"
+          idx="05"
+          eyebrow="Need more? Top up your wallet"
           headline={
             <>
-              Need more?{' '}
-              <em className="italic font-medium text-brand-orange">No tier upgrades</em>.
+              Prepaid wallets.{' '}
+              <em className="italic font-medium text-brand-orange">No surprise bills</em>.
             </>
           }
-          sub="Plans cover what most users need. When you go over, you stay in control — no auto-upgrades, no surprise tier changes. Prefer a hard cap? Flip a toggle in settings."
+          sub="Each consumable resource works like a prepaid wallet. Your plan grants a monthly balance, top-ups add more on demand, usage drains the wallet in real time. When the wallet hits zero, the operation stops — no auto-upgrades, no end-of-month invoices."
         />
 
-        <div className="reveal max-w-[860px]">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b-2 border-brand-aubergine/20">
-                <th className="text-left py-4 font-mono text-[11px] uppercase tracking-wider-2 text-brand-steel font-medium">
-                  Resource
-                </th>
-                <th className="text-right py-4 font-mono text-[11px] uppercase tracking-wider-2 text-brand-steel font-medium">
-                  Overage rate
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {OVERAGES.map((o) => (
-                <tr key={o.resource} className="border-b border-brand-line">
-                  <td className="py-4 text-[14px] text-brand-aubergine">{o.resource}</td>
-                  <td className="py-4 text-right font-mono text-[13.5px] text-brand-graphite whitespace-nowrap">
-                    <span className="font-semibold text-brand-orange">{o.rate}</span>{' '}
-                    <span>{o.unit}</span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="reveal grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="border border-brand-border p-8 lg:p-9 flex flex-col gap-5">
+            <div>
+              <h3 className="font-serif text-[22px] font-semibold tracking-[-0.014em] text-brand-aubergine">
+                Wallet top-ups
+              </h3>
+              <p className="mt-2 text-[14px] leading-[1.55] text-brand-graphite">
+                Pay what you want, when you want. The balance never expires until you use it.
+              </p>
+            </div>
+            <table className="w-full border-collapse">
+              <tbody>
+                {WALLET_TOPUPS.map((o, i) => (
+                  <tr
+                    key={o.resource}
+                    className={`${i === 0 ? 'border-t-2 border-brand-aubergine/20' : 'border-t border-brand-line'} ${
+                      i === WALLET_TOPUPS.length - 1 ? 'border-b border-brand-line' : ''
+                    }`}
+                  >
+                    <td className="py-3.5 text-[14px] text-brand-aubergine">{o.resource}</td>
+                    <td className="py-3.5 text-right font-mono text-[13.5px] text-brand-graphite whitespace-nowrap">
+                      <span className="font-semibold text-brand-orange">{o.rate}</span>{' '}
+                      <span>{o.unit}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="bg-brand-fog border border-brand-border p-8 lg:p-9 flex flex-col gap-5">
+            <div>
+              <h3 className="font-serif text-[22px] font-semibold tracking-[-0.014em] text-brand-aubergine">
+                Recurring add-ons
+              </h3>
+              <p className="mt-2 text-[14px] leading-[1.55] text-brand-graphite">
+                Raise your monthly ceiling for things that aren&apos;t wallet-shaped — storage
+                you occupy, slots you reserve.
+              </p>
+            </div>
+            <table className="w-full border-collapse">
+              <tbody>
+                {RECURRING_ADDONS.map((o, i) => (
+                  <tr
+                    key={o.resource}
+                    className={`${i === 0 ? 'border-t-2 border-brand-aubergine/20' : 'border-t border-brand-line'} ${
+                      i === RECURRING_ADDONS.length - 1 ? 'border-b border-brand-line' : ''
+                    }`}
+                  >
+                    <td className="py-3.5 text-[14px] text-brand-aubergine">{o.resource}</td>
+                    <td className="py-3.5 text-right font-mono text-[13.5px] text-brand-graphite whitespace-nowrap">
+                      <span className="font-semibold text-brand-orange">{o.rate}</span>{' '}
+                      <span>{o.unit}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="reveal mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {ADDONS.map((a) => (
-            <div
-              key={a.name}
-              className="bg-brand-fog border border-brand-border p-7 lg:p-8 flex flex-col gap-2"
-            >
-              <div className="flex items-baseline justify-between gap-3">
-                <h4 className="m-0 font-serif text-[22px] font-semibold tracking-[-0.014em] text-brand-aubergine">
-                  {a.name}
-                </h4>
-                <span className="font-mono text-[13px] font-semibold text-brand-orange whitespace-nowrap">
-                  {a.price}
-                </span>
-              </div>
-              <p className="m-0 text-[14px] leading-[1.55] text-brand-graphite">{a.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ComputeBlock() {
-  return (
-    <section
-      data-screen-label="07 Compute"
-      className="relative overflow-hidden bg-brand-aubergine text-white py-20 sm:py-24 lg:py-28"
-    >
-      <div className="absolute inset-0 bg-evening-glow pointer-events-none" />
-      <div className="relative max-w-container mx-auto px-8">
-        <SectionHeader
-          idx="07"
-          dark
-          eyebrow="Compute tiers"
-          headline={
-            <>
-              Burst,{' '}
-              <em className="italic font-medium text-brand-orange">not reservations</em>.
-            </>
-          }
-          sub="Specs are ceilings you can burst into when you need them, not capacity you pay for whether you use it or not."
-        />
-        <div className="reveal divide-y divide-white/10 border-y border-white/15">
-          {COMPUTE_TIERS.map((t) => (
-            <div
-              key={t.tier}
-              className="grid grid-cols-1 lg:grid-cols-[200px_1fr_2fr] gap-2 lg:gap-8 py-6 items-baseline"
-            >
-              <div className="font-serif text-[22px] font-semibold tracking-[-0.014em] text-white">
-                {t.tier}
-              </div>
-              <div className="font-mono text-[13px] text-brand-yellow">{t.spec}</div>
-              <div className="text-[14px] leading-[1.55] text-white/72">{t.use}</div>
-            </div>
-          ))}
-        </div>
+        <p className="reveal mt-10 max-w-[68ch] text-[14px] leading-[1.6] text-brand-graphite">
+          The plan-granted portion of each wallet resets to your tier&apos;s amount on every
+          billing cycle (lose-it-or-use-it). The top-up portion is cash you paid in — it rolls
+          over as long as your account is active.
+        </p>
       </div>
     </section>
   );
@@ -207,10 +171,10 @@ function ComputeBlock() {
 
 function TokensBlock() {
   return (
-    <section data-screen-label="08 Tokens" className="bg-white py-20 sm:py-24 lg:py-28">
+    <section data-screen-label="06 Tokens" className="bg-brand-fog py-20 sm:py-24 lg:py-28">
       <div className="max-w-container mx-auto px-8">
         <SectionHeader
-          idx="08"
+          idx="06"
           eyebrow="How tokens work"
           headline={
             <>
@@ -218,7 +182,7 @@ function TokensBlock() {
               <em className="italic font-medium text-brand-orange">¾ of a word</em>.
             </>
           }
-          sub="Token volumes apply to the model we include with each plan. When you bring your own LLM provider, you pay them directly — no markup from us, no double-billing. Your dashboard shows live consumption either way, broken down by agent and task."
+          sub="Each plan includes a generous monthly amount. Most users won't hit the limit on day-to-day work. Here's the rough shape of typical usage. Your dashboard shows live consumption, broken down by agent and task."
         />
         <div className="reveal grid grid-cols-1 md:grid-cols-2 gap-x-14">
           {TOKEN_RANGES.map((r) => (
@@ -242,8 +206,7 @@ export default function PricingDetails() {
   return (
     <>
       <IncludedBlock />
-      <OveragesBlock />
-      <ComputeBlock />
+      <WalletBlock />
       <TokensBlock />
     </>
   );

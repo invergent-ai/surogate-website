@@ -7,20 +7,21 @@ export default function PricingHero() {
           Pricing &nbsp;/&nbsp; v2.0
         </div>
         <h1 className="reveal mt-3.5 max-w-[18ch] font-serif font-semibold leading-[0.92] text-brand-aubergine tracking-display text-[48px] sm:text-[72px] lg:text-[clamp(56px,8.4vw,120px)]">
-          Run agents. {" "}
+          Agents that{' '}
           <span className="relative inline-block isolate">
-            Build models.
+            get work done.
             <span
               aria-hidden="true"
               className="absolute -left-[1%] -right-[1%] bottom-[6%] h-[22%] -z-10 bg-brand-aubergine/0 rounded -rotate-[0.6deg]"
             />
-          </span><br/>
-          <span className="italic font-medium">Own the stack</span>
+          </span>
+          <br />
+          <span className="italic font-medium">One bill. No surprises.</span>
         </h1>
         <p className="reveal mt-7 max-w-[58ch] font-sans text-[17px] sm:text-[19px] leading-[1.55] text-brand-graphite">
-          Most agent platforms make you pick: run their pre-built agents, or roll your own from scratch. We
-          don&apos;t make you pick. Use our agent runtime for everyday work — and our developer tools
-          when you want to go further. Same account, same bill, no hidden upgrades.
+          Pick a plan, sign up, and start building. Tokens are included by default. Advanced users
+          can bring their own LLM provider or train custom models. Wallets stop at zero — no
+          overage invoices, no auto-upgrades.
         </p>
       </div>
     </section>

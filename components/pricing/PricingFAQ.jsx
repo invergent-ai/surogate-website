@@ -4,44 +4,56 @@ const FAQS = [
     a: 'Yes. Upgrades take effect immediately and we prorate the difference. Downgrades take effect at the next billing cycle. No fees either way.',
   },
   {
-    q: 'Do I have to buy a token pack?',
-    a: 'No. Token packs are optional on every paid plan. You can run the platform with no pack and bring your own LLM provider — OpenAI, Anthropic, OpenRouter, vLLM, anything OpenAI-compatible — and pay them directly. We don’t take a cut. If you do want our included model, add a pack or pay $2 per 1M tokens as you go.',
+    q: 'Are tokens really included? What about overages?',
+    a: 'Every paid plan ships with a monthly token allowance baked into the price — 10M on Standard, 25M on Pro, 50M on Max. There are no surprise overage bills: when your monthly grant runs out, agents pause until you top up your wallet (rolling-over cash at $2.42 per 1M tokens) or wait for the next cycle. You stay in control.',
   },
   {
-    q: 'What happens if I run out of tokens mid-task?',
-    a: 'If you’re on a pack, your agent continues at the pay-as-you-go rate ($2/1M) so the task completes. If you’ve set a hard cap in settings, the agent pauses and notifies you. You can top up the pack, switch to a larger one, or wait until next cycle. BYO users aren’t affected — your provider meters separately.',
+    q: 'What happens if my token wallet hits zero mid-task?',
+    a: 'The operation stops. No auto-upgrade, no overdraft, no end-of-month invoice. Top up the wallet with as little or as much as you want — top-up balances never expire until you use them — and the task resumes. You can also bring your own LLM provider and pay them directly, which bypasses our tokens entirely.',
   },
   {
-    q: 'Can I change my token pack independently of my plan?',
-    a: 'Yes. Plan and pack are separate line items. Bump up to Heavy in a busy month, drop back to Starter the next, or skip packs entirely and stay on PAYG. Pack changes take effect at the next cycle by default; we can apply mid-cycle on request.',
+    q: 'How does the wallet model work?',
+    a: 'Each consumable resource — tokens, web browsing minutes, ML compute hours — works like a prepaid wallet. Your plan grants a monthly balance (resets each cycle, lose-it-or-use-it). Top-ups add more on demand, and that cash rolls over as long as your account is active. When the wallet hits zero, the operation stops.',
+  },
+  {
+    q: 'Can I bring my own LLM and skip paying for tokens?',
+    a: 'Yes. Connect any OpenAI-compatible provider — OpenRouter, OpenAI, Anthropic, Together, Groq, vLLM, TGI, Ollama, or your own fine-tuned deployment. You pay them directly. In settings, cancel the bundled token portion of your plan to save the cost.',
   },
   {
     q: 'Why is the first month cheaper?',
-    a: 'We want you to try the product on real work, not just a demo. The first-month discount applies to the plan only (not to token packs) and gives you meaningful runway to see if it fits. After that, the regular rate kicks in — no surprise jumps, no auto-locked contracts.',
+    a: 'We want you to try the product on real work, not just a demo. The first-month discount applies to the plan and gives you meaningful runway to see if it fits. After that, the regular rate kicks in — no surprise jumps, no auto-locked contracts.',
   },
   {
     q: 'Can I share my plan with my team?',
     a: 'The Standard, Pro, and Max plans are single-user. For team use, the Enterprise plan supports multiple seats, shared resources, role-based access, SSO, and audit logs. Custom team pricing is available — talk to sales.',
   },
   {
+    q: 'What about VAT?',
+    a: 'All prices on this page are VAT-inclusive (gross). EU B2B customers with a valid VAT ID and non-EU customers see the net price — we don’t charge VAT in those cases.',
+  },
+  {
     q: 'What about data privacy?',
-    a: 'Your agent workspace is private and yours. Your hub artifacts are private by default. We don’t train on your data. You can export everything anytime, with no egress fees on hub content.',
+    a: 'Your workspace is private and yours. Your hub artifacts are private by default. We don’t train on your data. You can export everything anytime, with no egress fees on hub content.',
   },
   {
     q: 'Do you charge for failed agent runs?',
-    a: 'Tokens consumed by the model are billed whether the agent succeeded or not — same as every other LLM-based service. We don’t charge browser-time or extra compute for failures on our end.',
+    a: 'Tokens consumed by the model are billed whether the agent succeeded or not — same as every other LLM-based service. We don’t charge browser time or extra compute for failures on our end.',
   },
   {
     q: 'Is there a free trial of paid plans?',
-    a: 'The Free plan is open-ended — use it as long as you like, with 500K trial tokens on our included model or BYO from day one. The first-month discount on paid plans is effectively a try-it-out price. If a paid plan doesn’t work for you in the first 14 days, we’ll refund it on request, no questions asked.',
+    a: 'The Free plan is open-ended — use it as long as you like, with 500K starter tokens or BYO LLM from day one. The first-month discount on paid plans is effectively a try-it-out price. If a paid plan doesn’t work for you in the first 14 days, we’ll refund it on request, no questions asked.',
   },
   {
     q: 'Can I run an agent 24/7?',
-    a: 'Yes. Agents run continuously within your plan’s concurrent-agent and compute limits — tokens are the thing to watch for long-running tasks. The dashboard shows live consumption so you can tune behavior or set a cap.',
+    a: 'Yes. Agents run continuously within your plan’s concurrent-agent limit — tokens and web browsing minutes are the wallets to watch for long-running tasks. The dashboard shows live consumption so you can tune behavior or top up as needed.',
   },
   {
     q: 'How does fine-tuning work? Do I pay for GPUs?',
-    a: 'You bring your own cloud (AWS, GCP, Lambda, RunPod, etc.) via dstack or skypilot. Your cloud provider bills you directly for GPU time. We orchestrate the run, manage checkpoints, and track lineage in the hub. No GPU markup from us.',
+    a: 'You bring your own cloud (AWS, GCP, Lambda, RunPod, etc.) via dstack or skypilot. Your cloud provider bills you directly for GPU time. We orchestrate the run, capture logs and metrics, and track lineage in the hub. No GPU markup from us.',
+  },
+  {
+    q: 'How are ML compute hours different from agent tokens?',
+    a: 'ML compute hours are a separate wallet used for synthetic dataset generation and eval runs (HumanEval, MBPP, terminal-bench, SWE-bench, custom suites). Standard includes 3 hours/month, Pro 15, Max 40. Top-up rate is $2.42/hour and rolls over.',
   },
   {
     q: 'Why bring my own cloud instead of using yours?',
@@ -49,15 +61,15 @@ const FAQS = [
   },
   {
     q: 'Can I serve my fine-tuned models?',
-    a: 'Yes, on Pro and Max. You deploy via your own cloud (dstack/skypilot), and we orchestrate the endpoint. Your agents can call your custom models directly — no token charges from us when you use them.',
+    a: 'Yes. Deploy via your own cloud (dstack/skypilot), and we orchestrate the endpoint. Your agents can call your custom models directly — no token charges from us when you use them.',
   },
   {
     q: 'What’s the hub for?',
-    a: 'A git-backed registry for your models, datasets, and checkpoints — like a private Hugging Face Hub. Pull public models, push your own, version everything. Read access is free; private storage scales with your plan.',
+    a: 'A git-backed registry for your models, datasets, and checkpoints — like a private Hugging Face Hub. Public read for community sharing, private read/write for your work. Backed by Cloudflare R2 with no egress fees. Private storage scales with your plan: 5 GB on Standard, 25 GB on Pro, 100 GB on Max.',
   },
   {
     q: 'What if I need more than Max but Enterprise is overkill?',
-    a: 'Stack add-ons. A Max plan with extra concurrent agents, an upgraded compute tier, extra training slots, and a reserved browser covers a lot of ground before you hit Enterprise territory. Talk to us if you’re not sure.',
+    a: 'Stack add-ons. A Max plan with extra concurrent agents (+$14.52/mo per slot), extra workspace storage (+$0.0605/GB/mo), and ongoing wallet top-ups covers a lot of ground before you hit Enterprise territory. Talk to us if you’re not sure.',
   },
 ];
 
@@ -65,13 +77,13 @@ export default function PricingFAQ() {
   return (
     <section
       id="faq"
-      data-screen-label="09 FAQ"
-      className="bg-brand-fog py-20 sm:py-24 lg:py-28"
+      data-screen-label="07 FAQ"
+      className="bg-white py-20 sm:py-24 lg:py-28"
     >
       <div className="max-w-container mx-auto px-8 grid gap-12 lg:gap-16 grid-cols-1 lg:[grid-template-columns:minmax(0,360px)_1fr]">
         <div>
           <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-graphite">
-            <span className="font-mono text-brand-orange mr-2 font-bold">09</span>
+            <span className="font-mono text-brand-orange mr-2 font-bold">07</span>
             FAQ
           </div>
           <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[44px] lg:text-[52px] text-brand-aubergine">

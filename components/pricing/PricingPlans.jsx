@@ -1,104 +1,65 @@
-const TOKEN_PACKS = [
-  { name: 'Starter', tokens: '10M', price: '+$18 / mo' },
-  { name: 'Standard', tokens: '25M', price: '+$42 / mo' },
-  { name: 'Heavy', tokens: '50M', price: '+$80 / mo' },
-];
-
 const PLANS = [
   {
     id: 'free',
     name: 'Free',
     price: { monthly: 0, annual: 0, first: 0 },
     eyebrow: 'No card required',
-    best: 'For kicking the tires, demos, and trying out your own LLM.',
+    best: 'Try it out. See if it fits your work.',
     cta: { label: 'Start free', href: '/#signup' },
     features: [
       '1 concurrent agent',
-      'Starter compute (burst)',
-      '10 GB agent workspace',
-      '30 min browser-agent time',
-      '1 GB hub storage',
+      '500K starter tokens',
+      '10 GB workspace',
+      '30 min web browsing',
       'Community support',
     ],
-    tokens: {
-      label: 'Model access',
-      included: { pack: '500K trial tokens', price: 'included' },
-      byo: { pack: 'Bring your own LLM', price: 'free' },
-    },
   },
   {
     id: 'standard',
     name: 'Standard',
-    price: { monthly: 19, annual: 15, first: 9 },
-    eyebrow: '$9 first month',
-    best: 'For personal projects and developers experimenting with custom models.',
+    price: { monthly: 45, annual: 40, first: 33 },
+    eyebrow: '$33 first month',
+    best: 'For personal projects and occasional automation.',
     cta: { label: 'Choose Standard', href: '/#signup' },
     features: [
       { strong: '2 concurrent agents' },
-      'Starter compute (2 vCPU / 4 GB)',
-      '50 GB agent workspace',
-      '5 hours browser-agent time',
-      { strong: '5 GB hub storage' },
-      'Fine-tuning, datasets, eval',
-      '1 parallel training job',
+      { strong: '10M tokens / month' },
+      '50 GB workspace',
+      '5 hours web browsing',
       'Email support',
     ],
-    tokens: {
-      label: '+ Tokens (optional)',
-      packs: TOKEN_PACKS,
-      byo: { pack: 'Or bring your own LLM', price: 'free' },
-    },
   },
   {
     id: 'pro',
     name: 'Pro',
     featured: true,
     badge: 'Most popular',
-    price: { monthly: 39, annual: 32, first: 19 },
-    eyebrow: '$19 first month',
-    best: 'For daily workflows, integrating agents into your work, and builders shipping custom models.',
+    price: { monthly: 98, annual: 90, first: 74 },
+    eyebrow: '$74 first month',
+    best: 'For daily workflows and serious automation.',
     cta: { label: 'Choose Pro', href: '/#signup' },
     features: [
       { strong: '5 concurrent agents' },
-      'Standard compute (4 vCPU / 8 GB)',
-      '100 GB agent workspace',
-      '15 hours browser-agent time',
-      { strong: '25 GB hub storage' },
-      'Fine-tuning, datasets, eval',
-      '3 parallel training jobs',
-      'Private model serving',
+      { strong: '25M tokens / month' },
+      '100 GB workspace',
+      '15 hours web browsing',
       'Priority email support',
     ],
-    tokens: {
-      label: '+ Tokens (optional)',
-      packs: TOKEN_PACKS,
-      byo: { pack: 'Or bring your own LLM', price: 'free' },
-    },
   },
   {
     id: 'max',
     name: 'Max',
-    price: { monthly: 79, annual: 65, first: 39 },
-    eyebrow: '$39 first month',
-    best: 'For OPCs, multi-agent setups, serious ML builders, and always-on agents.',
+    price: { monthly: 192, annual: 175, first: 144 },
+    eyebrow: '$144 first month',
+    best: 'For power users, small businesses, and multi-agent setups.',
     cta: { label: 'Choose Max', href: '/#signup' },
     features: [
       { strong: '12 concurrent agents' },
-      'Premium compute (8 vCPU / 16 GB)',
-      '200 GB agent workspace',
-      '40 hours browser-agent time',
-      { strong: '100 GB hub storage' },
-      'Fine-tuning, datasets, eval',
-      '10 parallel training jobs',
-      'Private model serving',
-      'Priority orchestration queue',
+      { strong: '50M tokens / month' },
+      '200 GB workspace',
+      '40 hours web browsing',
       'Priority support',
     ],
-    tokens: {
-      label: '+ Tokens (optional)',
-      packs: TOKEN_PACKS,
-      byo: { pack: 'Or bring your own LLM', price: 'free' },
-    },
   },
 ];
 
@@ -120,8 +81,6 @@ function PlanCard({ plan, billing }) {
         check: 'text-brand-yellow',
         divider: 'border-white/12',
         dashed: 'border-white/15',
-        packPrice: 'text-brand-yellow',
-        byoPrice: 'text-white/45',
         cta:
           'bg-grad-sun text-brand-aubergine border-brand-orange hover:brightness-105',
       }
@@ -134,8 +93,6 @@ function PlanCard({ plan, billing }) {
         check: 'text-brand-orange',
         divider: 'border-brand-border',
         dashed: 'border-brand-border',
-        packPrice: 'text-brand-orange',
-        byoPrice: 'text-brand-steel',
         cta:
           'bg-brand-aubergine text-white border-brand-aubergine hover:bg-brand-aubergine-hover',
       };
@@ -199,7 +156,7 @@ function PlanCard({ plan, billing }) {
         </p>
       </div>
 
-      <div className="px-7 py-2">
+      <div className="px-7 py-3">
         <ul className="m-0 p-0 list-none flex flex-col gap-1.5">
           {plan.features.map((f) => {
             const text = typeof f === 'string' ? f : f.strong;
@@ -219,40 +176,7 @@ function PlanCard({ plan, billing }) {
         </ul>
       </div>
 
-      <div className="px-7 py-4">
-        <div className={`py-4 border-y border-dashed ${tone.dashed} flex flex-col gap-1.5`}>
-          <div className={`font-mono text-[10px] uppercase tracking-wider-2 ${tone.muted} mb-1`}>
-            {plan.tokens.label}
-          </div>
-          {plan.tokens.included && (
-            <TokenLine
-              pack={plan.tokens.included.pack}
-              price={plan.tokens.included.price}
-              priceClass={tone.byoPrice}
-              packClass={tone.body}
-            />
-          )}
-          {plan.tokens.packs?.map((p) => (
-            <TokenLine
-              key={p.name}
-              pack={`${p.name} · ${p.tokens}`}
-              price={p.price}
-              priceClass={tone.packPrice}
-              packClass={tone.body}
-            />
-          ))}
-          <div className={`mt-1 pt-2 border-t border-dashed ${tone.dashed}`}>
-            <TokenLine
-              pack={plan.tokens.byo.pack}
-              price={plan.tokens.byo.price}
-              priceClass={tone.byoPrice}
-              packClass={`italic ${tone.body}`}
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="px-7 pb-7 mt-auto">
+      <div className="px-7 pb-7 mt-auto pt-4">
         <a
           href={plan.cta.href}
           className={`inline-flex items-center justify-center gap-2 h-11 w-full px-5 border font-sans text-[11px] font-semibold uppercase tracking-wider-2 transition-colors ${tone.cta}`}
@@ -262,15 +186,6 @@ function PlanCard({ plan, billing }) {
         </a>
       </div>
     </article>
-  );
-}
-
-function TokenLine({ pack, price, priceClass, packClass }) {
-  return (
-    <div className="flex items-baseline justify-between gap-2.5">
-      <span className={`text-[12.5px] leading-[1.4] ${packClass}`}>{pack}</span>
-      <span className={`font-mono text-[11.5px] font-semibold whitespace-nowrap ${priceClass}`}>{price}</span>
-    </div>
   );
 }
 
@@ -287,9 +202,9 @@ function EnterpriseCard() {
       </div>
 
       <p className="lg:flex-1 text-[14.5px] leading-[1.6] text-brand-graphite max-w-[64ch]">
-        Ultra compute or dedicated nodes. Unlimited parallel training. Custom token rates or
-        pass-through billing. SSO, audit logs, RBAC. SLA, dedicated support, custom contracts. For
-        teams of 5+, regulated industries, and ML teams shipping production models.
+        Custom token volume. Dedicated compute. SSO, audit logs, RBAC. SLA, dedicated support,
+        custom contracts. For teams of 5+, regulated industries, and ML teams shipping production
+        models.
       </p>
 
       <a
@@ -351,12 +266,17 @@ export default function PricingPlans({ billing, setBilling }) {
               Plans
             </div>
             <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-brand-aubergine">
-              Pick a plan. Add tokens{' '}
-              <span className="italic font-medium text-brand-orange">only if you need them</span>.
+              Pick a plan.{' '}
+              <span className="italic font-medium text-brand-orange">Tokens included</span>.
             </h2>
             <p className="reveal mt-5 text-[15.5px] leading-[1.6] text-brand-graphite max-w-[64ch]">
-              Every paid plan ships the whole platform — runtime, hub, dev toolkit. Tokens are sold
-              separately as packs, or bring your own LLM provider and pay them directly.
+              Every plan ships the whole platform — runtime, hub, dev toolkit — with a generous
+              monthly token allowance baked in. Advanced users can bring their own LLM provider
+              and pay them directly.
+            </p>
+            <p className="reveal mt-3 text-[12.5px] leading-[1.6] text-brand-steel max-w-[64ch] font-mono">
+              All prices VAT-inclusive (gross). EU B2B with valid VAT ID and non-EU customers see
+              the net price.
             </p>
           </div>
 
@@ -364,7 +284,7 @@ export default function PricingPlans({ billing, setBilling }) {
             <BillingToggle billing={billing} setBilling={setBilling} />
             <span className="font-mono text-[11px] uppercase tracking-wider-2 text-brand-steel">
               {billing === 'annual'
-                ? 'Save up to ~17% with annual billing'
+                ? 'Save ~10% with annual billing'
                 : 'First month discounted on every paid plan'}
             </span>
           </div>
@@ -381,12 +301,12 @@ export default function PricingPlans({ billing, setBilling }) {
         </div>
 
         <p className="reveal mt-10 text-center font-mono text-[12px] text-brand-graphite tracking-[0.03em]">
-          Tokens are optional.{' '}
+          Need more tokens or browser time?{' '}
           <a
-            href="#models"
+            href="#wallets"
             className="text-brand-orange underline underline-offset-2 decoration-dashed decoration-brand-orange/60 hover:decoration-brand-orange"
           >
-            Learn more about model options ↓
+            Top up your wallet ↓
           </a>
         </p>
       </div>

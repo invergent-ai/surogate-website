@@ -47,13 +47,13 @@ export default function PricingMultiAgent() {
             </div>
             <div className="flex items-baseline gap-3">
               <span className="font-serif text-[52px] font-semibold leading-none tracking-display text-white">
-                $79
+                $192
               </span>
               <span className="font-mono text-[14px] text-white/55">/month</span>
             </div>
             <p className="text-[14px] leading-[1.55] text-white/72 max-w-[52ch]">
-              All 12 agents included. The developer toolkit, the hub, the browser. Tokens billed
-              separately — pay for what you actually use, or bring your own model.
+              All 12 agents, 50M tokens included, the developer toolkit, the hub, the browser —
+              one bill. Roughly what other platforms charge for three agents.
             </p>
           </div>
         </div>
