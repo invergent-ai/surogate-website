@@ -9,7 +9,7 @@ const PLANS = [
     features: [
       '1 concurrent agent',
       '500K starter tokens',
-      '10 GB workspace',
+      '1 GB workspace',
       '1 GB hub storage',
       '30 min web browsing',
       'Community support',
@@ -25,7 +25,7 @@ const PLANS = [
     features: [
       { strong: '2 concurrent agents' },
       { strong: '10M tokens / month' },
-      '50 GB workspace',
+      '5 GB workspace',
       '10 GB hub storage',
       '5 hours web browsing',
       'Email support',
@@ -43,7 +43,7 @@ const PLANS = [
     features: [
       { strong: '5 concurrent agents' },
       { strong: '25M tokens / month' },
-      '100 GB workspace',
+      '20 GB workspace',
       '50 GB hub storage',
       '15 hours web browsing',
       'Priority email support',
@@ -59,7 +59,7 @@ const PLANS = [
     features: [
       { strong: '12 concurrent agents' },
       { strong: '50M tokens / month' },
-      '200 GB workspace',
+      '50 GB workspace',
       '200 GB hub storage',
       '40 hours web browsing',
       'Priority support',
