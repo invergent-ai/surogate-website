@@ -65,7 +65,7 @@ const FAQS = [
   },
   {
     q: 'What’s the hub for?',
-    a: 'A git-backed registry for your models, datasets, and checkpoints — like a private Hugging Face Hub. Public read for community sharing, private read/write for your work. Backed by Cloudflare R2 with no egress fees. Private storage scales with your plan: 1 GB on Free, 5 GB on Standard, 25 GB on Pro, 100 GB on Max. Need more on any plan? Extra hub storage is a recurring add-on at +$0.0605/GB/month.',
+    a: 'A git-backed registry for your models, datasets, and checkpoints — like a private Hugging Face Hub. Public read for community sharing, private read/write for your work. Backed by Cloudflare R2 with no egress fees. Private storage scales with your plan: 1 GB on Free, 10 GB on Standard, 50 GB on Pro, 200 GB on Max. Need more on any plan? Extra hub storage is a recurring add-on at +$0.0605/GB/month.',
   },
   {
     q: 'What if I need more than Max but Enterprise is overkill?',

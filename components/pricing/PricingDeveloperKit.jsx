@@ -13,9 +13,9 @@ const ML_HOURS = [
 
 const HUB_STORAGE = [
   { plan: 'Free', size: '1 GB' },
-  { plan: 'Standard', size: '5 GB' },
-  { plan: 'Pro', size: '25 GB' },
-  { plan: 'Max', size: '100 GB' },
+  { plan: 'Standard', size: '10 GB' },
+  { plan: 'Pro', size: '50 GB' },
+  { plan: 'Max', size: '200 GB' },
 ];
 
 function ProviderTag({ children, dark }) {
