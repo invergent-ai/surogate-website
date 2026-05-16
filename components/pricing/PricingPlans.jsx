@@ -10,6 +10,7 @@ const PLANS = [
       '1 concurrent agent',
       '500K starter tokens',
       '10 GB workspace',
+      '1 GB hub storage',
       '30 min web browsing',
       'Community support',
     ],
