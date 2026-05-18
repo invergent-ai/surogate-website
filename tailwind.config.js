@@ -34,6 +34,7 @@ export default {
       backgroundImage: {
         'grad-sun': 'linear-gradient(135deg, #ffaf10 0%, #ffe845 100%)',
         'grad-sun-horiz': 'linear-gradient(90deg, #ffe845 0%, #ffaf10 100%)',
+        'grad-sun-horiz-flip': 'linear-gradient(90deg, #ffaf10 0%, #ffe845 100%)',
         'grad-wine': 'linear-gradient(135deg, #9b1f61 0%, #2a102d 100%)',
         'grad-dusk': 'linear-gradient(180deg, #2a102d 0%, #1a0a1c 100%)',
         'grad-payoff': 'linear-gradient(180deg, #fff7e6 0%, #ffffff 100%)',

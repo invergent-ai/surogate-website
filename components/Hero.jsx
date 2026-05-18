@@ -1,7 +1,9 @@
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-grad-sun-horiz pt-16 pb-12 sm:pt-20 sm:pb-16 lg:pt-24 lg:pb-[72px]">
-      <div className="max-w-container mx-auto px-8 grid gap-12 lg:gap-[88px] items-center grid-cols-1 lg:[grid-template-columns:minmax(0,1.25fr)_minmax(360px,1fr)]">
+    <section className="relative overflow-hidden pt-16 pb-12 sm:pt-20 sm:pb-16 lg:pt-24 lg:pb-[72px]">
+      <div className="absolute inset-0 bg-grad-sun-horiz pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 hero-circles pointer-events-none" aria-hidden="true" />
+      <div className="relative max-w-container mx-auto px-8 grid gap-12 lg:gap-[88px] items-end grid-cols-1 lg:[grid-template-columns:minmax(0,1.25fr)_minmax(360px,1fr)]">
         <div className="min-w-0 font-serif">
           <h1 className="reveal m-0 mb-7 font-serif font-semibold leading-[0.9] text-brand-aubergine tracking-display text-[60px] sm:text-[88px] lg:text-[clamp(60px,10.5vw,144px)]">
             <span className="inline-block">Multiply</span>{' '}
@@ -29,7 +31,7 @@ function SignupCard() {
     <aside
       id="signup"
       aria-label="Create your account"
-      className="flex flex-col align-middle reveal bg-white border border-brand-border rounded-lg p-7 shadow-card after:content-[''] after:absolute after:-inset-px after:rounded-[inherit] after:shadow-sun-glow after:pointer-events-none"
+      className="flex flex-col align-middle reveal mb-4 bg-white border border-brand-border rounded-lg p-7 shadow-card after:content-[''] after:absolute after:-inset-px after:rounded-[inherit] after:shadow-sun-glow after:pointer-events-none"
     >
       
        <a
