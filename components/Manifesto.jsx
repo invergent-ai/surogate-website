@@ -49,7 +49,7 @@ export default function Manifesto() {
         </p>
 
         <p className="reveal text-lg leading-[1.6] text-brand-graphite max-w-[56ch] mx-auto">
-          A Surogate agent runs in the cloud, executes your workflows autonomously, whether you're at your desk or not. You set the goal. The agent does the work.
+          The <span className="font-semibold">Managed Agents</span> runtime runs your agents autonomously, whether you're at your desk or not. You set the goal. Agent do the work.
         </p>
       </div>
     </section>

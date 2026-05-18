@@ -14,7 +14,7 @@ const TAB_INTRO = {
   passive:
     "Your Surogate agent doesn't have to work just for you. Build one for a business, deploy it to twenty of them. Each agent runs their operations 24 hours a day. You collect monthly.",
   developers:
-    'Compose, observe, and extend Surogate agents with the primitives the platform is built on.',
+    'Bring your own models, your own compute, your own data. Train expert models (SLMs) to increase accuracy, evaluate, and serve them on the same platform that runs your agents. One stack, one factory.',
 };
 
 const PERSONAL_TILES = [
@@ -229,70 +229,73 @@ const PASSIVE_AGENTS = [
 
 const DEVELOPER_TILES = [
   {
-    kind: 'Custom Agents',
-    title: "Build the agent that becomes someone else's specialist.",
+    kind: 'Custom Models',
+    title: 'Deploy any model. Open weights, fine-tuned, or your own.',
     lateral: true,
-    body: 'Compose Surogate agents from skills, tools, and rules. Publish them as templates your teammates deploy in one click - multiplication, at the team level.',
-    icon: <path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 14.5 7.1 17.2l.9-5.5-4-3.9 5.5-.8z" />,
-  },
-  {
-    kind: 'MCP Servers',
-    title: 'Bring your own tools. Wire them in natively.',
-    body: 'Connect any MCP-compatible server. Your Surogate agents inherit the full toolset - no glue code, no integration sprints, no custom adapters.',
+    body: 'Serve open-source LLMs, your fine-tuned checkpoints, or proprietary models through one unified endpoint. The platform handles GPU scheduling, autoscaling, and inference - your agents just call them.',
     icon: (
       <>
-        <rect x="3" y="4" width="18" height="6" rx="1" />
-        <rect x="3" y="14" width="18" height="6" rx="1" />
-        <circle cx="7" cy="7" r="0.8" fill="currentColor" />
-        <circle cx="7" cy="17" r="0.8" fill="currentColor" />
+        <rect x="5" y="5" width="14" height="14" rx="2" />
+        <rect x="9" y="9" width="6" height="6" rx="1" />
+        <path d="M9 2v3M12 2v3M15 2v3M9 19v3M12 19v3M15 19v3M2 9h3M2 12h3M2 15h3M19 9h3M19 12h3M19 15h3" />
       </>
     ),
   },
   {
-    kind: 'SDK & API',
-    title: 'Programmatic control over every agent, every run.',
-    body: 'Trigger runs, stream outputs, manage state - from your own code, your own cron, your own pipelines. The product is also a library.',
+    kind: 'Compute',
+    title: 'Bring your own cloud. Use the GPUs you already pay for.',
+    body: 'Connect AWS, GCP, Azure, Nebius, Lambda, RunPod, Modal, or your on-prem cluster. The platform schedules training and serving across whatever capacity you have - no migration, no lock-in.',
     icon: (
       <>
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
+        <path d="M7 18h10a4 4 0 0 0 0-8 5 5 0 0 0-9.5-1A4 4 0 0 0 7 18z" />
+        <path d="M12 12v4M10 14h4" />
       </>
     ),
   },
   {
-    kind: 'Observability',
-    title: 'See every decision the agent made. Replay it. Improve it.',
+    kind: 'Training',
+    title: 'SFT and RL pipelines. From dataset to deployed model.',
+    body: 'Supervised fine-tuning and reinforcement learning - LoRA, full fine-tunes, GRPO, DPO. Launch a run, watch loss curves, register the checkpoint, serve it. The same control plane as your agents.',
+    icon: (
+      <>
+        <polyline points="3 17 8 11 12 14 21 5" />
+        <polyline points="15 5 21 5 21 11" />
+        <path d="M3 21h18" />
+      </>
+    ),
+  },
+  {
+    kind: 'Datasets',
+    title: 'Build datasets. Generate synthetic data at scale.',
     lateral: true,
-    body: "Full traces of tool calls, model responses, and decisions. Debug like you would code - not like you'd guess.",
+    body: 'Version datasets in Surogate Hub. Generate synthetic training data from teacher models, agent traces, or your own corpus - with quality filters, deduplication, and lineage tracked end-to-end.',
     icon: (
       <>
-        <circle cx="11" cy="11" r="7" />
-        <path d="M11 8v3l2 2" />
-        <path d="m20 20-3.5-3.5" />
+        <ellipse cx="12" cy="5" rx="8" ry="2.5" />
+        <path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5" />
+        <path d="M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6" />
       </>
     ),
   },
   {
-    kind: 'Templates',
-    title: 'Package an agent. Hand it off. Multiply the team.',
-    body: 'Export an agent as a template - skills, prompts, tools, and integrations bundled. Teammates start running it in one click, with no setup.',
+    kind: 'Evaluation',
+    title: 'Measure what matters. Before and after every change.',
+    body: 'Run evaluations against curated benchmarks or your own task suites. Compare models, prompts, and fine-tunes side by side - with full traces, pass rates, and regressions surfaced automatically.',
     icon: (
       <>
-        <rect x="3" y="3" width="7" height="9" rx="1" />
-        <rect x="14" y="3" width="7" height="5" rx="1" />
-        <rect x="14" y="12" width="7" height="9" rx="1" />
-        <rect x="3" y="16" width="7" height="5" rx="1" />
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 12l5-3" />
+        <path d="M8 16l2-2M14 16l2-2" />
       </>
     ),
   },
   {
-    kind: 'Audit & Permissions',
-    title: 'Every action logged. Every permission scoped.',
-    body: 'Role-based access, action audit logs, scoped credentials. The controls your security team will actually approve, the visibility your ops team needs.',
+    kind: 'Performance',
+    title: 'The fastest training stack on the market.',
+    body: 'FP8 and FP4 mixed-precision training, fused kernels, FlashAttention, and gradient checkpointing - tuned to extract every last token-per-second from your hardware. Same model, half the wall-clock, lower bill.',
     icon: (
       <>
-        <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z" />
-        <path d="m9 12 2 2 4-4" />
+        <path d="M13 2 4 13h7l-1 9 9-11h-7l1-9z" />
       </>
     ),
   },
@@ -370,7 +373,7 @@ function PersonalTile({ tile }) {
 
 function PassiveAgentCard({ agent }) {
   return (
-    <article className="reveal bg-brand-aubergine-2 p-7 lg:px-9 lg:py-8 flex flex-col gap-4 relative border-l-2 border-brand-orange">
+    <article className="reveal bg-brand-aubergine-2 p-7 lg:px-7 lg:py-8 flex flex-col gap-4 min-h-[260px] relative transition-colors group/tile border-l-2 border-brand-orange/0 hover:border-brand-orange">
       <header className="flex items-baseline gap-3 flex-wrap">
         <span className="font-mono text-[11px] font-semibold tracking-wider-2 text-brand-orange">
           {agent.num}
@@ -406,9 +409,9 @@ function PassiveAgentCard({ agent }) {
 
 function DeveloperTile({ tile }) {
   return (
-    <article className="reveal bg-brand-aubergine p-7 lg:px-7 lg:py-9 flex flex-col gap-4 min-h-[280px] relative transition-colors group/tile">
+    <article className="reveal bg-brand-aubergine-2 p-7 lg:px-7 lg:py-8 flex flex-col gap-4 min-h-[260px] relative transition-colors group/tile border-l-2 border-brand-orange/0 hover:border-brand-orange">
       <header className="flex justify-between items-start gap-4">
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-white/55">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-brand-orange">
           {tile.kind}
         </span>
         <span className="text-white/55 group-hover/tile:text-brand-orange transition-colors">
@@ -425,14 +428,10 @@ function DeveloperTile({ tile }) {
           </svg>
         </span>
       </header>
-      <h3
-        className={`m-0 font-serif text-[22px] font-semibold leading-[1.18] tracking-[-0.014em] text-white flex-1 ${
-          tile.lateral ? 'italic font-medium' : ''
-        }`}
-      >
+      <h3 className="m-0 font-serif text-[22px] sm:text-[24px] font-semibold leading-[1.18] tracking-[-0.014em] text-white">
         {tile.title}
       </h3>
-      <p className="m-0 text-[14.5px] leading-[1.6] text-white/72">{tile.body}</p>
+      <p className="m-0 text-[14px] leading-[1.55] text-white/78">{tile.body}</p>
     </article>
   );
 }
@@ -508,7 +507,7 @@ export default function UseCases() {
         <div className="relative max-w-container mx-auto px-8">
           <div className="mb-12 max-w-[820px]">
             <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[56px] text-white">
-              What can a Surogate agent <em className="italic font-medium">do for you?</em>
+              What can Surogate <em className="italic font-medium">do for you?</em>
             </h2>
             <p className="reveal mt-5 text-[15.5px] leading-[1.6] text-white/72 max-w-[60ch]">
               Each tab contains Surogate agent use-cases.
