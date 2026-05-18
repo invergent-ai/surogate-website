@@ -3,20 +3,8 @@ export default function HowItWorks() {
     <section id="how" data-screen-label="05 How it works" className="py-20 sm:py-24 lg:py-32 bg-white">
       <div className="max-w-container mx-auto px-8">
         <div className="text-center mb-16">
-          <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-graphite">
-            <span className="font-mono text-brand-orange mr-2 font-bold">03</span>
-            How it works
-          </div>
           <h2 className="reveal mt-3.5 mx-auto max-w-[22ch] font-serif italic font-medium leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-brand-aubergine">
-            The only thing that doesn&apos;t{' '}
-            <span className="relative inline-block">
-              scale
-              <span
-                aria-hidden="true"
-                className="absolute -left-[2%] -right-[2%] top-[56%] h-[3px] bg-grad-sun -rotate-2 rounded-sm"
-              />
-            </span>{' '}
-            is you.
+            The only thing that doesn&apos;t scale is you.
             <br />
             Here&apos;s how to fix that.
           </h2>

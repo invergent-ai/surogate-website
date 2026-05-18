@@ -46,9 +46,8 @@ export default function Features() {
       <div className="absolute inset-0 bg-evening-glow-flip pointer-events-none" />
       <div className="relative max-w-container mx-auto px-8">
         <div className="mb-16 max-w-[720px]">
-          <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-yellow/85">
-            <span className="font-mono text-brand-yellow mr-2 font-bold">04</span>
-            Features
+          <div className="text-lg font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-yellow/85">
+            <span className="font-mono text-brand-yellow mr-2 font-bold">Features</span>
           </div>
           <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-white">
             Everything you need to run agents that actually work.

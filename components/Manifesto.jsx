@@ -32,11 +32,6 @@ export default function Manifesto() {
           />
         </div>
 
-        <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-graphite">
-          <span className="font-mono text-brand-orange mr-2 font-bold">01</span>
-          The shift
-        </div>
-
         <h2 className="reveal mt-4 mb-9 font-serif font-semibold leading-[0.98] tracking-[-0.03em] text-[40px] sm:text-[56px] lg:text-[76px] text-brand-aubergine">
           One of you.
           <br />

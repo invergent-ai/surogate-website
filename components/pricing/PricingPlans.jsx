@@ -265,10 +265,6 @@ export default function PricingPlans({ billing, setBilling }) {
       <div className="max-w-container mx-auto px-8">
         <div className="mb-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-[720px]">
-            <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-graphite">
-              <span className="font-mono text-brand-orange mr-2 font-bold">01</span>
-              Plans
-            </div>
             <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-brand-aubergine">
               Pick a plan.{' '}
               <span className="italic font-medium text-brand-orange">Tokens included</span>.

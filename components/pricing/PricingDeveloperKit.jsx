@@ -42,10 +42,6 @@ export default function PricingDeveloperKit() {
       <div className="absolute inset-0 bg-evening-glow pointer-events-none" />
       <div className="relative max-w-container mx-auto px-8">
         <div className="mb-12 max-w-[820px]">
-          <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-yellow/85">
-            <span className="font-mono text-brand-yellow mr-2 font-bold">03</span>
-            For developers and ML teams
-          </div>
           <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-white">
             Bring your own model.{' '}
             <em className="italic font-medium text-brand-orange">Train your own model</em>.

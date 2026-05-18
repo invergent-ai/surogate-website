@@ -54,7 +54,6 @@ function IncludedBlock() {
     <section data-screen-label="04 Included" className="bg-brand-fog py-20 sm:py-24 lg:py-28">
       <div className="max-w-container mx-auto px-8">
         <SectionHeader
-          idx="04"
           eyebrow="Included with every plan"
           headline={
             <>
@@ -206,8 +205,6 @@ function TokensBlock() {
 export default function PricingDetails() {
   return (
     <>
-      <IncludedBlock />
-      <WalletBlock />
       <TokensBlock />
     </>
   );

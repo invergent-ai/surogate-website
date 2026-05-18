@@ -18,7 +18,7 @@ export default function Hero() {
             </span>
           </h1>
           <p className="reveal m-0 w-full max-w-none font-sans text-[17px] sm:text-[19px] lg:text-[21px] leading-[1.55] text-brand-graphite font-normal">
-            A Surogate agent is your cloud-based counterpart. Deploy one or deploy hundreds — they research, draft, and follow up nonstop, so progress keeps moving even when you step away.
+            A Surogate agent is a version of you running in the cloud. <br/> Deploy one or deploy hundreds - they work for you 24/7.
           </p>
         </div>
 

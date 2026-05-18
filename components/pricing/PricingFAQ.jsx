@@ -12,7 +12,7 @@ const FAQS = [
     a: 'The operation stops. No auto-upgrade, no overdraft, no end-of-month invoice. Top up the wallet with as little or as much as you want — top-up balances never expire until you use them — and the task resumes. You can also bring your own LLM provider and pay them directly, which bypasses our tokens entirely.',
   },
   {
-    q: 'How does the wallet model work?',
+    q: 'How do top-ups work?',
     a: 'Each consumable resource — tokens, web browsing minutes, ML compute hours — works like a prepaid wallet. Your plan grants a monthly balance (resets each cycle, lose-it-or-use-it). Top-ups add more on demand, and that cash rolls over as long as your account is active. When the wallet hits zero, the operation stops.',
   },
   {

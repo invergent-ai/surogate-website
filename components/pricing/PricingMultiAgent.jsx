@@ -6,10 +6,6 @@ export default function PricingMultiAgent() {
     >
       <div className="max-w-container mx-auto px-8">
         <div className="mb-12 max-w-[820px]">
-          <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-graphite">
-            <span className="font-mono text-brand-orange mr-2 font-bold">02</span>
-            Multi-agent, bundled
-          </div>
           <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-brand-aubergine">
             Running more than one agent costs you{' '}
             <span className="italic font-medium text-brand-orange">nothing extra</span>.

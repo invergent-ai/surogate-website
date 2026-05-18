@@ -22,9 +22,7 @@ export default function PricingClient() {
         <main id="top">
           <PricingHero />
           <PricingPlans billing={billing} setBilling={setBilling} />
-          <PricingMultiAgent />
           <PricingDeveloperKit />
-          <PricingDetails />
           <PricingFAQ />
           <PricingCta />
         </main>

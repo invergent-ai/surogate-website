@@ -21,7 +21,7 @@ export default function PricingCta() {
 
         <div className="reveal flex gap-3 flex-wrap justify-center">
           <a
-            href="/#signup"
+            href="https://ops.surogate.ai"
             className="inline-flex items-center justify-center gap-2.5 h-12 px-6 bg-grad-sun text-brand-aubergine font-sans text-xs font-semibold uppercase tracking-wider-2 border border-brand-orange hover:brightness-105 transition"
           >
             Start free — no card{' '}
