@@ -61,20 +61,20 @@ html {
   .hero-circles {
     background-color: rgba(255, 255, 255, 1);
     transform: scale(1.85);
-    transform-origin: 93% 22%;
+    transform-origin: 93% 15%;
     mask-image: url('/surogate_circles.svg');
     -webkit-mask-image: url('/surogate_circles.svg');
     mask-repeat: no-repeat;
     -webkit-mask-repeat: no-repeat;
-    mask-position: 93% 22%;
-    -webkit-mask-position: 93% 22%;
+    mask-position: 93% 15%;
+    -webkit-mask-position: 93% 15%;
     mask-size: auto 100%;
     -webkit-mask-size: auto 100%;
   }
   @media (max-width: 1023px) {
     .hero-circles {
       transform: scale(1.85);
-      transform-origin: 93% 22%;
+      transform-origin: 93% 15%;
     }
   }
 }
