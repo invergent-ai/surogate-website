@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -55,6 +55,34 @@ function SignupCard() {
         Try it out and see how it can supercharge your productivity.{' '}
         <span className="text-brand-aubergine/75">No credit card required.</span>
       </p>
+
+      <div
+        aria-hidden="true"
+        className="mt-10 mb-6 h-px w-full bg-gradient-to-r from-transparent via-brand-aubergine/20 to-transparent"
+      />
+
+      <h2 className="mb-4 font-serif text-[22px] font-semibold leading-[1.1] tracking-[-0.02em] text-brand-aubergine sm:text-[24px]">
+        Like what we&rsquo;re building?
+      </h2>
+
+      <a
+        href="https://github.com/invergent-ai/surogates"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group inline-flex w-full items-center justify-start gap-3 h-12 rounded-md bg-white px-6 font-sans text-xs font-semibold uppercase tracking-wider-2 text-brand-aubergine border border-brand-aubergine/25 shadow-[0_8px_22px_-14px_rgba(42,16,45,0.35)] transition hover:border-brand-aubergine/50 hover:bg-brand-yellow/25"
+      >
+        <Star
+          className="h-4 w-4 shrink-0 text-brand-aubergine transition-transform duration-200 group-hover:scale-110 group-hover:fill-brand-yellow"
+          strokeWidth={2.25}
+          aria-hidden="true"
+        />
+        Give us a Star
+        <ArrowRight
+          className="ml-auto h-4 w-4 shrink-0 opacity-70 transition-transform duration-200 group-hover:translate-x-0.5"
+          strokeWidth={2.25}
+          aria-hidden="true"
+        />
+      </a>
     </aside>
   );
 }

@@ -18,16 +18,9 @@ export default function Footer() {
             { href: '/pricing', label: 'Pricing' },
           ]} />
           <FootCol heading="Resources" links={[
-            { href: 'https://docs.surogate.ai', label: 'Docs' },
-            { href: '#', label: 'Changelog' },
-            { href: '#', label: 'Status' },
-            { href: '#', label: 'Security' },
-          ]} />
-          <FootCol heading="Company" links={[
-            { href: '#', label: 'About' },
-            { href: '#', label: 'Careers' },
-            { href: '#', label: 'Contact' },
-            { href: '#', label: 'Privacy' },
+            { href: 'https://docs.surogate.ai', label: 'Platform Docs' },
+            { href: 'https://github.com/invergent-ai/surogate', label: 'Surogate Trainer' },
+            { href: 'https://github.com/invergent-ai/surogates', label: 'Agent harness' },
           ]} />
         </div>
 
