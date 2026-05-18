@@ -1,7 +1,9 @@
 export default function PricingHero() {
   return (
-    <section className="relative overflow-hidden bg-grad-sun-horiz pt-16 pb-14 sm:pt-20 sm:pb-16 lg:pt-24 lg:pb-20">
-      <div className="max-w-container mx-auto px-8">
+    <section className="relative overflow-hidden pt-16 pb-14 sm:pt-20 sm:pb-16 lg:pt-24 lg:pb-20">
+      <div className="absolute inset-0 bg-grad-sun-horiz pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 hero-circles pointer-events-none" aria-hidden="true" />
+      <div className="relative max-w-container mx-auto px-8">
         <div className="font-serif text-[11px] font-semibold uppercase tracking-wider-2 text-brand-aubergine/70">
           <span className="font-mono text-brand-aubergine mr-2 font-bold">00</span>
           Pricing &nbsp;/&nbsp; v2.0
