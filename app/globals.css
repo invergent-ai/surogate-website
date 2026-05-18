@@ -74,7 +74,9 @@ html {
   @media (max-width: 1023px) {
     .hero-circles {
       transform: scale(1.85);
-      transform-origin: 93% 15%;
+      transform-origin: center 15%;
+      mask-position: center 15%;
+      -webkit-mask-position: center 15%;
     }
   }
 }
