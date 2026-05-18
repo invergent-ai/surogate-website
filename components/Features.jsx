@@ -22,7 +22,7 @@ const FEATURES = [
   {
     num: '05',
     title: 'Reporting and Monitoring — you check the work, not every step.',
-    body: 'Your Surogate agent sends summaries, alerts, and reports. You see what it did, what it found, and what needs your decision — without sitting through every execution.',
+    body: 'Your Surogate agent sends alerts if it needs you. You see what it did, what it found, and what needs your decision — without sitting through every execution.',
   },
   {
     num: '06',
@@ -33,6 +33,36 @@ const FEATURES = [
     num: '07',
     title: 'Continuous Improvement — the more it runs, the better it gets.',
     body: 'Your Surogate agent improves with every execution — learning from your feedback, adapting to new data, getting smarter about how you work. It is not a static tool.',
+  },
+  {
+    num: '08',
+    title: 'Custom Models — open weights, fine-tunes, or your own.',
+    body: 'Serve open-source LLMs, your fine-tuned checkpoints, or proprietary endpoints through one unified gateway. GPU scheduling, autoscaling, and inference are handled — your agents just call them.',
+  },
+  {
+    num: '09',
+    title: 'Bring Your Own Compute — the GPUs you already pay for.',
+    body: 'Connect AWS, GCP, Azure, Nebius, Lambda, RunPod, Modal, or your on-prem cluster. The platform schedules training and serving across whatever capacity you have. No migration, no lock-in.',
+  },
+  {
+    num: '10',
+    title: 'SFT and RL Training — from dataset to deployed model.',
+    body: 'Supervised fine-tuning and reinforcement learning — LoRA, full fine-tunes, GRPO, DPO. Launch a run, watch loss curves, register the checkpoint, serve it from the same control plane that runs your agents.',
+  },
+  {
+    num: '11',
+    title: 'Datasets and Synthetic Data — version, generate, ship.',
+    body: 'Version datasets in Surogate Hub. Generate synthetic training data from teacher models, agent traces, or your own corpus — with quality filters, deduplication, and lineage tracked end-to-end.',
+  },
+  {
+    num: '12',
+    title: 'Evaluation — measure what matters, before and after every change.',
+    body: 'Run evaluations against curated benchmarks or your own task suites. Compare models, prompts, and fine-tunes side by side — with full traces, pass rates, and regressions surfaced automatically.',
+  },
+  {
+    num: '13',
+    title: 'Performance — mixed-precision training, fused kernels, every cycle counted.',
+    body: 'BF16 and FP8 mixed-precision, fused kernels, FlashAttention, and gradient checkpointing — tuned to extract every last token-per-second from your hardware. Same model, half the wall-clock, lower bill.',
   },
 ];
 

@@ -446,7 +446,7 @@ function IncomeExample({ ex, index }) {
 
   return (
     <article
-      className={`reveal bg-brand-aubergine text-white p-7 lg:p-9 flex flex-col gap-5 min-h-[260px] relative ${hairlineClass}`}
+      className={`bg-brand-aubergine text-white p-7 lg:p-9 flex flex-col gap-5 min-h-[260px] relative ${hairlineClass}`}
     >
       <div className="font-mono text-[10px] font-semibold uppercase tracking-wider-2 text-brand-orange">
         {ex.sector}
@@ -486,6 +486,7 @@ function IncomeExample({ ex, index }) {
 
 export default function UseCases() {
   const [active, setActive] = useState('personal');
+  const [examplesOpen, setExamplesOpen] = useState(false);
   const tabRefs = useRef([]);
 
   const onKey = (e, idx) => {
@@ -627,15 +628,38 @@ export default function UseCases() {
             </p>
           </div>
 
-          <div className="mb-8 font-serif text-[13px] font-semibold uppercase tracking-wider-2 text-brand-aubergine">
-            Four real examples
-          </div>
+          <button
+            type="button"
+            onClick={() => setExamplesOpen((o) => !o)}
+            aria-expanded={examplesOpen}
+            aria-controls="income-examples-grid"
+            className="mb-1 w-full flex items-center justify-between gap-6 bg-brand-aubergine border-l-2 border-brand-orange px-7 py-5 cursor-pointer hover:bg-brand-aubergine-2 transition-colors text-left group"
+          >
+            <span className="flex flex-col gap-1.5">
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider-2 text-brand-orange">
+                Four real examples
+              </span>
+              <span className="font-serif text-[18px] sm:text-[20px] font-semibold leading-[1.25] text-white">
+                {examplesOpen
+                  ? 'Hide the breakdowns'
+                  : 'See the niches, numbers, and business models'}
+              </span>
+            </span>
+            <span
+              aria-hidden="true"
+              className={`flex-shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-full bg-brand-orange/15 text-brand-orange text-[20px] leading-none transition-transform duration-200 group-hover:bg-brand-orange/25 ${examplesOpen ? 'rotate-180' : ''}`}
+            >
+              ▾
+            </span>
+          </button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            {INCOME_EXAMPLES.map((ex, i) => (
-              <IncomeExample key={ex.title} ex={ex} index={i} />
-            ))}
-          </div>
+          {examplesOpen && (
+            <div id="income-examples-grid" className="grid grid-cols-1 lg:grid-cols-2">
+              {INCOME_EXAMPLES.map((ex, i) => (
+                <IncomeExample key={ex.title} ex={ex} index={i} />
+              ))}
+            </div>
+          )}
 
           <div className="reveal mt-16 text-center">
             <h3 className="m-0 font-serif text-[28px] sm:text-[36px] lg:text-[44px] font-semibold leading-[1.1] tracking-hl-tight text-brand-aubergine">
