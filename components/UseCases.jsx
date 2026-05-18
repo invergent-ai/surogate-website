@@ -518,7 +518,7 @@ export default function UseCases() {
           <div
             role="tablist"
             aria-label="Use cases by audience"
-            className="flex items-stretch border-b border-white/10 mb-10 flex-wrap"
+            className="flex items-stretch justify-start border-b border-white/10 mb-10 flex-wrap"
           >
             {TABS.map((t, i) => {
               const on = active === t.id;
@@ -534,7 +534,7 @@ export default function UseCases() {
                   onClick={() => setActive(t.id)}
                   onKeyDown={(e) => onKey(e, i)}
                   type="button"
-                  className={`relative bg-transparent border-0 px-1 pt-4 pb-[18px] mr-8 font-serif text-[13px] font-semibold uppercase tracking-wider-2 cursor-pointer transition-colors inline-flex items-baseline gap-2 ${
+                  className={`relative flex w-full sm:w-auto sm:mr-8 items-baseline justify-start gap-2 border-0 bg-transparent px-1 pt-4 pb-[18px] text-left font-serif text-[13px] font-semibold uppercase tracking-wider-2 cursor-pointer transition-colors ${
                     on ? 'text-white' : 'text-white/55 hover:text-white/80'
                   }`}
                 >
