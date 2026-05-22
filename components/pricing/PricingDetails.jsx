@@ -11,7 +11,7 @@ const INCLUDED = [
 
 const WALLET_TOPUPS = [
   { resource: 'Tokens', rate: '$2.42', unit: 'per 1M' },
-  { resource: 'Web browsing time', rate: '$0.0484', unit: '/ minute' },
+  { resource: 'Web browsing time', rate: '$0.08', unit: '/ hour (10 hr min)' },
 ];
 
 const RECURRING_ADDONS = [

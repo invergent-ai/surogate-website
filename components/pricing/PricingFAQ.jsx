@@ -13,7 +13,7 @@ const FAQS = [
   },
   {
     q: 'How do top-ups work?',
-    a: 'Each consumable resource — tokens, web browsing minutes, ML compute hours — works like a prepaid wallet. Your plan grants a monthly balance (resets each cycle, lose-it-or-use-it). Top-ups add more on demand, and that cash rolls over as long as your account is active. When the wallet hits zero, the operation stops.',
+    a: 'Each consumable resource — tokens, web browsing hours, ML compute hours — works like a prepaid wallet. Your plan grants a monthly balance (resets each cycle, lose-it-or-use-it). Top-ups add more on demand, and that cash rolls over as long as your account is active. When the wallet hits zero, the operation stops.',
   },
   {
     q: 'Can I bring my own LLM and skip paying for tokens?',
@@ -45,7 +45,7 @@ const FAQS = [
   },
   {
     q: 'Can I run an agent 24/7?',
-    a: 'Yes. Agents run continuously within your plan’s concurrent-agent limit — tokens and web browsing minutes are the wallets to watch for long-running tasks. The dashboard shows live consumption so you can tune behavior or top up as needed.',
+    a: 'Yes. Agents run continuously within your plan’s concurrent-agent limit — tokens and web browsing hours are the wallets to watch for long-running tasks. The dashboard shows live consumption so you can tune behavior or top up as needed.',
   },
   {
     q: 'How does fine-tuning work? Do I pay for GPUs?',
