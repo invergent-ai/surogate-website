@@ -24,7 +24,7 @@ const PLANS = [
     cta: { label: 'Choose Standard', href: '/#signup' },
     features: [
       { strong: '2 concurrent agents' },
-      { strong: '10M tokens / month' },
+      { strong: '5M tokens / month' },
       '5 GB workspace',
       '10 GB hub storage',
       '5 hours web browsing',
@@ -42,7 +42,7 @@ const PLANS = [
     cta: { label: 'Choose Pro', href: '/#signup' },
     features: [
       { strong: '5 concurrent agents' },
-      { strong: '25M tokens / month' },
+      { strong: '11.5M tokens / month' },
       '20 GB workspace',
       '50 GB hub storage',
       '15 hours web browsing',
@@ -58,7 +58,7 @@ const PLANS = [
     cta: { label: 'Choose Max', href: '/#signup' },
     features: [
       { strong: '12 concurrent agents' },
-      { strong: '50M tokens / month' },
+      { strong: '22M tokens / month' },
       '50 GB workspace',
       '200 GB hub storage',
       '40 hours web browsing',

@@ -5,7 +5,7 @@ const FAQS = [
   },
   {
     q: 'Are tokens really included? What about overages?',
-    a: 'Every paid plan ships with a monthly token allowance baked into the price — 10M on Standard, 25M on Pro, 50M on Max. There are no surprise overage bills: when your monthly grant runs out, agents pause until you top up your wallet (rolling-over cash at $2.42 per 1M tokens) or wait for the next cycle. You stay in control.',
+    a: 'Every paid plan ships with a monthly token allowance baked into the price — 5M on Standard, 11.5M on Pro, 22M on Max. There are no surprise overage bills: when your monthly grant runs out, agents pause until you top up your wallet (rolling-over cash at $5.57 per 1M tokens) or wait for the next cycle. You stay in control.',
   },
   {
     q: 'What happens if my token wallet hits zero mid-task?',

@@ -10,7 +10,7 @@ const INCLUDED = [
 ];
 
 const WALLET_TOPUPS = [
-  { resource: 'Tokens', rate: '$2.42', unit: 'per 1M' },
+  { resource: 'Tokens', rate: '$5.57', unit: 'per 1M' },
   { resource: 'Web browsing time', rate: '$0.08', unit: '/ hour (10 hr min)' },
 ];
 
@@ -25,9 +25,9 @@ const TOKEN_RANGES = [
   { label: 'Research task with web browsing', range: '20–100K' },
   { label: 'Multi-step coding task', range: '50–500K' },
   { label: 'Full day of heavy agent use', range: '300K–1M+' },
-  { label: 'Standard plan covers', range: '10M / mo' },
-  { label: 'Pro plan covers', range: '25M / mo' },
-  { label: 'Max plan covers', range: '50M / mo' },
+  { label: 'Standard plan covers', range: '5M / mo' },
+  { label: 'Pro plan covers', range: '11.5M / mo' },
+  { label: 'Max plan covers', range: '22M / mo' },
 ];
 
 function SectionHeader({ idx, eyebrow, headline, sub, dark }) {
