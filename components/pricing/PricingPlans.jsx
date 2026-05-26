@@ -113,9 +113,7 @@ function PlanCard({ plan, billing }) {
   const big = isFree ? 0 : billing === 'annual' ? annual : monthly;
   const eyebrow = isFree
     ? plan.eyebrow
-    : billing === 'annual'
-      ? `Save ~${annualSavingsPct}% billed yearly`
-      : plan.eyebrow;
+    : `Save ~${annualSavingsPct}% billed yearly`;
   const subline = isFree
     ? <>&nbsp;</>
     : billing === 'annual'
@@ -236,7 +234,7 @@ function BillingToggle({ billing, setBilling }) {
     >
       {[
         { id: 'monthly', label: 'Monthly' },
-        { id: 'annual', label: 'Annual' },
+        { id: 'annual', label: 'Yearly' },
       ].map((opt) => {
         const on = billing === opt.id;
         return (
@@ -288,9 +286,7 @@ export default function PricingPlans({ billing, setBilling }) {
           <div className="reveal flex flex-col items-start gap-2.5 lg:items-end lg:pb-1">
             <BillingToggle billing={billing} setBilling={setBilling} />
             <span className="font-mono text-[11px] uppercase tracking-wider-2 text-brand-steel">
-              {billing === 'annual'
-                ? 'Save ~10% with annual billing'
-                : 'First month discounted on every paid plan'}
+              Save ~10% with yearly billing
             </span>
           </div>
         </div>
