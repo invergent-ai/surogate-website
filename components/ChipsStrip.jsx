@@ -4,7 +4,7 @@ const CHIPS = [
   { label: 'No code required' },
   { label: 'Works while you chill', lateral: true },
   { label: 'Anyone can build an agent' },
-  { label: 'Free to start' },
+  { label: 'Monetize your agents' },
 ];
 
 export default function ChipsStrip() {

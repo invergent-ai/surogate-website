@@ -37,9 +37,9 @@ export default function Nav() {
   }, [menuOpen]);
 
   const home = (hash) => (onPricing ? `/${hash}` : hash);
-  const baseLink = 'font-sans text-[13px] font-medium transition-colors';
+  const baseLink = 'font-sans text-lg font-medium transition-colors';
   const linkCls = (active) =>
-    `${baseLink} ${active ? 'text-brand-aubergine' : 'text-brand-graphite hover:text-brand-aubergine'}`;
+    `${baseLink} ${active ? 'text-brand-aubergine' : 'text-brand-graphite hover:font-bold'}`;
 
   const resolveHref = (link) => {
     if (link.href) return link.href;
@@ -57,7 +57,7 @@ export default function Nav() {
       <div className="relative max-w-container mx-auto px-8 flex items-center justify-between h-16">
         <div className="flex items-center gap-8">
           <a href="/" aria-label="Surogate" className="inline-flex items-center h-7 text-brand-aubergine">
-            <img src="/brand/logo-full-black.svg" alt="Surogate" className="h-7 w-auto block" />
+            <img src="/brand/logo-full-black.svg" alt="Surogate" className="h-12 w-auto block" />
           </a>
           <nav aria-label="Primary" className="hidden md:flex items-center gap-7">
             {NAV_LINKS.map((link) => (

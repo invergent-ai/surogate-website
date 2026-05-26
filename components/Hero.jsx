@@ -13,12 +13,16 @@ export default function Hero() {
               yourself.
               <span
                 aria-hidden="true"
-                className="absolute -left-[1%] -right-[1%] bottom-[6%] h-[24%] -z-10 bg-brand-yellow rounded -rotate-[0.6deg]"
+                className="absolute -left-[1%] -right-[1%] bottom-[6%] h-[24%] -z-10 bg-brand-orange rounded -rotate-[0.6deg]"
               />
             </span>
           </h1>
           <p className="reveal m-0 w-full max-w-none font-sans text-[17px] sm:text-[19px] lg:text-[21px] leading-[1.55] text-brand-graphite font-normal">
-            A Surogate agent is a version of you running in the cloud. <br/> Deploy one or deploy hundreds - they work for you 24/7.
+            A Surogate agent is a version of you running in the cloud. <br/> 
+            Deploy one or deploy hundreds - they work for you 24/7. <br/>
+          </p>
+          <p className="reveal mt-4 w-full max-w-none font-sans text-[17px] sm:text-[19px] lg:text-[21px] leading-[1.55] text-brand-graphite font-normal">
+            <span className='font-medium'>Use them for you or sell them to your customers.</span>
           </p>
         </div>
 
@@ -41,7 +45,7 @@ function SignupCard() {
 
       <a
         href="https://ops.surogate.ai"
-        className="group inline-flex w-full items-center justify-start gap-3 h-12 rounded-md bg-grad-wine-horiz px-6 font-sans text-xs font-semibold uppercase tracking-wider-2 text-white border border-brand-wine/40 shadow-[0_14px_32px_-12px_rgba(42,16,45,0.45)] transition hover:brightness-110"
+        className="group inline-flex w-full items-center justify-start gap-3 h-12 rounded-md bg-grad-wine-horiz px-6 font-sans font-semibold uppercase tracking-wider-2 text-white border border-brand-wine/40 shadow-[0_14px_32px_-12px_rgba(42,16,45,0.45)] transition hover:brightness-110"
       >
         Sign in
         <ArrowRight
@@ -51,8 +55,8 @@ function SignupCard() {
         />
       </a>
 
-      <p className="mt-4 text-left text-[13px] leading-[1.55] text-brand-graphite">
-        Try it out and see how it can supercharge your productivity.{' '}
+      <p className="mt-4 text-left text-lg font-medium leading-[1.55] text-brand-graphite">
+        Try it now.{' '}
         <span className="text-brand-aubergine/75">No credit card required.</span>
       </p>
 
@@ -66,10 +70,10 @@ function SignupCard() {
       </h2>
 
       <a
-        href="https://github.com/invergent-ai/surogates"
+        href="https://github.com/invergent-ai/surogate"
         target="_blank"
         rel="noopener noreferrer"
-        className="group inline-flex w-full items-center justify-start gap-3 h-12 rounded-md bg-white px-6 font-sans text-xs font-semibold uppercase tracking-wider-2 text-brand-aubergine border border-brand-aubergine/25 shadow-[0_8px_22px_-14px_rgba(42,16,45,0.35)] transition hover:border-brand-aubergine/50 hover:bg-brand-yellow/25"
+        className="group inline-flex w-full items-center justify-start gap-3 h-12 rounded-md bg-white px-6 font-sans text-sm font-semibold uppercase tracking-wider-2 text-brand-aubergine border border-brand-aubergine/25 shadow-[0_8px_22px_-14px_rgba(42,16,45,0.35)] transition hover:border-brand-aubergine/50 hover:bg-brand-yellow/25"
       >
         <Star
           className="h-4 w-4 shrink-0 text-brand-aubergine transition-transform duration-200 group-hover:scale-110 group-hover:fill-brand-yellow"
