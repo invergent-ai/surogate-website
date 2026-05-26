@@ -5,7 +5,7 @@ const PLANS = [
     price: { monthly: 0, annual: 0, first: 0 },
     eyebrow: 'No card required',
     best: 'Try it out. See if it fits your work.',
-    cta: { label: 'Start free', href: '/#signup' },
+    cta: { label: 'Start free', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       '1 concurrent agent',
       '500K starter tokens',
@@ -21,7 +21,7 @@ const PLANS = [
     price: { monthly: 45, annual: 40, first: 33 },
     eyebrow: '$33 first month',
     best: 'For personal projects and occasional automation.',
-    cta: { label: 'Choose Standard', href: '/#signup' },
+    cta: { label: 'Choose Standard', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { strong: '2 concurrent agents' },
       { strong: '5M tokens / month' },
@@ -40,7 +40,7 @@ const PLANS = [
     price: { monthly: 98, annual: 90, first: 74 },
     eyebrow: '$74 first month',
     best: 'For daily workflows and serious automation.',
-    cta: { label: 'Choose Pro', href: '/#signup' },
+    cta: { label: 'Choose Pro', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { strong: '5 concurrent agents' },
       { strong: '11.5M tokens / month' },
@@ -58,7 +58,7 @@ const PLANS = [
     price: { monthly: 192, annual: 175, first: 144 },
     eyebrow: '$144 first month',
     best: 'For power users, small businesses, and multi-agent setups.',
-    cta: { label: 'Choose Max', href: '/#signup' },
+    cta: { label: 'Choose Max', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { strong: '12 concurrent agents' },
       { strong: '22M tokens / month' },
