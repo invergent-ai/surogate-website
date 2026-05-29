@@ -2,6 +2,7 @@ import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import ChipsStrip from '@/components/ChipsStrip';
 import Manifesto from '@/components/Manifesto';
+import AppDemoParallax from '@/components/AppDemoParallax';
 import UseCases from '@/components/UseCases';
 import HowItWorks from '@/components/HowItWorks';
 import Features from '@/components/Features';
@@ -18,6 +19,7 @@ export default function Home() {
           <Hero />
           <ChipsStrip />
           <Manifesto />
+          <AppDemoParallax />
           <UseCases />
           <HowItWorks />
           <Features />
