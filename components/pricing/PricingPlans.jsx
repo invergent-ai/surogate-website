@@ -7,7 +7,7 @@ const PLANS = [
     best: 'Try it out. See if it fits your work.',
     cta: { label: 'Start free', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      '5 concurrent agents',
+      'up to 5 agents',
       '500K starter tokens',
       '1 GB workspace',
       '1 GB hub storage',
@@ -22,7 +22,7 @@ const PLANS = [
     best: 'For personal projects and occasional automation.',
     cta: { label: 'Choose Standard', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      { strong: '100 concurrent agents' },
+      { strong: 'up to 100 agents' },
       { strong: '5M tokens / month' },
       '5 GB workspace',
       '10 GB hub storage',
@@ -40,7 +40,7 @@ const PLANS = [
     best: 'For daily workflows and serious automation.',
     cta: { label: 'Choose Pro', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      { strong: '500 concurrent agents' },
+      { strong: 'up to 500 agents' },
       { strong: '11.5M tokens / month' },
       '20 GB workspace',
       '50 GB hub storage',
@@ -57,7 +57,7 @@ const PLANS = [
     best: 'For power users, small businesses, and multi-agent setups.',
     cta: { label: 'Choose Max', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      { strong: '1,000 concurrent agents' },
+      { strong: 'up to 1,000 agents' },
       { strong: '22M tokens / month' },
       '50 GB workspace',
       '200 GB hub storage',

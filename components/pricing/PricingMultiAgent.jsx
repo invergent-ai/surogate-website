@@ -17,7 +17,7 @@ export default function PricingMultiAgent() {
               watching your inbox, one writing the report, one monitoring a competitor&apos;s site.
             </p>
             <p>
-              Every plan includes a generous number of concurrent agents at no extra cost —
+              Every plan includes a generous number of agents at no extra cost —
               100 on Standard, 500 on Pro, 1,000 on Max. Spin up as many as your work needs;
               you pay for what your agents actually <em>do</em> (tokens, compute), not for how
               many you create.
@@ -37,7 +37,7 @@ export default function PricingMultiAgent() {
               <span className="font-mono text-[20px] text-brand-steel">× 5</span>
             </div>
             <p className="text-[14px] leading-[1.55] text-brand-graphite max-w-[52ch]">
-              $250/month to run just 5 concurrent agents. Each new agent is a new line item. Tokens
+              $250/month to run just 5 agents. Each new agent is a new line item. Tokens
               often bundled in, whether you use them or not.
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function PricingMultiAgent() {
               <span className="font-mono text-[14px] text-white/55">/month</span>
             </div>
             <p className="text-[14px] leading-[1.55] text-white/72 max-w-[52ch]">
-              Up to 1,000 concurrent agents, 22M tokens included, the developer toolkit, the hub,
+              Up to 1,000 agents, 22M tokens included, the developer toolkit, the hub,
               the browser — one bill. A fraction of what other platforms charge for a handful of
               agents.
             </p>
