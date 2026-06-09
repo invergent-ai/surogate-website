@@ -2,12 +2,12 @@ const PLANS = [
   {
     id: 'free',
     name: 'Free',
-    price: { monthly: 0, annual: 0, first: 0 },
+    price: { monthly: 0, annual: 0 },
     eyebrow: 'No card required',
     best: 'Try it out. See if it fits your work.',
     cta: { label: 'Start free', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      '1 concurrent agent',
+      '5 concurrent agents',
       '500K starter tokens',
       '1 GB workspace',
       '1 GB hub storage',
@@ -18,12 +18,11 @@ const PLANS = [
   {
     id: 'standard',
     name: 'Standard',
-    price: { monthly: 45, annual: 40, first: 33 },
-    eyebrow: '$33 first month',
+    price: { monthly: 30, annual: 28 },
     best: 'For personal projects and occasional automation.',
     cta: { label: 'Choose Standard', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      { strong: '2 concurrent agents' },
+      { strong: '100 concurrent agents' },
       { strong: '5M tokens / month' },
       '5 GB workspace',
       '10 GB hub storage',
@@ -37,12 +36,11 @@ const PLANS = [
     name: 'Pro',
     featured: true,
     badge: 'Most popular',
-    price: { monthly: 98, annual: 90, first: 74 },
-    eyebrow: '$74 first month',
+    price: { monthly: 72, annual: 69 },
     best: 'For daily workflows and serious automation.',
     cta: { label: 'Choose Pro', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      { strong: '5 concurrent agents' },
+      { strong: '500 concurrent agents' },
       { strong: '11.5M tokens / month' },
       '20 GB workspace',
       '50 GB hub storage',
@@ -55,12 +53,11 @@ const PLANS = [
   {
     id: 'max',
     name: 'Max',
-    price: { monthly: 192, annual: 175, first: 144 },
-    eyebrow: '$144 first month',
+    price: { monthly: 144, annual: 138 },
     best: 'For power users, small businesses, and multi-agent setups.',
     cta: { label: 'Choose Max', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      { strong: '12 concurrent agents' },
+      { strong: '1,000 concurrent agents' },
       { strong: '22M tokens / month' },
       '50 GB workspace',
       '200 GB hub storage',
@@ -286,7 +283,7 @@ export default function PricingPlans({ billing, setBilling }) {
           <div className="reveal flex flex-col items-start gap-2.5 lg:items-end lg:pb-1">
             <BillingToggle billing={billing} setBilling={setBilling} />
             <span className="font-mono text-[11px] uppercase tracking-wider-2 text-brand-steel">
-              Save ~10% with yearly billing
+              Save ~5% with yearly billing
             </span>
           </div>
         </div>

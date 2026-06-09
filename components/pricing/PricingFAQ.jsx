@@ -20,10 +20,6 @@ const FAQS = [
     a: 'Yes. Connect any OpenAI-compatible provider — OpenRouter, OpenAI, Anthropic, Together, Groq, vLLM, TGI, Ollama, or your own fine-tuned deployment. You pay them directly. In settings, cancel the bundled token portion of your plan to save the cost.',
   },
   {
-    q: 'Why is the first month cheaper?',
-    a: 'We want you to try the product on real work, not just a demo. The first-month discount applies to the plan and gives you meaningful runway to see if it fits. After that, the regular rate kicks in — no surprise jumps, no auto-locked contracts.',
-  },
-  {
     q: 'Can I share my plan with my team?',
     a: 'The Standard, Pro, and Max plans are single-user. For team use, the Enterprise plan supports multiple seats, shared resources, role-based access, SSO, and audit logs. Custom team pricing is available — talk to sales.',
   },
@@ -41,7 +37,7 @@ const FAQS = [
   },
   {
     q: 'Is there a free trial of paid plans?',
-    a: 'The Free plan is open-ended — use it as long as you like, with 500K starter tokens or BYO LLM from day one. The first-month discount on paid plans is effectively a try-it-out price. If a paid plan doesn’t work for you in the first 14 days, we’ll refund it on request, no questions asked.',
+    a: 'The Free plan is open-ended — use it as long as you like, with 500K starter tokens or BYO LLM from day one. If a paid plan doesn’t work for you in the first 14 days, we’ll refund it on request, no questions asked.',
   },
   {
     q: 'Can I run an agent 24/7?',
@@ -69,7 +65,7 @@ const FAQS = [
   },
   {
     q: 'What if I need more than Max but Enterprise is overkill?',
-    a: 'Stack add-ons. A Max plan with extra concurrent agents (+$14.52/mo per slot), extra workspace storage (+$0.0605/GB/mo), extra hub storage (+$0.0605/GB/mo), and ongoing wallet top-ups covers a lot of ground before you hit Enterprise territory. Talk to us if you’re not sure.',
+    a: 'Stack add-ons. A Max plan with extra workspace storage (+$0.0605/GB/mo), extra hub storage (+$0.0605/GB/mo), and ongoing wallet top-ups covers a lot of ground before you hit Enterprise territory. Talk to us if you’re not sure.',
   },
 ];
 

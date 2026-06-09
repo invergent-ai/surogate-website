@@ -15,7 +15,6 @@ const WALLET_TOPUPS = [
 ];
 
 const RECURRING_ADDONS = [
-  { resource: 'Extra concurrent agent', rate: '+$14.52', unit: '/ month / slot' },
   { resource: 'Extra workspace storage', rate: '+$0.0605', unit: '/ GB / month' },
   { resource: 'Extra hub storage', rate: '+$0.0605', unit: '/ GB / month' },
 ];
@@ -134,8 +133,7 @@ function WalletBlock() {
                 Recurring add-ons
               </h3>
               <p className="mt-2 text-[14px] leading-[1.55] text-brand-graphite">
-                Raise your monthly ceiling for things that aren&apos;t wallet-shaped — storage
-                you occupy, slots you reserve.
+                Raise your monthly ceiling for storage you occupy.
               </p>
             </div>
             <table className="w-full border-collapse">
