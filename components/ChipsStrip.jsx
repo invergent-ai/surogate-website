@@ -4,6 +4,7 @@ const CHIPS = [
   { label: 'No code required' },
   { label: 'Works while you chill', lateral: true },
   { label: 'Anyone can build an agent' },
+  { label: 'Train your own expert models' },
   { label: 'Monetize your agents' },
 ];
 

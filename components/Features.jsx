@@ -41,26 +41,31 @@ const FEATURES = [
   },
   {
     num: '09',
+    title: 'Expert Models (SLMs) — beat frontier models at a fraction of the cost.',
+    body: 'Turn the tasks your agents do most into small expert models trained on your own data. On the specific job they match or beat frontier models — at a tiny fraction of the cost, on hardware you control. Your agents consult them automatically and retrain them as you go.',
+  },
+  {
+    num: '10',
     title: 'Bring Your Own Compute — the GPUs you already pay for.',
     body: 'Connect AWS, GCP, Azure, Nebius, Lambda, RunPod, Modal, or your on-prem cluster. The platform schedules training and serving across whatever capacity you have. No migration, no lock-in.',
   },
   {
-    num: '10',
+    num: '11',
     title: 'SFT and RL Training — from dataset to deployed model.',
     body: 'Supervised fine-tuning and reinforcement learning — LoRA, full fine-tunes, GRPO, DPO. Launch a run, watch loss curves, register the checkpoint, serve it from the same control plane that runs your agents.',
   },
   {
-    num: '11',
+    num: '12',
     title: 'Datasets and Synthetic Data — version, generate, ship.',
     body: 'Version datasets in Surogate Hub. Generate synthetic training data from teacher models, agent traces, or your own corpus — with quality filters, deduplication, and lineage tracked end-to-end.',
   },
   {
-    num: '12',
+    num: '13',
     title: 'Evaluation — measure what matters, before and after every change.',
     body: 'Run evaluations against curated benchmarks or your own task suites. Compare models, prompts, and fine-tunes side by side — with full traces, pass rates, and regressions surfaced automatically.',
   },
   {
-    num: '13',
+    num: '14',
     title: 'Performance — mixed-precision training, fused kernels, every cycle counted.',
     body: 'BF16 and FP8 mixed-precision, fused kernels, FlashAttention, and gradient checkpointing — tuned to extract every last token-per-second from your hardware. Same model, half the wall-clock, lower bill.',
   },

@@ -49,7 +49,11 @@ export default function Manifesto() {
         </p>
 
         <p className="reveal text-lg leading-[1.6] text-brand-graphite max-w-[56ch] mx-auto">
-          The <span className="font-semibold">Managed Agents</span> runtime runs your agents autonomously, whether you're at your desk or not. You set the goal. Agent do the work.
+          The <span className="font-semibold">Managed Agents</span> runtime runs your agents autonomously, whether you're at your desk or not. You set the goal. Agents do the work.
+        </p>
+
+        <p className="reveal mt-6 text-lg leading-[1.6] text-brand-graphite max-w-[56ch] mx-auto">
+          And they run on <span className="font-semibold">expert models you own</span> — small, specialized models trained on your own work that beat frontier models on your tasks, at a fraction of the cost.
         </p>
       </div>
     </section>
