@@ -1,3 +1,5 @@
+import TrackedLink from '@/components/TrackedLink';
+
 const TIMELINE = [
   { time: '17:30', label: 'You close the laptop.', actor: 'you' },
   { time: '19:00', label: 'First drafts in your voice.', actor: 'writing agent' },
@@ -25,13 +27,15 @@ export default function CtaHandover() {
         </p>
 
         <div className="reveal flex gap-3 flex-wrap justify-center">
-          <a
+          <TrackedLink
+            event="cta_signup_clicked"
+            eventProps={{ location: 'cta_handover' }}
             href="https://ops.surogate.ai"
             className="inline-flex items-center justify-center gap-2.5 h-12 px-6 bg-grad-sun text-brand-aubergine font-sans text-xs font-semibold uppercase tracking-wider-2 border border-brand-orange hover:brightness-105 transition"
           >
             Multiply your output - free{' '}
             <span className="font-serif font-normal text-lg leading-none translate-y-px">→</span>
-          </a>
+          </TrackedLink>
         </div>
 
         <div

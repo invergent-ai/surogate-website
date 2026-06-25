@@ -1,6 +1,7 @@
 import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from './providers';
+import { PostHogProvider } from '@/components/PostHogProvider';
 import Script from 'next/script';
 
 const inter = Inter({
@@ -80,9 +81,11 @@ export default function RootLayout({ children }) {
         </Script>
       </head>
       <body className="font-sans" suppressHydrationWarning>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <PostHogProvider>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   );

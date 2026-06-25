@@ -1,3 +1,5 @@
+import TrackedLink from '@/components/TrackedLink';
+
 const PLANS = [
   {
     id: 'free',
@@ -181,13 +183,15 @@ function PlanCard({ plan, billing }) {
       </div>
 
       <div className="px-7 pb-7 mt-auto pt-4">
-        <a
+        <TrackedLink
+          event="pricing_plan_selected"
+          eventProps={{ plan: plan.id, billing }}
           href={plan.cta.href}
           className={`inline-flex items-center justify-center gap-2 h-11 w-full px-5 border font-sans text-[11px] font-semibold uppercase tracking-wider-2 transition-colors ${tone.cta}`}
         >
           {plan.cta.label}{' '}
           <span className="font-serif font-normal text-base leading-none translate-y-px">→</span>
-        </a>
+        </TrackedLink>
       </div>
     </article>
   );
@@ -211,13 +215,15 @@ function EnterpriseCard() {
         models.
       </p>
 
-      <a
+      <TrackedLink
+        event="contact_sales_clicked"
+        eventProps={{ location: 'pricing_enterprise' }}
         href="mailto:sales@surogate.ai"
         className="self-start lg:self-center inline-flex items-center justify-center gap-2 h-11 px-6 bg-brand-aubergine text-white font-sans text-[11px] font-semibold uppercase tracking-wider-2 border border-brand-aubergine hover:bg-brand-aubergine-hover transition-colors whitespace-nowrap"
       >
         Contact sales{' '}
         <span className="font-serif font-normal text-base leading-none translate-y-px">→</span>
-      </a>
+      </TrackedLink>
     </article>
   );
 }
