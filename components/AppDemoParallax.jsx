@@ -64,11 +64,11 @@ export default function AppDemoParallax() {
     <section
       ref={sectionRef}
       aria-label="Surogate app demo"
-      className="relative overflow-hidden bg-brand-aubergine py-10 sm:py-12 md:h-screen md:max-h-screen md:py-0"
+      className="relative overflow-hidden bg-brand-aubergine h-[60vw] min-h-[280px] max-h-[480px] md:h-screen md:max-h-screen"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 hidden will-change-transform motion-reduce:hidden md:block"
+        className="pointer-events-none absolute inset-0 will-change-transform motion-reduce:hidden"
         style={
           parallaxEnabled
             ? { transform: `translate3d(0, ${bgOffset}px, 0)` }
