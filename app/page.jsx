@@ -16,10 +16,10 @@ export default function Home() {
       <div className="bg-white text-brand-aubergine antialiased overflow-x-hidden">
         <Nav />
         <main id="top">
+          <AppDemoParallax />
           <Hero />
           <ChipsStrip />
           <Manifesto />
-          <AppDemoParallax />
           <UseCases />
           <HowItWorks />
           <Features />
