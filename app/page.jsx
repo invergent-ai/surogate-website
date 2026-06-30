@@ -1,5 +1,6 @@
 import Nav from '@/components/Nav';
 import ShowTell from '@/components/home/ShowTell';
+import Footer from '@/components/Footer';
 import './home.css';
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <main id="top">
         <ShowTell />
       </main>
+      <Footer />
     </div>
   );
 }

@@ -842,15 +842,6 @@ export default function ShowTell() {
             <a className="btn btn-primary" href="https://ops.surogate.ai"><i data-lucide="arrow-right" />Start free</a>
             <a className="btn btn-ghost" href="https://docs.surogate.ai"><i data-lucide="book-open" />Read the docs</a>
           </div>
-          <div className="foot reveal">
-            <img className="fl" src="/brand/logo-full-white.svg" alt="Surogate" />
-            <div className="links">
-              <a href="#">surogate.ai</a>
-              <a href="#">docs.surogate.ai</a>
-              <a href="#">Invergent SA</a>
-            </div>
-            <div className="copy">© 2026 Invergent SA · Self-Hosted Enterprise edition · v2026.06</div>
-          </div>
         </div>
       </section>
     </div>
