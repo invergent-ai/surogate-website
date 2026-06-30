@@ -83,6 +83,7 @@ export function JsonLd({ data }) {
   return (
     <script
       type="application/ld+json"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD serialized from trusted static data, not user input — standard Next.js structured-data pattern
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
