@@ -19,8 +19,16 @@ export const organization = {
   description:
     'The intelligence factory for autonomous agents — train and fine-tune custom expert LLMs you own and build, deploy, and observe autonomous cloud AI agents.',
   email: 'hello@surogate.ai',
-  // Add LinkedIn, Crunchbase, HuggingFace, Discord, and X URLs here as they are confirmed.
-  sameAs: ['https://github.com/invergent-ai'],
+  // Add LinkedIn, HuggingFace, Discord, Wikidata, and X URLs here as they are confirmed.
+  sameAs: [
+    'https://github.com/invergent-ai',
+    'https://www.linkedin.com/company/invergent',
+    'https://www.linkedin.com/showcase/surogate',
+    'https://x.com/surogate_ai',
+    'https://x.com/invergentai',
+    'https://huggingface.co/surogate',
+    'https://www.crunchbase.com/organization/mware-cd0c',
+  ],
   contactPoint: [
     {
       '@type': 'ContactPoint',

@@ -29,16 +29,16 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: 'Surogate — High-performance LLM training',
-  description: 'Accelerate your AI development with Surogate\'s high-performance LLM training platform. Scalable, efficient, and built for modern machine learning workflows.',
-  keywords: 'LLM training, AI training, machine learning, deep learning, neural networks, model training, artificial intelligence, GPU training',
+  title: 'Surogate — Autonomous AI agents that work for you 24/7',
+  description: 'Deploy autonomous AI agents that run in the cloud around the clock — built from how you already work and powered by expert models you own. No code required.',
+  keywords: 'autonomous AI agents, AI agent platform, cloud AI agents, AI agents that work 24/7, expert models, custom LLM fine-tuning, agent automation, monetize AI agents, no-code AI agents',
   authors: [{ name: 'Surogate' }],
   robots: 'index, follow',
   openGraph: {
     type: 'website',
     url: 'https://surogate.ai/',
-    title: 'Surogate — Insanely fast LLM training and fine-tuning',
-    description: 'Train and fine-tune LLMs at practical hardware limits.',
+    title: 'Surogate — Autonomous AI agents that work for you 24/7',
+    description: 'Deploy one agent or hundreds. They run in the cloud 24/7, built from how you work and powered by expert models you own.',
     siteName: 'Surogate',
     images: [
       {
@@ -51,8 +51,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Surogate — Insanely fast LLM training and fine-tuning',
-    description: 'Train and fine-tune LLMs at practical hardware limits.',
+    title: 'Surogate — Autonomous AI agents that work for you 24/7',
+    description: 'Deploy one agent or hundreds. They run in the cloud 24/7, built from how you work and powered by expert models you own.',
     images: ['https://surogate.ai/twitter-image.jpg'],
   },
   alternates: {
