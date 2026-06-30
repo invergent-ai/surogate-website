@@ -1,4 +1,5 @@
 import { ArrowRight, Star } from 'lucide-react';
+import TrackedLink from '@/components/TrackedLink';
 
 export default function Hero() {
   return (
@@ -43,7 +44,9 @@ function SignupCard() {
         Ready when you are
       </h2>
 
-      <a
+      <TrackedLink
+        event="cta_signin_clicked"
+        eventProps={{ location: 'hero' }}
         href="https://ops.surogate.ai"
         className="group inline-flex w-full items-center justify-start gap-3 h-12 rounded-md bg-grad-wine-horiz px-6 font-sans font-semibold uppercase tracking-wider-2 text-white border border-brand-wine/40 shadow-[0_14px_32px_-12px_rgba(42,16,45,0.45)] transition hover:brightness-110"
       >
@@ -53,7 +56,7 @@ function SignupCard() {
           strokeWidth={2.25}
           aria-hidden="true"
         />
-      </a>
+      </TrackedLink>
 
       <p className="mt-4 text-left text-lg font-medium leading-[1.55] text-brand-graphite">
         Try it now.{' '}
@@ -69,7 +72,9 @@ function SignupCard() {
         Like what we&rsquo;re building?
       </h2>
 
-      <a
+      <TrackedLink
+        event="github_star_clicked"
+        eventProps={{ location: 'hero' }}
         href="https://github.com/invergent-ai/surogate"
         target="_blank"
         rel="noopener noreferrer"
@@ -86,7 +91,7 @@ function SignupCard() {
           strokeWidth={2.25}
           aria-hidden="true"
         />
-      </a>
+      </TrackedLink>
     </aside>
   );
 }

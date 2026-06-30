@@ -1,3 +1,5 @@
+import TrackedLink from '@/components/TrackedLink';
+
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-brand-border pt-12 pb-10">
@@ -52,13 +54,15 @@ function FootCol({ heading, links }) {
         {heading}
       </h5>
       {links.map((l) => (
-        <a
+        <TrackedLink
           key={l.label}
+          event="footer_link_clicked"
+          eventProps={{ label: l.label, section: heading }}
           href={l.href}
           className="block text-[13.5px] text-brand-graphite py-1 hover:text-brand-aubergine transition-colors"
         >
           {l.label}
-        </a>
+        </TrackedLink>
       ))}
     </div>
   );

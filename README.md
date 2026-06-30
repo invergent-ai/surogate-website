@@ -78,6 +78,39 @@ Preview the production build locally:
 npm run preview
 ```
 
+## Analytics
+
+The site runs two analytics tools in parallel:
+
+- **Google Analytics 4** (`G-QDJWS8ZM50`) — loaded via `next/script` in `app/layout.jsx`.
+- **PostHog** — product analytics + session replay, sending to the **same project as
+  the surogate-ops app** so anonymous marketing visitors stitch into one cross-domain
+  funnel through to signup/login.
+
+PostHog is initialised client-side in `components/PostHogProvider.jsx` (mounted in the
+root layout) using the config in `lib/analytics.js`: autocapture, history-change
+pageviews, session replay, and exception capture — mirroring the surogate-ops setup.
+
+Hand-placed conversion events are emitted from CTAs via `components/TrackedLink.jsx`
+(or the `track()` helper in already-client components):
+
+| Event                       | Where                                              |
+| --------------------------- | -------------------------------------------------- |
+| `cta_signin_clicked`        | Hero "Sign in", nav (mobile) "Sign in"             |
+| `cta_signup_clicked`        | Home CTA, pricing "Start free"                     |
+| `github_star_clicked`       | Hero "Give us a Star"                              |
+| `pricing_plan_selected`     | Pricing plan cards (`{ plan, billing }`)           |
+| `pricing_pick_plan_clicked` | Pricing CTA "Pick a plan"                          |
+| `contact_sales_clicked`     | Enterprise card, pricing "Talk to a human"         |
+| `nav_link_clicked`          | Primary nav links (`{ label, location }`)          |
+| `footer_link_clicked`       | Footer links (`{ label, section }`)                |
+
+Defaults point at the shared EU-cloud project; override per environment with
+`NEXT_PUBLIC_POSTHOG_KEY` / `NEXT_PUBLIC_POSTHOG_HOST` (see `.env.example`). The project
+token is write-only and safe to ship in the static bundle. Because the site is a static
+export (`output: 'export'`), there is no server to reverse-proxy ingestion — events go
+directly to PostHog cloud, exactly like the app.
+
 ## License
 
 Apache-2.0

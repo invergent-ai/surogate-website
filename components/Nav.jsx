@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import { track } from '@/lib/analytics';
 
 const NAV_LINKS = [
   { key: 'how', hash: '#how', label: 'How it works' },
@@ -64,6 +65,7 @@ export default function Nav() {
                 href={resolveHref(link)}
                 className={linkCls(isActive(link))}
                 {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                onClick={() => track('nav_link_clicked', { label: link.label, location: 'desktop' })}
               >
                 {link.label}
               </a>
@@ -113,7 +115,10 @@ export default function Nav() {
                   : 'text-brand-graphite hover:bg-brand-fog hover:text-brand-aubergine'
               }`}
               {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                track('nav_link_clicked', { label: link.label, location: 'mobile' });
+                setMenuOpen(false);
+              }}
             >
               {link.label}
             </a>
@@ -122,7 +127,10 @@ export default function Nav() {
           <a
             href="https://ops.surogate.ai"
             className="mt-3 inline-flex items-center justify-center h-11 rounded-md bg-grad-wine-horiz px-5 text-xs font-semibold uppercase tracking-wider-2 text-white border border-brand-wine/40 transition hover:brightness-110"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              track('cta_signin_clicked', { location: 'nav_mobile' });
+              setMenuOpen(false);
+            }}
           >
             Sign in
           </a>

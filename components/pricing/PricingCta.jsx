@@ -1,3 +1,5 @@
+import TrackedLink from '@/components/TrackedLink';
+
 export default function PricingCta() {
   return (
     <section
@@ -20,25 +22,31 @@ export default function PricingCta() {
         </p>
 
         <div className="reveal flex gap-3 flex-wrap justify-center">
-          <a
+          <TrackedLink
+            event="cta_signup_clicked"
+            eventProps={{ location: 'pricing_cta' }}
             href="https://ops.surogate.ai"
             className="inline-flex items-center justify-center gap-2.5 h-12 px-6 bg-grad-sun text-brand-aubergine font-sans text-xs font-semibold uppercase tracking-wider-2 border border-brand-orange hover:brightness-105 transition"
           >
             Start free — no card{' '}
             <span className="font-serif font-normal text-lg leading-none translate-y-px">→</span>
-          </a>
-          <a
+          </TrackedLink>
+          <TrackedLink
+            event="pricing_pick_plan_clicked"
+            eventProps={{ location: 'pricing_cta' }}
             href="#plans"
             className="inline-flex items-center justify-center gap-2.5 h-12 px-6 bg-transparent text-white font-sans text-xs font-semibold uppercase tracking-wider-2 border border-white/50 hover:bg-white hover:text-brand-aubergine hover:border-white transition-colors"
           >
             Pick a plan
-          </a>
-          <a
+          </TrackedLink>
+          <TrackedLink
+            event="contact_sales_clicked"
+            eventProps={{ location: 'pricing_cta' }}
             href="mailto:sales@surogate.ai"
             className="inline-flex items-center justify-center gap-2.5 h-12 px-6 bg-transparent text-white/82 font-sans text-xs font-semibold uppercase tracking-wider-2 border border-white/20 hover:text-white hover:border-white/40 transition-colors"
           >
             Talk to a human
-          </a>
+          </TrackedLink>
         </div>
       </div>
     </section>

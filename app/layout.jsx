@@ -1,6 +1,7 @@
 import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from './providers';
+import { PostHogProvider } from '@/components/PostHogProvider';
 import { siteGraph, JsonLd } from './structured-data';
 import Script from 'next/script';
 
@@ -85,9 +86,11 @@ export default function RootLayout({ children }) {
       </head>
       <body className="font-sans" suppressHydrationWarning>
         <JsonLd data={siteGraph} />
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <PostHogProvider>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
