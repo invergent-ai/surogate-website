@@ -21,6 +21,7 @@ export const organization = {
   email: 'hello@surogate.ai',
   // Add LinkedIn, HuggingFace, Discord, Wikidata, and X URLs here as they are confirmed.
   sameAs: [
+    'https://www.wikidata.org/wiki/Q140385440',
     'https://github.com/invergent-ai',
     'https://www.linkedin.com/company/invergent',
     'https://www.linkedin.com/showcase/surogate',
