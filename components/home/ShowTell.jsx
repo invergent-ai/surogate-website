@@ -380,6 +380,7 @@ export default function ShowTell() {
           <p className="hero-sub reveal d2">Train a Surogate agent on the way you already work, then offer it to your existing patients, clients, or students as a monthly subscription. You earn from every one of them — without adding a single hour to your day.</p>
           <div className="hero-actions reveal d3">
             <a className="btn btn-primary" href="https://ops.surogate.ai"><i data-lucide="arrow-right" />Start free</a>
+            <a className="btn btn-ghost" href="https://github.com/invergent-ai/surogate" target="_blank" rel="noopener noreferrer"><i data-lucide="star" />Give us a Star</a>
           </div>
           <div className="hero-meta reveal d3">
             <div className="hm"><div className="hm-n"><em>24/7</em></div><div className="hm-l">They work while you don't</div></div>
