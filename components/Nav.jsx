@@ -6,8 +6,6 @@ import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
   { key: 'how', hash: '#how', label: 'How it works' },
-  { key: 'features', hash: '#features', label: 'Features' },
-  { key: 'usecases', hash: '#usecases', label: 'Use cases' },
   { key: 'pricing', href: '/pricing', label: 'Pricing' },
   { key: 'docs', href: 'https://docs.surogate.ai', label: 'Docs', external: true },
 ];
