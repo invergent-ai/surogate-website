@@ -1,4 +1,4 @@
-const FAQS = [
+export const FAQS = [
   {
     q: 'Can I switch plans anytime?',
     a: 'Yes. Upgrades take effect immediately and we prorate the difference. Downgrades take effect at the next billing cycle. No fees either way.',

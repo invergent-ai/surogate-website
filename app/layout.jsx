@@ -1,6 +1,7 @@
 import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from './providers';
+import { siteGraph, JsonLd } from './structured-data';
 import Script from 'next/script';
 
 const inter = Inter({
@@ -41,6 +42,9 @@ export const metadata = {
     images: [
       {
         url: 'https://surogate.ai/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Surogate — Multiply yourself. Train expert models you own. Run autonomous agents 24/7.',
       },
     ],
   },
@@ -80,6 +84,7 @@ export default function RootLayout({ children }) {
         </Script>
       </head>
       <body className="font-sans" suppressHydrationWarning>
+        <JsonLd data={siteGraph} />
         <ThemeProvider>
           {children}
         </ThemeProvider>

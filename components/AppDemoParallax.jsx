@@ -78,6 +78,7 @@ export default function AppDemoParallax() {
         <video
           className="absolute inset-0 h-full w-full object-cover object-center"
           src={VIDEO_SRC}
+          poster="/surogate-app-poster.jpg"
           autoPlay
           muted
           loop

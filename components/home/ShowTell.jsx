@@ -465,6 +465,7 @@ export default function ShowTell() {
             <div className="reveal d1">
               <video
                 src="/surogate-app.mp4"
+                poster="/surogate-app-poster.jpg"
                 autoPlay
                 muted
                 loop

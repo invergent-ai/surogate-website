@@ -1,0 +1,34 @@
+# Surogate
+
+> Surogate (by INVERGENT SA) is a platform to build, deploy, and monetize
+> autonomous AI agents that run in the cloud 24/7 — and to train small "expert
+> models" you own that match or beat frontier models on your tasks at a fraction
+> of the cost. No code required to build an agent; full SFT/RL training stack for
+> ML teams.
+
+## Product
+- [Home](https://surogate.ai/): Autonomous cloud agents and expert models you own.
+- [Pricing](https://surogate.ai/pricing/): Free, Standard $30/mo, Pro $72/mo, Max $144/mo, Enterprise; token allowances, wallets, top-up rates.
+- [Documentation](https://docs.surogate.ai): Agent runtime, hub, and developer toolkit.
+
+## How it works
+- Agent Builder: define an agent's goals, tools, skills, and MCP servers in plain language — no Python/ML background.
+- Cloud Execution: agents run continuously in the cloud, independent of your machine.
+- Expert Models (SLMs): train small specialized models on your data; SFT and RL (LoRA, full fine-tunes, GRPO, DPO).
+- Bring Your Own Compute: AWS, GCP, Azure, Nebius, Lambda, RunPod, Modal, or on-prem (via dstack/skypilot).
+
+## Pricing facts
+- Free: 5 agents, 500K starter tokens, 1 GB workspace, no card required.
+- Standard ($30/mo): 100 agents, 5M tokens/mo, 5 GB workspace, 10 GB hub.
+- Pro ($72/mo): 500 agents, 11.5M tokens/mo, 20 GB workspace, 50 GB hub, agent monetization.
+- Max ($144/mo): 1,000 agents, 22M tokens/mo, 50 GB workspace, 200 GB hub.
+- Token top-up: $5.57 / 1M tokens (rolls over). ML compute top-up: $2.42 / hour. Hub overage: $0.0605 / GB / month.
+- Bring your own LLM (OpenRouter, OpenAI, Anthropic, Together, Groq, vLLM, TGI, Ollama) to bypass bundled tokens.
+
+## Open source
+- [Surogate Trainer](https://github.com/invergent-ai/surogate): training engine.
+- [Agent harness](https://github.com/invergent-ai/surogates): agent runtime.
+
+## Contact
+- [Sales](mailto:sales@surogate.ai)
+- [Support](mailto:hello@surogate.ai)
