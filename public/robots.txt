@@ -1,0 +1,39 @@
+# Surogate — robots.txt
+# NOTE: surogate.ai is fronted by Cloudflare. If Cloudflare's "Block AI bots" /
+# AI Crawl Control feature is enabled, it serves its own managed robots.txt that
+# OVERRIDES this file at the edge. To let AI engines learn and cite the brand,
+# disable that toggle in the Cloudflare dashboard so this origin file is served.
+
+User-agent: *
+Allow: /
+
+# AI crawlers explicitly welcomed (search + training) so the brand can be
+# both cited at query time and learned into model knowledge.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://surogate.ai/sitemap.xml

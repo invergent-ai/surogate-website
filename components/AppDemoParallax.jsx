@@ -64,11 +64,11 @@ export default function AppDemoParallax() {
     <section
       ref={sectionRef}
       aria-label="Surogate app demo"
-      className="relative overflow-hidden bg-brand-aubergine py-10 sm:py-12 md:h-screen md:max-h-screen md:py-0"
+      className="relative overflow-hidden bg-brand-aubergine h-[60vw] min-h-[280px] max-h-[480px] md:h-screen md:max-h-screen"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 hidden will-change-transform motion-reduce:hidden md:block"
+        className="pointer-events-none absolute inset-0 will-change-transform motion-reduce:hidden"
         style={
           parallaxEnabled
             ? { transform: `translate3d(0, ${bgOffset}px, 0)` }
@@ -78,6 +78,7 @@ export default function AppDemoParallax() {
         <video
           className="absolute inset-0 h-full w-full object-cover object-center"
           src={VIDEO_SRC}
+          poster="/surogate-app-poster.jpg"
           autoPlay
           muted
           loop
@@ -87,43 +88,7 @@ export default function AppDemoParallax() {
         />
       </div>
 
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 hidden bg-gradient-to-b from-brand-aubergine/50 via-brand-aubergine/70 to-brand-aubergine md:block"
-      />
-
-      <div className="relative z-10 flex h-full items-center md:py-10">
-        <div className="max-w-container mx-auto w-full px-6 sm:px-8">
-          <div
-            className="reveal overflow-hidden rounded-lg border border-brand-border bg-brand-fog shadow-[0_16px_40px_-20px_rgba(42,16,45,0.35)] will-change-transform md:rounded-xl md:border-white/15 md:bg-brand-aubergine/40 md:shadow-[0_28px_64px_-20px_rgba(0,0,0,0.55)] md:backdrop-blur-sm"
-            style={
-              parallaxEnabled
-                ? { transform: `translate3d(0, ${offset}px, 0)` }
-                : undefined
-            }
-          >
-            <video
-              className="block w-full h-auto"
-              src={VIDEO_SRC}
-              autoPlay
-              muted
-              loop
-              controls
-              playsInline
-              preload="metadata"
-              aria-label="Surogate app demo"
-            >
-              Your browser does not support embedded video.{' '}
-              <a href={VIDEO_SRC} className="underline">
-                Download the demo
-              </a>
-              .
-            </video>
-          </div>
-        </div>
-      </div>
-
-      <p className="sr-only">Screen recording of the Surogate app in use.</p>
+<p className="sr-only">Screen recording of the Surogate app in use.</p>
     </section>
   );
 }

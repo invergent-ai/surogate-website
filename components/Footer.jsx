@@ -10,14 +10,12 @@ export default function Footer() {
               <img src="/brand/logo-full-black.svg" alt="Surogate" className="h-9 w-auto block" />
             </a>
             <p className="mt-4 text-[13px] text-brand-steel max-w-[32ch] leading-[1.55]">
-              The intelligence factory for autonomous agents. Build, deploy, observe. By Invergent SA.
+              The intelligence factory for autonomous agents. Build, deploy, observe.
             </p>
           </div>
           <FootCol heading="Product" links={[
-            { href: '/#features', label: 'Features' },
-            { href: '/#usecases', label: 'Use cases' },
             { href: '/#how', label: 'How it works' },
-            { href: '/pricing', label: 'Pricing' },
+            { href: '/pricing/', label: 'Pricing' },
           ]} />
           <FootCol heading="Resources" links={[
             { href: 'https://docs.surogate.ai', label: 'Platform Docs' },
@@ -27,7 +25,18 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 pt-6 border-t border-brand-border flex flex-wrap justify-between items-center gap-6 font-mono text-[11px] text-brand-steel tracking-[0.06em]">
-          <span>© 2026 INVERGENT SA · ALL RIGHTS RESERVED</span>
+          <span>
+            © 2026{' '}
+            <a
+              href="https://invergent.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand-aubergine transition-colors"
+            >
+              INVERGENT SA
+            </a>{' '}
+            · ALL RIGHTS RESERVED
+          </span>
           <span className="inline-flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_0_3px_rgba(34,197,94,0.18)]" />
             ALL SYSTEMS NORMAL
