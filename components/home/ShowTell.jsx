@@ -161,56 +161,209 @@ export default function ShowTell() {
       const list = $('#capList'); const panel = $('#capPanel'); if (!list || !panel) return;
       const caps = [
         { eye: 'Acts end to end', t: 'Works, not just talks',
-          d: 'An agent follows a multi-step process to completion — making decisions, using your systems, and delivering a finished result rather than a suggestion.',
+          d: 'An agent follows a multi-step process to completion — making decisions, using your systems, and delivering a finished result rather than a suggestion. If anything restarts mid-run, it resumes exactly where it left off.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="workflow"></i> task: process refund request #4821</div>
             <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t"><b>Verify</b> order &amp; eligibility</div><div class="dr-tag">done</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t"><b>Issue</b> refund via payments API</div><div class="dr-tag">done</div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t"><b>Update</b> ticket &amp; notify customer</div><div class="dr-tag">done</div></div>
+              <div class="demo-row" data-i="0"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Verify</b> order &amp; eligibility</div><div class="dr-tag run">running</div></div>
+              <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Issue</b> refund via payments API</div><div class="dr-tag run">running</div></div>
+              <div class="demo-row" data-i="2"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Update</b> ticket &amp; notify customer</div><div class="dr-tag run">running</div></div>
               <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="circle-check-big"></i></div><div class="dr-t">Refund of <b>$129.00</b> completed</div><div class="dr-tag">2.1s</div></div>
             </div></div>` },
         { eye: 'Grounded in your knowledge', t: 'Knows your business',
-          d: 'Answers come from your own documentation, policies, and institutional knowledge — specific and cited, not a generic guess.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="book-open"></i> knowledge base &middot; 1,240 docs</div>
+          d: 'Answers and actions draw on your own documentation, policies, and institutional memory — extended with reusable skills and task-specialized expert models. Specific and cited, not a generic guess.',
+          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="book-open"></i> knowledge base &middot; skills &amp; experts</div>
             <div class="demo-body">
               <div class="demo-row" data-i="0"><div class="demo-bubble user">What's our SLA for enterprise incidents?</div></div>
-              <div class="demo-row" data-i="1"><div class="demo-bubble agent">Enterprise P1 incidents have a <b>15-minute</b> response SLA and a 4-hour resolution target.<span class="src"><span class="chip">SLA-policy.pdf</span><span class="chip">support-tiers.md</span></span></div></div>
+              <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t">Routing your question…</div><div class="dr-tag run">…</div></div>
+              <div class="demo-row" data-i="2"><div class="demo-bubble agent"><span class="tw"></span><span class="src"></span></div></div>
             </div></div>` },
         { eye: 'Connected to your stack', t: 'Uses your tools',
           d: 'Agents act inside the platforms you already run, with credentials held in a secure vault — used, never exposed.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="plug"></i> connected tools &middot; secure vault</div>
             <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t"><b>Salesforce</b> — read &amp; write</div><div class="dr-tag">vaulted</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t"><b>Jira</b> — create issues</div><div class="dr-tag">vaulted</div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t"><b>Postgres</b> — query</div><div class="dr-tag">vaulted</div></div>
-              <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="shield"></i></div><div class="dr-t">Credentials never seen by the model</div><div class="dr-tag">secure</div></div>
+              <div class="demo-row" data-i="0"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Salesforce</b> — read &amp; write</div><div class="dr-tag run">connecting</div></div>
+              <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Jira</b> — create issues</div><div class="dr-tag run">connecting</div></div>
+              <div class="demo-row" data-i="2"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Postgres</b> — query</div><div class="dr-tag run">connecting</div></div>
+              <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="shield"></i></div><div class="dr-t">Credentials never seen by the model</div><div class="dr-tag">sealing</div></div>
             </div></div>` },
-        { eye: 'Live research', t: 'Browses &amp; researches',
-          d: 'Gather and synthesize live sources into well-organized, cited results — hours of research delivered in minutes.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="globe"></i> research: competitor pricing</div>
-            <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Scanned <b>14 sources</b></div><div class="dr-tag">browsing</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Extracted <b>6 pricing tiers</b></div><div class="dr-tag">parsing</div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic"><i data-lucide="file-text"></i></div><div class="dr-t">Sourced summary with citations ready</div><div class="dr-tag">3 min</div></div>
+        { eye: 'Live web &amp; browser', t: 'Browses &amp; operates the web',
+          d: 'Research across live sources into cited results — and drive a real browser to get things done. When a step needs a human, like a login, MFA, or a CAPTCHA, it hands you the wheel, then picks back up.',
+          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="globe"></i> vendor portal &middot; live browser</div>
+            <div class="brw">
+              <div class="brw-bar"><span class="brw-dots"><i></i><i></i><i></i></span><span class="brw-url">portal.vendor.com/booking</span></div>
+              <div class="brw-body">
+                <div class="brw-field"><label>Travel dates</label><div class="brw-input" id="brwF1"></div></div>
+                <div class="brw-field"><label>Sign-in</label><div class="brw-input" id="brwF2"></div></div>
+                <div class="brw-cta" id="brwCta">Continue</div>
+                <div class="brw-cursor" id="brwCur"><i data-lucide="mouse-pointer-2"></i></div>
+                <div class="brw-handoff" id="brwHO"><div class="ho-card"><i data-lucide="hand"></i><b>Your turn</b><span>Sign in &amp; approve MFA</span></div></div>
+                <div class="brw-status" id="brwSt">driving</div>
+              </div>
             </div></div>` },
         { eye: 'Hours-long autonomy', t: 'Handles long jobs',
-          d: 'Pursue a goal over hours or days, coordinating with sub-agents and tracking its own progress against a plan.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="list-checks"></i> migration job &middot; 3h 42m elapsed</div>
+          d: 'Pursue a goal over hours or days — fanning work out to sub-agents, tracking progress against a plan, and judging its own results against a rubric until the mission is met.',
+          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="list-checks"></i> migration mission &middot; 3h 42m elapsed</div>
             <div class="demo-body">
               <div class="demo-row" data-i="0"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Phase 1 — schema mapping</div><div class="dr-tag">done</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Phase 2 — migrate 1.2M rows</div><div class="dr-tag">done</div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic"><i data-lucide="loader"></i></div><div class="dr-t">Phase 3 — validation <b>&middot; 71%</b></div><div class="dr-tag">running</div></div>
+              <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>3 sub-agents</b> migrating 1.2M rows<div class="subs"><span class="sub"><i></i></span><span class="sub"><i></i></span><span class="sub"><i></i></span></div></div><div class="dr-tag run">working</div></div>
+              <div class="demo-row" data-i="2"><div class="dr-ic"><i data-lucide="gauge"></i></div><div class="dr-t">Validation vs. rubric<div class="pbar"><span class="pf" id="rubFill"></span></div></div><div class="dr-tag"><span id="rubPct">0%</span></div></div>
             </div></div>` },
         { eye: 'Human in the loop', t: 'Knows when to ask',
           d: 'Pauses for human approval on irreversible or low-confidence actions, then resumes — with a full audit trail of every decision.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="hand"></i> approval gate &middot; writes</div>
             <div class="demo-body">
               <div class="demo-row" data-i="0"><div class="demo-bubble agent">About to <b>delete 320 stale records</b>. This is irreversible — approve?</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t"><b>Approved</b> by Dana &middot; Finance Ops</div><div class="dr-tag">logged</div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Action completed &amp; audit entry written</div><div class="dr-tag">14:22</div></div>
+              <div class="demo-row" data-i="1"><div class="gate" id="gate"><span class="gate-wait"><i data-lucide="loader"></i> awaiting approval</span><span class="gate-btns"><button type="button" class="gate-btn yes" id="gYes">Approve</button><button type="button" class="gate-btn">Hold</button></span></div></div>
+              <div class="demo-row" data-i="2"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t"><b>Approved</b> by Dana &middot; Finance Ops</div><div class="dr-tag">logged</div></div>
+              <div class="demo-row" data-i="3"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Action completed &amp; audit entry written</div><div class="dr-tag">14:22</div></div>
+            </div></div>` },
+        { eye: 'Meets users where they are', t: 'Works across your channels',
+          d: 'The same agent shows up wherever your team already works — web chat, Slack, Telegram, or your own apps over the API — sharing one memory and history across every channel.',
+          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="messages-square"></i> one agent &middot; every channel</div>
+            <div class="demo-body">
+              <div class="ch-wrap"><div class="ch-rail"><span class="ch-fill" id="chFill"></span></div>
+              <div class="ch-rows">
+                <div class="demo-row ch-row" data-i="0"><div class="dr-ic ok"><i data-lucide="message-square"></i></div><div class="dr-t"><b>Slack</b> — @mention in #ops</div><div class="dr-tag">live</div></div>
+                <div class="demo-row ch-row" data-i="1"><div class="dr-ic ok"><i data-lucide="send"></i></div><div class="dr-t"><b>Telegram</b> — DMs &amp; group threads</div><div class="dr-tag">live</div></div>
+                <div class="demo-row ch-row" data-i="2"><div class="dr-ic ok"><i data-lucide="globe"></i></div><div class="dr-t"><b>Web</b> chat &amp; embedded widget</div><div class="dr-tag">live</div></div>
+                <div class="demo-row ch-row" data-i="3"><div class="dr-ic"><i data-lucide="code"></i></div><div class="dr-t"><b>API</b> — same memory &amp; history</div><div class="dr-tag">shared</div></div>
+              </div></div>
+            </div></div>` },
+        { eye: 'Secure by design', t: 'Safe to put to work',
+          d: 'Every tool call clears a policy gate with fine-grained rules, credentials never reach the model\'s sandbox, and every action lands in an immutable audit log. Sessions run on a durable event log, so a crash never loses work.',
+          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="shield-check"></i> governance &amp; resilience</div>
+            <div class="demo-body">
+              <div class="demo-row" data-i="0"><div class="dr-ic eval"><i data-lucide="scale"></i></div><div class="dr-t"><b>refund_user</b> — checking policy</div><div class="dr-tag run">eval</div></div>
+              <div class="demo-row" data-i="1"><div class="dr-ic"><i data-lucide="lock-open"></i></div><div class="dr-t">Credentials &amp; model sandbox</div><div class="dr-tag">…</div></div>
+              <div class="demo-row" data-i="2"><div class="dr-ic"><i data-lucide="file-text"></i></div><div class="dr-t">Audit log<span class="mono" id="auditHash"></span></div><div class="dr-tag run">writing</div></div>
+              <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="rotate-ccw"></i></div><div class="dr-t">Worker crashed — session resumed, <b>0 lost</b></div><div class="dr-tag">durable</div></div>
             </div></div>` },
       ];
       let demoTickets = [];
+      const after = (ms, fn) => { const id = setTimeout(fn, reduceMotion ? 0 : ms); demoTickets.push(id); return id; };
+      const show = (r) => r && r.classList.add('show');
+      const setIc = (r, name, cls) => { const ic = r && r.querySelector('.dr-ic'); if (!ic) return; ic.className = 'dr-ic ' + (cls || ''); ic.innerHTML = `<i data-lucide="${name}"></i>`; icons(); };
+      const setRowText = (r, html) => { const el = r && r.querySelector('.dr-t'); if (el) el.innerHTML = html; };
+      const setTag = (r, txt, cls) => { const g = r && r.querySelector('.dr-tag'); if (!g) return; g.textContent = txt; g.className = 'dr-tag ' + (cls || ''); };
+      const typeInto = (el, text, done) => {
+        if (!el) { done && done(); return; }
+        if (reduceMotion) { el.textContent = text; done && done(); return; }
+        el.classList.add('tw-on'); let i = 0;
+        const tick = () => { el.textContent = text.slice(0, i); i += 1; if (i <= text.length) after(20, tick); else { el.classList.remove('tw-on'); done && done(); } };
+        tick();
+      };
+
+      const players = {
+        // Works, not just talks — steps execute to completion
+        0(p) {
+          const r = $$('.demo-row', p); let t = 250;
+          [0, 1, 2].forEach((i) => {
+            const at = t;
+            after(at, () => show(r[i]));
+            after(at + 560, () => { setIc(r[i], 'check', 'ok'); setTag(r[i], 'done'); });
+            t += 680;
+          });
+          after(t + 180, () => show(r[3]));
+        },
+        // Knows your business — route, then type a cited answer
+        1(p) {
+          const r = $$('.demo-row', p);
+          after(250, () => show(r[0]));
+          after(880, () => show(r[1]));
+          after(1480, () => { setIc(r[1], 'check', 'ok'); setRowText(r[1], 'Loaded <b>Support</b> skill &middot; consulted <b>Policy</b> expert'); setTag(r[1], 'routed'); });
+          after(2050, () => {
+            show(r[2]);
+            const tw = p.querySelector('.tw');
+            typeInto(tw, 'Enterprise P1 incidents have a 15-minute response SLA and a 4-hour resolution target.', () => {
+              if (tw) tw.innerHTML = 'Enterprise P1 incidents have a <b>15-minute</b> response SLA and a <b>4-hour</b> resolution target.';
+              const src = p.querySelector('.src');
+              if (src) ['SLA-policy.pdf', 'support-tiers.md'].forEach((c, k) => after(200 * (k + 1), () => { const s = document.createElement('span'); s.className = 'chip pop'; s.textContent = c; src.appendChild(s); }));
+            });
+          });
+        },
+        // Uses your tools — connect each tool, then seal the vault
+        2(p) {
+          const r = $$('.demo-row', p); let t = 250;
+          [0, 1, 2].forEach((i) => {
+            const at = t;
+            after(at, () => show(r[i]));
+            after(at + 540, () => { setIc(r[i], 'check', 'ok'); setTag(r[i], 'vaulted'); });
+            t += 620;
+          });
+          after(t + 140, () => show(r[3]));
+          after(t + 420, () => { const ic = r[3].querySelector('.dr-ic'); if (ic) ic.classList.add('seal'); setTag(r[3], 'secure'); });
+        },
+        // Browses & operates the web — drive a browser, hand off, resume
+        3(p) {
+          const cur = p.querySelector('#brwCur'); const ho = p.querySelector('#brwHO');
+          const f1 = p.querySelector('#brwF1'); const f2 = p.querySelector('#brwF2');
+          const cta = p.querySelector('#brwCta'); const st = p.querySelector('#brwSt');
+          const setSt = (txt, cls) => { if (st) { st.textContent = txt; st.className = 'brw-status ' + (cls || ''); } };
+          if (reduceMotion) {
+            if (f1) f1.textContent = 'Apr 18 – 22';
+            if (f2) f2.innerHTML = 'signed in <i data-lucide="check"></i>';
+            if (cta) { cta.classList.add('ok'); cta.textContent = 'Booked'; }
+            if (cur) cur.style.display = 'none';
+            setSt('booking submitted', 'done'); icons(); return;
+          }
+          after(450, () => cur && cur.classList.add('p1'));
+          after(1200, () => typeInto(f1, 'Apr 18 – 22'));
+          after(2150, () => { cur && cur.classList.remove('p1'); cur && cur.classList.add('p2'); });
+          after(2800, () => { cta && cta.classList.add('press'); setSt('needs you', 'you'); });
+          after(3050, () => cta && cta.classList.remove('press'));
+          after(3250, () => { ho && ho.classList.add('on'); if (cur) cur.style.opacity = '0'; });
+          after(4700, () => { ho && ho.classList.remove('on'); if (f2) { f2.innerHTML = 'signed in <i data-lucide="check"></i>'; icons(); } setSt('resumed', ''); if (cur) cur.style.opacity = '1'; });
+          after(5300, () => cta && cta.classList.add('press'));
+          after(5550, () => cta && cta.classList.remove('press'));
+          after(5750, () => { cta && cta.classList.add('ok'); if (cta) cta.textContent = 'Booked'; setSt('booking submitted', 'done'); if (cur) cur.style.opacity = '0'; });
+        },
+        // Handles long jobs — sub-agents fan out, rubric judges
+        4(p) {
+          const r = $$('.demo-row', p);
+          after(300, () => show(r[0]));
+          after(820, () => { show(r[1]); $$('.sub i', r[1]).forEach((b, k) => after(140 * k, () => { b.style.width = '100%'; })); });
+          after(2150, () => { setIc(r[1], 'check', 'ok'); setTag(r[1], 'done'); });
+          after(2550, () => {
+            show(r[2]);
+            const fill = p.querySelector('#rubFill'); const pct = p.querySelector('#rubPct');
+            after(60, () => { if (fill) fill.style.width = '71%'; });
+            let v = 0; const tickv = () => { v += 3; if (v >= 71) v = 71; if (pct) pct.textContent = `${v}%`; if (v < 71) after(34, tickv); };
+            tickv();
+            setTag(r[2], 'judging', 'run');
+          });
+        },
+        // Knows when to ask — pause, approve, resume with audit
+        5(p) {
+          const r = $$('.demo-row', p);
+          after(300, () => show(r[0]));
+          after(950, () => show(r[1]));
+          after(2050, () => { const y = p.querySelector('#gYes'); y && y.classList.add('press'); });
+          after(2450, () => { const g = p.querySelector('#gate'); g && g.classList.add('done'); });
+          after(2650, () => show(r[2]));
+          after(3200, () => show(r[3]));
+        },
+        // Works across channels — each pings in, shared memory links them
+        6(p) {
+          const r = $$('.ch-row', p);
+          r.forEach((row, i) => after(350 + i * 520, () => { show(row); row.classList.add('ping'); }));
+          const tEnd = 350 + r.length * 520;
+          after(tEnd + 200, () => { const f = p.querySelector('#chFill'); if (f) f.style.height = '100%'; });
+          after(tEnd + 1000, () => setTag(r[3], 'synced'));
+        },
+        // Safe to put to work — gate, seal, audit, crash & resume
+        7(p) {
+          const r = $$('.demo-row', p); const card = p.querySelector('.demo-card');
+          after(300, () => show(r[0]));
+          after(1100, () => { setIc(r[0], 'check', 'ok'); setRowText(r[0], '<b>refund_user</b> allowed — verified &amp; under $1,000'); setTag(r[0], 'policy'); });
+          after(1550, () => show(r[1]));
+          after(2150, () => { setIc(r[1], 'lock', 'seal'); setRowText(r[1], 'Credentials sealed from the model sandbox'); setTag(r[1], 'isolated'); });
+          after(2600, () => { show(r[2]); typeInto(p.querySelector('#auditHash'), ' #a91f0c committed', () => { setIc(r[2], 'check', 'ok'); setTag(r[2], 'immutable'); }); });
+          after(3850, () => { if (!reduceMotion && card) { card.classList.add('crash'); after(560, () => card.classList.remove('crash')); } });
+          after(4250, () => show(r[3]));
+        },
+        def(p) { $$('.demo-row', p).forEach((r, idx) => after(220 + idx * 520, () => show(r))); },
+      };
+
       function render(n) {
         demoTickets.forEach((t) => clearTimeout(t)); demoTickets = [];
         const c = caps[n];
@@ -220,9 +373,7 @@ export default function ShowTell() {
           `<p class="cp-d">${c.d}</p>` +
           `<div class="cap-demo">${c.demo}</div>`;
         icons();
-        $$('.demo-row', panel).forEach((r, idx) => {
-          demoTickets.push(setTimeout(() => r.classList.add('show'), 220 + idx * 520));
-        });
+        (players[n] || players.def)(panel);
       }
       $$('.cap-item', list).forEach((item) => {
         item.addEventListener('click', () => {
@@ -619,9 +770,11 @@ export default function ShowTell() {
               <div className="cap-item active" data-cap="0"><div className="ci-ic"><i data-lucide="circle-check-big" /></div><div className="ci-t">Works, not just talks</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
               <div className="cap-item" data-cap="1"><div className="ci-ic"><i data-lucide="book-open" /></div><div className="ci-t">Knows your business</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
               <div className="cap-item" data-cap="2"><div className="ci-ic"><i data-lucide="plug" /></div><div className="ci-t">Uses your tools</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
-              <div className="cap-item" data-cap="3"><div className="ci-ic"><i data-lucide="globe" /></div><div className="ci-t">Browses &amp; researches</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
+              <div className="cap-item" data-cap="3"><div className="ci-ic"><i data-lucide="globe" /></div><div className="ci-t">Browses &amp; operates the web</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
               <div className="cap-item" data-cap="4"><div className="ci-ic"><i data-lucide="workflow" /></div><div className="ci-t">Handles long jobs</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
               <div className="cap-item" data-cap="5"><div className="ci-ic"><i data-lucide="hand" /></div><div className="ci-t">Knows when to ask</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
+              <div className="cap-item" data-cap="6"><div className="ci-ic"><i data-lucide="messages-square" /></div><div className="ci-t">Works across your channels</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
+              <div className="cap-item" data-cap="7"><div className="ci-ic"><i data-lucide="shield-check" /></div><div className="ci-t">Safe to put to work</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
             </div>
             <div className="cap-panel" id="capPanel" />
           </div>
