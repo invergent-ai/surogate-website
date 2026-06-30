@@ -161,7 +161,7 @@ export default function ShowTell() {
       const list = $('#capList'); const panel = $('#capPanel'); if (!list || !panel) return;
       const caps = [
         { eye: 'Acts end to end', t: 'Works, not just talks',
-          d: 'An agent follows a multi-step process to completion — making decisions, using your systems, and delivering a finished result rather than a suggestion. If anything restarts mid-run, it resumes exactly where it left off.',
+          d: 'An agent follows a multi-step process to completion - making decisions, using your systems, and delivering a finished result rather than a suggestion. If anything restarts mid-run, it resumes exactly where it left off.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="workflow"></i> task: process refund request #4821</div>
             <div class="demo-body">
               <div class="demo-row" data-i="0"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Verify</b> order &amp; eligibility</div><div class="dr-tag run">running</div></div>
@@ -170,7 +170,7 @@ export default function ShowTell() {
               <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="circle-check-big"></i></div><div class="dr-t">Refund of <b>$129.00</b> completed</div><div class="dr-tag">2.1s</div></div>
             </div></div>` },
         { eye: 'Grounded in your knowledge', t: 'Knows your business',
-          d: 'Answers and actions draw on your own documentation, policies, and institutional memory — extended with reusable skills and task-specialized expert models. Specific and cited, not a generic guess.',
+          d: 'Answers and actions draw on your own documentation, policies, and institutional memory - extended with reusable skills and task-specialized expert models. Specific and cited, not a generic guess.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="book-open"></i> knowledge base &middot; skills &amp; experts</div>
             <div class="demo-body">
               <div class="demo-row" data-i="0"><div class="demo-bubble user">What's our SLA for enterprise incidents?</div></div>
@@ -178,16 +178,16 @@ export default function ShowTell() {
               <div class="demo-row" data-i="2"><div class="demo-bubble agent"><span class="tw"></span><span class="src"></span></div></div>
             </div></div>` },
         { eye: 'Connected to your stack', t: 'Uses your tools',
-          d: 'Agents act inside the platforms you already run, with credentials held in a secure vault — used, never exposed.',
+          d: 'Agents act inside the platforms you already run, with credentials held in a secure vault - used, never exposed.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="plug"></i> connected tools &middot; secure vault</div>
             <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Salesforce</b> — read &amp; write</div><div class="dr-tag run">connecting</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Jira</b> — create issues</div><div class="dr-tag run">connecting</div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Postgres</b> — query</div><div class="dr-tag run">connecting</div></div>
+              <div class="demo-row" data-i="0"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Salesforce</b> - read &amp; write</div><div class="dr-tag run">connecting</div></div>
+              <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Jira</b> - create issues</div><div class="dr-tag run">connecting</div></div>
+              <div class="demo-row" data-i="2"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Postgres</b> - query</div><div class="dr-tag run">connecting</div></div>
               <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="shield"></i></div><div class="dr-t">Credentials never seen by the model</div><div class="dr-tag">sealing</div></div>
             </div></div>` },
         { eye: 'Live web &amp; browser', t: 'Browses &amp; operates the web',
-          d: 'Research across live sources into cited results — and drive a real browser to get things done. When a step needs a human, like a login, MFA, or a CAPTCHA, it hands you the wheel, then picks back up.',
+          d: 'Research across live sources into cited results - and drive a real browser to get things done. When a step needs a human, like a login, MFA, or a CAPTCHA, it hands you the wheel, then picks back up.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="globe"></i> vendor portal &middot; live browser</div>
             <div class="brw">
               <div class="brw-bar"><span class="brw-dots"><i></i><i></i><i></i></span><span class="brw-url">portal.vendor.com/booking</span></div>
@@ -201,42 +201,42 @@ export default function ShowTell() {
               </div>
             </div></div>` },
         { eye: 'Hours-long autonomy', t: 'Handles long jobs',
-          d: 'Pursue a goal over hours or days — fanning work out to sub-agents, tracking progress against a plan, and judging its own results against a rubric until the mission is met.',
+          d: 'Pursue a goal over hours or days - fanning work out to sub-agents, tracking progress against a plan, and judging its own results against a rubric until the mission is met.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="list-checks"></i> migration mission &middot; 3h 42m elapsed</div>
             <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Phase 1 — schema mapping</div><div class="dr-tag">done</div></div>
+              <div class="demo-row" data-i="0"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Phase 1 - schema mapping</div><div class="dr-tag">done</div></div>
               <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>3 sub-agents</b> migrating 1.2M rows<div class="subs"><span class="sub"><i></i></span><span class="sub"><i></i></span><span class="sub"><i></i></span></div></div><div class="dr-tag run">working</div></div>
               <div class="demo-row" data-i="2"><div class="dr-ic"><i data-lucide="gauge"></i></div><div class="dr-t">Validation vs. rubric<div class="pbar"><span class="pf" id="rubFill"></span></div></div><div class="dr-tag"><span id="rubPct">0%</span></div></div>
             </div></div>` },
         { eye: 'Human in the loop', t: 'Knows when to ask',
-          d: 'Pauses for human approval on irreversible or low-confidence actions, then resumes — with a full audit trail of every decision.',
+          d: 'Pauses for human approval on irreversible or low-confidence actions, then resumes - with a full audit trail of every decision.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="hand"></i> approval gate &middot; writes</div>
             <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="demo-bubble agent">About to <b>delete 320 stale records</b>. This is irreversible — approve?</div></div>
+              <div class="demo-row" data-i="0"><div class="demo-bubble agent">About to <b>delete 320 stale records</b>. This is irreversible - approve?</div></div>
               <div class="demo-row" data-i="1"><div class="gate" id="gate"><span class="gate-wait"><i data-lucide="loader"></i> awaiting approval</span><span class="gate-btns"><button type="button" class="gate-btn yes" id="gYes">Approve</button><button type="button" class="gate-btn">Hold</button></span></div></div>
               <div class="demo-row" data-i="2"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t"><b>Approved</b> by Dana &middot; Finance Ops</div><div class="dr-tag">logged</div></div>
               <div class="demo-row" data-i="3"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Action completed &amp; audit entry written</div><div class="dr-tag">14:22</div></div>
             </div></div>` },
         { eye: 'Meets users where they are', t: 'Works across your channels',
-          d: 'The same agent shows up wherever your team already works — web chat, Slack, Telegram, or your own apps over the API — sharing one memory and history across every channel.',
+          d: 'The same agent shows up wherever your team already works - web chat, Slack, Telegram, or your own apps over the API - sharing one memory and history across every channel.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="messages-square"></i> one agent &middot; every channel</div>
             <div class="demo-body">
               <div class="ch-wrap"><div class="ch-rail"><span class="ch-fill" id="chFill"></span></div>
               <div class="ch-rows">
-                <div class="demo-row ch-row" data-i="0"><div class="dr-ic ok"><i data-lucide="message-square"></i></div><div class="dr-t"><b>Slack</b> — @mention in #ops</div><div class="dr-tag">live</div></div>
-                <div class="demo-row ch-row" data-i="1"><div class="dr-ic ok"><i data-lucide="send"></i></div><div class="dr-t"><b>Telegram</b> — DMs &amp; group threads</div><div class="dr-tag">live</div></div>
+                <div class="demo-row ch-row" data-i="0"><div class="dr-ic ok"><i data-lucide="message-square"></i></div><div class="dr-t"><b>Slack</b> - @mention in #ops</div><div class="dr-tag">live</div></div>
+                <div class="demo-row ch-row" data-i="1"><div class="dr-ic ok"><i data-lucide="send"></i></div><div class="dr-t"><b>Telegram</b> - DMs &amp; group threads</div><div class="dr-tag">live</div></div>
                 <div class="demo-row ch-row" data-i="2"><div class="dr-ic ok"><i data-lucide="globe"></i></div><div class="dr-t"><b>Web</b> chat &amp; embedded widget</div><div class="dr-tag">live</div></div>
-                <div class="demo-row ch-row" data-i="3"><div class="dr-ic"><i data-lucide="code"></i></div><div class="dr-t"><b>API</b> — same memory &amp; history</div><div class="dr-tag">shared</div></div>
+                <div class="demo-row ch-row" data-i="3"><div class="dr-ic"><i data-lucide="code"></i></div><div class="dr-t"><b>API</b> - same memory &amp; history</div><div class="dr-tag">shared</div></div>
               </div></div>
             </div></div>` },
         { eye: 'Secure by design', t: 'Safe to put to work',
           d: 'Every tool call clears a policy gate with fine-grained rules, credentials never reach the model\'s sandbox, and every action lands in an immutable audit log. Sessions run on a durable event log, so a crash never loses work.',
           demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="shield-check"></i> governance &amp; resilience</div>
             <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="dr-ic eval"><i data-lucide="scale"></i></div><div class="dr-t"><b>refund_user</b> — checking policy</div><div class="dr-tag run">eval</div></div>
+              <div class="demo-row" data-i="0"><div class="dr-ic eval"><i data-lucide="scale"></i></div><div class="dr-t"><b>refund_user</b> - checking policy</div><div class="dr-tag run">eval</div></div>
               <div class="demo-row" data-i="1"><div class="dr-ic"><i data-lucide="lock-open"></i></div><div class="dr-t">Credentials &amp; model sandbox</div><div class="dr-tag">…</div></div>
               <div class="demo-row" data-i="2"><div class="dr-ic"><i data-lucide="file-text"></i></div><div class="dr-t">Audit log<span class="mono" id="auditHash"></span></div><div class="dr-tag run">writing</div></div>
-              <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="rotate-ccw"></i></div><div class="dr-t">Worker crashed — session resumed, <b>0 lost</b></div><div class="dr-tag">durable</div></div>
+              <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="rotate-ccw"></i></div><div class="dr-t">Worker crashed - session resumed, <b>0 lost</b></div><div class="dr-tag">durable</div></div>
             </div></div>` },
       ];
       let demoTickets = [];
@@ -254,7 +254,7 @@ export default function ShowTell() {
       };
 
       const players = {
-        // Works, not just talks — steps execute to completion
+        // Works, not just talks - steps execute to completion
         0(p) {
           const r = $$('.demo-row', p); let t = 250;
           [0, 1, 2].forEach((i) => {
@@ -265,7 +265,7 @@ export default function ShowTell() {
           });
           after(t + 180, () => show(r[3]));
         },
-        // Knows your business — route, then type a cited answer
+        // Knows your business - route, then type a cited answer
         1(p) {
           const r = $$('.demo-row', p);
           after(250, () => show(r[0]));
@@ -281,7 +281,7 @@ export default function ShowTell() {
             });
           });
         },
-        // Uses your tools — connect each tool, then seal the vault
+        // Uses your tools - connect each tool, then seal the vault
         2(p) {
           const r = $$('.demo-row', p); let t = 250;
           [0, 1, 2].forEach((i) => {
@@ -293,7 +293,7 @@ export default function ShowTell() {
           after(t + 140, () => show(r[3]));
           after(t + 420, () => { const ic = r[3].querySelector('.dr-ic'); if (ic) ic.classList.add('seal'); setTag(r[3], 'secure'); });
         },
-        // Browses & operates the web — drive a browser, hand off, resume
+        // Browses & operates the web - drive a browser, hand off, resume
         3(p) {
           const cur = p.querySelector('#brwCur'); const ho = p.querySelector('#brwHO');
           const f1 = p.querySelector('#brwF1'); const f2 = p.querySelector('#brwF2');
@@ -317,7 +317,7 @@ export default function ShowTell() {
           after(5550, () => cta && cta.classList.remove('press'));
           after(5750, () => { cta && cta.classList.add('ok'); if (cta) cta.textContent = 'Booked'; setSt('booking submitted', 'done'); if (cur) cur.style.opacity = '0'; });
         },
-        // Handles long jobs — sub-agents fan out, rubric judges
+        // Handles long jobs - sub-agents fan out, rubric judges
         4(p) {
           const r = $$('.demo-row', p);
           after(300, () => show(r[0]));
@@ -332,7 +332,7 @@ export default function ShowTell() {
             setTag(r[2], 'judging', 'run');
           });
         },
-        // Knows when to ask — pause, approve, resume with audit
+        // Knows when to ask - pause, approve, resume with audit
         5(p) {
           const r = $$('.demo-row', p);
           after(300, () => show(r[0]));
@@ -342,7 +342,7 @@ export default function ShowTell() {
           after(2650, () => show(r[2]));
           after(3200, () => show(r[3]));
         },
-        // Works across channels — each pings in, shared memory links them
+        // Works across channels - each pings in, shared memory links them
         6(p) {
           const r = $$('.ch-row', p);
           r.forEach((row, i) => after(350 + i * 520, () => { show(row); row.classList.add('ping'); }));
@@ -350,11 +350,11 @@ export default function ShowTell() {
           after(tEnd + 200, () => { const f = p.querySelector('#chFill'); if (f) f.style.height = '100%'; });
           after(tEnd + 1000, () => setTag(r[3], 'synced'));
         },
-        // Safe to put to work — gate, seal, audit, crash & resume
+        // Safe to put to work - gate, seal, audit, crash & resume
         7(p) {
           const r = $$('.demo-row', p); const card = p.querySelector('.demo-card');
           after(300, () => show(r[0]));
-          after(1100, () => { setIc(r[0], 'check', 'ok'); setRowText(r[0], '<b>refund_user</b> allowed — verified &amp; under $1,000'); setTag(r[0], 'policy'); });
+          after(1100, () => { setIc(r[0], 'check', 'ok'); setRowText(r[0], '<b>refund_user</b> allowed - verified &amp; under $1,000'); setTag(r[0], 'policy'); });
           after(1550, () => show(r[1]));
           after(2150, () => { setIc(r[1], 'lock', 'seal'); setRowText(r[1], 'Credentials sealed from the model sandbox'); setTag(r[1], 'isolated'); });
           after(2600, () => { show(r[2]); typeInto(p.querySelector('#auditHash'), ' #a91f0c committed', () => { setIc(r[2], 'check', 'ok'); setTag(r[2], 'immutable'); }); });
@@ -385,7 +385,7 @@ export default function ShowTell() {
       render(0);
     })();
 
-    /* 5 · THE SECOND SHIFT — night timeline ──────────────────── */
+    /* 5 · THE SECOND SHIFT - night timeline ──────────────────── */
     (function secondShift() {
       const line = $('#shiftLine'); if (!line) return;
       const stops = $$('.shift-stop', line);
@@ -408,7 +408,7 @@ export default function ShowTell() {
       watch(line, start, 0.4);
     })();
 
-    /* 6 · FLEET AT SCALE — spawn + live counter ──────────────── */
+    /* 6 · FLEET AT SCALE - spawn + live counter ──────────────── */
     (function fleet() {
       const grid = $('#fleetGrid'); const countEl = $('#fleetCount'); if (!grid) return;
       const agents = [
@@ -525,10 +525,15 @@ export default function ShowTell() {
       <header className="hero">
         <div className="hero-glow" />
         <div className="hero-rabbit" aria-hidden="true" />
+        <div className="hero-rings" aria-hidden="true">
+          <span className="hr-ring" /><span className="hr-ring" /><span className="hr-ring" />
+          <span className="hr-ring" /><span className="hr-ring" /><span className="hr-ring" />
+          <span className="hr-ring" /><span className="hr-ring" /><span className="hr-ring" />
+        </div>
         <div className="wrap">
           <p className="hero-kicker reveal">AUTONOMOUS AI AGENTS</p>
           <h1 className="hero-title reveal d1">Multiply<br /><span className="amber">yourself.</span></h1>
-          <p className="hero-sub reveal d2">Train a Surogate agent on the way you already work, then offer it to your existing patients, clients, or students as a monthly subscription. You earn from every one of them — without adding a single hour to your day.</p>
+          <p className="hero-sub reveal d2">Train a Surogate agent on the way you already work, then offer it to your existing patients, clients, or students as a monthly subscription. You earn from every one of them - without adding a single hour to your day.</p>
           <div className="hero-actions reveal d3">
             <a className="btn btn-primary" href="https://ops.surogate.ai"><i data-lucide="arrow-right" />Start free</a>
             <a className="btn btn-ghost" href="https://github.com/invergent-ai/surogate" target="_blank" rel="noopener noreferrer"><i data-lucide="star" />Give us a Star</a>
@@ -548,7 +553,7 @@ export default function ShowTell() {
           <div className="persona-head reveal">
             <p className="eyebrow">Who it's for</p>
             <h2 className="persona-title">Professionals already doing this</h2>
-            <p className="persona-sub">Not generic use cases — real people, already running a Surogate agent for their own clients. Here's exactly what they built, and what it pays.</p>
+            <p className="persona-sub">Not generic use cases - real people, already running a Surogate agent for their own clients. Here's exactly what they built, and what it pays.</p>
           </div>
           <div className="pilot-grid reveal d1">
             <div className="aud-card show pilot-card">
@@ -579,7 +584,7 @@ export default function ShowTell() {
               <div className="ac-ic"><i data-lucide="graduation-cap" /></div>
               <div className="ac-cat">Teacher</div>
               <div className="ac-t">John Riley</div>
-              <p className="ac-d">Drills students for exams, tracks their progress, and sends parents a weekly update — using John's own method.</p>
+              <p className="ac-d">Drills students for exams, tracks their progress, and sends parents a weekly update - using John's own method.</p>
               <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;20&ndash;40<span>per student / month</span></span></div>
               <p className="ac-bound">The agent practices with students on John's curriculum. It doesn't replace his teaching or grading.</p>
             </div>
@@ -597,19 +602,19 @@ export default function ShowTell() {
           </div>
           <div className="intro-grid">
             <div className="reveal">
-              <p className="lead" style={{ marginTop: 0 }}>Tell Surogate what you want done, in plain words. It builds an agent that handles it, runs it in the cloud around the clock, and gets sharper the longer it works — no code, no servers to manage.</p>
+              <p className="lead" style={{ marginTop: 0 }}>Tell Surogate what you want done, in plain words. It builds an agent that handles it, runs it in the cloud around the clock, and gets sharper the longer it works - no code, no servers to manage.</p>
               <div className="intro-points">
                 <div className="ipoint">
                   <div className="ip-ic"><i data-lucide="wand-2" /></div>
-                  <div><div className="ip-t">Built from your workflow, no code</div><p className="ip-d">Define what your agent does in plain language — its goals, its tools, its rules. If you understand your work, you can build it.</p></div>
+                  <div><div className="ip-t">Built from your workflow, no code</div><p className="ip-d">Define what your agent does in plain language - its goals, its tools, its rules. If you understand your work, you can build it.</p></div>
                 </div>
                 <div className="ipoint">
                   <div className="ip-ic"><i data-lucide="cloud" /></div>
-                  <div><div className="ip-t">Runs in the cloud, 24/7</div><p className="ip-d">Your agent lives in the cloud, not on your laptop. It works when you don't — no tab open, no machine running.</p></div>
+                  <div><div className="ip-t">Runs in the cloud, 24/7</div><p className="ip-d">Your agent lives in the cloud, not on your laptop. It works when you don't - no tab open, no machine running.</p></div>
                 </div>
                 <div className="ipoint">
                   <div className="ip-ic"><i data-lucide="trending-up" /></div>
-                  <div><div className="ip-t">Gets better the more it runs</div><p className="ip-d">Turn your most common tasks into owned expert models trained on your own work — smarter and cheaper over time.</p></div>
+                  <div><div className="ip-t">Gets better the more it runs</div><p className="ip-d">Turn your most common tasks into owned expert models trained on your own work - smarter and cheaper over time.</p></div>
                 </div>
               </div>
             </div>
@@ -631,7 +636,7 @@ export default function ShowTell() {
         </div>
       </section>
 
-      {/* ══════════════ WHY SUROGATE — THREE PILLARS ══════════════ */}
+      {/* ══════════════ WHY SUROGATE - THREE PILLARS ══════════════ */}
       <section className="sec" id="pillars" style={{ background: 'var(--paper-2)' }}>
         <div className="wrap">
           <div className="sec-head center reveal">
@@ -644,21 +649,21 @@ export default function ShowTell() {
               <div className="pc-num">01</div>
               <div className="pc-ic"><i data-lucide="banknote" /></div>
               <div className="pc-t">Rent it out, not just run it.</div>
-              <p className="pc-d">Build an agent once, deploy it to every client you already have, and earn a <b>recurring monthly fee</b> from each one. An agency without employees — a subscription business without code.</p>
+              <p className="pc-d">Build an agent once, deploy it to every client you already have, and earn a <b>recurring monthly fee</b> from each one. An agency without employees - a subscription business without code.</p>
               <a className="pc-link" href="#shift">See how it pays <i data-lucide="arrow-right" /></a>
             </div>
             <div className="pcard">
               <div className="pc-num">02</div>
               <div className="pc-ic"><i data-lucide="hexagon" /></div>
               <div className="pc-t">Agents that run themselves.</div>
-              <p className="pc-d">Agents that <b>run in the cloud</b> — executing tasks, coordinating with each other, and reporting back 24/7. You set the goal; they do the work.</p>
+              <p className="pc-d">Agents that <b>run in the cloud</b> - executing tasks, coordinating with each other, and reporting back 24/7. You set the goal; they do the work.</p>
               <a className="pc-link" href="#agent">See one work <i data-lucide="arrow-right" /></a>
             </div>
             <div className="pcard">
               <div className="pc-num">03</div>
               <div className="pc-ic"><i data-lucide="diamond" /></div>
               <div className="pc-t">Intelligence you own.</div>
-              <p className="pc-d">Distill your own work into <b>small expert models you own</b> — matching or beating frontier models on your tasks, at a fraction of the cost.</p>
+              <p className="pc-d">Distill your own work into <b>small expert models you own</b> - matching or beating frontier models on your tasks, at a fraction of the cost.</p>
               <a className="pc-link" href="#flywheel">How the flywheel works <i data-lucide="arrow-right" /></a>
             </div>
           </div>
@@ -673,7 +678,7 @@ export default function ShowTell() {
           <div className="sec-head center reveal">
             <p className="eyebrow center">Build once, earn always</p>
             <h2 className="h-section" style={{ color: 'rgb(247, 245, 242)' }}>You build it once. It earns while you sleep.</h2>
-            <p className="lead" style={{ color: 'rgb(147, 146, 140)' }}>The agent you ship keeps working for your patients, clients, or students around the clock — handling the routine, escalating only what matters. You're off the clock; the income isn't.</p>
+            <p className="lead" style={{ color: 'rgb(147, 146, 140)' }}>The agent you ship keeps working for your patients, clients, or students around the clock - handling the routine, escalating only what matters. You're off the clock; the income isn't.</p>
           </div>
           <div className="shift-line" id="shiftLine">
             <div className="shift-rail"><span id="shiftRail" /></div>
@@ -706,18 +711,18 @@ export default function ShowTell() {
         </div>
       </section>
 
-      {/* ══════════════ PROOF — SEE IT WORK ══════════════ */}
+      {/* ══════════════ PROOF - SEE IT WORK ══════════════ */}
       <section className="sec" id="agent" style={{ background: 'var(--paper)' }}>
         <div className="wrap">
           <div className="sec-head center reveal">
-            <p className="eyebrow center">Proof — see it work</p>
-            <h2 className="h-section">Watch one agent monitor one patient — then scale to all of them</h2>
+            <p className="eyebrow center">Proof - see it work</p>
+            <h2 className="h-section">Watch one agent monitor one patient - then scale to all of them</h2>
             <p className="lead">Not a chat demo. This is Dr. Pretorian's own Surogate agent, checking in with a real patient after a real consultation.</p>
           </div>
           <div className="agent-stage reveal d1">
             <div className="agent-task">
               <div className="at-label">Incoming &middot; live</div>
-              <div className="at-prompt">Hi doctor, I've had some chest tightness since yesterday evening — should I be worried?</div>
+              <div className="at-prompt">Hi doctor, I've had some chest tightness since yesterday evening - should I be worried?</div>
               <div className="at-from">
                 <div className="av"><i data-lucide="user" /></div>
                 <div className="meta"><b>Emma &middot; patient</b>via Dr. Pretorian's monitoring agent</div>
@@ -737,7 +742,7 @@ export default function ShowTell() {
               <div className="af-feed" id="agentFeed" />
             </div>
           </div>
-          <p className="agent-compliance reveal"><i data-lucide="shield-check" /> The agent flags anything that needs Dr. Pretorian's attention immediately — it doesn't make the call itself.</p>
+          <p className="agent-compliance reveal"><i data-lucide="shield-check" /> The agent flags anything that needs Dr. Pretorian's attention immediately - it doesn't make the call itself.</p>
           <div className="fleet-divider reveal"><span className="fd-t">That was <span className="amber">one</span> patient. Here's his full patient list.</span></div>
           <div className="fleet reveal d1" id="fleet">
             <div className="fleet-head">
@@ -752,7 +757,7 @@ export default function ShowTell() {
               </div>
             </div>
             <div className="fleet-grid" id="fleetGrid" />
-            <p className="fleet-foot">Build an agent once, then it runs for every patient who subscribes. Each one runs on its own, around the clock — and <b>each one is recurring revenue you don't have to be there for.</b></p>
+            <p className="fleet-foot">Build an agent once, then it runs for every patient who subscribes. Each one runs on its own, around the clock - and <b>each one is recurring revenue you don't have to be there for.</b></p>
           </div>
         </div>
       </section>
@@ -762,7 +767,7 @@ export default function ShowTell() {
         <div className="wrap">
           <div className="sec-head center reveal">
             <p className="eyebrow center">Capabilities</p>
-            <h2 className="h-section">Far more than a chatbot — a capable digital worker</h2>
+            <h2 className="h-section">Far more than a chatbot - a capable digital worker</h2>
             <p className="lead">Pick a capability to see what it actually looks like in practice.</p>
           </div>
           <div className="cap-stage reveal d1">
@@ -786,7 +791,7 @@ export default function ShowTell() {
         <div className="wrap">
           <div className="sec-head center reveal">
             <p className="eyebrow center">The lifecycle</p>
-            <h2 className="h-section">Build, run, review, improve — one continuous loop</h2>
+            <h2 className="h-section">Build, run, review, improve - one continuous loop</h2>
             <p className="lead">Every agent moves through the same loop. Watch it cycle, or click a stage to dig in.</p>
           </div>
           <div className="loop-stage reveal d1">
@@ -795,7 +800,7 @@ export default function ShowTell() {
                 <div className="lp-num">01</div>
                 <div className="lp-ic"><i data-lucide="hammer" /></div>
                 <div className="lp-t">Build</div>
-                <p className="lp-d">Design an agent shaped to your business — its voice, the knowledge it draws on, the tools it uses, the limits it respects.</p>
+                <p className="lp-d">Design an agent shaped to your business - its voice, the knowledge it draws on, the tools it uses, the limits it respects.</p>
                 <div className="lp-prog"><span /></div>
                 <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
               </div>
@@ -819,7 +824,7 @@ export default function ShowTell() {
                 <div className="lp-num">04</div>
                 <div className="lp-ic"><i data-lucide="trending-up" /></div>
                 <div className="lp-t">Improve</div>
-                <p className="lp-d">Most changes apply instantly; for high-value tasks, train a specialist from your own data — a compounding advantage.</p>
+                <p className="lp-d">Most changes apply instantly; for high-value tasks, train a specialist from your own data - a compounding advantage.</p>
                 <div className="lp-prog"><span /></div>
                 <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
               </div>
@@ -835,7 +840,7 @@ export default function ShowTell() {
           <div className="sec-head reveal">
             <p className="eyebrow">For developers</p>
             <h2 className="h-section">Building this for someone else? Start here.</h2>
-            <p className="lead">Surogate ships a ready-made kit for each professional category — medical monitoring, legal intake, accounting oversight, tutoring. Customize one for a real client instead of building agent infrastructure from zero.</p>
+            <p className="lead">Surogate ships a ready-made kit for each professional category - medical monitoring, legal intake, accounting oversight, tutoring. Customize one for a real client instead of building agent infrastructure from zero.</p>
           </div>
           <div className="pilot-grid kit-grid reveal d1">
             <div className="aud-card show pilot-card">
@@ -866,11 +871,11 @@ export default function ShowTell() {
           <div className="dev-cols reveal d1">
             <div className="dev-agency">
               <div className="da-eye"><i data-lucide="repeat" /> The agency case</div>
-              <p className="da-d">Build a kit once, resell it to multiple businesses — like the booking agent one developer built for <b>Bright Dental</b>, now earning <b>&euro;450/month per clinic.</b></p>
+              <p className="da-d">Build a kit once, resell it to multiple businesses - like the booking agent one developer built for <b>Bright Dental</b>, now earning <b>&euro;450/month per clinic.</b></p>
             </div>
             <div className="dev-compare">
               <div className="dc-eye"><i data-lucide="git-compare" /> Why not just wire up APIs?</div>
-              <p className="dc-d">Most workflow builders connect to other people's APIs. Surogate <b>trains, fine-tunes, deploys, and observes the agent itself</b> — on infrastructure you control.</p>
+              <p className="dc-d">Most workflow builders connect to other people's APIs. Surogate <b>trains, fine-tunes, deploys, and observes the agent itself</b> - on infrastructure you control.</p>
             </div>
           </div>
           <div className="dev-cta reveal">
@@ -880,13 +885,13 @@ export default function ShowTell() {
         </div>
       </section>
 
-      {/* ══════════════ EXPERT MODELS — FLYWHEEL ══════════════ */}
+      {/* ══════════════ EXPERT MODELS - FLYWHEEL ══════════════ */}
       <section className="sec dark" id="flywheel" style={{ background: 'var(--ink-black)' }}>
         <div className="wrap">
           <div className="sec-head reveal">
             <p className="eyebrow">Expert models</p>
             <h2 className="h-section">Your own work, distilled into experts no one else can build</h2>
-            <p className="lead">Fine-tune a small open-weights model on traces only you have. On a narrow task it matches a frontier model — at a fraction of the size, latency, and cost.</p>
+            <p className="lead">Fine-tune a small open-weights model on traces only you have. On a narrow task it matches a frontier model - at a fraction of the size, latency, and cost.</p>
           </div>
           <div className="fly-stage">
             <div className="reveal">
@@ -910,19 +915,19 @@ export default function ShowTell() {
               <div className="fly-steps" id="flySteps">
                 <div className="fs-item" data-node="0">
                   <div className="fs-num">01</div>
-                  <div><div className="fs-t">Capture production traces</div><p className="fs-d">Every session — prompts, tool calls, approvals, outcomes — is logged with full traces, versioned per agent.</p></div>
+                  <div><div className="fs-t">Capture production traces</div><p className="fs-d">Every session - prompts, tool calls, approvals, outcomes - is logged with full traces, versioned per agent.</p></div>
                 </div>
                 <div className="fs-item" data-node="1">
                   <div className="fs-num">02</div>
-                  <div><div className="fs-t">Curate the dataset</div><p className="fs-d">Traces become training data: filtered for success, deduplicated, labeled, and split — with lineage tracked in the Hub.</p></div>
+                  <div><div className="fs-t">Curate the dataset</div><p className="fs-d">Traces become training data: filtered for success, deduplicated, labeled, and split - with lineage tracked in the Hub.</p></div>
                 </div>
                 <div className="fs-item" data-node="2">
                   <div className="fs-num">03</div>
-                  <div><div className="fs-t">Distil into an expert</div><p className="fs-d">Fine-tune a small base model on your data — SFT, then GRPO or DPO to reward the outcomes you actually want. LoRA or full.</p></div>
+                  <div><div className="fs-t">Distil into an expert</div><p className="fs-d">Fine-tune a small base model on your data - SFT, then GRPO or DPO to reward the outcomes you actually want. LoRA or full.</p></div>
                 </div>
                 <div className="fs-item" data-node="3">
                   <div className="fs-num">04</div>
-                  <div><div className="fs-t">Quantize, serve, repeat</div><p className="fs-d">Quantized to 4-bit and served behind the same gateway, the expert takes the high-volume tasks — and keeps logging traces for the next round.</p></div>
+                  <div><div className="fs-t">Quantize, serve, repeat</div><p className="fs-d">Quantized to 4-bit and served behind the same gateway, the expert takes the high-volume tasks - and keeps logging traces for the next round.</p></div>
                 </div>
               </div>
             </div>
@@ -939,7 +944,7 @@ export default function ShowTell() {
               <div className="exp-row"><span className="m">Cost / 1k calls</span><span>$9.20</span><span className="win">$0.40</span></div>
               <div className="exp-row"><span className="m">Model size</span><span>100B+ params</span><span className="win">8B params</span></div>
             </div>
-            <p className="exp-foot">The moat isn't access to the biggest model — it's the flywheel that turns your work into experts <b>no one else can replicate</b>.</p>
+            <p className="exp-foot">The moat isn't access to the biggest model - it's the flywheel that turns your work into experts <b>no one else can replicate</b>.</p>
           </div>
         </div>
       </section>
@@ -956,14 +961,14 @@ export default function ShowTell() {
               <div className="pg-head"><i data-lucide="square-activity" /><span className="pg-name">Operate</span></div>
               <ul>
                 <li><i data-lucide="hexagon" /><b>Agents</b></li>
-                <li><i data-lucide="square-stack" /><b>Sessions</b><span className="sub">— observe &amp; evaluate</span></li>
-                <li><i data-lucide="cloud" /><b>Compute</b><span className="sub">— your clusters</span></li>
+                <li><i data-lucide="square-stack" /><b>Sessions</b><span className="sub">- observe &amp; evaluate</span></li>
+                <li><i data-lucide="cloud" /><b>Compute</b><span className="sub">- your clusters</span></li>
               </ul>
             </div>
             <div className="pg">
               <div className="pg-head"><i data-lucide="library" /><span className="pg-name">Library</span></div>
               <ul>
-                <li><i data-lucide="diamond" /><b>Models</b><span className="sub">— bring your own</span></li>
+                <li><i data-lucide="diamond" /><b>Models</b><span className="sub">- bring your own</span></li>
                 <li><i data-lucide="zap" /><b>Skills &amp; Tools</b></li>
                 <li><i data-lucide="book-open" /><b>Knowledge Bases</b></li>
               </ul>
@@ -971,8 +976,8 @@ export default function ShowTell() {
             <div className="pg">
               <div className="pg-head"><i data-lucide="triangle" /><span className="pg-name">Train</span></div>
               <ul>
-                <li><i data-lucide="database" /><b>Datasets</b><span className="sub">— versioned hub</span></li>
-                <li><i data-lucide="triangle" /><b>Training</b><span className="sub">— fine-tune &amp; RL</span></li>
+                <li><i data-lucide="database" /><b>Datasets</b><span className="sub">- versioned hub</span></li>
+                <li><i data-lucide="triangle" /><b>Training</b><span className="sub">- fine-tune &amp; RL</span></li>
                 <li><i data-lucide="network" /><b>Data Hub</b></li>
               </ul>
             </div>
@@ -980,7 +985,7 @@ export default function ShowTell() {
           <div className="foundation reveal d2">
             <div className="f"><i data-lucide="cloud" /><span><b>Runs in the cloud</b>Nothing to host or maintain</span></div>
             <div className="f"><i data-lucide="wand-2" /><span><b>No code</b>Build in plain language</span></div>
-            <div className="f"><i data-lucide="boxes" /><span><b>Bring your own compute</b>Optional — scale on your GPUs</span></div>
+            <div className="f"><i data-lucide="boxes" /><span><b>Bring your own compute</b>Optional - scale on your GPUs</span></div>
             <div className="f"><i data-lucide="git-branch" /><span><b>Versioned hub</b>Models &amp; datasets tracked</span></div>
           </div>
         </div>
@@ -991,7 +996,7 @@ export default function ShowTell() {
         <div className="cta-glow" />
         <div className="wrap">
           <h2 className="cta-title reveal">Stop scaling yourself.<br /><span className="amber">Start multiplying.</span></h2>
-          <p className="cta-sub reveal d1">Build your first agent in minutes — free, no code, no credit card. Deploy it to the cloud, put it to work, and come back to results.</p>
+          <p className="cta-sub reveal d1">Build your first agent in minutes - free, no code, no credit card. Deploy it to the cloud, put it to work, and come back to results.</p>
           <div className="cta-actions reveal d2">
             <a className="btn btn-primary" href="https://ops.surogate.ai"><i data-lucide="arrow-right" />Start free</a>
             <a className="btn btn-ghost" href="https://docs.surogate.ai"><i data-lucide="book-open" />Read the docs</a>

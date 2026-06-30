@@ -14,12 +14,12 @@ export default function HowItWorks() {
           <Step
             num="1"
             title="Build the version of you that never stops working."
-            body="Define what your Surogate agent does — its goals, its tools, its rules. No code required. If you understand your workflow, you can build the agent that runs it."
+            body="Define what your Surogate agent does - its goals, its tools, its rules. No code required. If you understand your workflow, you can build the agent that runs it."
           />
           <Step
             num="2"
             title="Deploy it to the cloud. It runs without you."
-            body="Your Surogate agent lives in the cloud, not on your laptop. Once deployed, it executes continuously — processing, reporting, coordinating — whether you're there or not."
+            body="Your Surogate agent lives in the cloud, not on your laptop. Once deployed, it executes continuously - processing, reporting, coordinating - whether you're there or not."
           />
           <Step
             num="3"

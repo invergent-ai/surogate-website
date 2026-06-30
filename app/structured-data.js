@@ -17,7 +17,7 @@ export const organization = {
     url: 'https://surogate.ai/brand/logo-full-black.svg',
   },
   description:
-    'The intelligence factory for autonomous agents — train and fine-tune custom expert LLMs you own and build, deploy, and observe autonomous cloud AI agents.',
+    'The intelligence factory for autonomous agents - train and fine-tune custom expert LLMs you own and build, deploy, and observe autonomous cloud AI agents.',
   email: 'hello@surogate.ai',
   // Add LinkedIn, HuggingFace, Discord, Wikidata, and X URLs here as they are confirmed.
   sameAs: [
@@ -84,7 +84,7 @@ export function JsonLd({ data }) {
   return (
     <script
       type="application/ld+json"
-      // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD serialized from trusted static data, not user input — standard Next.js structured-data pattern
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD serialized from trusted static data, not user input - standard Next.js structured-data pattern
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );

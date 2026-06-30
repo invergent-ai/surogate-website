@@ -94,7 +94,7 @@ function WalletBlock() {
               <em className="italic font-medium text-brand-orange">No surprise bills</em>.
             </>
           }
-          sub="Each consumable resource works like a prepaid wallet. Your plan grants a monthly balance, top-ups add more on demand, usage drains the wallet in real time. When the wallet hits zero, the operation stops — no auto-upgrades, no end-of-month invoices."
+          sub="Each consumable resource works like a prepaid wallet. Your plan grants a monthly balance, top-ups add more on demand, usage drains the wallet in real time. When the wallet hits zero, the operation stops - no auto-upgrades, no end-of-month invoices."
         />
 
         <div className="reveal grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -159,7 +159,7 @@ function WalletBlock() {
 
         <p className="reveal mt-10 max-w-[68ch] text-[14px] leading-[1.6] text-brand-graphite">
           The plan-granted portion of each wallet resets to your tier&apos;s amount on every
-          billing cycle (lose-it-or-use-it). The top-up portion is cash you paid in — it rolls
+          billing cycle (lose-it-or-use-it). The top-up portion is cash you paid in - it rolls
           over as long as your account is active.
         </p>
       </div>

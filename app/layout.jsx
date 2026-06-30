@@ -29,15 +29,15 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: 'Surogate — Autonomous AI agents that work for you 24/7',
-  description: 'Deploy autonomous AI agents that run in the cloud around the clock — built from how you already work and powered by expert models you own. No code required.',
+  title: 'Surogate - Autonomous AI agents that work for you 24/7',
+  description: 'Deploy autonomous AI agents that run in the cloud around the clock - built from how you already work and powered by expert models you own. No code required.',
   keywords: 'autonomous AI agents, AI agent platform, cloud AI agents, AI agents that work 24/7, expert models, custom LLM fine-tuning, agent automation, monetize AI agents, no-code AI agents',
   authors: [{ name: 'Surogate' }],
   robots: 'index, follow',
   openGraph: {
     type: 'website',
     url: 'https://surogate.ai/',
-    title: 'Surogate — Autonomous AI agents that work for you 24/7',
+    title: 'Surogate - Autonomous AI agents that work for you 24/7',
     description: 'Deploy one agent or hundreds. They run in the cloud 24/7, built from how you work and powered by expert models you own.',
     siteName: 'Surogate',
     images: [
@@ -45,13 +45,13 @@ export const metadata = {
         url: 'https://surogate.ai/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Surogate — Multiply yourself. Train expert models you own. Run autonomous agents 24/7.',
+        alt: 'Surogate - Multiply yourself. Train expert models you own. Run autonomous agents 24/7.',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Surogate — Autonomous AI agents that work for you 24/7',
+    title: 'Surogate - Autonomous AI agents that work for you 24/7',
     description: 'Deploy one agent or hundreds. They run in the cloud 24/7, built from how you work and powered by expert models you own.',
     images: ['https://surogate.ai/twitter-image.jpg'],
   },

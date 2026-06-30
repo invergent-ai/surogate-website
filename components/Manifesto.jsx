@@ -53,7 +53,7 @@ export default function Manifesto() {
         </p>
 
         <p className="reveal mt-6 text-lg leading-[1.6] text-brand-graphite max-w-[56ch] mx-auto">
-          And they run on <span className="font-semibold">expert models you own</span> — small, specialized models trained on your own work that beat frontier models on your tasks, at a fraction of the cost.
+          And they run on <span className="font-semibold">expert models you own</span> - small, specialized models trained on your own work that beat frontier models on your tasks, at a fraction of the cost.
         </p>
       </div>
     </section>

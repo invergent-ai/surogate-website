@@ -113,7 +113,7 @@ export default function PricingDeveloperKit() {
             </div>
             <p className="text-[14.5px] leading-[1.6] text-white/72 max-w-[58ch]">
               Train on your own data using dstack or skypilot. Your cloud, your GPUs, your
-              bill — we orchestrate the run, capture logs and metrics, and track lineage in
+              bill - we orchestrate the run, capture logs and metrics, and track lineage in
               the hub.
             </p>
             <div className="mt-auto pt-2">
@@ -141,7 +141,7 @@ export default function PricingDeveloperKit() {
             </div>
             <p className="text-[14.5px] leading-[1.6] text-white/72 max-w-[58ch]">
               Generate synthetic datasets at scale. Run standardized or custom eval suites.
-              ML compute hours work like the other wallet resources — plan grant resets
+              ML compute hours work like the other wallet resources - plan grant resets
               monthly, top-ups roll over.
             </p>
             <div className="flex flex-wrap gap-2">
@@ -168,7 +168,7 @@ export default function PricingDeveloperKit() {
                   Top-up
                 </span>
                 <span className="font-mono text-[13px] text-white/82">
-                  $2.42 / hour <span className="text-white/55">— rolls over</span>
+                  $2.42 / hour <span className="text-white/55">- rolls over</span>
                 </span>
               </div>
             </div>
@@ -184,9 +184,9 @@ export default function PricingDeveloperKit() {
               </h3>
             </div>
             <p className="text-[14.5px] leading-[1.6] text-white/72 max-w-[58ch]">
-              A git-backed registry for your models, datasets, and checkpoints — like a
+              A git-backed registry for your models, datasets, and checkpoints - like a
               private Hugging Face Hub. Public read for community sharing, private read/write
-              for your work. Backed by Cloudflare R2 — no egress fees.
+              for your work. Backed by Cloudflare R2 - no egress fees.
             </p>
             <div className="mt-auto pt-2 divide-y divide-white/10 border-y border-white/10">
               {HUB_STORAGE.map((m) => (
@@ -207,7 +207,7 @@ export default function PricingDeveloperKit() {
                   Extra
                 </span>
                 <span className="font-mono text-[13px] text-white/82">
-                  +$0.0605 / GB / month <span className="text-white/55">— recurring</span>
+                  +$0.0605 / GB / month <span className="text-white/55">- recurring</span>
                 </span>
               </div>
             </div>

@@ -5,27 +5,27 @@ export const FAQS = [
   },
   {
     q: 'Are tokens really included? What about overages?',
-    a: 'Every paid plan ships with a monthly token allowance baked into the price — 5M on Standard, 11.5M on Pro, 22M on Max. There are no surprise overage bills: when your monthly grant runs out, agents pause until you top up your wallet (rolling-over cash at $5.57 per 1M tokens) or wait for the next cycle. You stay in control.',
+    a: 'Every paid plan ships with a monthly token allowance baked into the price - 5M on Standard, 11.5M on Pro, 22M on Max. There are no surprise overage bills: when your monthly grant runs out, agents pause until you top up your wallet (rolling-over cash at $5.57 per 1M tokens) or wait for the next cycle. You stay in control.',
   },
   {
     q: 'What happens if my token wallet hits zero mid-task?',
-    a: 'The operation stops. No auto-upgrade, no overdraft, no end-of-month invoice. Top up the wallet with as little or as much as you want — top-up balances never expire until you use them — and the task resumes. You can also bring your own LLM provider and pay them directly, which bypasses our tokens entirely.',
+    a: 'The operation stops. No auto-upgrade, no overdraft, no end-of-month invoice. Top up the wallet with as little or as much as you want - top-up balances never expire until you use them - and the task resumes. You can also bring your own LLM provider and pay them directly, which bypasses our tokens entirely.',
   },
   {
     q: 'How do top-ups work?',
-    a: 'Each consumable resource — tokens, web browsing hours, ML compute hours — works like a prepaid wallet. Your plan grants a monthly balance (resets each cycle, lose-it-or-use-it). Top-ups add more on demand, and that cash rolls over as long as your account is active. When the wallet hits zero, the operation stops.',
+    a: 'Each consumable resource - tokens, web browsing hours, ML compute hours - works like a prepaid wallet. Your plan grants a monthly balance (resets each cycle, lose-it-or-use-it). Top-ups add more on demand, and that cash rolls over as long as your account is active. When the wallet hits zero, the operation stops.',
   },
   {
     q: 'Can I bring my own LLM and skip paying for tokens?',
-    a: 'Yes. Connect any OpenAI-compatible provider — OpenRouter, OpenAI, Anthropic, Together, Groq, vLLM, TGI, Ollama, or your own fine-tuned deployment. You pay them directly. In settings, cancel the bundled token portion of your plan to save the cost.',
+    a: 'Yes. Connect any OpenAI-compatible provider - OpenRouter, OpenAI, Anthropic, Together, Groq, vLLM, TGI, Ollama, or your own fine-tuned deployment. You pay them directly. In settings, cancel the bundled token portion of your plan to save the cost.',
   },
   {
     q: 'Can I share my plan with my team?',
-    a: 'The Standard, Pro, and Max plans are single-user. For team use, the Enterprise plan supports multiple seats, shared resources, role-based access, SSO, and audit logs. Custom team pricing is available — talk to sales.',
+    a: 'The Standard, Pro, and Max plans are single-user. For team use, the Enterprise plan supports multiple seats, shared resources, role-based access, SSO, and audit logs. Custom team pricing is available - talk to sales.',
   },
   {
     q: 'What about VAT?',
-    a: 'All prices on this page are VAT-inclusive (gross). EU B2B customers with a valid VAT ID and non-EU customers see the net price — we don’t charge VAT in those cases.',
+    a: 'All prices on this page are VAT-inclusive (gross). EU B2B customers with a valid VAT ID and non-EU customers see the net price - we don’t charge VAT in those cases.',
   },
   {
     q: 'What about data privacy?',
@@ -33,15 +33,15 @@ export const FAQS = [
   },
   {
     q: 'Do you charge for failed agent runs?',
-    a: 'Tokens consumed by the model are billed whether the agent succeeded or not — same as every other LLM-based service. We don’t charge browser time or extra compute for failures on our end.',
+    a: 'Tokens consumed by the model are billed whether the agent succeeded or not - same as every other LLM-based service. We don’t charge browser time or extra compute for failures on our end.',
   },
   {
     q: 'Is there a free trial of paid plans?',
-    a: 'The Free plan is open-ended — use it as long as you like, with 500K starter tokens or BYO LLM from day one. If a paid plan doesn’t work for you in the first 14 days, we’ll refund it on request, no questions asked.',
+    a: 'The Free plan is open-ended - use it as long as you like, with 500K starter tokens or BYO LLM from day one. If a paid plan doesn’t work for you in the first 14 days, we’ll refund it on request, no questions asked.',
   },
   {
     q: 'Can I run an agent 24/7?',
-    a: 'Yes. Agents run continuously within your plan’s concurrent-agent limit — tokens and web browsing hours are the wallets to watch for long-running tasks. The dashboard shows live consumption so you can tune behavior or top up as needed.',
+    a: 'Yes. Agents run continuously within your plan’s concurrent-agent limit - tokens and web browsing hours are the wallets to watch for long-running tasks. The dashboard shows live consumption so you can tune behavior or top up as needed.',
   },
   {
     q: 'How does fine-tuning work? Do I pay for GPUs?',
@@ -57,11 +57,11 @@ export const FAQS = [
   },
   {
     q: 'Can I serve my fine-tuned models?',
-    a: 'Yes. Deploy via your own cloud (dstack/skypilot), and we orchestrate the endpoint. Your agents can call your custom models directly — no token charges from us when you use them.',
+    a: 'Yes. Deploy via your own cloud (dstack/skypilot), and we orchestrate the endpoint. Your agents can call your custom models directly - no token charges from us when you use them.',
   },
   {
     q: 'What’s the hub for?',
-    a: 'A git-backed registry for your models, datasets, and checkpoints — like a private Hugging Face Hub. Public read for community sharing, private read/write for your work. Backed by Cloudflare R2 with no egress fees. Private storage scales with your plan: 1 GB on Free, 10 GB on Standard, 50 GB on Pro, 200 GB on Max. Need more on any plan? Extra hub storage is a recurring add-on at +$0.0605/GB/month.',
+    a: 'A git-backed registry for your models, datasets, and checkpoints - like a private Hugging Face Hub. Public read for community sharing, private read/write for your work. Backed by Cloudflare R2 with no egress fees. Private storage scales with your plan: 1 GB on Free, 10 GB on Standard, 50 GB on Pro, 200 GB on Max. Need more on any plan? Extra hub storage is a recurring add-on at +$0.0605/GB/month.',
   },
   {
     q: 'What if I need more than Max but Enterprise is overkill?',

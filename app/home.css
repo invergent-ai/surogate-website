@@ -83,13 +83,40 @@
 .st-home .hero-rabbit{
   position:absolute; inset:0; z-index:1; pointer-events:none; opacity:0.5;
   background-color:var(--amber);
-  -webkit-mask-image:url('/surogate_circles.svg'); mask-image:url('/surogate_circles.svg');
+  -webkit-mask-image:url('/surogate_rabbit.svg'); mask-image:url('/surogate_rabbit.svg');
   -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
   -webkit-mask-position:97% 12%; mask-position:97% 12%;
   -webkit-mask-size:auto 120%; mask-size:auto 120%;
 }
+/* Concentric rings split out of the artwork so ONLY they animate — the rabbit
+   stays put. Opacity-only pulse keeps the rings aligned with the static rabbit
+   (same mask geometry on both layers). */
+.st-home .hero-rings{ position:absolute; inset:0; z-index:1; pointer-events:none; }
+/* Each ring is its own masked layer so it can drift on its own track — different
+   direction, distance, speed and phase. No opacity fade. */
+.st-home .hero-rings .hr-ring{
+  position:absolute; inset:0; background-color:var(--amber); opacity:0.5;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-position:97% 12%; mask-position:97% 12%;
+  -webkit-mask-size:auto 120%; mask-size:auto 120%;
+  animation:hrDrift var(--dur, 9s) ease-in-out var(--delay, 0s) infinite;
+}
+.st-home .hero-rings .hr-ring:nth-child(1){ -webkit-mask-image:url('/surogate_ring_0.svg'); mask-image:url('/surogate_ring_0.svg'); --dx:18px;  --dy:-13px; --dur:8s;    --delay:-1s; }
+.st-home .hero-rings .hr-ring:nth-child(2){ -webkit-mask-image:url('/surogate_ring_1.svg'); mask-image:url('/surogate_ring_1.svg'); --dx:-15px; --dy:11px;  --dur:10.5s; --delay:-3s; }
+.st-home .hero-rings .hr-ring:nth-child(3){ -webkit-mask-image:url('/surogate_ring_2.svg'); mask-image:url('/surogate_ring_2.svg'); --dx:11px;  --dy:19px;  --dur:7s;    --delay:-2s; }
+.st-home .hero-rings .hr-ring:nth-child(4){ -webkit-mask-image:url('/surogate_ring_3.svg'); mask-image:url('/surogate_ring_3.svg'); --dx:-21px; --dy:-9px;  --dur:11.5s; --delay:-5s; }
+.st-home .hero-rings .hr-ring:nth-child(5){ -webkit-mask-image:url('/surogate_ring_4.svg'); mask-image:url('/surogate_ring_4.svg'); --dx:22px;  --dy:7px;   --dur:9s;    --delay:-4s; }
+.st-home .hero-rings .hr-ring:nth-child(6){ -webkit-mask-image:url('/surogate_ring_5.svg'); mask-image:url('/surogate_ring_5.svg'); --dx:-12px; --dy:-18px; --dur:8.5s;  --delay:-6s; }
+.st-home .hero-rings .hr-ring:nth-child(7){ -webkit-mask-image:url('/surogate_ring_6.svg'); mask-image:url('/surogate_ring_6.svg'); --dx:14px;  --dy:16px;  --dur:12s;   --delay:-2.5s; }
+.st-home .hero-rings .hr-ring:nth-child(8){ -webkit-mask-image:url('/surogate_ring_7.svg'); mask-image:url('/surogate_ring_7.svg'); --dx:-17px; --dy:9px;   --dur:9.5s;  --delay:-7s; }
+.st-home .hero-rings .hr-ring:nth-child(9){ -webkit-mask-image:url('/surogate_ring_8.svg'); mask-image:url('/surogate_ring_8.svg'); --dx:9px;   --dy:-15px; --dur:7.5s;  --delay:-3.5s; }
+@keyframes hrDrift{
+  0%,100%{ transform:translate(0, 0); }
+  50%{ transform:translate(var(--dx, 0), var(--dy, 0)); }
+}
 @media (max-width:1023px){
-  .st-home .hero-rabbit{ opacity:0.32; -webkit-mask-position:right -10%; mask-position:right -10%; -webkit-mask-size:auto 90%; mask-size:auto 90%; }
+  .st-home .hero-rabbit, .st-home .hero-rings .hr-ring{ -webkit-mask-position:right -10%; mask-position:right -10%; -webkit-mask-size:auto 90%; mask-size:auto 90%; }
+  .st-home .hero-rabbit{ opacity:0.32; }
 }
 .st-home .hero-glow{position:absolute; top:-120px; right:-60px; width:620px; height:620px; border-radius:50%;
   background:radial-gradient(circle, rgba(255,175,16,0.16), transparent 62%); pointer-events:none;}

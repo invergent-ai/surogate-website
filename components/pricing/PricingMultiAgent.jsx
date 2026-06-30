@@ -12,12 +12,12 @@ export default function PricingMultiAgent() {
           </h2>
           <div className="reveal mt-5 text-[15.5px] leading-[1.6] text-brand-graphite max-w-[68ch] space-y-4">
             <p>
-              A lot of agent platforms charge per agent — $50/month each. Five agents, $250/month.
+              A lot of agent platforms charge per agent - $50/month each. Five agents, $250/month.
               We think that&apos;s backwards. Once you have a useful agent, you want more of them: one
               watching your inbox, one writing the report, one monitoring a competitor&apos;s site.
             </p>
             <p>
-              Every plan includes a generous number of agents at no extra cost —
+              Every plan includes a generous number of agents at no extra cost -
               100 on Standard, 500 on Pro, 1,000 on Max. Spin up as many as your work needs;
               you pay for what your agents actually <em>do</em> (tokens, compute), not for how
               many you create.
@@ -54,7 +54,7 @@ export default function PricingMultiAgent() {
             </div>
             <p className="text-[14px] leading-[1.55] text-white/72 max-w-[52ch]">
               Up to 1,000 agents, 22M tokens included, the developer toolkit, the hub,
-              the browser — one bill. A fraction of what other platforms charge for a handful of
+              the browser - one bill. A fraction of what other platforms charge for a handful of
               agents.
             </p>
           </div>

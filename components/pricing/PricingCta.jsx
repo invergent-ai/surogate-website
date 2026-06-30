@@ -28,7 +28,7 @@ export default function PricingCta() {
             href="https://ops.surogate.ai"
             className="inline-flex items-center justify-center gap-2.5 h-12 px-6 bg-grad-sun text-brand-aubergine font-sans text-xs font-semibold uppercase tracking-wider-2 border border-brand-orange hover:brightness-105 transition"
           >
-            Start free — no card{' '}
+            Start free - no card{' '}
             <span className="font-serif font-normal text-lg leading-none translate-y-px">→</span>
           </TrackedLink>
           <TrackedLink

@@ -116,7 +116,7 @@ function PlanCard({ plan, billing }) {
   const subline = isFree
     ? <>&nbsp;</>
     : billing === 'annual'
-      ? <>Billed as <span className={tone.body}>{fmt(annual * 12)}/yr</span> — save {fmt((monthly - annual) * 12)}.</>
+      ? <>Billed as <span className={tone.body}>{fmt(annual * 12)}/yr</span> - save {fmt((monthly - annual) * 12)}.</>
       : <><span className={tone.body}>{fmt(monthly)}/mo</span>, or {fmt(annual)}/mo billed annually.</>;
 
   return (
@@ -276,7 +276,7 @@ export default function PricingPlans({ billing, setBilling }) {
               <span className="italic font-medium text-brand-orange">Tokens included</span>.
             </h2>
             <p className="reveal mt-5 text-[15.5px] leading-[1.6] text-brand-graphite max-w-[64ch]">
-              Every plan ships the whole platform — runtime, hub, dev toolkit — with a generous
+              Every plan ships the whole platform - runtime, hub, dev toolkit - with a generous
               monthly token allowance baked in. Advanced users can bring their own LLM provider
               and pay them directly.
             </p>
