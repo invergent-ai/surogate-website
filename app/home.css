@@ -158,6 +158,10 @@
 .st-home .dark .slot-note{color:var(--txt-d3);}
 .st-home .slot-note i{width:14px; height:14px; color:var(--amber);}
 .st-home .intro-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:64px; align-items:center; margin-top:54px;}
+@media (max-width:900px){
+  .st-home .intro-grid{grid-template-columns:1fr; gap:36px; margin-top:40px;}
+  .st-home .intro-grid > :last-child{order:-1;}
+}
 .st-home .intro-points{display:flex; flex-direction:column; gap:30px; margin-top:38px;}
 .st-home .ipoint{display:flex; gap:18px; align-items:flex-start;}
 .st-home .ipoint .ip-ic{flex:none; width:46px; height:46px; border-radius:11px; display:grid; place-items:center; background:var(--amber-soft); border:1px solid var(--amber-line);}
@@ -212,7 +216,7 @@
 .st-home .at-from .meta{font-size:14px; color:var(--txt-2);}
 .st-home .at-from .meta b{color:var(--txt-1); font-weight:600; display:block;}
 .st-home .at-meta-list{margin-top:auto; padding-top:26px; display:flex; flex-direction:column; gap:12px;}
-.st-home .at-meta-list .row{display:flex; align-items:center; justify-content:space-between; font-family:var(--mono); font-size:12.5px; letter-spacing:0.03em; color:var(--txt-3);}
+.st-home .at-meta-list .row{display:flex; align-items:baseline; justify-content:space-between; gap:4px 12px; flex-wrap:wrap; font-family:var(--mono); font-size:12.5px; letter-spacing:0.03em; color:var(--txt-3); overflow-wrap:anywhere;}
 .st-home .at-meta-list .row b{color:var(--txt-2); font-weight:500;}
 .st-home .agent-feed-wrap{border:1px solid var(--line-dk); border-radius:16px; background:#1a0a1c; overflow:hidden; display:flex; flex-direction:column;}
 .st-home .af-head{display:flex; align-items:center; justify-content:space-between; padding:16px 22px; border-bottom:1px solid var(--line-dk);}
@@ -233,9 +237,9 @@
 .st-home .fi-step .bd{flex:1;}
 .st-home .fi-step .lbl{font-size:15.5px; color:var(--txt-d1); line-height:1.45;}
 .st-home .fi-step .lbl b{color:#fff; font-weight:600;}
-.st-home .fi-tool{display:inline-flex; align-items:center; gap:8px; margin-top:8px; font-family:var(--mono); font-size:12.5px; color:var(--amber); background:rgba(255,175,16,0.08); border:1px solid var(--amber-line); padding:6px 11px; border-radius:7px;}
+.st-home .fi-tool{display:inline-flex; align-items:flex-start; gap:8px; margin-top:8px; font-family:var(--mono); font-size:12.5px; color:var(--amber); background:rgba(255,175,16,0.08); border:1px solid var(--amber-line); padding:6px 11px; border-radius:7px; max-width:100%; overflow-wrap:anywhere; word-break:break-word;}
 .st-home .fi-tool i{width:13px; height:13px;}
-.st-home .fi-sub{font-family:var(--mono); font-size:12px; color:var(--txt-d3); margin-top:7px; line-height:1.55;}
+.st-home .fi-sub{font-family:var(--mono); font-size:12px; color:var(--txt-d3); margin-top:7px; line-height:1.55; overflow-wrap:anywhere; word-break:break-word;}
 .st-home .fi-approve{border:1px solid rgba(255,175,16,0.4); background:rgba(255,175,16,0.06); border-radius:11px; padding:16px 18px;}
 .st-home .fi-approve .ap-h{display:flex; align-items:center; gap:9px; font-family:var(--serif); font-weight:600; font-size:16px; color:#fbf9f6;}
 .st-home .fi-approve .ap-h i{width:16px; height:16px; color:var(--amber);}
@@ -260,6 +264,11 @@
 .st-home .fleet-divider::before, .st-home .fleet-divider::after{content:""; flex:1; height:1px; background:var(--line2);}
 .st-home .fleet-divider .fd-t{font-family:var(--serif); font-weight:600; font-size:clamp(24px,2.6vw,34px); letter-spacing:-0.015em; color:var(--txt-1); white-space:nowrap; text-align:center;}
 .st-home .fleet-divider .fd-t .amber{color:var(--amber);}
+@media (max-width:640px){
+  .st-home .fleet-divider{gap:14px;}
+  .st-home .fleet-divider .fd-t{white-space:normal;}
+  .st-home .at-prompt{font-size:22px;}
+}
 .st-home .fleet-head{display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:24px;}
 .st-home .fleet-count{display:flex; align-items:baseline; gap:14px;}
 .st-home .fleet-count .fc-big{font-family:var(--serif); font-weight:600; font-size:clamp(44px,6vw,72px); line-height:0.9; letter-spacing:-0.03em; color:#b3720a; font-variant-numeric:tabular-nums;}
