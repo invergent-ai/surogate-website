@@ -879,8 +879,8 @@ export default function ShowTell() {
             </div>
           </div>
           <div className="dev-cta reveal">
-            <a className="btn btn-dark" href="#"><i data-lucide="message-square" />Join Surogate Builders</a>
-            <a className="btn btn-ghost btn-ghost-dk" href="#"><i data-lucide="git-branch" />Start with the open-source tier</a>
+            <a className="btn btn-dark" href="https://ops.surogate.ai"><i data-lucide="message-square" />Join Surogate Builders</a>
+            <a className="btn btn-ghost btn-ghost-dk" href="https://github.com/invergent-ai/surogates"><i data-lucide="git-branch" />Start with the open-source tier</a>
           </div>
         </div>
       </section>
