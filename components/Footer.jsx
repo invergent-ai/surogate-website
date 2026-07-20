@@ -1,3 +1,4 @@
+import { Youtube, Linkedin, Instagram } from 'lucide-react';
 import TrackedLink from '@/components/TrackedLink';
 
 export default function Footer() {
@@ -21,6 +22,11 @@ export default function Footer() {
             { href: 'https://docs.surogate.ai', label: 'Platform Docs' },
             { href: 'https://github.com/invergent-ai/surogate', label: 'Surogate Trainer' },
             { href: 'https://github.com/invergent-ai/surogates', label: 'Agent harness' },
+          ]} />
+          <FootCol heading="Social" links={[
+            { href: 'https://www.youtube.com/@Surogate_ai', label: 'YouTube', icon: Youtube },
+            { href: 'https://www.linkedin.com/showcase/surogate', label: 'LinkedIn', icon: Linkedin },
+            { href: 'https://www.instagram.com/surogate.ai/', label: 'Instagram', icon: Instagram },
           ]} />
         </div>
 
@@ -59,8 +65,9 @@ function FootCol({ heading, links }) {
           event="footer_link_clicked"
           eventProps={{ label: l.label, section: heading }}
           href={l.href}
-          className="block text-[13.5px] text-brand-graphite py-1 hover:text-brand-aubergine transition-colors"
+          className="flex items-center gap-1.5 text-[13.5px] text-brand-graphite py-1 hover:text-brand-aubergine transition-colors"
         >
+          {l.icon && <l.icon size={14} strokeWidth={2} />}
           {l.label}
         </TrackedLink>
       ))}
