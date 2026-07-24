@@ -10,7 +10,7 @@ const PLANS = [
     cta: { label: 'Start free', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       'up to 5 agents',
-      '1M starter tokens',
+      '1M frontier tokens / month',
       '1 GB workspace',
       '1 GB hub storage',
       '30 min web browsing',
@@ -25,7 +25,7 @@ const PLANS = [
     cta: { label: 'Choose Standard', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { strong: 'up to 100 agents' },
-      { strong: '10M Opus tokens / month' },
+      { strong: '10M frontier tokens / month' },
       '5 GB workspace',
       '10 GB hub storage',
       '5 hours web browsing',
@@ -43,7 +43,7 @@ const PLANS = [
     cta: { label: 'Choose Pro', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { strong: 'up to 500 agents' },
-      { strong: '80M Opus tokens / month' },
+      { strong: '80M frontier tokens / month' },
       '20 GB workspace',
       '50 GB hub storage',
       '15 hours web browsing',
@@ -60,7 +60,7 @@ const PLANS = [
     cta: { label: 'Choose Max', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { strong: 'up to 1,000 agents' },
-      { strong: '200M Opus tokens / month' },
+      { strong: '200M frontier tokens / month' },
       '50 GB workspace',
       '200 GB hub storage',
       '40 hours web browsing',
@@ -300,18 +300,22 @@ export default function PricingPlans({ billing, setBilling }) {
           ))}
         </div>
 
+        <p className="reveal mt-6 font-mono text-[12px] leading-[1.6] text-brand-steel">
+          Frontier tokens are tokens on frontier-grade models - think Opus 4.8-like or
+          GPT-5.6-sol-like.
+        </p>
+
         <div className="mt-10">
           <EnterpriseCard />
         </div>
 
-        <p className="reveal mt-10 text-center font-mono text-[12px] text-brand-graphite tracking-[0.03em]">
+        <p className="reveal mt-10 text-center font-mono text-[14px] text-brand-graphite tracking-[0.03em]">
           Need more tokens or browser time?{' '}
-          <a
-            href="#wallets"
-            className="text-brand-orange underline underline-offset-2 decoration-dashed decoration-brand-orange/60 hover:decoration-brand-orange"
+          <span
+            className="text-brand-orange font-bold"
           >
-            Top up your wallet ↓
-          </a>
+            You can always Top Up your wallet
+          </span>
         </p>
       </div>
     </section>
