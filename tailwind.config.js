@@ -29,6 +29,8 @@ export default {
           line: '#f0eef3',
           cream: '#fff7e6',
           warm: '#f8f6fa',
+          paper: '#faf9f7',
+          'paper-warm': '#fffaf3',
         },
       },
       backgroundImage: {
