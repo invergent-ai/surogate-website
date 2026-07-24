@@ -48,12 +48,12 @@ export default function PricingMultiAgent() {
             </div>
             <div className="flex items-baseline gap-3">
               <span className="font-serif text-[52px] font-semibold leading-none tracking-display text-white">
-                $144
+                $190
               </span>
               <span className="font-mono text-[14px] text-white/55">/month</span>
             </div>
             <p className="text-[14px] leading-[1.55] text-white/72 max-w-[52ch]">
-              Up to 1,000 agents, 22M tokens included, the developer toolkit, the hub,
+              Up to 1,000 agents, 200M Opus tokens included, the developer toolkit, the hub,
               the browser - one bill. A fraction of what other platforms charge for a handful of
               agents.
             </p>
