@@ -9,12 +9,12 @@ const PLANS = [
     best: 'Try it out. See if it fits your work.',
     cta: { label: 'Start free', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      'up to 5 agents',
-      '1M frontier tokens / month',
-      '1 GB workspace',
-      '1 GB hub storage',
-      '30 min web browsing',
-      'Community support',
+      { text: 'up to 5 agents' },
+      { text: '1M frontier tokens', mo: true },
+      { text: '1 GB workspace', mo: true },
+      { text: '1 GB hub storage', mo: true },
+      { text: '30 min web browsing', mo: true },
+      { text: 'Community support' },
     ],
   },
   {
@@ -24,13 +24,13 @@ const PLANS = [
     best: 'For personal projects and occasional automation.',
     cta: { label: 'Choose Standard', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      { strong: 'up to 100 agents' },
-      { strong: '10M frontier tokens / month' },
-      '5 GB workspace',
-      '10 GB hub storage',
-      '5 hours web browsing',
-      'Agent user self-registration',
-      'Email support',
+      { text: 'up to 100 agents', strong: true },
+      { text: '10M frontier tokens', strong: true, mo: true },
+      { text: '5 GB workspace', mo: true },
+      { text: '10 GB hub storage', mo: true },
+      { text: '5 hours web browsing', mo: true },
+      { text: 'Agent user self-registration' },
+      { text: 'Email support' },
     ],
   },
   {
@@ -42,14 +42,14 @@ const PLANS = [
     best: 'For daily workflows and serious automation.',
     cta: { label: 'Choose Pro', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      { strong: 'up to 500 agents' },
-      { strong: '80M frontier tokens / month' },
-      '20 GB workspace',
-      '50 GB hub storage',
-      '15 hours web browsing',
-      'Agent user self-registration',
-      'Agent monetization',
-      'Priority email support',
+      { text: 'up to 500 agents', strong: true },
+      { text: '80M frontier tokens', strong: true, mo: true },
+      { text: '20 GB workspace', mo: true },
+      { text: '50 GB hub storage', mo: true },
+      { text: '15 hours web browsing', mo: true },
+      { text: 'Agent user self-registration' },
+      { text: 'Agent monetization' },
+      { text: 'Priority email support' },
     ],
   },
   {
@@ -59,14 +59,14 @@ const PLANS = [
     best: 'For power users, small businesses, and multi-agent setups.',
     cta: { label: 'Choose Max', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
-      { strong: 'up to 1,000 agents' },
-      { strong: '200M frontier tokens / month' },
-      '50 GB workspace',
-      '200 GB hub storage',
-      '40 hours web browsing',
-      'Agent user self-registration',
-      'Agent monetization',
-      'Priority support',
+      { text: 'up to 1,000 agents', strong: true },
+      { text: '200M frontier tokens', strong: true, mo: true },
+      { text: '50 GB workspace', mo: true },
+      { text: '200 GB hub storage', mo: true },
+      { text: '40 hours web browsing', mo: true },
+      { text: 'Agent user self-registration' },
+      { text: 'Agent monetization' },
+      { text: 'Priority support' },
     ],
   },
 ];
@@ -165,16 +165,17 @@ function PlanCard({ plan, billing }) {
       <div className="px-7 py-3">
         <ul className="m-0 p-0 list-none flex flex-col gap-1.5">
           {plan.features.map((f) => {
-            const text = typeof f === 'string' ? f : f.strong;
-            const strong = typeof f === 'object';
             const strongTone = featured ? 'text-white' : 'text-brand-aubergine';
             return (
-              <li key={text} className={`flex gap-2.5 text-[13.5px] leading-[1.5] ${tone.body}`}>
+              <li key={f.text} className={`flex gap-2.5 text-[13.5px] leading-[1.5] ${tone.body}`}>
                 <span aria-hidden="true" className={`shrink-0 mt-[2px] font-mono ${tone.check}`}>
                   →
                 </span>
-                <span className={strong ? `font-semibold ${strongTone}` : ''}>
-                  {text}
+                <span className={f.strong ? `font-semibold ${strongTone}` : ''}>
+                  {f.text}
+                  {f.mo && (
+                    <span className={`font-normal font-mono text-[11px] ${tone.muted}`}> / mo</span>
+                  )}
                 </span>
               </li>
             );
