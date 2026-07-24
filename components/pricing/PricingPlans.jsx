@@ -10,7 +10,7 @@ const PLANS = [
     cta: { label: 'Start free', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       'up to 5 agents',
-      '500K starter tokens',
+      '1M starter tokens',
       '1 GB workspace',
       '1 GB hub storage',
       '30 min web browsing',
@@ -20,12 +20,12 @@ const PLANS = [
   {
     id: 'standard',
     name: 'Standard',
-    price: { monthly: 30, annual: 28 },
+    price: { monthly: 19, annual: 18 },
     best: 'For personal projects and occasional automation.',
     cta: { label: 'Choose Standard', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { strong: 'up to 100 agents' },
-      { strong: '5M tokens / month' },
+      { strong: '10M Opus tokens / month' },
       '5 GB workspace',
       '10 GB hub storage',
       '5 hours web browsing',
@@ -38,12 +38,12 @@ const PLANS = [
     name: 'Pro',
     featured: true,
     badge: 'Most popular',
-    price: { monthly: 72, annual: 69 },
+    price: { monthly: 96, annual: 90 },
     best: 'For daily workflows and serious automation.',
     cta: { label: 'Choose Pro', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { strong: 'up to 500 agents' },
-      { strong: '11.5M tokens / month' },
+      { strong: '80M Opus tokens / month' },
       '20 GB workspace',
       '50 GB hub storage',
       '15 hours web browsing',
@@ -55,12 +55,12 @@ const PLANS = [
   {
     id: 'max',
     name: 'Max',
-    price: { monthly: 144, annual: 138 },
+    price: { monthly: 190, annual: 180 },
     best: 'For power users, small businesses, and multi-agent setups.',
     cta: { label: 'Choose Max', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { strong: 'up to 1,000 agents' },
-      { strong: '22M tokens / month' },
+      { strong: '200M Opus tokens / month' },
       '50 GB workspace',
       '200 GB hub storage',
       '40 hours web browsing',

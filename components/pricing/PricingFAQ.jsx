@@ -5,7 +5,7 @@ export const FAQS = [
   },
   {
     q: 'Are tokens really included? What about overages?',
-    a: 'Every paid plan ships with a monthly token allowance baked into the price - 5M on Standard, 11.5M on Pro, 22M on Max. There are no surprise overage bills: when your monthly grant runs out, agents pause until you top up your wallet (rolling-over cash at $5.57 per 1M tokens) or wait for the next cycle. You stay in control.',
+    a: 'Every paid plan ships with a monthly token allowance baked into the price - 10M on Standard, 80M on Pro, 200M on Max, all served on Claude Opus 4.8. There are no surprise overage bills: when your monthly grant runs out, agents pause until you top up your wallet (rolling-over cash at $2 per 1M tokens) or wait for the next cycle. You stay in control.',
   },
   {
     q: 'What happens if my token wallet hits zero mid-task?',
@@ -37,7 +37,7 @@ export const FAQS = [
   },
   {
     q: 'Is there a free trial of paid plans?',
-    a: 'The Free plan is open-ended - use it as long as you like, with 500K starter tokens or BYO LLM from day one. If a paid plan doesn’t work for you in the first 14 days, we’ll refund it on request, no questions asked.',
+    a: 'The Free plan is open-ended - use it as long as you like, with 1M starter tokens or BYO LLM from day one. If a paid plan doesn’t work for you in the first 14 days, we’ll refund it on request, no questions asked.',
   },
   {
     q: 'Can I run an agent 24/7?',
