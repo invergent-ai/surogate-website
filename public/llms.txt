@@ -8,7 +8,7 @@
 
 ## Product
 - [Home](https://surogate.ai/): Autonomous cloud agents and expert models you own.
-- [Pricing](https://surogate.ai/pricing/): Free, Standard $30/mo, Pro $72/mo, Max $144/mo, Enterprise; token allowances, wallets, top-up rates.
+- [Pricing](https://surogate.ai/pricing/): Free, Standard $19/mo, Pro $96/mo, Max $190/mo, Enterprise; token allowances, compute credits, wallets, top-up rates.
 - [Documentation](https://docs.surogate.ai): Agent runtime, hub, and developer toolkit.
 
 ## How it works
@@ -18,11 +18,12 @@
 - Bring Your Own Compute: AWS, GCP, Azure, Nebius, Lambda, RunPod, Modal, or on-prem (via dstack/skypilot).
 
 ## Pricing facts
-- Free: 5 agents, 500K starter tokens, 1 GB workspace, no card required.
-- Standard ($30/mo): 100 agents, 5M tokens/mo, 5 GB workspace, 10 GB hub.
-- Pro ($72/mo): 500 agents, 11.5M tokens/mo, 20 GB workspace, 50 GB hub, agent monetization.
-- Max ($144/mo): 1,000 agents, 22M tokens/mo, 50 GB workspace, 200 GB hub.
-- Token top-up: $5.57 / 1M tokens (rolls over). ML compute top-up: $2.42 / hour. Hub overage: $0.0605 / GB / month.
+- Free: 5 agents, 1M starter tokens, 1 GB workspace, 1 GB hub, 30 min web browsing, no card required.
+- Standard ($19/mo, $18/mo annual): 100 agents, 10M tokens/mo, 5 GB workspace, 10 GB hub, 5 hours web browsing, 180 compute credits/mo (3 GPU-hours).
+- Pro ($96/mo, $90/mo annual): 500 agents, 80M tokens/mo, 20 GB workspace, 50 GB hub, 15 hours web browsing, 900 compute credits/mo (15 GPU-hours), agent monetization.
+- Max ($190/mo, $180/mo annual): 1,000 agents, 200M tokens/mo, 50 GB workspace, 200 GB hub, 40 hours web browsing, 2,400 compute credits/mo (40 GPU-hours).
+- Compute credits meter GPU time (fine-tuning, dataset generation, evals). One credit is one minute on the baseline GPU tier; faster GPUs draw proportionally more (an H100 minute is about 6.7 credits). Training on your own connected cloud consumes no credits.
+- Token top-up: $2.00 / 1M tokens (rolls over). Compute credit top-up: $2.00 / GPU-hour. Web browsing top-up: $0.08 / hour (10-hour minimum). Hub and workspace overage: $0.0605 / GB / month.
 - Bring your own LLM (OpenRouter, OpenAI, Anthropic, Together, Groq, vLLM, TGI, Ollama) to bypass bundled tokens.
 
 ## Open source

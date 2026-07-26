@@ -5,10 +5,10 @@ const PROVIDERS = {
 
 const EVAL_SUITES = ['HumanEval', 'MBPP', 'terminal-bench', 'SWE-bench', 'Custom suites'];
 
-const ML_HOURS = [
-  { plan: 'Standard', hours: '3 hours / month' },
-  { plan: 'Pro', hours: '15 hours / month' },
-  { plan: 'Max', hours: '40 hours / month' },
+const COMPUTE_CREDITS = [
+  { plan: 'Standard', grant: '180 credits - 3 GPU-hours' },
+  { plan: 'Pro', grant: '900 credits - 15 GPU-hours' },
+  { plan: 'Max', grant: '2,400 credits - 40 GPU-hours' },
 ];
 
 const HUB_STORAGE = [
@@ -141,8 +141,9 @@ export default function PricingDeveloperKit() {
             </div>
             <p className="text-[14.5px] leading-[1.6] text-white/72 max-w-[58ch]">
               Generate synthetic datasets at scale. Run standardized or custom eval suites.
-              ML compute hours work like the other wallet resources - plan grant resets
-              monthly, top-ups roll over.
+              Compute credits work like the other wallet resources - plan grant resets
+              monthly, top-ups roll over. One credit is one minute on the baseline GPU
+              tier, so faster GPUs simply draw proportionally more.
             </p>
             <div className="flex flex-wrap gap-2">
               {EVAL_SUITES.map((s) => (
@@ -152,7 +153,7 @@ export default function PricingDeveloperKit() {
               ))}
             </div>
             <div className="mt-2 divide-y divide-white/10 border-y border-white/10">
-              {ML_HOURS.map((m) => (
+              {COMPUTE_CREDITS.map((m) => (
                 <div
                   key={m.plan}
                   className="grid grid-cols-[110px_1fr] gap-4 py-2.5 items-baseline"
@@ -160,7 +161,7 @@ export default function PricingDeveloperKit() {
                   <span className="font-mono text-[11.5px] font-semibold tracking-wider-2 text-brand-yellow uppercase">
                     {m.plan}
                   </span>
-                  <span className="font-mono text-[13px] text-white/82">{m.hours}</span>
+                  <span className="font-mono text-[13px] text-white/82">{m.grant}</span>
                 </div>
               ))}
               <div className="grid grid-cols-[110px_1fr] gap-4 py-2.5 items-baseline">
@@ -168,7 +169,7 @@ export default function PricingDeveloperKit() {
                   Top-up
                 </span>
                 <span className="font-mono text-[13px] text-white/82">
-                  $2.42 / hour <span className="text-white/55">- rolls over</span>
+                  $2.00 / GPU-hour <span className="text-white/55">- rolls over</span>
                 </span>
               </div>
             </div>

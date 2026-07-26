@@ -13,7 +13,7 @@ export const FAQS = [
   },
   {
     q: 'How do top-ups work?',
-    a: 'Each consumable resource - tokens, web browsing hours, ML compute hours - works like a prepaid wallet. Your plan grants a monthly balance (resets each cycle, lose-it-or-use-it). Top-ups add more on demand, and that cash rolls over as long as your account is active. When the wallet hits zero, the operation stops.',
+    a: 'Each consumable resource - tokens, web browsing time, compute credits - works like a prepaid wallet. Your plan grants a monthly balance (resets each cycle, lose-it-or-use-it). Top-ups add more on demand, and that cash rolls over as long as your account is active. When the wallet hits zero, the operation stops.',
   },
   {
     q: 'Can I bring my own LLM and skip paying for tokens?',
@@ -45,15 +45,15 @@ export const FAQS = [
   },
   {
     q: 'How does fine-tuning work? Do I pay for GPUs?',
-    a: 'You bring your own cloud (AWS, GCP, Lambda, RunPod, etc.) via dstack or skypilot. Your cloud provider bills you directly for GPU time. We orchestrate the run, capture logs and metrics, and track lineage in the hub. No GPU markup from us.',
+    a: 'Train on your own data out of the box on our managed GPU cloud - pick a GPU, hit start, and the run draws from your compute credits. No cloud account needed. Prefer your own infrastructure? Connect your cloud (AWS, GCP, Lambda, RunPod, or your own Modal account) via dstack or skypilot and train there instead: your GPUs, your bill, zero credit usage and no GPU markup from us. Either way we orchestrate the run, capture logs and metrics, and track lineage in the hub.',
   },
   {
-    q: 'How are ML compute hours different from agent tokens?',
-    a: 'ML compute hours are a separate wallet used for synthetic dataset generation and eval runs (HumanEval, MBPP, terminal-bench, SWE-bench, custom suites). Standard includes 3 hours/month, Pro 15, Max 40. Top-up rate is $2.42/hour and rolls over.',
+    q: 'How are compute credits different from agent tokens?',
+    a: 'Compute credits meter GPU time - fine-tuning, synthetic dataset generation, and eval runs (HumanEval, MBPP, terminal-bench, SWE-bench, custom suites) - while tokens meter the LLM calls your agents make. One credit is one minute on the baseline GPU tier, so faster GPUs draw proportionally more (an H100 minute is about 6.7 credits) and you pay for exactly the hardware you picked. Standard includes 180 credits/month (3 GPU-hours), Pro 900 (15 GPU-hours), Max 2,400 (40 GPU-hours). Top-up rate is $2.00 per GPU-hour and rolls over. Training on your own connected cloud never touches the wallet.',
   },
   {
     q: 'Why bring my own cloud instead of using yours?',
-    a: 'You probably already have credits, a preferred region, specific compliance needs, or a GPU provider relationship. Forcing you onto our infrastructure would mean marking up GPUs you could buy directly. We’d rather make money on the platform than on reselling compute.',
+    a: 'You probably already have credits, a preferred region, specific compliance needs, or a GPU provider relationship. Our managed GPU cloud is the default so you can start without a cloud account, but we won’t lock you into it - connect your own and your provider bills you directly, with no GPU markup from us and no credits consumed. We’d rather make money on the platform than on reselling compute.',
   },
   {
     q: 'Can I serve my fine-tuned models?',
