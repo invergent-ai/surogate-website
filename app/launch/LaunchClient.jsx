@@ -5,6 +5,9 @@ import RevealRoot from '@/components/RevealRoot';
 import SpotsClock from '@/components/launch/SpotsClock';
 import CountdownTimer from '@/components/launch/CountdownTimer';
 import SignupModal from '@/components/launch/SignupModal';
+import LaunchAgentGrid from '@/components/launch/LaunchAgentGrid';
+import LaunchSteps from '@/components/launch/LaunchSteps';
+import LaunchCtaBar from '@/components/launch/LaunchCtaBar';
 
 const DIAGONAL_CLIP = 'polygon(66.667% 0, 100% 0, 100% 100%, 15% 100%)';
 
@@ -107,8 +110,9 @@ export default function LaunchClient() {
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
-                className="reveal inline-flex items-center justify-center gap-2.5 h-12 px-7 bg-brand-orange text-brand-aubergine font-serif text-sm font-semibold uppercase tracking-wider-2 border border-brand-orange hover:brightness-105 transition"
+                className="reveal inline-flex items-center justify-center gap-3 h-12 pl-5 pr-7 bg-brand-orange text-brand-aubergine font-serif text-sm font-semibold uppercase tracking-wider-2 border border-brand-orange hover:brightness-105 transition"
               >
+                <img src="/surogate-icon.svg" alt="" aria-hidden="true" className="h-5 w-auto shrink-0" />
                 Sign up now
               </button>
               <p className="reveal mt-3 font-serif italic text-[13px] text-brand-steel">
@@ -117,6 +121,26 @@ export default function LaunchClient() {
             </div>
           </div>
         </section>
+
+        <section className="bg-brand-paper pt-24 sm:pt-28 lg:pt-32 pb-6 lg:pb-8">
+          <div className="w-full px-8 lg:pl-24 xl:pl-32 lg:pr-[6%] xl:pr-20 text-left">
+            <p className="reveal font-mono text-[13px] sm:text-[14px] uppercase tracking-wider-2 text-brand-orange mb-4">
+              Get 100 Autonomous Agents
+            </p>
+            <h2 className="reveal font-serif font-medium leading-[1.0] tracking-[-0.03em] text-[36px] sm:text-[48px] lg:text-[60px] mb-8 w-full lg:w-[70%]">
+              Everything you need to start multiplying your income with AI
+            </h2>
+            <p className="reveal text-[18px] sm:text-[20px] leading-[1.35] text-brand-graphite w-full lg:w-[70%]">
+              AI agents operate entire business - Appointments, research, reporting, data review,
+              customer support, social media, marketing, growth strategy, advertising campaigns and
+              many other functions.
+            </p>
+          </div>
+        </section>
+
+        <LaunchAgentGrid />
+        <LaunchSteps />
+        <LaunchCtaBar onSignUp={() => setModalOpen(true)} />
       </div>
 
       <SignupModal open={modalOpen} onClose={() => setModalOpen(false)} />
