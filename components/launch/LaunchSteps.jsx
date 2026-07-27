@@ -8,7 +8,7 @@ const STEPS = [
   },
   {
     step: 'Step 2',
-    title: 'Choose your template on launch day',
+    title: 'Launch Instantly',
     body: 'Pick from 100 agents built for medical, legal, accounting, and educational professionals. One-click deploy.',
   },
   {
