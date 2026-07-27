@@ -110,7 +110,7 @@ export default function LaunchAgentGrid() {
             </div>
 
             <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
-              <ul className="flex flex-col gap-4">
+              <ul className="flex flex-col gap-4 pt-5">
                 {FOUNDING_PERKS.map((perk) => (
                   <CheckItem key={perk}>{perk}</CheckItem>
                 ))}

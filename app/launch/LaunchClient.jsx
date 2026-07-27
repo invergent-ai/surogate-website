@@ -43,10 +43,10 @@ export default function LaunchClient() {
             }}
           />
 
-          <div
-            role="img"
-            aria-label="Surogate"
-            className="reveal hidden lg:block absolute z-10 top-10 left-24 xl:left-32 h-11 sm:h-12 bg-brand-aubergine"
+          <a
+            href="/"
+            aria-label="Surogate - home"
+            className="reveal hidden lg:block absolute z-20 top-10 left-24 xl:left-32 h-11 sm:h-12 bg-brand-aubergine"
             style={{
               WebkitMaskImage: 'url(/brand/logo-full-black.svg)',
               maskImage: 'url(/brand/logo-full-black.svg)',
@@ -63,7 +63,7 @@ export default function LaunchClient() {
           <div className="relative z-10 flex flex-col lg:flex-row lg:h-full">
             {/* Left - brand intro */}
             <div className="order-2 lg:order-1 flex flex-col items-center text-center lg:items-start lg:text-left justify-center lg:justify-start px-8 py-20 lg:py-0 lg:pt-36 xl:pt-44 lg:flex-1 lg:pl-24 xl:pl-32 lg:pr-[6%] xl:pr-20">
-              <p className="reveal font-mono text-[13px] sm:text-[14px] uppercase tracking-wider-2 text-brand-orange mb-2">
+              <p className="reveal font-mono font-bold text-[13px] sm:text-[14px] uppercase tracking-wider-2 text-brand-orange mb-2">
                 Get 100 Autonomous Agents
               </p>
               <h1 className="reveal font-serif font-medium leading-[0.98] tracking-[-0.03em] text-[64px] sm:text-[92px] lg:text-[108px] mb-7">
@@ -79,10 +79,10 @@ export default function LaunchClient() {
 
             {/* Right - spots + countdown */}
             <div className="order-1 lg:order-2 flex flex-col items-center justify-center px-8 py-20 lg:py-0 lg:flex-1 lg:pr-[10%] bg-brand-paper lg:bg-transparent">
-              <div
-                role="img"
-                aria-label="Surogate"
-                className="reveal lg:hidden mb-8 h-10 bg-brand-aubergine"
+              <a
+                href="/"
+                aria-label="Surogate - home"
+                className="reveal block lg:hidden mb-8 h-16 bg-brand-aubergine"
                 style={{
                   WebkitMaskImage: 'url(/brand/logo-full-black.svg)',
                   maskImage: 'url(/brand/logo-full-black.svg)',
@@ -101,7 +101,7 @@ export default function LaunchClient() {
               </div>
 
               <p className="reveal font-serif text-[16px] sm:text-[18px] uppercase tracking-[0.24em] text-brand-aubergine mb-6">
-                Early access end in
+                Free access end in
               </p>
               <div className="reveal mb-12">
                 <CountdownTimer />
@@ -124,7 +124,7 @@ export default function LaunchClient() {
 
         <section className="bg-brand-paper pt-24 sm:pt-28 lg:pt-32 pb-6 lg:pb-8">
           <div className="w-full px-8 lg:pl-24 xl:pl-32 lg:pr-[6%] xl:pr-20 text-left">
-            <p className="reveal font-mono text-[13px] sm:text-[14px] uppercase tracking-wider-2 text-brand-orange mb-4">
+            <p className="reveal font-mono font-bold text-[13px] sm:text-[14px] uppercase tracking-wider-2 text-brand-orange mb-4">
               Get 100 Autonomous Agents
             </p>
             <h2 className="reveal font-serif font-medium leading-[1.0] tracking-[-0.03em] text-[36px] sm:text-[48px] lg:text-[60px] mb-8 w-full lg:w-[70%]">

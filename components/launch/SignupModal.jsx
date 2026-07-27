@@ -27,6 +27,13 @@ export default function SignupModal({ open, onClose }) {
   }, [open, onClose]);
 
   useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  useEffect(() => {
     if (open) {
       setSubmitted(false);
       setForm({ name: '', email: '', company: '' });
@@ -59,7 +66,7 @@ export default function SignupModal({ open, onClose }) {
               Claim your spot
             </h3>
             <p className="text-[13.5px] text-brand-steel mb-6 leading-[1.5]">
-              Tell us a bit about you and we&apos;ll be in touch.
+              Tell us about you &amp; we&apos;ll share 100 free templates.
             </p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
               <input
@@ -73,7 +80,7 @@ export default function SignupModal({ open, onClose }) {
               <input
                 type="email"
                 required
-                placeholder="Work email"
+                placeholder="Email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className={inputClass}

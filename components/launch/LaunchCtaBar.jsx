@@ -16,7 +16,7 @@ export default function LaunchCtaBar({ onSignUp }) {
         <div className="relative flex flex-col xl:flex-row items-center xl:items-start gap-10 xl:gap-8">
           <div className="xl:w-2/3 flex flex-col items-center xl:items-start gap-5">
             <p className="font-serif text-[16px] sm:text-[18px] uppercase tracking-[0.24em] text-white">
-              Early access end in
+              Free access end in
             </p>
             <CountdownTimer theme="dark" size="lg" />
           </div>
@@ -25,7 +25,7 @@ export default function LaunchCtaBar({ onSignUp }) {
               aria-hidden="true"
               className="invisible hidden xl:block font-serif text-[16px] sm:text-[18px] uppercase tracking-[0.24em]"
             >
-              Early access end in
+              Free access end in
             </p>
             <button
               type="button"

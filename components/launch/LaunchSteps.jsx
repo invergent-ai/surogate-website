@@ -20,7 +20,7 @@ const STEPS = [
 
 export default function LaunchSteps() {
   return (
-    <section className="bg-brand-paper pb-24 sm:pb-28 lg:pb-32">
+    <section className="bg-brand-paper pb-8 lg:pb-10">
       <div className="w-full px-8 lg:pl-24 xl:pl-32 lg:pr-[6%] xl:pr-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {STEPS.map(({ step, title, body }, i) => {
@@ -59,9 +59,14 @@ export default function LaunchSteps() {
           })}
         </div>
 
-        <p className="reveal mt-8 lg:mt-10 text-center font-sans italic text-[16px] sm:text-[17px] text-brand-steel">
-          Every template is production-ready. No code required. Your first setup call is included.
-        </p>
+        <div className="reveal mt-8 lg:mt-10 flex justify-center">
+          <p
+            className="text-center font-sans italic font-medium text-[17px] sm:text-[18px] text-brand-aubergine rounded-[10px] px-6 py-3"
+            style={{ background: 'rgba(255, 176, 15, 0.12)' }}
+          >
+            Every template is production-ready. No code required. Your first setup call is included.
+          </p>
+        </div>
       </div>
     </section>
   );
