@@ -306,8 +306,8 @@ export default function PricingPlans({ billing, setBilling }) {
         </div>
 
         <p className="reveal mt-6 font-mono text-[12px] leading-[1.6] text-brand-steel">
-          Every plan runs on frontier-grade models - think Opus 4.8-like or GPT-5.6-sol-like.
-          Standard is the baseline; Pro and Max multiply it.
+          Two frontier model levels on every plan: <strong>Surogate</strong> (Sonnet class), and <strong>Surogate Pro</strong> (Opus class). Pro is stronger, and
+          draws ~2.5x faster from the plan allowance.
         </p>
 
         <div className="mt-10">
