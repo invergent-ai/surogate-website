@@ -25,7 +25,7 @@ const breadcrumb = {
 export const metadata = {
   title: 'Pricing - Surogate',
   description:
-    'Agents that get work done. One bill, no surprises. Free tier with 1M tokens, paid plans from $19/mo with tokens included. Bring your own LLM or train custom models on every paid plan.',
+    'Agents that get work done. One bill, no surprises. Free tier to try it out, paid plans from $19/mo with usage included. Bring your own LLM or train custom models on every paid plan.',
   alternates: {
     canonical: 'https://surogate.ai/pricing/',
   },
@@ -34,14 +34,14 @@ export const metadata = {
     url: 'https://surogate.ai/pricing/',
     title: 'Pricing - Surogate',
     description:
-      'Agents that get work done. One bill, no surprises. Free tier with 1M tokens, paid plans from $19/mo with tokens included.',
+      'Agents that get work done. One bill, no surprises. Free tier to try it out, paid plans from $19/mo with usage included.',
     siteName: 'Surogate',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pricing - Surogate',
     description:
-      'Agents that get work done. One bill, no surprises. Free tier with 1M tokens, paid plans from $19/mo with tokens included.',
+      'Agents that get work done. One bill, no surprises. Free tier to try it out, paid plans from $19/mo with usage included.',
   },
 };
 

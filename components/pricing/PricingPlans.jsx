@@ -10,7 +10,7 @@ const PLANS = [
     cta: { label: 'Start free', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { text: 'up to 5 agents' },
-      { text: '1M frontier tokens', mo: true },
+      { text: 'Light usage - to try things out' },
       { text: '1 GB workspace', mo: true },
       { text: '1 GB hub storage', mo: true },
       { text: '30 min web browsing', mo: true },
@@ -25,7 +25,7 @@ const PLANS = [
     cta: { label: 'Choose Standard', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { text: 'up to 100 agents', strong: true },
-      { text: '10M frontier tokens', strong: true, mo: true },
+      { text: 'Everyday usage', strong: true },
       { text: '5 GB workspace', mo: true },
       { text: '10 GB hub storage', mo: true },
       { text: '5 hours web browsing', mo: true },
@@ -44,7 +44,7 @@ const PLANS = [
     cta: { label: 'Choose Pro', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { text: 'up to 500 agents', strong: true },
-      { text: '80M frontier tokens', strong: true, mo: true },
+      { text: "8x Standard's usage", strong: true },
       { text: '20 GB workspace', mo: true },
       { text: '50 GB hub storage', mo: true },
       { text: '15 hours web browsing', mo: true },
@@ -62,7 +62,7 @@ const PLANS = [
     cta: { label: 'Choose Max', href: 'https://ops.surogate.ai/studio/settings/billing' },
     features: [
       { text: 'up to 1,000 agents', strong: true },
-      { text: '200M frontier tokens', strong: true, mo: true },
+      { text: "20x Standard's usage", strong: true },
       { text: '50 GB workspace', mo: true },
       { text: '200 GB hub storage', mo: true },
       { text: '40 hours web browsing', mo: true },
@@ -214,7 +214,7 @@ function EnterpriseCard() {
       </div>
 
       <p className="lg:flex-1 text-[14.5px] leading-[1.6] text-brand-graphite max-w-[64ch]">
-        Custom token volume. Dedicated compute. SSO, audit logs, RBAC. SLA, dedicated support,
+        Custom usage volume. Dedicated compute. SSO, audit logs, RBAC. SLA, dedicated support,
         custom contracts. For teams of 5+, regulated industries, and ML teams shipping production
         models.
       </p>
@@ -277,11 +277,12 @@ export default function PricingPlans({ billing, setBilling }) {
           <div className="max-w-[720px]">
             <h2 className="reveal mt-3.5 font-serif font-semibold leading-[1.02] tracking-hl-tight text-[36px] sm:text-[48px] lg:text-[60px] text-brand-aubergine">
               Pick a plan.{' '}
-              <span className="italic font-medium text-brand-orange">Tokens included</span>.
+              <span className="italic font-medium text-brand-orange">Usage included</span>.
             </h2>
             <p className="reveal mt-5 text-[15.5px] leading-[1.6] text-brand-graphite max-w-[64ch]">
               Every plan ships the whole platform - runtime, hub, dev toolkit - with a generous
-              monthly token allowance baked in. Advanced users can bring their own LLM provider
+              monthly usage allowance baked in. Plans are sized against each other, so you pick a
+              size rather than doing arithmetic. Advanced users can bring their own LLM provider
               and pay them directly.
             </p>
             <p className="reveal mt-3 text-[12.5px] leading-[1.6] text-brand-steel max-w-[64ch] font-mono">
@@ -305,8 +306,8 @@ export default function PricingPlans({ billing, setBilling }) {
         </div>
 
         <p className="reveal mt-6 font-mono text-[12px] leading-[1.6] text-brand-steel">
-          Frontier tokens are tokens on frontier-grade models - think Opus 4.8-like or
-          GPT-5.6-sol-like.
+          Every plan runs on frontier-grade models - think Opus 4.8-like or GPT-5.6-sol-like.
+          Standard is the baseline; Pro and Max multiply it.
         </p>
 
         <div className="mt-10">
@@ -314,7 +315,7 @@ export default function PricingPlans({ billing, setBilling }) {
         </div>
 
         <p className="reveal mt-10 text-center font-mono text-[14px] text-brand-graphite tracking-[0.03em]">
-          Need more tokens or browser time?{' '}
+          Need more usage or browser time?{' '}
           <span
             className="text-brand-orange font-bold"
           >
