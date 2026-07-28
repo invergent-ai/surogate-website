@@ -17,8 +17,8 @@ export default function PricingCta() {
           <span className="italic text-brand-orange">you actually want</span>.
         </h2>
         <p className="reveal text-[18px] leading-[1.55] text-white/72 max-w-[56ch] mx-auto mb-9">
-          Start free with 1M tokens and no credit card. Pick a plan when you need more agents,
-          more tokens, or your own fine-tuned models. Bring your own LLM whenever you like.
+          Start free, no credit card. Pick a plan when you need more agents, more usage, or your
+          own fine-tuned models. Bring your own LLM whenever you like.
         </p>
 
         <div className="reveal flex gap-3 flex-wrap justify-center">

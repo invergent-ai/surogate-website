@@ -10,7 +10,7 @@ const INCLUDED = [
 ];
 
 const WALLET_TOPUPS = [
-  { resource: 'Tokens', rate: '$2.00', unit: 'per 1M' },
+  { resource: 'Extra usage', rate: 'from $2.00', unit: 'one-time top-up' },
   { resource: 'Web browsing time', rate: '$0.08', unit: '/ hour (10 hr min)' },
 ];
 
@@ -19,14 +19,19 @@ const RECURRING_ADDONS = [
   { resource: 'Extra hub storage', rate: '+$0.0605', unit: '/ GB / month' },
 ];
 
-const TOKEN_RANGES = [
-  { label: 'A quick question + answer', range: '1–5K' },
-  { label: 'Research task with web browsing', range: '20–100K' },
-  { label: 'Multi-step coding task', range: '50–500K' },
-  { label: 'Full day of heavy agent use', range: '300K–1M+' },
-  { label: 'Standard plan covers', range: '10M / mo' },
-  { label: 'Pro plan covers', range: '80M / mo' },
-  { label: 'Max plan covers', range: '200M / mo' },
+// Everyday work as a share of one Standard month, so the numbers stay
+// comparable without anyone having to price a token.
+const USAGE_SHAPE = [
+  { label: 'A quick question + answer', range: 'under 0.1%' },
+  { label: 'Research task with web browsing', range: '0.2-1%' },
+  { label: 'Multi-step coding task', range: '0.5-5%' },
+  { label: 'Full day of heavy agent use', range: '3-10%' },
+];
+
+const PLAN_LADDER = [
+  { label: 'Standard', range: 'baseline' },
+  { label: 'Pro', range: '8x Standard' },
+  { label: 'Max', range: '20x Standard' },
 ];
 
 function SectionHeader({ idx, eyebrow, headline, sub, dark }) {
@@ -167,23 +172,37 @@ function WalletBlock() {
   );
 }
 
-function TokensBlock() {
+function UsageBlock() {
   return (
-    <section data-screen-label="06 Tokens" className="bg-brand-fog py-20 sm:py-24 lg:py-28">
+    <section data-screen-label="06 Usage" className="bg-brand-fog py-20 sm:py-24 lg:py-28">
       <div className="max-w-container mx-auto px-8">
         <SectionHeader
           idx="06"
-          eyebrow="How tokens work"
+          eyebrow="How usage works"
           headline={
             <>
-              A token is roughly{' '}
-              <em className="italic font-medium text-brand-orange">¾ of a word</em>.
+              Pick a size,{' '}
+              <em className="italic font-medium text-brand-orange">not a number</em>.
             </>
           }
-          sub="Each plan includes a generous monthly amount. Most users won't hit the limit on day-to-day work. Here's the rough shape of typical usage. Your dashboard shows live consumption, broken down by agent and task."
+          sub="Each plan includes a generous monthly allowance, and the plans are sized against each other. Most people never reach the limit on day-to-day work. Here's the rough shape of everyday tasks, as a share of one Standard month. Your dashboard shows live consumption, broken down by agent and task."
         />
         <div className="reveal grid grid-cols-1 md:grid-cols-2 gap-x-14">
-          {TOKEN_RANGES.map((r) => (
+          {USAGE_SHAPE.map((r) => (
+            <div
+              key={r.label}
+              className="flex flex-wrap items-baseline justify-between gap-4 py-4 border-b border-dashed border-brand-border"
+            >
+              <span className="text-[14px] leading-[1.5] text-brand-graphite">{r.label}</span>
+              <span className="font-mono text-[13.5px] font-semibold text-brand-aubergine whitespace-nowrap">
+                {r.range}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <div className="reveal mt-10 grid grid-cols-1 md:grid-cols-3 gap-x-14">
+          {PLAN_LADDER.map((r) => (
             <div
               key={r.label}
               className="flex flex-wrap items-baseline justify-between gap-4 py-4 border-b border-dashed border-brand-border"
@@ -203,7 +222,7 @@ function TokensBlock() {
 export default function PricingDetails() {
   return (
     <>
-      <TokensBlock />
+      <UsageBlock />
     </>
   );
 }

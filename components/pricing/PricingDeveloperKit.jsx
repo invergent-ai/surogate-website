@@ -64,7 +64,7 @@ export default function PricingDeveloperKit() {
             </div>
             <p className="text-[14.5px] leading-[1.6] text-white/72 max-w-[58ch]">
               Connect any OpenAI-compatible provider. You pay them directly. Cancel the
-              bundled token portion of your plan in settings to save the cost.
+              bundled usage portion of your plan in settings to save the cost.
             </p>
             <div className="flex flex-col gap-3">
               <div>

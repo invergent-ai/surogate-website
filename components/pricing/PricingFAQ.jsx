@@ -4,20 +4,20 @@ export const FAQS = [
     a: 'Yes. Upgrades take effect immediately and we prorate the difference. Downgrades take effect at the next billing cycle. No fees either way.',
   },
   {
-    q: 'Are tokens really included? What about overages?',
-    a: 'Every paid plan ships with a monthly token allowance baked into the price - 10M on Standard, 80M on Pro, 200M on Max, all served on Claude Opus 4.8. There are no surprise overage bills: when your monthly grant runs out, agents pause until you top up your wallet (rolling-over cash at $2 per 1M tokens) or wait for the next cycle. You stay in control.',
+    q: 'Is usage really included? What about overages?',
+    a: 'Every paid plan ships with a monthly usage allowance baked into the price - Standard is the baseline, Pro gives you 8x that, Max 20x - all served on frontier-grade models. There are no surprise overage bills: when your monthly allowance runs out, agents pause until you top up your wallet (rolling-over cash, from $2) or wait for the next cycle. You stay in control.',
   },
   {
-    q: 'What happens if my token wallet hits zero mid-task?',
-    a: 'The operation stops. No auto-upgrade, no overdraft, no end-of-month invoice. Top up the wallet with as little or as much as you want - top-up balances never expire until you use them - and the task resumes. You can also bring your own LLM provider and pay them directly, which bypasses our tokens entirely.',
+    q: 'What happens if my usage runs out mid-task?',
+    a: 'The operation stops. No auto-upgrade, no overdraft, no end-of-month invoice. Top up the wallet with as little or as much as you want - top-up balances never expire until you use them - and the task resumes. You can also bring your own LLM provider and pay them directly, which bypasses our usage allowance entirely.',
   },
   {
     q: 'How do top-ups work?',
-    a: 'Each consumable resource - tokens, web browsing time, compute credits - works like a prepaid wallet. Your plan grants a monthly balance (resets each cycle, lose-it-or-use-it). Top-ups add more on demand, and that cash rolls over as long as your account is active. When the wallet hits zero, the operation stops.',
+    a: 'Each consumable resource - usage, web browsing time, compute credits - works like a prepaid wallet. Your plan grants a monthly balance (resets each cycle, lose-it-or-use-it). Top-ups add more on demand, and that cash rolls over as long as your account is active. When the wallet hits zero, the operation stops.',
   },
   {
-    q: 'Can I bring my own LLM and skip paying for tokens?',
-    a: 'Yes. Connect any OpenAI-compatible provider - OpenRouter, OpenAI, Anthropic, Together, Groq, vLLM, TGI, Ollama, or your own fine-tuned deployment. You pay them directly. In settings, cancel the bundled token portion of your plan to save the cost.',
+    q: 'Can I bring my own LLM and skip paying for usage?',
+    a: 'Yes. Connect any OpenAI-compatible provider - OpenRouter, OpenAI, Anthropic, Together, Groq, vLLM, TGI, Ollama, or your own fine-tuned deployment. You pay them directly. In settings, cancel the bundled usage portion of your plan to save the cost.',
   },
   {
     q: 'Can I share my plan with my team?',
@@ -37,19 +37,19 @@ export const FAQS = [
   },
   {
     q: 'Is there a free trial of paid plans?',
-    a: 'The Free plan is open-ended - use it as long as you like, with 1M starter tokens or BYO LLM from day one. If a paid plan doesn’t work for you in the first 14 days, we’ll refund it on request, no questions asked.',
+    a: 'The Free plan is open-ended - use it as long as you like, with a starter usage allowance or BYO LLM from day one. If a paid plan doesn’t work for you in the first 14 days, we’ll refund it on request, no questions asked.',
   },
   {
     q: 'Can I run an agent 24/7?',
-    a: 'Yes. Agents run continuously within your plan’s concurrent-agent limit - tokens and web browsing hours are the wallets to watch for long-running tasks. The dashboard shows live consumption so you can tune behavior or top up as needed.',
+    a: 'Yes. Agents run continuously within your plan’s concurrent-agent limit - usage and web browsing hours are the wallets to watch for long-running tasks. The dashboard shows live consumption so you can tune behavior or top up as needed.',
   },
   {
     q: 'How does fine-tuning work? Do I pay for GPUs?',
     a: 'Train on your own data out of the box on our managed GPU cloud - pick a GPU, hit start, and the run draws from your compute credits. No cloud account needed. Prefer your own infrastructure? Connect your cloud (AWS, GCP, Lambda, RunPod, or your own Modal account) via dstack or skypilot and train there instead: your GPUs, your bill, zero credit usage and no GPU markup from us. Either way we orchestrate the run, capture logs and metrics, and track lineage in the hub.',
   },
   {
-    q: 'How are compute credits different from agent tokens?',
-    a: 'Compute credits meter GPU time - fine-tuning, synthetic dataset generation, and eval runs (HumanEval, MBPP, terminal-bench, SWE-bench, custom suites) - while tokens meter the LLM calls your agents make. One credit is one minute on the baseline GPU tier, so faster GPUs draw proportionally more (an H100 minute is about 6.7 credits) and you pay for exactly the hardware you picked. Standard includes 180 credits/month (3 GPU-hours), Pro 900 (15 GPU-hours), Max 2,400 (40 GPU-hours). Top-up rate is $2.00 per GPU-hour and rolls over. Training on your own connected cloud never touches the wallet.',
+    q: 'How are compute credits different from agent usage?',
+    a: 'Compute credits meter GPU time - fine-tuning, synthetic dataset generation, and eval runs (HumanEval, MBPP, terminal-bench, SWE-bench, custom suites) - while your usage allowance covers the LLM calls your agents make. One credit is one minute on the baseline GPU tier, so faster GPUs draw proportionally more (an H100 minute is about 6.7 credits) and you pay for exactly the hardware you picked. Standard includes 180 credits/month (3 GPU-hours), Pro 900 (15 GPU-hours), Max 2,400 (40 GPU-hours). Top-up rate is $2.00 per GPU-hour and rolls over. Training on your own connected cloud never touches the wallet.',
   },
   {
     q: 'Why bring my own cloud instead of using yours?',
@@ -57,7 +57,7 @@ export const FAQS = [
   },
   {
     q: 'Can I serve my fine-tuned models?',
-    a: 'Yes. Deploy via your own cloud (dstack/skypilot), and we orchestrate the endpoint. Your agents can call your custom models directly - no token charges from us when you use them.',
+    a: 'Yes. Deploy via your own cloud (dstack/skypilot), and we orchestrate the endpoint. Your agents can call your custom models directly - no usage charges from us when you use them.',
   },
   {
     q: 'What’s the hub for?',
