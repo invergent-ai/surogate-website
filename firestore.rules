@@ -1,0 +1,21 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Anonymous visitors can submit a signup, never read/edit/delete one.
+    // Document ID is the lowercased email (see SignupModal.jsx) - the
+    // !exists() check makes "same email signs up twice" impossible even
+    // under a race, since Firestore evaluates this atomically per write.
+    match /signups/{signupId} {
+      allow create: if !exists(/databases/$(database)/documents/signups/$(signupId));
+      allow read, update, delete: if false;
+    }
+
+    // The live spots counter is public to read; only the Cloud Function
+    // (Admin SDK, bypasses rules) is allowed to write it.
+    match /counters/{counterId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

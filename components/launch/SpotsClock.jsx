@@ -1,7 +1,8 @@
 const CLOCK_ORANGE = '#FFB00F';
 
-// Static for now - decrements automatically once a real signup backend is wired up.
-export default function SpotsClock({ total = 100 }) {
+// `spots` is the live count, owned by the page (see LaunchClient.jsx) so
+// every component that needs it shares one Firestore subscription.
+export default function SpotsClock({ spots = 100 }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <div
@@ -55,7 +56,7 @@ export default function SpotsClock({ total = 100 }) {
             className="font-serif font-bold text-[48px] sm:text-[56px] tabular-nums leading-none"
             style={{ color: CLOCK_ORANGE }}
           >
-            {total}
+            {spots}
           </span>
           <span className="font-sans text-[12px] sm:text-[13px]" style={{ color: CLOCK_ORANGE }}>
             free agents left

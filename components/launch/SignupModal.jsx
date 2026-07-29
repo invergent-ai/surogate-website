@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 const inputClass =
   'w-full h-11 px-3.5 bg-white border border-brand-border text-[14px] text-brand-aubergine placeholder:text-brand-steel focus:outline-none focus:border-brand-aubergine transition-colors';
@@ -13,8 +15,11 @@ function WhatsAppIcon(props) {
   );
 }
 
-export default function SignupModal({ open, onClose }) {
+export default function SignupModal({ open, onClose, isWaitlist = false }) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [alreadySignedUp, setAlreadySignedUp] = useState(false);
+  const [wasWaitlisted, setWasWaitlisted] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', company: '' });
 
   useEffect(() => {
@@ -36,14 +41,37 @@ export default function SignupModal({ open, onClose }) {
   useEffect(() => {
     if (open) {
       setSubmitted(false);
+      setAlreadySignedUp(false);
+      setWasWaitlisted(false);
       setForm({ name: '', email: '', company: '' });
     }
   }, [open]);
 
   if (!open) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
+    setWasWaitlisted(isWaitlist);
+    const signupId = form.email.trim().toLowerCase();
+    try {
+      await setDoc(doc(db, 'signups', signupId), {
+        name: form.name,
+        email: form.email,
+        company: form.company,
+        createdAt: serverTimestamp(),
+      });
+    } catch (err) {
+      if (err.code === 'permission-denied') {
+        // Firestore rule blocked it because this email already has a signup doc.
+        setAlreadySignedUp(true);
+      } else {
+        // No reachable Firestore project yet (dummy config) - don't block the
+        // visitor on a config issue, but keep it visible for us in devtools.
+        console.error('Signup write failed:', err);
+      }
+    }
+    setSubmitting(false);
     setSubmitted(true);
   };
 
@@ -63,10 +91,12 @@ export default function SignupModal({ open, onClose }) {
         {!submitted ? (
           <>
             <h3 id="signup-modal-title" className="font-serif font-medium text-[26px] text-brand-aubergine mb-2">
-              Claim your spot
+              {isWaitlist ? 'Join the waitlist' : 'Claim your spot'}
             </h3>
             <p className="text-[13.5px] text-brand-steel mb-6 leading-[1.5]">
-              Tell us about you &amp; we&apos;ll share 100 free templates.
+              {isWaitlist
+                ? "All the founding spots are taken, but you can still join the waitlist - we'll email you as soon as more open up."
+                : "Tell us about you & we'll share 100 free templates."}
             </p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
               <input
@@ -94,9 +124,10 @@ export default function SignupModal({ open, onClose }) {
               />
               <button
                 type="submit"
-                className="mt-2 h-12 bg-grad-sun text-brand-aubergine font-sans text-xs font-semibold uppercase tracking-wider-2 border border-brand-orange hover:brightness-105 transition"
+                disabled={submitting}
+                className="mt-2 h-12 bg-grad-sun text-brand-aubergine font-sans text-xs font-semibold uppercase tracking-wider-2 border border-brand-orange hover:brightness-105 transition disabled:opacity-60"
               >
-                Sign up now
+                {submitting ? 'Signing up...' : isWaitlist ? 'Join waitlist' : 'Sign up now'}
               </button>
             </form>
 
@@ -113,10 +144,18 @@ export default function SignupModal({ open, onClose }) {
         ) : (
           <>
             <h3 className="font-serif font-medium text-[26px] text-brand-aubergine mb-2">
-              You&apos;re on the list.
+              {alreadySignedUp
+                ? "You're already on the list."
+                : wasWaitlisted
+                  ? "You're on the waitlist."
+                  : "You're on the list."}
             </h3>
             <p className="text-[13.5px] text-brand-steel leading-[1.5] mb-6">
-              Thanks{form.name ? `, ${form.name.split(' ')[0]}` : ''} - we&apos;ll be in touch.
+              {alreadySignedUp
+                ? "That email already claimed a spot - we'll be in touch."
+                : wasWaitlisted
+                  ? "All the founding spots are claimed, but you're on the waitlist now - we'll email you the moment one opens up."
+                  : `Thanks${form.name ? `, ${form.name.split(' ')[0]}` : ''} - we'll be in touch.`}
             </p>
             <a
               href="https://chat.whatsapp.com/CJy0QWORoGrLH7qfUoAgKs"

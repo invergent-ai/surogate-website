@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 import RevealRoot from '@/components/RevealRoot';
 import SpotsClock from '@/components/launch/SpotsClock';
 import CountdownTimer from '@/components/launch/CountdownTimer';
@@ -13,6 +15,25 @@ const DIAGONAL_CLIP = 'polygon(66.667% 0, 100% 0, 100% 100%, 15% 100%)';
 
 export default function LaunchClient() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [spots, setSpots] = useState(100);
+
+  // Single live subscription, shared by the clock, both signup buttons, and
+  // the modal - see components/launch/SpotsClock.jsx for the display side.
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      doc(db, 'counters', 'spots'),
+      (snap) => {
+        const value = snap.data()?.value;
+        if (typeof value === 'number') setSpots(value);
+      },
+      () => {
+        // No reachable Firestore project yet (dummy config) - keep the static fallback.
+      }
+    );
+    return unsubscribe;
+  }, []);
+
+  const isWaitlist = spots <= 0;
 
   return (
     <RevealRoot>
@@ -97,11 +118,11 @@ export default function LaunchClient() {
               />
 
               <div className="reveal mb-14 flex justify-center">
-                <SpotsClock total={100} />
+                <SpotsClock spots={spots} />
               </div>
 
               <p className="reveal font-serif text-[16px] sm:text-[18px] uppercase tracking-[0.24em] text-brand-aubergine mb-6">
-                Free access end in
+                {isWaitlist ? 'All spots are filled - join the waitlist' : 'Free access end in'}
               </p>
               <div className="reveal mb-12">
                 <CountdownTimer />
@@ -113,7 +134,7 @@ export default function LaunchClient() {
                 className="reveal inline-flex items-center justify-center gap-3 h-12 pl-5 pr-7 bg-brand-orange text-brand-aubergine font-serif text-sm font-semibold uppercase tracking-wider-2 border border-brand-orange hover:brightness-105 transition"
               >
                 <img src="/surogate-icon.svg" alt="" aria-hidden="true" className="h-5 w-auto shrink-0" />
-                Sign up now
+                {isWaitlist ? 'Join the waitlist' : 'Sign up now'}
               </button>
               <p className="reveal mt-3 font-serif italic text-[13px] text-brand-steel">
                 No credit card required
@@ -140,10 +161,10 @@ export default function LaunchClient() {
 
         <LaunchAgentGrid />
         <LaunchSteps />
-        <LaunchCtaBar onSignUp={() => setModalOpen(true)} />
+        <LaunchCtaBar onSignUp={() => setModalOpen(true)} isWaitlist={isWaitlist} />
       </div>
 
-      <SignupModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      <SignupModal open={modalOpen} onClose={() => setModalOpen(false)} isWaitlist={isWaitlist} />
     </RevealRoot>
   );
 }
