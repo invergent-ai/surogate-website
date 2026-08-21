@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useState } from 'react';
 
-const TARGET = Date.UTC(2026, 7, 8, 0, 0, 0); // Aug 8, 2026 00:00 UTC
+const TARGET = Date.UTC(2026, 8, 15, 0, 0, 0); // Sep 15, 2026 00:00 UTC
 
 function timeLeft() {
   const diff = Math.max(0, TARGET - Date.now());
