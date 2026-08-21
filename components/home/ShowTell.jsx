@@ -79,13 +79,13 @@ export default function ShowTell() {
       const feed = $('#agentFeed'); if (!feed) return;
       const replayBtn = $('#agentReplay');
       const steps = [
-        { d: 600, html: `<div class="fi-step"><div class="ic"><i data-lucide="brain"></i></div><div class="bd"><div class="lbl"><b>Planning.</b> Review Emma's recent vitals and visit notes, ask a couple of triage questions, then decide what needs Dr. Pretorian.</div></div></div>` },
-        { d: 900, html: `<div class="fi-step done"><div class="ic"><i data-lucide="book-open"></i></div><div class="bd"><div class="lbl">Reading Dr. Pretorian's monitoring protocol.</div><div class="fi-tool"><i data-lucide="book-open"></i> knowledge_base.query("post-consult chest pain")</div></div></div>` },
+        { d: 600, html: `<div class="fi-step"><div class="ic"><i data-lucide="brain"></i></div><div class="bd"><div class="lbl"><b>Planning.</b> Review Emma's recent vitals and visit notes, ask a couple of triage questions, then decide what needs the doctor.</div></div></div>` },
+        { d: 900, html: `<div class="fi-step done"><div class="ic"><i data-lucide="book-open"></i></div><div class="bd"><div class="lbl">Reading the practice's monitoring protocol.</div><div class="fi-tool"><i data-lucide="book-open"></i> knowledge_base.query("post-consult chest pain")</div></div></div>` },
         { d: 950, html: `<div class="fi-step done"><div class="ic"><i data-lucide="file-heart"></i></div><div class="bd"><div class="lbl">Pulling Emma's chart from the last visit.</div><div class="fi-tool"><i data-lucide="folder-search"></i> chart.fetch(patient="emma")</div><div class="fi-sub">&rarr; stent follow-up 3 days ago &middot; on dual antiplatelet therapy</div></div></div>` },
         { d: 1000, html: `<div class="fi-step done"><div class="ic"><i data-lucide="message-circle"></i></div><div class="bd"><div class="lbl"><b>Asked</b> Emma two triage questions; she reports tightness <b>at rest</b>, no relief after 20 minutes.</div></div></div>` },
-        { d: 850, html: `<div class="fi-approve" id="apCard"><div class="ap-h"><i data-lucide="hand"></i> Escalation needed</div><div class="ap-d">Chest tightness at rest with Emma's cardiac history meets Dr. Pretorian's &ldquo;flag immediately&rdquo; rule. Notify him now?</div><div class="ap-btns"><button class="ap-btn yes" id="apYes">Notify doctor</button><button class="ap-btn no">Hold</button></div></div>` },
-        { d: 1100, html: `<div class="fi-step done"><div class="ic"><i data-lucide="bell-ring"></i></div><div class="bd"><div class="lbl">Paged <b>Dr. Pretorian</b> and told Emma to stay seated and keep the line open.</div><div class="fi-tool"><i data-lucide="check"></i> notify("dr.pretorian", priority="urgent")</div></div></div>` },
-        { d: 700, html: `<div class="fi-result"><div class="rs-h"><i data-lucide="circle-check-big"></i> Flagged for Dr. Pretorian</div><div class="rs-grid"><div class="rs-c"><div class="n">&lt;1 min</div><div class="l">To escalate</div></div><div class="rs-c"><div class="n">24/7</div><div class="l">Always on</div></div><div class="rs-c"><div class="n">&euro;15&ndash;30</div><div class="l">/mo per patient</div></div></div></div>` },
+        { d: 850, html: `<div class="fi-approve" id="apCard"><div class="ap-h"><i data-lucide="hand"></i> Escalation needed</div><div class="ap-d">Chest tightness at rest with Emma's cardiac history meets the doctor's &ldquo;flag immediately&rdquo; rule. Notify him now?</div><div class="ap-btns"><button class="ap-btn yes" id="apYes">Notify doctor</button><button class="ap-btn no">Hold</button></div></div>` },
+        { d: 1100, html: `<div class="fi-step done"><div class="ic"><i data-lucide="bell-ring"></i></div><div class="bd"><div class="lbl">Paged <b>the doctor</b> and told Emma to stay seated and keep the line open.</div><div class="fi-tool"><i data-lucide="check"></i> notify("cardiologist", priority="urgent")</div></div></div>` },
+        { d: 700, html: `<div class="fi-result"><div class="rs-h"><i data-lucide="circle-check-big"></i> Stats</div><div class="rs-grid"><div class="rs-c"><div class="n">&lt;1 min</div><div class="l">From symptom to the doctor's phone</div></div><div class="rs-c"><div class="n">24/7</div><div class="l">Always on</div></div><div class="rs-c"><div class="n">0</div><div class="l">Appointments Ema had to wait for</div></div></div></div>` },
       ];
       let tickets = [];
       const clearTickets = () => { tickets.forEach((t) => clearTimeout(t)); tickets = []; };
@@ -532,8 +532,8 @@ export default function ShowTell() {
         </div>
         <div className="wrap">
           <p className="hero-kicker reveal">AUTONOMOUS AI AGENTS</p>
-          <h1 className="hero-title reveal d1">Multiply<br /><span className="amber">yourself.</span></h1>
-          <p className="hero-sub reveal d2">Train a Surogate agent on the way you already work, then offer it to your existing patients, clients, or students as a monthly subscription. You earn from every one of them - without adding a single hour to your day.</p>
+          <h1 className="hero-title reveal d1">Multiply <span className="amber">yourself</span></h1>
+          <p className="hero-sub reveal d2">Build autonomous workers for any task. Give them knowledge and tools, skills and LLMs, set their rules and watch them perform 24/7. <br/><br/>Deploy them everywhere or sell them to your customers.</p>
           <div className="hero-actions reveal d3">
             <a className="btn btn-primary" href="https://ops.surogate.ai"><i data-lucide="arrow-right" />Start free</a>
             <a className="btn btn-ghost" href="https://github.com/invergent-ai/surogate" target="_blank" rel="noopener noreferrer"><i data-lucide="star" />Give us a Star</a>
@@ -552,44 +552,56 @@ export default function ShowTell() {
         <div className="wrap">
           <div className="persona-head reveal">
             <p className="eyebrow">Who it's for</p>
-            <h2 className="persona-title">Professionals already doing this</h2>
-            <p className="persona-sub">Not generic use cases - real people, already running a Surogate agent for their own clients. Here's exactly what they built, and what it pays.</p>
+            <h2 className="persona-title">See what they built with it.</h2>
+            <p className="persona-sub">Surogate is a do-it-yourself platform. Each of these systems was built by the professional, on their own practice, without a line of code and without a technical team. Here is what they do.</p>
           </div>
           <div className="pilot-grid reveal d1">
             <div className="aud-card show pilot-card">
-              <div className="ac-ic"><i data-lucide="heart-pulse" /></div>
-              <div className="ac-cat">Cardiologist</div>
-              <div className="ac-t">Dr. Radu Pretorian</div>
-              <p className="ac-d">Checks in with his patients after every consultation, tracks symptoms and medication compliance, and flags anything unusual.</p>
-              <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;15&ndash;30<span>per patient / month</span></span></div>
-              <p className="ac-bound">The agent follows Dr. Pretorian's own monitoring protocol. It doesn't diagnose, and it doesn't replace a consultation.</p>
+              <div className="pc-id">
+                <div className="ac-ic"><i data-lucide="heart-pulse" /></div>
+                <div className="ac-t">A cardiology practice</div>
+              </div>
+              <p className="ac-d">The agents talk to every patient on WhatsApp, at the cadence the doctor set. They ask the questions he would ask, collect blood pressure, pulse, weight and medication, read a photographed lab result, and put a short report in front of him every morning. When a value leaves the range he defined, he is alerted the same hour. He can then adjust at a distance, call the patient in, or escalate.</p>
+              <div className="pc-eco">
+                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;15&ndash;30<span>per patient / month</span></span></div>
+                <p className="ac-bound">The agents run the doctor's own protocol. They do not diagnose and they do not prescribe. Every decision stays with him</p>
+              </div>
             </div>
             <div className="aud-card show pilot-card">
-              <div className="ac-ic"><i data-lucide="scale" /></div>
-              <div className="ac-cat">Law firm</div>
-              <div className="ac-t">Laza Lawyers</div>
-              <p className="ac-d">Handles the first conversation with every new client, answers common procedural questions, and routes anything complex straight to an attorney.</p>
-              <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;25&ndash;50<span>per client / month</span></span></div>
-              <p className="ac-bound">The agent follows the firm's own intake protocol. It doesn't give legal advice in its own name.</p>
+              <div className="pc-id">
+                <div className="ac-ic"><i data-lucide="scale" /></div>
+                <div className="ac-t">A law firm</div>
+              </div>
+              <p className="ac-d">The agents take the first conversation with every new client, at whatever hour it arrives. They collect the documents, calculate the deadlines from the first message, answer procedural questions from a library the lawyers wrote and approved, and follow open cases day by day. Anything urgent reaches an attorney immediately.</p>
+              <div className="pc-eco">
+                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;25&ndash;50<span>per client / month</span></span></div>
+                <p className="ac-bound">The agents run the firm's own protocol. They do not give legal advice in their own name, and they never decide strategy.</p>
+              </div>
             </div>
             <div className="aud-card show pilot-card">
-              <div className="ac-ic"><i data-lucide="calculator" /></div>
-              <div className="ac-cat">Accountant</div>
-              <div className="ac-t">Rares</div>
-              <p className="ac-d">Tracks his clients' financial situation year-round and alerts them before small issues become expensive ones.</p>
-              <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;30&ndash;60<span>per client / month</span></span></div>
-              <p className="ac-bound">The agent follows Rares' own review process. Financial decisions and sign-off stay with him.</p>
+              <div className="pc-id">
+                <div className="ac-ic"><i data-lucide="graduation-cap" /></div>
+                <div className="ac-t">A chemistry teacher</div>
+              </div>
+              <p className="ac-d">The agents work with each student in short, fixed sessions, and they never hand over the answer. They find the gap underneath the lesson the student is failing, go back to it, and fill it while the class keeps moving. Parents get a weekly picture of where their child stands, and the teacher reads the same report before the next class.</p>
+              <div className="pc-eco">
+                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;30&ndash;60<span>per student / month</span></span></div>
+                <p className="ac-bound">The agents teach on the teacher's own method. When they don't know how he would handle something, they stop and ask him.</p>
+              </div>
             </div>
             <div className="aud-card show pilot-card">
-              <div className="ac-ic"><i data-lucide="graduation-cap" /></div>
-              <div className="ac-cat">Teacher</div>
-              <div className="ac-t">John Riley</div>
-              <p className="ac-d">Drills students for exams, tracks their progress, and sends parents a weekly update - using John's own method.</p>
-              <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;20&ndash;40<span>per student / month</span></span></div>
-              <p className="ac-bound">The agent practices with students on John's curriculum. It doesn't replace his teaching or grading.</p>
+              <div className="pc-id">
+                <div className="ac-ic"><i data-lucide="calculator" /></div>
+                <div className="ac-t">An accounting practice</div>
+              </div>
+              <p className="ac-d">The agents follow each client's situation year-round, watch the deadlines, and raise a flag early, while a problem is still small and still cheap to fix.</p>
+              <div className="pc-eco">
+                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;20&ndash;40<span>per client / month</span></span></div>
+                <p className="ac-bound">The agents run the accountant's own review process. Decisions and sign-off stay with him.</p>
+              </div>
             </div>
           </div>
-          <p className="pilot-bridge reveal">Each of them built <span className="amber">one agent.</span> Here's exactly how.</p>
+          <p className="pilot-bridge reveal"><span className="amber">No lines of code were written</span> for any of these.</p>
         </div>
       </section>
 
@@ -600,21 +612,21 @@ export default function ShowTell() {
             <p className="eyebrow">How it works</p>
             <h2 className="h-section">You describe the work. It does it for you.</h2>
           </div>
+          <p className="persona-sub">Tell Surogate what needs to happen, in plain words. It builds the agents that handle it, runs them in the cloud around the clock, and sharpens them on your own work over time. You never touch code, and you never lose sight of what they are allowed to do.</p>
           <div className="intro-grid">
             <div className="reveal">
-              <p className="lead" style={{ marginTop: 0 }}>Tell Surogate what you want done, in plain words. It builds an agent that handles it, runs it in the cloud around the clock, and gets sharper the longer it works - no code, no servers to manage.</p>
               <div className="intro-points">
                 <div className="ipoint">
                   <div className="ip-ic"><i data-lucide="wand-2" /></div>
-                  <div><div className="ip-t">Built from your workflow, no code</div><p className="ip-d">Define what your agent does in plain language - its goals, its tools, its rules. If you understand your work, you can build it.</p></div>
+                  <div><div className="ip-t">Built from your workflow, no code</div><p className="ip-d">Define what your agents do in plain language: their goals, their tools, their rules and their limits. You decide exactly what they may do, and what they must never do without you.</p></div>
                 </div>
                 <div className="ipoint">
                   <div className="ip-ic"><i data-lucide="cloud" /></div>
-                  <div><div className="ip-t">Runs in the cloud, 24/7</div><p className="ip-d">Your agent lives in the cloud, not on your laptop. It works when you don't - no tab open, no machine running.</p></div>
+                  <div><div className="ip-t">Runs in the cloud, 24/7</div><p className="ip-d">Your agents live in the cloud, not on your laptop. They work when you don't, with no tab open and no machine running.</p></div>
                 </div>
                 <div className="ipoint">
                   <div className="ip-ic"><i data-lucide="trending-up" /></div>
-                  <div><div className="ip-t">Gets better the more it runs</div><p className="ip-d">Turn your most common tasks into owned expert models trained on your own work - smarter and cheaper over time.</p></div>
+                  <div><div className="ip-t">Trained on your own work</div><p className="ip-d">Every case they handle can become training. Fine-tune your agents and your skills on your own material, in a few clicks, and they get better at your work in particular — not at work in general.</p></div>
                 </div>
               </div>
             </div>
@@ -716,8 +728,8 @@ export default function ShowTell() {
         <div className="wrap">
           <div className="sec-head center reveal">
             <p className="eyebrow center">Proof - see it work</p>
-            <h2 className="h-section">Watch one agent monitor one patient - then scale to all of them</h2>
-            <p className="lead">Not a chat demo. This is Dr. Pretorian's own Surogate agent, checking in with a real patient after a real consultation.</p>
+            <h2 className="h-section">This is what catching it early looks like.</h2>
+            <p className="lead">A real monitoring system, built by a cardiologist, checking in with a patient three days after a procedure. The point is not the conversation. The point is that someone noticed in time.</p>
           </div>
           <div className="agent-stage reveal d1">
             <div className="agent-task">
@@ -725,13 +737,13 @@ export default function ShowTell() {
               <div className="at-prompt">Hi doctor, I've had some chest tightness since yesterday evening - should I be worried?</div>
               <div className="at-from">
                 <div className="av"><i data-lucide="user" /></div>
-                <div className="meta"><b>Emma &middot; patient</b>via Dr. Pretorian's monitoring agent</div>
+                <div className="meta"><b>Emma &middot; patient</b>via her cardiologist's monitoring agent</div>
               </div>
               <div className="at-meta-list">
                 <div className="row"><span>Agent</span><b>patient-monitoring &middot; v1.4</b></div>
-                <div className="row"><span>Deployed for</span><b>Dr. Radu Pretorian, Cardiology</b></div>
+                <div className="row"><span>Deployed for</span><b>a cardiology practice</b></div>
                 <div className="row"><span>Runs on</span><b>Surogate Cloud</b></div>
-                <div className="row"><span>He earns</span><b>&euro;15&ndash;30 / patient / month</b></div>
+                <div className="row"><span>Follows</span><b>every patient in the practice, continuously</b></div>
               </div>
             </div>
             <div className="agent-feed-wrap">
@@ -742,13 +754,13 @@ export default function ShowTell() {
               <div className="af-feed" id="agentFeed" />
             </div>
           </div>
-          <p className="agent-compliance reveal"><i data-lucide="shield-check" /> The agent flags anything that needs Dr. Pretorian's attention immediately - it doesn't make the call itself.</p>
-          <div className="fleet-divider reveal"><span className="fd-t">That was <span className="amber">one</span> patient. Here's his full patient list.</span></div>
+          <p className="agent-compliance reveal"><i data-lucide="shield-check" /> The agent flags anything that needs the doctor's attention immediately. It never makes the call itself.</p>
+          <div className="fleet-divider reveal"><span className="fd-t">That was <span className="amber">one</span> patient. This is the whole practice.</span></div>
           <div className="fleet reveal d1" id="fleet">
             <div className="fleet-head">
               <div className="fleet-count">
                 <span className="fc-big" id="fleetCount">0</span>
-                <span className="fc-lab"><b>patients</b> monitored right now</span>
+                <span className="fc-lab"><b>patients</b> are being followed right now</span>
               </div>
               <div className="fleet-legend">
                 <span className="lg"><span className="d run" /> serving</span>
@@ -756,8 +768,8 @@ export default function ShowTell() {
                 <span className="lg"><span className="d srv" /> idle</span>
               </div>
             </div>
-            <div className="fleet-grid" id="fleetGrid" />
-            <p className="fleet-foot">Build an agent once, then it runs for every patient who subscribes. Each one runs on its own, around the clock - and <b>each one is recurring revenue you don't have to be there for.</b></p>
+            <div className="fleet-grid" id="fleetGrid" />.
+            <p className="fleet-foot">Built once, the system stays with every patient who joins. <b>Nobody has to wait for the next appointment</b> to be heard, and nothing that matters waits with them.</p>
           </div>
         </div>
       </section>

@@ -61,7 +61,7 @@
 .st-home .dark .h-section{color:var(--txt-d1);}
 .st-home .h-section .amber{color:var(--amber);}
 .st-home .lead{font-size:22px; line-height:1.5; color:var(--txt-2); margin:24px 0 0;
-  max-width:54ch; text-wrap:pretty; font-weight:400;}
+  text-wrap:pretty; font-weight:400;}
 .st-home .dark .lead{color:var(--txt-d2);}
 .st-home .sec-head{max-width:var(--wrap);}
 .st-home .sec-head.center{text-align:center; margin:0 auto;}
@@ -328,7 +328,7 @@
 .st-home .persona-head{max-width:880px;}
 .st-home .persona-title{font-family:var(--serif); font-weight:600; font-size:clamp(36px,4.6vw,60px); line-height:1.03; letter-spacing:-0.025em; color:var(--txt-1); margin:18px 0 0; text-wrap:balance;}
 .st-home .persona-title .amber{color:var(--amber);}
-.st-home .persona-sub{font-size:20px; line-height:1.5; color:var(--txt-2); max-width:46ch; margin:22px 0 0;}
+.st-home .persona-sub{font-size:20px; line-height:1.5; color:var(--txt-2); margin:22px 0 0;}
 .st-home .persona-stage{display:grid; grid-template-columns:300px 1fr; gap:30px; margin-top:54px; align-items:start;}
 @media (max-width:920px){.st-home .persona-stage{grid-template-columns:1fr;}}
 .st-home .persona-rail{display:flex; flex-direction:column; gap:12px;}
@@ -729,11 +729,19 @@
 .st-home .pilot-card .ac-t{font-size:24px; margin:6px 0 4px;}
 .st-home .pilot-card .ac-cat{margin-bottom:2px;}
 .st-home .pilot-card .ac-d{font-size:15.5px;}
-/* Align the "What it pays" + disclaimer across the named pilot cards:
-   let the description absorb the slack so the pay block bottom-pins, and
-   equalise the disclaimer height so the price rows line up. */
-.st-home .pilot-grid:not(.kit-grid) .pilot-card .ac-d{flex:1 1 auto;}
-.st-home .pilot-grid:not(.kit-grid) .pilot-card .ac-bound{min-height:75px;}
+/* Named pilot cards read as full-width rows: who | what the agents do | what it pays. */
+.st-home .pilot-grid:not(.kit-grid){grid-template-columns:1fr; gap:16px;}
+.st-home .pilot-grid:not(.kit-grid) .pilot-card{flex-direction:row; gap:34px; padding:30px 32px;}
+.st-home .pc-id{flex:0 0 200px;}
+.st-home .pilot-grid:not(.kit-grid) .ac-d{flex:1 1 auto;}
+.st-home .pc-eco{flex:0 0 250px; padding-left:30px; border-left:1px solid var(--line2);}
+.st-home .pc-eco .ac-pay{margin-top:0; padding-top:0; border-top:0;}
+@media (max-width:900px){
+  .st-home .pilot-grid:not(.kit-grid) .pilot-card{flex-direction:column; gap:0; padding:28px 26px;}
+  .st-home .pc-id,.st-home .pc-eco{flex:0 0 auto;}
+  .st-home .pc-eco{padding-left:0; border-left:0;}
+  .st-home .pc-eco .ac-pay{margin-top:22px; padding-top:18px; border-top:1px solid var(--line2);}
+}
 .st-home .ac-pay{margin-top:22px; padding-top:18px; border-top:1px solid var(--line2);}
 .st-home .ac-pay .ap-l{display:block; font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--txt-3); margin-bottom:7px;}
 .st-home .ac-pay .ap-v{font-family:var(--serif); font-weight:600; font-size:30px; letter-spacing:-0.02em; color:#b3720a; line-height:1.05;}
