@@ -10,6 +10,88 @@ import { createIcons, icons as lucideIcons } from 'lucide';
  * under .st-home). The interactive logic below is a port of the design's
  * site.js, adapted to run once on mount and clean up after itself.
  */
+/* Shared inline styles for the ported design's screenshot frames and chips —
+   the design uses .st-home CSS variables, so these stay inline rather than
+   growing five more one-off rules in app/home.css. */
+const FRAME = { border: '1px solid var(--line2)', borderRadius: 14, overflow: 'hidden', background: '#fff', boxShadow: 'var(--shadow-card)' };
+const CAPTION = { margin: '14px 0 0', fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--txt-3)' };
+const CHIP = { fontFamily: 'var(--mono)', fontSize: 11, padding: '5px 9px', border: '1px solid var(--line2)', borderRadius: 999, color: 'var(--txt-3)' };
+
+function Shot({ src, alt, caption, className }) {
+  return (
+    <div className={className}>
+      <div style={FRAME}><img src={src} alt={alt} style={{ display: 'block', width: '100%', height: 'auto' }} /></div>
+      <p style={CAPTION}>{caption}</p>
+    </div>
+  );
+}
+
+/* Slack and Telegram in their own brand colours. Lucide has no brand icons, so
+   these are the official marks: Slack's four-colour hash, and the Telegram
+   plane on its brand blue. */
+function SlackMark() {
+  return (
+    <svg viewBox="0 0 127 127" width="24" height="24" aria-hidden="true">
+      <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A" />
+      <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z" fill="#36C5F0" />
+      <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D" />
+      <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E" />
+    </svg>
+  );
+}
+
+function TelegramMark() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+      <circle cx="12" cy="12" r="12" fill="#26A5E4" />
+      <path d="M16.906 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" fill="#fff" />
+    </svg>
+  );
+}
+
+function WhatsAppMark() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#25D366" />
+    </svg>
+  );
+}
+
+const MARKS = { slack: SlackMark, telegram: TelegramMark, whatsapp: WhatsAppMark };
+
+function ChannelIcon({ brand, icon }) {
+  const Mark = MARKS[brand];
+  return Mark ? <Mark /> : <i data-lucide={icon} />;
+}
+
+const CHANNELS = [
+  { name: 'Web chat', icon: 'globe',
+    d: 'A hosted chat page behind a link. Replies stream token by token, and every tool call the agent makes is there to read.',
+    id: 'signed-in user · full session history' },
+  { name: 'Slack', brand: 'slack',
+    d: 'It answers in the thread where the work already is. Slash commands and buttons behave the way your team expects them to.',
+    id: 'DMs · @mentions · threads' },
+  { name: 'Telegram', brand: 'telegram',
+    d: 'A bot people already know how to talk to — one to one, in a group, or inside a single forum topic.',
+    id: 'DMs · groups · forum topics' },
+  { name: 'WhatsApp', brand: 'whatsapp',
+    d: "Meta's official Business Cloud API on your own number. The agent answers; it never cold-messages anyone.",
+    id: 'one to one · your business number' },
+  { name: 'Your website', icon: 'code-2',
+    d: 'One script tag puts the agent on your public site, for visitors who have no account with you at all.',
+    id: 'publishable key · origin allow-list' },
+  { name: 'API', icon: 'plug',
+    d: 'Submit prompts from a pipeline or a batch job and read the results straight back out of the session log.',
+    id: 'service-account token · no user' },
+];
+
+const GUARANTEES = [
+  { icon: 'lock', t: 'Guardrails locked at session start', d: 'A running task cannot talk its way into wider permissions. What was allowed when the session opened is what stays allowed.' },
+  { icon: 'key-round', t: 'Credentials in a vault', d: "MCP servers use your secrets without the agent's runtime ever seeing them. Used, never exposed." },
+  { icon: 'box', t: 'Network-restricted sandbox', d: 'Code the agent writes runs sandboxed and restricted, and integrations are scanned for tampering before they load.' },
+  { icon: 'file-text', t: 'Durable event log', d: 'Sessions run on a durable log, so a crashed worker resumes rather than losing work - and every action stays auditable.' },
+];
+
 export default function ShowTell() {
   const booted = useRef(false);
 
@@ -79,13 +161,11 @@ export default function ShowTell() {
       const feed = $('#agentFeed'); if (!feed) return;
       const replayBtn = $('#agentReplay');
       const steps = [
-        { d: 600, html: `<div class="fi-step"><div class="ic"><i data-lucide="brain"></i></div><div class="bd"><div class="lbl"><b>Planning.</b> Review Emma's recent vitals and visit notes, ask a couple of triage questions, then decide what needs the doctor.</div></div></div>` },
-        { d: 900, html: `<div class="fi-step done"><div class="ic"><i data-lucide="book-open"></i></div><div class="bd"><div class="lbl">Reading the practice's monitoring protocol.</div><div class="fi-tool"><i data-lucide="book-open"></i> knowledge_base.query("post-consult chest pain")</div></div></div>` },
-        { d: 950, html: `<div class="fi-step done"><div class="ic"><i data-lucide="file-heart"></i></div><div class="bd"><div class="lbl">Pulling Emma's chart from the last visit.</div><div class="fi-tool"><i data-lucide="folder-search"></i> chart.fetch(patient="emma")</div><div class="fi-sub">&rarr; stent follow-up 3 days ago &middot; on dual antiplatelet therapy</div></div></div>` },
-        { d: 1000, html: `<div class="fi-step done"><div class="ic"><i data-lucide="message-circle"></i></div><div class="bd"><div class="lbl"><b>Asked</b> Emma two triage questions; she reports tightness <b>at rest</b>, no relief after 20 minutes.</div></div></div>` },
-        { d: 850, html: `<div class="fi-approve" id="apCard"><div class="ap-h"><i data-lucide="hand"></i> Escalation needed</div><div class="ap-d">Chest tightness at rest with Emma's cardiac history meets the doctor's &ldquo;flag immediately&rdquo; rule. Notify him now?</div><div class="ap-btns"><button class="ap-btn yes" id="apYes">Notify doctor</button><button class="ap-btn no">Hold</button></div></div>` },
-        { d: 1100, html: `<div class="fi-step done"><div class="ic"><i data-lucide="bell-ring"></i></div><div class="bd"><div class="lbl">Paged <b>the doctor</b> and told Emma to stay seated and keep the line open.</div><div class="fi-tool"><i data-lucide="check"></i> notify("cardiologist", priority="urgent")</div></div></div>` },
-        { d: 700, html: `<div class="fi-result"><div class="rs-h"><i data-lucide="circle-check-big"></i> Stats</div><div class="rs-grid"><div class="rs-c"><div class="n">&lt;1 min</div><div class="l">From symptom to the doctor's phone</div></div><div class="rs-c"><div class="n">24/7</div><div class="l">Always on</div></div><div class="rs-c"><div class="n">0</div><div class="l">Appointments Ema had to wait for</div></div></div></div>` },
+        { d: 700, html: `<div class="fi-step done"><div class="ic"><i data-lucide="search-check"></i></div><div class="bd"><div class="lbl">Looked at her last three attempts.</div><div class="fi-sub">&rarr; the balancing is fine - grams to moles is where it breaks</div></div></div>` },
+        { d: 900, html: `<div class="fi-step done"><div class="ic"><i data-lucide="corner-left-down"></i></div><div class="bd"><div class="lbl">Went <b>back one lesson</b> and re-taught moles with two short questions - no answer given away.</div></div></div>` },
+        { d: 950, html: `<div class="fi-step done"><div class="ic"><i data-lucide="circle-check"></i></div><div class="bd"><div class="lbl">She solved the original problem herself on the second try.</div></div></div>` },
+        { d: 850, html: `<div class="fi-approve" id="apCard"><div class="ap-h"><i data-lucide="hand"></i> I need your input</div><div class="ap-d">She wants to skip ahead to next week&rsquo;s chapter. What a student is ready for is your call, not the agent&rsquo;s.</div><div class="ap-btns"><button class="ap-btn yes" id="apYes">Let her ahead</button><button class="ap-btn no">Hold</button></div></div>` },
+        { d: 700, html: `<div class="fi-result"><div class="rs-h"><i data-lucide="circle-check-big"></i> By the time you looked</div><div class="rs-grid"><div class="rs-c"><div class="n">9 min</div><div class="l">Session, while you taught the class</div></div><div class="rs-c"><div class="n">1</div><div class="l">Gap found and closed</div></div><div class="rs-c"><div class="n">0</div><div class="l">Answers handed over</div></div></div></div>` },
       ];
       let tickets = [];
       const clearTickets = () => { tickets.forEach((t) => clearTimeout(t)); tickets = []; };
@@ -110,7 +190,7 @@ export default function ShowTell() {
             tickets.push(setTimeout(() => el.classList.add('show'), 20));
             icons();
             feed.scrollTop = feed.scrollHeight;
-            if (idx === 4) {
+            if (idx === steps.length - 2) {
               tickets.push(setTimeout(() => {
                 const yes = $('#apYes'); const card = $('#apCard');
                 if (yes) yes.textContent = 'Approved ✓';
@@ -385,125 +465,72 @@ export default function ShowTell() {
       render(0);
     })();
 
-    /* 5 · THE SECOND SHIFT - night timeline ──────────────────── */
-    (function secondShift() {
-      const line = $('#shiftLine'); if (!line) return;
-      const stops = $$('.shift-stop', line);
-      const rail = $('#shiftRail');
-      const dawn = $('#shiftDawn');
-      let i = -1, started = false;
-      function set(n) {
-        i = n;
-        stops.forEach((s, idx) => s.classList.toggle('on', idx <= n));
-        if (rail) rail.style.cssText = `width:${(n / (stops.length - 1)) * 100}%; transition:width .8s cubic-bezier(.4,0,.2,1);`;
-        if (dawn) dawn.classList.toggle('lit', n >= stops.length - 1);
-      }
-      const advance = () => set((i + 1) % stops.length);
-      function start() {
-        if (started) return; started = true; set(0);
-        if (reduceMotion) { set(stops.length - 1); return; }
-        reg(setInterval(advance, 1800));
-      }
-      stops.forEach((s, idx) => s.addEventListener('click', () => set(idx)));
-      watch(line, start, 0.4);
+    /* 5 · PRODUCT TOUR TABS ──────────────────────────────────── */
+    (function tour() {
+      const tabs = $$('#tourTabs .aud-tab');
+      const panels = $$('[data-tour-panel]');
+      if (!tabs.length) return;
+      tabs.forEach((t) => t.addEventListener('click', () => {
+        const n = t.dataset.tour;
+        tabs.forEach((x) => x.classList.toggle('on', x === t));
+        panels.forEach((p) => { p.style.display = p.dataset.tourPanel === n ? '' : 'none'; });
+        queueScan();
+      }));
     })();
 
-    /* 6 · FLEET AT SCALE - spawn + live counter ──────────────── */
-    (function fleet() {
-      const grid = $('#fleetGrid'); const countEl = $('#fleetCount'); if (!grid) return;
-      const agents = [
-        ['Emma M.', 'Checking in after a stent follow-up'],
-        ['James P.', "Logging this morning's blood pressure"],
-        ['Sophie R.', 'Confirming she refilled her medication'],
-        ['Mark D.', 'Reporting mild ankle swelling'],
-        ['Olivia V.', 'Answering a question about her dose'],
-        ['Thomas N.', 'Recording a steady resting heart rate'],
-        ['Anna C.', "Reminded about Thursday's follow-up"],
-        ['William S.', 'Sharing symptoms after a long walk'],
-        ['Grace L.', 'Submitting her weekly check-in'],
-        ['Robert B.', 'Flagging shortness of breath at night'],
-        ['Diana F.', 'Asking whether to skip a dose'],
-        ['Michael T.', 'Logging weight for fluid tracking'],
-        ['Ella G.', 'Reviewing her medication schedule'],
-        ['Paul A.', 'Reporting no symptoms this week'],
-        ['Rachel I.', 'Sending a photo of swelling'],
-        ['George M.', 'Confirming his pharmacy pickup'],
-        ['Bianca O.', 'Asking about post-op activity'],
-        ['Steven K.', 'Recording chest discomfort earlier'],
-        ['Laura E.', 'Completing her daily symptom log'],
-        ['Colin V.', 'Reminded to book a blood test'],
-        ['Irene P.', 'Checking in after a med change'],
-        ['Dan R.', 'Reporting improved energy levels'],
-        ['Maria H.', 'Asking when to resume exercise'],
-        ['Frank T.', 'Logging an irregular pulse reading'],
-        ['Alice S.', 'Following up on dizziness'],
-        ['Christine B.', 'Confirming her appointment time'],
-        ['Brandon L.', 'Reporting stable readings all week'],
-        ['Theodora M.', 'Sharing a new question for the doctor'],
+    /* 6 · COPILOT PALETTE ────────────────────────────────────── */
+    (function copilot() {
+      const type = $('#cpType'); const out = $('#cpOut'); const caret = $('#cpCaret');
+      if (!type || !out) return;
+      const scenes = [
+        { q: 'deploy the intake agent to Slack and give it the deadlines skill',
+          rows: [['check', 'Attached skill <b>deadlines</b> to <b>intake-agent</b>', 'done'],
+            ['message-square', 'Published to Slack &middot; <b>#client-intake</b>', 'live'],
+            ['activity', 'Deployment scaled to <b>2/2</b> replicas', 'running']] },
+        { q: 'which sessions got a thumbs-down this week?',
+          rows: [['file-text', '<b>7 sessions</b> flagged &middot; 5 in refunds, 2 in triage', 'log'],
+            ['list-checks', 'Grouped into a candidate benchmark', 'ready'],
+            ['git-compare', 'Suggested skill edit for <b>refunds</b>', 'proposed']] },
+        { q: "train the sql-writer expert on last month's successful runs",
+          rows: [['hand', 'Confirm: training run on <b>sql-writer</b> &middot; 12k traces', 'confirm'],
+            ['database', 'Dataset <b>sql-writer-v4</b> collected &amp; versioned', 'done'],
+            ['triangle', 'SFT run queued on <b>attached GPUs</b>', 'queued']] },
       ];
-      const pickStatus = () => { const w = ['run', 'run', 'run', 'run', 'run', 'run', 'srv', 'srv', 'dep']; return w[Math.floor(Math.random() * w.length)]; };
-      const tiles = [];
-      agents.forEach((a, idx) => {
-        const st = idx < 2 ? 'run' : pickStatus();
-        const pct = 18 + Math.floor(Math.random() * 70);
-        const el = document.createElement('div');
-        el.className = 'ftile';
-        el.innerHTML = `<div class="ft-top"><span class="ft-dot ${st}"></span><span class="ft-nm">${a[0]}</span></div>` +
-          `<div class="ft-tk">${a[1]}</div>` +
-          `<div class="ft-bar"><span style="width:${pct}%"></span></div>`;
-        grid.appendChild(el);
-        tiles.push({ el, dot: el.querySelector('.ft-dot'), bar: el.querySelector('.ft-bar span'), pct });
-      });
-      let started = false;
-      function rampCounter() {
-        const target = 70 + Math.floor(Math.random() * 50);
-        const dur = 1400; const t0 = performance.now();
-        function step(now) {
-          const k = Math.min(1, (now - t0) / dur);
-          const eased = 1 - Math.pow(1 - k, 3);
-          countEl.textContent = Math.round(eased * target).toLocaleString();
-          if (k < 1) requestAnimationFrame(step);
-          else { countEl.textContent = target.toLocaleString(); fluctuate(target); }
+      let si = 0; let tickets = [];
+      const clear = () => { tickets.forEach((t) => clearTimeout(t)); tickets = []; };
+      const at = (ms, fn) => { const id = setTimeout(fn, ms); tickets.push(id); return id; };
+      const rowHtml = (r) => `<div style="display:flex;align-items:center;gap:12px;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s">`
+        + `<span style="width:26px;height:26px;flex:none;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--amber-line);border-radius:7px;color:var(--amber)"><i data-lucide="${r[0]}" style="width:14px;height:14px"></i></span>`
+        + `<span style="flex:1;font-size:15px;color:var(--txt-d2)">${r[1]}</span>`
+        + `<span style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--txt-d3)">${r[2]}</span></div>`;
+      function play() {
+        clear();
+        const sc = scenes[si];
+        out.innerHTML = '';
+        type.textContent = '';
+        if (caret) caret.style.opacity = '1';
+        if (reduceMotion) {
+          type.textContent = sc.q;
+          out.innerHTML = sc.rows.map(rowHtml).join('');
+          $$('div', out).forEach((d) => { d.style.opacity = '1'; d.style.transform = 'none'; });
+          icons();
+          return;
         }
-        requestAnimationFrame(step);
+        let i = 0;
+        const typeTick = () => {
+          type.textContent = sc.q.slice(0, i); i += 1;
+          if (i <= sc.q.length) at(24, typeTick); else after();
+        };
+        const after = () => {
+          out.innerHTML = sc.rows.map(rowHtml).join('');
+          icons();
+          const rows = Array.from(out.children);
+          rows.forEach((r, k) => at(260 + k * 520, () => { r.style.opacity = '1'; r.style.transform = 'none'; }));
+          at(260 + rows.length * 520 + 2600, () => { si = (si + 1) % scenes.length; play(); });
+        };
+        typeTick();
       }
-      function fluctuate(base) {
-        if (reduceMotion) return;
-        reg(setInterval(() => {
-          const n = base + Math.floor((Math.random() - 0.4) * 14);
-          countEl.textContent = n.toLocaleString();
-        }, 2600));
-      }
-      function liveTiles() {
-        if (reduceMotion) return;
-        reg(setInterval(() => {
-          const t = tiles[Math.floor(Math.random() * tiles.length)];
-          if (!t) return;
-          t.pct += 6 + Math.floor(Math.random() * 16);
-          if (t.pct >= 100) {
-            t.bar.style.width = '100%';
-            t.dot.className = 'ft-dot srv';
-            setTimeout(() => {
-              const a = agents[Math.floor(Math.random() * agents.length)];
-              t.el.querySelector('.ft-nm').textContent = a[0];
-              t.el.querySelector('.ft-tk').textContent = a[1];
-              t.pct = 8 + Math.floor(Math.random() * 20);
-              t.dot.className = 'ft-dot run';
-              t.bar.style.width = t.pct + '%';
-            }, 900);
-          } else {
-            t.bar.style.width = t.pct + '%';
-          }
-        }, 700));
-      }
-      function start() {
-        if (started) return; started = true;
-        if (reduceMotion) { tiles.forEach((t) => t.el.classList.add('in')); countEl.textContent = '240'; return; }
-        tiles.forEach((t, i) => setTimeout(() => t.el.classList.add('in'), 40 + i * 45));
-        setTimeout(rampCounter, 200);
-        setTimeout(liveTiles, agents.length * 45 + 400);
-      }
-      watch(grid, start, 0.18);
+      watch($('#cpPalette'), play, 0.3);
     })();
 
     /* ── init icons + first scan ──────────────────────────────── */
@@ -605,145 +632,27 @@ export default function ShowTell() {
         </div>
       </section>
 
-      {/* ══════════════ HOW IT WORKS ══════════════ */}
-      <section className="sec" id="intro">
-        <div className="wrap">
-          <div className="sec-head reveal">
-            <p className="eyebrow">How it works</p>
-            <h2 className="h-section">You describe the work. It does it for you.</h2>
-          </div>
-          <p className="persona-sub">Tell Surogate what needs to happen, in plain words. It builds the agents that handle it, runs them in the cloud around the clock, and sharpens them on your own work over time. You never touch code, and you never lose sight of what they are allowed to do.</p>
-          <div className="intro-grid">
-            <div className="reveal">
-              <div className="intro-points">
-                <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="wand-2" /></div>
-                  <div><div className="ip-t">Built from your workflow, no code</div><p className="ip-d">Define what your agents do in plain language: their goals, their tools, their rules and their limits. You decide exactly what they may do, and what they must never do without you.</p></div>
-                </div>
-                <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="cloud" /></div>
-                  <div><div className="ip-t">Runs in the cloud, 24/7</div><p className="ip-d">Your agents live in the cloud, not on your laptop. They work when you don't, with no tab open and no machine running.</p></div>
-                </div>
-                <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="trending-up" /></div>
-                  <div><div className="ip-t">Trained on your own work</div><p className="ip-d">Every case they handle can become training. Fine-tune your agents and your skills on your own material, in a few clicks, and they get better at your work in particular — not at work in general.</p></div>
-                </div>
-              </div>
-            </div>
-            <div className="reveal d1">
-              <video
-                src="/surogate-app.mp4"
-                poster="/surogate-app-poster.jpg"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                tabIndex={-1}
-                aria-label="Screen recording of the Surogate app in use"
-                style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 14 }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ WHY SUROGATE - THREE PILLARS ══════════════ */}
-      <section className="sec" id="pillars" style={{ background: 'var(--paper-2)' }}>
-        <div className="wrap">
-          <div className="sec-head center reveal">
-            <p className="eyebrow center">Why Surogate</p>
-            <h2 className="h-section">Three ways it pays off</h2>
-            <p className="lead">A way to turn your work into recurring income, agents that run themselves, and intelligence you own.</p>
-          </div>
-          <div className="pillars reveal d1">
-            <div className="pcard feat">
-              <div className="pc-num">01</div>
-              <div className="pc-ic"><i data-lucide="banknote" /></div>
-              <div className="pc-t">Rent it out, not just run it.</div>
-              <p className="pc-d">Build an agent once, deploy it to every client you already have, and earn a <b>recurring monthly fee</b> from each one. An agency without employees - a subscription business without code.</p>
-              <a className="pc-link" href="#shift">See how it pays <i data-lucide="arrow-right" /></a>
-            </div>
-            <div className="pcard">
-              <div className="pc-num">02</div>
-              <div className="pc-ic"><i data-lucide="hexagon" /></div>
-              <div className="pc-t">Agents that run themselves.</div>
-              <p className="pc-d">Agents that <b>run in the cloud</b> - executing tasks, coordinating with each other, and reporting back 24/7. You set the goal; they do the work.</p>
-              <a className="pc-link" href="#agent">See one work <i data-lucide="arrow-right" /></a>
-            </div>
-            <div className="pcard">
-              <div className="pc-num">03</div>
-              <div className="pc-ic"><i data-lucide="diamond" /></div>
-              <div className="pc-t">Intelligence you own.</div>
-              <p className="pc-d">Distill your own work into <b>small expert models you own</b> - matching or beating frontier models on your tasks, at a fraction of the cost.</p>
-              <a className="pc-link" href="#flywheel">How the flywheel works <i data-lucide="arrow-right" /></a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ BUILD ONCE, EARN ALWAYS ══════════════ */}
-      <section className="sec shift" id="shift">
-        <div className="shift-sky" />
-        <div className="shift-dawn" id="shiftDawn" />
-        <div className="wrap">
-          <div className="sec-head center reveal">
-            <p className="eyebrow center">Build once, earn always</p>
-            <h2 className="h-section" style={{ color: 'rgb(247, 245, 242)' }}>You build it once. It earns while you sleep.</h2>
-            <p className="lead" style={{ color: 'rgb(147, 146, 140)' }}>The agent you ship keeps working for your patients, clients, or students around the clock - handling the routine, escalating only what matters. You're off the clock; the income isn't.</p>
-          </div>
-          <div className="shift-line" id="shiftLine">
-            <div className="shift-rail"><span id="shiftRail" /></div>
-            <div className="shift-stop" data-stop="0">
-              <div className="shift-dot" />
-              <div className="shift-time">Once</div>
-              <div className="shift-t">You build and ship the agent.</div>
-              <div className="shift-who"><i data-lucide="package-check" /> you</div>
-            </div>
-            <div className="shift-stop" data-stop="1">
-              <div className="shift-dot" />
-              <div className="shift-time">24/7</div>
-              <div className="shift-t">It works with your patients, clients, or students.</div>
-              <div className="shift-who"><i data-lucide="headset" /> deployed agent</div>
-            </div>
-            <div className="shift-stop" data-stop="2">
-              <div className="shift-dot" />
-              <div className="shift-time">Anytime</div>
-              <div className="shift-t">It escalates only what actually needs you.</div>
-              <div className="shift-who"><i data-lucide="hand" /> deployed agent</div>
-            </div>
-            <div className="shift-stop" data-stop="3">
-              <div className="shift-dot" />
-              <div className="shift-time">Monthly</div>
-              <div className="shift-t">The subscription renews. You earn.</div>
-              <div className="shift-who"><i data-lucide="banknote" /> recurring income</div>
-            </div>
-          </div>
-          <p className="shift-cap reveal">You build once. <span className="amber">Clients pay every month.</span></p>
-        </div>
-      </section>
-
       {/* ══════════════ PROOF - SEE IT WORK ══════════════ */}
       <section className="sec" id="agent" style={{ background: 'var(--paper)' }}>
         <div className="wrap">
-          <div className="sec-head center reveal">
-            <p className="eyebrow center">Proof - see it work</p>
-            <h2 className="h-section">This is what catching it early looks like.</h2>
-            <p className="lead">A real monitoring system, built by a cardiologist, checking in with a patient three days after a procedure. The point is not the conversation. The point is that someone noticed in time.</p>
+          <div className="sec-head reveal">
+            <p className="eyebrow">See it work</p>
+            <h2 className="h-section">A student is stuck. The agent finds out why.</h2>
+            <p className="lead">The chemistry teacher's tutoring agent from the cards above. One student, one short session, and it never simply hands over the answer.</p>
           </div>
           <div className="agent-stage reveal d1">
             <div className="agent-task">
-              <div className="at-label">Incoming &middot; live</div>
-              <div className="at-prompt">Hi doctor, I've had some chest tightness since yesterday evening - should I be worried?</div>
+              <div className="at-label">Session &middot; live</div>
+              <div className="at-prompt">I keep getting this one wrong and I don&rsquo;t know why.</div>
               <div className="at-from">
                 <div className="av"><i data-lucide="user" /></div>
-                <div className="meta"><b>Emma &middot; patient</b>via her cardiologist's monitoring agent</div>
+                <div className="meta"><b>Student &middot; web chat</b>picked up by the teacher's tutoring agent</div>
               </div>
               <div className="at-meta-list">
-                <div className="row"><span>Agent</span><b>patient-monitoring &middot; v1.4</b></div>
-                <div className="row"><span>Deployed for</span><b>a cardiology practice</b></div>
+                <div className="row"><span>Agent</span><b>tutoring &middot; v1.0</b></div>
+                <div className="row"><span>Deployed for</span><b>a chemistry teacher</b></div>
                 <div className="row"><span>Runs on</span><b>Surogate Cloud</b></div>
-                <div className="row"><span>Follows</span><b>every patient in the practice, continuously</b></div>
+                <div className="row"><span>Works with</span><b>every student, at their own pace</b></div>
               </div>
             </div>
             <div className="agent-feed-wrap">
@@ -754,22 +663,136 @@ export default function ShowTell() {
               <div className="af-feed" id="agentFeed" />
             </div>
           </div>
-          <p className="agent-compliance reveal"><i data-lucide="shield-check" /> The agent flags anything that needs the doctor's attention immediately. It never makes the call itself.</p>
-          <div className="fleet-divider reveal"><span className="fd-t">That was <span className="amber">one</span> patient. This is the whole practice.</span></div>
-          <div className="fleet reveal d1" id="fleet">
-            <div className="fleet-head">
-              <div className="fleet-count">
-                <span className="fc-big" id="fleetCount">0</span>
-                <span className="fc-lab"><b>patients</b> are being followed right now</span>
+          <p className="agent-compliance reveal"><i data-lucide="shield-check" /> The agent teaches on the teacher's own method. When something is the teacher's call, it stops and asks.</p>
+        </div>
+      </section>
+
+      {/* ══════════════ PRODUCT TOUR ══════════════ */}
+      <section className="sec" id="product" style={{ background: 'var(--paper-2)' }}>
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <p className="eyebrow">The platform</p>
+            <h2 className="h-section">Two modes: run agents, or build them</h2>
+            <p className="lead">That agent - and every one on this page - lives in the same two places. Work mode is for the people using deployed agents day to day. Develop mode is where they are designed, trained, evaluated and governed. Same platform, same project, one session log.</p>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className="aud-tabs" id="tourTabs">
+              <button type="button" className="aud-tab on" data-tour="0"><i data-lucide="briefcase-business" />Work mode</button>
+              <button type="button" className="aud-tab" data-tour="1"><i data-lucide="code-2" />Develop mode</button>
+            </div>
+          </div>
+
+          <div className="aud-panel reveal" data-tour-panel="0">
+            <div className="intro-grid">
+              <div>
+                <div className="intro-points">
+                  <div className="ipoint">
+                    <div className="ip-ic"><i data-lucide="messages-square" /></div>
+                    <div><div className="ip-t">Chat with deployed agents</div><p className="ip-d">Talk to an agent, hand it a task, review what it did. Attach a skill or a knowledge base in plain language - no configuration files.</p></div>
+                  </div>
+                  <div className="ipoint">
+                    <div className="ip-ic"><i data-lucide="inbox" /></div>
+                    <div><div className="ip-t">Missions, sub-agents, inbox</div><p className="ip-d">Long-running work graded against success criteria, delegated parts handled by sub-agents, and an inbox where approvals wait for a human.</p></div>
+                  </div>
+                  <div className="ipoint">
+                    <div className="ip-ic"><i data-lucide="share-2" /></div>
+                    <div><div className="ip-t">Publish to your channels</div><p className="ip-d">Put the same agent on web chat, Slack, Telegram, an embeddable widget, or your own app over the API.</p></div>
+                  </div>
+                  <div className="ipoint">
+                    <div className="ip-ic"><i data-lucide="thumbs-up" /></div>
+                    <div><div className="ip-t">Flag good and bad turns</div><p className="ip-d">Every message, tool call and result is recorded and replayable. Flagging a turn is what feeds the next round of training.</p></div>
+                  </div>
+                </div>
               </div>
-              <div className="fleet-legend">
-                <span className="lg"><span className="d run" /> serving</span>
-                <span className="lg"><span className="d dep" /> onboarding</span>
-                <span className="lg"><span className="d srv" /> idle</span>
+              <div>
+                <div style={FRAME}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '13px 18px', borderBottom: '1px solid var(--line2)', background: 'var(--paper-2)', fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--txt-3)' }}>
+                    <i data-lucide="message-square" style={{ width: 14, height: 14, color: 'var(--amber)' }} />
+                    <span>session &middot; support-triage</span>
+                    <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--green)' }} />live</span>
+                  </div>
+                  <div style={{ padding: '22px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    <div style={{ alignSelf: 'flex-end', maxWidth: '78%', background: 'var(--ink)', color: '#fff', borderRadius: '13px 13px 4px 13px', padding: '12px 15px', fontSize: 15, lineHeight: 1.45 }}>Draft the follow-up for ticket 4821 and refund it if policy allows.</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 9, fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--txt-3)' }}>
+                      <i data-lucide="zap" style={{ width: 13, height: 13, color: 'var(--amber)' }} /> skill: refunds &middot; expert: policy
+                    </div>
+                    <div style={{ alignSelf: 'flex-start', maxWidth: '82%', background: 'var(--paper-2)', border: '1px solid var(--line2)', borderRadius: '13px 13px 13px 4px', padding: '12px 15px', fontSize: 15, lineHeight: 1.45, color: 'var(--txt-1)' }}>Refund of <b>$129.00</b> issued and the ticket is updated. Draft reply is in your inbox for approval.</div>
+                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 2 }}>
+                      <span style={CHIP}>payments.refund</span>
+                      <span style={CHIP}>tickets.update</span>
+                      <span style={{ ...CHIP, border: '1px solid var(--amber-line)', color: 'var(--amber)' }}>awaiting approval</span>
+                    </div>
+                  </div>
+                </div>
+                <p style={CAPTION}>Work mode &middot; one agent, one recorded session</p>
               </div>
             </div>
-            <div className="fleet-grid" id="fleetGrid" />.
-            <p className="fleet-foot">Built once, the system stays with every patient who joins. <b>Nobody has to wait for the next appointment</b> to be heard, and nothing that matters waits with them.</p>
+          </div>
+
+          <div className="aud-panel reveal" data-tour-panel="1" style={{ display: 'none' }}>
+            <div className="intro-grid">
+              <div>
+                <div className="intro-points">
+                  <div className="ipoint">
+                    <div className="ip-ic"><i data-lucide="hexagon" /></div>
+                    <div><div className="ip-t">Agents from configuration, not code</div><p className="ip-d">A model, a persona, skills, knowledge bases, MCP tools and guardrails - deployed as a service your users can talk to.</p></div>
+                  </div>
+                  <div className="ipoint">
+                    <div className="ip-ic"><i data-lucide="database" /></div>
+                    <div><div className="ip-t">Datasets built from real sessions</div><p className="ip-d">Training and evaluation sets from production traffic, uploads, or synthetic generation - profiled, scanned for PII, versioned in the Data Hub.</p></div>
+                  </div>
+                  <div className="ipoint">
+                    <div className="ip-ic"><i data-lucide="triangle" /></div>
+                    <div><div className="ip-t">Train experts and serve them</div><p className="ip-d">Supervised fine-tuning, LoRA and QLoRA, long-context and mixture-of-experts runs across several GPUs, plus RL against verifiable rewards or an LLM judge.</p></div>
+                  </div>
+                  <div className="ipoint">
+                    <div className="ip-ic"><i data-lucide="shield-check" /></div>
+                    <div><div className="ip-t">Governance and the API</div><p className="ip-d">Guardrails, the credential vault, the event log, and the full platform over the API for anything you want to automate yourself.</p></div>
+                  </div>
+                </div>
+              </div>
+              <Shot src="/Training-1.png" alt="A training run in Surogate Develop mode" caption="Develop mode · a training run in the Studio" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ COPILOT ══════════════ */}
+      <section className="sec dark" id="copilot">
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <p className="eyebrow">Copilot</p>
+            <h2 className="h-section">You describe the work. It does it for you.</h2>
+            <p className="lead">The Copilot drives the platform itself. It creates the agent, attaches the skill or the knowledge base, scales the deployment, starts the training run - and answers questions about what ran yesterday. Most of what this page describes clicking through, you can ask for instead.</p>
+          </div>
+          <div className="intro-grid" style={{ marginTop: 54 }}>
+            <div className="reveal">
+              <div id="cpPalette" style={{ border: '1px solid var(--amber-line)', borderRadius: 14, background: 'rgba(255,255,255,.03)', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 20px', borderBottom: '1px solid var(--line-dk)' }}>
+                  <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.12em', padding: '5px 9px', border: '1px solid var(--amber-line)', borderRadius: 6, color: 'var(--amber)' }}>⌘ /</span>
+                  <span id="cpType" style={{ fontSize: 17, color: 'var(--txt-d1)', minHeight: 24 }} />
+                  <span id="cpCaret" style={{ width: 2, height: 20, background: 'var(--amber)', display: 'inline-block' }} />
+                </div>
+                <div id="cpOut" style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 11, minHeight: 150 }} />
+              </div>
+              <p style={{ ...CAPTION, marginTop: 16, color: 'var(--txt-d3)' }}>Destructive or expensive operations show a confirmation card naming the exact resource first.</p>
+            </div>
+            <div className="reveal d1">
+              <div className="intro-points">
+                <div className="ipoint">
+                  <div className="ip-ic"><i data-lucide="wand-2" /></div>
+                  <div><div className="ip-t" style={{ color: 'var(--txt-d1)' }}>No forms, no config files</div><p className="ip-d" style={{ color: 'var(--txt-d2)' }}>Ask in plain language and the Copilot calls the platform's own tools - the same ones the API exposes.</p></div>
+                </div>
+                <div className="ipoint">
+                  <div className="ip-ic"><i data-lucide="search" /></div>
+                  <div><div className="ip-t" style={{ color: 'var(--txt-d1)' }}>It answers questions too</div><p className="ip-d" style={{ color: 'var(--txt-d2)' }}>What ran yesterday, which sessions got a thumbs-down, how the <span style={{ fontFamily: 'var(--mono)' }}>sql-writer</span> expert is performing this week.</p></div>
+                </div>
+                <div className="ipoint">
+                  <div className="ip-ic"><i data-lucide="hand" /></div>
+                  <div><div className="ip-t" style={{ color: 'var(--txt-d1)' }}>Bounded on purpose</div><p className="ip-d" style={{ color: 'var(--txt-d2)' }}>Deleting anything or starting a training run needs a confirmation. The builder's view lists every operation it exposes - and what it deliberately will not do.</p></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -777,8 +800,8 @@ export default function ShowTell() {
       {/* ══════════════ CAPABILITIES EXPLORER ══════════════ */}
       <section className="sec" id="capabilities">
         <div className="wrap">
-          <div className="sec-head center reveal">
-            <p className="eyebrow center">Capabilities</p>
+          <div className="sec-head reveal">
+            <p className="eyebrow">Capabilities</p>
             <h2 className="h-section">Far more than a chatbot - a capable digital worker</h2>
             <p className="lead">Pick a capability to see what it actually looks like in practice.</p>
           </div>
@@ -794,105 +817,6 @@ export default function ShowTell() {
               <div className="cap-item" data-cap="7"><div className="ci-ic"><i data-lucide="shield-check" /></div><div className="ci-t">Safe to put to work</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
             </div>
             <div className="cap-panel" id="capPanel" />
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ LIFECYCLE LOOP ══════════════ */}
-      <section className="sec dark" id="lifecycle">
-        <div className="wrap">
-          <div className="sec-head center reveal">
-            <p className="eyebrow center">The lifecycle</p>
-            <h2 className="h-section">Build, run, review, improve - one continuous loop</h2>
-            <p className="lead">Every agent moves through the same loop. Watch it cycle, or click a stage to dig in.</p>
-          </div>
-          <div className="loop-stage reveal d1">
-            <div className="loop-track" id="loopTrack">
-              <div className="lp-card" data-step="0">
-                <div className="lp-num">01</div>
-                <div className="lp-ic"><i data-lucide="hammer" /></div>
-                <div className="lp-t">Build</div>
-                <p className="lp-d">Design an agent shaped to your business - its voice, the knowledge it draws on, the tools it uses, the limits it respects.</p>
-                <div className="lp-prog"><span /></div>
-                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
-              </div>
-              <div className="lp-card" data-step="1">
-                <div className="lp-num">02</div>
-                <div className="lp-ic"><i data-lucide="rocket" /></div>
-                <div className="lp-t">Run</div>
-                <p className="lp-d">Put the agent to work across the channels your teams and customers already use, doing real end-to-end tasks.</p>
-                <div className="lp-prog"><span /></div>
-                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
-              </div>
-              <div className="lp-card" data-step="2">
-                <div className="lp-num">03</div>
-                <div className="lp-ic"><i data-lucide="eye" /></div>
-                <div className="lp-t">Review</div>
-                <p className="lp-d">Observe how every agent performs, flag what worked and what didn't, and turn real operations into clear signal.</p>
-                <div className="lp-prog"><span /></div>
-                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
-              </div>
-              <div className="lp-card" data-step="3">
-                <div className="lp-num">04</div>
-                <div className="lp-ic"><i data-lucide="trending-up" /></div>
-                <div className="lp-t">Improve</div>
-                <p className="lp-d">Most changes apply instantly; for high-value tasks, train a specialist from your own data - a compounding advantage.</p>
-                <div className="lp-prog"><span /></div>
-                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
-              </div>
-            </div>
-            <div className="loop-return"><i data-lucide="rotate-ccw" /> Every day you run it, your AI gets <span className="amber">&nbsp;better</span></div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ FOR DEVELOPERS ══════════════ */}
-      <section className="sec persona" id="developers">
-        <div className="wrap">
-          <div className="sec-head reveal">
-            <p className="eyebrow">For developers</p>
-            <h2 className="h-section">Building this for someone else? Start here.</h2>
-            <p className="lead">Surogate ships a ready-made kit for each professional category - medical monitoring, legal intake, accounting oversight, tutoring. Customize one for a real client instead of building agent infrastructure from zero.</p>
-          </div>
-          <div className="pilot-grid kit-grid reveal d1">
-            <div className="aud-card show pilot-card">
-              <div className="ac-ic"><i data-lucide="heart-pulse" /></div>
-              <div className="ac-cat">Medical</div>
-              <div className="ac-t">Monitoring kit</div>
-              <p className="ac-d">Patient check-ins, symptom tracking, anomaly flags, weekly reports.</p>
-            </div>
-            <div className="aud-card show pilot-card">
-              <div className="ac-ic"><i data-lucide="scale" /></div>
-              <div className="ac-cat">Legal</div>
-              <div className="ac-t">Intake kit</div>
-              <p className="ac-d">Client intake, procedural Q&amp;A, contract red-flag review, escalation routing.</p>
-            </div>
-            <div className="aud-card show pilot-card">
-              <div className="ac-ic"><i data-lucide="calculator" /></div>
-              <div className="ac-cat">Accounting</div>
-              <div className="ac-t">Oversight kit</div>
-              <p className="ac-d">Financial monitoring, deadline tracking, proactive client alerts.</p>
-            </div>
-            <div className="aud-card show pilot-card">
-              <div className="ac-ic"><i data-lucide="graduation-cap" /></div>
-              <div className="ac-cat">Education</div>
-              <div className="ac-t">Tutoring kit</div>
-              <p className="ac-d">Practice drills, progress tracking, parent/guardian reporting.</p>
-            </div>
-          </div>
-          <div className="dev-cols reveal d1">
-            <div className="dev-agency">
-              <div className="da-eye"><i data-lucide="repeat" /> The agency case</div>
-              <p className="da-d">Build a kit once, resell it to multiple businesses - like the booking agent one developer built for <b>Bright Dental</b>, now earning <b>&euro;450/month per clinic.</b></p>
-            </div>
-            <div className="dev-compare">
-              <div className="dc-eye"><i data-lucide="git-compare" /> Why not just wire up APIs?</div>
-              <p className="dc-d">Most workflow builders connect to other people's APIs. Surogate <b>trains, fine-tunes, deploys, and observes the agent itself</b> - on infrastructure you control.</p>
-            </div>
-          </div>
-          <div className="dev-cta reveal">
-            <a className="btn btn-dark" href="https://ops.surogate.ai"><i data-lucide="message-square" />Join Surogate Builders</a>
-            <a className="btn btn-ghost btn-ghost-dk" href="https://github.com/invergent-ai/surogates"><i data-lucide="git-branch" />Start with the open-source tier</a>
           </div>
         </div>
       </section>
@@ -961,44 +885,183 @@ export default function ShowTell() {
         </div>
       </section>
 
-      {/* ══════════════ THE WHOLE FACTORY ══════════════ */}
-      <section className="sec" id="platform">
+      {/* ══════════════ CHANNELS ══════════════ */}
+      <section className="sec" id="channels" style={{ background: 'var(--paper-2)' }}>
         <div className="wrap">
           <div className="sec-head reveal">
-            <p className="eyebrow">The whole factory</p>
-            <h2 className="h-section">One integrated platform: operate, library, train</h2>
+            <p className="eyebrow">Channels</p>
+            <h2 className="h-section">One agent, everywhere your people already are</h2>
+            <p className="lead">Publish the same agent to a hosted chat page, Slack, Telegram, WhatsApp, your own website, or a pipeline over the API. Every channel reaches the same agent, with the same skills and the same guardrails.</p>
           </div>
-          <div className="plat-groups reveal d1">
-            <div className="pg">
-              <div className="pg-head"><i data-lucide="square-activity" /><span className="pg-name">Operate</span></div>
-              <ul>
-                <li><i data-lucide="hexagon" /><b>Agents</b></li>
-                <li><i data-lucide="square-stack" /><b>Sessions</b><span className="sub">- observe &amp; evaluate</span></li>
-                <li><i data-lucide="cloud" /><b>Compute</b><span className="sub">- your clusters</span></li>
-              </ul>
+          <div className="chan-grid reveal d1">
+            {CHANNELS.map((c) => (
+              <div className="chan" key={c.name}>
+                <div className="chan-ic"><ChannelIcon brand={c.brand} icon={c.icon} /></div>
+                <div className="chan-n">{c.name}</div>
+                <p className="chan-d">{c.d}</p>
+                <div className="chan-id">{c.id}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ THE IMPROVEMENT LOOP ══════════════ */}
+      <section className="sec dark" id="lifecycle">
+        <div className="wrap">
+          <div className="sec-head center reveal">
+            <p className="eyebrow center">The improvement loop</p>
+            <h2 className="h-section">Build, observe, train, redeploy</h2>
+            <p className="lead">Every agent moves through the same four phases, and each one has an honest cost: editing a skill lands in minutes, fine-tuning an expert takes hours. Watch it cycle, or click a phase to dig in.</p>
+          </div>
+          <div className="loop-stage reveal d1">
+            <div className="loop-track" id="loopTrack">
+              <div className="lp-card" data-step="0">
+                <div className="lp-num">01</div>
+                <div className="lp-ic"><i data-lucide="hammer" /></div>
+                <div className="lp-t">Build</div>
+                <p className="lp-d">Assemble the agent from configuration rather than code: a model, a persona, skills, knowledge bases, MCP tools and guardrails.</p>
+                <div className="lp-prog"><span /></div>
+                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
+              </div>
+              <div className="lp-card" data-step="1">
+                <div className="lp-num">02</div>
+                <div className="lp-ic"><i data-lucide="eye" /></div>
+                <div className="lp-t">Observe</div>
+                <p className="lp-d">Every message, tool call and result is recorded and replayable in the session log. You flag the turns that went well and the ones that did not.</p>
+                <div className="lp-prog"><span /></div>
+                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
+              </div>
+              <div className="lp-card" data-step="2">
+                <div className="lp-num">03</div>
+                <div className="lp-ic"><i data-lucide="triangle" /></div>
+                <div className="lp-t">Train</div>
+                <p className="lp-d">The cheap way: edit a skill, a persona, a knowledge base. The expensive way: fine-tune an expert on the sessions you flagged.</p>
+                <div className="lp-prog"><span /></div>
+                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
+              </div>
+              <div className="lp-card" data-step="3">
+                <div className="lp-num">04</div>
+                <div className="lp-ic"><i data-lucide="rocket" /></div>
+                <div className="lp-t">Redeploy</div>
+                <p className="lp-d">Promote the new version behind the same endpoint, with versioned rollback if the numbers get worse instead of better.</p>
+                <div className="lp-prog"><span /></div>
+                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
+              </div>
             </div>
-            <div className="pg">
-              <div className="pg-head"><i data-lucide="library" /><span className="pg-name">Library</span></div>
-              <ul>
-                <li><i data-lucide="diamond" /><b>Models</b><span className="sub">- bring your own</span></li>
-                <li><i data-lucide="zap" /><b>Skills &amp; Tools</b></li>
-                <li><i data-lucide="book-open" /><b>Knowledge Bases</b></li>
-              </ul>
+            <div className="loop-return"><i data-lucide="rotate-ccw" /> Every day you run it, your AI gets <span className="amber">&nbsp;better</span></div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ EVALUATIONS ══════════════ */}
+      <section className="sec" id="evals" style={{ background: 'var(--paper-2)' }}>
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <p className="eyebrow">Evaluations</p>
+            <h2 className="h-section">Measure it before you promote it</h2>
+            <p className="lead">Score an agent or a model against 40 built-in benchmarks, or against a custom benchmark built from your own failed sessions. Then A/B two candidates and promote the one that actually won.</p>
+          </div>
+          <div className="intro-grid" style={{ marginTop: 54 }}>
+            <div className="reveal">
+              <div className="intro-points">
+                <div className="ipoint">
+                  <div className="ip-ic"><i data-lucide="list-checks" /></div>
+                  <div><div className="ip-t">40 built-in benchmarks</div><p className="ip-d">Standard suites for reasoning, knowledge, safety and code, run against any model or agent in your project.</p></div>
+                </div>
+                <div className="ipoint">
+                  <div className="ip-ic"><i data-lucide="file-warning" /></div>
+                  <div><div className="ip-t">Custom suites from your failures</div><p className="ip-d">The sessions that went wrong become the benchmark. A fix is only a fix when the cases that broke it pass.</p></div>
+                </div>
+                <div className="ipoint">
+                  <div className="ip-ic"><i data-lucide="git-compare" /></div>
+                  <div><div className="ip-t">A/B before promoting</div><p className="ip-d">Two candidates, the same tasks, full traces and pass rates side by side - with regressions surfaced rather than discovered later.</p></div>
+                </div>
+              </div>
             </div>
-            <div className="pg">
-              <div className="pg-head"><i data-lucide="triangle" /><span className="pg-name">Train</span></div>
-              <ul>
-                <li><i data-lucide="database" /><b>Datasets</b><span className="sub">- versioned hub</span></li>
-                <li><i data-lucide="triangle" /><b>Training</b><span className="sub">- fine-tune &amp; RL</span></li>
-                <li><i data-lucide="network" /><b>Data Hub</b></li>
-              </ul>
+            <Shot className="reveal d1" src="/Evaluation-BenchmarksResults.png" alt="Benchmark results in Surogate" caption="Benchmark results · Develop mode" />
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ MODELS AND COMPUTE ══════════════ */}
+      <section className="sec" id="compute">
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <p className="eyebrow">Models and compute</p>
+            <h2 className="h-section">Your models, your GPUs, your gateway</h2>
+            <p className="lead">Serve open-weights models with quantization, autoscaling and versioned rollback - or bring your own LLM per agent and pay the provider directly. Runs execute on whatever compute you attach.</p>
+          </div>
+          <div className="intro-grid" style={{ marginTop: 54 }}>
+            <Shot className="reveal" src="/Cloud.png" alt="Attached compute providers in Surogate" caption="Compute providers · attach and schedule" />
+            <div className="reveal d1">
+              <div className="intro-points">
+                <div className="ipoint">
+                  <div className="ip-ic"><i data-lucide="diamond" /></div>
+                  <div><div className="ip-t">Serving with rollback</div><p className="ip-d">Endpoints with quantization and autoscaling, versioned so a bad promotion is one call away from being undone.</p></div>
+                </div>
+                <div className="ipoint">
+                  <div className="ip-ic"><i data-lucide="cloud" /></div>
+                  <div><div className="ip-t">Bring your own compute</div><p className="ip-d">AWS, GCP, Azure, OCI, Modal, RunPod, Nebius, vast.ai, or your own on-prem cluster. No migration, no lock-in.</p></div>
+                </div>
+                <div className="ipoint">
+                  <div className="ip-ic"><i data-lucide="plug" /></div>
+                  <div><div className="ip-t">Bring your own LLM</div><p className="ip-d">Point an agent at your own provider account per agent, and pay them directly instead of drawing on the plan allowance.</p></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="foundation reveal d2">
-            <div className="f"><i data-lucide="cloud" /><span><b>Runs in the cloud</b>Nothing to host or maintain</span></div>
-            <div className="f"><i data-lucide="wand-2" /><span><b>No code</b>Build in plain language</span></div>
-            <div className="f"><i data-lucide="boxes" /><span><b>Bring your own compute</b>Optional - scale on your GPUs</span></div>
-            <div className="f"><i data-lucide="git-branch" /><span><b>Versioned hub</b>Models &amp; datasets tracked</span></div>
+        </div>
+      </section>
+
+      {/* ══════════════ SECURITY AND GOVERNANCE ══════════════ */}
+      <section className="sec dark" id="security">
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <p className="eyebrow">Security and governance</p>
+            <h2 className="h-section">Safe enough to hand real work to</h2>
+            <p className="lead">Guardrails are locked when a session starts and cannot be weakened mid-task. Sandboxed code is network-restricted, integrations are scanned for tampering, and every action lands in the event log.</p>
+          </div>
+          <div className="pillars grid-2 reveal d1">
+            {GUARANTEES.map((g) => (
+              <div className="pcard" key={g.t} style={{ background: 'rgba(255,255,255,.03)', borderColor: 'var(--line-dk)', boxShadow: 'none' }}>
+                <div className="pc-ic"><i data-lucide={g.icon} /></div>
+                <div className="pc-t">{g.t}</div>
+                <p className="pc-d" style={{ color: 'var(--txt-d2)' }}>{g.d}</p>
+              </div>
+            ))}
+          </div>
+          <p className="exp-foot">Enterprise adds SSO, RBAC, audit logs, dedicated compute and an SLA.</p>
+        </div>
+      </section>
+
+      {/* ══════════════ MONETIZATION ══════════════ */}
+      <section className="sec" id="monetize" style={{ background: 'var(--paper-2)' }}>
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <p className="eyebrow">Monetization</p>
+            <h2 className="h-section">Sell access to the agent you built</h2>
+            <p className="lead">An agent trained on how you work is worth something to the people you already serve. Publish it, set your own price, and charge for access - a monthly subscription, packs of tokens, or both.</p>
+          </div>
+          <div className="pillars reveal d1">
+            <div className="pcard">
+              <div className="pc-num">01</div>
+              <div className="pc-ic"><i data-lucide="banknote" /></div>
+              <div className="pc-t">You are the merchant of record.</div>
+              <p className="pc-d">Buyers pay into <b>your own Stripe account</b> on your normal payout schedule, and your business name appears on their card statement. Surogate takes a platform fee rather than holding the money.</p>
+            </div>
+            <div className="pcard">
+              <div className="pc-num">02</div>
+              <div className="pc-ic"><i data-lucide="user-plus" /></div>
+              <div className="pc-t">Buyers need no account here.</div>
+              <p className="pc-d">They sign in through your agent with self-registration, and the platform enforces the <b>token budget on every message</b> - so a heavy user cannot quietly cost you more than they pay.</p>
+            </div>
+            <div className="pcard">
+              <div className="pc-num">03</div>
+              <div className="pc-ic"><i data-lucide="sliders-horizontal" /></div>
+              <div className="pc-t">You set the pricing model.</div>
+              <p className="pc-d">Subscription, token packs, or both, at the price you choose. Agent commerce is available on the <b>Pro plan</b> and higher.</p>
+            </div>
           </div>
         </div>
       </section>
