@@ -6,7 +6,8 @@ import { usePathname } from 'next/navigation';
 import { track } from '@/lib/analytics';
 
 const NAV_LINKS = [
-  { key: 'how', hash: '#how', label: 'How it works' },
+  { key: 'how', hash: '#lifecycle', label: 'How it works' },
+  { key: 'platform', hash: '#product', label: 'Platform' },
   { key: 'pricing', href: '/pricing', label: 'Pricing' },
   { key: 'docs', href: 'https://docs.surogate.ai', label: 'Docs', external: true },
 ];
