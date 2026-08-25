@@ -1,7 +1,11 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createIcons, icons as lucideIcons } from 'lucide';
+import dynamic from 'next/dynamic';
+
+// The films are the same React scenes the renderer uses, played in the page.
+const FilmPlayer = dynamic(() => import('./FilmPlayer'), { ssr: false });
 
 /*
  * Faithful port of the "Surogate Show & Tell" design.
@@ -13,83 +17,14 @@ import { createIcons, icons as lucideIcons } from 'lucide';
 /* Shared inline styles for the ported design's screenshot frames and chips —
    the design uses .st-home CSS variables, so these stay inline rather than
    growing five more one-off rules in app/home.css. */
-const FRAME = { border: '1px solid var(--line2)', borderRadius: 14, overflow: 'hidden', background: '#fff', boxShadow: 'var(--shadow-card)' };
 const CAPTION = { margin: '14px 0 0', fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--txt-3)' };
 const CHIP = { fontFamily: 'var(--mono)', fontSize: 11, padding: '5px 9px', border: '1px solid var(--line2)', borderRadius: 999, color: 'var(--txt-3)' };
 
-function Shot({ src, alt, caption, className }) {
-  return (
-    <div className={className}>
-      <div style={FRAME}><img src={src} alt={alt} style={{ display: 'block', width: '100%', height: 'auto' }} /></div>
-      <p style={CAPTION}>{caption}</p>
-    </div>
-  );
-}
-
-/* Slack and Telegram in their own brand colours. Lucide has no brand icons, so
-   these are the official marks: Slack's four-colour hash, and the Telegram
-   plane on its brand blue. */
-function SlackMark() {
-  return (
-    <svg viewBox="0 0 127 127" width="24" height="24" aria-hidden="true">
-      <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A" />
-      <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z" fill="#36C5F0" />
-      <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D" />
-      <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E" />
-    </svg>
-  );
-}
-
-function TelegramMark() {
-  return (
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-      <circle cx="12" cy="12" r="12" fill="#26A5E4" />
-      <path d="M16.906 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" fill="#fff" />
-    </svg>
-  );
-}
-
-function WhatsAppMark() {
-  return (
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#25D366" />
-    </svg>
-  );
-}
-
-const MARKS = { slack: SlackMark, telegram: TelegramMark, whatsapp: WhatsAppMark };
-
-function ChannelIcon({ brand, icon }) {
-  const Mark = MARKS[brand];
-  return Mark ? <Mark /> : <i data-lucide={icon} />;
-}
-
-const CHANNELS = [
-  { name: 'Web chat', icon: 'globe',
-    d: 'A hosted chat page behind a link. Replies stream token by token, and every tool call the agent makes is there to read.',
-    id: 'signed-in user · full session history' },
-  { name: 'Slack', brand: 'slack',
-    d: 'It answers in the thread where the work already is. Slash commands and buttons behave the way your team expects them to.',
-    id: 'DMs · @mentions · threads' },
-  { name: 'Telegram', brand: 'telegram',
-    d: 'A bot people already know how to talk to — one to one, in a group, or inside a single forum topic.',
-    id: 'DMs · groups · forum topics' },
-  { name: 'WhatsApp', brand: 'whatsapp',
-    d: "Meta's official Business Cloud API on your own number. The agent answers; it never cold-messages anyone.",
-    id: 'one to one · your business number' },
-  { name: 'Your website', icon: 'code-2',
-    d: 'One script tag puts the agent on your public site, for visitors who have no account with you at all.',
-    id: 'publishable key · origin allow-list' },
-  { name: 'API', icon: 'plug',
-    d: 'Submit prompts from a pipeline or a batch job and read the results straight back out of the session log.',
-    id: 'service-account token · no user' },
-];
-
-const GUARANTEES = [
-  { icon: 'lock', t: 'Guardrails locked at session start', d: 'A running task cannot talk its way into wider permissions. What was allowed when the session opened is what stays allowed.' },
-  { icon: 'key-round', t: 'Credentials in a vault', d: "MCP servers use your secrets without the agent's runtime ever seeing them. Used, never exposed." },
-  { icon: 'box', t: 'Network-restricted sandbox', d: 'Code the agent writes runs sandboxed and restricted, and integrations are scanned for tampering before they load.' },
-  { icon: 'file-text', t: 'Durable event log', d: 'Sessions run on a durable log, so a crashed worker resumes rather than losing work - and every action stays auditable.' },
+const FACTORY = [
+  { t: 'The studio', d: 'Design agents from a model, your knowledge bases, your tools and skills - and the guardrails they must respect. No code.' },
+  { t: 'Managed runtime', d: 'Deployed for you in the cloud, on your channels, around the clock - escalating anything that needs a human.' },
+  { t: 'Observe & improve', d: 'Every session recorded and replayable. Edit a skill, tighten a rule, or train an expert model you own.' },
+  { t: 'Monetize', d: 'Publish the agent, set your own price, and charge for access - paid into your own Stripe account.' },
 ];
 
 export default function ShowTell() {
@@ -156,58 +91,7 @@ export default function ShowTell() {
       watch(track, start, 0.4);
     })();
 
-    /* 2 · AGENT DEMO ─────────────────────────────────────────── */
-    (function agent() {
-      const feed = $('#agentFeed'); if (!feed) return;
-      const replayBtn = $('#agentReplay');
-      const steps = [
-        { d: 700, html: `<div class="fi-step done"><div class="ic"><i data-lucide="search-check"></i></div><div class="bd"><div class="lbl">Looked at her last three attempts.</div><div class="fi-sub">&rarr; the balancing is fine - grams to moles is where it breaks</div></div></div>` },
-        { d: 900, html: `<div class="fi-step done"><div class="ic"><i data-lucide="corner-left-down"></i></div><div class="bd"><div class="lbl">Went <b>back one lesson</b> and re-taught moles with two short questions - no answer given away.</div></div></div>` },
-        { d: 950, html: `<div class="fi-step done"><div class="ic"><i data-lucide="circle-check"></i></div><div class="bd"><div class="lbl">She solved the original problem herself on the second try.</div></div></div>` },
-        { d: 850, html: `<div class="fi-approve" id="apCard"><div class="ap-h"><i data-lucide="hand"></i> I need your input</div><div class="ap-d">She wants to skip ahead to next week&rsquo;s chapter. What a student is ready for is your call, not the agent&rsquo;s.</div><div class="ap-btns"><button class="ap-btn yes" id="apYes">Let her ahead</button><button class="ap-btn no">Hold</button></div></div>` },
-        { d: 700, html: `<div class="fi-result"><div class="rs-h"><i data-lucide="circle-check-big"></i> By the time you looked</div><div class="rs-grid"><div class="rs-c"><div class="n">9 min</div><div class="l">Session, while you taught the class</div></div><div class="rs-c"><div class="n">1</div><div class="l">Gap found and closed</div></div><div class="rs-c"><div class="n">0</div><div class="l">Answers handed over</div></div></div></div>` },
-      ];
-      let tickets = [];
-      const clearTickets = () => { tickets.forEach((t) => clearTimeout(t)); tickets = []; };
-      const typing = () => {
-        const w = document.createElement('div');
-        w.className = 'fi show'; w.dataset.typing = '1';
-        w.innerHTML = `<div class="fi-step"><div class="ic"><i data-lucide="loader"></i></div><div class="bd"><div class="lbl" style="color:var(--txt-d3)"><span class="typing"><span></span><span></span><span></span></span></div></div></div>`;
-        return w;
-      };
-      function play() {
-        clearTickets();
-        feed.innerHTML = '';
-        let t = 0;
-        feed.appendChild(typing()); icons();
-        steps.forEach((step, idx) => {
-          t += step.d;
-          tickets.push(setTimeout(() => {
-            const ex = feed.querySelector('[data-typing]'); if (ex) ex.remove();
-            const el = document.createElement('div');
-            el.className = 'fi'; el.innerHTML = step.html;
-            feed.appendChild(el);
-            tickets.push(setTimeout(() => el.classList.add('show'), 20));
-            icons();
-            feed.scrollTop = feed.scrollHeight;
-            if (idx === steps.length - 2) {
-              tickets.push(setTimeout(() => {
-                const yes = $('#apYes'); const card = $('#apCard');
-                if (yes) yes.textContent = 'Approved ✓';
-                if (card) card.classList.add('granted');
-              }, 650));
-            }
-            if (idx < steps.length - 1) {
-              feed.appendChild(typing()); icons(); feed.scrollTop = feed.scrollHeight;
-            }
-          }, t));
-        });
-      }
-      if (replayBtn) replayBtn.addEventListener('click', play);
-      watch(feed, play, 0.3);
-    })();
-
-    /* 3 · FLYWHEEL ───────────────────────────────────────────── */
+    /* 2 · FLYWHEEL ───────────────────────────────────────────── */
     (function flywheel() {
       const wheel = $('#flyWheel'); if (!wheel) return;
       const nodes = $$('.fly-node', wheel);
@@ -236,249 +120,7 @@ export default function ShowTell() {
       watch(wheel, start, 0.35);
     })();
 
-    /* 4 · CAPABILITIES EXPLORER ──────────────────────────────── */
-    (function capabilities() {
-      const list = $('#capList'); const panel = $('#capPanel'); if (!list || !panel) return;
-      const caps = [
-        { eye: 'Acts end to end', t: 'Works, not just talks',
-          d: 'An agent follows a multi-step process to completion - making decisions, using your systems, and delivering a finished result rather than a suggestion. If anything restarts mid-run, it resumes exactly where it left off.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="workflow"></i> task: process refund request #4821</div>
-            <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Verify</b> order &amp; eligibility</div><div class="dr-tag run">running</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Issue</b> refund via payments API</div><div class="dr-tag run">running</div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Update</b> ticket &amp; notify customer</div><div class="dr-tag run">running</div></div>
-              <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="circle-check-big"></i></div><div class="dr-t">Refund of <b>$129.00</b> completed</div><div class="dr-tag">2.1s</div></div>
-            </div></div>` },
-        { eye: 'Grounded in your knowledge', t: 'Knows your business',
-          d: 'Answers and actions draw on your own documentation, policies, and institutional memory - extended with reusable skills and task-specialized expert models. Specific and cited, not a generic guess.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="book-open"></i> knowledge base &middot; skills &amp; experts</div>
-            <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="demo-bubble user">What's our SLA for enterprise incidents?</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t">Routing your question…</div><div class="dr-tag run">…</div></div>
-              <div class="demo-row" data-i="2"><div class="demo-bubble agent"><span class="tw"></span><span class="src"></span></div></div>
-            </div></div>` },
-        { eye: 'Connected to your stack', t: 'Uses your tools',
-          d: 'Agents act inside the platforms you already run, with credentials held in a secure vault - used, never exposed.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="plug"></i> connected tools &middot; secure vault</div>
-            <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Salesforce</b> - read &amp; write</div><div class="dr-tag run">connecting</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Jira</b> - create issues</div><div class="dr-tag run">connecting</div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>Postgres</b> - query</div><div class="dr-tag run">connecting</div></div>
-              <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="shield"></i></div><div class="dr-t">Credentials never seen by the model</div><div class="dr-tag">sealing</div></div>
-            </div></div>` },
-        { eye: 'Live web &amp; browser', t: 'Browses &amp; operates the web',
-          d: 'Research across live sources into cited results - and drive a real browser to get things done. When a step needs a human, like a login, MFA, or a CAPTCHA, it hands you the wheel, then picks back up.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="globe"></i> vendor portal &middot; live browser</div>
-            <div class="brw">
-              <div class="brw-bar"><span class="brw-dots"><i></i><i></i><i></i></span><span class="brw-url">portal.vendor.com/booking</span></div>
-              <div class="brw-body">
-                <div class="brw-field"><label>Travel dates</label><div class="brw-input" id="brwF1"></div></div>
-                <div class="brw-field"><label>Sign-in</label><div class="brw-input" id="brwF2"></div></div>
-                <div class="brw-cta" id="brwCta">Continue</div>
-                <div class="brw-cursor" id="brwCur"><i data-lucide="mouse-pointer-2"></i></div>
-                <div class="brw-handoff" id="brwHO"><div class="ho-card"><i data-lucide="hand"></i><b>Your turn</b><span>Sign in &amp; approve MFA</span></div></div>
-                <div class="brw-status" id="brwSt">driving</div>
-              </div>
-            </div></div>` },
-        { eye: 'Hours-long autonomy', t: 'Handles long jobs',
-          d: 'Pursue a goal over hours or days - fanning work out to sub-agents, tracking progress against a plan, and judging its own results against a rubric until the mission is met.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="list-checks"></i> migration mission &middot; 3h 42m elapsed</div>
-            <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Phase 1 - schema mapping</div><div class="dr-tag">done</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic run"><i data-lucide="loader"></i></div><div class="dr-t"><b>3 sub-agents</b> migrating 1.2M rows<div class="subs"><span class="sub"><i></i></span><span class="sub"><i></i></span><span class="sub"><i></i></span></div></div><div class="dr-tag run">working</div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic"><i data-lucide="gauge"></i></div><div class="dr-t">Validation vs. rubric<div class="pbar"><span class="pf" id="rubFill"></span></div></div><div class="dr-tag"><span id="rubPct">0%</span></div></div>
-            </div></div>` },
-        { eye: 'Human in the loop', t: 'Knows when to ask',
-          d: 'Pauses for human approval on irreversible or low-confidence actions, then resumes - with a full audit trail of every decision.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="hand"></i> approval gate &middot; writes</div>
-            <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="demo-bubble agent">About to <b>delete 320 stale records</b>. This is irreversible - approve?</div></div>
-              <div class="demo-row" data-i="1"><div class="gate" id="gate"><span class="gate-wait"><i data-lucide="loader"></i> awaiting approval</span><span class="gate-btns"><button type="button" class="gate-btn yes" id="gYes">Approve</button><button type="button" class="gate-btn">Hold</button></span></div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t"><b>Approved</b> by Dana &middot; Finance Ops</div><div class="dr-tag">logged</div></div>
-              <div class="demo-row" data-i="3"><div class="dr-ic ok"><i data-lucide="check"></i></div><div class="dr-t">Action completed &amp; audit entry written</div><div class="dr-tag">14:22</div></div>
-            </div></div>` },
-        { eye: 'Meets users where they are', t: 'Works across your channels',
-          d: 'The same agent shows up wherever your team already works - web chat, Slack, Telegram, or your own apps over the API - sharing one memory and history across every channel.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="messages-square"></i> one agent &middot; every channel</div>
-            <div class="demo-body">
-              <div class="ch-wrap"><div class="ch-rail"><span class="ch-fill" id="chFill"></span></div>
-              <div class="ch-rows">
-                <div class="demo-row ch-row" data-i="0"><div class="dr-ic ok"><i data-lucide="message-square"></i></div><div class="dr-t"><b>Slack</b> - @mention in #ops</div><div class="dr-tag">live</div></div>
-                <div class="demo-row ch-row" data-i="1"><div class="dr-ic ok"><i data-lucide="send"></i></div><div class="dr-t"><b>Telegram</b> - DMs &amp; group threads</div><div class="dr-tag">live</div></div>
-                <div class="demo-row ch-row" data-i="2"><div class="dr-ic ok"><i data-lucide="globe"></i></div><div class="dr-t"><b>Web</b> chat &amp; embedded widget</div><div class="dr-tag">live</div></div>
-                <div class="demo-row ch-row" data-i="3"><div class="dr-ic"><i data-lucide="code"></i></div><div class="dr-t"><b>API</b> - same memory &amp; history</div><div class="dr-tag">shared</div></div>
-              </div></div>
-            </div></div>` },
-        { eye: 'Secure by design', t: 'Safe to put to work',
-          d: 'Every tool call clears a policy gate with fine-grained rules, credentials never reach the model\'s sandbox, and every action lands in an immutable audit log. Sessions run on a durable event log, so a crash never loses work.',
-          demo: `<div class="demo-card"><div class="dc-bar"><i data-lucide="shield-check"></i> governance &amp; resilience</div>
-            <div class="demo-body">
-              <div class="demo-row" data-i="0"><div class="dr-ic eval"><i data-lucide="scale"></i></div><div class="dr-t"><b>refund_user</b> - checking policy</div><div class="dr-tag run">eval</div></div>
-              <div class="demo-row" data-i="1"><div class="dr-ic"><i data-lucide="lock-open"></i></div><div class="dr-t">Credentials &amp; model sandbox</div><div class="dr-tag">…</div></div>
-              <div class="demo-row" data-i="2"><div class="dr-ic"><i data-lucide="file-text"></i></div><div class="dr-t">Audit log<span class="mono" id="auditHash"></span></div><div class="dr-tag run">writing</div></div>
-              <div class="demo-row" data-i="3"><div class="dr-ic"><i data-lucide="rotate-ccw"></i></div><div class="dr-t">Worker crashed - session resumed, <b>0 lost</b></div><div class="dr-tag">durable</div></div>
-            </div></div>` },
-      ];
-      let demoTickets = [];
-      const after = (ms, fn) => { const id = setTimeout(fn, reduceMotion ? 0 : ms); demoTickets.push(id); return id; };
-      const show = (r) => r && r.classList.add('show');
-      const setIc = (r, name, cls) => { const ic = r && r.querySelector('.dr-ic'); if (!ic) return; ic.className = 'dr-ic ' + (cls || ''); ic.innerHTML = `<i data-lucide="${name}"></i>`; icons(); };
-      const setRowText = (r, html) => { const el = r && r.querySelector('.dr-t'); if (el) el.innerHTML = html; };
-      const setTag = (r, txt, cls) => { const g = r && r.querySelector('.dr-tag'); if (!g) return; g.textContent = txt; g.className = 'dr-tag ' + (cls || ''); };
-      const typeInto = (el, text, done) => {
-        if (!el) { done && done(); return; }
-        if (reduceMotion) { el.textContent = text; done && done(); return; }
-        el.classList.add('tw-on'); let i = 0;
-        const tick = () => { el.textContent = text.slice(0, i); i += 1; if (i <= text.length) after(20, tick); else { el.classList.remove('tw-on'); done && done(); } };
-        tick();
-      };
-
-      const players = {
-        // Works, not just talks - steps execute to completion
-        0(p) {
-          const r = $$('.demo-row', p); let t = 250;
-          [0, 1, 2].forEach((i) => {
-            const at = t;
-            after(at, () => show(r[i]));
-            after(at + 560, () => { setIc(r[i], 'check', 'ok'); setTag(r[i], 'done'); });
-            t += 680;
-          });
-          after(t + 180, () => show(r[3]));
-        },
-        // Knows your business - route, then type a cited answer
-        1(p) {
-          const r = $$('.demo-row', p);
-          after(250, () => show(r[0]));
-          after(880, () => show(r[1]));
-          after(1480, () => { setIc(r[1], 'check', 'ok'); setRowText(r[1], 'Loaded <b>Support</b> skill &middot; consulted <b>Policy</b> expert'); setTag(r[1], 'routed'); });
-          after(2050, () => {
-            show(r[2]);
-            const tw = p.querySelector('.tw');
-            typeInto(tw, 'Enterprise P1 incidents have a 15-minute response SLA and a 4-hour resolution target.', () => {
-              if (tw) tw.innerHTML = 'Enterprise P1 incidents have a <b>15-minute</b> response SLA and a <b>4-hour</b> resolution target.';
-              const src = p.querySelector('.src');
-              if (src) ['SLA-policy.pdf', 'support-tiers.md'].forEach((c, k) => after(200 * (k + 1), () => { const s = document.createElement('span'); s.className = 'chip pop'; s.textContent = c; src.appendChild(s); }));
-            });
-          });
-        },
-        // Uses your tools - connect each tool, then seal the vault
-        2(p) {
-          const r = $$('.demo-row', p); let t = 250;
-          [0, 1, 2].forEach((i) => {
-            const at = t;
-            after(at, () => show(r[i]));
-            after(at + 540, () => { setIc(r[i], 'check', 'ok'); setTag(r[i], 'vaulted'); });
-            t += 620;
-          });
-          after(t + 140, () => show(r[3]));
-          after(t + 420, () => { const ic = r[3].querySelector('.dr-ic'); if (ic) ic.classList.add('seal'); setTag(r[3], 'secure'); });
-        },
-        // Browses & operates the web - drive a browser, hand off, resume
-        3(p) {
-          const cur = p.querySelector('#brwCur'); const ho = p.querySelector('#brwHO');
-          const f1 = p.querySelector('#brwF1'); const f2 = p.querySelector('#brwF2');
-          const cta = p.querySelector('#brwCta'); const st = p.querySelector('#brwSt');
-          const setSt = (txt, cls) => { if (st) { st.textContent = txt; st.className = 'brw-status ' + (cls || ''); } };
-          if (reduceMotion) {
-            if (f1) f1.textContent = 'Apr 18 – 22';
-            if (f2) f2.innerHTML = 'signed in <i data-lucide="check"></i>';
-            if (cta) { cta.classList.add('ok'); cta.textContent = 'Booked'; }
-            if (cur) cur.style.display = 'none';
-            setSt('booking submitted', 'done'); icons(); return;
-          }
-          after(450, () => cur && cur.classList.add('p1'));
-          after(1200, () => typeInto(f1, 'Apr 18 – 22'));
-          after(2150, () => { cur && cur.classList.remove('p1'); cur && cur.classList.add('p2'); });
-          after(2800, () => { cta && cta.classList.add('press'); setSt('needs you', 'you'); });
-          after(3050, () => cta && cta.classList.remove('press'));
-          after(3250, () => { ho && ho.classList.add('on'); if (cur) cur.style.opacity = '0'; });
-          after(4700, () => { ho && ho.classList.remove('on'); if (f2) { f2.innerHTML = 'signed in <i data-lucide="check"></i>'; icons(); } setSt('resumed', ''); if (cur) cur.style.opacity = '1'; });
-          after(5300, () => cta && cta.classList.add('press'));
-          after(5550, () => cta && cta.classList.remove('press'));
-          after(5750, () => { cta && cta.classList.add('ok'); if (cta) cta.textContent = 'Booked'; setSt('booking submitted', 'done'); if (cur) cur.style.opacity = '0'; });
-        },
-        // Handles long jobs - sub-agents fan out, rubric judges
-        4(p) {
-          const r = $$('.demo-row', p);
-          after(300, () => show(r[0]));
-          after(820, () => { show(r[1]); $$('.sub i', r[1]).forEach((b, k) => after(140 * k, () => { b.style.width = '100%'; })); });
-          after(2150, () => { setIc(r[1], 'check', 'ok'); setTag(r[1], 'done'); });
-          after(2550, () => {
-            show(r[2]);
-            const fill = p.querySelector('#rubFill'); const pct = p.querySelector('#rubPct');
-            after(60, () => { if (fill) fill.style.width = '71%'; });
-            let v = 0; const tickv = () => { v += 3; if (v >= 71) v = 71; if (pct) pct.textContent = `${v}%`; if (v < 71) after(34, tickv); };
-            tickv();
-            setTag(r[2], 'judging', 'run');
-          });
-        },
-        // Knows when to ask - pause, approve, resume with audit
-        5(p) {
-          const r = $$('.demo-row', p);
-          after(300, () => show(r[0]));
-          after(950, () => show(r[1]));
-          after(2050, () => { const y = p.querySelector('#gYes'); y && y.classList.add('press'); });
-          after(2450, () => { const g = p.querySelector('#gate'); g && g.classList.add('done'); });
-          after(2650, () => show(r[2]));
-          after(3200, () => show(r[3]));
-        },
-        // Works across channels - each pings in, shared memory links them
-        6(p) {
-          const r = $$('.ch-row', p);
-          r.forEach((row, i) => after(350 + i * 520, () => { show(row); row.classList.add('ping'); }));
-          const tEnd = 350 + r.length * 520;
-          after(tEnd + 200, () => { const f = p.querySelector('#chFill'); if (f) f.style.height = '100%'; });
-          after(tEnd + 1000, () => setTag(r[3], 'synced'));
-        },
-        // Safe to put to work - gate, seal, audit, crash & resume
-        7(p) {
-          const r = $$('.demo-row', p); const card = p.querySelector('.demo-card');
-          after(300, () => show(r[0]));
-          after(1100, () => { setIc(r[0], 'check', 'ok'); setRowText(r[0], '<b>refund_user</b> allowed - verified &amp; under $1,000'); setTag(r[0], 'policy'); });
-          after(1550, () => show(r[1]));
-          after(2150, () => { setIc(r[1], 'lock', 'seal'); setRowText(r[1], 'Credentials sealed from the model sandbox'); setTag(r[1], 'isolated'); });
-          after(2600, () => { show(r[2]); typeInto(p.querySelector('#auditHash'), ' #a91f0c committed', () => { setIc(r[2], 'check', 'ok'); setTag(r[2], 'immutable'); }); });
-          after(3850, () => { if (!reduceMotion && card) { card.classList.add('crash'); after(560, () => card.classList.remove('crash')); } });
-          after(4250, () => show(r[3]));
-        },
-        def(p) { $$('.demo-row', p).forEach((r, idx) => after(220 + idx * 520, () => show(r))); },
-      };
-
-      function render(n) {
-        demoTickets.forEach((t) => clearTimeout(t)); demoTickets = [];
-        const c = caps[n];
-        panel.innerHTML =
-          `<div class="cp-eye">${c.eye}</div>` +
-          `<div class="cp-t">${c.t}</div>` +
-          `<p class="cp-d">${c.d}</p>` +
-          `<div class="cap-demo">${c.demo}</div>`;
-        icons();
-        (players[n] || players.def)(panel);
-      }
-      $$('.cap-item', list).forEach((item) => {
-        item.addEventListener('click', () => {
-          $$('.cap-item', list).forEach((x) => x.classList.remove('active'));
-          item.classList.add('active');
-          render(+item.dataset.cap);
-        });
-      });
-      render(0);
-    })();
-
-    /* 5 · PRODUCT TOUR TABS ──────────────────────────────────── */
-    (function tour() {
-      const tabs = $$('#tourTabs .aud-tab');
-      const panels = $$('[data-tour-panel]');
-      if (!tabs.length) return;
-      tabs.forEach((t) => t.addEventListener('click', () => {
-        const n = t.dataset.tour;
-        tabs.forEach((x) => x.classList.toggle('on', x === t));
-        panels.forEach((p) => { p.style.display = p.dataset.tourPanel === n ? '' : 'none'; });
-        queueScan();
-      }));
-    })();
-
-    /* 6 · COPILOT PALETTE ────────────────────────────────────── */
+    /* 5 · COPILOT PALETTE ────────────────────────────────────── */
     (function copilot() {
       const type = $('#cpType'); const out = $('#cpOut'); const caret = $('#cpCaret');
       if (!type || !out) return;
@@ -574,253 +216,246 @@ export default function ShowTell() {
         <div className="scroll-cue"><span>Scroll</span><span className="dot" /></div>
       </header>
 
-      {/* ══════════════ WHO IT'S FOR ══════════════ */}
-      <section className="sec persona" id="personas">
-        <div className="wrap">
-          <div className="persona-head reveal">
-            <p className="eyebrow">Who it's for</p>
-            <h2 className="persona-title">See what they built with it.</h2>
-            <p className="persona-sub">Surogate is a do-it-yourself platform. Each of these systems was built by the professional, on their own practice, without a line of code and without a technical team. Here is what they do.</p>
-          </div>
-          <div className="pilot-grid reveal d1">
-            <div className="aud-card show pilot-card">
-              <div className="pc-id">
-                <div className="ac-ic"><i data-lucide="heart-pulse" /></div>
-                <div className="ac-t">A cardiology practice</div>
-              </div>
-              <p className="ac-d">The agents talk to every patient on WhatsApp, at the cadence the doctor set. They ask the questions he would ask, collect blood pressure, pulse, weight and medication, read a photographed lab result, and put a short report in front of him every morning. When a value leaves the range he defined, he is alerted the same hour. He can then adjust at a distance, call the patient in, or escalate.</p>
-              <div className="pc-eco">
-                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;15&ndash;30<span>per patient / month</span></span></div>
-                <p className="ac-bound">The agents run the doctor's own protocol. They do not diagnose and they do not prescribe. Every decision stays with him</p>
-              </div>
-            </div>
-            <div className="aud-card show pilot-card">
-              <div className="pc-id">
-                <div className="ac-ic"><i data-lucide="scale" /></div>
-                <div className="ac-t">A law firm</div>
-              </div>
-              <p className="ac-d">The agents take the first conversation with every new client, at whatever hour it arrives. They collect the documents, calculate the deadlines from the first message, answer procedural questions from a library the lawyers wrote and approved, and follow open cases day by day. Anything urgent reaches an attorney immediately.</p>
-              <div className="pc-eco">
-                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;25&ndash;50<span>per client / month</span></span></div>
-                <p className="ac-bound">The agents run the firm's own protocol. They do not give legal advice in their own name, and they never decide strategy.</p>
-              </div>
-            </div>
-            <div className="aud-card show pilot-card">
-              <div className="pc-id">
-                <div className="ac-ic"><i data-lucide="graduation-cap" /></div>
-                <div className="ac-t">A chemistry teacher</div>
-              </div>
-              <p className="ac-d">The agents work with each student in short, fixed sessions, and they never hand over the answer. They find the gap underneath the lesson the student is failing, go back to it, and fill it while the class keeps moving. Parents get a weekly picture of where their child stands, and the teacher reads the same report before the next class.</p>
-              <div className="pc-eco">
-                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;30&ndash;60<span>per student / month</span></span></div>
-                <p className="ac-bound">The agents teach on the teacher's own method. When they don't know how he would handle something, they stop and ask him.</p>
-              </div>
-            </div>
-            <div className="aud-card show pilot-card">
-              <div className="pc-id">
-                <div className="ac-ic"><i data-lucide="calculator" /></div>
-                <div className="ac-t">An accounting practice</div>
-              </div>
-              <p className="ac-d">The agents follow each client's situation year-round, watch the deadlines, and raise a flag early, while a problem is still small and still cheap to fix.</p>
-              <div className="pc-eco">
-                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;20&ndash;40<span>per client / month</span></span></div>
-                <p className="ac-bound">The agents run the accountant's own review process. Decisions and sign-off stay with him.</p>
-              </div>
-            </div>
-          </div>
-          <p className="pilot-bridge reveal"><span className="amber">No lines of code were written</span> for any of these.</p>
-        </div>
-      </section>
-
-      {/* ══════════════ PROOF - SEE IT WORK ══════════════ */}
-      <section className="sec" id="agent" style={{ background: 'var(--paper)' }}>
+      {/* ══════════════ WHAT SUROGATE IS ══════════════ */}
+      <section className="sec" id="factory">
         <div className="wrap">
           <div className="sec-head reveal">
-            <p className="eyebrow">See it work</p>
-            <h2 className="h-section">A student is stuck. The agent finds out why.</h2>
-            <p className="lead">The chemistry teacher's tutoring agent from the cards above. One student, one short session, and it never simply hands over the answer.</p>
+            <p className="eyebrow">What Surogate is</p>
+            <h2 className="h-section">The factory for <span className="amber">AI Agents</span></h2>
+            <p className="lead">Design an agent, deploy it as a managed service, watch every session it runs, and tighten it as you go - guardrails, knowledge, skills, or a model trained on your own work.</p>
+            <p className="lead">One platform for the whole life of an agent.</p>
           </div>
-          <div className="agent-stage reveal d1">
-            <div className="agent-task">
-              <div className="at-label">Session &middot; live</div>
-              <div className="at-prompt">I keep getting this one wrong and I don&rsquo;t know why.</div>
-              <div className="at-from">
-                <div className="av"><i data-lucide="user" /></div>
-                <div className="meta"><b>Student &middot; web chat</b>picked up by the teacher's tutoring agent</div>
+          <FilmPlayer
+            variant="full"
+            ground={false}
+            startAt={20}
+            label="A tour of the Surogate platform"
+          />
+          <div className="fac-grid reveal d2">
+            {FACTORY.map((f, i) => (
+              <div className="fac" key={f.t}>
+                <div className="fac-n">{String(i + 1).padStart(2, '0')}</div>
+                <div className="fac-t">{f.t}</div>
+                <p className="fac-d">{f.d}</p>
               </div>
-              <div className="at-meta-list">
-                <div className="row"><span>Agent</span><b>tutoring &middot; v1.0</b></div>
-                <div className="row"><span>Deployed for</span><b>a chemistry teacher</b></div>
-                <div className="row"><span>Runs on</span><b>Surogate Cloud</b></div>
-                <div className="row"><span>Works with</span><b>every student, at their own pace</b></div>
-              </div>
-            </div>
-            <div className="agent-feed-wrap">
-              <div className="af-head">
-                <div className="ttl"><span className="sd" /> Agent activity &middot; live</div>
-                <button className="af-replay" id="agentReplay"><i data-lucide="rotate-ccw" /> Replay</button>
-              </div>
-              <div className="af-feed" id="agentFeed" />
-            </div>
+            ))}
           </div>
-          <p className="agent-compliance reveal"><i data-lucide="shield-check" /> The agent teaches on the teacher's own method. When something is the teacher's call, it stops and asks.</p>
         </div>
       </section>
-
-      {/* ══════════════ PRODUCT TOUR ══════════════ */}
-      <section className="sec" id="product" style={{ background: 'var(--paper-2)' }}>
+      {/* ══════════════ WORK MODE ══════════════ */}
+      <section className="sec dark" id="product">
         <div className="wrap">
           <div className="sec-head reveal">
-            <p className="eyebrow">The platform</p>
-            <h2 className="h-section">Two modes: run agents, or build them</h2>
-            <p className="lead">That agent - and every one on this page - lives in the same two places. Work mode is for the people using deployed agents day to day. Develop mode is where they are designed, trained, evaluated and governed. Same platform, same project, one session log.</p>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div className="aud-tabs" id="tourTabs">
-              <button type="button" className="aud-tab on" data-tour="0"><i data-lucide="briefcase-business" />Work mode</button>
-              <button type="button" className="aud-tab" data-tour="1"><i data-lucide="code-2" />Develop mode</button>
-            </div>
+            <p className="eyebrow">Work mode</p>
+            <h2 className="h-section">Run your agents</h2>
+            <p className="lead">Far more than a chatbot - a capable digital worker. That agent, and every one on this page, lives in the same two places. Work mode is for the people using deployed agents day to day: talking to them, handing them long work, and approving whatever needs a human.</p>
           </div>
 
-          <div className="aud-panel reveal" data-tour-panel="0">
-            <div className="intro-grid">
-              <div>
-                <div className="intro-points">
-                  <div className="ipoint">
-                    <div className="ip-ic"><i data-lucide="messages-square" /></div>
-                    <div><div className="ip-t">Chat with deployed agents</div><p className="ip-d">Talk to an agent, hand it a task, review what it did. Attach a skill or a knowledge base in plain language - no configuration files.</p></div>
-                  </div>
-                  <div className="ipoint">
-                    <div className="ip-ic"><i data-lucide="inbox" /></div>
-                    <div><div className="ip-t">Missions, sub-agents, inbox</div><p className="ip-d">Long-running work graded against success criteria, delegated parts handled by sub-agents, and an inbox where approvals wait for a human.</p></div>
-                  </div>
-                  <div className="ipoint">
-                    <div className="ip-ic"><i data-lucide="share-2" /></div>
-                    <div><div className="ip-t">Publish to your channels</div><p className="ip-d">Put the same agent on web chat, Slack, Telegram, an embeddable widget, or your own app over the API.</p></div>
-                  </div>
-                  <div className="ipoint">
-                    <div className="ip-ic"><i data-lucide="thumbs-up" /></div>
-                    <div><div className="ip-t">Flag good and bad turns</div><p className="ip-d">Every message, tool call and result is recorded and replayable. Flagging a turn is what feeds the next round of training.</p></div>
-                  </div>
+          <FilmPlayer
+            variant="work"
+            ground={false}
+            startAt={28}
+            label="Work mode: running agents, sessions, missions and approvals"
+            caption="Work mode · a walkthrough of a day with an agent"
+          />
+
+          <div className="mcard-grid reveal d1">
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="messages-square" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Works, not just talks</div>
+                  <p className="mc-d">Hand an agent a task and it follows a multi-step process to completion - deciding, using your systems, delivering a finished result rather than a suggestion. If a run is interrupted it resumes where it left off.</p>
                 </div>
               </div>
-              <div>
-                <div style={FRAME}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '13px 18px', borderBottom: '1px solid var(--line2)', background: 'var(--paper-2)', fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--txt-3)' }}>
-                    <i data-lucide="message-square" style={{ width: 14, height: 14, color: 'var(--amber)' }} />
-                    <span>session &middot; support-triage</span>
-                    <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--green)' }} />live</span>
-                  </div>
-                  <div style={{ padding: '22px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                    <div style={{ alignSelf: 'flex-end', maxWidth: '78%', background: 'var(--ink)', color: '#fff', borderRadius: '13px 13px 4px 13px', padding: '12px 15px', fontSize: 15, lineHeight: 1.45 }}>Draft the follow-up for ticket 4821 and refund it if policy allows.</div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 9, fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--txt-3)' }}>
-                      <i data-lucide="zap" style={{ width: 13, height: 13, color: 'var(--amber)' }} /> skill: refunds &middot; expert: policy
-                    </div>
-                    <div style={{ alignSelf: 'flex-start', maxWidth: '82%', background: 'var(--paper-2)', border: '1px solid var(--line2)', borderRadius: '13px 13px 13px 4px', padding: '12px 15px', fontSize: 15, lineHeight: 1.45, color: 'var(--txt-1)' }}>Refund of <b>$129.00</b> issued and the ticket is updated. Draft reply is in your inbox for approval.</div>
-                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 2 }}>
-                      <span style={CHIP}>payments.refund</span>
-                      <span style={CHIP}>tickets.update</span>
-                      <span style={{ ...CHIP, border: '1px solid var(--amber-line)', color: 'var(--amber)' }}>awaiting approval</span>
-                    </div>
-                  </div>
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="book-open" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Knows your business</div>
+                  <p className="mc-d">Point it at your documents, sites and repositories. They are compiled into a knowledge base it searches and cites, so answers come from your material rather than the model's guesswork.</p>
                 </div>
-                <p style={CAPTION}>Work mode &middot; one agent, one recorded session</p>
               </div>
-            </div>
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="plug" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Uses your tools, and the web</div>
+                  <p className="mc-d">Attach a ready-made toolkit, a server from your library, or any MCP server by its address - over a thousand of them. It can also drive a real browser: navigate, click, type and read a page like a person would.</p>
+                </div>
+              </div>
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="inbox" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Missions, sub-agents, inbox</div>
+                  <p className="mc-d">Long-running work graded against success criteria, delegated parts handled by sub-agents, and an inbox where approvals wait for a human.</p>
+                </div>
+              </div>
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="share-2" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Publish to your channels</div>
+                  <p className="mc-d">The same agent on a hosted chat page, Slack, Telegram, WhatsApp, a widget on your site, or a pipeline over the API - every channel reaching the same agent, with the same skills and the same guardrails.</p>
+                </div>
+              </div>
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="thumbs-up" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Flag good and bad turns</div>
+                  <p className="mc-d">Every message, tool call and result is recorded and replayable. Flagging a turn is what feeds the next round of training.</p>
+                </div>
+              </div>
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="shield-check" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Guardrails that hold</div>
+                  <p className="mc-d">Tool access and network egress are locked when a session starts and cannot be weakened mid-task. Code runs sandboxed, credentials stay in a vault the agent never reads, and every action lands in a durable event log. Enterprise adds SSO, RBAC, dedicated compute and an SLA.</p>
+                </div>
+              </div>
           </div>
 
-          <div className="aud-panel reveal" data-tour-panel="1" style={{ display: 'none' }}>
-            <div className="intro-grid">
-              <div>
-                <div className="intro-points">
-                  <div className="ipoint">
-                    <div className="ip-ic"><i data-lucide="hexagon" /></div>
-                    <div><div className="ip-t">Agents from configuration, not code</div><p className="ip-d">A model, a persona, skills, knowledge bases, MCP tools and guardrails - deployed as a service your users can talk to.</p></div>
-                  </div>
-                  <div className="ipoint">
-                    <div className="ip-ic"><i data-lucide="database" /></div>
-                    <div><div className="ip-t">Datasets built from real sessions</div><p className="ip-d">Training and evaluation sets from production traffic, uploads, or synthetic generation - profiled, scanned for PII, versioned in the Data Hub.</p></div>
-                  </div>
-                  <div className="ipoint">
-                    <div className="ip-ic"><i data-lucide="triangle" /></div>
-                    <div><div className="ip-t">Train experts and serve them</div><p className="ip-d">Supervised fine-tuning, LoRA and QLoRA, long-context and mixture-of-experts runs across several GPUs, plus RL against verifiable rewards or an LLM judge.</p></div>
-                  </div>
-                  <div className="ipoint">
-                    <div className="ip-ic"><i data-lucide="shield-check" /></div>
-                    <div><div className="ip-t">Governance and the API</div><p className="ip-d">Guardrails, the credential vault, the event log, and the full platform over the API for anything you want to automate yourself.</p></div>
-                  </div>
-                </div>
-              </div>
-              <Shot src="/Training-1.png" alt="A training run in Surogate Develop mode" caption="Develop mode · a training run in the Studio" />
-            </div>
-          </div>
         </div>
       </section>
-
-      {/* ══════════════ COPILOT ══════════════ */}
-      <section className="sec dark" id="copilot">
+      {/* ══════════════ MONETIZATION ══════════════ */}
+      <section className="sec" id="monetize" style={{ background: 'var(--paper-2)' }}>
         <div className="wrap">
           <div className="sec-head reveal">
-            <p className="eyebrow">Copilot</p>
-            <h2 className="h-section">You describe the work. It does it for you.</h2>
-            <p className="lead">The Copilot drives the platform itself. It creates the agent, attaches the skill or the knowledge base, scales the deployment, starts the training run - and answers questions about what ran yesterday. Most of what this page describes clicking through, you can ask for instead.</p>
+            <p className="eyebrow">Monetization</p>
+            <h2 className="h-section">Sell access to the agent you built</h2>
+            <p className="lead">An agent trained on how you work is worth something to the people you already serve. Publish it, set your own price, and charge for access - a monthly subscription, packs of tokens, or both.</p>
           </div>
-          <div className="intro-grid" style={{ marginTop: 54 }}>
-            <div className="reveal">
-              <div id="cpPalette" style={{ border: '1px solid var(--amber-line)', borderRadius: 14, background: 'rgba(255,255,255,.03)', overflow: 'hidden' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 20px', borderBottom: '1px solid var(--line-dk)' }}>
-                  <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.12em', padding: '5px 9px', border: '1px solid var(--amber-line)', borderRadius: 6, color: 'var(--amber)' }}>⌘ /</span>
-                  <span id="cpType" style={{ fontSize: 17, color: 'var(--txt-d1)', minHeight: 24 }} />
-                  <span id="cpCaret" style={{ width: 2, height: 20, background: 'var(--amber)', display: 'inline-block' }} />
-                </div>
-                <div id="cpOut" style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 11, minHeight: 150 }} />
-              </div>
-              <p style={{ ...CAPTION, marginTop: 16, color: 'var(--txt-d3)' }}>Destructive or expensive operations show a confirmation card naming the exact resource first.</p>
+
+          <FilmPlayer
+            variant="monetize"
+            ground={false}
+            startAt={22}
+            label="Monetization: pricing, the buy link and the storefront a buyer sees"
+            caption="Monetize &middot; from pricing model to a page buyers can pay on"
+          />
+
+          <div className="pillars reveal d1">
+            <div className="pcard">
+              <div className="pc-num">01</div>
+              <div className="pc-ic"><i data-lucide="banknote" /></div>
+              <div className="pc-t">You are the merchant of record.</div>
+              <p className="pc-d">Buyers pay into <b>your own Stripe account</b> on your normal payout schedule, and your business name appears on their card statement. Surogate takes a platform fee rather than holding the money.</p>
             </div>
-            <div className="reveal d1">
-              <div className="intro-points">
-                <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="wand-2" /></div>
-                  <div><div className="ip-t" style={{ color: 'var(--txt-d1)' }}>No forms, no config files</div><p className="ip-d" style={{ color: 'var(--txt-d2)' }}>Ask in plain language and the Copilot calls the platform's own tools - the same ones the API exposes.</p></div>
-                </div>
-                <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="search" /></div>
-                  <div><div className="ip-t" style={{ color: 'var(--txt-d1)' }}>It answers questions too</div><p className="ip-d" style={{ color: 'var(--txt-d2)' }}>What ran yesterday, which sessions got a thumbs-down, how the <span style={{ fontFamily: 'var(--mono)' }}>sql-writer</span> expert is performing this week.</p></div>
-                </div>
-                <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="hand" /></div>
-                  <div><div className="ip-t" style={{ color: 'var(--txt-d1)' }}>Bounded on purpose</div><p className="ip-d" style={{ color: 'var(--txt-d2)' }}>Deleting anything or starting a training run needs a confirmation. The builder's view lists every operation it exposes - and what it deliberately will not do.</p></div>
-                </div>
-              </div>
+            <div className="pcard">
+              <div className="pc-num">02</div>
+              <div className="pc-ic"><i data-lucide="user-plus" /></div>
+              <div className="pc-t">Buyers need no account here.</div>
+              <p className="pc-d">They sign in through your agent with self-registration, and the platform enforces the <b>token budget on every message</b> - so a heavy user cannot quietly cost you more than they pay.</p>
+            </div>
+            <div className="pcard">
+              <div className="pc-num">03</div>
+              <div className="pc-ic"><i data-lucide="sliders-horizontal" /></div>
+              <div className="pc-t">You set the pricing model.</div>
+              <p className="pc-d">Subscription, token packs, or both, at the price you choose. Agent commerce is available on the <b>Pro plan</b> and higher.</p>
             </div>
           </div>
         </div>
       </section>
-
-      {/* ══════════════ CAPABILITIES EXPLORER ══════════════ */}
-      <section className="sec" id="capabilities">
+      {/* ══════════════ THE IMPROVEMENT LOOP ══════════════ */}
+      <section className="sec dark" id="lifecycle" style={{ background: 'var(--ink-black)' }}>
         <div className="wrap">
           <div className="sec-head reveal">
-            <p className="eyebrow">Capabilities</p>
-            <h2 className="h-section">Far more than a chatbot - a capable digital worker</h2>
-            <p className="lead">Pick a capability to see what it actually looks like in practice.</p>
+            <p className="eyebrow">The improvement loop</p>
+            <h2 className="h-section">Build, observe, train, redeploy</h2>
+            <p className="lead">Every agent moves through the same four phases, and each one has an honest cost: editing a skill lands in minutes, fine-tuning an expert takes hours. Watch it cycle, or click a phase to dig in.</p>
           </div>
-          <div className="cap-stage reveal d1">
-            <div className="cap-list" id="capList">
-              <div className="cap-item active" data-cap="0"><div className="ci-ic"><i data-lucide="circle-check-big" /></div><div className="ci-t">Works, not just talks</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
-              <div className="cap-item" data-cap="1"><div className="ci-ic"><i data-lucide="book-open" /></div><div className="ci-t">Knows your business</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
-              <div className="cap-item" data-cap="2"><div className="ci-ic"><i data-lucide="plug" /></div><div className="ci-t">Uses your tools</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
-              <div className="cap-item" data-cap="3"><div className="ci-ic"><i data-lucide="globe" /></div><div className="ci-t">Browses &amp; operates the web</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
-              <div className="cap-item" data-cap="4"><div className="ci-ic"><i data-lucide="workflow" /></div><div className="ci-t">Handles long jobs</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
-              <div className="cap-item" data-cap="5"><div className="ci-ic"><i data-lucide="hand" /></div><div className="ci-t">Knows when to ask</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
-              <div className="cap-item" data-cap="6"><div className="ci-ic"><i data-lucide="messages-square" /></div><div className="ci-t">Works across your channels</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
-              <div className="cap-item" data-cap="7"><div className="ci-ic"><i data-lucide="shield-check" /></div><div className="ci-t">Safe to put to work</div><div className="ci-chev"><i data-lucide="chevron-right" /></div></div>
+          <div className="loop-stage reveal d1">
+            <div className="loop-track" id="loopTrack">
+              <div className="lp-card" data-step="0">
+                <div className="lp-num">01</div>
+                <div className="lp-ic"><i data-lucide="hammer" /></div>
+                <div className="lp-t">Build</div>
+                <p className="lp-d">Assemble the agent from configuration rather than code: a model, a persona, skills, knowledge bases, MCP tools and guardrails.</p>
+                <div className="lp-prog"><span /></div>
+                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
+              </div>
+              <div className="lp-card" data-step="1">
+                <div className="lp-num">02</div>
+                <div className="lp-ic"><i data-lucide="eye" /></div>
+                <div className="lp-t">Observe</div>
+                <p className="lp-d">Every message, tool call and result is recorded and replayable in the session log. You flag the turns that went well and the ones that did not.</p>
+                <div className="lp-prog"><span /></div>
+                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
+              </div>
+              <div className="lp-card" data-step="2">
+                <div className="lp-num">03</div>
+                <div className="lp-ic"><i data-lucide="triangle" /></div>
+                <div className="lp-t">Train</div>
+                <p className="lp-d">The cheap way: edit a skill, a persona, a knowledge base. The expensive way: fine-tune an expert on the sessions you flagged.</p>
+                <div className="lp-prog"><span /></div>
+                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
+              </div>
+              <div className="lp-card" data-step="3">
+                <div className="lp-num">04</div>
+                <div className="lp-ic"><i data-lucide="rocket" /></div>
+                <div className="lp-t">Redeploy</div>
+                <p className="lp-d">Promote the new version behind the same endpoint, with versioned rollback if the numbers get worse instead of better.</p>
+                <div className="lp-prog"><span /></div>
+                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
+              </div>
             </div>
-            <div className="cap-panel" id="capPanel" />
+            <div className="loop-return"><i data-lucide="rotate-ccw" /> Every day you run it, your AI gets <span className="amber">&nbsp;better</span></div>
           </div>
         </div>
       </section>
+      {/* ══════════════ DEVELOP MODE ══════════════ */}
+      <section className="sec" id="develop" style={{ background: 'var(--paper-2)' }}>
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <p className="eyebrow">Develop mode</p>
+            <h2 className="h-section">Build and train them</h2>
+            <p className="lead">Develop mode is where agents are designed, given a model, trained on your own work, evaluated and governed. Same platform, same project, one session log.</p>
+          </div>
 
+          <FilmPlayer
+            variant="develop"
+            ground={false}
+            startAt={28}
+            label="Develop mode: models, datasets, training and evaluation"
+            caption="Develop mode · a walkthrough of the Studio"
+          />
+
+          <div className="mcard-grid reveal d1">
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="diamond" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Deploy any model</div>
+                  <p className="mc-d">Pull one from Hugging Face by repo and revision, use a model already in your hub, point at OpenRouter, or bring any OpenAI-compatible endpoint.</p>
+                </div>
+              </div>
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="database" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Datasets from your chats, or generated</div>
+                  <p className="mc-d">Filter flagged conversations into training pairs, upload your own files, import a repo - or design synthetic data column by column, with a teacher writing and a judge scoring.</p>
+                </div>
+              </div>
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="triangle" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Four ways to train it</div>
+                  <p className="mc-d">Supervised fine-tuning, preference optimization, reinforcement against a reward environment you write and version yourself, or distilling a teacher&apos;s distribution into a smaller student.</p>
+                </div>
+              </div>
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="cpu" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Your models, your GPUs</div>
+                  <p className="mc-d">Serve open-weights models with quantization, autoscaling and versioned rollback - or bring your own LLM per agent and pay the provider directly. Runs execute on whatever compute you attach, from nine providers to your own machines.</p>
+                </div>
+              </div>
+              <div className="mcard">
+                <div className="mc-ic"><i data-lucide="clipboard-check" /></div>
+                <div className="mc-body">
+                  <div className="mc-t">Prove it got better, then keep it</div>
+                  <p className="mc-d">Score against 40 built-in benchmarks, or a custom suite built from your own failed sessions, and read the pass-rate drift against the base. A/B two candidates and promote the one that won. Every model, dataset and run lands in your own hub as a versioned repo.</p>
+                </div>
+              </div>
+          </div>
+
+        </div>
+      </section>
       {/* ══════════════ EXPERT MODELS - FLYWHEEL ══════════════ */}
       <section className="sec dark" id="flywheel" style={{ background: 'var(--ink-black)' }}>
         <div className="wrap">
@@ -884,185 +519,100 @@ export default function ShowTell() {
           </div>
         </div>
       </section>
-
-      {/* ══════════════ CHANNELS ══════════════ */}
-      <section className="sec" id="channels" style={{ background: 'var(--paper-2)' }}>
+      {/* ══════════════ COPILOT ══════════════ */}
+      <section className="sec" id="copilot" style={{ background: 'var(--paper-2)' }}>
         <div className="wrap">
           <div className="sec-head reveal">
-            <p className="eyebrow">Channels</p>
-            <h2 className="h-section">One agent, everywhere your people already are</h2>
-            <p className="lead">Publish the same agent to a hosted chat page, Slack, Telegram, WhatsApp, your own website, or a pipeline over the API. Every channel reaches the same agent, with the same skills and the same guardrails.</p>
-          </div>
-          <div className="chan-grid reveal d1">
-            {CHANNELS.map((c) => (
-              <div className="chan" key={c.name}>
-                <div className="chan-ic"><ChannelIcon brand={c.brand} icon={c.icon} /></div>
-                <div className="chan-n">{c.name}</div>
-                <p className="chan-d">{c.d}</p>
-                <div className="chan-id">{c.id}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ THE IMPROVEMENT LOOP ══════════════ */}
-      <section className="sec dark" id="lifecycle">
-        <div className="wrap">
-          <div className="sec-head center reveal">
-            <p className="eyebrow center">The improvement loop</p>
-            <h2 className="h-section">Build, observe, train, redeploy</h2>
-            <p className="lead">Every agent moves through the same four phases, and each one has an honest cost: editing a skill lands in minutes, fine-tuning an expert takes hours. Watch it cycle, or click a phase to dig in.</p>
-          </div>
-          <div className="loop-stage reveal d1">
-            <div className="loop-track" id="loopTrack">
-              <div className="lp-card" data-step="0">
-                <div className="lp-num">01</div>
-                <div className="lp-ic"><i data-lucide="hammer" /></div>
-                <div className="lp-t">Build</div>
-                <p className="lp-d">Assemble the agent from configuration rather than code: a model, a persona, skills, knowledge bases, MCP tools and guardrails.</p>
-                <div className="lp-prog"><span /></div>
-                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
-              </div>
-              <div className="lp-card" data-step="1">
-                <div className="lp-num">02</div>
-                <div className="lp-ic"><i data-lucide="eye" /></div>
-                <div className="lp-t">Observe</div>
-                <p className="lp-d">Every message, tool call and result is recorded and replayable in the session log. You flag the turns that went well and the ones that did not.</p>
-                <div className="lp-prog"><span /></div>
-                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
-              </div>
-              <div className="lp-card" data-step="2">
-                <div className="lp-num">03</div>
-                <div className="lp-ic"><i data-lucide="triangle" /></div>
-                <div className="lp-t">Train</div>
-                <p className="lp-d">The cheap way: edit a skill, a persona, a knowledge base. The expensive way: fine-tune an expert on the sessions you flagged.</p>
-                <div className="lp-prog"><span /></div>
-                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
-              </div>
-              <div className="lp-card" data-step="3">
-                <div className="lp-num">04</div>
-                <div className="lp-ic"><i data-lucide="rocket" /></div>
-                <div className="lp-t">Redeploy</div>
-                <p className="lp-d">Promote the new version behind the same endpoint, with versioned rollback if the numbers get worse instead of better.</p>
-                <div className="lp-prog"><span /></div>
-                <div className="lp-arrow"><i data-lucide="chevron-right" /></div>
-              </div>
-            </div>
-            <div className="loop-return"><i data-lucide="rotate-ccw" /> Every day you run it, your AI gets <span className="amber">&nbsp;better</span></div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ EVALUATIONS ══════════════ */}
-      <section className="sec" id="evals" style={{ background: 'var(--paper-2)' }}>
-        <div className="wrap">
-          <div className="sec-head reveal">
-            <p className="eyebrow">Evaluations</p>
-            <h2 className="h-section">Measure it before you promote it</h2>
-            <p className="lead">Score an agent or a model against 40 built-in benchmarks, or against a custom benchmark built from your own failed sessions. Then A/B two candidates and promote the one that actually won.</p>
+            <p className="eyebrow">Copilot</p>
+            <h2 className="h-section">You describe the work. It does it for you.</h2>
+            <p className="lead">The Copilot drives the platform itself. It creates the agent, attaches the skill or the knowledge base, scales the deployment, starts the training run - and answers questions about what ran yesterday. Most of what this page describes clicking through, you can ask for instead.</p>
           </div>
           <div className="intro-grid" style={{ marginTop: 54 }}>
             <div className="reveal">
-              <div className="intro-points">
-                <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="list-checks" /></div>
-                  <div><div className="ip-t">40 built-in benchmarks</div><p className="ip-d">Standard suites for reasoning, knowledge, safety and code, run against any model or agent in your project.</p></div>
+              <div id="cpPalette" style={{ border: '1px solid var(--amber-line)', borderRadius: 14, background: '#fff', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 20px', borderBottom: '1px solid var(--line2)' }}>
+                  <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.12em', padding: '5px 9px', border: '1px solid var(--amber-line)', borderRadius: 6, color: 'var(--amber)' }}>⌘ /</span>
+                  <span id="cpType" style={{ fontSize: 17, color: 'var(--txt-1)', minHeight: 24 }} />
+                  <span id="cpCaret" style={{ width: 2, height: 20, background: 'var(--amber)', display: 'inline-block' }} />
                 </div>
-                <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="file-warning" /></div>
-                  <div><div className="ip-t">Custom suites from your failures</div><p className="ip-d">The sessions that went wrong become the benchmark. A fix is only a fix when the cases that broke it pass.</p></div>
-                </div>
-                <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="git-compare" /></div>
-                  <div><div className="ip-t">A/B before promoting</div><p className="ip-d">Two candidates, the same tasks, full traces and pass rates side by side - with regressions surfaced rather than discovered later.</p></div>
-                </div>
+                <div id="cpOut" style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 11, minHeight: 150 }} />
               </div>
+              <p style={{ ...CAPTION, marginTop: 16, color: 'var(--txt-3)' }}>Destructive or expensive operations show a confirmation card naming the exact resource first.</p>
             </div>
-            <Shot className="reveal d1" src="/Evaluation-BenchmarksResults.png" alt="Benchmark results in Surogate" caption="Benchmark results · Develop mode" />
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ MODELS AND COMPUTE ══════════════ */}
-      <section className="sec" id="compute">
-        <div className="wrap">
-          <div className="sec-head reveal">
-            <p className="eyebrow">Models and compute</p>
-            <h2 className="h-section">Your models, your GPUs, your gateway</h2>
-            <p className="lead">Serve open-weights models with quantization, autoscaling and versioned rollback - or bring your own LLM per agent and pay the provider directly. Runs execute on whatever compute you attach.</p>
-          </div>
-          <div className="intro-grid" style={{ marginTop: 54 }}>
-            <Shot className="reveal" src="/Cloud.png" alt="Attached compute providers in Surogate" caption="Compute providers · attach and schedule" />
             <div className="reveal d1">
               <div className="intro-points">
                 <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="diamond" /></div>
-                  <div><div className="ip-t">Serving with rollback</div><p className="ip-d">Endpoints with quantization and autoscaling, versioned so a bad promotion is one call away from being undone.</p></div>
+                  <div className="ip-ic"><i data-lucide="wand-2" /></div>
+                  <div><div className="ip-t" style={{ color: 'var(--txt-1)' }}>No forms, no config files</div><p className="ip-d" style={{ color: 'var(--txt-2)' }}>Ask in plain language and the Copilot calls the platform's own tools - the same ones the API exposes.</p></div>
                 </div>
                 <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="cloud" /></div>
-                  <div><div className="ip-t">Bring your own compute</div><p className="ip-d">AWS, GCP, Azure, OCI, Modal, RunPod, Nebius, vast.ai, or your own on-prem cluster. No migration, no lock-in.</p></div>
+                  <div className="ip-ic"><i data-lucide="search" /></div>
+                  <div><div className="ip-t" style={{ color: 'var(--txt-1)' }}>It answers questions too</div><p className="ip-d" style={{ color: 'var(--txt-2)' }}>What ran yesterday, which sessions got a thumbs-down, how the <span style={{ fontFamily: 'var(--mono)' }}>sql-writer</span> expert is performing this week.</p></div>
                 </div>
                 <div className="ipoint">
-                  <div className="ip-ic"><i data-lucide="plug" /></div>
-                  <div><div className="ip-t">Bring your own LLM</div><p className="ip-d">Point an agent at your own provider account per agent, and pay them directly instead of drawing on the plan allowance.</p></div>
+                  <div className="ip-ic"><i data-lucide="hand" /></div>
+                  <div><div className="ip-t" style={{ color: 'var(--txt-1)' }}>Bounded on purpose</div><p className="ip-d" style={{ color: 'var(--txt-2)' }}>Deleting anything or starting a training run needs a confirmation. The builder's view lists every operation it exposes - and what it deliberately will not do.</p></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* ══════════════ SECURITY AND GOVERNANCE ══════════════ */}
-      <section className="sec dark" id="security">
+      {/* ══════════════ WHO IT'S FOR ══════════════ */}
+      <section className="sec persona" id="personas">
         <div className="wrap">
-          <div className="sec-head reveal">
-            <p className="eyebrow">Security and governance</p>
-            <h2 className="h-section">Safe enough to hand real work to</h2>
-            <p className="lead">Guardrails are locked when a session starts and cannot be weakened mid-task. Sandboxed code is network-restricted, integrations are scanned for tampering, and every action lands in the event log.</p>
+          <div className="persona-head reveal">
+            <p className="eyebrow">Who it's for</p>
+            <h2 className="persona-title">See what they built with it.</h2>
+            <p className="persona-sub">Surogate is a do-it-yourself platform. Each of these systems was built by the professional, on their own practice, without a line of code and without a technical team. Here is what they do.</p>
           </div>
-          <div className="pillars grid-2 reveal d1">
-            {GUARANTEES.map((g) => (
-              <div className="pcard" key={g.t} style={{ background: 'rgba(255,255,255,.03)', borderColor: 'var(--line-dk)', boxShadow: 'none' }}>
-                <div className="pc-ic"><i data-lucide={g.icon} /></div>
-                <div className="pc-t">{g.t}</div>
-                <p className="pc-d" style={{ color: 'var(--txt-d2)' }}>{g.d}</p>
+          <div className="pilot-grid reveal d1">
+            <div className="aud-card show pilot-card">
+              <div className="pc-id">
+                <div className="ac-ic"><i data-lucide="heart-pulse" /></div>
+                <div className="ac-t">A cardiology practice</div>
               </div>
-            ))}
-          </div>
-          <p className="exp-foot">Enterprise adds SSO, RBAC, audit logs, dedicated compute and an SLA.</p>
-        </div>
-      </section>
-
-      {/* ══════════════ MONETIZATION ══════════════ */}
-      <section className="sec" id="monetize" style={{ background: 'var(--paper-2)' }}>
-        <div className="wrap">
-          <div className="sec-head reveal">
-            <p className="eyebrow">Monetization</p>
-            <h2 className="h-section">Sell access to the agent you built</h2>
-            <p className="lead">An agent trained on how you work is worth something to the people you already serve. Publish it, set your own price, and charge for access - a monthly subscription, packs of tokens, or both.</p>
-          </div>
-          <div className="pillars reveal d1">
-            <div className="pcard">
-              <div className="pc-num">01</div>
-              <div className="pc-ic"><i data-lucide="banknote" /></div>
-              <div className="pc-t">You are the merchant of record.</div>
-              <p className="pc-d">Buyers pay into <b>your own Stripe account</b> on your normal payout schedule, and your business name appears on their card statement. Surogate takes a platform fee rather than holding the money.</p>
+              <p className="ac-d">The agents talk to every patient on WhatsApp, at the cadence the doctor set. They ask the questions he would ask, collect blood pressure, pulse, weight and medication, read a photographed lab result, and put a short report in front of him every morning. When a value leaves the range he defined, he is alerted the same hour. He can then adjust at a distance, call the patient in, or escalate.</p>
+              <div className="pc-eco">
+                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;15&ndash;30<span>per patient / month</span></span></div>
+                <p className="ac-bound">The agents run the doctor's own protocol. They do not diagnose and they do not prescribe. Every decision stays with him</p>
+              </div>
             </div>
-            <div className="pcard">
-              <div className="pc-num">02</div>
-              <div className="pc-ic"><i data-lucide="user-plus" /></div>
-              <div className="pc-t">Buyers need no account here.</div>
-              <p className="pc-d">They sign in through your agent with self-registration, and the platform enforces the <b>token budget on every message</b> - so a heavy user cannot quietly cost you more than they pay.</p>
+            <div className="aud-card show pilot-card">
+              <div className="pc-id">
+                <div className="ac-ic"><i data-lucide="scale" /></div>
+                <div className="ac-t">A law firm</div>
+              </div>
+              <p className="ac-d">The agents take the first conversation with every new client, at whatever hour it arrives. They collect the documents, calculate the deadlines from the first message, answer procedural questions from a library the lawyers wrote and approved, and follow open cases day by day. Anything urgent reaches an attorney immediately.</p>
+              <div className="pc-eco">
+                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;25&ndash;50<span>per client / month</span></span></div>
+                <p className="ac-bound">The agents run the firm's own protocol. They do not give legal advice in their own name, and they never decide strategy.</p>
+              </div>
             </div>
-            <div className="pcard">
-              <div className="pc-num">03</div>
-              <div className="pc-ic"><i data-lucide="sliders-horizontal" /></div>
-              <div className="pc-t">You set the pricing model.</div>
-              <p className="pc-d">Subscription, token packs, or both, at the price you choose. Agent commerce is available on the <b>Pro plan</b> and higher.</p>
+            <div className="aud-card show pilot-card">
+              <div className="pc-id">
+                <div className="ac-ic"><i data-lucide="graduation-cap" /></div>
+                <div className="ac-t">A chemistry teacher</div>
+              </div>
+              <p className="ac-d">The agents work with each student in short, fixed sessions, and they never hand over the answer. They find the gap underneath the lesson the student is failing, go back to it, and fill it while the class keeps moving. Parents get a weekly picture of where their child stands, and the teacher reads the same report before the next class.</p>
+              <div className="pc-eco">
+                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;30&ndash;60<span>per student / month</span></span></div>
+                <p className="ac-bound">The agents teach on the teacher's own method. When they don't know how he would handle something, they stop and ask him.</p>
+              </div>
+            </div>
+            <div className="aud-card show pilot-card">
+              <div className="pc-id">
+                <div className="ac-ic"><i data-lucide="calculator" /></div>
+                <div className="ac-t">An accounting practice</div>
+              </div>
+              <p className="ac-d">The agents follow each client's situation year-round, watch the deadlines, and raise a flag early, while a problem is still small and still cheap to fix.</p>
+              <div className="pc-eco">
+                <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;20&ndash;40<span>per client / month</span></span></div>
+                <p className="ac-bound">The agents run the accountant's own review process. Decisions and sign-off stay with him.</p>
+              </div>
             </div>
           </div>
+          <p className="pilot-bridge reveal"><span className="amber">No lines of code were written</span> for any of these.</p>
         </div>
       </section>
 

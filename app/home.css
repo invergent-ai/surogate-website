@@ -152,22 +152,6 @@
   font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--txt-d3);}
 .st-home .scroll-cue .dot{width:5px; height:5px; border-radius:50%; background:var(--amber); animation:cueBounce 1.6s ease-in-out infinite;}
 @keyframes cueBounce{ 0%,100%{ transform:translateY(0); opacity:.4; } 50%{ transform:translateY(7px); opacity:1; } }
-.st-home .video-slot{position:relative; width:100%; aspect-ratio:16/9; border-radius:16px; overflow:hidden;
-  background:linear-gradient(135deg,#2a102d,#3d1d42);
-  border:1px solid rgba(255,175,16,0.20);
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
-  cursor:pointer; transition:border-color .25s, transform .25s;}
-.st-home .video-slot::before{content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
-  background-image:linear-gradient(rgba(255,175,16,0.05) 1px, transparent 1px),
-                   linear-gradient(90deg, rgba(255,175,16,0.05) 1px, transparent 1px);
-  background-size:44px 44px;}
-.st-home .video-slot:hover{border-color:var(--amber-line);}
-.st-home .video-slot:hover .vs-play{transform:scale(1.06); background:var(--amber);}
-.st-home .video-slot:hover .vs-play i{color:var(--ink-black);}
-.st-home .vs-play{position:relative; z-index:2; width:84px; height:84px; border-radius:50%;
-  display:grid; place-items:center; background:rgba(255,175,16,0.14);
-  border:1.5px solid var(--amber); transition:transform .25s, background .25s;}
-.st-home .vs-play i{width:30px; height:30px; color:var(--amber); margin-left:4px; transition:color .25s;}
 .st-home .vs-tag{position:relative; z-index:2; font-family:var(--mono); font-size:11px; letter-spacing:0.2em;
   text-transform:uppercase; color:var(--amber);}
 .st-home .vs-title{position:relative; z-index:2; font-family:var(--serif); font-weight:600; font-size:24px; color:#fbf9f6; text-align:center; max-width:24ch; letter-spacing:-0.01em;}
@@ -184,10 +168,14 @@
   display:flex; align-items:center; gap:9px;}
 .st-home .dark .slot-note{color:var(--txt-d3);}
 .st-home .slot-note i{width:14px; height:14px; color:var(--amber);}
+.st-home .intro-grid.rev{grid-template-columns:1.15fr 1fr;}
+.st-home .intro-grid.rev > :first-child{order:2;}
 .st-home .intro-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:64px; align-items:center; margin-top:54px;}
 @media (max-width:900px){
-  .st-home .intro-grid{grid-template-columns:1fr; gap:36px; margin-top:40px;}
+  .st-home .intro-grid,
+  .st-home .intro-grid.rev{grid-template-columns:1fr; gap:36px; margin-top:40px;}
   .st-home .intro-grid > :last-child{order:-1;}
+  .st-home .intro-grid.rev > :first-child{order:0;}
 }
 .st-home .intro-points{display:flex; flex-direction:column; gap:30px; margin-top:38px;}
 .st-home .ipoint{display:flex; gap:18px; align-items:flex-start;}
@@ -231,62 +219,6 @@
 .st-home .loop-return .amber{color:var(--amber);}
 @media (max-width:900px){.st-home .loop-track{grid-template-columns:1fr 1fr;}
 .st-home .lp-arrow{display:none !important;}}
-.st-home .agent-stage{margin-top:58px; display:grid; grid-template-columns:0.85fr 1.15fr; gap:30px; align-items:stretch;}
-@media (max-width:980px){.st-home .agent-stage{grid-template-columns:1fr;}}
-.st-home .agent-task{border:1px solid var(--line2); border-radius:16px; padding:34px 32px; background:var(--paper-2);
-  display:flex; flex-direction:column;}
-.st-home .at-label{font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--txt-3);}
-.st-home .at-prompt{font-family:var(--serif); font-weight:600; font-size:26px; line-height:1.25; color:var(--txt-1); margin:16px 0 0; letter-spacing:-0.01em;}
-.st-home .at-from{display:flex; align-items:center; gap:11px; margin-top:24px; padding-top:22px; border-top:1px solid var(--line2);}
-.st-home .at-from .av{width:38px; height:38px; border-radius:50%; background:var(--amber-soft); border:1px solid var(--amber-line); display:grid; place-items:center;}
-.st-home .at-from .av i{width:18px; height:18px; color:var(--amber);}
-.st-home .at-from .meta{font-size:14px; color:var(--txt-2);}
-.st-home .at-from .meta b{color:var(--txt-1); font-weight:600; display:block;}
-.st-home .at-meta-list{margin-top:auto; padding-top:26px; display:flex; flex-direction:column; gap:12px;}
-.st-home .at-meta-list .row{display:flex; align-items:baseline; justify-content:space-between; gap:4px 12px; flex-wrap:wrap; font-family:var(--mono); font-size:12.5px; letter-spacing:0.03em; color:var(--txt-3); overflow-wrap:anywhere;}
-.st-home .at-meta-list .row b{color:var(--txt-2); font-weight:500;}
-.st-home .agent-feed-wrap{border:1px solid var(--line-dk); border-radius:16px; background:#1a0a1c; overflow:hidden; display:flex; flex-direction:column;}
-.st-home .af-head{display:flex; align-items:center; justify-content:space-between; padding:16px 22px; border-bottom:1px solid var(--line-dk);}
-.st-home .af-head .ttl{display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--txt-d2);}
-.st-home .af-head .ttl .sd{width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(34,197,94,0.18);}
-.st-home .af-replay{display:inline-flex; align-items:center; gap:8px; cursor:pointer; background:transparent; border:1px solid var(--line-dk);
-  color:var(--txt-d2); font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; padding:8px 14px; border-radius:8px; transition:border-color .2s,color .2s;}
-.st-home .af-replay:hover{border-color:var(--amber-line); color:var(--amber);}
-.st-home .af-replay i{width:13px; height:13px;}
-.st-home .af-feed{padding:24px 22px; display:flex; flex-direction:column; gap:14px; min-height:430px;}
-.st-home .fi{opacity:0; transform:translateY(10px);}
-.st-home .fi.show{opacity:1; transform:none; transition:transform .4s;}
-.st-home .fi-step{display:flex; gap:13px; align-items:flex-start;}
-.st-home .fi-step .ic{flex:none; width:30px; height:30px; border-radius:8px; display:grid; place-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--line-dk); margin-top:1px;}
-.st-home .fi-step .ic i{width:15px; height:15px; color:var(--txt-d2);}
-.st-home .fi-step.done .ic{background:rgba(34,197,94,0.12); border-color:rgba(34,197,94,0.3);}
-.st-home .fi-step.done .ic i{color:var(--green);}
-.st-home .fi-step .bd{flex:1;}
-.st-home .fi-step .lbl{font-size:15.5px; color:var(--txt-d1); line-height:1.45;}
-.st-home .fi-step .lbl b{color:#fff; font-weight:600;}
-.st-home .fi-tool{display:inline-flex; align-items:flex-start; gap:8px; margin-top:8px; font-family:var(--mono); font-size:12.5px; color:var(--amber); background:rgba(255,175,16,0.08); border:1px solid var(--amber-line); padding:6px 11px; border-radius:7px; max-width:100%; overflow-wrap:anywhere; word-break:break-word;}
-.st-home .fi-tool i{width:13px; height:13px;}
-.st-home .fi-sub{font-family:var(--mono); font-size:12px; color:var(--txt-d3); margin-top:7px; line-height:1.55; overflow-wrap:anywhere; word-break:break-word;}
-.st-home .fi-approve{border:1px solid rgba(255,175,16,0.4); background:rgba(255,175,16,0.06); border-radius:11px; padding:16px 18px;}
-.st-home .fi-approve .ap-h{display:flex; align-items:center; gap:9px; font-family:var(--serif); font-weight:600; font-size:16px; color:#fbf9f6;}
-.st-home .fi-approve .ap-h i{width:16px; height:16px; color:var(--amber);}
-.st-home .fi-approve .ap-d{font-size:14px; color:var(--txt-d2); margin:8px 0 14px; line-height:1.5;}
-.st-home .fi-approve .ap-btns{display:flex; gap:10px;}
-.st-home .fi-approve .ap-btn{font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; padding:9px 16px; border-radius:7px; border:none; cursor:default;}
-.st-home .fi-approve .ap-btn.yes{background:var(--amber); color:var(--ink-black);}
-.st-home .fi-approve .ap-btn.no{background:transparent; border:1px solid var(--line-dk); color:var(--txt-d3);}
-.st-home .fi-approve.granted{border-color:rgba(34,197,94,0.4); background:rgba(34,197,94,0.07);}
-.st-home .fi-result{border:1px solid rgba(34,197,94,0.35); background:rgba(34,197,94,0.06); border-radius:11px; padding:18px 20px;}
-.st-home .fi-result .rs-h{display:flex; align-items:center; gap:10px; font-family:var(--serif); font-weight:600; font-size:18px; color:#fbf9f6;}
-.st-home .fi-result .rs-h i{width:18px; height:18px; color:var(--green);}
-.st-home .fi-result .rs-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px;}
-.st-home .fi-result .rs-c .n{font-family:var(--serif); font-weight:600; font-size:26px; color:#fbf9f6; letter-spacing:-0.01em;}
-.st-home .fi-result .rs-c .l{font-size:12px; color:var(--txt-d3); margin-top:4px; text-transform:uppercase; letter-spacing:0.06em;}
-.st-home .typing{display:inline-flex; gap:4px; align-items:center;}
-.st-home .typing span{width:6px; height:6px; border-radius:50%; background:var(--txt-d3); animation:typeb 1.2s infinite;}
-.st-home .typing span:nth-child(2){animation-delay:.18s;}
-.st-home .typing span:nth-child(3){animation-delay:.36s;}
-@keyframes typeb{ 0%,60%,100%{ opacity:.25; transform:translateY(0); } 30%{ opacity:1; transform:translateY(-3px); } }
 .st-home .sec.persona{background:var(--paper-2); color:var(--txt-1);}
 .st-home .persona-head{max-width:880px;}
 .st-home .persona-title{font-family:var(--serif); font-weight:600; font-size:clamp(36px,4.6vw,60px); line-height:1.03; letter-spacing:-0.025em; color:var(--txt-1); margin:18px 0 0; text-wrap:balance;}
@@ -610,16 +542,6 @@
 .st-home .pcard .pc-link{margin-top:auto; padding-top:22px; display:inline-flex; align-items:center; gap:9px; font-family:var(--sans); font-size:14.5px; font-weight:600; color:var(--txt-1); cursor:pointer;}
 .st-home .pcard .pc-link i{width:16px; height:16px; color:var(--amber); transition:transform .2s;}
 .st-home .pcard:hover .pc-link i{transform:translateX(3px);}
-.st-home .aud-tabs{display:inline-flex; flex-wrap:wrap; gap:6px; padding:6px; border:1px solid var(--line2); border-radius:14px; background:#fff; margin:40px auto 0;}
-.st-home .aud-tab{display:flex; align-items:center; gap:11px; cursor:pointer; border:none; background:transparent;
-  font-family:var(--sans); font-size:15px; font-weight:600; color:var(--txt-2); padding:13px 22px; border-radius:9px;
-  transition:background .2s, color .2s;}
-.st-home .aud-tab i{width:18px; height:18px;}
-.st-home .aud-tab .ct{font-family:var(--mono); font-size:11px; font-weight:500; color:var(--txt-3); background:var(--paper-2); padding:2px 8px; border-radius:6px;}
-.st-home .aud-tab:hover{color:var(--txt-1);}
-.st-home .aud-tab.on{background:var(--ink); color:#fff;}
-.st-home .aud-tab.on .ct{background:rgba(255,255,255,0.16); color:#fff;}
-.st-home .aud-tab.on i{color:var(--amber);}
 .st-home .aud-panel{margin-top:46px;}
 .st-home .aud-intro{text-align:center; font-size:21px; line-height:1.5; color:var(--txt-2); max-width:60ch; margin:0 auto 8px; text-wrap:pretty;}
 .st-home .aud-intro b{color:var(--txt-1); font-weight:600;}
@@ -675,6 +597,134 @@
 .st-home .pilot-bridge .amber{color:var(--amber);}
 .st-home .agent-compliance{display:flex; align-items:center; justify-content:center; gap:11px; margin:30px auto 0; max-width:70ch; text-align:center; font-size:14.5px; line-height:1.5; color:var(--txt-3);}
 .st-home .agent-compliance i{width:18px; height:18px; color:var(--amber); flex:none;}
+
+/* ── What Surogate is · four numbered columns split by hairlines ── */
+.st-home .sec-head .lead + .lead{margin-top:18px;}
+.st-home .fac-grid{display:grid; grid-template-columns:repeat(4,1fr); margin-top:64px; border-top:1px solid var(--line2);}
+.st-home .fac{padding:34px 30px 0 34px; border-left:1px solid var(--line2);}
+.st-home .fac:first-child{border-left:0; padding-left:0;}
+.st-home .fac-n{font-family:var(--mono); font-size:12px; letter-spacing:0.14em; color:var(--amber);}
+.st-home .fac-t{font-family:var(--serif); font-weight:600; font-size:24px; letter-spacing:-0.015em; color:var(--txt-1); margin-top:20px; white-space:nowrap;}
+.st-home .fac-d{margin:13px 0 0; font-size:16px; line-height:1.6; color:var(--txt-2);}
+@media (max-width:900px){
+  .st-home .fac-grid{grid-template-columns:1fr 1fr;}
+  .st-home .fac:nth-child(odd){border-left:0; padding-left:0;}
+  .st-home .fac:nth-child(n+3){margin-top:34px; padding-top:34px; border-top:1px solid var(--line2);}
+}
+@media (max-width:600px){
+  .st-home .fac-grid{grid-template-columns:1fr;}
+  .st-home .fac{border-left:0; padding-left:0;}
+  .st-home .fac:nth-child(n+2){margin-top:30px; padding-top:30px; border-top:1px solid var(--line2);}
+}
+
+/* ── The films — React scenes played in the page, not video. The frame is the
+      same either way: full width under the section head, and inside the mode
+      sections, where the grid already spaces it. ── */
+.st-home .vid{position:relative; margin-top:30px; border:1px solid var(--line2); border-radius:16px; overflow:hidden;
+  background:var(--ink-black); box-shadow:var(--shadow-card); aspect-ratio:16/9;}
+.st-home .vid .film{display:block; width:100%; height:100%;}
+/* The films are self-contained components dropped into this page's cascade, so
+   page-wide element rules must not reach inside them — globals.css paints every
+   `pre` with an !important background, which turned a white editor panel into a
+   purple slab. The scenes style themselves; nothing here should. */
+.st-home .vid .film pre,
+.st-home .vid .film pre code{background-color:transparent !important; border:0 !important;}
+/* Ground off: the scenes are drawn straight onto the section, so there is no
+   frame at all — no fill, no hairline, no shadow. The panels are the picture. */
+.st-home .vid.vid-bare{background:transparent; box-shadow:none; border:0; border-radius:0;}
+.st-home .sec.dark .vid.vid-bare{border:0;}
+
+/* ── Mode cards ──
+      Two up, under the film's own full-width row. Cards stretch to the tallest
+      in their row so a pair reads as a row rather than two ragged blocks.
+
+      The card carries its weight in a hairline and a number rather than a drop
+      shadow — a wall of shadowed slabs is a lot of grey. The amber rail on the
+      left is what makes it a card rather than a list item, and it is the only
+      thing that moves on hover. ── */
+.st-home .mcard-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:44px;
+  counter-reset:mcard; align-items:stretch;}
+@media (max-width:900px){.st-home .mcard-grid{grid-template-columns:1fr;}}
+.st-home .mcard{position:relative; counter-increment:mcard;
+  display:grid; grid-template-columns:auto 1fr auto; align-items:start;
+  align-content:start; gap:20px;
+  border:1px solid var(--line2); border-radius:16px; background:#fff;
+  padding:24px 26px 24px 30px; overflow:hidden;
+  transition:border-color .3s, box-shadow .3s;}
+/* The rail: flush left, full height, amber, revealed on hover. */
+.st-home .mcard::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:var(--amber); transform:scaleY(0); transform-origin:top;
+  transition:transform .35s cubic-bezier(.22,1,.36,1);}
+.st-home .mcard:hover{border-color:var(--amber-line); box-shadow:var(--shadow-card);}
+.st-home .mcard:hover::before{transform:scaleY(1);}
+
+.st-home .mc-ic{flex:none; width:46px; height:46px; border-radius:13px;
+  background:var(--amber-soft); display:flex; align-items:center; justify-content:center;}
+.st-home .mc-ic svg{width:21px; height:21px; color:var(--amber);}
+
+.st-home .mc-body{min-width:0;}
+.st-home .mc-t{font-family:var(--serif); font-weight:600; font-size:21px;
+  letter-spacing:-0.015em; color:var(--txt-1); line-height:1.25;}
+.st-home .mc-d{margin:9px 0 0; font-size:15.5px; line-height:1.6; color:var(--txt-2);}
+
+/* The index, set in the mono face the rest of the page uses for labels. */
+.st-home .mcard::after{content:counter(mcard,decimal-leading-zero);
+  font-family:var(--mono); font-size:12px; letter-spacing:0.14em; color:var(--txt-3);
+  opacity:.55; align-self:start; padding-top:6px;}
+
+@media (max-width:760px){
+  .st-home .mcard{grid-template-columns:auto 1fr; gap:18px; padding:22px 22px 22px 26px;}
+  .st-home .mcard::after{display:none;}
+}
+/* Seven cards two-up leaves one alone on the last row; let it take the full
+   width rather than sit as an orphan half. */
+@media (min-width:901px){
+  .st-home .mcard:last-child:nth-child(odd){grid-column:1 / -1;}
+}
+@media (prefers-reduced-motion:reduce){
+  .st-home .mcard,.st-home .mcard::before{transition:none;}
+}
+
+/* On a dark section the card inverts the way the rest of the page's dark cards
+   do — a lifted translucent fill over the ground rather than a white slab. */
+.st-home .sec.dark .mcard{background:rgba(255,255,255,.03); border-color:var(--line-dk);}
+.st-home .sec.dark .mcard:hover{border-color:var(--amber-line); box-shadow:none;
+  background:rgba(255,255,255,.05);}
+.st-home .sec.dark .mc-ic{background:rgba(255,175,16,.12);}
+.st-home .sec.dark .mc-t{color:#fbf9f6;}
+.st-home .sec.dark .mc-d{color:var(--txt-d2);}
+.st-home .sec.dark .mcard::after{color:var(--txt-d3);}
+/* The film already carries its own dark ground; the frame just needs to stop
+   drawing a light hairline around it. */
+.st-home .sec.dark .vid{border-color:var(--line-dk);}
+.st-home .sec.dark .fb-btn{background:rgba(255,255,255,.04); border-color:var(--line-dk);
+  color:var(--txt-d1);}
+.st-home .sec.dark .fb-play{background:var(--amber); border-color:var(--amber);
+  color:var(--ink-black);}
+.st-home .sec.dark .fb-track{background:var(--line-dk);}
+.st-home .sec.dark .fb-time,.st-home .sec.dark .fb-caption{color:var(--txt-d3);}
+
+/* ── The film's control bar ──
+   Under the frame rather than over it: the films are UI, and a bar floating on
+   top would cover the thing it is there to let you watch. */
+.st-home .film-bar{display:flex; align-items:center; gap:14px; margin-top:16px;}
+.st-home .fb-btn{display:grid; place-items:center; width:38px; height:38px; flex:none;
+  border:1px solid var(--line2); border-radius:50%; background:#fff; cursor:pointer;
+  color:var(--txt-1); transition:border-color .2s, color .2s, background .2s;}
+.st-home .fb-btn svg{width:15px; height:15px; fill:currentColor;}
+.st-home .fb-btn:hover{border-color:var(--amber-line); color:var(--amber);}
+.st-home .fb-play{background:var(--amber); border-color:var(--amber); color:var(--ink-black);}
+.st-home .fb-play:hover{background:var(--amber); border-color:var(--amber); color:var(--ink-black);}
+.st-home .fb-track{position:relative; flex:1; height:4px; border-radius:999px;
+  background:var(--line2); cursor:pointer;}
+.st-home .fb-track:focus-visible{outline:2px solid var(--amber); outline-offset:5px;}
+/* The hit area is taller than the line, so it is not a 4px target. */
+.st-home .fb-track::before{content:""; position:absolute; inset:-11px 0;}
+.st-home .fb-fill{height:100%; border-radius:999px; background:var(--amber);}
+.st-home .fb-time{font-family:var(--mono); font-size:12px; color:var(--txt-3);
+  font-variant-numeric:tabular-nums; flex:none;}
+.st-home .fb-caption{margin:12px 0 0; font-family:var(--mono); font-size:12px; color:var(--txt-3);}
+@media (prefers-reduced-motion:reduce){.st-home .fb-btn{transition:none;}}
 
 /* ── Channels · six cards, 3 up ── */
 .st-home .chan-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:54px;}
