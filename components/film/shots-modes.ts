@@ -50,7 +50,7 @@ export const WORK_SHOTS: Shot[] = [
   {
     id: 1,
     name: "agents",
-    duration: 4,
+    duration: 3,
     scene: SceneAgents,
     caption: "The agents you already have",
     captionSub: "Running, reachable, and busy",

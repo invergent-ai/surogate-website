@@ -9,6 +9,16 @@ import { c, radius } from "../ui/tokens";
 import { mono, sans } from "../font";
 
 /**
+ * How far into its own entrance the film opens.
+ *
+ * Frame 0 used to be genuinely empty — every entrance started there, so the
+ * first thing painted was nothing, and `loop` came back to it every pass. The
+ * opening beat starts part-way through instead: the panel is nearly in and its
+ * contents are still arriving, so the first frame anyone sees is already moving.
+ */
+const LEAD = 6;
+
+/**
  * The model.
  *
  * Where the agent's brain comes from. Two screens: the four deploy sources —
@@ -98,7 +108,7 @@ export const SceneModel: React.FC = () => {
                 <SourceCard
                   key={s.name}
                   source={s}
-                  at={t(2 + i * 3)}
+                  at={t(1 + i * 2) - LEAD}
                   picked={i === PICK && frame >= t(PICK_AT)}
                 />
               ))}

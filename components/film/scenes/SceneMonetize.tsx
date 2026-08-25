@@ -8,6 +8,18 @@ import { c, radius } from "../ui/tokens";
 import { sans } from "../font";
 
 /**
+ * How far into its own entrance the film opens.
+ *
+ * Frame 0 used to be genuinely empty — every entrance started there, so the
+ * first thing painted was nothing, and `loop` came back to it every pass. The
+ * opening beat starts part-way through instead: the panel is nearly in and its
+ * contents are still arriving, so the first frame anyone sees is already moving.
+ */
+const LEAD = 6;
+/** The panel's own fade is a longer window, so it needs a longer lead. */
+const PANEL_LEAD = 12;
+
+/**
  * Monetize, in two beats.
  *
  * One screen showing the checklist, the Stripe connection and the pricing model
@@ -53,14 +65,14 @@ export const SceneStripe: React.FC = () => {
         ]}
       >
         <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-          <Panel width={1180} hot at={0} style={{ padding: "26px 32px 28px" }}>
+          <Panel width={1180} hot at={-PANEL_LEAD} style={{ padding: "26px 32px 28px" }}>
             <Heading size={25}>Monetize</Heading>
             <Text size={16} muted style={{ marginTop: 6 }}>
               Charge for access to this agent. Buyers pay into your own Stripe account;
               Surogate takes a 5% platform fee per sale.
             </Text>
 
-            <Card at={t(3)}>
+            <Card at={t(3) - LEAD}>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <Text size={18} weight={600}>
                   How selling works
@@ -71,7 +83,7 @@ export const SceneStripe: React.FC = () => {
               </div>
               <div style={{ marginTop: 12 }}>
                 {STEPS.map((step, i) => (
-                  <Step key={step.t} step={step} n={i + 1} at={t(6 + i * 5)} />
+                  <Step key={step.t} step={step} n={i + 1} at={t(3 + i * 3) - LEAD} />
                 ))}
               </div>
             </Card>

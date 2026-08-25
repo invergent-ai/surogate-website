@@ -23,19 +23,12 @@ export default function FilmPlayer({
   label,
   caption,
   ground = true,
-  startAt = 0,
 }: {
   variant: FilmProps['variant'];
   label: string;
   caption?: string;
   /** Off draws the scenes straight onto the section behind them. */
   ground?: boolean;
-  /**
-   * Frame to open on. Every scene builds itself in, so frame 0 is an empty
-   * stage — a film above the fold would otherwise greet the page with a blank
-   * rectangle for the length of its own entrance.
-   */
-  startAt?: number;
 }) {
   const ref = useRef<PlayerRef>(null);
   const box = useRef<HTMLDivElement>(null);
@@ -44,6 +37,17 @@ export default function FilmPlayer({
 
   const [playing, setPlaying] = useState(false);
   const [frame, setFrame] = useState(0);
+  /**
+   * Whether the player exists yet.
+   *
+   * There are four films on the page. Mounting them all at hydration put four
+   * render loops on the main thread at once, and each one painted its first
+   * frame and then sat there until it got scheduled — the film looked stuck for
+   * about a second before it began. Each now waits until it is nearly in view,
+   * so it is built and running before anyone is looking at it, and the films
+   * further down the page cost nothing until they are approached.
+   */
+  const [live, setLive] = useState(false);
 
   const total = filmDurationInFrames(CUTS[variant], FPS);
 
@@ -56,19 +60,24 @@ export default function FilmPlayer({
    * film below the fold played fine, one already in view never started.
    */
   const withPlayer = useCallback((fn: (player: PlayerRef) => void) => {
+    let cancelled = false;
     const attempt = () => {
+      if (cancelled) return;
       const player = ref.current;
       if (player) fn(player);
       else requestAnimationFrame(attempt);
     };
     attempt();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
-    let live = true;
+    if (!live) return;
 
-    withPlayer((player) => {
-      if (!live) return;
+    let detach = () => {};
+    const stop = withPlayer((player) => {
       const onPlay = () => setPlaying(true);
       const onPause = () => setPlaying(false);
       const onFrame = (e: { detail: { frame: number } }) =>
@@ -77,16 +86,41 @@ export default function FilmPlayer({
       player.addEventListener('play', onPlay);
       player.addEventListener('pause', onPause);
       player.addEventListener('frameupdate', onFrame);
+
+      detach = () => {
+        player.removeEventListener('play', onPlay);
+        player.removeEventListener('pause', onPause);
+        player.removeEventListener('frameupdate', onFrame);
+      };
     });
 
     return () => {
-      live = false;
+      stop();
+      detach();
     };
-  }, [withPlayer]);
+  }, [withPlayer, live]);
 
+  // Build the player a screen-height before it arrives, and leave it built.
   useEffect(() => {
     const el = box.current;
     if (!el) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setLive(true);
+        io.disconnect();
+      },
+      { rootMargin: '800px 0px' },
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = box.current;
+    if (!el || !live) return;
 
     // Someone who has asked for less motion gets the first frame, held.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -104,7 +138,7 @@ export default function FilmPlayer({
 
     io.observe(el);
     return () => io.disconnect();
-  }, [withPlayer]);
+  }, [withPlayer, live]);
 
   const toggle = () =>
     withPlayer((player) => {
@@ -153,12 +187,21 @@ export default function FilmPlayer({
     <div>
       <div className={ground ? 'vid' : 'vid vid-bare'} ref={box}>
         <div className="film">
+          {live ? (
           <Player
             ref={ref}
             component={Film}
             inputProps={{ variant, ground } satisfies FilmProps}
-            initialFrame={startAt}
             durationInFrames={total}
+            /*
+              Plays from its first frame, from mount. Nothing is held: driving
+              the first play from an effect left a still on screen while the
+              player's ref landed, and opening on a later frame turned that
+              still into a frozen mid-entrance. Starting at zero means the first
+              thing anyone sees is the opening animation itself. The observer
+              keeps only its job of pausing what scrolls away.
+            */
+            autoPlay
             fps={FPS}
             compositionWidth={WIDTH}
             compositionHeight={HEIGHT}
@@ -167,6 +210,7 @@ export default function FilmPlayer({
             style={{ width: '100%', height: '100%' }}
             aria-label={label}
           />
+          ) : null}
         </div>
       </div>
 

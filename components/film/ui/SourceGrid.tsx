@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { Text } from "./kit";
-import { useSpringAt } from "./motion";
+import { useEnterAt } from "./motion";
 import { c } from "./tokens";
 
 /**
@@ -21,7 +21,7 @@ export const SourceCard: React.FC<{
   picked: boolean;
   minHeight?: number;
 }> = ({ source, at, picked, minHeight = 168 }) => {
-  const s = useSpringAt(at);
+  const s = useEnterAt(at);
   return (
     <div
       style={{

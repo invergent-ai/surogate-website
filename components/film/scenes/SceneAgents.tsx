@@ -3,9 +3,21 @@ import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 import { Camera } from "../ui/Camera";
 import { Panel, PanelHead, Stage } from "../ui/Stage";
 import { Heading, Pill, Text } from "../ui/kit";
-import { useSpringAt, useTimeScale } from "../ui/motion";
+import { useEnterAt, useTimeScale } from "../ui/motion";
 import { c, radius } from "../ui/tokens";
 import { mono, sans } from "../font";
+
+/**
+ * How far into its own entrance the film opens.
+ *
+ * Frame 0 used to be genuinely empty — every entrance started there, so the
+ * first thing painted was nothing, and `loop` came back to it every pass. The
+ * opening beat starts part-way through instead: the panel is nearly in and its
+ * contents are still arriving, so the first frame anyone sees is already moving.
+ */
+const LEAD = 6;
+/** The panel's own fade is a longer window, so it needs a longer lead. */
+const PANEL_LEAD = 12;
 
 /**
  * Your agents.
@@ -72,7 +84,7 @@ export const SceneAgents: React.FC = () => {
         ]}
       >
         <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-          <Panel width={1180} hot at={0}>
+          <Panel width={1180} hot at={-PANEL_LEAD}>
             <PanelHead
               right={
                 <Text size={16} muted>
@@ -91,9 +103,9 @@ export const SceneAgents: React.FC = () => {
                 gap: 14,
               }}
             >
-              <CreateTile at={t(1)} />
+              <CreateTile at={t(1) - LEAD} />
               {AGENTS.map((a, i) => (
-                <AgentCard key={a.name} agent={a} at={t(4 + i * 3)} />
+                <AgentCard key={a.name} agent={a} at={t(3 + i * 2) - LEAD} />
               ))}
             </div>
           </Panel>
@@ -104,7 +116,7 @@ export const SceneAgents: React.FC = () => {
 };
 
 const CreateTile: React.FC<{ at: number }> = ({ at }) => {
-  const s = useSpringAt(at);
+  const s = useEnterAt(at);
   return (
     <div
       style={{
@@ -136,7 +148,7 @@ const AgentCard: React.FC<{ agent: (typeof AGENTS)[number]; at: number }> = ({
   agent,
   at,
 }) => {
-  const s = useSpringAt(at);
+  const s = useEnterAt(at);
   return (
     <div
       style={{
