@@ -228,7 +228,6 @@ export default function ShowTell() {
           <FilmPlayer
             variant="full"
             ground={false}
-            startAt={20}
             label="A tour of the Surogate platform"
           />
           <div className="fac-grid reveal d2">
@@ -254,7 +253,6 @@ export default function ShowTell() {
           <FilmPlayer
             variant="work"
             ground={false}
-            startAt={28}
             label="Work mode: running agents, sessions, missions and approvals"
             caption="Work mode · a walkthrough of a day with an agent"
           />
@@ -325,7 +323,6 @@ export default function ShowTell() {
           <FilmPlayer
             variant="monetize"
             ground={false}
-            startAt={22}
             label="Monetization: pricing, the buy link and the storefront a buyer sees"
             caption="Monetize &middot; from pricing model to a page buyers can pay on"
           />
@@ -411,7 +408,6 @@ export default function ShowTell() {
           <FilmPlayer
             variant="develop"
             ground={false}
-            startAt={28}
             label="Develop mode: models, datasets, training and evaluation"
             caption="Develop mode · a walkthrough of the Studio"
           />

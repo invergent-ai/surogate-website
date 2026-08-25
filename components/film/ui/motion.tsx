@@ -23,6 +23,24 @@ export const useSpringAt = (delay = 0) => {
 };
 
 /**
+ * A short, hard entrance — 0-1 over `over` frames on a cubic ease-out.
+ *
+ * The shared spring takes about two-thirds of a second to settle, which is
+ * right in the middle of a film and wrong at the start of one: these play in a
+ * page, and someone scrolling past a settled panel reads it as a screenshot.
+ * The opening beat of every film uses this instead, so the first thing on
+ * screen is visibly moving.
+ */
+export const useEnterAt = (delay = 0, over = 8) => {
+  const frame = useCurrentFrame();
+  return interpolate(frame, [delay, delay + over], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: (t) => 1 - Math.pow(1 - t, 3),
+  });
+};
+
+/**
  * Fade + lift in. The default entrance for anything appearing on screen.
  */
 export const Enter: React.FC<{

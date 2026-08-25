@@ -74,9 +74,9 @@ export const SceneTemplates: React.FC = () => {
           }}
         >
           <div style={{ transform: `translateY(${frame * -0.28}px)` }}>
-            <TemplateRow items={ROW_A} delay={0} drift={frame * -0.22} />
-            <TemplateRow items={ROW_B} delay={2} drift={frame * 0.3 - 100} />
-            <TemplateRow items={ROW_C} delay={4} drift={frame * -0.16 + 55} />
+            <TemplateRow items={ROW_A} delay={-6} drift={frame * -0.22} />
+            <TemplateRow items={ROW_B} delay={-4} drift={frame * 0.3 - 100} />
+            <TemplateRow items={ROW_C} delay={-2} drift={frame * -0.16 + 55} />
           </div>
         </AbsoluteFill>
       </Camera>
@@ -115,7 +115,8 @@ const TemplateCard: React.FC<{
   const frame = useCurrentFrame();
   const light = useTone() === "light";
   // Deliberately not the shared spring: this is the first thing on screen when
-  // the page loads, and the wall has to be there, not arriving.
+  // the page loads, and the wall has to be there, not arriving. Row delays are
+  // negative for the same reason — at frame 0 the wall is already settling.
   const s = interpolate(frame, [at, at + 9], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
