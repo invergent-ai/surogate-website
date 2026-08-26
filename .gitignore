@@ -26,3 +26,6 @@ out/
 .next/
 .env*
 !.env.example
+
+# Rendered films (large binaries, regenerate with npm run film:render)
+films/
