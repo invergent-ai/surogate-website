@@ -1,6 +1,7 @@
 import { loadFont as loadInter } from "@remotion/google-fonts/Inter";
 import { loadFont as loadFraunces } from "@remotion/google-fonts/Fraunces";
 import { loadFont as loadMono } from "@remotion/google-fonts/JetBrainsMono";
+import { loadFont as loadHand } from "@remotion/google-fonts/Caveat";
 
 /**
  * The product's three faces, from surogate-ops/frontend/src/index.css:
@@ -24,6 +25,18 @@ export const { fontFamily: serif } = loadFraunces("normal", {
 
 export const { fontFamily: mono } = loadMono("normal", {
   weights: ["400"],
+  subsets: ["latin"],
+});
+
+/**
+ * Handwriting, for the whiteboard only.
+ *
+ * The board is the one surface where the user's own marks appear, and italic
+ * serif read as a typeset formula rather than something someone wrote. This is
+ * ink; nothing else in the films should use it.
+ */
+export const { fontFamily: hand } = loadHand("normal", {
+  weights: ["400", "600"],
   subsets: ["latin"],
 });
 

@@ -67,7 +67,7 @@ const COMMANDS: Row[] = [
   {
     title: "Research missions",
     cmd: "/auto-research",
-    desc: "An autonomous optimization run (Arbor) that grows a hypothesis tree, evaluates experiments in isolated worktrees, and merges only verified gains.",
+    desc: "An autonomous optimization run that grows a hypothesis tree, evaluates experiments in isolated worktrees, and merges only verified gains.",
     flipAt: 0.54,
   },
   {

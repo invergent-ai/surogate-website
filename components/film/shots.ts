@@ -56,6 +56,14 @@ export type Shot = {
   build: string;
   short?: boolean;
   shortDuration?: number;
+  /**
+   * Tutorial step chrome: "STEP 03 / 06" in the corner.
+   *
+   * Only the tutorials set these. A showcase beat is self-contained, but a
+   * tutorial is a sequence and someone arriving mid-way has to be told so.
+   */
+  step?: number;
+  steps?: number;
 };
 
 export const SHOTS: Shot[] = [
@@ -137,7 +145,7 @@ export const SHOTS: Shot[] = [
     captionAt: "bottom-center",
     vo: "Connect the tools your team already runs.",
     build:
-      "The Composio catalogue filtering to a search term as recognisable logos land, then one MCP server connecting.",
+      "The toolkit catalogue filtering to a search term as recognisable logos land, then one MCP server connecting.",
     short: true,
     shortDuration: 2.5,
   },

@@ -74,10 +74,10 @@ export const WORK_SHOTS: Shot[] = [
     duration: 7,
     scene: SceneToolsConnect,
     caption: "1000+ tools, ready to connect",
-    captionSub: "Your library, a Composio toolkit, or any MCP server",
+    captionSub: "Your library, a ready-made toolkit, or any MCP server",
     captionAt: "bottom-center",
     build:
-      "The three ways to connect a tool, then the Composio catalogue running the alphabet and stopping on one that attaches.",
+      "The three ways to connect a tool, then the toolkit catalogue running the alphabet and stopping on one that attaches.",
   },
   {
     id: 4,

@@ -10,10 +10,12 @@ import { Audio } from "@remotion/media";
 import { sans } from "./font";
 import { Ground, Sweep } from "./ui/Ground";
 import { ToneContext } from "./ui/tone";
+import { StepBadge } from "./ui/StepBadge";
 import { Caption } from "./components/Caption";
 import { Placeholder } from "./scenes/Placeholder";
 import { SHORT_CUT, SHOTS, type Shot } from "./shots";
 import { DEVELOP_SHOTS, MONETIZE_SHOTS, WORK_SHOTS } from "./shots-modes";
+import { TUTORIALS } from "./tutorials";
 import { theme } from "./theme";
 
 /**
@@ -22,7 +24,8 @@ import { theme } from "./theme";
  * shot array, and resolves the scenes itself.
  */
 export type FilmProps = {
-  variant: "full" | "short" | "work" | "develop" | "monetize";
+  /** Any cut in `CUTS` — the showcase films and the tutorial catalogue. */
+  variant: keyof typeof CUTS;
   /** Voiceover file in public/audio/. Silent when absent. */
   voiceover?: string;
   /**
@@ -136,14 +139,22 @@ export const Film: React.FC<FilmProps> = ({
   );
 };
 
-/** Every cut the project renders, by name. */
-export const CUTS: Record<FilmProps["variant"], Shot[]> = {
+/**
+ * Every cut the project renders, by name.
+ *
+ * `remotion/Root.tsx` maps over this, so a cut added here appears in the studio
+ * and the render CLI with nothing else to change. The variant union is derived
+ * from it rather than hand-maintained — the tutorial catalogue is 25 entries
+ * and nobody is going to keep a parallel list of string literals correct.
+ */
+export const CUTS = {
   full: SHOTS,
   short: SHORT_CUT,
   work: WORK_SHOTS,
   develop: DEVELOP_SHOTS,
   monetize: MONETIZE_SHOTS,
-};
+  ...TUTORIALS,
+} satisfies Record<string, Shot[]>;
 
 /** Where each shot sits on the timeline. One source of truth for the cut. */
 export const layout = (shots: Shot[], fps: number) => {
@@ -194,6 +205,9 @@ const ShotScene: React.FC<{ shot: Shot }> = ({ shot }) => {
       ) : (
         stage
       )}
+      {shot.step && shot.steps ? (
+        <StepBadge n={shot.step} of={shot.steps} />
+      ) : null}
       {shot.caption ? (
         <Caption
           text={shot.caption}

@@ -63,6 +63,10 @@ export const Caption: React.FC<{
         ...box.fill,
         // Less room under the type than beside it: the caption should sit low
         // in the frame, away from the UI it is describing.
+        // 96px gutters leave 1728 usable, so the old 1180 cap was wrapping
+        // captions that had room to spare. Widened rather than set smaller:
+        // shrinking the type would have changed every caption in every film to
+        // fix the few long ones.
         padding: "96px 96px 56px",
         opacity,
         pointerEvents: "none",
@@ -77,7 +81,7 @@ export const Caption: React.FC<{
             letterSpacing: "-0.02em",
             lineHeight: 1.06,
             color: light ? "currentColor" : "#fff",
-            maxWidth: 1180,
+            maxWidth: 1560,
             textShadow: light ? "none" : "0 4px 40px rgba(0,0,0,0.55)",
           }}
         >
@@ -91,7 +95,7 @@ export const Caption: React.FC<{
               lineHeight: 1.25,
               color: light ? "currentColor" : "rgba(255,255,255,0.66)",
               opacity: light ? 0.68 : 1,
-              maxWidth: 1100,
+              maxWidth: 1440,
               textShadow: light ? "none" : "0 2px 24px rgba(0,0,0,0.5)",
             }}
           >

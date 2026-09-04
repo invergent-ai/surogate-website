@@ -27,7 +27,7 @@ const WAYS = [
   {
     mark: "❖",
     title: "Toolkits",
-    desc: "Attach a ready-made Composio toolkit.",
+    desc: "Attach a ready-made toolkit.",
   },
   {
     mark: "✎",
@@ -255,7 +255,7 @@ const Catalogue: React.FC<{ start: number; t: (f: number) => number }> = ({
         Give this agent access to outside services it can use in new chats.
       </Text>
       <Text size={16} muted style={{ marginTop: 12 }}>
-        Ready-made Composio toolkits — attach one to this agent.
+        Ready-made toolkits — attach one to this agent.
       </Text>
 
       <div

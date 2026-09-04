@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "film": "remotion studio remotion/index.ts",
-    "film:render": "remotion render remotion/index.ts"
+    "film:render": "remotion render remotion/index.ts",
+    "film:render:all": "bash scripts/render-films.sh"
   },
   "dependencies": {
     "@remotion/google-fonts": "^4.0.516",
