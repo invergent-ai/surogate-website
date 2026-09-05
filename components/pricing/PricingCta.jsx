@@ -42,7 +42,7 @@ export default function PricingCta() {
           <TrackedLink
             event="contact_sales_clicked"
             eventProps={{ location: 'pricing_cta' }}
-            href="mailto:sales@surogate.ai"
+            href="mailto:sales@invergent.ai"
             className="inline-flex items-center justify-center gap-2.5 h-12 px-6 bg-transparent text-white/82 font-sans text-xs font-semibold uppercase tracking-wider-2 border border-white/20 hover:text-white hover:border-white/40 transition-colors"
           >
             Talk to a human
