@@ -63,9 +63,9 @@ const USE_CASES = [
     d: 'Reads the ledger, works out who is late, and chases them over email and WhatsApp until they pay - raising a hand before anything awkward goes out.',
   },
   {
-    icon: 'line-chart',
-    t: 'The monthly report',
-    d: "Pulls the month's numbers out of your client's tools, writes the report you currently write by hand, and has it waiting before the call.",
+    icon: 'file-text',
+    t: 'The quote writer',
+    d: "An enquiry lands at eleven at night. The agent reads it, prices it against your client's own rate card, and has a real quote in the inbox before a competitor opens.",
   },
 ];
 
