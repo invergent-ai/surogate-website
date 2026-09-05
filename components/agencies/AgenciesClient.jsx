@@ -43,28 +43,29 @@ const FLOW = [
   'Get paid, monthly',
 ];
 
-/* Four workflows an agency is probably already delivering by hand. Specific
-   beats broad here: the reader has to picture something they could sell. */
+/* Four agents that produce something, rather than four that answer questions.
+   Each one has an output a client can see, and a reason to renew next month —
+   which is what makes it a product instead of a project. */
 const USE_CASES = [
   {
-    icon: 'target',
-    t: 'Lead qualification',
-    d: 'A visitor lands on the site. The agent qualifies them, writes the result into the CRM, and books the meeting.',
+    icon: 'megaphone',
+    t: 'The social media manager',
+    d: "Writes the week's posts in your client's own voice - from their launches, their photos, their back catalogue - schedules them, then comes back on Monday and does it again.",
   },
   {
-    icon: 'messages-square',
-    t: 'Customer support',
-    d: "Your client's knowledge base and systems, behind one agent that answers - and hands off to a human when it should.",
+    icon: 'graduation-cap',
+    t: 'The course tutor',
+    d: "Teaches your client's material one student at a time: sets the exercise, marks the answer, adapts the next lesson to what they got wrong. Sell it by the seat.",
   },
   {
-    icon: 'clipboard-check',
-    t: 'Client onboarding',
-    d: 'Collects what it needs, checks the documents, updates the systems, and chases whatever is still missing.',
+    icon: 'receipt',
+    t: 'The invoice chaser',
+    d: 'Reads the ledger, works out who is late, and chases them over email and WhatsApp until they pay - raising a hand before anything awkward goes out.',
   },
   {
-    icon: 'search',
-    t: 'Research & operations',
-    d: 'Browses the sources, does the reading, and files the same report every week without being asked.',
+    icon: 'line-chart',
+    t: 'The monthly report',
+    d: "Pulls the month's numbers out of your client's tools, writes the report you currently write by hand, and has it waiting before the call.",
   },
 ];
 
@@ -252,7 +253,8 @@ export default function AgenciesClient() {
               <p className="eyebrow">What agencies sell</p>
               <h2 className="h-section">Four agents you could sell this quarter</h2>
               <p className="lead">
-                Each one is a workflow you are probably already delivering by hand.
+                Not chatbots that answer questions - workers that produce something. Each of these
+                has an output your client can see, and a reason to renew next month.
               </p>
             </div>
 
