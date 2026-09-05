@@ -63,9 +63,9 @@ const USE_CASES = [
     d: 'Reads the ledger, works out who is late, and chases them over email and WhatsApp until they pay - raising a hand before anything awkward goes out.',
   },
   {
-    icon: 'file-text',
-    t: 'The quote writer',
-    d: "An enquiry lands at eleven at night. The agent reads it, prices it against your client's own rate card, and has a real quote in the inbox before a competitor opens.",
+    icon: 'messages-square',
+    t: 'The support agent',
+    d: "Answers out of your client's own material, then does the thing it was asked for - changes the booking, refunds the order, updates the account - and hands to a human the moment it should.",
   },
 ];
 
