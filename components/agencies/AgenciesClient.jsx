@@ -171,13 +171,16 @@ export default function AgenciesClient() {
               monitoring - then charge for access, into your own Stripe account.
             </p>
             <div className="hero-actions reveal d3">
+              {/* Down to the ways in, rather than straight into a mail client:
+                  the reach-out section is a `section[id]`, so globals.css
+                  already gives it the offset and the smooth scroll. */}
               <a
                 className="btn btn-primary"
-                href={CONTACT}
+                href="#reach"
                 onClick={() => track('cta_agency_clicked', { location: 'hero' })}
               >
-                <i data-lucide="arrow-right" />
-                Build your first client agent with us
+                <i data-lucide="arrow-down" />
+                Build one with us
               </a>
               <a
                 className="btn btn-ghost"
