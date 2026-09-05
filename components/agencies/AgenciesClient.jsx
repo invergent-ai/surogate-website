@@ -84,7 +84,7 @@ const GETS = [
   },
 ];
 
-const EMAIL = 'sales@surogate.ai';
+const EMAIL = 'sales@invergent.ai';
 const X_HANDLE = 'surogate_ai';
 
 /* Empty hides the card rather than shipping a dead invite; the row is laid
