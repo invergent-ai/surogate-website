@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npx serve@latest out",
     "lint": "next lint",
     "film": "remotion studio remotion/index.ts",
     "film:render": "remotion render remotion/index.ts",
