@@ -1,0 +1,122 @@
+/* ════════════════════════════════════════════════════════════════
+   /agencies — the agency & consultant landing page.
+
+   Built on the Show & Tell design system in app/home.css, which is
+   scoped to .st-home; this page carries both classes, so sections,
+   buttons, cards, the type ramp and the dark striping all come from
+   there. Only what this page adds lives here.
+   ════════════════════════════════════════════════════════════════ */
+
+/* A sentence rather than the home page's two-word promise, so it sets
+   a step down from there and breaks over two lines instead of one. */
+.st-agencies .hero{padding:118px 0 104px;}
+.st-agencies .hero-title{font-size:clamp(44px,5.8vw,88px); line-height:1.0;
+  letter-spacing:-0.032em; max-width:16ch;}
+.st-agencies .hero-sub{font-size:23px; max-width:56ch;}
+
+/* ── The stack an agency rebuilds per client ─────────────────────
+   Eleven tiles, deliberately uniform and dense: the length of the
+   list is the argument, so nothing here competes for attention. The
+   twelfth answers them. */
+.st-agencies .stack-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px; margin-top:54px;}
+.st-agencies .stack{border:1px solid var(--line2); border-radius:12px;
+  padding:20px 22px; background:var(--paper-2);}
+.st-agencies .stack-n{font-family:var(--mono); font-size:11px; letter-spacing:0.14em;
+  color:var(--txt-3);}
+.st-agencies .stack-t{font-family:var(--serif); font-weight:600; font-size:19px;
+  color:var(--txt-1); margin-top:12px; line-height:1.25;}
+.st-agencies .stack-d{font-size:14px; line-height:1.5; color:var(--txt-2); margin:7px 0 0;}
+.st-agencies .stack.is-answer{border-color:var(--amber-line); background:var(--amber-soft);
+  display:flex; flex-direction:column; justify-content:center;}
+.st-agencies .stack.is-answer .stack-t{margin-top:0;}
+@media (max-width:1000px){.st-agencies .stack-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media (max-width:760px){.st-agencies .stack-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+/* ── Build it once, then charge for it ───────────────────────────
+   The last step is the point of the section, so it carries the amber. */
+.st-agencies .flow{display:grid; grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:14px; margin-top:58px;}
+.st-agencies .flow-step{border:1px solid var(--line-dk); border-radius:14px;
+  padding:22px 20px; background:rgba(255,255,255,0.03);}
+.st-agencies .flow-n{font-family:var(--mono); font-size:11px; letter-spacing:0.14em;
+  color:var(--amber);}
+.st-agencies .flow-t{font-family:var(--serif); font-weight:600; font-size:19px;
+  color:var(--txt-d1); margin-top:14px; line-height:1.25;}
+.st-agencies .flow-step.is-paid{border-color:var(--amber-line); background:var(--amber-soft);}
+.st-agencies .flow-step.is-paid .flow-t{color:var(--amber);}
+@media (max-width:1040px){.st-agencies .flow{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media (max-width:640px){.st-agencies .flow{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+/* ── The economics, stated plainly beside the numbers ────────────*/
+.st-agencies .math{margin-top:64px; border:1px solid rgba(255,255,255,0.13);
+  border-radius:18px; padding:44px 48px; background:rgba(255,255,255,0.02);
+  display:grid; grid-template-columns:1fr 1px 1fr; gap:48px; align-items:center;}
+.st-agencies .math-rule{width:1px; height:100%; background:var(--line-dk);}
+.st-agencies .math-k{font-family:var(--mono); font-size:11px; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--txt-d3);}
+.st-agencies .math-h{font-family:var(--serif); font-weight:600; font-size:30px;
+  line-height:1.25; color:var(--txt-d1); margin:16px 0 0; text-wrap:balance;}
+.st-agencies .math-h .amber{color:var(--amber);}
+.st-agencies .math-rows{display:flex; flex-direction:column; gap:18px;}
+.st-agencies .math-row{display:flex; align-items:baseline; justify-content:space-between;
+  gap:20px; padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.08);}
+.st-agencies .math-row:last-of-type{padding-bottom:0; border-bottom:none;}
+.st-agencies .math-l{font-size:17px; color:var(--txt-d2);}
+.st-agencies .math-v{font-family:var(--serif); font-weight:600; font-size:26px;
+  color:var(--txt-d1);}
+.st-agencies .math-v small{font-size:15px; color:var(--txt-d3);}
+.st-agencies .math-v.amber{color:var(--amber);}
+.st-agencies .math-note{font-size:14px; line-height:1.55; color:var(--txt-d3); margin:2px 0 0;}
+@media (max-width:940px){
+  .st-agencies .math{grid-template-columns:1fr; gap:30px; padding:32px 28px;}
+  .st-agencies .math-rule{display:none;}
+  .st-agencies .math-h{font-size:26px;}}
+
+/* ── The founding offer, beside what it includes ─────────────────*/
+.st-agencies .offer-glow{position:absolute; bottom:-220px; left:50%;
+  transform:translateX(-50%); width:760px; height:560px; border-radius:50%;
+  background:radial-gradient(circle, rgba(255,175,16,0.14), transparent 64%);
+  pointer-events:none;}
+.st-agencies #founding .wrap{position:relative; z-index:2;}
+.st-agencies .offer{display:grid; grid-template-columns:1.15fr 1fr; gap:80px;
+  align-items:start;}
+@media (max-width:940px){.st-agencies .offer{grid-template-columns:1fr; gap:44px;}}
+.st-agencies .offer-h{font-family:var(--serif); font-weight:600;
+  font-size:clamp(38px,4.6vw,58px); line-height:1.02; letter-spacing:-0.03em;
+  color:#fbf9f6; margin:22px 0 0; max-width:15ch; text-wrap:balance;}
+.st-agencies .offer-h .amber{color:var(--amber);}
+.st-agencies .offer-sub{font-size:22px; line-height:1.55; color:var(--txt-d2);
+  margin:28px 0 0; max-width:52ch; text-wrap:pretty;}
+.st-agencies .offer-note{font-family:var(--mono); font-size:12px; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--txt-d3);}
+.st-agencies .gets{border:1px solid rgba(255,255,255,0.13); border-radius:18px;
+  padding:36px 34px; background:rgba(255,255,255,0.03);
+  display:flex; flex-direction:column; gap:22px;}
+.st-agencies .get{display:flex; gap:15px; align-items:flex-start;}
+.st-agencies .get > i,
+.st-agencies .get > svg{width:20px; height:20px; flex:none; margin-top:3px; color:var(--amber);}
+.st-agencies .get-t{font-family:var(--serif); font-weight:600; font-size:19px;
+  color:var(--txt-d1); line-height:1.3;}
+.st-agencies .get-d{font-size:15px; line-height:1.55; color:var(--txt-d2); margin:6px 0 0;}
+
+/* ── Ways to reach a human ───────────────────────────────────────
+   auto-fit rather than a fixed three, so the row still reads as a
+   deliberate set when a channel has nowhere to point yet. */
+.st-agencies .reach-grid{display:grid; gap:14px; margin-top:48px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+.st-agencies .reach{display:flex; flex-direction:column; align-items:flex-start;
+  border:1px solid var(--line2); border-radius:16px; background:var(--paper);
+  padding:30px 30px 32px; color:inherit;
+  transition:border-color .3s, box-shadow .3s, transform .3s;}
+.st-agencies .reach:hover{border-color:var(--amber-line); box-shadow:var(--shadow-card);
+  transform:translateY(-2px);}
+.st-agencies .reach-ic{width:46px; height:46px; border-radius:13px;
+  background:var(--amber-soft); display:flex; align-items:center; justify-content:center;}
+.st-agencies .reach-ic svg{width:20px; height:20px; color:var(--amber);}
+.st-agencies .reach-t{font-family:var(--serif); font-weight:600; font-size:21px;
+  letter-spacing:-0.015em; color:var(--txt-1); margin-top:20px; line-height:1.25;}
+.st-agencies .reach-h{font-family:var(--mono); font-size:14px; color:var(--amber);
+  margin-top:8px; overflow-wrap:anywhere;}
+.st-agencies .reach-d{font-size:15.5px; line-height:1.6; color:var(--txt-2); margin-top:12px;}
+@media (prefers-reduced-motion:reduce){.st-agencies .reach:hover{transform:none;}}
