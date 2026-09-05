@@ -13,7 +13,7 @@ const breadcrumb = {
 };
 
 const DESCRIPTION =
-  'Build client-facing AI agents without rebuilding the stack every time. Deploy them, connect their tools and knowledge, watch every session, and charge for access through your own Stripe account.';
+  'Ship AI agents your clients pay for. Build them on one platform - tools, knowledge, guardrails, deployment and monitoring - then charge for access, into your own Stripe account.';
 
 export const metadata = {
   title: 'For agencies - Surogate',

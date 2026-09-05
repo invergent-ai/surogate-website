@@ -112,12 +112,11 @@ export default function AgenciesClient() {
           <div className="wrap">
             <p className="hero-kicker reveal">For agencies &amp; consultants</p>
             <h1 className="hero-title reveal d1">
-              Build AI agents for your clients{' '}
-              <span className="amber">without rebuilding the infrastructure every time.</span>
+              Ship AI agents <span className="amber">your clients pay for.</span>
             </h1>
             <p className="hero-sub reveal d2">
-              Deploy client-facing agents, connect their tools and knowledge, watch every session
-              in production, and charge for access - all through one platform.
+              Build them on one platform - tools, knowledge, guardrails, deployment and
+              monitoring - then charge for access, into your own Stripe account.
             </p>
             <div className="hero-actions reveal d3">
               <a

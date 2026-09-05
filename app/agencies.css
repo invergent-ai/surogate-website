@@ -7,11 +7,11 @@
    there. Only what this page adds lives here.
    ════════════════════════════════════════════════════════════════ */
 
-/* The headline is a sentence rather than the home page's two-word
-   promise, so it sets smaller and wraps to a readable measure. */
+/* A sentence rather than the home page's two-word promise, so it sets
+   a step down from there and breaks over two lines instead of one. */
 .st-agencies .hero{padding:118px 0 104px;}
-.st-agencies .hero-title{font-size:clamp(36px,4.4vw,60px); line-height:1.06;
-  letter-spacing:-0.03em; max-width:17ch;}
+.st-agencies .hero-title{font-size:clamp(44px,5.8vw,88px); line-height:1.0;
+  letter-spacing:-0.032em; max-width:16ch;}
 .st-agencies .hero-sub{font-size:23px; max-width:56ch;}
 
 /* ── The stack an agency rebuilds per client ─────────────────────
