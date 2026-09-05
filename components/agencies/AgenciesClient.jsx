@@ -84,8 +84,63 @@ const GETS = [
   },
 ];
 
+const EMAIL = 'sales@surogate.ai';
+const X_HANDLE = 'surogate_ai';
+
+/*
+ * There is no Surogate Discord anywhere in the codebase yet, and a dead
+ * invite is worse than one fewer card — so this stays empty and the card
+ * only appears once there is a real server to send people to. The row is
+ * laid out with auto-fit, so two sit as comfortably as three.
+ */
+const DISCORD_INVITE = '';
+
 const CONTACT =
-  'mailto:sales@surogate.ai?subject=Founding%20Agency%20Program&body=Tell%20us%20about%20the%20workflow%20you%27d%20like%20to%20turn%20into%20a%20client-facing%20agent.';
+  `mailto:${EMAIL}?subject=Founding%20Agency%20Program&body=Tell%20us%20about%20the%20workflow%20you%27d%20like%20to%20turn%20into%20a%20client-facing%20agent.`;
+
+/* Brand marks, drawn rather than fetched — lucide carries no logos. */
+const XMark = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.9 2H22l-7.6 8.7L23 22h-6.8l-5.3-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.8 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z" />
+  </svg>
+);
+
+const DiscordMark = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4a18.3 18.3 0 0 1 4.4 1.4 15.6 15.6 0 0 0-13.2 0A18.3 18.3 0 0 1 10.8 3.4L10.6 3a19.8 19.8 0 0 0-4.9 1.4C2.6 9 1.8 13.5 2.2 17.9a19.9 19.9 0 0 0 6 3 14.3 14.3 0 0 0 1.3-2.1 12.9 12.9 0 0 1-2-1l.5-.3a14.2 14.2 0 0 0 12.1 0l.5.3a12.9 12.9 0 0 1-2 1 14.3 14.3 0 0 0 1.3 2.1 19.9 19.9 0 0 0 6-3c.5-5.1-.8-9.6-3.6-13.5ZM8.7 15.2c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm6.6 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z" />
+  </svg>
+);
+
+const REACH = [
+  {
+    key: 'email',
+    href: `mailto:${EMAIL}`,
+    mark: <i data-lucide="mail" />,
+    t: 'Email',
+    handle: EMAIL,
+    d: 'Best for the founding program, pricing, or anything with detail attached.',
+  },
+  {
+    key: 'x',
+    href: `https://x.com/${X_HANDLE}`,
+    mark: <XMark />,
+    t: 'X',
+    handle: `@${X_HANDLE}`,
+    d: 'DMs are open. The quickest way to ask something short.',
+  },
+  ...(DISCORD_INVITE
+    ? [
+        {
+          key: 'discord',
+          href: DISCORD_INVITE,
+          mark: <DiscordMark />,
+          t: 'Discord',
+          handle: 'Join the server',
+          d: 'Talk to us, and to the other agencies building on Surogate.',
+        },
+      ]
+    : []),
+];
 
 export default function AgenciesClient() {
   const booted = useRef(false);
@@ -314,6 +369,35 @@ export default function AgenciesClient() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+        {/* ══════════════ REACH OUT ══════════════ */}
+        <section className="sec tight" id="reach">
+          <div className="wrap">
+            <div className="sec-head reveal">
+              <p className="eyebrow">Reach out</p>
+              <h2 className="h-section">Come and talk to us</h2>
+              <p className="lead">
+                No form, no drip sequence. Whichever one you pick, you get a person.
+              </p>
+            </div>
+
+            <div className="reach-grid reveal d1">
+              {REACH.map((r) => (
+                <a
+                  className="reach"
+                  key={r.key}
+                  href={r.href}
+                  {...(r.key === 'email' ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                  onClick={() => track('reach_out_clicked', { channel: r.key })}
+                >
+                  <span className="reach-ic">{r.mark}</span>
+                  <span className="reach-t">{r.t}</span>
+                  <span className="reach-h">{r.handle}</span>
+                  <span className="reach-d">{r.d}</span>
+                </a>
+              ))}
             </div>
           </div>
         </section>
