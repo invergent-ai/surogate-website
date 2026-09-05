@@ -87,13 +87,9 @@ const GETS = [
 const EMAIL = 'sales@surogate.ai';
 const X_HANDLE = 'surogate_ai';
 
-/*
- * There is no Surogate Discord anywhere in the codebase yet, and a dead
- * invite is worse than one fewer card — so this stays empty and the card
- * only appears once there is a real server to send people to. The row is
- * laid out with auto-fit, so two sit as comfortably as three.
- */
-const DISCORD_INVITE = '';
+/* Empty hides the card rather than shipping a dead invite; the row is laid
+   out with auto-fit, so it reads as deliberate either way. */
+const DISCORD_INVITE = 'https://discord.gg/CGfTnCm8m';
 
 const CONTACT =
   `mailto:${EMAIL}?subject=Founding%20Agency%20Program&body=Tell%20us%20about%20the%20workflow%20you%27d%20like%20to%20turn%20into%20a%20client-facing%20agent.`;
