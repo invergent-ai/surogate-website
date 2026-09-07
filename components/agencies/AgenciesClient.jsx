@@ -89,7 +89,10 @@ const X_HANDLE = 'surogate_ai';
 
 /* Empty hides the card rather than shipping a dead invite; the row is laid
    out with auto-fit, so it reads as deliberate either way. */
-const DISCORD_INVITE = 'https://discord.gg/CGfTnCm8m';
+/* Permanent (max_age=0) and landing on #welcome, not #general — the invite
+   this replaced expired on 2026-10-05, which would have killed the card on a
+   page we send paid traffic to, silently. */
+const DISCORD_INVITE = 'https://discord.gg/HC3Vypejv9';
 
 const CONTACT =
   `mailto:${EMAIL}?subject=Founding%20Agency%20Program&body=Tell%20us%20about%20the%20workflow%20you%27d%20like%20to%20turn%20into%20a%20client-facing%20agent.`;
