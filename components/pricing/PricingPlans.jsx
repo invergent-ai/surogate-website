@@ -222,7 +222,7 @@ function EnterpriseCard() {
       <TrackedLink
         event="contact_sales_clicked"
         eventProps={{ location: 'pricing_enterprise' }}
-        href="mailto:sales@surogate.ai"
+        href="mailto:sales@invergent.ai"
         className="self-start lg:self-center inline-flex items-center justify-center gap-2 h-11 px-6 bg-brand-aubergine text-white font-sans text-[11px] font-semibold uppercase tracking-wider-2 border border-brand-aubergine hover:bg-brand-aubergine-hover transition-colors whitespace-nowrap"
       >
         Contact sales{' '}

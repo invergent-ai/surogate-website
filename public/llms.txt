@@ -31,5 +31,5 @@
 - [Agent harness](https://github.com/invergent-ai/surogates): agent runtime.
 
 ## Contact
-- [Sales](mailto:sales@surogate.ai)
+- [Sales](mailto:sales@invergent.ai)
 - [Support](mailto:hello@surogate.ai)

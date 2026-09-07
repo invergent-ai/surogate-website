@@ -39,7 +39,7 @@ export const organization = {
     {
       '@type': 'ContactPoint',
       contactType: 'sales',
-      email: 'sales@surogate.ai',
+      email: 'sales@invergent.ai',
     },
   ],
 };
