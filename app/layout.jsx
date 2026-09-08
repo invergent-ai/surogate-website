@@ -24,6 +24,11 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+// Public identifier, embedded in the page like the GA measurement ID above —
+// it is not a secret. Created in the OpenAI Ads Manager conversions tab.
+const OPENAI_PIXEL_ID =
+  process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID || 'NzmC825U3hg31ri2zxR6DK';
+
 export const viewport = {
   themeColor: '#09090b',
 };
@@ -71,6 +76,8 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://region1.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://region1.google-analytics.com" />
+        <link rel="preconnect" href="https://bzrcdn.openai.com" />
+        <link rel="dns-prefetch" href="https://bzrcdn.openai.com" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-QDJWS8ZM50"
           strategy="lazyOnload"
@@ -81,6 +88,37 @@ export default function RootLayout({ children }) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-QDJWS8ZM50');
+          `}
+        </Script>
+        {/*
+          OpenAI measurement pixel. The loader is OpenAI's snippet verbatim: it
+          stubs window.oaiq into a queue so calls made before the SDK lands are
+          replayed, then appends the real script.
+
+          beforeInteractive, not the lazyOnload the analytics above use: this
+          renders into the static head, which is where OpenAI's instructions put
+          it and what the measurement needs. The SDK reads `oppref` off the
+          landing URL to attribute the click, so it has to run on the page
+          someone arrives on — deferring to hydration or idle drops whoever
+          leaves first, which are exactly the visitors ad spend is being judged
+          on. The inline part only queues calls and appends an async script, so
+          nothing blocking is bought with it.
+        */}
+        <Script id="openai-pixel" strategy="beforeInteractive">
+          {`
+            (function (w, d, s, u) {
+              if (w.oaiq) return;
+              var q = function () { q.q.push(arguments); };
+              q.q = [];
+              w.oaiq = q;
+              var js = d.createElement(s);
+              js.async = true;
+              js.src = u;
+              var f = d.getElementsByTagName(s)[0];
+              f.parentNode.insertBefore(js, f);
+            })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+            oaiq("init", { pixelId: "${OPENAI_PIXEL_ID}" });
           `}
         </Script>
       </head>
