@@ -400,7 +400,7 @@ export default function LawyersClient() {
                 <div className="cost-t">What you pay</div>
                 <p className="cost-d">
                   A Surogate plan from <b>$96 a month</b> at the level that includes client
-                  subscriptions and payments, plus the WhatsApp conversation fees Meta charges.
+                  subscriptions and payments.
                 </p>
               </div>
               <div className="cost hot">
