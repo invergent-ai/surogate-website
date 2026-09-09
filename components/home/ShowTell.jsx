@@ -20,6 +20,16 @@ const FilmPlayer = dynamic(() => import('./FilmPlayer'), { ssr: false });
 const CAPTION = { margin: '14px 0 0', fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--txt-3)' };
 const CHIP = { fontFamily: 'var(--mono)', fontSize: 11, padding: '5px 9px', border: '1px solid var(--line2)', borderRadius: 999, color: 'var(--txt-3)' };
 
+const AUDIENCES = [
+  { href: '/for/doctors/', label: 'Doctors' },
+  { href: '/for/teachers/', label: 'Teachers' },
+  { href: '/for/lawyers/', label: 'Lawyers' },
+  { href: '/for/accountants/', label: 'Accountants' },
+  { href: '/for/creators/', label: 'Creators' },
+  { href: '/for/influencers/', label: 'Influencers' },
+  { href: '/agencies/', label: 'Agencies' },
+];
+
 const FACTORY = [
   { t: 'The studio', d: 'Design agents from a model, your knowledge bases, your tools and skills - and the guardrails they must respect. No code.' },
   { t: 'Managed runtime', d: 'Deployed for you in the cloud, on your channels, around the clock - escalating anything that needs a human.' },
@@ -572,6 +582,7 @@ export default function ShowTell() {
               <div className="pc-eco">
                 <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;15&ndash;30<span>per patient / month</span></span></div>
                 <p className="ac-bound">The agents run the doctor's own protocol. They do not diagnose and they do not prescribe. Every decision stays with him</p>
+                <a className="pc-more" href="/for/doctors/">See the doctors page <i data-lucide="arrow-right" /></a>
               </div>
             </div>
             <div className="aud-card show pilot-card">
@@ -583,6 +594,7 @@ export default function ShowTell() {
               <div className="pc-eco">
                 <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;25&ndash;50<span>per client / month</span></span></div>
                 <p className="ac-bound">The agents run the firm's own protocol. They do not give legal advice in their own name, and they never decide strategy.</p>
+                <a className="pc-more" href="/for/lawyers/">See the lawyers page <i data-lucide="arrow-right" /></a>
               </div>
             </div>
             <div className="aud-card show pilot-card">
@@ -594,6 +606,7 @@ export default function ShowTell() {
               <div className="pc-eco">
                 <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;30&ndash;60<span>per student / month</span></span></div>
                 <p className="ac-bound">The agents teach on the teacher's own method. When they don't know how he would handle something, they stop and ask him.</p>
+                <a className="pc-more" href="/for/teachers/">See the teachers page <i data-lucide="arrow-right" /></a>
               </div>
             </div>
             <div className="aud-card show pilot-card">
@@ -605,8 +618,18 @@ export default function ShowTell() {
               <div className="pc-eco">
                 <div className="ac-pay"><span className="ap-l">What it pays</span><span className="ap-v">&euro;20&ndash;40<span>per client / month</span></span></div>
                 <p className="ac-bound">The agents run the accountant's own review process. Decisions and sign-off stay with him.</p>
+                <a className="pc-more" href="/for/accountants/">See the accountants page <i data-lucide="arrow-right" /></a>
               </div>
             </div>
+          </div>
+          {/* Seven audience pages, four of which have a card above. The row
+              covers all of them evenly, and sits where a reader who has just
+              recognised themselves goes looking for a way in. */}
+          <div className="pick reveal d2">
+            <span className="pick-l">Pick yours</span>
+            {AUDIENCES.map((a) => (
+              <a key={a.href} href={a.href}>{a.label}</a>
+            ))}
           </div>
           <p className="pilot-bridge reveal"><span className="amber">No lines of code were written</span> for any of these.</p>
         </div>

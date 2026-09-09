@@ -16,6 +16,8 @@ const SUBJECT = {
   teachers: 'Walkthrough — working with students between lessons',
   lawyers: 'Walkthrough — keeping clients informed between updates',
   accountants: 'Walkthrough — getting client records in on time',
+  creators: 'Walkthrough — turning an audience into income',
+  influencers: 'Walkthrough — working an account without being there',
 };
 
 const BODY = {
@@ -27,6 +29,10 @@ const BODY = {
     'Tell us what one kind of matter needs and what your clients always ask, and we will show you the first message they would receive.',
   accountants:
     'Tell us what you need from one client type and when you need it, and we will show you the first message they would receive.',
+  creators:
+    'Tell us what people ask you most and how you answer it, and we will show you the first conversation your followers would have.',
+  influencers:
+    'Tell us which account you run and how you write, and we will show you the first week it would make.',
 };
 
 export const walkthrough = (page) =>

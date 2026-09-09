@@ -5,7 +5,9 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-brand-border pt-12 pb-10">
       <div className="max-w-container mx-auto px-8">
-        <div className="grid gap-10 grid-cols-2 lg:[grid-template-columns:2fr_1fr_1fr_1fr] items-start">
+        {/* Five columns since the audience pages got their own. The brand
+            column gives up the width rather than squeezing the link lists. */}
+        <div className="grid gap-10 grid-cols-2 lg:[grid-template-columns:1.6fr_1fr_1fr_1fr_1fr] items-start">
           <div>
             <a href="#top" className="inline-flex items-center text-brand-aubergine">
               <img src="/brand/logo-full-black.svg" alt="Surogate" className="h-9 w-auto block" />
@@ -19,11 +21,15 @@ export default function Footer() {
             { href: '/#product', label: 'Platform' },
             { href: '/pricing/', label: 'Pricing' },
             { href: '/#monetize', label: 'Monetization' },
-            { href: '/agencies/', label: 'For agencies' },
-            { href: '/for/doctors/', label: 'For doctors' },
-            { href: '/for/teachers/', label: 'For teachers' },
-            { href: '/for/lawyers/', label: 'For lawyers' },
-            { href: '/for/accountants/', label: 'For accountants' },
+          ]} />
+          <FootCol heading="Professionals" links={[
+            { href: '/for/doctors/', label: 'Doctors' },
+            { href: '/for/teachers/', label: 'Teachers' },
+            { href: '/for/lawyers/', label: 'Lawyers' },
+            { href: '/for/accountants/', label: 'Accountants' },
+            { href: '/for/creators/', label: 'Creators' },
+            { href: '/for/influencers/', label: 'Influencers' },
+            { href: '/agencies/', label: 'Agencies' },
           ]} />
           <FootCol heading="Resources" links={[
             { href: 'https://docs.surogate.ai', label: 'Platform Docs' },
