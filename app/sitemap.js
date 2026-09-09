@@ -30,5 +30,29 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${BASE_URL}/for/doctors/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/for/teachers/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/for/lawyers/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/for/accountants/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 }
