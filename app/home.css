@@ -338,6 +338,27 @@
 .st-home .ac-pay .ap-v span{display:block; font-family:var(--mono); font-size:11px; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; color:var(--txt-3); margin-top:6px;}
 .st-home .ac-pay .ap-v.ap-txt{font-family:var(--sans); font-size:15px; font-weight:400; color:var(--txt-2); letter-spacing:0; line-height:1.45;}
 .st-home .ac-bound{margin:16px 0 0; font-size:12.5px; line-height:1.5; color:var(--txt-3); font-style:italic;}
+/* ── Pick yours ──────────────────────────────────────────────────
+   Seven audience pages, only four of which have a card above. The row
+   covers all of them evenly, and sits where a reader who has just
+   recognised themselves in a card goes looking for the way in. */
+.st-home .pick{margin-top:40px; display:flex; flex-wrap:wrap; align-items:center;
+  justify-content:center; gap:10px;}
+.st-home .pick-l{font-family:var(--mono); font-size:11px; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--txt-3); margin-right:6px;}
+.st-home .pick a{font-family:var(--sans); font-size:15px; font-weight:500; color:var(--txt-1);
+  padding:9px 18px; border:1px solid var(--line2); border-radius:999px; background:#fff;
+  transition:border-color .25s, color .25s;}
+.st-home .pick a:hover{border-color:var(--amber-line); color:var(--amber);}
+
+/* The four named cards now lead somewhere, so they have to say so. */
+.st-home .pc-more{margin-top:18px; display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--sans); font-size:14px; font-weight:600; color:var(--txt-1);
+  transition:color .2s;}
+.st-home .pc-more i{width:15px; height:15px; color:var(--amber); transition:transform .2s;}
+.st-home .pc-more:hover{color:var(--amber);}
+.st-home .pc-more:hover i{transform:translateX(3px);}
+
 .st-home .pilot-bridge{margin-top:46px; text-align:center; font-family:var(--serif); font-weight:600; font-size:clamp(24px,2.8vw,34px); letter-spacing:-0.015em; color:var(--txt-1); text-wrap:balance;}
 .st-home .pilot-bridge .amber{color:var(--amber);}
 
