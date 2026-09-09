@@ -20,6 +20,8 @@ export default function Footer() {
             { href: '/pricing/', label: 'Pricing' },
             { href: '/#monetize', label: 'Monetization' },
             { href: '/agencies/', label: 'For agencies' },
+            { href: '/for/doctors/', label: 'For doctors' },
+            { href: '/for/teachers/', label: 'For teachers' },
           ]} />
           <FootCol heading="Resources" links={[
             { href: 'https://docs.surogate.ai', label: 'Platform Docs' },

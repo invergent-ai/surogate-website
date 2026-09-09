@@ -1,0 +1,172 @@
+/* ════════════════════════════════════════════════════════════════
+   /for/doctors and /for/teachers — the profession landing pages.
+
+   Both sit on the Show & Tell design system in app/home.css (scoped
+   .st-home) and carry .st-for as well, the way /agencies carries
+   .st-agencies. Sections, the type ramp, buttons and the light/dark
+   striping all come from there; only the shapes these two pages
+   introduce live here, and both pages share every one of them.
+   ════════════════════════════════════════════════════════════════ */
+
+/* These headlines are sentences, so they set a step below the home
+   page's two-word promise. */
+.st-for .hero{padding:118px 0 104px;}
+.st-for .hero-title{font-size:clamp(38px,4.8vw,68px); line-height:1.02;
+  letter-spacing:-0.032em; max-width:17ch;}
+.st-for .hero-sub{font-size:23px; max-width:58ch;}
+
+/* ── Cards ───────────────────────────────────────────────────────
+   Not .mcard: that carries the numbered counter /agencies wants, and
+   a count means nothing on a list of benefits. */
+.st-for .fgrid{display:grid; gap:14px; margin-top:48px;
+  grid-template-columns:repeat(2,minmax(0,1fr));}
+.st-for .fgrid.three{grid-template-columns:repeat(3,minmax(0,1fr));}
+.st-for .fgrid .wide{grid-column:1 / -1;}
+@media (max-width:1000px){.st-for .fgrid.three{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media (max-width:760px){
+  .st-for .fgrid,
+  .st-for .fgrid.three{grid-template-columns:1fr;}
+  .st-for .fgrid .wide{grid-column:auto;}}
+
+.st-for .fcard{display:grid; grid-template-columns:auto 1fr; align-items:start;
+  gap:20px; border:1px solid var(--line2); border-radius:16px; background:var(--paper);
+  padding:26px 26px 26px 30px; transition:border-color .3s, box-shadow .3s;}
+.st-for .fcard:hover{border-color:var(--amber-line); box-shadow:var(--shadow-card);}
+/* Stacked: the icon sits above the title rather than beside it, for
+   the rows where the titles run long enough to need the full width. */
+.st-for .fcard.stack{grid-template-columns:1fr;}
+.st-for .fcard.stack .fc-t{margin-top:20px;}
+.st-for .fc-ic{width:46px; height:46px; border-radius:13px; background:var(--amber-soft);
+  display:flex; align-items:center; justify-content:center; flex:none;}
+.st-for .fc-ic svg{width:21px; height:21px; color:var(--amber);}
+.st-for .fc-t{font-family:var(--serif); font-weight:600; font-size:21px;
+  letter-spacing:-0.015em; color:var(--txt-1); line-height:1.25;}
+.st-for .fc-d{margin:9px 0 0; font-size:15.5px; line-height:1.6; color:var(--txt-2);}
+.st-for .dark .fcard{background:rgba(255,255,255,.03); border-color:var(--line-dk);}
+.st-for .dark .fcard:hover{border-color:var(--amber-line); box-shadow:none;
+  background:rgba(255,255,255,.05);}
+.st-for .dark .fc-t{color:var(--txt-d1);}
+.st-for .dark .fc-d{color:var(--txt-d2);}
+/* The one card in a set that carries the money. */
+.st-for .fcard.hot,
+.st-for .dark .fcard.hot{border-color:var(--amber-line); background:var(--amber-soft);}
+.st-for .fcard.hot .fc-t,
+.st-for .dark .fcard.hot .fc-t{color:var(--amber);}
+
+/* ── Numbered steps ──────────────────────────────────────────────*/
+.st-for .steps{display:grid; gap:14px; margin-top:48px;
+  grid-template-columns:repeat(3,minmax(0,1fr));}
+@media (max-width:900px){.st-for .steps{grid-template-columns:1fr;}}
+.st-for .step{border:1px solid var(--line2); border-radius:16px;
+  background:var(--paper); padding:26px 28px 28px;}
+.st-for .step-n{font-family:var(--mono); font-size:12px; letter-spacing:0.14em; color:var(--amber);}
+.st-for .step-t{font-family:var(--serif); font-weight:600; font-size:20px;
+  letter-spacing:-0.015em; color:var(--txt-1); margin-top:14px; line-height:1.3;}
+.st-for .step-d{font-size:15.5px; line-height:1.6; color:var(--txt-2); margin:10px 0 0;}
+.st-for .dark .step{border-color:var(--line-dk); background:rgba(255,255,255,.03);}
+.st-for .dark .step-t{color:var(--txt-d1);}
+.st-for .dark .step-d{color:var(--txt-d2);}
+
+/* A sequence rather than a set: one column, so the order is
+   unmistakable and the number sits on the same line as the title. */
+.st-for .steps.ordered{grid-template-columns:1fr; gap:12px;}
+.st-for .steps.ordered .step{display:grid; grid-template-columns:auto 1fr; gap:24px;
+  align-items:baseline; padding:22px 30px;}
+.st-for .steps.ordered .step-t{margin-top:0;}
+@media (max-width:600px){
+  .st-for .steps.ordered .step{grid-template-columns:1fr; gap:8px; padding:20px 22px;}}
+
+/* ── The note that has to be seen ────────────────────────────────*/
+.st-for .callout{margin-top:36px; border:1px solid var(--amber-line);
+  border-left:3px solid var(--amber); border-radius:14px; background:var(--amber-soft);
+  padding:24px 28px; font-size:17px; line-height:1.6; color:var(--txt-2);}
+.st-for .callout b{color:var(--txt-1); font-weight:600;}
+.st-for .dark .callout{color:var(--txt-d2);}
+.st-for .dark .callout b{color:var(--txt-d1);}
+
+/* ── Green / amber / red ─────────────────────────────────────────
+   A triage scale, so the colour is the content and each card wears
+   its own rail. */
+.st-for .zones{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px; margin-top:56px;}
+@media (max-width:900px){.st-for .zones{grid-template-columns:1fr;}}
+.st-for .zone{position:relative; border:1px solid var(--line2); border-radius:16px;
+  background:var(--paper-2); padding:26px 28px 28px 30px; overflow:hidden;}
+.st-for .zone::before{content:""; position:absolute; left:0; top:0; bottom:0;
+  width:3px; background:var(--zone);}
+.st-for .zone-t{font-family:var(--serif); font-weight:600; font-size:20px;
+  color:var(--zone); line-height:1.25;}
+.st-for .zone-d{font-size:15.5px; line-height:1.6; color:var(--txt-2); margin:10px 0 0;}
+.st-for .dark .zone{border-color:var(--line-dk); background:rgba(255,255,255,.03);}
+.st-for .dark .zone-d{color:var(--txt-d2);}
+.st-for .zone.is-green{--zone:var(--green);}
+/* The amber token is tuned for dark grounds; on paper it needs to go
+   darker to stay legible as text. */
+.st-for .zone.is-amber{--zone:#c98600;}
+.st-for .dark .zone.is-amber{--zone:var(--amber);}
+.st-for .zone.is-red{--zone:var(--red);}
+
+/* ── Blocks of prose under one headline ──────────────────────────
+   Not cards: the headline already groups them, so a rule is enough. */
+.st-for .blocks{display:grid; gap:34px 48px; margin-top:48px;
+  grid-template-columns:repeat(2,minmax(0,1fr));}
+@media (max-width:820px){.st-for .blocks{grid-template-columns:1fr; gap:28px;}}
+.st-for .block{border-top:1px solid var(--line2); padding-top:22px;}
+.st-for .dark .block{border-top-color:var(--line-dk);}
+.st-for .block-t{font-family:var(--serif); font-weight:600; font-size:21px;
+  letter-spacing:-0.015em; color:var(--txt-1); line-height:1.25;}
+.st-for .dark .block-t{color:var(--txt-d1);}
+.st-for .block-d{font-size:16px; line-height:1.65; color:var(--txt-2); margin:11px 0 0;}
+.st-for .dark .block-d{color:var(--txt-d2);}
+.st-for .blocks.big .block-t{font-size:24px;}
+.st-for .blocks.big .block-d{font-size:16.5px; margin-top:12px;}
+
+/* ── A second subject inside a section ───────────────────────────*/
+.st-for .rule{margin-top:70px; padding-top:44px; border-top:1px solid var(--line2);}
+.st-for .dark .rule{border-top-color:var(--line-dk);}
+.st-for .sub-h{font-family:var(--serif); font-weight:600; font-size:32px; line-height:1.1;
+  letter-spacing:-0.02em; color:var(--txt-1); margin:0;}
+.st-for .dark .sub-h{color:var(--txt-d1);}
+.st-for .sub-p{font-size:19px; line-height:1.55; color:var(--txt-2); margin:16px 0 0; max-width:62ch;}
+.st-for .dark .sub-p{color:var(--txt-d2);}
+.st-for .note{font-size:17px; line-height:1.6; color:var(--txt-3); margin:26px 0 0;
+  max-width:70ch; font-style:italic;}
+
+/* ── Exam chips ──────────────────────────────────────────────────*/
+.st-for .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:36px;}
+.st-for .chip{font-family:var(--mono); font-size:13px; padding:9px 16px;
+  border:1px solid var(--line2); border-radius:999px; color:var(--txt-2); background:var(--paper-2);}
+.st-for .dark .chip{border-color:var(--line-dk); color:var(--txt-d2); background:rgba(255,255,255,.03);}
+
+/* ── Effort and cost ─────────────────────────────────────────────*/
+.st-for .costs{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px; margin-top:48px;}
+@media (max-width:820px){.st-for .costs{grid-template-columns:1fr;}}
+.st-for .cost{border:1px solid var(--line2); border-radius:16px;
+  background:var(--paper-2); padding:24px 26px 26px;}
+.st-for .cost.hot{border-color:var(--amber-line); background:var(--amber-soft);}
+.st-for .cost-t{font-family:var(--mono); font-size:11px; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--amber);}
+.st-for .cost-d{font-size:16px; line-height:1.6; color:var(--txt-2); margin:12px 0 0;}
+.st-for .cost-d b{color:var(--txt-1); font-weight:600;}
+.st-for .cost-d .todo{color:var(--txt-3);}
+.st-for .dark .cost{border-color:var(--line-dk); background:rgba(255,255,255,.03);}
+.st-for .dark .cost-d{color:var(--txt-d2);}
+.st-for .dark .cost-d b{color:var(--txt-d1);}
+
+/* ── The closing call ────────────────────────────────────────────*/
+.st-for .close{position:relative; background:var(--ink-black); color:var(--txt-d1);
+  padding:124px 0 130px; overflow:hidden;}
+.st-for .close-glow{position:absolute; bottom:-260px; left:50%; transform:translateX(-50%);
+  width:860px; height:620px; border-radius:50%;
+  background:radial-gradient(circle, rgba(255,175,16,0.14), transparent 64%);
+  pointer-events:none;}
+.st-for .close .wrap{position:relative; z-index:2; text-align:center;}
+.st-for .close .eyebrow{justify-content:center;}
+.st-for .close-h{font-family:var(--serif); font-weight:600;
+  font-size:clamp(38px,4.8vw,60px); line-height:1.03; letter-spacing:-0.03em;
+  color:#fbf9f6; margin:22px auto 0; max-width:17ch; text-wrap:balance;}
+.st-for .close-h .amber{color:var(--amber);}
+.st-for .close-sub{font-size:21px; line-height:1.55; color:var(--txt-d2);
+  margin:26px auto 0; max-width:56ch; text-wrap:pretty;}
+.st-for .close .hero-actions{justify-content:center;}
