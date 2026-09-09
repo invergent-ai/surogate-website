@@ -14,6 +14,8 @@ const EMAIL = 'sales@invergent.ai';
 const SUBJECT = {
   doctors: 'Walkthrough — following patients between visits',
   teachers: 'Walkthrough — working with students between lessons',
+  lawyers: 'Walkthrough — keeping clients informed between updates',
+  accountants: 'Walkthrough — getting client records in on time',
 };
 
 const BODY = {
@@ -21,6 +23,10 @@ const BODY = {
     'Tell us which patients you follow and how you follow them, and we will show you the first message they would receive.',
   teachers:
     'Tell us what you teach and how you know when a student has understood, and we will show you the first conversation they would have.',
+  lawyers:
+    'Tell us what one kind of matter needs and what your clients always ask, and we will show you the first message they would receive.',
+  accountants:
+    'Tell us what you need from one client type and when you need it, and we will show you the first message they would receive.',
 };
 
 export const walkthrough = (page) =>
