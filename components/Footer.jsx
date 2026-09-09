@@ -28,6 +28,7 @@ export default function Footer() {
             { href: '/for/lawyers/', label: 'Lawyers' },
             { href: '/for/accountants/', label: 'Accountants' },
             { href: '/for/creators/', label: 'Creators' },
+            { href: '/for/influencers/', label: 'Influencers' },
             { href: '/agencies/', label: 'Agencies' },
           ]} />
           <FootCol heading="Resources" links={[
