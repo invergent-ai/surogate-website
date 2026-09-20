@@ -226,28 +226,12 @@
 .st-home .fs-item.active .fs-num{color:var(--amber);}
 .st-home .fs-t{font-family:var(--serif); font-weight:600; font-size:21px; color:#fbf9f6; letter-spacing:-0.01em; margin:0 0 5px;}
 .st-home .fs-d{font-size:15.5px; line-height:1.5; color:var(--txt-d2); margin:0;}
-.st-home .exp{margin-top:48px; padding-top:40px; border-top:1px solid var(--line-dk);}
-.st-home .exp-head{display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:22px;}
-.st-home .exp-eye{font-family:var(--mono); font-size:13px; letter-spacing:0.06em; color:var(--txt-d2);}
-.st-home .exp-recipe{font-family:var(--mono); font-size:13px; letter-spacing:0.02em; color:var(--txt-d3);}
-.st-home .exp-recipe b{color:var(--amber); font-weight:500;}
-.st-home .exp-table{border:1px solid var(--line-dk); border-radius:13px; overflow:hidden;}
-.st-home .exp-rowh,
-.st-home .exp-row{display:grid; grid-template-columns:1.4fr 1fr 1fr; align-items:center;}
-.st-home .exp-rowh{background:rgba(255,255,255,0.03);}
-.st-home .exp-rowh span{padding:14px 22px; font-family:var(--mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--txt-d3);}
-.st-home .exp-rowh span.win{color:var(--amber);}
-.st-home .exp-row{border-top:1px solid var(--line-dk);}
-.st-home .exp-row span{padding:16px 22px; font-size:17px; color:var(--txt-d2); font-variant-numeric:tabular-nums;}
-.st-home .exp-row span.m{font-family:var(--sans); font-size:15px; color:var(--txt-d1);}
-.st-home .exp-row span.win{color:#fbf9f6; font-weight:600; background:rgba(255,175,16,0.07); border-left:1px solid var(--amber-line);}
-.st-home .exp-rowh span.win{background:rgba(255,175,16,0.07); border-left:1px solid var(--amber-line);}
-.st-home .exp-foot{font-size:18px; line-height:1.5; color:var(--txt-d2); margin:24px 0 0; max-width:64ch;}
+/* The comparison table that lived here quoted a run that exists in no repo;
+   it was removed rather than softened. Its closing line stays, and takes over
+   the separating rule the wrapper used to provide. */
+.st-home .exp-foot{margin:48px 0 0; padding-top:40px; border-top:1px solid var(--line-dk);
+  font-size:18px; line-height:1.5; color:var(--txt-d2); max-width:64ch;}
 .st-home .exp-foot b{color:#fff; font-weight:600;}
-@media (max-width:620px){.st-home .exp-rowh,
-.st-home .exp-row{grid-template-columns:1.2fr 1fr 1fr;}
-.st-home .exp-row span,
-.st-home .exp-rowh span{padding:13px 14px; font-size:14px;}}
 
 /* ── Capability demo · per-card animation primitives ─────────── */
 @keyframes capSpin{to{transform:rotate(360deg);}}
