@@ -97,7 +97,7 @@ export default function RuneExamplesClient() {
             <div className="sec-head reveal">
               <p className="eyebrow">{RUNE_DEMOS.length} live demos</p>
               <h2 className="h-section">
-                Invoices, claims, contracts, inboxes, <span className="amber">and a couple of games.</span>
+                Cameras, robot arms, invoices and claims, <span className="amber">and a couple of games.</span>
               </h2>
               <p className="lead">
                 Every result on screen is the model&apos;s full probability distribution, not a

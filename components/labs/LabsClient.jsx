@@ -89,10 +89,10 @@ export default function LabsClient() {
               </a>
             </div>
             <div className="hub-ex reveal d1">
-              {RUNE_DEMOS.map((d) => {
+              {RUNE_DEMOS.slice(0, 6).map((d) => {
                 const Icon = ICONS[d.icon];
                 return (
-                  <a className="hub-ex-card" key={d.slug} href={`/labs/rune-examples/#${d.slug}`}>
+                  <a className="hub-ex-card" key={d.slug} href={`/labs/rune-examples/?demo=${d.slug}`}>
                     <img src={d.shot} alt="" loading="lazy" width="1200" height="800" />
                     <span className="hub-ex-t"><Icon size={16} strokeWidth={2} aria-hidden="true" /> {d.title}</span>
                     <span className="hub-ex-k">{d.kind}</span>

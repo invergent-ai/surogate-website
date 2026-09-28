@@ -226,7 +226,7 @@
 .st-hub .hub-examples{padding-top:24px;}
 .st-hub .hub-ex-head{display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap;}
 .st-hub .hub-ex-head .h-section{margin:0;}
-.st-hub .hub-ex{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:16px; margin-top:32px;}
+.st-hub .hub-ex{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:32px;}
 .st-hub .hub-ex-card{display:flex; flex-direction:column; gap:6px; border-radius:16px;}
 .st-hub .hub-ex-card img{width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; object-position:top;
   border-radius:14px; border:1px solid var(--line2); transition:transform .3s ease;}
