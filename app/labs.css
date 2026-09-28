@@ -498,6 +498,7 @@
   .st-rune .de-ring{inset:26px;}
   .st-rune .de-text{font-size:17.5px; min-height:0;}
   .st-labs .lab-textlink,.st-rune .de-next{min-height:44px;}
+  .st-labs .lab-filter button{padding:0 12px; gap:6px;}
   .st-labs .lab-subnav-in{gap:22px;}
   .st-labs .lab-subnav a{min-width:44px; text-align:center;}
   /* Capabilities as a compact list: icon beside the text,not above it. */
