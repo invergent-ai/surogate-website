@@ -5,6 +5,7 @@ import { ArrowUpRight, Play } from 'lucide-react';
 import { ICONS } from './icons';
 import { track } from '@/lib/analytics';
 import { embedSrc } from '@/lib/labs';
+import ClampedText from './ClampedText';
 
 /* One demo: a screenshot that becomes the live Space on click. The iframe is
    only created on click, so the page does not wake five Spaces on load, and
@@ -100,7 +101,7 @@ export default function DemoRow({ demo, hidden = false, start = null }) {
           {demo.kind}
         </span>
         <h3 className="lab-demo-t">{demo.title}</h3>
-        <p className="lab-demo-d">{demo.line}</p>
+        <ClampedText className="lab-demo-d">{demo.line}</ClampedText>
         <p className="lab-proves">{demo.proves}</p>
         <a
           className="lab-textlink"

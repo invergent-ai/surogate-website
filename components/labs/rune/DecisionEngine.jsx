@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import data from '@/lib/labs/rune-industries.json';
 import RuneGlyph from '../RuneGlyph';
 import RuneRing from './RuneRing';
+import SheetSelect from '../SheetSelect';
 
 /*
  * The decision engine: real inputs from different industries go in, the rune fires, a typed decision
@@ -125,6 +126,10 @@ export default function DecisionEngine() {
       onFocus={() => { paused.current = true; }}
       onBlur={() => { paused.current = false; }}
     >
+      <div className="de-pick-phone">
+        <SheetSelect label="Industry" value={String(i)} onPick={(k) => setI(Number(k))}
+                     options={EXAMPLES.map((e, n) => ({ key: String(n), label: e.industry }))} />
+      </div>
       <div ref={tabs} className="de-tabs" role="tablist" aria-label="Industries">
         {EXAMPLES.map((e, n) => (
           <button

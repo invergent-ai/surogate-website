@@ -105,7 +105,7 @@ export default function RuneExamplesClient() {
               </p>
             </div>
 
-            <DemoFilter value={filter} onPick={(group, key) => apply({ [group]: key })} />
+            <DemoFilter value={filter} onPick={(group, key) => apply({ [group]: key })} onClear={() => apply({ sector: 'all', input: 'all' })} />
 
             <div className="lab-demos">
               {RUNE_DEMOS.map((d) => (

@@ -25,21 +25,22 @@
 .st-labs .lab-demos{display:grid; gap:112px; margin-top:80px;}
 .st-labs .lab-demo[hidden]{display:none;}  /* .lab-demo's display:grid would beat the browser's [hidden] */
 .st-labs .lab-filter{display:flex; flex-wrap:wrap; gap:20px 40px; margin-top:48px;}
-.st-labs .lab-filter-g{display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
-.st-labs .lab-filter-l{width:100%; font-size:13.5px; font-weight:700; color:var(--txt-3);}
+.st-labs .lab-filter-g{min-width:0;}
+.st-labs .lab-filter-l{display:block; margin-bottom:8px; font-size:13.5px; font-weight:700; color:var(--txt-3);}
+.st-labs .lab-filter-row{display:flex; flex-wrap:wrap; gap:8px;}
 .st-labs .lab-filter-none{margin:0; font-size:17px; color:var(--txt-2);}
 .st-labs .lab-filter-none button{font:inherit; font-weight:600; color:var(--txt-1); background:none; border:0; padding:0;
   cursor:pointer; text-decoration:underline; text-decoration-color:var(--amber); text-underline-offset:4px;}
 .st-labs .lab-filter + .lab-demos{margin-top:56px;}
-.st-labs .lab-filter button{display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 16px;
+.st-labs .lab-filter-desk button{display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 16px;
   border-radius:999px; border:1px solid var(--line2); background:var(--paper); cursor:pointer;
   font:inherit; font-size:15px; font-weight:600; color:var(--txt-2); transition:all .2s ease;}
-.st-labs .lab-filter button:hover{border-color:var(--amber-line); color:var(--txt-1);}
-.st-labs .lab-filter button[aria-pressed="true"]{background:var(--ink-deep); border-color:var(--ink-deep); color:#fff;}
-.st-labs .lab-filter button:focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
+.st-labs .lab-filter-desk button:hover{border-color:var(--amber-line); color:var(--txt-1);}
+.st-labs .lab-filter-desk button[aria-pressed="true"]{background:var(--ink-deep); border-color:var(--ink-deep); color:#fff;}
+.st-labs .lab-filter-desk button:focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
 .st-labs .lab-filter-n{font-size:12.5px; font-weight:700; padding:1px 7px; border-radius:999px;
   background:var(--paper-2); color:var(--txt-3);}
-.st-labs .lab-filter button[aria-pressed="true"] .lab-filter-n{background:rgba(255,255,255,0.16); color:#fff;}
+.st-labs .lab-filter-desk button[aria-pressed="true"] .lab-filter-n{background:rgba(255,255,255,0.16); color:#fff;}
 .st-labs .lab-demo{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:64px;
   align-items:center; scroll-margin-top:110px;}
 .st-labs .lab-demo:nth-child(even) .lab-media{order:2;}
@@ -516,7 +517,6 @@
   .st-rune .de-ring{inset:26px;}
   .st-rune .de-text{font-size:17.5px; min-height:0;}
   .st-labs .lab-textlink,.st-rune .de-next{min-height:44px;}
-  .st-labs .lab-filter button{padding:0 12px; gap:6px;}
   .st-labs .lab-subnav-in{gap:22px;}
   .st-labs .lab-subnav a{min-width:44px; text-align:center;}
   /* Capabilities as a compact list: icon beside the text,not above it. */
@@ -533,4 +533,55 @@
   .st-speech .sp-cats button{padding:0 12px;}
   .st-speech .sp-voice-n{font-size:26px;}
   .st-speech .sp-card-bars{height:44px; margin-top:12px;}
+}
+
+/* Phone controls, after surogate-ops Studio: a full-width trigger that opens a bottom sheet (native <dialog>),
+   clamped text with More, one primary action per card. The phone forms are hidden above 640px, the desktop
+   forms below it. */
+.st-labs .lab-filter-phone,.st-labs .de-pick-phone,.st-speech .sp-cats-phone{display:none;}
+.st-labs .sheet-trigger{display:flex; align-items:center; gap:10px; width:100%; min-height:52px; padding:0 14px 0 16px;
+  border:1px solid var(--line2); border-radius:14px; background:#fff; font:inherit; font-size:16px; color:var(--txt-1);
+  cursor:pointer; text-align:left;}
+.st-labs .sheet-trigger:focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
+.st-labs .sheet-trigger-l{flex:none; font-size:13px; font-weight:700; color:var(--txt-3);}
+.st-labs .sheet-trigger-v{flex:1; min-width:0; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.st-labs .sheet-trigger svg{flex:none; color:var(--txt-3);}
+.st-labs .sheet-count{flex:none; font-size:12.5px; font-weight:700; padding:1px 8px; border-radius:999px;
+  background:var(--paper-2); color:var(--txt-3);}
+.st-labs .sheet{position:fixed; inset:auto 0 0 0; margin:0 auto; width:100%; max-width:560px; max-height:80vh;
+  padding:0 8px calc(12px + env(safe-area-inset-bottom)); border:0; border-radius:22px 22px 0 0; background:#fff;
+  color:var(--txt-1); overflow-y:auto; overscroll-behavior:contain; box-shadow:0 -20px 60px -20px rgba(42,16,45,0.35);
+  transition:transform .15s ease;}
+.st-labs .sheet[open]{animation:sheetUp .28s cubic-bezier(.22,.61,.36,1);}
+.st-labs .sheet::backdrop{background:rgba(26,10,28,0.45); backdrop-filter:blur(2px);}
+@keyframes sheetUp{from{transform:translateY(100%);} to{transform:none;}}
+.st-labs .sheet-handle{height:28px; display:grid; place-items:center; cursor:grab; touch-action:none;}
+.st-labs .sheet-handle::before{content:""; width:40px; height:5px; border-radius:3px; background:var(--line2);}
+.st-labs .sheet-title{margin:0 12px 6px; font-size:13px; font-weight:700; color:var(--txt-3);}
+.st-labs .sheet-option{display:flex; align-items:center; gap:10px; width:100%; min-height:56px; padding:0 12px;
+  border:0; border-radius:12px; background:none; font:inherit; font-size:16px; font-weight:600; color:var(--txt-1);
+  text-align:left; cursor:pointer;}
+.st-labs .sheet-option span:first-child{flex:1;}
+.st-labs .sheet-option[aria-checked="true"]{background:var(--paper-2);}
+.st-labs .sheet-option svg{color:#9a5b00;}
+.st-labs .sheet-option:focus-visible{outline:3px solid var(--amber); outline-offset:-3px;}
+.st-labs .clamp-more{display:block; margin:4px 0 0; padding:8px 0; min-height:40px; border:0; background:none; font:inherit;
+  font-size:15px; font-weight:600; color:var(--txt-3); cursor:pointer;}
+.st-labs .clamp-more:hover{color:var(--txt-1);}
+@media (prefers-reduced-motion:reduce){ .st-labs .sheet[open]{animation:none;} }
+@media (max-width:640px){
+  .st-labs .lab-filter-desk,.st-rune .de-tabs,.st-speech .sp-cats{display:none;}
+  .st-labs .lab-filter-phone,.st-labs .de-pick-phone,.st-speech .sp-cats-phone{display:grid; gap:10px; width:100%;}
+  .st-labs .lab-filter{margin-top:32px;}
+  .st-labs .lab-filter-sum{margin:2px 0 0; display:flex; align-items:center; justify-content:space-between;
+    font-size:14px; color:var(--txt-3);}
+  .st-labs .lab-filter-sum button{min-height:44px; border:0; background:none; font:inherit; font-size:14px; font-weight:700;
+    color:var(--txt-1); text-decoration:underline; text-decoration-color:var(--amber); text-underline-offset:4px;}
+  /* Cards: the description clamps to three lines with More; the secondary line goes. */
+  .st-labs .clamp[data-open="false"]{display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;}
+  .st-labs .lab-proves{display:none;}
+  .st-labs .lab-text .lab-textlink{margin-top:14px;}
+  /* An opened demo gets the whole width of the phone. */
+  .st-labs .lab-demo[data-open="true"] .lab-media{margin:0 -16px;}
+  .st-labs .lab-demo[data-open="true"] .lab-frame{border-radius:0;}
 }

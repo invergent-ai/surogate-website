@@ -10,6 +10,7 @@ import useReveal from '@/components/useReveal';
 import { track } from '@/lib/analytics';
 import { SPEECH_ABOUT, SPEECH_LINKS, SPEECH_MODELS, SPEECH_RUN, amamiSrc } from '@/lib/labs';
 import LabsSubnav from '../LabsSubnav';
+import SheetSelect from '../SheetSelect';
 import { ICONS } from '../icons';
 
 /*
@@ -208,6 +209,11 @@ export default function SpeechPageClient() {
               <p className="lead">{AMAMI.line}</p>
             </div>
             <div className="sp-picker reveal">
+              <div className="sp-cats-phone">
+                <SheetSelect label="What to hear" value={sample.category}
+                             onPick={(c) => pick(AMAMI.samples.find((x) => x.category === c))}
+                             options={CATEGORIES.map((c) => ({ key: c, label: c }))} />
+              </div>
               <div className="sp-cats" role="group" aria-label="What to hear">
                 {CATEGORIES.map((c) => (
                   <button type="button" key={c} aria-pressed={sample.category === c}
