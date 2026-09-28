@@ -24,7 +24,12 @@
 /* Demo rows */
 .st-labs .lab-demos{display:grid; gap:112px; margin-top:80px;}
 .st-labs .lab-demo[hidden]{display:none;}  /* .lab-demo's display:grid would beat the browser's [hidden] */
-.st-labs .lab-filter{display:flex; flex-wrap:wrap; gap:8px; margin-top:48px;}
+.st-labs .lab-filter{display:flex; flex-wrap:wrap; gap:20px 40px; margin-top:48px;}
+.st-labs .lab-filter-g{display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+.st-labs .lab-filter-l{width:100%; font-size:13.5px; font-weight:700; color:var(--txt-3);}
+.st-labs .lab-filter-none{margin:0; font-size:17px; color:var(--txt-2);}
+.st-labs .lab-filter-none button{font:inherit; font-weight:600; color:var(--txt-1); background:none; border:0; padding:0;
+  cursor:pointer; text-decoration:underline; text-decoration-color:var(--amber); text-underline-offset:4px;}
 .st-labs .lab-filter + .lab-demos{margin-top:56px;}
 .st-labs .lab-filter button{display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 16px;
   border-radius:999px; border:1px solid var(--line2); background:var(--paper); cursor:pointer;

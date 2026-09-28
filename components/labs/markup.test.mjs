@@ -51,16 +51,20 @@ test('the engine gives every example, picked or automatic, a full hold before mo
   assert.match(src, /Date\.now\(\) - shownAt\.current >= HOLD_MS/);
 });
 
-test('the filter is a row of real toggle buttons, each with how many demos it shows', async () => {
+test('the filters are two groups of real toggle buttons, each with how many demos it would show', async () => {
   const React = (await import('react')).default;
   const { renderToStaticMarkup } = await import('react-dom/server');
   const { default: DemoFilter } = await import('./DemoFilter.jsx');
-  const { DEMO_FILTERS, demosFor } = await import('../../lib/labs.js');
-  const html = renderToStaticMarkup(React.createElement(DemoFilter, { active: 'game', onPick: () => {} }));
-  assert.match(html, /role="group"[^>]*aria-label="Filter the demos"/);
-  assert.equal((html.match(/<button type="button"/g) || []).length, DEMO_FILTERS.length);
-  assert.match(html, new RegExp(`aria-pressed="true"[^>]*>Games<span[^>]*>${demosFor('game').length}</span>`));
-  assert.equal((html.match(/aria-pressed="true"/g) || []).length, 1);
+  const { demosFor } = await import('../../lib/labs.js');
+  const html = renderToStaticMarkup(React.createElement(DemoFilter, { value: { use: 'game', input: 'all' }, onPick: () => {} }));
+  assert.equal((html.match(/role="group"/g) || []).length, 2);
+  assert.match(html, /aria-label="What it is for"/);
+  assert.match(html, /aria-label="What Rune looks at"/);
+  assert.equal((html.match(/<button type="button"/g) || []).length, 6);
+  assert.equal((html.match(/aria-pressed="true"/g) || []).length, 2);
+  // counts are for that option combined with the other group's current choice
+  assert.match(html, new RegExp(`aria-pressed="true"[^>]*>Games<span[^>]*>${demosFor({ use: 'game' }).length}</span>`));
+  assert.match(html, new RegExp(`>Text<span[^>]*>${demosFor({ use: 'game', input: 'text' }).length}</span>`));
 });
 
 test('a demo left out by the filter is hidden, not removed, so an open demo keeps running', async () => {
