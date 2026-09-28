@@ -4,6 +4,11 @@
    here, scoped to .st-labs.
    ════════════════════════════════════════════════════════════════ */
 
+/* Hero facts: four columns of longer labels than the home page's */
+.st-labs .hero-meta{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); width:100%;}
+.st-labs .hero-meta .hm{padding:22px 26px;}
+.st-labs .hero-meta .hm-l{font-size:12px; letter-spacing:0.08em; line-height:1.45;}
+
 /* Tags, links */
 .st-labs .lab-tag{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px;
   letter-spacing:0.08em; text-transform:uppercase; color:#9a5b00; background:var(--amber-soft);
@@ -46,14 +51,15 @@
 .st-labs .lab-note{margin-top:96px; text-align:center; font-size:15px; color:var(--txt-3);}
 
 /* How it works: request and response */
-.st-labs .lab-code{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; margin-top:56px;}
+.st-labs .lab-code{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; margin-top:56px;
+  align-items:start;}
 .st-labs .lab-pane{background:var(--ink-black); border:1px solid var(--line-dk); border-radius:16px; overflow:hidden;}
 .st-labs .lab-pane-h{display:flex; justify-content:space-between; font-family:var(--mono); font-size:12px;
   letter-spacing:0.08em; text-transform:uppercase; color:var(--txt-d3); padding:13px 18px;
   border-bottom:1px solid var(--line-dk);}
 .st-labs .lab-pane-h b{color:var(--amber); font-weight:600;}
 .st-labs .lab-pane pre{margin:0; padding:18px; font-family:var(--mono); font-size:13px; line-height:1.65;
-  color:var(--txt-d1); overflow-x:auto; white-space:pre;}
+  color:var(--txt-d1); background:transparent; border:0; white-space:pre-wrap; overflow-wrap:anywhere;}
 
 /* /labs: the Rune feature */
 .st-labs .lab-feature{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:64px;
@@ -83,9 +89,9 @@
 .st-labs .lab-sp-t{font-family:var(--serif); font-weight:600; font-size:30px; line-height:1.1; color:var(--txt-d1); margin:0;}
 .st-labs .lab-sp-d{margin:0; font-size:16.5px; line-height:1.55; color:var(--txt-d2);}
 .st-labs .lab-voices{display:grid; gap:10px;}
-.st-labs .lab-voice{display:flex; align-items:center; gap:12px;}
-.st-labs .lab-voice-n{flex:none; width:52px; font-weight:600; font-size:14px; color:var(--txt-d1);}
-.st-labs .lab-voice audio{flex:1; min-width:0; height:36px;}
+.st-labs .lab-voice{display:grid; grid-template-columns:52px minmax(0,1fr); align-items:center; gap:12px;}
+.st-labs .lab-voice-n{font-weight:600; font-size:14px; color:var(--txt-d1);}
+.st-labs .lab-voice audio{display:block; width:100%; min-width:0; height:36px;}
 .st-labs .lab-sp-stat{margin-top:auto; padding-top:18px; border-top:1px solid var(--line-dk);}
 .st-labs .lab-sp-n{font-family:var(--serif); font-weight:600; font-size:38px; line-height:1; color:var(--amber);}
 .st-labs .lab-sp-l{margin-top:10px; font-size:13.5px; line-height:1.5; color:var(--txt-d3);}
@@ -93,16 +99,24 @@
 .st-labs .lab-reslinks{display:flex; flex-wrap:wrap; gap:14px 28px; margin-top:44px;}
 
 @media (max-width:1023px){
+  .st-labs .hero-meta{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .st-labs .hero-meta .hm:nth-child(2){border-right:none;}
+  .st-labs .hero-meta .hm:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,0.10);}
   .st-labs .lab-demo, .st-labs .lab-feature, .st-labs .lab-code{grid-template-columns:minmax(0,1fr); gap:32px;}
   .st-labs .lab-demo:nth-child(even) .lab-media{order:0;}
   .st-labs .lab-speech{grid-template-columns:minmax(0,1fr);}
   .st-labs .lab-demos{gap:80px;}
 }
 @media (max-width:640px){
+  .st-labs .hero-meta{grid-template-columns:minmax(0,1fr);}
+  .st-labs .hero-meta .hm{border-right:none; border-bottom:1px solid rgba(255,255,255,0.10);}
+  .st-labs .hero-meta .hm:last-child{border-bottom:none;}
   .st-labs .lab-facts{grid-template-columns:minmax(0,1fr);}
   .st-labs .lab-fact-n{font-size:36px;}
   .st-labs .lab-frame{height:80vh;}
   .st-labs .lab-play{padding:12px 18px; font-size:15px;}
+  .st-labs .lab-voice{grid-template-columns:minmax(0,1fr); gap:6px;}
+  .st-labs .lab-sp{padding:24px;}
 }
 @media (prefers-reduced-motion:reduce){
   .st-labs .lab-shot img, .st-labs .lab-play, .st-labs .lab-mini{transition:none;}
