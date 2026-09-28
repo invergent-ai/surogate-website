@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import data from '@/lib/labs/rune-industries.json';
 import RuneGlyph from '../RuneGlyph';
+import RuneRing from './RuneRing';
 
 /*
  * The decision engine: real inputs from different industries go in, the rune fires, a typed decision
@@ -14,8 +15,29 @@ import RuneGlyph from '../RuneGlyph';
  */
 
 const EXAMPLES = data.examples;
-const HOLD_MS = 5200;
+const HOLD_MS = 9000;  // long enough to read the input, the question and the answer
 const pct = (p) => `${Math.round(p * 100)}%`;
+
+/* Structured inputs (a policy and a claim, an order and an invoice) read better as labelled fields
+   than as JSON: {"purchase_order": {"supplier": "Nordkraft AS", "lines": 3, "total_eur": 12400}}
+   becomes "Purchase order: Nordkraft AS · 3 lines · €12,400". */
+const humanize = (k) => k.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase());
+const formatValue = (k, v) => {
+  if (k.endsWith('_eur')) return `€${Number(v).toLocaleString('en-GB')}`;
+  if (k === 'lines') return `${v} lines`;
+  return String(v);
+};
+function fieldsOf(input) {
+  if (!input.startsWith('{')) return null;
+  try {
+    return Object.entries(JSON.parse(input)).map(([k, v]) => ({
+      label: humanize(k),
+      value: v && typeof v === 'object' ? Object.entries(v).map(([k2, v2]) => formatValue(k2, v2)).join(' · ') : String(v),
+    }));
+  } catch {
+    return null;
+  }
+}
 
 export default function DecisionEngine() {
   const [i, setI] = useState(0);
@@ -24,6 +46,7 @@ export default function DecisionEngine() {
   const visible = useRef(false);
   const reduced = useRef(false);
   const ex = EXAMPLES[i];
+  const fields = fieldsOf(ex.input);
 
   const next = useCallback(() => setI((n) => (n + 1) % EXAMPLES.length), []);
 
@@ -45,27 +68,36 @@ export default function DecisionEngine() {
     if (reduced.current) return undefined;
     const ctx = gsap.context(() => {
       const text = el.querySelector('.de-text');
-      const full = ex.input;
       const o = { n: 0 };
       const tl = gsap.timeline();
-      tl.fromTo('.de-in', { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.45, ease: 'power3.out' })
-        .to(o, { n: full.length, duration: Math.min(1.1, 0.012 * full.length), ease: 'none',
-          onUpdate: () => { text.textContent = full.slice(0, Math.round(o.n)); } }, 0.15)
-        .fromTo('.de-q', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.3 }, '>-0.1')
-        .fromTo('.de-beam-in', { attr: { 'stroke-dashoffset': 1 } }, { attr: { 'stroke-dashoffset': 0 }, duration: 0.45, ease: 'power2.in' })
-        .fromTo('.de-spark-in', { attr: { cx: 0 }, opacity: 1 }, { attr: { cx: 100 }, duration: 0.45, ease: 'power2.in' }, '<')
+      tl.fromTo('.de-in', { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out' });
+      if (text) {
+        const full = ex.input;
+        tl.to(o, { n: full.length, duration: Math.min(1.8, 0.022 * full.length), ease: 'none',
+          onUpdate: () => { text.textContent = full.slice(0, Math.round(o.n)); } }, 0.2);
+      } else {
+        tl.fromTo('.de-field', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.35 }, 0.2);
+      }
+      tl
+        .fromTo('.de-q', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4 }, '>+0.1')
+        .fromTo('.de-beam-in', { attr: { 'stroke-dashoffset': 1 } }, { attr: { 'stroke-dashoffset': 0 }, duration: 0.6, ease: 'power2.in' }, '>+0.3')
+        .fromTo('.de-spark-in', { attr: { cx: 0 }, opacity: 1 }, { attr: { cx: 100 }, duration: 0.6, ease: 'power2.in' }, '<')
         .to('.de-spark-in', { opacity: 0, duration: 0.1 })
         .addLabel('fire')
-        .fromTo('.de-core .rg-s', { attr: { 'stroke-dashoffset': 1 } }, { attr: { 'stroke-dashoffset': 0 }, duration: 0.5, stagger: 0.1, ease: 'power2.out' }, 'fire')
-        .fromTo('.de-core .rune-glyph', { '--glow': 0.3 }, { '--glow': 1, duration: 0.3 }, 'fire')
-        .fromTo('.de-ring', { scale: 0.7, opacity: 0.9 }, { scale: 1.6, opacity: 0, duration: 0.9, stagger: 0.18, ease: 'power2.out', transformOrigin: '50% 50%' }, 'fire')
-        .fromTo('.de-dial', { rotate: 0 }, { rotate: 120, duration: 0.9, ease: 'power3.out', transformOrigin: '50% 50%' }, 'fire')
-        .fromTo('.de-beam-out', { attr: { 'stroke-dashoffset': 1 } }, { attr: { 'stroke-dashoffset': 0 }, duration: 0.4, ease: 'power2.out' }, 'fire+=0.45')
-        .fromTo('.de-spark-out', { attr: { cx: 0 }, opacity: 1 }, { attr: { cx: 100 }, duration: 0.4, ease: 'power2.out' }, '<')
+        // the ring of runes lights up around the circle, then the R ignites
+        .fromTo('.rr-rune', { '--lit': 0 }, { '--lit': 1, duration: 0.18, stagger: { each: 0.035, from: 18 }, ease: 'power1.out' }, 'fire')
+        .to('.rr-rune', { '--lit': 0.25, duration: 0.6, stagger: { each: 0.02, from: 18 } }, 'fire+=0.9')
+        // the R never disappears: its strokes smoulder, then ignite one after another
+        .fromTo('.de-core .rg-s', { opacity: 0.28 }, { opacity: 1, duration: 0.45, stagger: 0.18, ease: 'power2.in' }, 'fire+=0.25')
+        .fromTo('.de-core .rune-glyph', { '--glow': 0.2 }, { '--glow': 1.4, duration: 0.35, ease: 'power2.in' }, 'fire+=0.75')
+        .fromTo('.de-flare', { scale: 0.4, opacity: 0.9 }, { scale: 1.8, opacity: 0, duration: 0.9, ease: 'power2.out', transformOrigin: '50% 50%' }, 'fire+=0.95')
+        .fromTo('.de-ring', { scale: 0.7, opacity: 0.8 }, { scale: 1.7, opacity: 0, duration: 1.1, stagger: 0.22, ease: 'power2.out', transformOrigin: '50% 50%' }, 'fire+=0.95')
+        .to('.de-core .rune-glyph', { '--glow': 0.55, duration: 1.2 }, 'fire+=1.3')
+        .fromTo('.de-beam-out', { attr: { 'stroke-dashoffset': 1 } }, { attr: { 'stroke-dashoffset': 0 }, duration: 0.5, ease: 'power2.out' }, 'fire+=1.1')
+        .fromTo('.de-spark-out', { attr: { cx: 0 }, opacity: 1 }, { attr: { cx: 100 }, duration: 0.5, ease: 'power2.out' }, '<')
         .to('.de-spark-out', { opacity: 0, duration: 0.1 })
-        .fromTo('.de-out', { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: 'power3.out' }, 'fire+=0.7')
-        .fromTo('.de-bar em', { scaleX: 0 }, { scaleX: (k, t) => Number(t.dataset.p), duration: 0.8, stagger: 0.06, ease: 'power3.out' }, 'fire+=0.85')
-        .to('.de-core .rune-glyph', { '--glow': 0.45, duration: 0.8 }, 'fire+=0.6');
+        .fromTo('.de-out', { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out' }, 'fire+=1.4')
+        .fromTo('.de-bar em', { scaleX: 0 }, { scaleX: (k, t) => Number(t.dataset.p), duration: 1, stagger: 0.1, ease: 'power3.out' }, 'fire+=1.6');
     }, el);
     return () => ctx.revert();
   }, [i, ex.input]);
@@ -98,7 +130,18 @@ export default function DecisionEngine() {
         <div className="de-in">
           <span className="de-label">Input · {ex.industry}</span>
           {ex.image && <img className="de-img" src={ex.image} alt="" width="900" height="600" />}
-          <p className="de-text" key={i}>{ex.input}</p>
+          {fields ? (
+            <dl className="de-fields" key={i}>
+              {fields.map((f) => (
+                <div className="de-field" key={f.label}>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          ) : (
+            <p className="de-text" key={i}>{ex.input}</p>
+          )}
           <p className="de-q"><span>Question</span>{ex.question}</p>
         </div>
 
@@ -108,11 +151,8 @@ export default function DecisionEngine() {
         </svg>
 
         <div className="de-core" aria-hidden="true">
-          <svg className="de-dial" viewBox="0 0 200 200">
-            {Array.from({ length: 36 }, (_, k) => (
-              <line key={k} x1="100" y1="6" x2="100" y2={k % 3 === 0 ? 18 : 12} transform={`rotate(${k * 10} 100 100)`} />
-            ))}
-          </svg>
+          <RuneRing />
+          <span className="de-flare" />
           <span className="de-ring" />
           <span className="de-ring" />
           <RuneGlyph />

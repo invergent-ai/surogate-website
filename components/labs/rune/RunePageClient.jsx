@@ -137,7 +137,7 @@ export default function RunePageClient() {
             const tl = gsap.timeline({ paused: true });
             card.querySelectorAll('[data-p]').forEach((b) => tl.fromTo(b, { scaleX: 0 }, { scaleX: Number(b.dataset.p), duration: 0.9, ease: 'power3.out' }, 0.2));
             tl.fromTo(card.querySelector('.qk-get'), { opacity: 0.2 }, { opacity: 1, duration: 0.4 }, 0.05);
-            ScrollTrigger.create({ trigger: card, start: 'top 82%', once: true, onEnter: () => tl.play() });
+            ScrollTrigger.create({ trigger: card, start: 'top 82%', once: true, onEnter: () => { tl.play(); fire(card.querySelector('.qk-glyph')); } });
           });
 
           // Leaderboard: the skill bars fill and the index counts up.
@@ -240,8 +240,8 @@ export default function RunePageClient() {
                     <div className="qk-top">
                       <span className="qk-type">{k.type}</span>
                       <h3 className="qk-title">{k.title}</h3>
+                      <p className="qk-line">{k.line}</p>
                     </div>
-                    <p className="qk-line">{k.line}</p>
                     <div className="qk-send">
                       <span className="qk-lab">You send</span>
                       <p className="qk-input">{k.input}</p>
@@ -252,9 +252,11 @@ export default function RunePageClient() {
                         ))}
                       </div>
                     </div>
+                    <div className="qk-link" aria-hidden="true"><RuneGlyph className="qk-glyph" /></div>
                     <div className="qk-get">
                       <span className="qk-lab">Rune returns</span>
                       <p className="qk-answer">{k.answer}</p>
+                      <p className="qk-sub">{k.sub}</p>
                       {dist.map((o) => (
                         <div className="qk-row" key={o.label}>
                           <span>{o.label}</span>
