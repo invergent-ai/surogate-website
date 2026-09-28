@@ -38,3 +38,15 @@ test('an opened demo sizes its frame from the height the Space reports, and trus
   assert.match(src, /e\.origin !== new URL\(demo\.embed\)\.origin/);
   assert.match(src, /scrolling="no"/);
 });
+
+test('an opened demo may use the share sheet, so Doodle Decoder can share from inside the page', async () => {
+  const src = (await import('node:fs')).readFileSync(new URL('./DemoRow.jsx', import.meta.url), 'utf8');
+  assert.match(src, /allow="[^"]*\bweb-share\b[^"]*"/);
+});
+
+test('the engine gives every example, picked or automatic, a full hold before moving on', async () => {
+  // A fixed interval ignored picks: on a phone (no hover to pause) the chosen tab could change a second later.
+  const src = (await import('node:fs')).readFileSync(new URL('./rune/DecisionEngine.jsx', import.meta.url), 'utf8');
+  assert.match(src, /shownAt\.current = Date\.now\(\)/);
+  assert.match(src, /Date\.now\(\) - shownAt\.current >= HOLD_MS/);
+});

@@ -40,7 +40,7 @@ export default function DemoRow({ demo }) {
             className="lab-frame"
             src={demo.embed}
             title={`${demo.title}, live demo`}
-            allow="clipboard-write"
+            allow="clipboard-write; web-share"
             scrolling="no"
             style={height ? { height: `${height}px` } : undefined}
           />

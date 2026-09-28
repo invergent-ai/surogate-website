@@ -51,15 +51,19 @@ export default function DecisionEngine() {
 
   const next = useCallback(() => setI((n) => (n + 1) % EXAMPLES.length), []);
 
-  // Advance on a timer while visible and not hovered.
+  // Advance once an example has been watched for HOLD_MS. Only watched time counts (on screen, not
+  // hovered, tab visible), and a pick restarts the clock, so a chosen industry always gets the full hold.
+  const shownAt = useRef(0);
+  useEffect(() => { shownAt.current = Date.now(); }, [i]);
   useEffect(() => {
     reduced.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const el = root.current;
     const io = new IntersectionObserver(([e]) => { visible.current = e.isIntersecting; }, { threshold: 0.35 });
     io.observe(el);
     const t = setInterval(() => {
-      if (!reduced.current && visible.current && !paused.current && !document.hidden) next();
-    }, HOLD_MS);
+      if (reduced.current || !visible.current || paused.current || document.hidden) shownAt.current = Date.now();
+      else if (Date.now() - shownAt.current >= HOLD_MS) next();
+    }, 250);
     return () => { clearInterval(t); io.disconnect(); };
   }, [next]);
 
