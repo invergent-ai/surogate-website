@@ -32,6 +32,8 @@ export default function Footer() {
             { href: '/agencies/', label: 'Agencies' },
           ]} />
           <FootCol heading="Resources" links={[
+            { href: '/labs/', label: 'Labs' },
+            { href: '/labs/rune-examples/', label: 'Rune examples' },
             { href: 'https://docs.surogate.ai', label: 'Platform Docs' },
             { href: 'https://github.com/invergent-ai/surogate', label: 'Surogate Trainer' },
             { href: 'https://github.com/invergent-ai/surogates', label: 'Agent harness' },

@@ -66,5 +66,17 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${BASE_URL}/labs/`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/labs/rune-examples/`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
   ];
 }
