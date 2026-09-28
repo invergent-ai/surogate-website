@@ -30,3 +30,11 @@ test('opening a demo never rewrites the row class, so the reveal state survives'
   const src = (await import('node:fs')).readFileSync(new URL('./DemoRow.jsx', import.meta.url), 'utf8');
   assert.match(src, /className="lab-demo reveal"/);
 });
+
+test('an opened demo sizes its frame from the height the Space reports, and trusts only that frame', async () => {
+  const src = (await import('node:fs')).readFileSync(new URL('./DemoRow.jsx', import.meta.url), 'utf8');
+  assert.match(src, /'rune-labs:height'/);
+  assert.match(src, /e\.source !== frame\.current\?\.contentWindow/);
+  assert.match(src, /e\.origin !== new URL\(demo\.embed\)\.origin/);
+  assert.match(src, /scrolling="no"/);
+});

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Play } from 'lucide-react';
 import { ICONS } from './icons';
 import { track } from '@/lib/analytics';
@@ -10,7 +10,24 @@ import { track } from '@/lib/analytics';
    the link to the Space page is always there for when a Space is asleep. */
 export default function DemoRow({ demo }) {
   const [open, setOpen] = useState(false);
+  const [height, setHeight] = useState(null);
+  const frame = useRef(null);
   const Icon = ICONS[demo.icon];
+
+  /* Each Space posts {type: 'rune-labs:height', height} as its content grows (embed.js in the labs
+     repo), so the frame fits the demo and nothing scrolls inside it. Only this frame is trusted. */
+  useEffect(() => {
+    if (!open) return undefined;
+    const onMessage = (e) => {
+      if (e.source !== frame.current?.contentWindow) return;
+      if (e.origin !== new URL(demo.embed).origin) return;
+      if (e.data?.type !== 'rune-labs:height') return;
+      const h = Number(e.data.height);
+      if (Number.isFinite(h)) setHeight(Math.min(Math.max(Math.round(h), 320), 4000));
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [open, demo.embed]);
 
   return (
     // className stays constant: useReveal adds `in` to it directly, and a re-rendered className
@@ -19,10 +36,13 @@ export default function DemoRow({ demo }) {
       <div className="lab-media">
         {open ? (
           <iframe
+            ref={frame}
             className="lab-frame"
             src={demo.embed}
             title={`${demo.title}, live demo`}
             allow="clipboard-write"
+            scrolling="no"
+            style={height ? { height: `${height}px` } : undefined}
           />
         ) : (
           <button
