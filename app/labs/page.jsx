@@ -30,6 +30,10 @@ export default function LabsPage() {
   return (
     <>
       <JsonLd data={breadcrumb} />
+      {/* .reveal starts hidden until useReveal runs; without JavaScript it must simply show. */}
+      <noscript>
+        <style>{'.st-home .reveal{opacity:1;transform:none}'}</style>
+      </noscript>
       <LabsClient />
     </>
   );

@@ -86,8 +86,7 @@ export default function RuneExamplesClient() {
             </div>
 
             <p className="lab-note reveal">
-              The demos call a hosted Rune with a per-visitor limit. Nothing you draw, upload or
-              paste is stored.
+              The demos call a hosted Rune. Nothing you draw, upload or paste is stored.
             </p>
           </div>
         </section>
@@ -119,7 +118,7 @@ export default function RuneExamplesClient() {
               <div className="lab-pane">
                 <div className="lab-pane-h">
                   <span>
-                    <b>200</b> about 160 ms
+                    <b>200</b> {RUNE_EXAMPLE.latency}
                   </span>
                   <span>response</span>
                 </div>
