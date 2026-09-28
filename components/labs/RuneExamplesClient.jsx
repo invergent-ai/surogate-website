@@ -36,7 +36,7 @@ export default function RuneExamplesClient() {
             <div className="hero-actions reveal d3">
               <a
                 className="btn btn-primary"
-                href={`#${RUNE_DEMOS[0].slug}`}
+                href="#demos"
                 onClick={() => track('labs_cta_clicked', { cta: 'try_demos' })}
               >
                 <ArrowDown size={18} strokeWidth={2} aria-hidden="true" />
