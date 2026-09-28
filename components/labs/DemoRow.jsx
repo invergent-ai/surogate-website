@@ -13,7 +13,9 @@ export default function DemoRow({ demo }) {
   const Icon = ICONS[demo.icon];
 
   return (
-    <article className={`lab-demo reveal${open ? ' is-open' : ''}`} id={demo.slug}>
+    // className stays constant: useReveal adds `in` to it directly, and a re-rendered className
+    // would drop that and hide the row. Open state lives in data-open instead.
+    <article className="lab-demo reveal" data-open={open ? 'true' : 'false'} id={demo.slug}>
       <div className="lab-media">
         {open ? (
           <iframe

@@ -24,9 +24,9 @@
 .st-labs .lab-demo{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:64px;
   align-items:center; scroll-margin-top:110px;}
 .st-labs .lab-demo:nth-child(even) .lab-media{order:2;}
-.st-labs .lab-demo.is-open{grid-template-columns:minmax(0,1fr); gap:28px;}
-.st-labs .lab-demo.is-open .lab-media{order:2;}
-.st-labs .lab-demo.is-open .lab-text{max-width:760px;}
+.st-labs .lab-demo[data-open="true"]{grid-template-columns:minmax(0,1fr); gap:28px;}
+.st-labs .lab-demo[data-open="true"] .lab-media{order:2;}
+.st-labs .lab-demo[data-open="true"] .lab-text{max-width:760px;}
 .st-labs .lab-demo-t{font-family:var(--serif); font-weight:600; letter-spacing:-0.015em;
   font-size:clamp(30px,3.2vw,42px); line-height:1.08; margin:18px 0 0; color:var(--txt-1);}
 .st-labs .lab-demo-d{font-size:19px; line-height:1.55; color:var(--txt-2); margin:16px 0 0; text-wrap:pretty;}
