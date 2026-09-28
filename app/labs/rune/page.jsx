@@ -23,8 +23,8 @@ export const metadata = {
   description: DESCRIPTION,
   keywords: 'Surogate Rune, decision model, open weights, typed decisions, image decisions, calibrated probabilities',
   alternates: { canonical: URL },
-  openGraph: { type: 'website', url: URL, title: TITLE, description: DESCRIPTION, siteName: 'Surogate' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
+  openGraph: { type: 'website', url: URL, title: TITLE, description: DESCRIPTION, siteName: 'Surogate', images: [{ url: 'https://surogate.ai/og-image.jpg', width: 1200, height: 630 }] },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://surogate.ai/twitter-image.jpg'] },
 };
 
 export default function RunePage() {

@@ -4,7 +4,7 @@
    here,scoped to .st-labs.
    ════════════════════════════════════════════════════════════════ */
 
-.st-labs{--amber-ink:#9a5b00;}  /* amber dark enough for text on white */
+.st-labs{--amber-ink:#9a5b00; --txt-3:#736b62;}  /* amber and grey dark enough for text on white (4.5:1) */
 
 /* Hero facts: four columns of longer labels than the home page's */
 .st-labs .hero-meta{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); width:100%;}

@@ -319,7 +319,7 @@ export default function SpeechPageClient() {
           <div className="wrap">
             <div className="sec-head reveal">
               <p className="eyebrow">Run it</p>
-              <h2 className="h-section">One container, an OpenAI-compatible API.</h2>
+              <h2 className="h-section">One container, one HTTP API.</h2>
               <p className="lead">From the model cards. Amami runs on CPU only and needs Surogate 1.5.5 or later; drop <code>--gpus all</code> to run Jackrabbit on a CPU too.</p>
             </div>
             <div className="lab-code reveal">

@@ -37,7 +37,7 @@ export default function Nav() {
     };
   }, [menuOpen]);
 
-  const home = (hash) => (onPricing ? `/${hash}` : hash);
+  const home = (hash) => (pathname === '/' ? hash : `/${hash}`);
   const baseLink = 'font-sans text-lg font-medium transition-colors';
   const linkCls = (active) =>
     `${baseLink} ${active ? 'text-brand-aubergine' : 'text-brand-graphite hover:font-bold'}`;
