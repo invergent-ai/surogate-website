@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "npx serve@latest out",
     "lint": "next lint",
+    "test": "node --test \"lib/**/*.test.mjs\"",
     "film": "remotion studio remotion/index.ts",
     "film:render": "remotion render remotion/index.ts",
     "film:render:all": "bash scripts/render-films.sh"
