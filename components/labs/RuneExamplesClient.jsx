@@ -7,6 +7,7 @@ import useReveal from '@/components/useReveal';
 import { track } from '@/lib/analytics';
 import { RUNE, RUNE_DEMOS, RUNE_EXAMPLE, RUNE_FACTS } from '@/lib/labs';
 import DemoRow from './DemoRow';
+import LabsSubnav from './LabsSubnav';
 
 /*
  * surogate.ai/labs/rune-examples. Five live demos of Rune, each a public HF
@@ -16,8 +17,9 @@ export default function RuneExamplesClient() {
   useReveal();
 
   return (
-    <div className="st-home st-labs bg-white text-brand-aubergine antialiased overflow-x-hidden">
+    <div className="st-home st-labs bg-white text-brand-aubergine antialiased overflow-x-clip">
       <Nav />
+      <LabsSubnav />
 
       <main id="top">
         <header className="hero">

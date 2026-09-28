@@ -73,6 +73,18 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
+      url: `${BASE_URL}/labs/rune/`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/labs/speech/`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/labs/rune-examples/`,
       lastModified,
       changeFrequency: 'weekly',

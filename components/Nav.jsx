@@ -47,7 +47,8 @@ export default function Nav() {
     return home(link.hash);
   };
 
-  const isActive = (link) => link.key === 'pricing' && onPricing;
+  const isActive = (link) =>
+    (link.key === 'pricing' && onPricing) || (link.key === 'labs' && pathname?.startsWith('/labs'));
 
   return (
     <header
