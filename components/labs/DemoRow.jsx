@@ -42,7 +42,7 @@ export default function DemoRow({ demo, hidden = false, start = null }) {
   };
   useEffect(() => {
     if (!start) return;
-    openDemo(start);
+    if (!demo.newTab) openDemo(start);  // a camera demo can't run embedded; its row links to its own tab
     row.current?.scrollIntoView({ block: 'start' });
   }, [start]); // eslint-disable-line react-hooks/exhaustive-deps
 
