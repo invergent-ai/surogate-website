@@ -59,6 +59,22 @@ export default function DemoRow({ demo, hidden = false, start = null }) {
             scrolling="no"
             style={height ? { height: `${height}px` } : undefined}
           />
+        ) : demo.newTab ? (
+          // Needs the camera, which the browser blocks inside an embed: the Space opens in its own tab.
+          <a
+            className="lab-shot"
+            href={demo.page}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track('labs_demo_opened', { demo: demo.slug, tab: 'new' })}
+          >
+            <img src={demo.shot} alt="" loading="lazy" width="1200" height="800" />
+            <span className="lab-play">
+              <ArrowUpRight size={18} strokeWidth={2.25} aria-hidden="true" />
+              Try it live
+            </span>
+            <span className="lab-newtab">Opens in a new tab</span>
+          </a>
         ) : (
           <button
             type="button"

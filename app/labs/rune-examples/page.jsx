@@ -6,7 +6,7 @@ import '../../labs.css';
 const URL = 'https://surogate.ai/labs/rune-examples/';
 const TITLE = 'Rune examples - Surogate Labs';
 const DESCRIPTION =
-  'Five live demos of Surogate Rune, an open decision model: it looks at text and images and answers with a probability for every option.';
+  'Live demos of Surogate Rune, an open decision model: invoices, insurance claims, contracts, phishing emails, charts and games. It looks at text and images and answers with a probability for every option.';
 
 const breadcrumb = {
   '@context': 'https://schema.org',

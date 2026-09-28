@@ -56,15 +56,16 @@ test('the filters are two groups of real toggle buttons, each with how many demo
   const { renderToStaticMarkup } = await import('react-dom/server');
   const { default: DemoFilter } = await import('./DemoFilter.jsx');
   const { demosFor } = await import('../../lib/labs.js');
-  const html = renderToStaticMarkup(React.createElement(DemoFilter, { value: { use: 'game', input: 'all' }, onPick: () => {} }));
+  const html = renderToStaticMarkup(React.createElement(DemoFilter, { value: { sector: 'games', input: 'all' }, onPick: () => {} }));
   assert.equal((html.match(/role="group"/g) || []).length, 2);
-  assert.match(html, /aria-label="What it is for"/);
+  assert.match(html, /aria-label="Sector"/);
   assert.match(html, /aria-label="What Rune looks at"/);
-  assert.equal((html.match(/<button type="button"/g) || []).length, 6);
+  const { DEMO_FILTERS } = await import('../../lib/labs.js');
+  assert.equal((html.match(/<button type="button"/g) || []).length, DEMO_FILTERS.reduce((n, g) => n + g.options.length, 0));
   assert.equal((html.match(/aria-pressed="true"/g) || []).length, 2);
   // counts are for that option combined with the other group's current choice
-  assert.match(html, new RegExp(`aria-pressed="true"[^>]*>Games<span[^>]*>${demosFor({ use: 'game' }).length}</span>`));
-  assert.match(html, new RegExp(`>Text<span[^>]*>${demosFor({ use: 'game', input: 'text' }).length}</span>`));
+  assert.match(html, new RegExp(`aria-pressed="true"[^>]*>Games &amp; play<span[^>]*>${demosFor({ sector: 'games' }).length}</span>`));
+  assert.match(html, new RegExp(`>Text<span[^>]*>${demosFor({ sector: 'games', input: 'text' }).length}</span>`));
 });
 
 test('a demo left out by the filter is hidden, not removed, so an open demo keeps running', async () => {
@@ -74,4 +75,17 @@ test('a demo left out by the filter is hidden, not removed, so an open demo keep
   const { RUNE_DEMOS } = await import('../../lib/labs.js');
   const html = renderToStaticMarkup(React.createElement(DemoRow, { demo: RUNE_DEMOS[0], hidden: true }));
   assert.match(html, /<article class="lab-demo reveal"[^>]*hidden=""/);
+});
+
+test('a demo that needs the camera opens its Space in a new tab instead of embedding it', async () => {
+  // Embedded, the browser would block the camera; on the Space page it works.
+  const React = (await import('react')).default;
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const { default: DemoRow } = await import('./DemoRow.jsx');
+  const { RUNE_DEMOS } = await import('../../lib/labs.js');
+  const demo = { ...RUNE_DEMOS[0], newTab: true };
+  const html = renderToStaticMarkup(React.createElement(DemoRow, { demo }));
+  assert.match(html, new RegExp(`<a class="lab-shot" href="${demo.page}" target="_blank" rel="noopener noreferrer"`));
+  assert.match(html, /Opens in a new tab/);
+  assert.doesNotMatch(html, /<button[^>]*class="lab-shot"/);
 });

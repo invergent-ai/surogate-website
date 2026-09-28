@@ -85,7 +85,7 @@ export default function LabsClient() {
             <div className="hub-ex-head reveal">
               <h2 className="h-section">Rune, live.</h2>
               <a className="lab-textlink" href="/labs/rune-examples/">
-                All five demos <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
+                All the demos <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
               </a>
             </div>
             <div className="hub-ex reveal d1">

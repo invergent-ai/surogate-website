@@ -8,7 +8,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import useReveal from '@/components/useReveal';
 import { track } from '@/lib/analytics';
-import { SPEECH_ABOUT, SPEECH_LINKS, SPEECH_MODELS, SPEECH_RUN } from '@/lib/labs';
+import { SPEECH_ABOUT, SPEECH_LINKS, SPEECH_MODELS, SPEECH_RUN, amamiSrc } from '@/lib/labs';
 import LabsSubnav from '../LabsSubnav';
 import { ICONS } from '../icons';
 
@@ -21,6 +21,7 @@ const HERO_BARS = 56;
 const CARD_BARS = 28;
 const AMAMI = SPEECH_MODELS.find((m) => m.voices);
 const RECOGNIZERS = SPEECH_MODELS.filter((m) => !m.voices);
+const CATEGORIES = [...new Set(AMAMI.samples.map((x) => x.category))];
 
 /* An illustration of what streaming recognition shows, not a recording: partial words while you
    speak, then one cased, punctuated sentence when you pause. */
@@ -45,6 +46,8 @@ export default function SpeechPageClient() {
   const audios = useRef({});
   const engine = useRef(null);
   const [playing, setPlaying] = useState(null);
+  const [sample, setSample] = useState(AMAMI.samples[0]);
+  const lines = AMAMI.samples.filter((x) => x.category === sample.category);
   const playingRef = useRef(null);
   const streamRef = useRef(null);
 
@@ -59,6 +62,13 @@ export default function SpeechPageClient() {
     engine.current = { ctx, analyser, sources: new Map(), data: new Uint8Array(analyser.frequencyBinCount) };
     return engine.current;
   }, []);
+
+  /* A new sentence stops whatever is playing; the cards then play that sentence. */
+  const pick = (next) => {
+    Object.values(audios.current).forEach((a) => a.pause());
+    setSample(next);
+    track('labs_amami_sample_picked', { sample: next.slug });
+  };
 
   const toggle = useCallback((name) => {
     const el = audios.current[name];
@@ -156,11 +166,11 @@ export default function SpeechPageClient() {
               speak. Both run natively in the Surogate engine, on a CPU or a GPU.
             </p>
             <div className="hero-actions">
-              <button type="button" className="btn btn-primary" onClick={() => toggle('Doina')} aria-pressed={playing === 'Doina'}>
-                {playing === 'Doina' ? <Pause size={18} strokeWidth={2} aria-hidden="true" /> : <Play size={18} strokeWidth={2} aria-hidden="true" />}
-                {playing === 'Doina' ? 'Pause Doina' : 'Hear Doina'}
+              <button type="button" className="btn btn-primary" onClick={() => toggle('female')} aria-pressed={playing === 'female'}>
+                {playing === 'female' ? <Pause size={18} strokeWidth={2} aria-hidden="true" /> : <Play size={18} strokeWidth={2} aria-hidden="true" />}
+                {playing === 'female' ? 'Pause Amami' : 'Hear Amami'}
               </button>
-              <a className="btn btn-ghost" href="#listen">All three voices</a>
+              <a className="btn btn-ghost" href="#listen">Codes, names and more</a>
             </div>
             <div className="sp-family" aria-label="The Surogate Speech family">
               {[...RECOGNIZERS, AMAMI].map((m) => (
@@ -194,30 +204,50 @@ export default function SpeechPageClient() {
             <div className="sec-head reveal sp-head">
               <img className="sp-head-mark" src={AMAMI.mark} alt="" width="72" height="72" />
               <p className="eyebrow">{AMAMI.kind}</p>
-              <h2 className="h-section">{AMAMI.name}: three voices, one model.</h2>
+              <h2 className="h-section">{AMAMI.name}: a Romanian voice on two CPU cores.</h2>
               <p className="lead">{AMAMI.line}</p>
+            </div>
+            <div className="sp-picker reveal">
+              <div className="sp-cats" role="group" aria-label="What to hear">
+                {CATEGORIES.map((c) => (
+                  <button type="button" key={c} aria-pressed={sample.category === c}
+                          onClick={() => pick(AMAMI.samples.find((x) => x.category === c))}>{c}</button>
+                ))}
+              </div>
+              {lines.length > 1 ? (
+                <div className="sp-lines" role="group" aria-label="Sentences">
+                  {lines.map((x) => (
+                    <button type="button" key={x.slug} aria-pressed={sample.slug === x.slug} onClick={() => pick(x)} lang="ro">
+                      {x.text}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <p className="sp-said" lang="ro">{sample.text}</p>
+              )}
+              {sample.readAs && <p className="sp-readas"><span>Read out as</span> <span lang="ro">{sample.readAs}</span></p>}
             </div>
             <div className="sp-voices">
               {AMAMI.voices.map((v) => {
-                if (!cardBars.current[v.name]) cardBars.current[v.name] = { current: [] };
-                const on = playing === v.name;
+                if (!cardBars.current[v.key]) cardBars.current[v.key] = { current: [] };
+                const on = playing === v.key;
                 return (
                   <article className="sp-voice reveal" data-on={on ? 'true' : 'false'} key={v.name}>
                     <div className="sp-voice-top">
                       <h3 className="sp-voice-n">{v.name}</h3>
-                      <button type="button" className="sp-play" onClick={() => toggle(v.name)} aria-pressed={on}
-                              aria-label={`${on ? 'Pause' : 'Play'} ${v.name}, Amami voice sample`}>
+                      <button type="button" className="sp-play" onClick={() => toggle(v.key)} aria-pressed={on}
+                              aria-label={`${on ? 'Pause' : 'Play'} the ${v.name.toLowerCase()} reading this sentence`}>
                         {on ? <Pause size={20} strokeWidth={2.2} aria-hidden="true" /> : <Play size={20} strokeWidth={2.2} aria-hidden="true" />}
                       </button>
                     </div>
-                    <Bars count={CARD_BARS} className="sp-card-bars" barsRef={cardBars.current[v.name]} />
+                    <Bars count={CARD_BARS} className="sp-card-bars" barsRef={cardBars.current[v.key]} />
                     <audio
-                      ref={(el) => { if (el) audios.current[v.name] = el; }}
-                      src={v.src}
+                      ref={(el) => { if (el) audios.current[v.key] = el; }}
+                      src={amamiSrc(v.key, sample.slug)}
                       preload="none"
                       crossOrigin="anonymous"
-                      onPlay={() => { playingRef.current = v.name; setPlaying(v.name); }}
-                      onPause={() => { if (playingRef.current === v.name) { playingRef.current = null; setPlaying(null); } }}
+                      onPlay={() => { playingRef.current = v.key; setPlaying(v.key); }}
+                      onPause={() => { if (playingRef.current === v.key) { playingRef.current = null; setPlaying(null); } }}
                       onEnded={() => { playingRef.current = null; setPlaying(null); }}
                     />
                   </article>
@@ -284,7 +314,7 @@ export default function SpeechPageClient() {
             <div className="sec-head reveal">
               <p className="eyebrow">Run it</p>
               <h2 className="h-section">One container, an OpenAI-compatible API.</h2>
-              <p className="lead">From the model cards. Drop <code>--gpus all</code> and the device flag to run on a CPU.</p>
+              <p className="lead">From the model cards. Amami runs on CPU only and needs Surogate 1.5.5 or later; drop <code>--gpus all</code> to run Jackrabbit on a CPU too.</p>
             </div>
             <div className="lab-code reveal">
               <div className="lab-pane">
