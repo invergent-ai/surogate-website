@@ -320,7 +320,6 @@
 @media (max-width:640px){
   .st-rune .cap-grid,.st-rune .use-grid{grid-template-columns:minmax(0,1fr);}
   .st-rune .qk{padding:22px;}
-  .st-rune .cal-chip{width:30px;}
 }
 
 /* Measured in public: the Decision Index */
@@ -584,4 +583,26 @@
   /* An opened demo gets the whole width of the phone. */
   .st-labs .lab-demo[data-open="true"] .lab-media{margin:0 -16px;}
   .st-labs .lab-demo[data-open="true"] .lab-frame{border-radius:0;}
+}
+
+/* More phone forms: a segmented control for a short set of cards, a compact list for the hub's demos. */
+.st-rune .qk-pick-phone{display:none;}
+.st-labs .segmented{display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:4px; padding:4px;
+  border:1px solid var(--line2); border-radius:14px; background:var(--paper-2);}
+.st-labs .segmented button{min-height:44px; padding:0 6px; border:0; border-radius:10px; background:none; font:inherit;
+  font-size:14.5px; font-weight:600; color:var(--txt-2); cursor:pointer;}
+.st-labs .segmented button[aria-pressed="true"]{background:#fff; color:var(--txt-1); box-shadow:0 1px 3px rgba(42,16,45,0.14);}
+.st-labs .segmented button:focus-visible{outline:3px solid var(--amber); outline-offset:-3px;}
+@media (max-width:640px){
+  .st-rune .qk-pick-phone{display:block; margin-top:32px;}
+  .st-rune .qk-grid{margin-top:16px;}
+  .st-rune .qk[data-active="false"]{display:none;}
+  .st-rune .cal-chips{gap:3px;}
+  /* The hub's demos as a compact list: thumbnail left, title and kind right. */
+  .st-hub .hub-ex{grid-template-columns:minmax(0,1fr); gap:10px;}
+  .st-hub .hub-ex-card{display:grid; grid-template-columns:112px minmax(0,1fr); grid-template-rows:auto auto;
+    column-gap:14px; row-gap:2px; align-items:center; padding:8px; border:1px solid var(--line2); background:#fff;}
+  .st-hub .hub-ex-card img{grid-row:span 2; border-radius:10px;}
+  .st-hub .hub-ex-t{margin-top:0; align-self:end;}
+  .st-hub .hub-ex-k{align-self:start;}
 }

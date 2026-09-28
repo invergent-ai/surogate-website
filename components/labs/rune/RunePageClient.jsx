@@ -18,6 +18,7 @@ import SeesArt from './SeesArt';
 import Calibration from './Calibration';
 import DecisionEngine, { pct } from './DecisionEngine';
 import { ICONS } from '../icons';
+import Segmented from '../Segmented';
 
 /*
  * surogate.ai/labs/rune. What Rune is, what it does and where it fits, from the launch post and the
@@ -98,6 +99,7 @@ function Leaderboard() {
 }
 
 export default function RunePageClient() {
+  const [kind, setKind] = useState(0);  // on a phone the three kinds show one at a time
   const root = useRef(null);
 
   useEffect(() => {
@@ -227,11 +229,15 @@ export default function RunePageClient() {
               title="Three kinds of question cover most decisions."
               lead="Each question names its type, the instruction and the options. The answer is always one of your options, never free text."
             />
+            <div className="qk-pick-phone">
+              <Segmented label="Kind of question" value={kind} onPick={setKind}
+                         options={KINDS.map((k) => k.short)} />
+            </div>
             <div className="qk-grid">
-              {KINDS.map((k) => {
+              {KINDS.map((k, n) => {
                 const dist = k.type === 'noul' ? [{ label: 'True', p: k.p }, { label: 'False', p: 1 - k.p }] : k.options;
                 return (
-                  <article className="qk" key={k.type} data-reveal>
+                  <article className="qk" key={k.type} data-reveal data-active={n === kind ? 'true' : 'false'}>
                     <div className="qk-top">
                       <span className="qk-type">{k.type}</span>
                       <h3 className="qk-title">{k.title}</h3>

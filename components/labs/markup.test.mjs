@@ -116,3 +116,15 @@ test('long text is clamped on a phone and says More only when something is cut o
   assert.match(html, /<p class="lab-demo-d clamp" data-open="false">Some long description\.<\/p>/);
   assert.doesNotMatch(html, />More</);  // the button appears only after measuring shows the text is cut
 });
+
+test('a short set of choices is a segmented control on a phone: real toggle buttons, one pressed', async () => {
+  const React = (await import('react')).default;
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const { default: Segmented } = await import('./Segmented.jsx');
+  const html = renderToStaticMarkup(React.createElement(Segmented, {
+    label: 'Kind of question', value: 1, onPick: () => {}, options: ['Pick one', 'True or false', 'Scale'] }));
+  assert.match(html, /<div class="segmented" role="group" aria-label="Kind of question">/);
+  assert.equal((html.match(/<button type="button"/g) || []).length, 3);
+  assert.match(html, /aria-pressed="true"[^>]*>True or false</);
+  assert.equal((html.match(/aria-pressed="true"/g) || []).length, 1);
+});
