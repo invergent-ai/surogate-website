@@ -1,11 +1,13 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import useReveal from '@/components/useReveal';
 import { track } from '@/lib/analytics';
-import { RUNE, RUNE_DEMOS, RUNE_EXAMPLE, RUNE_FACTS } from '@/lib/labs';
+import { RUNE, RUNE_DEMOS, RUNE_EXAMPLE, RUNE_FACTS, demosFor } from '@/lib/labs';
+import DemoFilter from './DemoFilter';
 import DemoRow from './DemoRow';
 import LabsSubnav from './LabsSubnav';
 
@@ -15,6 +17,18 @@ import LabsSubnav from './LabsSubnav';
  */
 export default function RuneExamplesClient() {
   useReveal();
+  // The filter lives in ?show= so a filtered page can be linked. The static page renders "all" and
+  // switches after load.
+  const [show, setShow] = useState('all');
+  useEffect(() => { setShow(new URLSearchParams(window.location.search).get('show') || 'all'); }, []);
+  const pick = (key) => {
+    setShow(key);
+    const url = new URL(window.location.href);
+    if (key === 'all') url.searchParams.delete('show'); else url.searchParams.set('show', key);
+    window.history.replaceState(null, '', url);
+    track('labs_filter_picked', { filter: key });
+  };
+  const shown = new Set(demosFor(show).map((d) => d.slug));
 
   return (
     <div className="st-home st-labs bg-white text-brand-aubergine antialiased">
@@ -81,9 +95,11 @@ export default function RuneExamplesClient() {
               </p>
             </div>
 
+            <DemoFilter active={show} onPick={pick} />
+
             <div className="lab-demos">
               {RUNE_DEMOS.map((d) => (
-                <DemoRow demo={d} key={d.slug} />
+                <DemoRow demo={d} key={d.slug} hidden={!shown.has(d.slug)} />
               ))}
             </div>
 

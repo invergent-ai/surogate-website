@@ -50,3 +50,24 @@ test('the engine gives every example, picked or automatic, a full hold before mo
   assert.match(src, /shownAt\.current = Date\.now\(\)/);
   assert.match(src, /Date\.now\(\) - shownAt\.current >= HOLD_MS/);
 });
+
+test('the filter is a row of real toggle buttons, each with how many demos it shows', async () => {
+  const React = (await import('react')).default;
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const { default: DemoFilter } = await import('./DemoFilter.jsx');
+  const { DEMO_FILTERS, demosFor } = await import('../../lib/labs.js');
+  const html = renderToStaticMarkup(React.createElement(DemoFilter, { active: 'game', onPick: () => {} }));
+  assert.match(html, /role="group"[^>]*aria-label="Filter the demos"/);
+  assert.equal((html.match(/<button type="button"/g) || []).length, DEMO_FILTERS.length);
+  assert.match(html, new RegExp(`aria-pressed="true"[^>]*>Games<span[^>]*>${demosFor('game').length}</span>`));
+  assert.equal((html.match(/aria-pressed="true"/g) || []).length, 1);
+});
+
+test('a demo left out by the filter is hidden, not removed, so an open demo keeps running', async () => {
+  const React = (await import('react')).default;
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const { default: DemoRow } = await import('./DemoRow.jsx');
+  const { RUNE_DEMOS } = await import('../../lib/labs.js');
+  const html = renderToStaticMarkup(React.createElement(DemoRow, { demo: RUNE_DEMOS[0], hidden: true }));
+  assert.match(html, /<article class="lab-demo reveal"[^>]*hidden=""/);
+});

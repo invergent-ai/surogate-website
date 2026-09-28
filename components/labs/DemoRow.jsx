@@ -8,7 +8,7 @@ import { track } from '@/lib/analytics';
 /* One demo: a screenshot that becomes the live Space on click. The iframe is
    only created on click, so the page does not wake five Spaces on load, and
    the link to the Space page is always there for when a Space is asleep. */
-export default function DemoRow({ demo }) {
+export default function DemoRow({ demo, hidden = false }) {
   const [open, setOpen] = useState(false);
   const [height, setHeight] = useState(null);
   const frame = useRef(null);
@@ -32,7 +32,7 @@ export default function DemoRow({ demo }) {
   return (
     // className stays constant: useReveal adds `in` to it directly, and a re-rendered className
     // would drop that and hide the row. Open state lives in data-open instead.
-    <article className="lab-demo reveal" data-open={open ? 'true' : 'false'} id={demo.slug}>
+    <article className="lab-demo reveal" data-open={open ? 'true' : 'false'} id={demo.slug} hidden={hidden}>
       <div className="lab-media">
         {open ? (
           <iframe
