@@ -8,7 +8,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import useReveal from '@/components/useReveal';
 import { track } from '@/lib/analytics';
-import { SPEECH_LINKS, SPEECH_MODELS, SPEECH_RUN } from '@/lib/labs';
+import { SPEECH_ABOUT, SPEECH_LINKS, SPEECH_MODELS, SPEECH_RUN } from '@/lib/labs';
 import LabsSubnav from '../LabsSubnav';
 import { ICONS } from '../icons';
 
@@ -154,13 +154,37 @@ export default function SpeechPageClient() {
               </button>
               <a className="btn btn-ghost" href="#listen">All three voices</a>
             </div>
+            <div className="sp-family" aria-label="The Surogate Speech family">
+              {[...RECOGNIZERS, AMAMI].map((m) => (
+                <figure key={m.id}>
+                  <img src={m.mark} alt="" width="80" height="80" />
+                  <figcaption>{m.name}</figcaption>
+                </figure>
+              ))}
+            </div>
             <Bars count={HERO_BARS} className="sp-hero-bars" barsRef={heroBars} />
           </div>
         </header>
 
+        <section className="sec tight sp-about">
+          <div className="wrap sp-about-in reveal">
+            <p className="sp-about-line">{SPEECH_ABOUT.line}</p>
+            <div className="sp-about-links">
+              <a className="lab-textlink" href={SPEECH_ABOUT.article} target="_blank" rel="noopener noreferrer">
+                Read the launch article <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
+              </a>
+              <a className="lab-textlink" href={SPEECH_ABOUT.collection} target="_blank" rel="noopener noreferrer">
+                All models on Hugging Face <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
+              </a>
+            </div>
+            <p className="sp-about-note">{SPEECH_ABOUT.license}</p>
+          </div>
+        </section>
+
         <section className="sec" id="listen">
           <div className="wrap">
-            <div className="sec-head reveal">
+            <div className="sec-head reveal sp-head">
+              <img className="sp-head-mark" src={AMAMI.mark} alt="" width="72" height="72" />
               <p className="eyebrow">{AMAMI.kind}</p>
               <h2 className="h-section">{AMAMI.name}: three voices, one model.</h2>
               <p className="lead">{AMAMI.line}</p>
@@ -207,7 +231,7 @@ export default function SpeechPageClient() {
           <div className="wrap">
             <div className="sec-head reveal">
               <p className="eyebrow">Speech recognition · Romanian</p>
-              <h2 className="h-section">Jackrabbit writes it down.</h2>
+              <h2 className="h-section">Jackrabbit ASR writes it down.</h2>
               <p className="lead">
                 A 116M-parameter recognizer that writes cased, punctuated Romanian, from a file or live over HTTP or
                 WebSocket.
@@ -228,6 +252,7 @@ export default function SpeechPageClient() {
                 const Icon = ICONS[m.icon];
                 return (
                   <article className="lab-sp reveal" key={m.id}>
+                    <img className="sp-card-mark" src={m.mark} alt="" width="64" height="64" />
                     <span className="lab-tag"><Icon size={14} strokeWidth={2} aria-hidden="true" />{m.kind}</span>
                     <h3 className="lab-sp-t">{m.name}</h3>
                     <p className="lab-sp-d">{m.line}</p>

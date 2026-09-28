@@ -41,7 +41,12 @@ export default function LabsClient() {
           <div className="wrap hub-grid">
             <a className="hub-portal hub-rune reveal" href="/labs/rune/"
                onClick={() => track('labs_portal_clicked', { portal: 'rune' })}>
-              <RuneGlyph className="hub-glyph" />
+              <span className="hub-edge" aria-hidden="true" />
+              <span className="hub-glyph-wrap" aria-hidden="true">
+                <span className="hub-ripple" />
+                <span className="hub-ripple" />
+                <RuneGlyph className="hub-glyph" />
+              </span>
               <span className="hub-kind">Decision model</span>
               <span className="hub-name">Surogate Rune</span>
               <span className="hub-line">
@@ -63,7 +68,7 @@ export default function LabsClient() {
               <span className="hub-kind">Speech · Romanian</span>
               <span className="hub-name">Surogate Speech</span>
               <span className="hub-line">
-                Amami reads Romanian aloud in three voices. Jackrabbit writes it down, from a file or live.
+                Small open speech models for agents. Jackrabbit ASR listens, Amami TTS speaks. Romanian first.
               </span>
               <span className="hub-facts">
                 {SPEECH_MODELS.map((m) => (

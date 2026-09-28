@@ -142,113 +142,11 @@
 .st-labs .rune-glyph .rg-ring{fill:none; stroke:var(--amber); stroke-width:2; opacity:0;}
 
 .st-rune .rune-hero{padding:120px 0 96px;}
+.st-rune .rune-hero .hero-sub{max-width:34em;}
 .st-rune .rune-hero-in{position:relative; z-index:2; display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
   gap:48px; align-items:center;}
 .st-rune .rune-hero-glyph{width:min(320px,70%); height:auto; justify-self:center; --glow:0.6;}
 .st-rune .rune-hero .hero-title{font-size:clamp(46px,6.4vw,92px);}
-
-/* Scenes: tall sections with a sticky stage; the timeline is scrubbed through the section. */
-.st-rune .scene{position:relative; height:250vh; border-top:1px solid var(--line2);}
-.st-rune .scene-sticky{position:sticky; top:112px; height:calc(100vh - 112px); min-height:560px; display:grid;
-  grid-template-columns:minmax(0,0.82fr) minmax(0,1.18fr); gap:64px; align-items:center;}
-.st-rune .scene-glyph{width:40px; height:54px; margin-bottom:14px;}
-.st-rune .scene-n{margin:0; font-weight:700; font-size:15px; color:#9a5b00;}
-.st-rune .scene-h{font-family:var(--serif); font-weight:600; letter-spacing:-0.02em; font-size:clamp(32px,3.6vw,50px);
-  line-height:1.05; margin:10px 0 0; color:var(--txt-1); text-wrap:balance;}
-.st-rune .scene-p{font-size:19px; line-height:1.55; color:var(--txt-2); margin:18px 0 0; max-width:46ch;}
-.st-rune .scene-src{font-size:13.5px; color:var(--txt-3); margin:14px 0 0;}
-.st-rune .scene-vis{min-width:0;}
-
-.st-rune .st-card{background:var(--paper); border:1px solid var(--line2); border-radius:20px; padding:30px;
-  box-shadow:0 30px 70px -40px rgba(42,16,45,0.35);}
-.st-rune .st-label{font-family:var(--mono); font-size:12.5px; color:var(--txt-3);}
-.st-rune .st-ticket{font-family:var(--serif); font-weight:600; font-size:clamp(22px,2.2vw,30px); line-height:1.3;
-  color:var(--txt-1); margin:12px 0 0; min-height:3.9em;}
-.st-rune .st-chips{display:flex; flex-direction:column; gap:10px; margin-top:22px;}
-.st-rune .st-chip{display:flex; gap:12px; align-items:baseline; padding:11px 14px; border-radius:12px;
-  background:var(--paper-2); border:1px solid var(--line2); font-size:15.5px; color:var(--txt-2);}
-.st-rune .st-chip b{font-family:var(--mono); font-size:12.5px; font-weight:600; color:#9a5b00; min-width:52px;}
-
-.st-rune .ps-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px;}
-.st-rune .ps-q{background:var(--paper); border:1px solid var(--line2); border-radius:18px; padding:20px;}
-.st-rune .ps-name{font-weight:700; font-size:15px; margin-bottom:10px; color:var(--txt-1);}
-.st-rune .ps-row{display:grid; grid-template-columns:var(--lab,78px) minmax(0,1fr) 54px; gap:12px; align-items:center;
-  margin:8px 0; font-size:14.5px; color:var(--txt-2);}
-.st-rune .ps-row b{text-align:right; font-variant-numeric:tabular-nums; color:var(--txt-1); font-weight:600;}
-.st-rune .ps-bar{display:block; height:10px; border-radius:5px; background:#f1ede6; overflow:hidden;}
-.st-rune .ps-bar em{display:block; height:100%; width:100%; background:var(--amber); border-radius:5px; transform-origin:0 50%;}
-.st-rune .ps-grid .ps-row{grid-template-columns:minmax(0,1fr) auto; row-gap:6px;}
-.st-rune .ps-grid .ps-bar{grid-column:1 / -1; grid-row:2;}
-.st-rune .ps-ans{margin-top:14px; font-family:var(--serif); font-weight:600; font-size:20px; color:var(--txt-1);}
-
-.st-rune .sees-frame{border-radius:18px; overflow:hidden; border:1px solid var(--line2); background:#fff;
-  box-shadow:0 30px 70px -40px rgba(42,16,45,0.35);}
-.st-rune .sees-svg{display:block; width:100%; height:100%;}
-.st-rune .sees-line{stroke:#ff0050; stroke-width:2.5;}
-.st-rune .sees-pick{fill:rgba(255,175,16,0.18); stroke:var(--amber); stroke-width:3;}
-.st-rune .sees-tag{fill:var(--txt-1); font-family:var(--sans); font-weight:700;}
-.st-rune .sees-hit circle, .st-rune .sees-hit line{fill:none; stroke:#ff0050; stroke-width:4;}
-.st-rune .sees-out{margin:14px 0 0; font-size:15px; color:var(--txt-2);}
-
-.st-rune .cal-svg{display:block; width:100%; max-width:480px; height:auto;}
-.st-rune .cal-axis{stroke:var(--line2); stroke-width:1.5;}
-.st-rune .cal-tick{font-size:11px; fill:var(--txt-3); font-family:var(--sans);}
-.st-rune .cal-lab{font-size:12.5px; fill:var(--txt-2); font-family:var(--sans);}
-.st-rune .cal-diag{stroke:var(--amber); stroke-width:2.5;}
-.st-rune .cal-gap{stroke:#ef4444; stroke-width:3; stroke-linecap:round;}
-.st-rune .cal-dot{fill:var(--txt-1);}
-.st-rune .cal-read{font-family:var(--serif); font-weight:600; font-size:26px; margin:10px 0 0; color:var(--txt-1);}
-.st-rune .cal-read b{color:#9a5b00;}
-
-.st-rune .th-card{background:var(--paper); border:1px solid var(--line2); border-radius:20px; padding:30px;
-  box-shadow:0 30px 70px -40px rgba(42,16,45,0.35);}
-.st-rune .th-q{font-family:var(--serif); font-weight:600; font-size:clamp(20px,2vw,26px); line-height:1.3; margin:0 0 20px; color:var(--txt-1);}
-.st-rune .th-bars{position:relative; --lab:118px;}
-.st-rune .th-gate{position:absolute; top:-8px; bottom:-8px; width:2px; background:var(--txt-1);
-  left:calc(var(--lab) + 12px + (100% - var(--lab) - 54px - 24px) * 0.7);}
-.st-rune .th-gate em{position:absolute; top:-20px; left:-12px; font-style:normal; font-size:12px; font-weight:700; color:var(--txt-1);}
-.st-rune .th-unsure, .st-rune .th-sure{margin:18px 0 0; font-size:16px; color:var(--txt-2);}
-.st-rune .th-sure{font-family:var(--serif); font-weight:600; font-size:22px; color:var(--txt-1);}
-.st-rune .th-meter{display:flex; align-items:center; gap:12px; margin-top:16px; font-size:15px; color:var(--txt-2);}
-.st-rune .th-meter svg{width:44px; height:44px; transform:rotate(-90deg);}
-.st-rune .th-meter circle{fill:none; stroke:var(--line2); stroke-width:4;}
-.st-rune .th-meter .th-arc{stroke:var(--amber); stroke-linecap:round;}
-.st-rune .th-meter b{font-variant-numeric:tabular-nums; color:var(--txt-1);}
-
-.st-rune .api-grid{display:grid; grid-template-columns:minmax(0,1fr); gap:14px;}
-.st-rune .api-pane{margin:0; background:var(--ink-black); border-radius:16px; padding:16px 18px; color:var(--txt-d1);
-  font-family:var(--mono); font-size:12.5px; line-height:1.65; white-space:pre-wrap; overflow-wrap:anywhere;}
-.st-rune .api-h{display:block; color:var(--amber); font-weight:600; margin-bottom:10px;}
-
-.st-rune .rune-facts{padding:88px 0;}
-.st-rune .rune-facts .lab-facts{grid-template-columns:repeat(4,minmax(0,1fr)); background:var(--line-dk); border-color:var(--line-dk);}
-.st-rune .rune-facts .lab-fact{background:var(--ink-deep);}
-.st-rune .rune-facts .lab-fact-n{color:#fbf9f6;}
-.st-rune .rune-facts .lab-fact-l{color:var(--txt-d2);}
-.st-rune .rune-try{margin-top:48px;}
-.st-rune .rune-next{display:flex; flex-wrap:wrap; align-items:center; gap:14px 26px; margin-top:56px;}
-.st-rune .rune-next .lab-textlink{margin-top:0;}
-
-@media (max-width:1023px){
-  .st-rune .rune-facts .lab-facts{grid-template-columns:repeat(2,minmax(0,1fr));}
-  .st-rune .ps-grid{grid-template-columns:minmax(0,1fr);}
-}
-@media (max-width:899px){
-  .st-rune .rune-hero-in{grid-template-columns:minmax(0,1fr);}
-  .st-rune .rune-hero-glyph{width:150px; justify-self:start; order:-1;}
-  .st-rune .scene{height:auto; padding:72px 0;}
-  .st-rune .scene-sticky{position:static; height:auto; min-height:0; grid-template-columns:minmax(0,1fr); gap:32px;}
-  .st-rune .api-grid{grid-template-columns:minmax(0,1fr);}
-}
-@media (max-width:640px){
-  .st-rune .rune-facts .lab-facts{grid-template-columns:minmax(0,1fr);}
-  .st-rune .st-card, .st-rune .th-card{padding:22px;}
-  .st-rune .th-bars{--lab:96px;}
-}
-@media (prefers-reduced-motion:reduce){
-  .st-rune .scene{height:auto; padding:72px 0;}
-  .st-rune .scene-sticky{position:static; height:auto; min-height:0;}
-}
 
 /* ════════════════════════════════════════════════════════════════
    /labs/speech
@@ -347,3 +245,230 @@
    position:sticky inside it (the labs sub-nav, the Rune story's stages). clip hides overflow the same
    way without that side effect. */
 .st-home.st-labs{overflow-x:clip;}
+
+/* ════════════════════════════════════════════════════════════════
+   /labs/rune below the hero
+   ════════════════════════════════════════════════════════════════ */
+.st-rune .rn-head{max-width:760px;}
+.st-rune .rn-glyph{width:34px; height:46px; margin:0 0 18px -4px;}
+.st-rune .rn-head .h-section{max-width:22ch;}
+.st-rune .rn-aside{margin:28px 0 0; font-size:16px; color:var(--txt-3);}
+
+/* How you ask: three kinds */
+.st-rune .qk-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin-top:56px;}
+.st-rune .qk{display:flex; flex-direction:column; padding:28px; border:1px solid var(--line2); border-radius:22px; background:var(--paper);}
+.st-rune .qk-top{display:flex; align-items:baseline; gap:12px;}
+.st-rune .qk-type{font-family:var(--mono); font-size:12.5px; font-weight:600; color:#9a5b00; background:var(--amber-soft);
+  border:1px solid var(--amber-line); border-radius:999px; padding:3px 10px;}
+.st-rune .qk-title{margin:0; font-family:var(--serif); font-weight:600; font-size:26px; color:var(--txt-1);}
+/* What comes back */
+.st-rune .rn-caps{background:var(--paper-2);}
+.st-rune .cap-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; margin-top:56px;
+  background:var(--line2); border:1px solid var(--line2); border-radius:22px; overflow:hidden;}
+.st-rune .cap{padding:32px; background:var(--paper);}
+.st-rune .ri{width:44px; height:44px;}
+.st-rune .ri-path{fill:none; stroke:var(--amber); stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round;}
+.st-rune .cap-t{margin:18px 0 0; font-family:var(--serif); font-weight:600; font-size:22px; color:var(--txt-1);}
+.st-rune .cap-d{margin:10px 0 0; font-size:16px; line-height:1.55; color:var(--txt-2);}
+
+/* It sees */
+.st-rune .sees-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; margin-top:56px;}
+.st-rune .sees-tile{--hit:0; margin:0; padding:26px 22px 20px; border:1px solid var(--line2); border-radius:20px; background:var(--paper);
+  box-shadow:0 0 0 calc(var(--hit) * 3px) var(--amber-line);}
+.st-rune .sa{display:block; width:100%; max-width:150px; height:auto; margin:0 auto;}
+.st-rune .sa-lines *{fill:none; stroke:var(--txt-1); stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round;}
+.st-rune .sa-lines .sa-accent{stroke:var(--amber); stroke-width:3;}
+.st-rune .sa-scan{fill:var(--amber); opacity:0.75;}
+.st-rune .sees-tile figcaption{margin-top:16px; text-align:center; font-weight:700; font-size:16px; color:var(--txt-1);}
+.st-rune .rn-link{margin-top:28px;}
+
+/* Where it fits */
+.st-rune .use-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; margin-top:56px;}
+.st-rune .use{padding:24px; border:1px solid var(--line2); border-radius:20px; background:var(--paper);
+  transition:border-color .2s ease;}
+.st-rune .use:hover{border-color:var(--amber-line);}
+.st-rune .use-ic{display:grid; place-items:center; width:42px; height:42px; border-radius:12px; background:var(--amber-soft); color:#9a5b00;}
+.st-rune .use-t{margin:16px 0 0; font-weight:700; font-size:17px; color:var(--txt-1);}
+.st-rune .use-d{margin:8px 0 0; font-size:15px; line-height:1.5; color:var(--txt-2);}
+
+/* Run it where your data lives */
+.st-rune .rn-deploy .rn-head .h-section{color:var(--txt-d1);}
+.st-rune .dep-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:56px;}
+.st-rune .dep, .st-rune .dep-speed{padding:28px; border-radius:20px; background:rgba(255,255,255,0.04); border:1px solid var(--line-dk);}
+.st-rune .dep svg{color:var(--amber);}
+.st-rune .dep-t{margin:16px 0 0; font-family:var(--serif); font-weight:600; font-size:24px; color:var(--txt-d1);}
+.st-rune .dep-d{margin:10px 0 0; font-size:16px; line-height:1.55; color:var(--txt-d2);}
+.st-rune .dep-speed{background:var(--amber); border-color:var(--amber); color:var(--ink-deep);}
+.st-rune .dep-n{font-family:var(--serif); font-weight:600; font-size:44px; line-height:1;}
+.st-rune .dep-l{margin:12px 0 0; font-size:15px; line-height:1.45;}
+.st-rune .dep-terms{display:flex; flex-wrap:wrap; gap:10px; list-style:none; padding:0; margin:28px 0 0;}
+.st-rune .dep-terms li{padding:8px 14px; border-radius:999px; border:1px solid var(--line-dk); font-size:14.5px; color:var(--txt-d1);}
+.st-rune .dep-cmd{margin-top:28px;}
+.st-rune .dep-note{margin:16px 0 0; font-size:14.5px; line-height:1.55; color:var(--txt-d3); max-width:80ch;}
+.st-rune .rn-next-in{display:flex; flex-wrap:wrap; align-items:center; gap:14px 26px;}
+.st-rune .rn-next-in .lab-textlink{margin-top:0;}
+
+@media (max-width:1023px){
+  .st-rune .qk-grid, .st-rune .dep-grid{grid-template-columns:minmax(0,1fr);}
+  .st-rune .cap-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .st-rune .use-grid, .st-rune .sees-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .st-rune .rn-split{grid-template-columns:minmax(0,1fr); gap:40px;}
+  .st-rune .de-stage{grid-template-columns:minmax(0,1fr);}
+  .st-rune .de-beam{display:none;}
+  .st-rune .de-core{justify-self:center;}
+}
+@media (max-width:640px){
+  .st-rune .cap-grid, .st-rune .use-grid{grid-template-columns:minmax(0,1fr);}
+  .st-rune .qk, .st-rune .de-in, .st-rune .de-out{padding:22px;}
+  .st-rune .cal-chip{width:30px; height:40px;}
+}
+
+/* Measured in public: the Decision Index */
+.st-rune .lb-grid{display:grid; grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr); gap:22px; margin-top:56px;}
+.st-rune .lb-score{padding:32px; border-radius:22px; background:var(--ink-deep); color:var(--txt-d1);
+  box-shadow:0 40px 80px -40px rgba(42,16,45,0.6);}
+.st-rune .lb-score svg{color:var(--amber);}
+.st-rune .lb-n{margin-top:18px; font-family:var(--serif); font-weight:600; font-size:clamp(64px,7vw,96px); line-height:0.95;
+  color:var(--amber); font-variant-numeric:tabular-nums;}
+.st-rune .lb-l{margin:16px 0 0; font-size:16px; line-height:1.5; color:var(--txt-d2);}
+.st-rune .lb-l b{color:#fff;}
+.st-rune .lb-areas{padding:28px 30px; border:1px solid var(--line2); border-radius:22px; background:var(--paper);}
+.st-rune .lb-area{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 12px; margin:0 0 16px; font-size:15.5px; color:var(--txt-2);}
+.st-rune .lb-area b{font-variant-numeric:tabular-nums; color:var(--txt-1);}
+.st-rune .lb-area i{grid-column:1 / -1; display:block; height:10px; border-radius:5px; background:#f1ede6; overflow:hidden;}
+.st-rune .lb-area em{display:block; width:100%; height:100%; border-radius:5px; background:var(--amber); transform-origin:0 50%;}
+.st-rune .lb-note{margin:4px 0 0; font-size:13.5px; color:var(--txt-3);}
+.st-rune .lb-embed{display:flex; flex-direction:column; align-items:flex-start; gap:16px; margin-top:22px;}
+.st-rune .lb-open{display:inline-flex; align-items:center; gap:10px; padding:14px 20px; border-radius:14px; cursor:pointer;
+  border:1px solid var(--line2); background:var(--paper-2); color:var(--txt-1); font:inherit; font-weight:700; font-size:16px;}
+.st-rune .lb-open:hover{border-color:var(--amber);}
+.st-rune .lb-open:focus-visible{outline:3px solid var(--amber); outline-offset:3px;}
+.st-rune .lb-frame{display:block; width:100%; height:min(900px,90vh); border:1px solid var(--line2); border-radius:20px; background:#fff;}
+.st-rune .lb-embed .lab-textlink{margin-top:0;}
+@media (max-width:1023px){ .st-rune .lb-grid{grid-template-columns:minmax(0,1fr);} }
+
+/* Surogate Speech: the rabbit family */
+.st-speech .sp-family{display:flex; flex-wrap:wrap; gap:28px 40px; margin-top:56px;}
+.st-speech .sp-family figure{margin:0; display:flex; align-items:center; gap:14px;}
+.st-speech .sp-family img{width:72px; height:72px; filter:drop-shadow(0 8px 24px rgba(255,175,16,0.35));}
+.st-speech .sp-family figcaption{font-weight:700; font-size:16px; color:var(--txt-d1);}
+.st-speech .sp-about{background:var(--paper-2); border-bottom:1px solid var(--line2);}
+.st-speech .sp-about-in{max-width:880px;}
+.st-speech .sp-about-line{margin:0; font-family:var(--serif); font-weight:600; font-size:clamp(22px,2.4vw,30px); line-height:1.35; color:var(--txt-1);}
+.st-speech .sp-about-links{display:flex; flex-wrap:wrap; gap:14px 28px; margin-top:24px;}
+.st-speech .sp-about-links .lab-textlink{margin-top:0;}
+.st-speech .sp-about-note{margin:18px 0 0; font-size:14.5px; color:var(--txt-3);}
+.st-speech .sp-head-mark{width:64px; height:64px; margin-bottom:18px;}
+.st-speech .sp-card-mark{width:56px; height:56px;}
+.st-hub .hub-rabbits{display:flex; gap:18px; height:112px; align-items:center; margin-bottom:auto;}
+.st-hub .hub-rabbits img{width:76px; height:76px; animation:hubHop 2.4s ease-in-out infinite; animation-delay:calc(var(--i) * -0.8s);}
+@keyframes hubHop{0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);}}
+@media (prefers-reduced-motion:reduce){ .st-hub .hub-rabbits img{animation:none;} }
+
+/* What it is: the decision engine */
+.st-rune .de{margin-top:56px;}
+.st-rune .de-tabs{display:flex; flex-wrap:wrap; gap:8px;}
+.st-rune .de-tab{padding:8px 15px; border-radius:999px; border:1px solid var(--line2); background:var(--paper); cursor:pointer;
+  font:inherit; font-size:14.5px; font-weight:600; color:var(--txt-2); transition:all .2s ease;}
+.st-rune .de-tab:hover{border-color:var(--amber-line); color:var(--txt-1);}
+.st-rune .de-tab[aria-selected="true"]{background:var(--ink-deep); border-color:var(--ink-deep); color:#fff;}
+.st-rune .de-tab:focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
+.st-rune .de-stage{display:grid; grid-template-columns:minmax(0,1fr) 70px 220px 70px minmax(0,1fr); align-items:center;
+  gap:0; margin-top:28px; min-height:360px;}
+.st-rune .de-in, .st-rune .de-out{align-self:stretch; display:flex; flex-direction:column; padding:28px; border-radius:22px;}
+.st-rune .de-in{background:var(--paper); border:1px solid var(--line2); box-shadow:0 30px 70px -44px rgba(42,16,45,0.35);}
+.st-rune .de-out{background:var(--ink-deep); color:var(--txt-d1); box-shadow:0 40px 80px -40px rgba(42,16,45,0.6);}
+.st-rune .de-label{font-size:13.5px; font-weight:700; color:#9a5b00;}
+.st-rune .de-out .de-label{color:var(--amber);}
+.st-rune .de-img{display:block; width:100%; height:auto; max-height:150px; object-fit:contain; margin-top:12px;
+  border-radius:10px; border:1px solid var(--line2); background:#fff;}
+.st-rune .de-text{margin:12px 0 0; font-family:var(--serif); font-weight:600; font-size:19px; line-height:1.4; color:var(--txt-1);
+  min-height:4.2em; overflow-wrap:anywhere;}
+.st-rune .de-q{margin:auto 0 0; padding-top:16px; font-weight:700; font-size:15.5px; color:var(--txt-1);}
+.st-rune .de-q span{display:block; font-weight:600; font-size:12.5px; color:var(--txt-3); margin-bottom:4px;}
+.st-rune .de-beam{width:100%; height:10px; overflow:visible;}
+.st-rune .de-beam line{stroke:var(--amber); stroke-width:2; vector-effect:non-scaling-stroke;}
+.st-rune .de-beam circle{fill:var(--amber-2); filter:drop-shadow(0 0 6px var(--amber));}
+.st-rune .de-core{position:relative; display:grid; place-items:center; width:220px; height:220px; border-radius:50%;
+  background:radial-gradient(circle at 50% 45%, #3a1740, var(--ink-black) 70%); box-shadow:0 30px 70px -30px rgba(42,16,45,0.8),
+  inset 0 0 0 1px rgba(255,175,16,0.18);}
+.st-rune .de-core .rune-glyph{width:74px; height:98px; position:relative; z-index:2;}
+.st-rune .de-dial{position:absolute; inset:0; width:100%; height:100%;}
+.st-rune .de-dial line{stroke:rgba(255,175,16,0.45); stroke-width:2; stroke-linecap:round;}
+.st-rune .de-ring{position:absolute; inset:34px; border-radius:50%; border:2px solid var(--amber); opacity:0;}
+.st-rune .de-decision{margin:14px 0 0; font-family:var(--serif); font-weight:600; font-size:clamp(30px,2.8vw,40px); line-height:1.05; color:#fff;}
+.st-rune .de-score{margin:6px 0 0; font-size:14px; color:var(--txt-d2);}
+.st-rune .de-dist{margin-top:auto; padding-top:18px;}
+.st-rune .de-bar{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 10px; margin:8px 0 0; font-size:14px; color:var(--txt-d2);}
+.st-rune .de-bar b{font-variant-numeric:tabular-nums; color:var(--txt-d1);}
+.st-rune .de-bar i{grid-column:1 / -1; display:block; height:7px; border-radius:4px; background:rgba(255,255,255,0.08); overflow:hidden;}
+.st-rune .de-bar em{display:block; width:100%; height:100%; border-radius:4px; background:rgba(255,255,255,0.35); transform-origin:0 50%;}
+.st-rune .de-bar.is-top em{background:var(--amber);}
+.st-rune .de-bar.is-top span, .st-rune .de-bar.is-top b{color:#fff;}
+.st-rune .de-foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin:18px 0 0;
+  font-size:14px; color:var(--txt-3);}
+.st-rune .de-next{padding:8px 14px; border-radius:10px; border:1px solid var(--line2); background:var(--paper); cursor:pointer;
+  font:inherit; font-weight:600; color:var(--txt-1);}
+
+/* How you ask: you send, Rune returns */
+.st-rune .qk-line{margin:12px 0 0; font-size:16px; line-height:1.5; color:var(--txt-2);}
+.st-rune .qk-lab{display:block; font-size:12.5px; font-weight:700; color:var(--txt-3); margin-bottom:8px;}
+.st-rune .qk-send{margin-top:20px; padding:16px; border-radius:14px; background:var(--paper-2); border:1px solid var(--line2);}
+.st-rune .qk-input{margin:0; font-size:15px; line-height:1.5; color:var(--txt-1);}
+.st-rune .qk-q{margin:12px 0 10px; font-weight:700; font-size:15px; color:var(--txt-1);}
+.st-rune .qk-opts{display:flex; flex-wrap:wrap; gap:6px;}
+.st-rune .qk-opts span{padding:4px 10px; border-radius:999px; border:1px solid var(--line2); background:var(--paper); font-size:13px; color:var(--txt-2);}
+.st-rune .qk-get{margin-top:12px; padding:16px; border-radius:14px; background:var(--ink-deep); color:var(--txt-d1);}
+.st-rune .qk-get .qk-lab{color:var(--amber);}
+.st-rune .qk-answer{margin:0 0 6px; font-family:var(--serif); font-weight:600; font-size:22px; line-height:1.2; color:#fff;}
+.st-rune .qk-row{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 10px; margin:8px 0 0; font-size:14px; color:var(--txt-d2);}
+.st-rune .qk-row b{color:var(--txt-d1); font-variant-numeric:tabular-nums;}
+.st-rune .qk-row i{grid-column:1 / -1; display:block; height:7px; border-radius:4px; background:rgba(255,255,255,0.08); overflow:hidden;}
+.st-rune .qk-row em{display:block; height:100%; width:100%; border-radius:4px; background:var(--amber); transform-origin:0 50%;}
+
+/* Calibrated: ticks */
+.st-rune .cal{padding:30px; border:1px solid var(--line2); border-radius:22px; background:var(--paper);
+  box-shadow:0 30px 70px -44px rgba(42,16,45,0.35);}
+.st-rune .cal-row + .cal-row{margin-top:26px;}
+.st-rune .cal-h{margin:0; font-weight:600; font-size:16px; color:var(--txt-1);}
+.st-rune .cal-h b{color:#9a5b00;}
+.st-rune .cal-chips{display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:6px; margin-top:12px; perspective:400px;}
+.st-rune .cal-chip{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; height:52px;
+  border-radius:10px; border:1px solid var(--line2); background:var(--paper-2);}
+.st-rune .cal-chip em{font-style:normal; font-size:10.5px; color:var(--txt-3);}
+.st-rune .cal-chip b{font-size:18px; line-height:1; display:block;}
+.st-rune .cal-chip.is-right b{color:#16a34a;}
+.st-rune .cal-chip.is-wrong{background:#fdf1f1; border-color:#f5d0d0;}
+.st-rune .cal-chip.is-wrong b{color:#dc2626;}
+.st-rune .cal-sum{margin:8px 0 0; font-size:14.5px; color:var(--txt-2);}
+.st-rune .cal-rule{display:flex; gap:14px; align-items:flex-start; margin-top:26px; padding-top:22px; border-top:1px solid var(--line2);}
+.st-rune .cal-line{flex:none; width:4px; align-self:stretch; border-radius:2px; background:var(--amber);}
+.st-rune .cal-rule p{margin:0; font-size:16px; line-height:1.55; color:var(--txt-1);}
+.st-rune .cal-measured{margin:18px 0 0; font-size:14px; line-height:1.5; color:var(--txt-2);}
+.st-rune .cal-measured span{color:var(--txt-3);}
+
+/* Hub: the Rune portal breathes; an amber light travels its edge */
+@property --edge-a{syntax:'<angle>'; inherits:false; initial-value:0deg;}
+.st-hub .hub-rune{isolation:isolate;}
+.st-hub .hub-edge{position:absolute; inset:0; border-radius:inherit; padding:1.5px; pointer-events:none; z-index:-1;
+  background:conic-gradient(from var(--edge-a), transparent 0 70%, rgba(255,175,16,0.9) 82%, transparent 94%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;
+  animation:hubEdge 6s linear infinite;}
+@keyframes hubEdge{to{--edge-a:360deg;}}
+.st-hub .hub-rune::after{content:""; position:absolute; inset:1.5px; border-radius:inherit; background:var(--ink-deep); z-index:-2;}
+.st-hub .hub-glyph-wrap{position:relative; display:grid; place-items:center; width:120px; height:120px; margin:-4px 0 auto -18px;}
+.st-hub .hub-glyph-wrap .hub-glyph{margin:0; animation:hubBreathe 3.2s ease-in-out infinite;}
+.st-hub .hub-glyph-wrap .rg-s{animation:hubDraw 6.4s ease-in-out infinite;}
+.st-hub .hub-glyph-wrap .rg-s:nth-child(2){animation-delay:.15s;}
+.st-hub .hub-glyph-wrap .rg-s:nth-child(3){animation-delay:.3s;}
+.st-hub .hub-ripple{position:absolute; inset:14px; border-radius:50%; border:1.5px solid var(--amber); opacity:0;
+  animation:hubRipple 3.2s ease-out infinite;}
+.st-hub .hub-ripple:nth-child(2){animation-delay:1.6s;}
+@keyframes hubBreathe{0%,100%{--glow:0.35;} 50%{--glow:1;}}
+@keyframes hubRipple{0%{transform:scale(0.55); opacity:0.8;} 100%{transform:scale(1.35); opacity:0;}}
+@keyframes hubDraw{0%,12%{stroke-dashoffset:1;} 30%,88%{stroke-dashoffset:0;} 100%{stroke-dashoffset:0;}}
+@property --glow{syntax:'<number>'; inherits:true; initial-value:0.25;}
+@media (prefers-reduced-motion:reduce){
+  .st-hub .hub-edge, .st-hub .hub-glyph-wrap .hub-glyph, .st-hub .hub-glyph-wrap .rg-s, .st-hub .hub-ripple{animation:none;}
+  .st-hub .hub-edge{display:none;}
+}

@@ -1,0 +1,190 @@
+{
+  "recorded": "2026-09-28",
+  "model": "rune-v3",
+  "examples": [
+    {
+      "industry": "Banking",
+      "type": "choice",
+      "question": "Which team should handle this complaint?",
+      "input": "I was charged twice for the same purchase on 14 March and the second charge still hasn't been reversed.",
+      "image": null,
+      "distribution": [
+        [
+          "Cards",
+          0.9999726770975842
+        ],
+        [
+          "Lending",
+          1.892498931428694e-05
+        ],
+        [
+          "Accounts",
+          8.397913101528009e-06
+        ]
+      ],
+      "decision": "Cards",
+      "ms": 277
+    },
+    {
+      "industry": "Insurance",
+      "type": "noul",
+      "question": "Is this claim covered by the policy?",
+      "input": "{\"policy\": \"Covers sudden and accidental water damage. Excludes gradual leaks, wear and tear.\", \"claim\": \"The pipe under the sink has been dripping for months and the cabinet floor has rotted.\"}",
+      "image": null,
+      "distribution": [
+        [
+          "Covered",
+          0.00016865275398914432
+        ],
+        [
+          "Not covered",
+          0.9998313472460109
+        ]
+      ],
+      "decision": "Not covered",
+      "ms": 1709
+    },
+    {
+      "industry": "Security",
+      "type": "noul",
+      "question": "Is this email a phishing attempt?",
+      "input": "Your mailbox is full. Verify your password within 24 hours at micros0ft-support.co or lose access.",
+      "image": null,
+      "distribution": [
+        [
+          "Phishing",
+          0.9999998802069444
+        ],
+        [
+          "Legitimate",
+          1.197930555862925e-07
+        ]
+      ],
+      "decision": "Phishing",
+      "ms": 1816
+    },
+    {
+      "industry": "Legal",
+      "type": "choice",
+      "question": "What kind of clause is this?",
+      "input": "Either party may end this agreement by giving the other thirty days' written notice.",
+      "image": null,
+      "distribution": [
+        [
+          "Termination",
+          0.999995878600586
+        ],
+        [
+          "Liability",
+          2.902308447028773e-06
+        ],
+        [
+          "Confidentiality",
+          6.475925485856707e-07
+        ],
+        [
+          "Payment",
+          5.714984182637184e-07
+        ]
+      ],
+      "decision": "Termination",
+      "ms": 1689
+    },
+    {
+      "industry": "Logistics",
+      "type": "noul",
+      "question": "Does the invoice match the purchase order?",
+      "input": "{\"purchase_order\": {\"supplier\": \"Nordkraft AS\", \"lines\": 3, \"total_eur\": 12400}, \"invoice\": {\"supplier\": \"Nordkraft AS\", \"lines\": 3, \"total_eur\": 14200}}",
+      "image": null,
+      "distribution": [
+        [
+          "Matches",
+          3.966985914946731e-06
+        ],
+        [
+          "Mismatch",
+          0.999996033014085
+        ]
+      ],
+      "decision": "Mismatch",
+      "ms": 1703
+    },
+    {
+      "industry": "IT operations",
+      "type": "score",
+      "question": "How severe is this incident?",
+      "input": "Payments have been failing for all customers in the Nordics since 09:12. Retries are not succeeding.",
+      "image": null,
+      "distribution": [
+        [
+          "Cosmetic",
+          0.0007453288507125456
+        ],
+        [
+          "Degraded for some",
+          0.4374971766287922
+        ],
+        [
+          "Down for everyone",
+          0.5617574945204953
+        ]
+      ],
+      "decision": "Down for everyone",
+      "ms": 1717,
+      "score": 1.56,
+      "levels": 3
+    },
+    {
+      "industry": "E-commerce",
+      "type": "score",
+      "question": "How satisfied is this customer?",
+      "input": "Arrived fast, but the zip broke on day two. Support sent a replacement without any fuss.",
+      "image": null,
+      "distribution": [
+        [
+          "Very unhappy",
+          2.877482138605526e-05
+        ],
+        [
+          "Unhappy",
+          0.00030935848414847205
+        ],
+        [
+          "Mixed",
+          0.07569752524861982
+        ],
+        [
+          "Happy",
+          0.8138250921012594
+        ],
+        [
+          "Very happy",
+          0.11013924934458637
+        ]
+      ],
+      "decision": "Happy",
+      "ms": 1757,
+      "score": 3.03,
+      "levels": 5
+    },
+    {
+      "industry": "Finance",
+      "type": "noul",
+      "question": "Does the chart's value axis start at zero?",
+      "input": "A bar chart of customer satisfaction, last year against this year.",
+      "image": "/labs/rune/cropped-axis.png",
+      "distribution": [
+        [
+          "Starts at zero",
+          8.481104172358075e-05
+        ],
+        [
+          "Cropped axis",
+          0.9999151889582765
+        ]
+      ],
+      "decision": "Cropped axis",
+      "ms": 1870
+    }
+  ]
+}
