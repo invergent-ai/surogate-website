@@ -6,6 +6,7 @@ import data from '@/lib/labs/rune-industries.json';
 import RuneGlyph from '../RuneGlyph';
 import RuneRing from './RuneRing';
 import SheetSelect from '../SheetSelect';
+import { track } from '@/lib/analytics';
 
 /*
  * The decision engine: real inputs from different industries go in, the rune fires, a typed decision
@@ -51,6 +52,7 @@ export default function DecisionEngine() {
   const fields = fieldsOf(ex.input);
 
   const next = useCallback(() => setI((n) => (n + 1) % EXAMPLES.length), []);
+  const choose = (n) => { setI(n); track('rune_industry_picked', { industry: EXAMPLES[n].industry }); };
 
   // Advance once an example has been watched for HOLD_MS. Only watched time counts (on screen, not
   // hovered, tab visible), and a pick restarts the clock, so a chosen industry always gets the full hold.
@@ -127,7 +129,7 @@ export default function DecisionEngine() {
       onBlur={() => { paused.current = false; }}
     >
       <div className="de-pick-phone">
-        <SheetSelect label="Industry" value={String(i)} onPick={(k) => setI(Number(k))}
+        <SheetSelect label="Industry" value={String(i)} onPick={(k) => choose(Number(k))}
                      options={EXAMPLES.map((e, n) => ({ key: String(n), label: e.industry }))} />
       </div>
       <div ref={tabs} className="de-tabs" role="tablist" aria-label="Industries">
@@ -138,7 +140,7 @@ export default function DecisionEngine() {
             role="tab"
             aria-selected={n === i}
             className="de-tab"
-            onClick={() => setI(n)}
+            onClick={() => choose(n)}
           >
             {e.industry}
           </button>
@@ -200,7 +202,7 @@ export default function DecisionEngine() {
 
       <p className="de-foot">
         Real answers from Rune, one request each, recorded {data.recorded}.
-        <button type="button" className="de-next" onClick={next}>Next example</button>
+        <button type="button" className="de-next" onClick={() => { next(); track('rune_example_next'); }}>Next example</button>
       </p>
     </div>
   );

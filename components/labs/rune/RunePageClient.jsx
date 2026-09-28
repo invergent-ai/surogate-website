@@ -230,7 +230,7 @@ export default function RunePageClient() {
               lead="Each question names its type, the instruction and the options. The answer is always one of your options, never free text."
             />
             <div className="qk-pick-phone">
-              <Segmented label="Kind of question" value={kind} onPick={setKind}
+              <Segmented label="Kind of question" value={kind} onPick={(n) => { setKind(n); track('rune_kind_picked', { kind: KINDS[n].short }); }}
                          options={KINDS.map((k) => k.short)} />
             </div>
             <div className="qk-grid">

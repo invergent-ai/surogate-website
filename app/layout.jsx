@@ -87,7 +87,7 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-QDJWS8ZM50');
+            if (['surogate.ai', 'www.surogate.ai'].includes(location.hostname)) gtag('config', 'G-QDJWS8ZM50');
           `}
         </Script>
         {/*
@@ -107,7 +107,7 @@ export default function RootLayout({ children }) {
         <Script id="openai-pixel" strategy="beforeInteractive">
           {`
             (function (w, d, s, u) {
-              if (w.oaiq) return;
+              if (w.oaiq || !['surogate.ai', 'www.surogate.ai'].includes(w.location.hostname)) return;
               var q = function () { q.q.push(arguments); };
               q.q = [];
               w.oaiq = q;
@@ -118,7 +118,7 @@ export default function RootLayout({ children }) {
               f.parentNode.insertBefore(js, f);
             })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
 
-            oaiq("init", { pixelId: "${OPENAI_PIXEL_ID}" });
+            if (window.oaiq) oaiq("init", { pixelId: "${OPENAI_PIXEL_ID}" });
           `}
         </Script>
       </head>

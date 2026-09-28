@@ -25,13 +25,14 @@ export default function DemoRow({ demo, hidden = false, start = null }) {
     const onMessage = (e) => {
       if (e.source !== frame.current?.contentWindow) return;
       if (e.origin !== new URL(demo.embed).origin) return;
+      if (e.data?.type === 'rune-labs:used') track('labs_demo_used', { demo: demo.slug });
       if (e.data?.type !== 'rune-labs:height') return;
       const h = Number(e.data.height);
       if (Number.isFinite(h)) setHeight(Math.min(Math.max(Math.round(h), 320), 4000));
     };
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
-  }, [open, demo.embed]);
+  }, [open, demo.embed, demo.slug]);
 
   /* The page URL is only known in the browser, so the address (with the share link) is set on opening.
      start holds the settings of a shared link that asked for this demo: open it and bring it into view. */
