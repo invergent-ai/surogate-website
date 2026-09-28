@@ -13,7 +13,6 @@ const ROWS = [
 ];
 
 export default function Calibration() {
-  const { after } = RUNE_CALIBRATION;
   return (
     <div className="cal">
       {ROWS.map((r) => (
@@ -38,8 +37,8 @@ export default function Calibration() {
         </p>
       </div>
       <p className="cal-measured">
-        Measured on {RUNE_CALIBRATION.source.replace('Rune model card: ', '')}: at the recommended setting, Rune&apos;s
-        average confidence is {after.confidence}% and its accuracy {after.accuracy}%.
+        Measured on {RUNE_CALIBRATION.source}: at the recommended setting, Rune&apos;s
+        average confidence is {RUNE_CALIBRATION.confidence}% and its accuracy {RUNE_CALIBRATION.accuracy}%.
         <span> The tick rows above illustrate the rule; they are not a recorded run.</span>
       </p>
     </div>

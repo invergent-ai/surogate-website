@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
-  ArrowRight, ArrowUpRight, Bot, Play, Trophy, CircleCheck, ClipboardCheck, Cloud, Gauge, Layers, Route, Server, ShieldAlert, TextSearch,
+  ArrowRight, ArrowUpRight, Play, Trophy, Cloud, Server,
 } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
@@ -16,7 +16,8 @@ import RuneGlyph from '../RuneGlyph';
 import RuneIcon from './RuneIcons';
 import SeesArt from './SeesArt';
 import Calibration from './Calibration';
-import DecisionEngine from './DecisionEngine';
+import DecisionEngine, { pct } from './DecisionEngine';
+import { ICONS } from '../icons';
 
 /*
  * surogate.ai/labs/rune. What Rune is, what it does and where it fits, from the launch post and the
@@ -26,9 +27,6 @@ import DecisionEngine from './DecisionEngine';
  * animates once as it arrives, and the rune beside each section heading fires when that section lands.
  * With reduced motion every element is shown in its final state.
  */
-
-const USE_ICONS = { Route, CircleCheck, Gauge, Bot, Layers, ShieldAlert, ClipboardCheck, TextSearch };
-const pctOf = (p) => `${Math.round(p * 100)}%`;
 
 
 function fire(glyph) {
@@ -111,13 +109,10 @@ export default function RunePageClient() {
         .to('.rune-hero .rune-glyph', { '--glow': 1, duration: 0.4 }, '<');
 
       const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: reduce)', () => { hero.progress(1); });
       mm.add(
-        {
-          motion: '(prefers-reduced-motion: no-preference)',
-          wide: '(min-width: 900px) and (prefers-reduced-motion: no-preference)',
-        },
-        ({ conditions }) => {
-          if (!conditions.motion) { hero.progress(1); return undefined; }
+        '(prefers-reduced-motion: no-preference)',
+        () => {
 
           // Things that arrive: fade and rise once.
           gsap.set('[data-reveal]', { opacity: 0, y: 26 });
@@ -181,7 +176,7 @@ export default function RunePageClient() {
   }, []);
 
   return (
-    <div ref={root} className="st-home st-labs st-rune bg-white text-brand-aubergine antialiased overflow-x-clip">
+    <div ref={root} className="st-home st-labs st-rune bg-white text-brand-aubergine antialiased">
       <Nav />
       <LabsSubnav />
 
@@ -247,7 +242,7 @@ export default function RunePageClient() {
                       <p className="qk-input">{k.input}</p>
                       <p className="qk-q">{k.question}</p>
                       <div className="qk-opts">
-                        {(k.type === 'noul' ? [{ label: 'True' }, { label: 'False' }] : k.options).map((o) => (
+                        {dist.map((o) => (
                           <span key={o.label}>{o.label}</span>
                         ))}
                       </div>
@@ -260,7 +255,7 @@ export default function RunePageClient() {
                       {dist.map((o) => (
                         <div className="qk-row" key={o.label}>
                           <span>{o.label}</span>
-                          <b>{pctOf(o.p)}</b>
+                          <b>{pct(o.p)}</b>
                           <i><em data-p={o.p} style={{ transform: `scaleX(${o.p})` }} /></i>
                         </div>
                       ))}
@@ -289,7 +284,7 @@ export default function RunePageClient() {
         </section>
 
         <section className="sec rn-thr">
-          <div className="wrap rn-split">
+          <div className="wrap">
             <SectionHead
               eyebrow="Calibrated"
               title="A threshold that means what it says."
@@ -327,7 +322,7 @@ export default function RunePageClient() {
             <SectionHead eyebrow="Where it fits" title="Anywhere software has to choose." />
             <div className="use-grid">
               {USES.map((u) => {
-                const Icon = USE_ICONS[u.icon];
+                const Icon = ICONS[u.icon];
                 return (
                   <article className="use" key={u.title} data-reveal>
                     <span className="use-ic"><Icon size={20} strokeWidth={1.9} aria-hidden="true" /></span>

@@ -18,7 +18,7 @@ export default function LabsClient() {
   useReveal();
 
   return (
-    <div className="st-home st-labs st-hub bg-white text-brand-aubergine antialiased overflow-x-clip">
+    <div className="st-home st-labs st-hub bg-white text-brand-aubergine antialiased">
       <Nav />
       <LabsSubnav />
 

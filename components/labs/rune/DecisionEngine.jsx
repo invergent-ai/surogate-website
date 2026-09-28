@@ -16,7 +16,7 @@ import RuneRing from './RuneRing';
 
 const EXAMPLES = data.examples;
 const HOLD_MS = 9000;  // long enough to read the input, the question and the answer
-const pct = (p) => `${Math.round(p * 100)}%`;
+export const pct = (p) => `${Math.round(p * 100)}%`;
 
 /* Structured inputs (a policy and a claim, an order and an invoice) read better as labelled fields
    than as JSON: {"purchase_order": {"supplier": "Nordkraft AS", "lines": 3, "total_eur": 12400}}
@@ -179,7 +179,7 @@ export default function DecisionEngine() {
 
         <div className="de-out">
           <span className="de-label">Rune · {ex.type}</span>
-          <p className="de-decision">{ex.type === 'score' ? `${ex.decision}` : ex.decision}</p>
+          <p className="de-decision">{ex.decision}</p>
           {ex.type === 'score' && <p className="de-score">{ex.score} on a 0–{ex.levels - 1} scale</p>}
           <div className="de-dist">
             {ex.distribution.map(([label, p]) => (

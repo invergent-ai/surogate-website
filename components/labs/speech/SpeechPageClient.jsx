@@ -83,9 +83,18 @@ export default function SpeechPageClient() {
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let raf = 0;
+    // When nothing plays the bars only need to move while the hero is on screen and breathing, so
+    // after one idle frame (which also rests the card bars) the loop skips its work.
+    let heroOnScreen = true;
+    let settled = false;
+    const io = new IntersectionObserver(([entry]) => { heroOnScreen = entry.isIntersecting; });
+    if (heroBars.current[0]) io.observe(heroBars.current[0].parentElement);
     const draw = (t) => {
+      raf = requestAnimationFrame(draw);
       const e = engine.current;
       const live = playingRef.current && e;
+      if (!live && settled && (reduced || !heroOnScreen)) return;
+      settled = !live;
       if (live) e.analyser.getByteFrequencyData(e.data);
       const level = (i, n) => {
         if (live) {
@@ -100,10 +109,9 @@ export default function SpeechPageClient() {
         const on = playingRef.current === name;
         list.current.forEach((b, i) => { if (b) b.style.transform = `scaleY(${on ? level(i, CARD_BARS) : 0.12})`; });
       });
-      raf = requestAnimationFrame(draw);
     };
     raf = requestAnimationFrame(draw);
-    return () => cancelAnimationFrame(raf);
+    return () => { cancelAnimationFrame(raf); io.disconnect(); };
   }, []);
 
   /* The streaming illustration plays each time it scrolls into view. */
@@ -131,7 +139,7 @@ export default function SpeechPageClient() {
   }, []);
 
   return (
-    <div className="st-home st-labs st-speech bg-white text-brand-aubergine antialiased overflow-x-clip">
+    <div className="st-home st-labs st-speech bg-white text-brand-aubergine antialiased">
       <Nav />
       <LabsSubnav />
 

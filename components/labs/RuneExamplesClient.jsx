@@ -17,7 +17,7 @@ export default function RuneExamplesClient() {
   useReveal();
 
   return (
-    <div className="st-home st-labs bg-white text-brand-aubergine antialiased overflow-x-clip">
+    <div className="st-home st-labs bg-white text-brand-aubergine antialiased">
       <Nav />
       <LabsSubnav />
 
