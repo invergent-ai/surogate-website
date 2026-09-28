@@ -20,9 +20,12 @@ export default function RuneExamplesClient() {
   // The filters live in ?use= and ?input= so a filtered page can be linked. The static page renders
   // everything and applies them after load.
   const [filter, setFilter] = useState({});
+  // A shared link (?demo=doodle-decoder&word=sun) opens that demo with its settings.
+  const [start, setStart] = useState(null);
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     setFilter(Object.fromEntries(DEMO_FILTERS.map((g) => [g.key, q.get(g.key) || 'all'])));
+    if (RUNE_DEMOS.some((d) => d.slug === q.get('demo'))) setStart({ slug: q.get('demo'), params: Object.fromEntries(q) });
   }, []);
   const apply = (changes) => {
     const next = { ...filter, ...changes };
@@ -106,7 +109,7 @@ export default function RuneExamplesClient() {
 
             <div className="lab-demos">
               {RUNE_DEMOS.map((d) => (
-                <DemoRow demo={d} key={d.slug} hidden={!shown.has(d.slug)} />
+                <DemoRow demo={d} key={d.slug} hidden={!shown.has(d.slug)} start={start?.slug === d.slug ? start.params : null} />
               ))}
               {matching.length === 0 && (
                 <p className="lab-filter-none">

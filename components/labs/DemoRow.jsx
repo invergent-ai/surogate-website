@@ -4,12 +4,15 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Play } from 'lucide-react';
 import { ICONS } from './icons';
 import { track } from '@/lib/analytics';
+import { embedSrc } from '@/lib/labs';
 
 /* One demo: a screenshot that becomes the live Space on click. The iframe is
    only created on click, so the page does not wake five Spaces on load, and
    the link to the Space page is always there for when a Space is asleep. */
-export default function DemoRow({ demo, hidden = false }) {
+export default function DemoRow({ demo, hidden = false, start = null }) {
   const [open, setOpen] = useState(false);
+  const [src, setSrc] = useState(demo.embed);
+  const row = useRef(null);
   const [height, setHeight] = useState(null);
   const frame = useRef(null);
   const Icon = ICONS[demo.icon];
@@ -29,16 +32,28 @@ export default function DemoRow({ demo, hidden = false }) {
     return () => window.removeEventListener('message', onMessage);
   }, [open, demo.embed]);
 
+  /* The page URL is only known in the browser, so the address (with the share link) is set on opening.
+     start holds the settings of a shared link that asked for this demo: open it and bring it into view. */
+  const openDemo = (params = {}) => {
+    setSrc(embedSrc(demo, window.location.href, params));
+    setOpen(true);
+  };
+  useEffect(() => {
+    if (!start) return;
+    openDemo(start);
+    row.current?.scrollIntoView({ block: 'start' });
+  }, [start]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     // className stays constant: useReveal adds `in` to it directly, and a re-rendered className
     // would drop that and hide the row. Open state lives in data-open instead.
-    <article className="lab-demo reveal" data-open={open ? 'true' : 'false'} id={demo.slug} hidden={hidden}>
+    <article className="lab-demo reveal" data-open={open ? 'true' : 'false'} id={demo.slug} hidden={hidden} ref={row}>
       <div className="lab-media">
         {open ? (
           <iframe
             ref={frame}
             className="lab-frame"
-            src={demo.embed}
+            src={src}
             title={`${demo.title}, live demo`}
             allow="clipboard-write; web-share"
             scrolling="no"
@@ -50,7 +65,7 @@ export default function DemoRow({ demo, hidden = false }) {
             className="lab-shot"
             aria-label={`Open the live ${demo.title} demo`}
             onClick={() => {
-              setOpen(true);
+              openDemo();
               track('labs_demo_opened', { demo: demo.slug });
             }}
           >
