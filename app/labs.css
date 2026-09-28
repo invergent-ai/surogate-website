@@ -313,14 +313,11 @@
   .st-rune .cap-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .st-rune .use-grid, .st-rune .sees-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .st-rune .rn-split{grid-template-columns:minmax(0,1fr); gap:40px;}
-  .st-rune .de-stage{grid-template-columns:minmax(0,1fr);}
-  .st-rune .de-beam{display:none;}
-  .st-rune .de-core{justify-self:center;}
 }
 @media (max-width:640px){
   .st-rune .cap-grid, .st-rune .use-grid{grid-template-columns:minmax(0,1fr);}
-  .st-rune .qk, .st-rune .de-in, .st-rune .de-out{padding:22px;}
-  .st-rune .cal-chip{width:30px; height:40px;}
+  .st-rune .qk{padding:22px;}
+  .st-rune .cal-chip{width:30px;}
 }
 
 /* Measured in public: the Decision Index */
@@ -367,7 +364,7 @@
 
 /* What it is: the decision engine */
 .st-rune .de{margin-top:56px;}
-.st-rune .de-tabs{display:flex; flex-wrap:wrap; gap:8px;}
+.st-rune .de-tabs{position:relative; display:flex; flex-wrap:wrap; gap:8px;}
 .st-rune .de-tab{padding:8px 15px; border-radius:999px; border:1px solid var(--line2); background:var(--paper); cursor:pointer;
   font:inherit; font-size:14.5px; font-weight:600; color:var(--txt-2); transition:all .2s ease;}
 .st-rune .de-tab:hover{border-color:var(--amber-line); color:var(--txt-1);}
@@ -444,7 +441,7 @@
 .st-rune .cal-chips{display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:6px; margin-top:12px; perspective:400px;}
 .st-rune .cal-chip{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; height:52px;
   border-radius:10px; border:1px solid var(--line2); background:var(--paper-2);}
-.st-rune .cal-chip em{font-style:normal; font-size:10.5px; color:var(--txt-3);}
+.st-rune .cal-chip em{font-style:normal; font-size:11.5px; color:var(--txt-3);}
 .st-rune .cal-chip b{font-size:18px; line-height:1; display:block;}
 .st-rune .cal-chip.is-right b{color:#16a34a;}
 .st-rune .cal-chip.is-wrong{background:#fdf1f1; border-color:#f5d0d0;}
@@ -497,3 +494,43 @@
 .st-rune .de-field{padding:12px 14px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line2);}
 .st-rune .de-field dt{font-size:12.5px; font-weight:700; color:var(--txt-3);}
 .st-rune .de-field dd{margin:4px 0 0; font-family:var(--serif); font-weight:600; font-size:17px; line-height:1.35; color:var(--txt-1);}
+
+/* Tablets and phones. Kept last so no base rule declared later can override it. */
+@media (max-width:1023px){
+  .st-rune .rune-hero-in{grid-template-columns:minmax(0,1fr); gap:8px;}
+  .st-rune .rune-hero-glyph{grid-row:1; justify-self:start; width:84px;}
+  /* The engine flows top to bottom: input, a vertical beam, the rune, a vertical beam, the decision. */
+  .st-rune .de-stage{grid-template-columns:minmax(0,1fr); justify-items:stretch; min-height:0;}
+  .st-rune .de-beam{justify-self:center; width:48px; margin:19px 0; transform:rotate(90deg);}
+  .st-rune .de-core{justify-self:center;}
+  /* Industries become one swipeable row instead of three wrapped rows. */
+  .st-rune .de-tabs{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; scroll-snap-type:x proximity;
+    margin:0 -16px; padding:2px 16px;}
+  .st-rune .de-tabs::-webkit-scrollbar{display:none;}
+  .st-rune .de-tab{flex:none; scroll-snap-align:center; min-height:44px;}
+}
+@media (max-width:640px){
+  .st-home.st-labs .sec{padding:80px 0;}
+  .st-home.st-labs .sec.tight{padding:64px 0;}
+  .st-home.st-labs > main > .hero{padding:96px 0 72px;}
+  .st-rune .de-core{width:168px; height:168px;}
+  .st-rune .de-core .rune-glyph{width:56px; height:74px;}
+  .st-rune .de-flare{inset:30px;}
+  .st-rune .de-ring{inset:26px;}
+  .st-rune .de-text{font-size:17.5px; min-height:0;}
+  .st-labs .lab-textlink, .st-rune .de-next{min-height:44px;}
+  .st-labs .lab-subnav-in{gap:22px;}
+  .st-labs .lab-subnav a{min-width:44px; text-align:center;}
+  /* Capabilities as a compact list: icon beside the text, not above it. */
+  .st-rune .cap{display:grid; grid-template-columns:36px minmax(0,1fr); column-gap:16px; padding:22px;}
+  .st-rune .cap .ri{width:36px; height:36px; grid-row:span 2;}
+  .st-rune .cap-t{margin:4px 0 0; font-size:20px; line-height:1.25;}
+  .st-rune .cap-d{margin-top:6px; font-size:15px;}
+  /* The heading names the confidence, so the tiles keep only the tick or the cross. */
+  .st-rune .cal-chip em{display:none;}
+  .st-rune .cal-chip{height:40px;}
+  .st-rune .de-in, .st-rune .de-out{padding:22px;}
+  .st-speech .sp-voice{padding:18px 20px;}
+  .st-speech .sp-voice-n{font-size:26px;}
+  .st-speech .sp-card-bars{height:44px; margin-top:12px;}
+}

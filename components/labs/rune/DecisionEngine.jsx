@@ -45,6 +45,7 @@ export default function DecisionEngine() {
   const paused = useRef(false);
   const visible = useRef(false);
   const reduced = useRef(false);
+  const tabs = useRef(null);
   const ex = EXAMPLES[i];
   const fields = fieldsOf(ex.input);
 
@@ -61,6 +62,15 @@ export default function DecisionEngine() {
     }, HOLD_MS);
     return () => { clearInterval(t); io.disconnect(); };
   }, [next]);
+
+  // On phones the tabs are one swipeable row; keep the active one in view. Only the row scrolls, never the page.
+  useEffect(() => {
+    const row = tabs.current;
+    const tab = row.children[i];
+    if (row.scrollWidth > row.clientWidth) {
+      row.scrollTo({ left: tab.offsetLeft - (row.clientWidth - tab.offsetWidth) / 2, behavior: reduced.current ? 'auto' : 'smooth' });
+    }
+  }, [i]);
 
   // One timeline per example: input in, beam, the rune fires, decision out.
   useEffect(() => {
@@ -111,7 +121,7 @@ export default function DecisionEngine() {
       onFocus={() => { paused.current = true; }}
       onBlur={() => { paused.current = false; }}
     >
-      <div className="de-tabs" role="tablist" aria-label="Industries">
+      <div ref={tabs} className="de-tabs" role="tablist" aria-label="Industries">
         {EXAMPLES.map((e, n) => (
           <button
             key={e.industry}
