@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { key: 'how', hash: '#lifecycle', label: 'How it works' },
   { key: 'platform', hash: '#product', label: 'Platform' },
   { key: 'pricing', href: '/pricing', label: 'Pricing' },
+  { key: 'labs', href: '/labs/', label: 'Labs' },
   { key: 'docs', href: 'https://docs.surogate.ai', label: 'Docs', external: true },
 ];
 
@@ -36,7 +37,7 @@ export default function Nav() {
     };
   }, [menuOpen]);
 
-  const home = (hash) => (onPricing ? `/${hash}` : hash);
+  const home = (hash) => (pathname === '/' ? hash : `/${hash}`);
   const baseLink = 'font-sans text-lg font-medium transition-colors';
   const linkCls = (active) =>
     `${baseLink} ${active ? 'text-brand-aubergine' : 'text-brand-graphite hover:font-bold'}`;
@@ -46,7 +47,8 @@ export default function Nav() {
     return home(link.hash);
   };
 
-  const isActive = (link) => link.key === 'pricing' && onPricing;
+  const isActive = (link) =>
+    (link.key === 'pricing' && onPricing) || (link.key === 'labs' && pathname?.startsWith('/labs'));
 
   return (
     <header

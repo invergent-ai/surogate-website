@@ -74,7 +74,7 @@ Add a Transform Rule (or a Set-static op) with header
 **`Content-Security-Policy-Report-Only`** and this value:
 
 ```
-default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://eu.i.posthog.com https://eu-assets.i.posthog.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; worker-src 'self' blob:; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://eu.i.posthog.com https://eu-assets.i.posthog.com; upgrade-insecure-requests
+default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://eu.i.posthog.com https://eu-assets.i.posthog.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; frame-src https://*.hf.space https://huggingface.co; media-src 'self'; worker-src 'self' blob:; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://eu.i.posthog.com https://eu-assets.i.posthog.com; upgrade-insecure-requests
 ```
 
 **Why each non-obvious directive exists (mapped to this codebase):**
@@ -86,6 +86,7 @@ default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; 
 | `script-src/connect-src … eu.i.posthog.com` + `eu-assets.i.posthog.com` | PostHog api + assets hosts | `lib/analytics.js` |
 | `connect-src … *.google-analytics.com *.analytics.google.com` | GA4 event beacons | GA4 |
 | `font-src 'self'` | fonts self-hosted by `next/font/google` (`/_next/static/media/*.woff2`) | `app/layout.jsx` |
+| `frame-src *.hf.space huggingface.co` | Rune demo Spaces and the Decision Index leaderboard embedded on /labs | `lib/labs.js` |
 | `media-src 'self'` | `public/surogate-app.mp4` | homepage video |
 | `worker-src blob:` + `img-src blob:` | PostHog session-recording blob workers | PostHog |
 | `style-src 'unsafe-inline'` | Next.js + Tailwind inline styles | framework |

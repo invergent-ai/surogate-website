@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "npx serve@latest out",
     "lint": "next lint",
+    "test": "node --test \"lib/**/*.test.mjs\" \"components/labs/*.test.mjs\"",
     "film": "remotion studio remotion/index.ts",
     "film:render": "remotion render remotion/index.ts",
     "film:render:all": "bash scripts/render-films.sh"
@@ -17,6 +18,7 @@
     "@remotion/media": "^4.0.516",
     "@remotion/player": "^4.0.516",
     "firebase": "^12.16.0",
+    "gsap": "^3.15.0",
     "lucide": "^1.22.0",
     "lucide-react": "^0.562.0",
     "next": "^15.1.0",
