@@ -427,7 +427,7 @@
 .st-rune .qk-q{margin:12px 0 10px; font-weight:700; font-size:15px; color:var(--txt-1);}
 .st-rune .qk-opts{display:flex; flex-wrap:wrap; gap:6px;}
 .st-rune .qk-opts span{padding:4px 10px; border-radius:999px; border:1px solid var(--line2); background:var(--paper); font-size:13px; color:var(--txt-2);}
-.st-rune .qk-get{align-self:start; margin-top:0; padding:18px; border-radius:14px; background:var(--ink-deep); color:var(--txt-d1);}
+.st-rune .qk-get{align-self:stretch; margin-top:0; padding:18px; border-radius:14px; background:var(--ink-deep); color:var(--txt-d1);}
 .st-rune .qk-get .qk-lab{color:var(--amber);}
 .st-rune .qk-answer{margin:0 0 6px; font-family:var(--serif); font-weight:600; font-size:22px; line-height:1.2; color:#fff;}
 .st-rune .qk-row{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 10px; margin:8px 0 0; font-size:14px; color:var(--txt-d2);}
