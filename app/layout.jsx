@@ -72,6 +72,31 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
+        {/*
+          Google Tag Manager, Google's snippet verbatim inside the same host
+          guard as the analytics below. It carries the X pixel, whose tag reads
+          the click id (twclid) off the landing URL, so it has to start on the
+          page someone arrives on.
+
+          A plain <script>, not next/script: even beforeInteractive only queues
+          an inline script on self.__next_s and runs it once Next's own bundle
+          has loaded. A plain tag runs while the HTML is still parsing, which
+          is what Google's "as high in the <head> as possible" is asking for.
+        */}
+        <script
+          id="google-tag-manager"
+          dangerouslySetInnerHTML={{
+            __html: `
+            if (['surogate.ai', 'www.surogate.ai'].includes(location.hostname)) {
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-5LXWL8F5');
+            }
+          `,
+          }}
+        />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://region1.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -123,6 +148,14 @@ export default function RootLayout({ children }) {
         </Script>
       </head>
       <body className="font-sans" suppressHydrationWarning>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5LXWL8F5"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         <JsonLd data={siteGraph} />
         <PostHogProvider>
           <ThemeProvider>
