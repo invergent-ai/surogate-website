@@ -28,11 +28,10 @@ export default function LabsClient() {
           <div className="wrap">
             <p className="hero-kicker reveal">Surogate Labs</p>
             <h1 className="hero-title reveal d1">
-              Models we trained, <span className="amber">running where you can try them.</span>
+              Our models
             </h1>
             <p className="hero-sub reveal d2">
-              A decision model that sees, and Romanian speech in both directions. Open weights, their numbers, and
-              something to try in the browser.
+              A decision model that sees, SOTA Speech-To-Text and Text-To-Speech that run on edge devices.
             </p>
           </div>
         </header>
@@ -68,7 +67,7 @@ export default function LabsClient() {
               <span className="hub-kind">Speech · Romanian</span>
               <span className="hub-name">Surogate Speech</span>
               <span className="hub-line">
-                Small open speech models for agents. Jackrabbit ASR listens, Amami TTS speaks. Romanian first.
+                Small open speech models for agents that run on edge devices. Jackrabbit ASR listens, Amami TTS speaks.
               </span>
               <span className="hub-facts">
                 {SPEECH_MODELS.map((m) => (
@@ -83,7 +82,7 @@ export default function LabsClient() {
         <section className="sec tight hub-examples">
           <div className="wrap">
             <div className="hub-ex-head reveal">
-              <h2 className="h-section">Rune, live.</h2>
+              <h2 className="h-section">Live Rune demos</h2>
               <a className="lab-textlink" href="/labs/rune-examples/">
                 All the demos <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
               </a>
