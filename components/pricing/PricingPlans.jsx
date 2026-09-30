@@ -11,6 +11,7 @@ const PLANS = [
     features: [
       { text: 'up to 5 agents' },
       { text: 'Light usage - to try things out' },
+      { text: 'Bring your model - FREE forever' },
       { text: '1 GB workspace', mo: true },
       { text: '1 GB hub storage', mo: true },
       { text: '30 min web browsing', mo: true },
@@ -282,8 +283,7 @@ export default function PricingPlans({ billing, setBilling }) {
             <p className="reveal mt-5 text-[15.5px] leading-[1.6] text-brand-graphite max-w-[64ch]">
               Every plan ships the whole platform - runtime, hub, dev toolkit - with a generous
               monthly usage allowance baked in. Plans are sized against each other, so you pick a
-              size rather than doing arithmetic. Advanced users can bring their own LLM provider
-              and pay them directly.
+              size rather than doing arithmetic.
             </p>
             <p className="reveal mt-3 text-[12.5px] leading-[1.6] text-brand-steel max-w-[64ch] font-mono">
               All prices VAT-inclusive (gross). EU B2B with valid VAT ID and non-EU customers see

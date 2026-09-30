@@ -13,12 +13,9 @@ export default function PricingHero() {
               className="absolute -left-[1%] -right-[1%] bottom-[6%] h-[22%] -z-10 bg-brand-aubergine/0 rounded -rotate-[0.6deg]"
             />
           </span>
-          <br />
-          <span className="italic font-medium">One bill. No surprises.</span>
         </h1>
         <p className="reveal mt-7 max-w-[58ch] font-sans text-[17px] sm:text-[19px] leading-[1.55] text-brand-graphite">
-          Pick a plan, sign up, and start building. Tokens are included by default. Advanced users
-          can bring their own LLM provider or train custom models.
+          Pick a plan, sign up, and start building. FREE forever with your own models.
         </p>
       </div>
     </section>
