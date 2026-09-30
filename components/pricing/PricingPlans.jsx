@@ -11,7 +11,7 @@ const PLANS = [
     features: [
       { text: 'up to 5 agents' },
       { text: 'Light usage - to try things out' },
-      { text: 'Bring your model - FREE forever' },
+      { text: 'Bring your model - FREE forever', strong: true },
       { text: '1 GB workspace', mo: true },
       { text: '1 GB hub storage', mo: true },
       { text: '30 min web browsing', mo: true },
