@@ -160,11 +160,10 @@ export default function SpeechPageClient() {
           <div className="wrap">
             <p className="hero-kicker">Surogate Speech</p>
             <h1 className="hero-title">
-              Romanian, <span className="amber">spoken and understood.</span>
+              Low-latency <span className="amber">speech models</span>
             </h1>
             <p className="hero-sub">
-              A voice model that reads Romanian aloud, and a recognizer that writes it down, from a file or live as you
-              speak. Both run natively in the Surogate engine, on a CPU or a GPU.
+              Streaming Speech-To-Text and Text-To-Speech that run natively in the Surogate engine, on a CPU or a GPU.
             </p>
             <div className="hero-actions">
               <button type="button" className="btn btn-primary" onClick={() => toggle('female')} aria-pressed={playing === 'female'}>
@@ -205,7 +204,7 @@ export default function SpeechPageClient() {
             <div className="sec-head reveal sp-head">
               <img className="sp-head-mark" src={AMAMI.mark} alt="" width="72" height="72" />
               <p className="eyebrow">{AMAMI.kind}</p>
-              <h2 className="h-section">{AMAMI.name}: a Romanian voice on two CPU cores.</h2>
+              <h2 className="h-section">{AMAMI.name}: realtime voices on two CPU cores.</h2>
               <p className="lead">{AMAMI.line}</p>
             </div>
             <div className="sp-picker reveal">
@@ -274,10 +273,10 @@ export default function SpeechPageClient() {
         <section className="sec dark" id="recognize">
           <div className="wrap">
             <div className="sec-head reveal">
-              <p className="eyebrow">Speech recognition · Romanian</p>
+              <p className="eyebrow">Speech recognition</p>
               <h2 className="h-section">Jackrabbit ASR writes it down.</h2>
               <p className="lead">
-                A 116M-parameter recognizer that writes cased, punctuated Romanian, from a file or live over HTTP or
+                A 116M-parameter recognizer that writes cased, punctuated text, from a file or live over HTTP or
                 WebSocket.
               </p>
             </div>
