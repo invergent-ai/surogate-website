@@ -1,34 +1,31 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ArrowUpRight, Pause, Play } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import useReveal from '@/components/useReveal';
 import { track } from '@/lib/analytics';
 import { SPEECH_ABOUT, SPEECH_LINKS, SPEECH_MODELS, SPEECH_RUN, amamiSrc } from '@/lib/labs';
+import DEMOS from '@/lib/speech-demos.json';
 import LabsSubnav from '../LabsSubnav';
 import SheetSelect from '../SheetSelect';
 import { ICONS } from '../icons';
 
 /*
- * surogate.ai/labs/speech. The waveforms are the real audio: when a voice plays, a WebAudio analyser
- * drives the bars in the hero and on that voice's card. Idle bars breathe unless reduced motion is on.
+ * surogate.ai/labs/speech. Every demo is real model output: Amami's clips come from its own worker, the call is
+ * seven of them back to back, and the recognizer demos are FLEURS recordings with the transcripts of the published
+ * evaluation runs (the live partials were recorded from the streaming model over the same audio).
+ * One <audio> element plays everything; while it plays, a WebAudio analyser drives the hero bars.
  */
 
 const HERO_BARS = 56;
-const CARD_BARS = 28;
 const AMAMI = SPEECH_MODELS.find((m) => m.voices);
 const RECOGNIZERS = SPEECH_MODELS.filter((m) => !m.voices);
 const CATEGORIES = [...new Set(AMAMI.samples.map((x) => x.category))];
-
-/* An illustration of what streaming recognition shows, not a recording: partial words while you
-   speak, then one cased, punctuated sentence when you pause. */
-const PARTIALS = ['buna', 'buna ziua', 'buna ziua as', 'buna ziua as dori sa', 'buna ziua as dori sa programez o',
-  'buna ziua as dori sa programez o intalnire maine'];
-const FINAL = 'Bună ziua, aș dori să programez o întâlnire mâine.';
+const FLEURS = (id) => `/labs/audio/fleurs/${id}.m4a`;
+const FINAL_DELAY = 720; // ms from the end of speech to the final: 640 ms pause detection + finalize, model card
+const ASR_NAMES = { jackrabbit: 'Jackrabbit · 116M parameters', size1000: 'A 1B-parameter recognizer', size1550: 'A 1.55B-parameter recognizer' };
 
 function Bars({ count, className, barsRef }) {
   return (
@@ -40,119 +37,139 @@ function Bars({ count, className, barsRef }) {
   );
 }
 
+/* The front end's reading: "+" comes before a stressed vowel; a code is the list of its recorded clips. */
+function Reading({ pieces }) {
+  return (
+    <p className="sp-reading" lang="ro">
+      {pieces.map((p, i) => (p.code ? (
+        <span className="sp-code" key={i} title="Assembled from recorded clips">
+          {p.code.map((u, j) => <i key={j}>{u}</i>)}
+        </span>
+      ) : (
+        <span key={i}>
+          {p.text.split(/\+(.)/).map((part, j) => (j % 2 ? <b key={j}>{part}</b> : part))}{' '}
+        </span>
+      )))}
+    </p>
+  );
+}
+
+const Words = ({ words }) => (
+  <>{words.map(([w, ok], i) => <span key={i}>{i ? ' ' : ''}<span className={ok ? undefined : 'sp-miss'}>{w}</span></span>)}</>
+);
+
+function PlayBtn({ on, onClick, label }) {
+  return (
+    <button type="button" className="sp-play" onClick={onClick} aria-pressed={on} aria-label={`${on ? 'Pause' : 'Play'} ${label}`}>
+      {on ? <Pause size={20} strokeWidth={2.2} aria-hidden="true" /> : <Play size={20} strokeWidth={2.2} aria-hidden="true" />}
+    </button>
+  );
+}
+
 export default function SpeechPageClient() {
   useReveal();
   const heroBars = useRef([]);
-  const cardBars = useRef({});
-  const audios = useRef({});
+  const audio = useRef(null);
   const engine = useRef(null);
-  const [playing, setPlaying] = useState(null);
-  const [sample, setSample] = useState(AMAMI.samples[0]);
-  const lines = AMAMI.samples.filter((x) => x.category === sample.category);
   const playingRef = useRef(null);
-  const streamRef = useRef(null);
+  const loadedRef = useRef(null);   // what the audio element holds, set before play() so its events see it
+  const [playing, setPlaying] = useState(null);   // key of what is playing, e.g. "amami:rg-standup"
+  const [loaded, setLoaded] = useState(null);     // key of what the audio element holds, playing or not
+  const [t, setT] = useState(0);
+  const [ended, setEnded] = useState(null);       // key whose audio has ended (the streaming final shows after it)
+  const [voice, setVoice] = useState('female');
+  const [cat, setCat] = useState(CATEGORIES[0]);
+  const [stream, setStream] = useState(DEMOS.stream[0]);
+  const [cmp, setCmp] = useState(DEMOS.compare[0]);
 
   /* One AudioContext and analyser for the page, created on the first play (browsers require a gesture). */
   const ensureEngine = useCallback(() => {
-    if (engine.current) return engine.current;
+    if (engine.current) return;
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
     const analyser = ctx.createAnalyser();
     analyser.fftSize = 256;
     analyser.smoothingTimeConstant = 0.72;
     analyser.connect(ctx.destination);
-    engine.current = { ctx, analyser, sources: new Map(), data: new Uint8Array(analyser.frequencyBinCount) };
-    return engine.current;
+    ctx.createMediaElementSource(audio.current).connect(analyser);
+    engine.current = { ctx, analyser, data: new Uint8Array(analyser.frequencyBinCount) };
   }, []);
 
-  /* A new sentence stops whatever is playing; the cards then play that sentence. */
-  const pick = (next) => {
-    Object.values(audios.current).forEach((a) => a.pause());
-    setSample(next);
-    track('labs_amami_sample_picked', { sample: next.slug });
-  };
-
-  const toggle = useCallback((name) => {
-    const el = audios.current[name];
-    if (!el) return;
-    const e = ensureEngine();
-    if (!e.sources.has(name)) {
-      const src = e.ctx.createMediaElementSource(el);
-      src.connect(e.analyser);
-      e.sources.set(name, src);
-    }
-    if (e.ctx.state === 'suspended') e.ctx.resume();
-    if (playingRef.current === name) {
-      el.pause();
+  /* Play `src` under `key`; the same key again pauses or resumes it. */
+  const play = useCallback((key, src, event) => {
+    const el = audio.current;
+    ensureEngine();
+    if (engine.current.ctx.state === 'suspended') engine.current.ctx.resume();
+    if (loaded === key && !el.ended) {
+      if (el.paused) el.play(); else el.pause();
       return;
     }
-    Object.entries(audios.current).forEach(([n, a]) => { if (n !== name) a.pause(); });
-    el.currentTime = 0;
+    el.src = src;
+    loadedRef.current = key;
+    setLoaded(key);
+    setEnded(null);
+    setT(0);
     el.play();
-    track('labs_voice_played', { voice: name });
-  }, [ensureEngine]);
+    track(event.name, event.props);
+  }, [ensureEngine, loaded]);
+
+  const sayAmami = (slug, v = voice) => play(`amami:${v}:${slug}`, amamiSrc(v, slug), { name: 'labs_voice_played', props: { voice: v, sample: slug } });
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let raf = 0;
-    // When nothing plays the bars only need to move while the hero is on screen and breathing, so
-    // after one idle frame (which also rests the card bars) the loop skips its work.
+    // When nothing plays the bars only need to move while the hero is on screen and breathing.
     let heroOnScreen = true;
     let settled = false;
     const io = new IntersectionObserver(([entry]) => { heroOnScreen = entry.isIntersecting; });
     if (heroBars.current[0]) io.observe(heroBars.current[0].parentElement);
-    const draw = (t) => {
+    const draw = (now) => {
       raf = requestAnimationFrame(draw);
       const e = engine.current;
       const live = playingRef.current && e;
       if (!live && settled && (reduced || !heroOnScreen)) return;
       settled = !live;
       if (live) e.analyser.getByteFrequencyData(e.data);
-      const level = (i, n) => {
-        if (live) {
-          const bin = Math.floor(3 + (i / n) * (e.data.length * 0.55));
-          return 0.08 + (e.data[bin] / 255) * 0.92;
-        }
-        if (reduced) return 0.18;
-        return 0.14 + 0.1 * Math.sin(t / 620 + i * 0.45) * Math.sin(t / 1300 + i * 0.13) + 0.04;
-      };
-      heroBars.current.forEach((b, i) => { if (b) b.style.transform = `scaleY(${level(i, HERO_BARS)})`; });
-      Object.entries(cardBars.current).forEach(([name, list]) => {
-        const on = playingRef.current === name;
-        list.current.forEach((b, i) => { if (b) b.style.transform = `scaleY(${on ? level(i, CARD_BARS) : 0.12})`; });
+      heroBars.current.forEach((b, i) => {
+        if (!b) return;
+        let level;
+        if (live) level = 0.08 + (e.data[Math.floor(3 + (i / HERO_BARS) * (e.data.length * 0.55))] / 255) * 0.92;
+        else if (reduced) level = 0.18;
+        else level = 0.14 + 0.1 * Math.sin(now / 620 + i * 0.45) * Math.sin(now / 1300 + i * 0.13) + 0.04;
+        b.style.transform = `scaleY(${level})`;
       });
     };
     raf = requestAnimationFrame(draw);
     return () => { cancelAnimationFrame(raf); io.disconnect(); };
   }, []);
 
-  /* The streaming illustration plays each time it scrolls into view. */
+  /* The streaming final lands FINAL_DELAY after the recording ends, as it would after a real pause. */
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const el = streamRef.current;
-    if (!el) return undefined;
-    const partial = el.querySelector('.sp-partial');
-    const final = el.querySelector('.sp-final');
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      partial.textContent = '';
-      final.textContent = FINAL;
-      return undefined;
-    }
-    const tl = gsap.timeline({ paused: true });
-    tl.call(() => { final.textContent = ''; gsap.set(final, { opacity: 0 }); });  // cleared only once it plays
-    PARTIALS.forEach((text) => tl.call(() => { partial.textContent = text; }, null, '+=0.42'));
-    tl.to(partial, { opacity: 0, duration: 0.25 }, '+=0.64')
-      .call(() => { final.textContent = FINAL; })
-      .fromTo(final, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.35 })
-      .set(partial, { textContent: '', opacity: 1 }, '+=2.2')
-      .to(final, { opacity: 0.35, duration: 0.3 });
-    const st = ScrollTrigger.create({ trigger: el, start: 'top 80%', onEnter: () => tl.restart(), onEnterBack: () => tl.restart() });
-    return () => { st.kill(); tl.kill(); };
-  }, []);
+    if (!ended?.startsWith('stream:') || ended.endsWith(':final')) return undefined;
+    const id = setTimeout(() => setEnded(`${ended}:final`), FINAL_DELAY);
+    return () => clearTimeout(id);
+  }, [ended]);
+
+  const isOn = (key) => playing === key;
+  const streamKey = `stream:${stream.id}`;
+  const streamLive = loaded === streamKey;
+  const partial = streamLive ? [...stream.partials].reverse().find(([at]) => at <= t)?.[1] ?? '' : '';
+  const streamFinal = ended === `${streamKey}:final`;
+  const callOn = loaded === 'call';
+  const turn = callOn ? DEMOS.call.findLastIndex((c) => c.start <= t + 0.05) : -1;
 
   return (
     <div className="st-home st-labs st-speech bg-white text-brand-aubergine antialiased">
       <Nav />
       <LabsSubnav />
+      <audio
+        ref={audio}
+        preload="none"
+        crossOrigin="anonymous"
+        onPlay={() => { playingRef.current = loadedRef.current; setPlaying(loadedRef.current); }}
+        onPause={() => { playingRef.current = null; setPlaying(null); }}
+        onEnded={() => { playingRef.current = null; setPlaying(null); setEnded(loadedRef.current); }}
+        onTimeUpdate={(e) => setT(e.currentTarget.currentTime)}
+      />
 
       <main id="top">
         <header className="hero sp-hero">
@@ -166,11 +183,12 @@ export default function SpeechPageClient() {
               Streaming Speech-To-Text and Text-To-Speech that run natively in the Surogate engine, on a CPU or a GPU.
             </p>
             <div className="hero-actions">
-              <button type="button" className="btn btn-primary" onClick={() => toggle('female')} aria-pressed={playing === 'female'}>
-                {playing === 'female' ? <Pause size={18} strokeWidth={2} aria-hidden="true" /> : <Play size={18} strokeWidth={2} aria-hidden="true" />}
-                {playing === 'female' ? 'Pause Amami' : 'Hear Amami'}
+              <button type="button" className="btn btn-primary" onClick={() => sayAmami('rg-standup', 'female')}
+                      aria-pressed={isOn('amami:female:rg-standup')}>
+                {isOn('amami:female:rg-standup') ? <Pause size={18} strokeWidth={2} aria-hidden="true" /> : <Play size={18} strokeWidth={2} aria-hidden="true" />}
+                {isOn('amami:female:rg-standup') ? 'Pause Amami' : 'Hear Amami'}
               </button>
-              <a className="btn btn-ghost" href="#listen">Codes, names and more</a>
+              <a className="btn btn-ghost" href="#listen">Hear all the demos</a>
             </div>
             <div className="sp-family" aria-label="The Surogate Speech family">
               {[...RECOGNIZERS, AMAMI].map((m) => (
@@ -207,58 +225,70 @@ export default function SpeechPageClient() {
               <h2 className="h-section">{AMAMI.name}: realtime voices on two CPU cores.</h2>
               <p className="lead">{AMAMI.line}</p>
             </div>
-            <div className="sp-picker reveal">
+
+            <div className="sp-controls reveal">
+              <div className="sp-voice-switch" role="group" aria-label="Voice">
+                {AMAMI.voices.map((v) => (
+                  <button type="button" key={v.key} aria-pressed={voice === v.key} onClick={() => setVoice(v.key)}>{v.name}</button>
+                ))}
+              </div>
               <div className="sp-cats-phone">
-                <SheetSelect label="What to hear" value={sample.category}
-                             onPick={(c) => pick(AMAMI.samples.find((x) => x.category === c))}
-                             options={CATEGORIES.map((c) => ({ key: c, label: c }))} />
+                <SheetSelect label="What to hear" value={cat} onPick={setCat} options={CATEGORIES.map((c) => ({ key: c, label: c }))} />
               </div>
               <div className="sp-cats" role="group" aria-label="What to hear">
                 {CATEGORIES.map((c) => (
-                  <button type="button" key={c} aria-pressed={sample.category === c}
-                          onClick={() => pick(AMAMI.samples.find((x) => x.category === c))}>{c}</button>
+                  <button type="button" key={c} aria-pressed={cat === c} onClick={() => { setCat(c); track('labs_amami_category', { category: c }); }}>{c}</button>
                 ))}
               </div>
-              {lines.length > 1 ? (
-                <div className="sp-lines" role="group" aria-label="Sentences">
-                  {lines.map((x) => (
-                    <button type="button" key={x.slug} aria-pressed={sample.slug === x.slug} onClick={() => pick(x)} lang="ro">
-                      {x.text}
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <p className="sp-said" lang="ro">{sample.text}</p>
-              )}
-              {sample.readAs && <p className="sp-readas"><span>Read out as</span> <span lang="ro">{sample.readAs}</span></p>}
             </div>
-            <div className="sp-voices">
-              {AMAMI.voices.map((v) => {
-                if (!cardBars.current[v.key]) cardBars.current[v.key] = { current: [] };
-                const on = playing === v.key;
+
+            <div className="sp-grid">
+              {AMAMI.samples.filter((x) => x.category === cat).map((x) => {
+                const key = `amami:${voice}:${x.slug}`;
+                const here = loaded === key;
                 return (
-                  <article className="sp-voice reveal" data-on={on ? 'true' : 'false'} key={v.name}>
-                    <div className="sp-voice-top">
-                      <h3 className="sp-voice-n">{v.name}</h3>
-                      <button type="button" className="sp-play" onClick={() => toggle(v.key)} aria-pressed={on}
-                              aria-label={`${on ? 'Pause' : 'Play'} the ${v.name.toLowerCase()} reading this sentence`}>
-                        {on ? <Pause size={20} strokeWidth={2.2} aria-hidden="true" /> : <Play size={20} strokeWidth={2.2} aria-hidden="true" />}
-                      </button>
-                    </div>
-                    <Bars count={CARD_BARS} className="sp-card-bars" barsRef={cardBars.current[v.key]} />
-                    <audio
-                      ref={(el) => { if (el) audios.current[v.key] = el; }}
-                      src={amamiSrc(v.key, sample.slug)}
-                      preload="none"
-                      crossOrigin="anonymous"
-                      onPlay={() => { playingRef.current = v.key; setPlaying(v.key); }}
-                      onPause={() => { if (playingRef.current === v.key) { playingRef.current = null; setPlaying(null); } }}
-                      onEnded={() => { playingRef.current = null; setPlaying(null); }}
-                    />
+                  <article className="sp-say" data-on={here ? 'true' : 'false'} key={x.slug}>
+                    <button type="button" className="sp-say-btn" onClick={() => sayAmami(x.slug)} aria-pressed={isOn(key)}>
+                      <span className="sp-play" aria-hidden="true">
+                        {isOn(key) ? <Pause size={18} strokeWidth={2.2} /> : <Play size={18} strokeWidth={2.2} />}
+                      </span>
+                      <span className="sp-say-t" lang="ro">{x.text}</span>
+                    </button>
+                    {here && (
+                      <div className="sp-say-more">
+                        <div className="sp-prog"><i style={{ width: `${Math.min(100, (t / (audio.current?.duration || 1)) * 100)}%` }} /></div>
+                        <p className="sp-reads">What Amami reads <span>stress in bold, codes from recorded clips</span></p>
+                        <Reading pieces={DEMOS.readings[x.slug]} />
+                      </div>
+                    )}
                   </article>
                 );
               })}
             </div>
+
+            <div className="sp-call reveal">
+              <div className="sp-call-h">
+                <div>
+                  <p className="eyebrow">A whole call</p>
+                  <h3 className="sp-call-t">Both sides of this call are Amami.</h3>
+                  <p className="sp-call-d">
+                    Seven lines, two voices, one bank support call: English words, an SMS code dictated from recorded
+                    clips, an amount in lei and bani. Generated on a laptop CPU with 2 threads, first audio in about 40 ms per line.
+                  </p>
+                </div>
+                <PlayBtn on={isOn('call')} label="the call"
+                         onClick={() => play('call', '/labs/audio/amami/call.m4a', { name: 'labs_amami_call_played', props: {} })} />
+              </div>
+              <ol className="sp-bubbles" lang="ro">
+                {DEMOS.call.map((c, i) => (
+                  <li key={i} className={c.voice === 'female' ? 'agent' : 'caller'}
+                      data-state={!callOn ? 'idle' : i === turn ? 'now' : i < turn ? 'past' : 'next'}>
+                    <span>{c.role}</span>{c.text}
+                  </li>
+                ))}
+              </ol>
+            </div>
+
             <div className="sp-stat reveal">
               <div className="lab-fact-n">{AMAMI.stat.n}</div>
               <p className="lab-fact-l">{AMAMI.stat.l}</p>
@@ -277,17 +307,68 @@ export default function SpeechPageClient() {
               <h2 className="h-section">Jackrabbit ASR writes it down.</h2>
               <p className="lead">
                 A 116M-parameter recognizer that writes cased, punctuated text, from a file or live over HTTP or
-                WebSocket.
+                WebSocket. Below, real people reading real sentences.
               </p>
             </div>
 
-            <div className="sp-stream reveal" ref={streamRef}>
+            <div className="sp-stream reveal">
               <div className="sp-stream-h">
-                <span className="sp-rec" aria-hidden="true" /> Live, as you speak
-                <em>Illustration</em>
+                <span className="sp-rec" aria-hidden="true" data-on={isOn(streamKey) ? 'true' : 'false'} /> Live, as you speak
+                <div className="sp-tabs" role="group" aria-label="Recording">
+                  {DEMOS.stream.map((s) => (
+                    <button type="button" key={s.id} aria-pressed={stream.id === s.id}
+                            onClick={() => { audio.current?.pause(); setStream(s); }}>{s.topic}</button>
+                  ))}
+                </div>
               </div>
-              <p className="sp-partial" aria-hidden="true" />
-              <p className="sp-final">{FINAL}</p>
+              <div className="sp-stream-body">
+                <PlayBtn on={isOn(streamKey)} label={`the recording: ${stream.topic}`}
+                         onClick={() => play(streamKey, FLEURS(stream.id), { name: 'labs_stream_played', props: { clip: stream.id } })} />
+                <div className="sp-stream-text" aria-live="polite">
+                  {!streamLive && <p className="sp-partial sp-hint">Press play. Words appear as the recording reaches them.</p>}
+                  {streamLive && !streamFinal && <p className="sp-partial" lang="ro">{partial}<span className="sp-caret" /></p>}
+                  {streamFinal && <p className="sp-final" lang="ro"><Words words={stream.final} /></p>}
+                </div>
+              </div>
+              <p className="sp-note">
+                Partials: Jackrabbit Streaming run over this recording, shown at the moment of audio it had heard.
+                Final: from the published evaluation run, re-read with full context and a 4-gram LM after the pause;
+                words it changed are underlined.
+              </p>
+            </div>
+
+            <div className="sp-cmp reveal">
+              <div className="sp-stream-h">
+                Same recording, two recognizers 9 to 13 times bigger
+                <div className="sp-tabs" role="group" aria-label="Recording">
+                  {DEMOS.compare.map((c, i) => (
+                    <button type="button" key={c.id} aria-pressed={cmp.id === c.id}
+                            onClick={() => { audio.current?.pause(); setCmp(c); }}>Clip {i + 1}</button>
+                  ))}
+                </div>
+              </div>
+              <div className="sp-stream-body">
+                <PlayBtn on={isOn(`cmp:${cmp.id}`)} label="the recording"
+                         onClick={() => play(`cmp:${cmp.id}`, FLEURS(cmp.id), { name: 'labs_compare_played', props: { clip: cmp.id } })} />
+                <p className="sp-ref" lang="ro"><span>What was said</span>{cmp.reference}</p>
+              </div>
+              <div className="sp-rows">
+                {cmp.models.map((m) => (
+                  <div className="sp-row" key={m.key} data-us={m.key === 'jackrabbit' ? 'true' : 'false'}>
+                    <div className="sp-row-n">
+                      {ASR_NAMES[m.key]}
+                      <em>{m.errors ? `${m.errors} wrong word${m.errors > 1 ? 's' : ''}` : 'exact'}</em>
+                    </div>
+                    <p lang="ro"><Words words={m.words} /></p>
+                  </div>
+                ))}
+              </div>
+              <p className="sp-note">
+                Clips picked to show the difference. Over all 883 FLEURS Romanian test clips the word error rate is
+                5.69% for Jackrabbit (CTC + 4-gram), 5.95% for the 1B model and 8.42% for the 1.55B model, each run
+                through the same harness; every transcript is in the evaluation dataset. Recordings: FLEURS by Google,
+                CC BY 4.0.
+              </p>
             </div>
 
             <div className="sp-recs">
