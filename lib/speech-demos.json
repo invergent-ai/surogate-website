@@ -1,0 +1,1935 @@
+{
+ "readings": {
+  "assistant-hello": [
+   {
+    "text": "B+ună z+iua! Sunt asist+entul virtu+al al b+ăncii. Cu ce vă pot ajut+a +astăzi?"
+   }
+  ],
+  "assistant-parcel": [
+   {
+    "text": "Am verific+at com+anda dumneav+oastră: col+etul a plec+at din dep+ozit și aj+unge m+âine +între +orele z+ece și d+ouăsprezece."
+   }
+  ],
+  "names-trip": [
+   {
+    "text": "Dr+agoș a aj+uns la Braș+ov, iar I+oana îl așt+eaptă la S+ibiu."
+   }
+  ],
+  "stress-copii": [
+   {
+    "text": "Am doi cop+ii și trei nep+oți."
+   }
+  ],
+  "stress-copii2": [
+   {
+    "text": "F+aceți, vă rog, d+ouă c+opii d+upă contr+act."
+   }
+  ],
+  "code-verify": [
+   {
+    "text": "C+odul de verific+are +este:"
+   },
+   {
+    "code": [
+     "șapte",
+     "ics",
+     "ca",
+     "patru",
+     "nouă",
+     "doi",
+     "chiu",
+     "pe",
+     "a"
+    ]
+   }
+  ],
+  "code-iban": [
+   {
+    "text": "Ibanul dumneav+oastră +este:"
+   },
+   {
+    "code": [
+     "er",
+     "o",
+     "patru",
+     "nouă",
+     "a",
+     "a",
+     "a",
+     "a",
+     "unu",
+     "be",
+     "trei",
+     "unu",
+     "zero",
+     "zero",
+     "șapte",
+     "cinci",
+     "nouă",
+     "trei",
+     "opt",
+     "patru",
+     "zero",
+     "zero",
+     "zero",
+     "zero"
+    ]
+   }
+  ],
+  "code-phone": [
+   {
+    "text": "N+umărul de telef+on +este:"
+   },
+   {
+    "code": [
+     "zero",
+     "șapte",
+     "doi",
+     "doi",
+     "unu",
+     "doi",
+     "trei",
+     "patru",
+     "cinci",
+     "șase"
+    ]
+   }
+  ],
+  "foreign": [
+   {
+    "text": "Joaquín ne-a trim+is contr+actul semn+at."
+   }
+  ],
+  "story": [
+   {
+    "text": "Er+a o dimin+eață linișt+ită de t+oamnă. Pe +ulițele s+atului, +oamenii se grăb+eau spre târg, iar cop+iii alerg+au râz+ând d+upă căr+uțe."
+   }
+  ],
+  "rg-standup": [
+   {
+    "text": "Am un meeting pe Teams la z+ece, ap+oi un call cu proj+ect managerul d+espre update-ul de software."
+   }
+  ],
+  "rg-backup": [
+   {
+    "text": "Developerul a făc+ut backup pe cloud îna+inte de upgrade, aș+a că serverul a reporn+it f+ără n+icio probl+emă."
+   }
+  ],
+  "rg-social": [
+   {
+    "text": "Am pus un reel pe Instagram, iar story-ul de pe TikTok +are dej+a p+este d+ouă mii de vizualiz+ări."
+   }
+  ],
+  "rg-followup": [
+   {
+    "text": "Trim+ite-mi screenshot-ul pe WhatsApp și f+acem un follow-up d+upă workshop, e nice to have."
+   }
+  ],
+  "rg-acronyms": [
+   {
+    "text": "Col+egii de la ai-ti și haș-er au trim+is c+odul chiu-ar p+entru invit+ații vi-ai-pi, verific+ați-vă m+ailul."
+   }
+  ],
+  "rg-podcast": [
+   {
+    "text": "Asc+ult podcastul +ăsta pe Spotify în fiec+are dimin+eață, când merg cu Bolt la bir+ou."
+   }
+  ],
+  "ag-bank": [
+   {
+    "text": "Ați prim+it trei mii p+atru s+ute d+oisprezece lei și ș+apte bani în c+ontul Revolut pe c+incisprezece m+artie d+ouă mii douăz+eci și ș+ase. Mai dor+iți și altceva?"
+   }
+  ],
+  "ag-courier": [
+   {
+    "text": "Col+etul de la eMAG a plec+at din dep+ozit și aj+unge m+âine cu Sameday, +între +orele z+ece și d+ouăsprezece."
+   }
+  ],
+  "ag-doctor": [
+   {
+    "text": "Program+area dumneav+oastră la cardiolog+ie +este pe înt+âi dec+embrie, la +ora n+ouă și jumăt+ate. Vă rog să ven+iți cu c+incisprezece min+ute mai devr+eme."
+   }
+  ],
+  "ag-food": [
+   {
+    "text": "Com+anda de pe Glovo c+ostă optz+eci și ș+apte de lei și cinciz+eci de bani și livrat+orul aj+unge în aproximat+iv douăz+eci de min+ute."
+   }
+  ],
+  "cd-cnp": [
+   {
+    "text": "Am găs+it c+ontul d+upă ce-ne-pe-ul:"
+   },
+   {
+    "code": [
+     "unu",
+     "opt",
+     "cinci",
+     "zero",
+     "trei",
+     "unu",
+     "cinci",
+     "unu",
+     "doi",
+     "trei",
+     "patru",
+     "cinci",
+     "șase"
+    ]
+   }
+  ],
+  "cd-plate": [
+   {
+    "text": "Maș+ina cu n+umărul:"
+   },
+   {
+    "code": [
+     "ce",
+     "je",
+     "zero",
+     "șapte",
+     "ics",
+     "i grec",
+     "zet"
+    ]
+   },
+   {
+    "text": "A intr+at în parc+are la +ora opt."
+   }
+  ],
+  "cd-id": [
+   {
+    "text": "S+eria și n+umărul bulet+inului sunt:"
+   },
+   {
+    "code": [
+     "ics",
+     "te",
+     "patru",
+     "opt",
+     "doi",
+     "nouă",
+     "unu",
+     "trei"
+    ]
+   }
+  ],
+  "cd-otp": [
+   {
+    "text": "Par+ola de +unică folos+ință +este:"
+   },
+   {
+    "code": [
+     "cinci",
+     "opt",
+     "dublu ve",
+     "doi",
+     "ca",
+     "nouă",
+     "chiu",
+     "zet"
+    ]
+   },
+   {
+    "text": "Și exp+iră în cinci min+ute."
+   }
+  ],
+  "nw-bulletin": [
+   {
+    "text": "B+ună s+eara! Infl+ația a scăz+ut la p+atru v+irgulă doi la s+ută, iar c+ursul +euro a aj+uns la p+atru lei și nouăz+eci și ș+apte de bani. La Cluj sunt +optsprezece gr+ade și cer sen+in."
+   }
+  ],
+  "nw-sport": [
+   {
+    "text": "Ech+ipa națion+ală a câștig+at cu trei la +unu, iar g+olul decis+iv a ven+it în min+utul optz+eci și ș+apte."
+   }
+  ],
+  "st-dragon": [
+   {
+    "text": "Pe vr+emuri, într-un sat de la p+oalele m+unților, tră+ia un bătr+ân c+are ști+a să vorb+ească cu v+ântul. Cop+iii ven+eau s+eară de s+eară să-i asc+ulte pov+eștile."
+   }
+  ],
+  "call-1": [
+   {
+    "text": "B+ună z+iua, ați sun+at la sup+ortul Revolut. Cu ce vă pot ajut+a?"
+   }
+  ],
+  "call-2": [
+   {
+    "text": "B+ună! Nu mai pot să +intru în app de la +ultimul update."
+   }
+  ],
+  "call-3": [
+   {
+    "text": "Vă trim+it ac+um un cod prin es-em-es. Vă rog să mi-l cit+iți."
+   }
+  ],
+  "call-4": [
+   {
+    "text": "C+odul +este:"
+   },
+   {
+    "code": [
+     "șapte",
+     "ics",
+     "ca",
+     "patru",
+     "nouă",
+     "doi",
+     "chiu",
+     "pe",
+     "a"
+    ]
+   }
+  ],
+  "call-5": [
+   {
+    "text": "Mulțum+esc, v-am verific+at. Am reset+at acc+esul, iar pl+ata de d+ouă s+ute patruz+eci și n+ouă de lei și nouăz+eci de bani c+ătre eMAG ap+are ca finaliz+ată."
+   }
+  ],
+  "call-6": [
+   {
+    "text": "S+uper, mers+i! Mai am un call la z+ece, aș+a că înch+id."
+   }
+  ],
+  "call-7": [
+   {
+    "text": "Cu plăc+ere! O zi frum+oasă și spor la meeting!"
+   }
+  ]
+ },
+ "call": [
+  {
+   "voice": "female",
+   "start": 0.0,
+   "role": "Agent",
+   "text": "Bună ziua, ați sunat la suportul Revolut. Cu ce vă pot ajuta?"
+  },
+  {
+   "voice": "male",
+   "start": 5.19,
+   "role": "Caller",
+   "text": "Bună! Nu mai pot să intru în app de la ultimul update."
+  },
+  {
+   "voice": "female",
+   "start": 9.64,
+   "role": "Agent",
+   "text": "Vă trimit acum un cod prin SMS. Vă rog să mi-l citiți."
+  },
+  {
+   "voice": "male",
+   "start": 14.07,
+   "role": "Caller",
+   "text": "Codul este 7XK-492-QPA."
+  },
+  {
+   "voice": "female",
+   "start": 22.12,
+   "role": "Agent",
+   "text": "Mulțumesc, v-am verificat. Am resetat accesul, iar plata de 249,90 lei către eMAG apare ca finalizată."
+  },
+  {
+   "voice": "male",
+   "start": 31.49,
+   "role": "Caller",
+   "text": "Super, mersi! Mai am un call la zece, așa că închid."
+  },
+  {
+   "voice": "female",
+   "start": 36.36,
+   "role": "Agent",
+   "text": "Cu plăcere! O zi frumoasă și spor la meeting!"
+  }
+ ],
+ "compare": [
+  {
+   "id": "2350567390819241916",
+   "reference": "Porțiuni mari mai spre nord sunt destul de puțin populate, iar unele sunt aproape sălbăticie nepopulată.",
+   "duration": 6.8,
+   "models": [
+    {
+     "key": "jackrabbit",
+     "words": [
+      [
+       "Porțiuni",
+       true
+      ],
+      [
+       "mari,",
+       true
+      ],
+      [
+       "mai",
+       true
+      ],
+      [
+       "spre",
+       true
+      ],
+      [
+       "nord,",
+       true
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "destul",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "puțin",
+       true
+      ],
+      [
+       "populate,",
+       true
+      ],
+      [
+       "iar",
+       true
+      ],
+      [
+       "unele",
+       true
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "aproape",
+       true
+      ],
+      [
+       "sălbăticie",
+       true
+      ],
+      [
+       "nepopulată.",
+       true
+      ]
+     ],
+     "errors": 0
+    },
+    {
+     "key": "size1000",
+     "words": [
+      [
+       "Porțiuni",
+       true
+      ],
+      [
+       "mari,",
+       true
+      ],
+      [
+       "mai",
+       true
+      ],
+      [
+       "spre",
+       true
+      ],
+      [
+       "nou,",
+       false
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "destul",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "puțin",
+       true
+      ],
+      [
+       "populate,",
+       true
+      ],
+      [
+       "iar",
+       true
+      ],
+      [
+       "unele",
+       true
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "aproape",
+       true
+      ],
+      [
+       "sălbaticie",
+       false
+      ],
+      [
+       "nepopulată.",
+       true
+      ]
+     ],
+     "errors": 2
+    },
+    {
+     "key": "size1550",
+     "words": [
+      [
+       "Porțiuni",
+       true
+      ],
+      [
+       "mari,",
+       true
+      ],
+      [
+       "mai",
+       true
+      ],
+      [
+       "spre",
+       true
+      ],
+      [
+       "nori,",
+       false
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "destul",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "puțin",
+       true
+      ],
+      [
+       "populate,",
+       true
+      ],
+      [
+       "iar",
+       true
+      ],
+      [
+       "unele",
+       true
+      ],
+      [
+       "se",
+       false
+      ],
+      [
+       "aproape",
+       true
+      ],
+      [
+       "să",
+       false
+      ],
+      [
+       "îl",
+       false
+      ],
+      [
+       "pătricie",
+       false
+      ],
+      [
+       "nepopulată.",
+       true
+      ]
+     ],
+     "errors": 5
+    }
+   ]
+  },
+  {
+   "id": "17615543038971441383",
+   "reference": "Conform agenției nucleare a Japoniei, în incinta uzinei au fost identificate radioizotopi de cesiu și iod.",
+   "duration": 7.6,
+   "models": [
+    {
+     "key": "jackrabbit",
+     "words": [
+      [
+       "Conform",
+       true
+      ],
+      [
+       "Agenției",
+       true
+      ],
+      [
+       "Nucleare",
+       true
+      ],
+      [
+       "a",
+       true
+      ],
+      [
+       "Japoniei,",
+       true
+      ],
+      [
+       "în",
+       true
+      ],
+      [
+       "incinta",
+       true
+      ],
+      [
+       "uzinei",
+       true
+      ],
+      [
+       "au",
+       true
+      ],
+      [
+       "fost",
+       true
+      ],
+      [
+       "identificate",
+       true
+      ],
+      [
+       "radioizotopi",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "cesiu",
+       true
+      ],
+      [
+       "și",
+       true
+      ],
+      [
+       "iod.",
+       true
+      ]
+     ],
+     "errors": 0
+    },
+    {
+     "key": "size1000",
+     "words": [
+      [
+       "Conform",
+       true
+      ],
+      [
+       "Agenției",
+       true
+      ],
+      [
+       "Nucleare",
+       true
+      ],
+      [
+       "a",
+       true
+      ],
+      [
+       "Japoniei,",
+       true
+      ],
+      [
+       "în",
+       true
+      ],
+      [
+       "incinta",
+       true
+      ],
+      [
+       "uzinei",
+       true
+      ],
+      [
+       "au",
+       true
+      ],
+      [
+       "fost",
+       true
+      ],
+      [
+       "identificate",
+       true
+      ],
+      [
+       "radioizotop",
+       false
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "C-Su-Shi-Od.",
+       false
+      ]
+     ],
+     "errors": 4
+    },
+    {
+     "key": "size1550",
+     "words": [
+      [
+       "Conform",
+       true
+      ],
+      [
+       "Agenției",
+       true
+      ],
+      [
+       "Nucleare",
+       true
+      ],
+      [
+       "a",
+       true
+      ],
+      [
+       "Japonei,",
+       false
+      ],
+      [
+       "în",
+       true
+      ],
+      [
+       "incinta",
+       true
+      ],
+      [
+       "uzine",
+       false
+      ],
+      [
+       "au",
+       true
+      ],
+      [
+       "fost",
+       true
+      ],
+      [
+       "identificate",
+       true
+      ],
+      [
+       "radioizotop",
+       false
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "cesiu",
+       true
+      ],
+      [
+       "și",
+       true
+      ],
+      [
+       "iod.",
+       true
+      ]
+     ],
+     "errors": 3
+    }
+   ]
+  },
+  {
+   "id": "15685811789945641545",
+   "reference": "Cele mai multe telescoape de cercetare moderne sunt instalații uriașe amplasate în zone izolate care dispun de condiții meteo favorabile.",
+   "duration": 8.2,
+   "models": [
+    {
+     "key": "jackrabbit",
+     "words": [
+      [
+       "Cele",
+       true
+      ],
+      [
+       "mai",
+       true
+      ],
+      [
+       "multe",
+       true
+      ],
+      [
+       "telescoape",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "cercetare",
+       true
+      ],
+      [
+       "moderne",
+       true
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "instalații",
+       true
+      ],
+      [
+       "uriașe",
+       true
+      ],
+      [
+       "amplasate",
+       true
+      ],
+      [
+       "în",
+       true
+      ],
+      [
+       "zone",
+       true
+      ],
+      [
+       "izolate",
+       true
+      ],
+      [
+       "care",
+       true
+      ],
+      [
+       "dispun",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "condiții",
+       true
+      ],
+      [
+       "meteo",
+       true
+      ],
+      [
+       "favorabile.",
+       true
+      ]
+     ],
+     "errors": 0
+    },
+    {
+     "key": "size1000",
+     "words": [
+      [
+       "Cele",
+       true
+      ],
+      [
+       "mai",
+       true
+      ],
+      [
+       "multe",
+       true
+      ],
+      [
+       "telescoape",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "cercetare",
+       true
+      ],
+      [
+       "moderne",
+       true
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "instalații",
+       true
+      ],
+      [
+       "uriașe",
+       true
+      ],
+      [
+       "amplasate",
+       true
+      ],
+      [
+       "în",
+       true
+      ],
+      [
+       "zone",
+       true
+      ],
+      [
+       "izolate",
+       true
+      ],
+      [
+       "care",
+       true
+      ],
+      [
+       "dispun",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "condiții",
+       true
+      ],
+      [
+       "meteofavorabile.",
+       false
+      ]
+     ],
+     "errors": 2
+    },
+    {
+     "key": "size1550",
+     "words": [
+      [
+       "Cele",
+       true
+      ],
+      [
+       "mai",
+       true
+      ],
+      [
+       "multe",
+       true
+      ],
+      [
+       "telescoape",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "cercetare",
+       true
+      ],
+      [
+       "moderne",
+       true
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "instalațiuri",
+       false
+      ],
+      [
+       "așa",
+       false
+      ],
+      [
+       "împlasate",
+       false
+      ],
+      [
+       "în",
+       true
+      ],
+      [
+       "zone",
+       true
+      ],
+      [
+       "izolate",
+       true
+      ],
+      [
+       "care",
+       true
+      ],
+      [
+       "dispun",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "condiții",
+       true
+      ],
+      [
+       "meteofavorabile.",
+       false
+      ]
+     ],
+     "errors": 5
+    }
+   ]
+  },
+  {
+   "id": "18323905412293697150",
+   "reference": "În zilele noastre, singurele insecte care nu-și pot plia aripile sunt libelulele și efemeridele.",
+   "duration": 5.6,
+   "models": [
+    {
+     "key": "jackrabbit",
+     "words": [
+      [
+       "În",
+       true
+      ],
+      [
+       "zilele",
+       true
+      ],
+      [
+       "noastre,",
+       true
+      ],
+      [
+       "singurele",
+       true
+      ],
+      [
+       "insecte",
+       true
+      ],
+      [
+       "care",
+       true
+      ],
+      [
+       "nu-și",
+       true
+      ],
+      [
+       "pot",
+       true
+      ],
+      [
+       "plia",
+       true
+      ],
+      [
+       "aripile",
+       true
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "libelulele",
+       true
+      ],
+      [
+       "și",
+       true
+      ],
+      [
+       "efemeridele.",
+       true
+      ]
+     ],
+     "errors": 0
+    },
+    {
+     "key": "size1000",
+     "words": [
+      [
+       "În",
+       true
+      ],
+      [
+       "zilele",
+       true
+      ],
+      [
+       "noastre,",
+       true
+      ],
+      [
+       "singurele",
+       true
+      ],
+      [
+       "insecte",
+       true
+      ],
+      [
+       "care",
+       true
+      ],
+      [
+       "nu-și",
+       true
+      ],
+      [
+       "pot",
+       true
+      ],
+      [
+       "plea",
+       false
+      ],
+      [
+       "aripile",
+       true
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "libelulele",
+       true
+      ],
+      [
+       "și",
+       true
+      ],
+      [
+       "efemeridele.",
+       true
+      ]
+     ],
+     "errors": 1
+    },
+    {
+     "key": "size1550",
+     "words": [
+      [
+       "În",
+       true
+      ],
+      [
+       "zilele",
+       true
+      ],
+      [
+       "noastre,",
+       true
+      ],
+      [
+       "singurile",
+       false
+      ],
+      [
+       "insecte",
+       true
+      ],
+      [
+       "care",
+       true
+      ],
+      [
+       "nu",
+       false
+      ],
+      [
+       "își",
+       false
+      ],
+      [
+       "pot",
+       true
+      ],
+      [
+       "plea",
+       false
+      ],
+      [
+       "aripele",
+       false
+      ],
+      [
+       "sunt",
+       true
+      ],
+      [
+       "libelurile",
+       false
+      ],
+      [
+       "și",
+       true
+      ],
+      [
+       "efemeridele.",
+       true
+      ]
+     ],
+     "errors": 6
+    }
+   ]
+  },
+  {
+   "id": "5080490432626683118",
+   "reference": "Multe produse de panificație nemțești conțin și migdale, alune de pădure și alte nuci. Deseori, prăjiturile populare merg foarte bine cu o ceașcă de cafea tare.",
+   "duration": 10.7,
+   "models": [
+    {
+     "key": "jackrabbit",
+     "words": [
+      [
+       "Multe",
+       true
+      ],
+      [
+       "produse",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "panificație",
+       true
+      ],
+      [
+       "nemțești",
+       true
+      ],
+      [
+       "conțin",
+       true
+      ],
+      [
+       "și",
+       true
+      ],
+      [
+       "migdale,",
+       true
+      ],
+      [
+       "alune",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "pădure",
+       true
+      ],
+      [
+       "și",
+       true
+      ],
+      [
+       "alte",
+       true
+      ],
+      [
+       "nuci,",
+       true
+      ],
+      [
+       "deseori,",
+       true
+      ],
+      [
+       "prăjiturile",
+       true
+      ],
+      [
+       "populare",
+       true
+      ],
+      [
+       "merg",
+       true
+      ],
+      [
+       "foarte",
+       true
+      ],
+      [
+       "bine",
+       true
+      ],
+      [
+       "cu",
+       true
+      ],
+      [
+       "o",
+       true
+      ],
+      [
+       "ceașcă",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "cafea",
+       true
+      ],
+      [
+       "tare.",
+       true
+      ]
+     ],
+     "errors": 0
+    },
+    {
+     "key": "size1000",
+     "words": [
+      [
+       "Multe",
+       true
+      ],
+      [
+       "produse",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "panificație",
+       true
+      ],
+      [
+       "nemsești",
+       false
+      ],
+      [
+       "conțin",
+       true
+      ],
+      [
+       "și",
+       true
+      ],
+      [
+       "migdale,",
+       true
+      ],
+      [
+       "alune",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "pădure",
+       true
+      ],
+      [
+       "și",
+       true
+      ],
+      [
+       "alte",
+       true
+      ],
+      [
+       "nuci.",
+       true
+      ],
+      [
+       "Deseori,",
+       true
+      ],
+      [
+       "prăjiturile",
+       true
+      ],
+      [
+       "populare",
+       true
+      ],
+      [
+       "merg",
+       true
+      ],
+      [
+       "foarte",
+       true
+      ],
+      [
+       "bine",
+       true
+      ],
+      [
+       "cu",
+       true
+      ],
+      [
+       "o",
+       true
+      ],
+      [
+       "ceașcă",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "cafea",
+       true
+      ],
+      [
+       "tare.",
+       true
+      ]
+     ],
+     "errors": 1
+    },
+    {
+     "key": "size1550",
+     "words": [
+      [
+       "Multe",
+       true
+      ],
+      [
+       "produse",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "panificatie",
+       false
+      ],
+      [
+       "nemtesti,",
+       false
+      ],
+      [
+       "contini",
+       false
+      ],
+      [
+       "si",
+       false
+      ],
+      [
+       "migdale,",
+       true
+      ],
+      [
+       "alune",
+       true
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "padure",
+       false
+      ],
+      [
+       "si",
+       false
+      ],
+      [
+       "alte",
+       true
+      ],
+      [
+       "nuci.",
+       true
+      ],
+      [
+       "Deseori",
+       true
+      ],
+      [
+       "praisturile",
+       false
+      ],
+      [
+       "populare",
+       true
+      ],
+      [
+       "merg",
+       true
+      ],
+      [
+       "foarte",
+       true
+      ],
+      [
+       "bine",
+       true
+      ],
+      [
+       "cu",
+       true
+      ],
+      [
+       "o",
+       true
+      ],
+      [
+       "ceasca",
+       false
+      ],
+      [
+       "de",
+       true
+      ],
+      [
+       "cafea",
+       true
+      ],
+      [
+       "tare.",
+       true
+      ]
+     ],
+     "errors": 8
+    }
+   ]
+  }
+ ],
+ "stream": [
+  {
+   "id": "13026985651118535609",
+   "topic": "The tiger's roar",
+   "reference": "Răgetul tigrului nu seamănă cu răgetul cu voce plină al unui leu, ci mai degrabă cu o propoziție de cuvinte ascuțite, strigate.",
+   "partials": [
+    [
+     2.24,
+     "Răgetul tigrului"
+    ],
+    [
+     3.36,
+     "Răgetul tigrului nu seamănă cu rege"
+    ],
+    [
+     4.48,
+     "Răgetul tigrului nu seamănă cu regetul cu voce plină"
+    ],
+    [
+     5.6,
+     "Răgetul tigrului nu seamănă cu regetul cu voce plină al unui leu"
+    ],
+    [
+     6.72,
+     "Răgetul tigrului nu seamănă cu regetul cu voce plină al unui leu, ci mai degra"
+    ],
+    [
+     7.84,
+     "Răgetul tigrului nu seamănă cu regetul cu voce plină al unui leu, ci mai degrabă cu o propozi"
+    ],
+    [
+     8.96,
+     "Răgetul tigrului nu seamănă cu regetul cu voce plină al unui leu, ci mai degrabă cu o propoziție de cuvinte ascu"
+    ],
+    [
+     10.08,
+     "Răgetul tigrului nu seamănă cu regetul cu voce plină al unui leu, ci mai degrabă cu o propoziție de cuvinte ascuțite, strigate"
+    ],
+    [
+     11.2,
+     "Răgetul tigrului nu seamănă cu regetul cu voce plină al unui leu, ci mai degrabă cu o propoziție de cuvinte ascuțite, strigate."
+    ]
+   ],
+   "final": [
+    [
+     "Răgetul",
+     true
+    ],
+    [
+     "tigrului",
+     true
+    ],
+    [
+     "nu",
+     true
+    ],
+    [
+     "seamănă",
+     true
+    ],
+    [
+     "cu",
+     true
+    ],
+    [
+     "răgetul",
+     false
+    ],
+    [
+     "cu",
+     true
+    ],
+    [
+     "voce",
+     true
+    ],
+    [
+     "plină",
+     true
+    ],
+    [
+     "al",
+     true
+    ],
+    [
+     "unui",
+     true
+    ],
+    [
+     "leu,",
+     true
+    ],
+    [
+     "ci",
+     true
+    ],
+    [
+     "mai",
+     true
+    ],
+    [
+     "degrabă",
+     true
+    ],
+    [
+     "cu",
+     true
+    ],
+    [
+     "o",
+     true
+    ],
+    [
+     "propoziție",
+     true
+    ],
+    [
+     "de",
+     true
+    ],
+    [
+     "cuvinte",
+     true
+    ],
+    [
+     "ascuțite,",
+     true
+    ],
+    [
+     "strigate.",
+     true
+    ]
+   ],
+   "duration": 10.6
+  },
+  {
+   "id": "12645498033122710775",
+   "topic": "Red cabbage juice",
+   "reference": "Sucul de varză își schimbă culoarea în funcție de cât de acidă sau de bazică alcalină este substanța chimică.",
+   "partials": [
+    [
+     2.24,
+     "Sucul de varză"
+    ],
+    [
+     3.36,
+     "Sucul de varză își schimbă culoarea în funcție de"
+    ],
+    [
+     4.48,
+     "Sucul de varză își schimbă culoarea în funcție de cât de acidă sau de"
+    ],
+    [
+     5.6,
+     "Sucul de varză își schimbă culoarea în funcție de cât de acidă sau de bazică, alcal"
+    ],
+    [
+     6.72,
+     "Sucul de varză își schimbă culoarea în funcție de cât de acidă sau de bazică, alcalină, este substanța"
+    ],
+    [
+     7.84,
+     "Sucul de varză își schimbă culoarea în funcție de cât de acidă sau de bazică, alcalină, este substanța chimică"
+    ]
+   ],
+   "final": [
+    [
+     "Sucul",
+     true
+    ],
+    [
+     "de",
+     true
+    ],
+    [
+     "varză",
+     true
+    ],
+    [
+     "își",
+     true
+    ],
+    [
+     "schimbă",
+     true
+    ],
+    [
+     "culoarea",
+     true
+    ],
+    [
+     "în",
+     true
+    ],
+    [
+     "funcție",
+     true
+    ],
+    [
+     "de",
+     true
+    ],
+    [
+     "cât",
+     true
+    ],
+    [
+     "de",
+     true
+    ],
+    [
+     "acidă",
+     true
+    ],
+    [
+     "sau",
+     true
+    ],
+    [
+     "de",
+     true
+    ],
+    [
+     "bazică",
+     true
+    ],
+    [
+     "alcalină",
+     true
+    ],
+    [
+     "este",
+     true
+    ],
+    [
+     "substanța",
+     true
+    ],
+    [
+     "chimică.",
+     true
+    ]
+   ],
+   "duration": 8.3
+  },
+  {
+   "id": "11533815621124181539",
+   "topic": "A time in GMT",
+   "reference": "Vehiculul în sine a fost îndepărtat de la locul accidentului în decursul aceleiași zile, în jurul orelor 12:00 GMT.",
+   "partials": [
+    [
+     1.12,
+     "Ve"
+    ],
+    [
+     2.24,
+     "Vehiculul în sine a fost în"
+    ],
+    [
+     3.36,
+     "Vehiculul în sine a fost îndepărtat de la locul acci"
+    ],
+    [
+     4.48,
+     "Vehiculul în sine a fost îndepărtat de la locul accidentului în decursul acele"
+    ],
+    [
+     5.6,
+     "Vehiculul în sine a fost îndepărtat de la locul accidentului în decursul aceleiași zile"
+    ],
+    [
+     6.72,
+     "Vehiculul în sine a fost îndepărtat de la locul accidentului în decursul aceleiași zile, în jurul orelor"
+    ],
+    [
+     7.84,
+     "Vehiculul în sine a fost îndepărtat de la locul accidentului în decursul aceleiași zile, în jurul orelor 12"
+    ],
+    [
+     8.96,
+     "Vehiculul în sine a fost îndepărtat de la locul accidentului în decursul aceleiași zile, în jurul orelor 12 GMT."
+    ]
+   ],
+   "final": [
+    [
+     "Vehiculul",
+     true
+    ],
+    [
+     "în",
+     true
+    ],
+    [
+     "sine",
+     true
+    ],
+    [
+     "a",
+     true
+    ],
+    [
+     "fost",
+     true
+    ],
+    [
+     "îndepărtat",
+     true
+    ],
+    [
+     "de",
+     true
+    ],
+    [
+     "la",
+     true
+    ],
+    [
+     "locul",
+     true
+    ],
+    [
+     "accidentului",
+     true
+    ],
+    [
+     "în",
+     true
+    ],
+    [
+     "decursul",
+     true
+    ],
+    [
+     "aceleiași",
+     true
+    ],
+    [
+     "zile,",
+     true
+    ],
+    [
+     "în",
+     true
+    ],
+    [
+     "jurul",
+     true
+    ],
+    [
+     "orelor",
+     true
+    ],
+    [
+     "12:00",
+     false
+    ],
+    [
+     "GMT.",
+     true
+    ]
+   ],
+   "duration": 8.7
+  }
+ ]
+}
