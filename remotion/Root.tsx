@@ -1,6 +1,7 @@
 import React from 'react';
 import { Composition, staticFile } from 'remotion';
 import { Capture, type CaptureProps, type Track } from '../components/film/capture/Capture';
+import { Reads, timeline, type ReadsProps, type Run } from '../components/film/capture/Reads';
 
 import {
   CUTS,
@@ -51,6 +52,20 @@ export const RemotionRoot: React.FC = () => (
       calculateMetadata={async ({ props }) => {
         const track: Track = await (await fetch(staticFile(`labs/films/raw/${props.slug}.json`))).json();
         return { durationInFrames: Math.ceil(track.duration * FPS), props: { ...props, track } };
+      }}
+    />
+    {/* A recorded run that cannot be replayed through its page, read by read: --props='{"slug":"rune-duck"}'. */}
+    <Composition
+      id="reads"
+      component={Reads}
+      fps={FPS}
+      width={WIDTH}
+      height={HEIGHT}
+      durationInFrames={300}
+      defaultProps={{ slug: 'rune-duck' } as ReadsProps}
+      calculateMetadata={async ({ props }) => {
+        const run: Run = await (await fetch(staticFile(`labs/films/raw/${props.slug}.reads.json`))).json();
+        return { durationInFrames: Math.ceil(timeline(run).duration * FPS), props: { ...props, run } };
       }}
     />
   </>
