@@ -39,7 +39,7 @@ export const organization = {
     {
       '@type': 'ContactPoint',
       contactType: 'sales',
-      email: 'sales@invergent.ai',
+      url: 'https://discord.gg/eVTq93BrQ4',
     },
   ],
 };

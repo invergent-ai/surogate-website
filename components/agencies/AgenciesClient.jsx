@@ -84,18 +84,14 @@ const GETS = [
   },
 ];
 
-const EMAIL = 'sales@invergent.ai';
 const X_HANDLE = 'surogate_ai';
 
 /* Empty hides the card rather than shipping a dead invite; the row is laid
    out with auto-fit, so it reads as deliberate either way. */
-/* Permanent (max_age=0) and landing on #welcome, not #general — the invite
-   this replaced expired on 2026-10-05, which would have killed the card on a
-   page we send paid traffic to, silently. */
-const DISCORD_INVITE = 'https://discord.gg/HC3Vypejv9';
-
-const CONTACT =
-  `mailto:${EMAIL}?subject=Founding%20Agency%20Program&body=Tell%20us%20about%20the%20workflow%20you%27d%20like%20to%20turn%20into%20a%20client-facing%20agent.`;
+/* Permanent (max_age=0) — the invite before HC3Vypejv9 expired on
+   2026-10-05, which would have killed the card on a page we send paid
+   traffic to, silently. */
+const DISCORD_INVITE = 'https://discord.gg/eVTq93BrQ4';
 
 /* Brand marks, drawn rather than fetched — lucide carries no logos. */
 const XMark = () => (
@@ -111,14 +107,6 @@ const DiscordMark = () => (
 );
 
 const REACH = [
-  {
-    key: 'email',
-    href: `mailto:${EMAIL}`,
-    mark: <i data-lucide="mail" />,
-    t: 'Email',
-    handle: EMAIL,
-    d: 'Best for the founding program, pricing, or anything with detail attached.',
-  },
   {
     key: 'x',
     href: `https://x.com/${X_HANDLE}`,
@@ -349,7 +337,9 @@ export default function AgenciesClient() {
                 <div className="hero-actions">
                   <a
                     className="btn btn-primary"
-                    href={CONTACT}
+                    href={DISCORD_INVITE}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => track('cta_agency_clicked', { location: 'founding' })}
                   >
                     <i data-lucide="arrow-right" />

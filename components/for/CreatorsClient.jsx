@@ -6,7 +6,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import useReveal from '@/components/useReveal';
 import { track } from '@/lib/analytics';
-import { START_FREE, walkthrough } from './links';
+import { DISCORD, START_FREE } from './links';
 
 /*
  * surogate.ai/for/creators — aimed at someone who already has an audience
@@ -181,11 +181,13 @@ export default function CreatorsClient() {
       </a>
       <a
         className="btn btn-ghost"
-        href={walkthrough('creators')}
+        href={DISCORD}
+        target="_blank"
+        rel="noopener noreferrer"
         onClick={() => track('cta_walkthrough_clicked', { page: 'creators', location })}
       >
-        <i data-lucide="calendar" />
-        Book a walkthrough
+        <i data-lucide="message-circle" />
+        Find us on Discord
       </a>
     </div>
   );
