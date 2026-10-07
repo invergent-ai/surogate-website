@@ -94,9 +94,9 @@
 .st-labs .hf-card:hover,.st-labs .hf-card:focus-visible{border-color:var(--amber); transform:translateY(-2px);}
 .st-labs .hf-card:focus-visible{outline:3px solid var(--amber); outline-offset:4px;}
 .st-labs .hf-card-h{display:flex; align-items:center; gap:16px;}
-.st-labs .hf-avatar{flex:none; border-radius:12px; background:#fff;}
+.st-labs .hf-avatar{flex:none;}
 .st-labs .hf-title{white-space:nowrap;}
-.st-labs .hf-title-logo{display:inline-block; height:0.9em; width:auto; vertical-align:-0.08em; margin:0 0.12em 0 0.04em;}
+.st-labs .hf-title-logo{display:inline-block; height:0.9em; width:auto; vertical-align:-0.08em; margin-left:0.04em;}
 .st-labs .hf-repo{font-family:var(--mono); font-size:clamp(16px,2vw,21px); overflow-wrap:anywhere;}
 .st-labs .hf-org{color:rgba(255,255,255,0.6); margin-right:6px;}
 .st-labs .hf-go{margin-left:auto; flex:none; color:var(--amber);}

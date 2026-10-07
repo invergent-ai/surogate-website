@@ -130,8 +130,7 @@ export default function RuneExamplesClient() {
               <p className="eyebrow">The model</p>
               <h2 className="h-section">
                 Open weights, <span className="amber hf-title">on{' '}
-                  <img className="hf-title-logo" src="/labs/huggingface.svg" alt="" width="95" height="88" />
-                  Hugging Face.</span>
+                  <img className="hf-title-logo" src="/labs/huggingface.svg" alt="Hugging Face" width="95" height="88" /></span>
               </h2>
             </div>
 
