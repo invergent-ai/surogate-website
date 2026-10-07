@@ -35,6 +35,7 @@ export default function Footer() {
             { href: '/labs/', label: 'Labs' },
             { href: '/labs/rune/', label: 'Rune' },
             { href: '/labs/speech/', label: 'Speech' },
+            { href: '/labs/engine/', label: 'Engine' },
             { href: '/labs/rune-examples/', label: 'Rune examples' },
             { href: 'https://docs.surogate.ai', label: 'Platform Docs' },
             { href: 'https://github.com/invergent-ai/surogate', label: 'Surogate Trainer' },
