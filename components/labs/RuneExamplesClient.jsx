@@ -129,7 +129,9 @@ export default function RuneExamplesClient() {
             <div className="sec-head reveal">
               <p className="eyebrow">The model</p>
               <h2 className="h-section">
-                Open weights, <span className="amber">on Hugging Face.</span>
+                Open weights, <span className="amber hf-title">on{' '}
+                  <img className="hf-title-logo" src="/labs/huggingface.svg" alt="" width="95" height="88" />
+                  Hugging Face.</span>
               </h2>
             </div>
 
@@ -141,7 +143,7 @@ export default function RuneExamplesClient() {
               onClick={() => track('labs_cta_clicked', { cta: 'model_card' })}
             >
               <span className="hf-card-h">
-                <img src="/labs/huggingface.svg" alt="Hugging Face" width="48" height="44" />
+                <img className="hf-avatar" src="/labs/surogate-hf-avatar.png" alt="Surogate" width="48" height="48" />
                 <span className="hf-repo">
                   <span className="hf-org">{RUNE_MODEL.repo.split('/')[0]} /</span>
                   <b>{RUNE_MODEL.repo.split('/')[1]}</b>
