@@ -1,5 +1,6 @@
 import React from 'react';
-import { Composition } from 'remotion';
+import { Composition, staticFile } from 'remotion';
+import { Capture, type CaptureProps, type Track } from '../components/film/capture/Capture';
 
 import {
   CUTS,
@@ -38,5 +39,19 @@ export const RemotionRoot: React.FC = () => (
         defaultProps={{ variant, ground: true } satisfies FilmProps}
       />
     ))}
+    {/* A recorded Rune Labs Space: --props='{"slug":"inbox","url":"…"}'. Its length comes from the track. */}
+    <Composition
+      id="capture"
+      component={Capture}
+      fps={FPS}
+      width={WIDTH}
+      height={HEIGHT}
+      durationInFrames={300}
+      defaultProps={{ slug: 'inbox', url: 'huggingface.co/spaces/surogate/inbox' } as CaptureProps}
+      calculateMetadata={async ({ props }) => {
+        const track: Track = await (await fetch(staticFile(`labs/films/raw/${props.slug}.json`))).json();
+        return { durationInFrames: Math.ceil(track.duration * FPS), props: { ...props, track } };
+      }}
+    />
   </>
 );

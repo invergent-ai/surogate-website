@@ -53,7 +53,7 @@
 .st-labs .lab-proves{margin:16px 0 0; padding-left:14px; border-left:3px solid var(--amber);
   font-size:16px; color:var(--txt-3);}
 
-/* The screenshot that becomes the live demo */
+/* A demo's card: its film's loop, or its screenshot */
 .st-labs .lab-shot{position:relative; display:block; width:100%; padding:0; border:0; margin:0;
   border-radius:20px; overflow:hidden; cursor:pointer; background:var(--ink-deep);
   box-shadow:0 40px 80px -40px rgba(42,16,45,0.55), var(--shadow-card);}
@@ -66,11 +66,13 @@
   background:var(--amber); color:var(--ink-deep); font-weight:600; font-size:17px; white-space:nowrap;
   box-shadow:0 14px 34px rgba(26,10,28,0.35); transition:transform .25s ease;}
 .st-labs .lab-shot:hover .lab-play{transform:translate(-50%,-50%) scale(1.05);}
-.st-labs .lab-newtab{position:absolute; left:50%; bottom:14px; transform:translateX(-50%); padding:4px 10px;
-  border-radius:999px; background:rgba(255,255,255,0.92); font-size:13px; font-weight:600; color:var(--txt-2); white-space:nowrap;}
-.st-labs .lab-frame{display:block; width:100%; height:720px; border:0; border-radius:20px; overflow:hidden;
-  background:#fff; box-shadow:0 30px 70px -40px rgba(42,16,45,0.35), 0 0 0 1px var(--line2);
-  transition:height .25s ease;}
+/* A filmed demo: a silent loop on the card, the whole film once opened */
+.st-labs .lab-film video{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover;
+  transition:transform .6s cubic-bezier(.22,.61,.36,1), filter .3s ease;}
+.st-labs .lab-film:hover video,.st-labs .lab-film:focus-visible video{transform:scale(1.025); filter:brightness(0.72);}
+.st-labs .lab-film-open{margin:0;}
+.st-labs .lab-film-open video{display:block; width:100%; height:auto; aspect-ratio:16/9; border-radius:20px;
+  background:var(--ink-deep); box-shadow:0 30px 70px -40px rgba(42,16,45,0.55);}
 .st-labs .lab-note{margin-top:96px; text-align:center; font-size:15px; color:var(--txt-3);}
 
 /* How it works: request and response */
@@ -113,7 +115,7 @@
   .st-labs .lab-sp{padding:24px;}
 }
 @media (prefers-reduced-motion:reduce){
-  .st-labs .lab-shot img,.st-labs .lab-play{transition:none;}
+  .st-labs .lab-shot img,.st-labs .lab-film video,.st-labs .lab-play{transition:none;}
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -630,7 +632,7 @@
   .st-labs .lab-text .lab-textlink{margin-top:14px;}
   /* An opened demo gets the whole width of the phone. */
   .st-labs .lab-demo[data-open="true"] .lab-media{margin:0 -16px;}
-  .st-labs .lab-demo[data-open="true"] .lab-frame{border-radius:0;}
+  .st-labs .lab-demo[data-open="true"] .lab-film-open video{border-radius:0;}
 }
 
 /* More phone forms: a segmented control for a short set of cards, a compact list for the hub's demos. */

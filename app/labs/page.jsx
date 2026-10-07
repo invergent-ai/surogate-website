@@ -6,7 +6,7 @@ import '../labs.css';
 const URL = 'https://surogate.ai/labs/';
 const TITLE = 'Labs - Surogate';
 const DESCRIPTION =
-  'Models the Surogate team trained and published: Rune, an open decision model for text and images, and Surogate Speech for Romanian, each with live demos and its numbers.';
+  'Models the Surogate team trained and published: Rune, an open decision model for text and images, and Surogate Speech for Romanian, each with its demos at work and its numbers.';
 
 const breadcrumb = {
   '@context': 'https://schema.org',

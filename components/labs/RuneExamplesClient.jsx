@@ -6,26 +6,26 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import useReveal from '@/components/useReveal';
 import { track } from '@/lib/analytics';
-import { DEMO_FILTERS, RUNE, RUNE_DEMOS, RUNE_EXAMPLE, RUNE_FACTS, demosFor } from '@/lib/labs';
+import { DEMO_FILTERS, FILMED, RUNE, RUNE_DEMOS, RUNE_EXAMPLE, RUNE_FACTS, demosFor } from '@/lib/labs';
 import DemoFilter from './DemoFilter';
 import DemoRow from './DemoRow';
 import LabsSubnav from './LabsSubnav';
 
 /*
- * surogate.ai/labs/rune-examples. Live demos of Rune, each a public HF
- * Space embedded on click. The data, numbers and links live in lib/labs.js.
+ * surogate.ai/labs/rune-examples. Rune at work: each demo filmed from its HF Space with the answers Rune
+ * really gave, so nothing here needs Rune running. The data, numbers and links live in lib/labs.js.
  */
 export default function RuneExamplesClient() {
   useReveal();
   // The filters live in ?sector= and ?input= so a filtered page can be linked. The static page renders
   // everything and applies them after load.
   const [filter, setFilter] = useState({});
-  // A shared link (?demo=doodle-decoder&word=sun) opens that demo with its settings.
+  // A shared link (?demo=inbox) opens that demo's film.
   const [start, setStart] = useState(null);
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     setFilter(Object.fromEntries(DEMO_FILTERS.map((g) => [g.key, q.get(g.key) || 'all'])));
-    if (RUNE_DEMOS.some((d) => d.slug === q.get('demo'))) setStart({ slug: q.get('demo'), params: Object.fromEntries(q) });
+    if (RUNE_DEMOS.some((d) => d.slug === q.get('demo'))) setStart(q.get('demo'));
   }, []);
   const apply = (changes) => {
     const next = { ...filter, ...changes };
@@ -50,14 +50,13 @@ export default function RuneExamplesClient() {
           <div className="hero-glow" />
           <div className="hero-rabbit" aria-hidden="true" />
           <div className="wrap">
-            <p className="hero-kicker reveal">Labs · Surogate Rune</p>
+            <p className="hero-kicker reveal">Labs · Rune at work</p>
             <h1 className="hero-title reveal d1">
-              Decisions you can <span className="amber">watch happen.</span>
+              Watch Rune <span className="amber">decide.</span>
             </h1>
             <p className="hero-sub reveal d2">
               Rune is an open decision model. Give it text or an image, a question and your
-              options, and it answers with one of them and a probability for every one. Every
-              demo below is live.
+              options, and it answers with one of them and a probability for every one.
             </p>
             <div className="hero-actions reveal d3">
               <a
@@ -66,7 +65,7 @@ export default function RuneExamplesClient() {
                 onClick={() => track('labs_cta_clicked', { cta: 'try_demos' })}
               >
                 <ArrowDown size={18} strokeWidth={2} aria-hidden="true" />
-                Try the demos
+                Watch it work
               </a>
               <a
                 className="btn btn-ghost"
@@ -95,13 +94,13 @@ export default function RuneExamplesClient() {
         <section className="sec" id="demos">
           <div className="wrap">
             <div className="sec-head reveal">
-              <p className="eyebrow">{RUNE_DEMOS.length} live demos</p>
+              <p className="eyebrow">{FILMED.length} films · {RUNE_DEMOS.length} demos</p>
               <h2 className="h-section">
                 Cameras, robot arms, invoices and claims, <span className="amber">and a couple of games.</span>
               </h2>
               <p className="lead">
                 Every result on screen is the model&apos;s full probability distribution, not a
-                sentence to trust. Open one, and the Space runs right here.
+                sentence to trust.
               </p>
             </div>
 
@@ -109,7 +108,7 @@ export default function RuneExamplesClient() {
 
             <div className="lab-demos">
               {RUNE_DEMOS.map((d) => (
-                <DemoRow demo={d} key={d.slug} hidden={!shown.has(d.slug)} start={start?.slug === d.slug ? start.params : null} />
+                <DemoRow demo={d} key={d.slug} hidden={!shown.has(d.slug)} start={start === d.slug} />
               ))}
               {matching.length === 0 && (
                 <p className="lab-filter-none">
@@ -120,7 +119,7 @@ export default function RuneExamplesClient() {
             </div>
 
             <p className="lab-note reveal">
-              The demos call a hosted Rune. Nothing you draw, upload or paste is stored.
+              Every Space is open source on Hugging Face. To run Rune yourself, get the weights below.
             </p>
           </div>
         </section>
@@ -133,7 +132,7 @@ export default function RuneExamplesClient() {
                 One request, <span className="amber">typed answers back.</span>
               </h2>
               <p className="lead">
-                Every demo above is this call. The state is your input, each question names its
+                Every film above is this call. The state is your input, each question names its
                 type and its options, and each answer comes back with the probability of every
                 option you offered.
               </p>

@@ -82,9 +82,9 @@ export default function LabsClient() {
         <section className="sec tight hub-examples">
           <div className="wrap">
             <div className="hub-ex-head reveal">
-              <h2 className="h-section">Live Rune demos</h2>
+              <h2 className="h-section">Rune at work</h2>
               <a className="lab-textlink" href="/labs/rune-examples/">
-                All the demos <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
+                All the films <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
               </a>
             </div>
             <div className="hub-ex reveal d1">
