@@ -4,17 +4,17 @@ import { register } from 'node:module';
 
 register('./jsx-loader.mjs', import.meta.url);
 
-test('a closed demo row is a real button with a name, and links the Space', async () => {
+test('a filmed demo is a real Watch button over its silent loop, and links the Space', async () => {
   const React = (await import('react')).default;
   const { renderToStaticMarkup } = await import('react-dom/server');
   const { default: DemoRow } = await import('./DemoRow.jsx');
   const { RUNE_DEMOS } = await import('../../lib/labs.js');
   const d = RUNE_DEMOS[0];
   const html = renderToStaticMarkup(React.createElement(DemoRow, { demo: d }));
-  assert.match(html, /<button[^>]*type="button"[^>]*class="lab-shot"/);
-  assert.match(html, new RegExp(`aria-label="Open the live ${d.title} demo"`));
+  assert.match(html, /<button[^>]*type="button"[^>]*class="lab-shot lab-film"/);
+  assert.match(html, new RegExp(`aria-label="Watch ${d.title}"`));
+  assert.match(html, new RegExp(`src="${d.film.loop}"[^>]*poster="${d.film.poster}"[^>]*muted=""[^>]*loop=""[^>]*playsInline=""[^>]*preload="none"`));
   assert.match(html, new RegExp(`href="${d.page}"`));
-  assert.match(html, new RegExp(`src="${d.shot}"`));
   assert.doesNotMatch(html, /<iframe/);
 });
 
@@ -29,19 +29,6 @@ test('opening a demo never rewrites the row class, so the reveal state survives'
   assert.match(html, /<article class="lab-demo reveal" data-open="false"/);
   const src = (await import('node:fs')).readFileSync(new URL('./DemoRow.jsx', import.meta.url), 'utf8');
   assert.match(src, /className="lab-demo reveal"/);
-});
-
-test('an opened demo sizes its frame from the height the Space reports, and trusts only that frame', async () => {
-  const src = (await import('node:fs')).readFileSync(new URL('./DemoRow.jsx', import.meta.url), 'utf8');
-  assert.match(src, /'rune-labs:height'/);
-  assert.match(src, /e\.source !== frame\.current\?\.contentWindow/);
-  assert.match(src, /e\.origin !== new URL\(demo\.embed\)\.origin/);
-  assert.match(src, /scrolling="no"/);
-});
-
-test('an opened demo may use the share sheet, so Doodle Decoder can share from inside the page', async () => {
-  const src = (await import('node:fs')).readFileSync(new URL('./DemoRow.jsx', import.meta.url), 'utf8');
-  assert.match(src, /allow="[^"]*\bweb-share\b[^"]*"/);
 });
 
 test('the engine gives every example, picked or automatic, a full hold before moving on', async () => {
@@ -81,17 +68,16 @@ test('a demo left out by the filter is hidden, not removed, so an open demo keep
   assert.match(html, /<article class="lab-demo reveal"[^>]*hidden=""/);
 });
 
-test('a demo that needs the camera opens its Space in a new tab instead of embedding it', async () => {
-  // Embedded, the browser would block the camera; on the Space page it works.
+test('a demo with no film shows its screenshot and links to its Space, in a new tab', async () => {
   const React = (await import('react')).default;
   const { renderToStaticMarkup } = await import('react-dom/server');
   const { default: DemoRow } = await import('./DemoRow.jsx');
   const { RUNE_DEMOS } = await import('../../lib/labs.js');
-  const demo = { ...RUNE_DEMOS[0], newTab: true };
+  const demo = RUNE_DEMOS.find((d) => !d.film);
   const html = renderToStaticMarkup(React.createElement(DemoRow, { demo }));
   assert.match(html, new RegExp(`<a class="lab-shot" href="${demo.page}" target="_blank" rel="noopener noreferrer"`));
-  assert.match(html, /Opens in a new tab/);
-  assert.doesNotMatch(html, /<button[^>]*class="lab-shot"/);
+  assert.match(html, new RegExp(`src="${demo.shot}"`));
+  assert.doesNotMatch(html, /<button[^>]*class="lab-shot/);
 });
 
 test('on a phone a filter is one full-width trigger that opens a bottom sheet of options, not a strip to scroll', async () => {

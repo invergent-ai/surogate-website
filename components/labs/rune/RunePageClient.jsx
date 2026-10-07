@@ -318,7 +318,7 @@ export default function RunePageClient() {
               ))}
             </div>
             <a className="lab-textlink rn-link" href="/labs/rune-examples/" data-reveal>
-              Try it on images, live <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
+              Watch it work on images <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
             </a>
           </div>
         </section>
@@ -378,7 +378,7 @@ export default function RunePageClient() {
         <section className="sec tight rn-next">
           <div className="wrap rn-next-in" data-reveal>
             <a className="btn btn-primary" href="/labs/rune-examples/">
-              Try the live demos
+              Watch Rune at work
               <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
             </a>
             {[

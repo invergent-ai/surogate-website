@@ -4,45 +4,31 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Play } from 'lucide-react';
 import { ICONS } from './icons';
 import { track } from '@/lib/analytics';
-import { embedSrc } from '@/lib/labs';
 import ClampedText from './ClampedText';
 
-/* One demo: a screenshot that becomes the live Space on click. The iframe is
-   only created on click, so the page does not wake five Spaces on load, and
-   the link to the Space page is always there for when a Space is asleep. */
-export default function DemoRow({ demo, hidden = false, start = null }) {
+/* One demo. A filmed one shows a silent loop while it is on screen; a click opens the whole film in its
+   place. The rest show their screenshot and link to their Space on Hugging Face. */
+export default function DemoRow({ demo, hidden = false, start = false }) {
   const [open, setOpen] = useState(false);
-  const [src, setSrc] = useState(demo.embed);
   const row = useRef(null);
-  const [height, setHeight] = useState(null);
-  const frame = useRef(null);
+  const loop = useRef(null);
   const Icon = ICONS[demo.icon];
+  const film = demo.film;
 
-  /* Each Space posts {type: 'rune-labs:height', height} as its content grows (embed.js in the labs
-     repo), so the frame fits the demo and nothing scrolls inside it. Only this frame is trusted. */
+  // The loop plays only while it can be seen, and never for someone who asked for less motion.
   useEffect(() => {
-    if (!open) return undefined;
-    const onMessage = (e) => {
-      if (e.source !== frame.current?.contentWindow) return;
-      if (e.origin !== new URL(demo.embed).origin) return;
-      if (e.data?.type === 'rune-labs:used') track('labs_demo_used', { demo: demo.slug });
-      if (e.data?.type !== 'rune-labs:height') return;
-      const h = Number(e.data.height);
-      if (Number.isFinite(h)) setHeight(Math.min(Math.max(Math.round(h), 320), 4000));
-    };
-    window.addEventListener('message', onMessage);
-    return () => window.removeEventListener('message', onMessage);
-  }, [open, demo.embed, demo.slug]);
+    const v = loop.current;
+    if (!v || open || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()),
+      { threshold: 0.4 });
+    io.observe(v);
+    return () => io.disconnect();
+  }, [open]);
 
-  /* The page URL is only known in the browser, so the address (with the share link) is set on opening.
-     start holds the settings of a shared link that asked for this demo: open it and bring it into view. */
-  const openDemo = (params = {}) => {
-    setSrc(embedSrc(demo, window.location.href, params));
-    setOpen(true);
-  };
+  // A shared link (?demo=inbox) opens that film and brings it into view.
   useEffect(() => {
     if (!start) return;
-    if (!demo.newTab) openDemo(start);  // a camera demo can't run embedded; its row links to its own tab
+    if (film) setOpen(true);
     row.current?.scrollIntoView({ block: 'start' });
   }, [start]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -52,47 +38,50 @@ export default function DemoRow({ demo, hidden = false, start = null }) {
     <article className="lab-demo reveal" data-open={open ? 'true' : 'false'} id={demo.slug} hidden={hidden} ref={row}>
       <div className="lab-media">
         {open ? (
-          <iframe
-            ref={frame}
-            className="lab-frame"
-            src={src}
-            title={`${demo.title}, live demo`}
-            allow="clipboard-write; web-share"
-            scrolling="no"
-            style={height ? { height: `${height}px` } : undefined}
-          />
-        ) : demo.newTab ? (
-          // Needs the camera, which the browser blocks inside an embed: the Space opens in its own tab.
+          <div className="lab-film-open">
+            <video
+              src={film.src}
+              poster={film.poster}
+              controls
+              autoPlay
+              muted
+              playsInline
+              width="1920"
+              height="1080"
+              onEnded={() => track('labs_film_finished', { demo: demo.slug })}
+            />
+          </div>
+        ) : film ? (
+          <button
+            type="button"
+            className="lab-shot lab-film"
+            aria-label={`Watch ${demo.title}`}
+            onClick={() => {
+              setOpen(true);
+              track('labs_film_opened', { demo: demo.slug });
+            }}
+          >
+            <video ref={loop} src={film.loop} poster={film.poster} muted loop playsInline preload="none"
+              width="960" height="540" aria-hidden="true" />
+            <span className="lab-play">
+              <Play size={18} strokeWidth={2.25} aria-hidden="true" />
+              Watch
+            </span>
+          </button>
+        ) : (
           <a
             className="lab-shot"
             href={demo.page}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => track('labs_demo_opened', { demo: demo.slug, tab: 'new' })}
+            onClick={() => track('labs_space_link_clicked', { demo: demo.slug, from: 'shot' })}
           >
             <img src={demo.shot} alt="" loading="lazy" width="1200" height="800" />
             <span className="lab-play">
               <ArrowUpRight size={18} strokeWidth={2.25} aria-hidden="true" />
-              Try it live
+              See it on Hugging Face
             </span>
-            <span className="lab-newtab">Opens in a new tab</span>
           </a>
-        ) : (
-          <button
-            type="button"
-            className="lab-shot"
-            aria-label={`Open the live ${demo.title} demo`}
-            onClick={() => {
-              openDemo();
-              track('labs_demo_opened', { demo: demo.slug });
-            }}
-          >
-            <img src={demo.shot} alt="" loading="lazy" width="1200" height="800" />
-            <span className="lab-play">
-              <Play size={18} strokeWidth={2.25} aria-hidden="true" />
-              Try it live
-            </span>
-          </button>
         )}
       </div>
 
@@ -111,7 +100,7 @@ export default function DemoRow({ demo, hidden = false, start = null }) {
           rel="noopener noreferrer"
           onClick={() => track('labs_space_link_clicked', { demo: demo.slug })}
         >
-          Open on Hugging Face
+          The Space on Hugging Face
           <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
         </a>
       </div>

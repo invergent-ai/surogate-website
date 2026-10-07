@@ -4,9 +4,9 @@ import '../../home.css';
 import '../../labs.css';
 
 const URL = 'https://surogate.ai/labs/rune-examples/';
-const TITLE = 'Rune examples - Surogate Labs';
+const TITLE = 'Rune at work - Surogate Labs';
 const DESCRIPTION =
-  'Live demos of Surogate Rune, an open decision model: security and drone video, robot-arm episodes, invoices, insurance claims, contracts, phishing emails, charts and games. It looks at text and images and answers with a probability for every option.';
+  'Watch Surogate Rune, an open decision model, at work: security and drone video, robot-arm episodes, invoices, insurance claims, contracts, phishing emails and a drawing game, filmed in the real apps with the answers Rune gave. It looks at text and images and answers with a probability for every option.';
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -14,7 +14,7 @@ const breadcrumb = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://surogate.ai/' },
     { '@type': 'ListItem', position: 2, name: 'Labs', item: 'https://surogate.ai/labs/' },
-    { '@type': 'ListItem', position: 3, name: 'Rune examples', item: URL },
+    { '@type': 'ListItem', position: 3, name: 'Rune at work', item: URL },
   ],
 };
 

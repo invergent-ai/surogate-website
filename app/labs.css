@@ -53,7 +53,7 @@
 .st-labs .lab-proves{margin:16px 0 0; padding-left:14px; border-left:3px solid var(--amber);
   font-size:16px; color:var(--txt-3);}
 
-/* The screenshot that becomes the live demo */
+/* A demo's card: its film's loop, or its screenshot */
 .st-labs .lab-shot{position:relative; display:block; width:100%; padding:0; border:0; margin:0;
   border-radius:20px; overflow:hidden; cursor:pointer; background:var(--ink-deep);
   box-shadow:0 40px 80px -40px rgba(42,16,45,0.55), var(--shadow-card);}
@@ -66,11 +66,13 @@
   background:var(--amber); color:var(--ink-deep); font-weight:600; font-size:17px; white-space:nowrap;
   box-shadow:0 14px 34px rgba(26,10,28,0.35); transition:transform .25s ease;}
 .st-labs .lab-shot:hover .lab-play{transform:translate(-50%,-50%) scale(1.05);}
-.st-labs .lab-newtab{position:absolute; left:50%; bottom:14px; transform:translateX(-50%); padding:4px 10px;
-  border-radius:999px; background:rgba(255,255,255,0.92); font-size:13px; font-weight:600; color:var(--txt-2); white-space:nowrap;}
-.st-labs .lab-frame{display:block; width:100%; height:720px; border:0; border-radius:20px; overflow:hidden;
-  background:#fff; box-shadow:0 30px 70px -40px rgba(42,16,45,0.35), 0 0 0 1px var(--line2);
-  transition:height .25s ease;}
+/* A filmed demo: a silent loop on the card, the whole film once opened */
+.st-labs .lab-film video{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover;
+  transition:transform .6s cubic-bezier(.22,.61,.36,1), filter .3s ease;}
+.st-labs .lab-film:hover video,.st-labs .lab-film:focus-visible video{transform:scale(1.025); filter:brightness(0.72);}
+.st-labs .lab-film-open{margin:0;}
+.st-labs .lab-film-open video{display:block; width:100%; height:auto; aspect-ratio:16/9; border-radius:20px;
+  background:var(--ink-deep); box-shadow:0 30px 70px -40px rgba(42,16,45,0.55);}
 .st-labs .lab-note{margin-top:96px; text-align:center; font-size:15px; color:var(--txt-3);}
 
 /* How it works: request and response */
@@ -85,6 +87,24 @@
   color:var(--txt-d1); background:transparent; border:0; white-space:pre-wrap; overflow-wrap:anywhere;}
 .st-labs .lab-fact-n{font-family:var(--serif); font-weight:600; font-size:44px; line-height:1; color:var(--txt-1);}
 .st-labs .lab-fact-l{margin-top:12px; font-size:15px; color:var(--txt-3); line-height:1.45;}
+/* The model on Hugging Face */
+.st-labs .hf-card{display:flex; flex-direction:column; gap:14px; max-width:860px; margin-top:48px; padding:30px 32px;
+  border-radius:20px; background:var(--ink-black); border:1px solid var(--line-dk); color:#fff; text-decoration:none;
+  transition:border-color .25s ease, transform .25s ease;}
+.st-labs .hf-card:hover,.st-labs .hf-card:focus-visible{border-color:var(--amber); transform:translateY(-2px);}
+.st-labs .hf-card:focus-visible{outline:3px solid var(--amber); outline-offset:4px;}
+.st-labs .hf-card-h{display:flex; align-items:center; gap:16px;}
+.st-labs .hf-avatar{flex:none;}
+.st-labs .hf-title{white-space:nowrap;}
+.st-labs .hf-title-logo{display:inline-block; height:0.9em; width:auto; vertical-align:-0.08em; margin-left:0.04em;}
+.st-labs .hf-repo{font-family:var(--mono); font-size:clamp(16px,2vw,21px); overflow-wrap:anywhere;}
+.st-labs .hf-org{color:rgba(255,255,255,0.6); margin-right:6px;}
+.st-labs .hf-go{margin-left:auto; flex:none; color:var(--amber);}
+.st-labs .hf-name{font-family:var(--serif); font-weight:600; font-size:clamp(24px,2.6vw,32px); letter-spacing:-0.01em; margin-top:6px;}
+.st-labs .hf-line{font-size:17px; line-height:1.55; color:rgba(255,255,255,0.75); max-width:680px;}
+.st-labs .hf-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
+.st-labs .hf-tag{padding:6px 12px; border-radius:999px; font-size:14px; font-weight:600;
+  background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.88);}
 .st-labs .lab-actions{display:flex; flex-wrap:wrap; gap:14px; margin-top:28px;}
 .st-labs .lab-sp{display:flex; flex-direction:column; gap:16px; padding:30px; border-radius:20px;
   background:rgba(255,255,255,0.04); border:1px solid var(--line-dk);}
@@ -113,7 +133,7 @@
   .st-labs .lab-sp{padding:24px;}
 }
 @media (prefers-reduced-motion:reduce){
-  .st-labs .lab-shot img,.st-labs .lab-play{transition:none;}
+  .st-labs .lab-shot img,.st-labs .lab-film video,.st-labs .lab-play,.st-labs .hf-card{transition:none;}
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -281,9 +301,9 @@
 .st-hub .hub-ex-head .h-section{margin:0;}
 .st-hub .hub-ex{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:32px;}
 .st-hub .hub-ex-card{display:flex; flex-direction:column; gap:6px; border-radius:16px;}
-.st-hub .hub-ex-card img{width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; object-position:top;
+.st-hub .hub-ex-card video{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; object-position:top;
   border-radius:14px; border:1px solid var(--line2); transition:transform .3s ease;}
-.st-hub .hub-ex-card:hover img{transform:translateY(-3px);}
+.st-hub .hub-ex-card:hover video{transform:translateY(-3px);}
 .st-hub .hub-ex-card:focus-visible{outline:3px solid var(--amber); outline-offset:4px;}
 .st-hub .hub-ex-t{display:flex; align-items:center; gap:7px; margin-top:6px; font-weight:700; font-size:16px; color:var(--txt-1);}
 .st-hub .hub-ex-k{font-size:13.5px; color:var(--txt-3);}
@@ -298,7 +318,7 @@
 }
 @media (prefers-reduced-motion:reduce){
   .st-hub .hub-wave i{animation:none; transform:scaleY(0.5);}
-  .st-hub .hub-portal,.st-hub .hub-ex-card img{transition:none;}
+  .st-hub .hub-portal,.st-hub .hub-ex-card video{transition:none;}
 }
 
 
@@ -707,7 +727,7 @@
   .st-labs .lab-text .lab-textlink{margin-top:14px;}
   /* An opened demo gets the whole width of the phone. */
   .st-labs .lab-demo[data-open="true"] .lab-media{margin:0 -16px;}
-  .st-labs .lab-demo[data-open="true"] .lab-frame{border-radius:0;}
+  .st-labs .lab-demo[data-open="true"] .lab-film-open video{border-radius:0;}
 }
 
 /* More phone forms: a segmented control for a short set of cards, a compact list for the hub's demos. */
@@ -727,7 +747,7 @@
   .st-hub .hub-ex{grid-template-columns:minmax(0,1fr); gap:10px;}
   .st-hub .hub-ex-card{display:grid; grid-template-columns:112px minmax(0,1fr); grid-template-rows:auto auto;
     column-gap:14px; row-gap:2px; align-items:center; padding:8px; border:1px solid var(--line2); background:#fff;}
-  .st-hub .hub-ex-card img{grid-row:span 2; border-radius:10px;}
+  .st-hub .hub-ex-card video{grid-row:span 2; border-radius:10px;}
   .st-hub .hub-ex-t{margin-top:0; align-self:end;}
   .st-hub .hub-ex-k{align-self:start;}
 }
