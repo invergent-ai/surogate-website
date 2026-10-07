@@ -8,14 +8,14 @@ OUT=public/labs/films
 for slug in "$@"; do
   track=$OUT/raw/$slug.json
   # several render lanes may share a list: a film is rendered once, by whichever lane takes it first
-  src=$track; [ -f "$OUT/raw/$slug.reads.json" ] && src=$OUT/raw/$slug.reads.json
+  src=$track; [ -f "$OUT/raw/$slug.cut.json" ] && src=$OUT/raw/$slug.cut.json
   [ "$OUT/$slug.mp4" -nt "$src" ] && { echo "skip $slug (rendered)"; continue; }
   mkdir "$OUT/raw/$slug.lock" 2>/dev/null || { echo "skip $slug (taken)"; continue; }
   trap 'rmdir "$OUT/raw/$slug.lock" 2>/dev/null || true' EXIT
   url=huggingface.co/spaces/surogate/$slug
   master=$(mktemp -t "$slug").mp4
-  # a run that cannot be replayed through its page is filmed read by read (labs spaces/film/reads.py)
-  comp=capture; [ -f "$OUT/raw/$slug.reads.json" ] && comp=reads
+  # a run that cannot be replayed through its page is cut from its simulator replay (labs spaces/film/cut.py)
+  comp=capture; [ -f "$OUT/raw/$slug.cut.json" ] && comp=cut
   nice -n 10 npx remotion render remotion/index.ts $comp "$master" --props="{\"slug\":\"$slug\",\"url\":\"$url\"}" \
     --color-space=bt709 --log=error --concurrency=1
   # the film: 1080p, small enough for the web, starts playing before it has all arrived

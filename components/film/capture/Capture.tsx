@@ -116,12 +116,12 @@ export const Capture: React.FC<CaptureProps> = ({ slug, url, track }) => {
   const L = layout(track.viewport);
   const moves = track.events.filter((e): e is Extract<Ev, { type: 'move' | 'click' }> => e.type === 'move' || e.type === 'click');
   // the whole window to open and to close; in between, the take's own targets
-  const zooms: Extract<Ev, { type: 'zoom' }>[] = [
+  const zooms = ([
     { t: 0, type: 'zoom', rect: 'all' },
     { t: OPEN, type: 'zoom', rect: null },
     ...track.events.filter((e): e is Extract<Ev, { type: 'zoom' }> => e.type === 'zoom' && e.t > OPEN),
     { t: track.duration - OPEN - 0.8, type: 'zoom', rect: 'all' },
-  ].sort((a, b) => a.t - b.t);
+  ] as Extract<Ev, { type: 'zoom' }>[]).sort((a, b) => a.t - b.t);
   // where the camera follows: the hand, averaged over the last second so it drifts instead of jerking
   const seen = Array.from({ length: 12 }, (_, i) => cursorAt(t - i * 0.08, moves)).filter((p): p is Pt => !!p);
   const hand = seen.length
