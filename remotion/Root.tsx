@@ -2,6 +2,7 @@ import React from 'react';
 import { Composition, staticFile } from 'remotion';
 import { Capture, type CaptureProps, type Track } from '../components/film/capture/Capture';
 import { Reads, timeline, type ReadsProps, type Run } from '../components/film/capture/Reads';
+import { Cut, END, type CutData, type CutProps } from '../components/film/capture/Cut';
 
 import {
   CUTS,
@@ -66,6 +67,20 @@ export const RemotionRoot: React.FC = () => (
       calculateMetadata={async ({ props }) => {
         const run: Run = await (await fetch(staticFile(`labs/films/raw/${props.slug}.reads.json`))).json();
         return { durationInFrames: Math.ceil(timeline(run).duration * FPS), props: { ...props, run } };
+      }}
+    />
+    {/* A run replayed in its simulator, cut into one take with Rune's view: --props='{"slug":"rune-duck"}'. */}
+    <Composition
+      id="cut"
+      component={Cut}
+      fps={FPS}
+      width={WIDTH}
+      height={HEIGHT}
+      durationInFrames={300}
+      defaultProps={{ slug: 'rune-duck' } as CutProps}
+      calculateMetadata={async ({ props }) => {
+        const cut: CutData = await (await fetch(staticFile(`labs/films/raw/${props.slug}.cut.json`))).json();
+        return { durationInFrames: cut.frames.length + Math.round(END * FPS), props: { ...props, cut } };
       }}
     />
   </>
