@@ -88,11 +88,18 @@ export default function LabsClient() {
               </a>
             </div>
             <div className="hub-ex reveal d1">
-              {RUNE_DEMOS.slice(0, 6).map((d) => {
+              {RUNE_DEMOS.filter((d) => d.film).slice(0, 6).map((d) => {
                 const Icon = ICONS[d.icon];
+                // the film's poster; its silent loop plays while the pointer is on the card
+                const loop = (play) => (e) => {
+                  const v = e.currentTarget.querySelector('video');
+                  if (play) v.play().catch(() => {}); else v.pause();
+                };
                 return (
-                  <a className="hub-ex-card" key={d.slug} href={`/labs/rune-examples/?demo=${d.slug}`}>
-                    <img src={d.shot} alt="" loading="lazy" width="1200" height="800" />
+                  <a className="hub-ex-card" key={d.slug} href={`/labs/rune-examples/?demo=${d.slug}`}
+                    onMouseEnter={loop(true)} onMouseLeave={loop(false)} onFocus={loop(true)} onBlur={loop(false)}>
+                    <video src={d.film.loop} poster={d.film.poster} muted loop playsInline preload="none"
+                      width="960" height="540" aria-hidden="true" />
                     <span className="hub-ex-t"><Icon size={16} strokeWidth={2} aria-hidden="true" /> {d.title}</span>
                     <span className="hub-ex-k">{d.kind}</span>
                   </a>
