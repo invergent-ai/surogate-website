@@ -6,7 +6,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import useReveal from '@/components/useReveal';
 import { track } from '@/lib/analytics';
-import { DEMO_FILTERS, FILMED, RUNE, RUNE_DEMOS, RUNE_EXAMPLE, RUNE_FACTS, demosFor } from '@/lib/labs';
+import { DEMO_FILTERS, FILMED, RUNE, RUNE_DEMOS, RUNE_FACTS, RUNE_MODEL, demosFor } from '@/lib/labs';
 import DemoFilter from './DemoFilter';
 import DemoRow from './DemoRow';
 import LabsSubnav from './LabsSubnav';
@@ -124,40 +124,38 @@ export default function RuneExamplesClient() {
           </div>
         </section>
 
-        <section className="sec dark" id="how">
+        <section className="sec dark" id="model">
           <div className="wrap">
             <div className="sec-head reveal">
-              <p className="eyebrow">How it works</p>
+              <p className="eyebrow">The model</p>
               <h2 className="h-section">
-                One request, <span className="amber">typed answers back.</span>
+                Open weights, <span className="amber">on Hugging Face.</span>
               </h2>
-              <p className="lead">
-                Every film above is this call. The state is your input, each question names its
-                type and its options, and each answer comes back with the probability of every
-                option you offered.
-              </p>
             </div>
 
-            <div className="lab-code reveal d1">
-              <div className="lab-pane">
-                <div className="lab-pane-h">
-                  <span>
-                    <b>POST</b> /v1/decisions
-                  </span>
-                  <span>request</span>
-                </div>
-                <pre>{RUNE_EXAMPLE.request}</pre>
-              </div>
-              <div className="lab-pane">
-                <div className="lab-pane-h">
-                  <span>
-                    <b>200</b> {RUNE_EXAMPLE.latency}
-                  </span>
-                  <span>response</span>
-                </div>
-                <pre>{RUNE_EXAMPLE.response}</pre>
-              </div>
-            </div>
+            <a
+              className="hf-card reveal d1"
+              href={RUNE.model}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track('labs_cta_clicked', { cta: 'model_card' })}
+            >
+              <span className="hf-card-h">
+                <img src="/labs/huggingface.svg" alt="Hugging Face" width="48" height="44" />
+                <span className="hf-repo">
+                  <span className="hf-org">{RUNE_MODEL.repo.split('/')[0]} /</span>
+                  <b>{RUNE_MODEL.repo.split('/')[1]}</b>
+                </span>
+                <ArrowUpRight className="hf-go" size={22} strokeWidth={2} aria-hidden="true" />
+              </span>
+              <span className="hf-name">{RUNE_MODEL.name}</span>
+              <span className="hf-line">{RUNE_MODEL.line}</span>
+              <span className="hf-tags">
+                {RUNE_MODEL.tags.map((t) => (
+                  <span className="hf-tag" key={t}>{t}</span>
+                ))}
+              </span>
+            </a>
 
             <div className="lab-actions reveal d2">
               <a

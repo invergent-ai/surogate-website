@@ -87,6 +87,22 @@
   color:var(--txt-d1); background:transparent; border:0; white-space:pre-wrap; overflow-wrap:anywhere;}
 .st-labs .lab-fact-n{font-family:var(--serif); font-weight:600; font-size:44px; line-height:1; color:var(--txt-1);}
 .st-labs .lab-fact-l{margin-top:12px; font-size:15px; color:var(--txt-3); line-height:1.45;}
+/* The model on Hugging Face */
+.st-labs .hf-card{display:flex; flex-direction:column; gap:14px; max-width:860px; margin-top:48px; padding:30px 32px;
+  border-radius:20px; background:var(--ink-black); border:1px solid var(--line-dk); color:#fff; text-decoration:none;
+  transition:border-color .25s ease, transform .25s ease;}
+.st-labs .hf-card:hover,.st-labs .hf-card:focus-visible{border-color:var(--amber); transform:translateY(-2px);}
+.st-labs .hf-card:focus-visible{outline:3px solid var(--amber); outline-offset:4px;}
+.st-labs .hf-card-h{display:flex; align-items:center; gap:16px;}
+.st-labs .hf-card-h img{flex:none;}
+.st-labs .hf-repo{font-family:var(--mono); font-size:clamp(16px,2vw,21px); overflow-wrap:anywhere;}
+.st-labs .hf-org{color:rgba(255,255,255,0.6); margin-right:6px;}
+.st-labs .hf-go{margin-left:auto; flex:none; color:var(--amber);}
+.st-labs .hf-name{font-family:var(--serif); font-weight:600; font-size:clamp(24px,2.6vw,32px); letter-spacing:-0.01em; margin-top:6px;}
+.st-labs .hf-line{font-size:17px; line-height:1.55; color:rgba(255,255,255,0.75); max-width:680px;}
+.st-labs .hf-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
+.st-labs .hf-tag{padding:6px 12px; border-radius:999px; font-size:14px; font-weight:600;
+  background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.88);}
 .st-labs .lab-actions{display:flex; flex-wrap:wrap; gap:14px; margin-top:28px;}
 .st-labs .lab-sp{display:flex; flex-direction:column; gap:16px; padding:30px; border-radius:20px;
   background:rgba(255,255,255,0.04); border:1px solid var(--line-dk);}
@@ -115,7 +131,7 @@
   .st-labs .lab-sp{padding:24px;}
 }
 @media (prefers-reduced-motion:reduce){
-  .st-labs .lab-shot img,.st-labs .lab-film video,.st-labs .lab-play{transition:none;}
+  .st-labs .lab-shot img,.st-labs .lab-film video,.st-labs .lab-play,.st-labs .hf-card{transition:none;}
 }
 
 /* ════════════════════════════════════════════════════════════════
