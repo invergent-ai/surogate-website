@@ -6,7 +6,7 @@ import '../labs.css';
 const URL = 'https://surogate.ai/labs/';
 const TITLE = 'Labs - Surogate';
 const DESCRIPTION =
-  'Models the Surogate team trained and published: Rune, an open decision model for text and images, and Surogate Speech for Romanian, each with its demos at work and its numbers.';
+  'Models the Surogate team trained and published: Rune, an open decision model for text and images, and Surogate Speech for Romanian, each with its demos at work and its numbers. Plus Surogate Engine, the open-source engine that trains and serves them.';
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -20,7 +20,7 @@ const breadcrumb = {
 export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords: 'Surogate Labs, Surogate Rune, decision model, Romanian text to speech, Romanian speech recognition, Amami, Jackrabbit',
+  keywords: 'Surogate Labs, Surogate Rune, decision model, Romanian text to speech, Romanian speech recognition, Amami, Jackrabbit, LLM training, LLM serving',
   alternates: { canonical: URL },
   openGraph: { type: 'website', url: URL, title: TITLE, description: DESCRIPTION, siteName: 'Surogate', images: [{ url: 'https://surogate.ai/og-image.jpg', width: 1200, height: 630 }] },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://surogate.ai/twitter-image.jpg'] },
