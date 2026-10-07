@@ -35,6 +35,7 @@ export default function Footer() {
             { href: '/labs/', label: 'Labs' },
             { href: '/labs/rune/', label: 'Rune' },
             { href: '/labs/speech/', label: 'Speech' },
+            { href: '/labs/engine/', label: 'Engine' },
             { href: '/labs/rune-examples/', label: 'Rune examples' },
             { href: 'https://docs.surogate.ai', label: 'Platform Docs' },
             { href: 'https://github.com/invergent-ai/surogate', label: 'Surogate Trainer' },
@@ -50,14 +51,7 @@ export default function Footer() {
         <div className="mt-14 pt-6 border-t border-brand-border flex flex-wrap justify-between items-center gap-6 font-mono text-[11px] text-brand-steel tracking-[0.06em]">
           <span>
             © 2026{' '}
-            <a
-              href="https://invergent.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-brand-aubergine transition-colors"
-            >
-              INVERGENT SA
-            </a>{' '}
+            SIMPLEMINDS S.R.L{' '}
             · ALL RIGHTS RESERVED
           </span>
           <span className="inline-flex items-center gap-2">

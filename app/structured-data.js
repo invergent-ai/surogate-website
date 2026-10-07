@@ -10,7 +10,7 @@ export const organization = {
   '@type': 'Organization',
   '@id': ORG_ID,
   name: 'Surogate',
-  legalName: 'INVERGENT SA',
+  legalName: 'SIMPLEMINDS S.R.L',
   url: 'https://surogate.ai/',
   logo: {
     '@type': 'ImageObject',
@@ -39,7 +39,7 @@ export const organization = {
     {
       '@type': 'ContactPoint',
       contactType: 'sales',
-      email: 'sales@invergent.ai',
+      url: 'https://discord.gg/eVTq93BrQ4',
     },
   ],
 };

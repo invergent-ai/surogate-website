@@ -70,12 +70,12 @@ export default function RuneExamplesClient() {
               </a>
               <a
                 className="btn btn-ghost"
-                href={RUNE.blog}
+                href={RUNE.model}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => track('labs_cta_clicked', { cta: 'launch_post' })}
+                onClick={() => track('labs_cta_clicked', { cta: 'huggingface' })}
               >
-                Read the launch post
+                Open on HuggingFace
                 <ArrowUpRight size={18} strokeWidth={2} aria-hidden="true" />
               </a>
             </div>

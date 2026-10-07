@@ -200,9 +200,9 @@ export default function RunePageClient() {
                   See how it works
                   <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
                 </a>
-                <a className="btn btn-ghost" href={RUNE.blog} target="_blank" rel="noopener noreferrer"
-                   onClick={() => track('rune_cta_clicked', { cta: 'launch_post' })}>
-                  Read the launch post
+                <a className="btn btn-ghost" href={RUNE.model} target="_blank" rel="noopener noreferrer"
+                   onClick={() => track('rune_cta_clicked', { cta: 'huggingface' })}>
+                  Open on HuggingFace
                   <ArrowUpRight size={18} strokeWidth={2} aria-hidden="true" />
                 </a>
               </div>
@@ -383,7 +383,6 @@ export default function RunePageClient() {
             </a>
             {[
               ['Get the weights', RUNE.model],
-              ['Launch post', RUNE.blog],
               ['API docs', RUNE.docs],
             ].map(([label, href]) => (
               <a key={label} className="lab-textlink" href={href} target="_blank" rel="noopener noreferrer"

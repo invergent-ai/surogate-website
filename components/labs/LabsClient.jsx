@@ -5,14 +5,16 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import useReveal from '@/components/useReveal';
 import { track } from '@/lib/analytics';
-import { RUNE_DEMOS, RUNE_FACTS, SPEECH_MODELS } from '@/lib/labs';
+import { ENGINE, RUNE_DEMOS, RUNE_FACTS, SPEECH_MODELS } from '@/lib/labs';
+import EngineCores from './EngineCores';
 import LabsSubnav from './LabsSubnav';
 import RuneGlyph from './RuneGlyph';
 import { ICONS } from './icons';
 
 /*
- * surogate.ai/labs. The hub: one portal per model line, and the live examples. Each portal leads to
- * its own page (/labs/rune, /labs/speech); the sub-nav links all of them.
+ * surogate.ai/labs. The hub: one portal per model line and one for the engine that trains and serves
+ * them, then the live examples. Each portal leads to its own page (/labs/rune, /labs/speech,
+ * /labs/engine); the sub-nav links all of them.
  */
 export default function LabsClient() {
   useReveal();
@@ -31,7 +33,8 @@ export default function LabsClient() {
               Our models
             </h1>
             <p className="hero-sub reveal d2">
-              A decision model that sees, SOTA Speech-To-Text and Text-To-Speech that run on edge devices.
+              A decision model that sees, SOTA Speech-To-Text and Text-To-Speech that run on edge devices, and
+              the open-source engine we train and serve them with.
             </p>
           </div>
         </header>
@@ -75,6 +78,20 @@ export default function LabsClient() {
                 ))}
               </span>
               <span className="hub-go">Listen <ArrowRight size={18} strokeWidth={2} aria-hidden="true" /></span>
+            </a>
+
+            <a className="hub-portal hub-engine reveal d2" href="/labs/engine/"
+               onClick={() => track('labs_portal_clicked', { portal: 'engine' })}>
+              <EngineCores className="hub-cores" />
+              <span className="hub-kind">Training &amp; serving · Open source</span>
+              <span className="hub-name">Surogate Engine</span>
+              <span className="hub-line">{ENGINE.line}</span>
+              <span className="hub-facts">
+                {ENGINE.facts.map((f) => (
+                  <span key={f.n}><b>{f.n}</b> {f.l}</span>
+                ))}
+              </span>
+              <span className="hub-go">See the numbers <ArrowRight size={18} strokeWidth={2} aria-hidden="true" /></span>
             </a>
           </div>
         </section>

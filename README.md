@@ -101,7 +101,7 @@ Hand-placed conversion events are emitted from CTAs via `components/TrackedLink.
 | `github_star_clicked`       | Hero "Give us a Star"                              |
 | `pricing_plan_selected`     | Pricing plan cards (`{ plan, billing }`)           |
 | `pricing_pick_plan_clicked` | Pricing CTA "Pick a plan"                          |
-| `contact_sales_clicked`     | Enterprise card, pricing "Talk to a human"         |
+| `contact_sales_clicked`     | Enterprise card, pricing CTA "Find us on Discord"  |
 | `nav_link_clicked`          | Primary nav links (`{ label, location }`)          |
 | `footer_link_clicked`       | Footer links (`{ label, section }`)                |
 

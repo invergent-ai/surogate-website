@@ -1,6 +1,6 @@
 # Surogate
 
-> Surogate (by INVERGENT SA) is a platform to build, deploy, and monetize
+> Surogate is a platform to build, deploy, and monetize
 > autonomous AI agents that run in the cloud 24/7 — and to train small "expert
 > models" you own that match or beat frontier models on your tasks at a fraction
 > of the cost. No code required to build an agent; full SFT/RL training stack for
@@ -31,5 +31,5 @@
 - [Agent harness](https://github.com/invergent-ai/surogates): agent runtime.
 
 ## Contact
-- [Sales](mailto:sales@invergent.ai)
+- [Discord](https://discord.gg/eVTq93BrQ4)
 - [Support](mailto:hello@surogate.ai)
