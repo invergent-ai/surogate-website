@@ -509,20 +509,11 @@ export default function ShowTell() {
               </div>
             </div>
           </div>
-          <div className="exp reveal">
-            <div className="exp-head">
-              <div className="exp-eye">Benchmarked on your task &middot; support-ticket resolution</div>
-              <div className="exp-recipe"><b>Qwen3-8B</b> &rarr; SFT (12k traces) &rarr; GRPO &rarr; 4-bit AWQ</div>
-            </div>
-            <div className="exp-table">
-              <div className="exp-rowh"><span className="m">Metric</span><span>Frontier API</span><span className="win">Your expert</span></div>
-              <div className="exp-row"><span className="m">Task accuracy</span><span>94.1%</span><span className="win">95.8%</span></div>
-              <div className="exp-row"><span className="m">p95 latency</span><span>2,400 ms</span><span className="win">380 ms</span></div>
-              <div className="exp-row"><span className="m">Cost / 1k calls</span><span>$9.20</span><span className="win">$0.40</span></div>
-              <div className="exp-row"><span className="m">Model size</span><span>100B+ params</span><span className="win">8B params</span></div>
-            </div>
-            <p className="exp-foot">The moat isn't access to the biggest model - it's the flywheel that turns your work into experts <b>no one else can replicate</b>.</p>
-          </div>
+          {/* The section's thesis, kept. The comparison table that used to sit
+              above it quoted a specific run — a named base model, a trace count
+              and four metrics — that exists nowhere in any repo, so it could
+              not be sourced and has been removed rather than softened. */}
+          <p className="exp-foot reveal">The moat isn&apos;t access to the biggest model - it&apos;s the flywheel that turns your work into experts <b>no one else can replicate</b>.</p>
         </div>
       </section>
       {/* ══════════════ COPILOT ══════════════ */}

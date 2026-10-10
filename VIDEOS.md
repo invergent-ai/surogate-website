@@ -779,6 +779,9 @@ Six steps, in the order a buyer meets them:
    subscription. Use Manage subscription to change plans."
 
 
+Every video in the season tables below has a paste-ready YouTube description in
+[YouTube descriptions](#youtube-descriptions).
+
 ## Season 1 — Get an agent doing real work
 
 Follows [`work/quickstart.md`](https://docs.surogate.ai/work/quickstart/) in the
@@ -854,6 +857,355 @@ reward, and the model at the end of it.
 **Catalogue total: 31 videos, 21:23 — all built**, plus Season 0's 4:13.
 
 ---
+
+## YouTube descriptions
+
+One block per video, ready to paste. They are kept out of the tables above
+because a description is a paragraph and a table cell is a line.
+
+No chapter timestamps: YouTube requires every chapter to be at least ten
+seconds, and most steps in these films run five to eight.
+
+### t01-create-agent · 0:40
+
+```
+Create your first agent
+
+You start in Agents, click Create agent, pick a template, then give it a name and one line about what it does. About a minute later it is running, and the video ends with a first message and its reply. There is no code anywhere in it.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t02-add-knowledge · 0:40
+
+```
+Give it your knowledge
+
+You create a knowledge base, add your own documents, and compile it. Compiling turns the files into a wiki you can read yourself, so you can see what the agent will be working from. Then you attach the base to the agent and ask it something, and the answer comes back citing your files.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t03-add-skills · 0:40
+
+```
+Give it skills
+
+A skill is a written procedure the agent follows. This adds one from the catalogue, opens it up to edit the text, and shows how a skill can be backed by its own model. You can attach as many as you like, and after that the agent works your way rather than the generic way.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t04-connect-tools · 0:35
+
+```
+Connect your tools
+
+Every agent starts with a set of built-in tools. This is how you add your own: over a thousand hosted toolkits you connect with a click, or any MCP server by URL. At the end the agent does the thing in your real system instead of talking about it.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t05-put-it-in-slack · 0:30
+
+```
+Put it in Slack
+
+You connect a Slack workspace, pick the channel the agent lives in, and choose when it speaks — every message, or only when it is mentioned. Then it is in the channel and your team talks to it where they already work.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t06-hand-it-a-mission · 0:35
+
+```
+Hand it a mission
+
+A mission is a long job you hand over and walk away from. You start one from any chat, it writes its own plan, and the steps are spread across workers running in parallel. It comes back to you when it is stuck, and stops on its own when the plan is done.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t07-use-a-browser · 0:30
+
+```
+Let it use a browser
+
+You give the agent a browser profile and sign in yourself, once, so the session is yours and not a scripted login. Then you ask it to go and look at something and watch it work the page live. You can take the wheel at any point and hand it back.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t08-read-a-session · 0:30
+
+```
+Read a session
+
+Every run is recorded — the messages, every tool call, the arguments it sent and what came back. This finds a session that went wrong, reads it through, opens the call that broke it, and flags it, which is what turns a bad run into something you can fix.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t09-correct-and-redeploy · 0:35
+
+```
+Correct it and redeploy
+
+Starting from a run that went wrong: you work out what to change, edit the instructions or the skill, and ask again. Some problems a written rule will not fix, and the video says so and points at training instead. Then you check on the same question that the fix held.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t10-deep-research · 0:33
+
+```
+Deep research
+
+You turn on deep research, give it the question, and it splits into several searches running at once. What comes back is a written report with its sources attached, not a chat reply.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t11-research-missions · 0:38
+
+```
+Research missions
+
+A research mission is the platform tuning your agent for you. You give it a repo and a rubric that says what good looks like; it tries variations, branches off the promising ones, and scores each one. Only changes that measurably beat the current version are kept.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t12-coding-agents · 0:38
+
+```
+Coding agents
+
+You connect your own Claude or Codex subscription and hand the agent a coding task. It runs the real CLI in a sandbox, on your workspace or on a repo you point it at, and your key never leaves that sandbox.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t13-loops · 0:30
+
+```
+Loops
+
+A loop is work that runs on a schedule without being asked. You describe the schedule in plain language, then check what it actually set before saving it. The loops page lists them all, and a loop stays quiet unless it has something to tell you.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t14-whiteboard · 0:31
+
+```
+The whiteboard
+
+Instead of typing you write and draw on a board. Leave an empty box and the agent answers inside it, on the board, and you carry on from there.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t15-goals · 0:33
+
+```
+Goals
+
+A goal says what done looks like, and the agent keeps working until it gets there. A second model marks each attempt against the goal and decides whether the turn is over. The video also covers which tasks this is a bad fit for.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t16-approvals · 0:28
+
+```
+Approvals and the inbox
+
+Anything consequential stops and waits for you. Those requests land in the inbox, where you see the exact tool call and its arguments before approving it. Not every tool blocks — the video shows which ones do.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t17-governance · 0:33
+
+```
+Governance
+
+Two layers: which tools the agent may use at all, and which hosts it may reach on the network. Both are deny-by-default and enforced outside the model, so nothing said in the chat talks it into more access than you gave it.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t18-web-app · 0:28
+
+```
+The agent's own web app
+
+Every agent already has its own URL, from the moment it is running. It is a full app — chat, history, files — not a widget, and you decide who is allowed to open it.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t19-users · 0:36
+
+```
+Users and access
+
+Deciding who gets in. You invite someone by email, link their Slack account so they are the same person in both places, and give each of them their own usage allowance.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t20-deploy-a-model · 0:43
+
+```
+Deploy any model
+
+You can serve a model from your own hub, from Hugging Face, from OpenRouter, or from any endpoint you already run. You pin the exact revision, watch it come up, read how it is behaving, set it as a default for agents to use, and try it in the playground before anything depends on it.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t21-build-a-dataset · 0:41
+
+```
+Build a dataset
+
+Turning the work your agents already did into training data. You choose which sessions the rows come from, filter out the ones you do not want, and read the finished set row by row before using it. You can add your own columns as well.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t23-synthetic · 0:39
+
+```
+Generate synthetic data
+
+Two models: one writes the rows, another marks them, and only the rows that pass are kept. You describe the dataset you want in a sentence and it builds the pipeline for you, with seven kinds of column to choose from.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t24-sft · 1:05
+
+```
+Fine-tune with SFT
+
+A supervised fine-tune from start to finish. You pick a base model and a dataset — or leave every default alone — and start the run. The rest of the video is reading that run: the loss curves as they arrive, the exact configuration it is training with, the dataset behind it, every checkpoint it saved and which one scored best, and the lineage back to the model it started from.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t25-train-with-rl · 1:37
+
+```
+Train with reinforcement learning
+
+One GRPO run, from a real problem to a deployed model. The agent keeps calling the wrong tool, so you fork an environment, write the reward function in Python, and start the run. Then the video reads it: how rollouts get scored, what a single rollout looks like, the reward climbing over 1,400 steps, and RULER for when you cannot write a rubric yourself. It ends by merging the adapter, deploying it, pointing the agent at it, and asking the same question again.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t26-distill · 0:53
+
+```
+Distill a smaller, cheaper model
+
+The answers are fine, the model is just too big and too slow. Distillation trains a small model on a large one's outputs. The video sets the teacher and the student, chooses how much of the teacher's output distribution to keep, explains what the loss is measuring, and watches the student catch up — at a quarter of the size.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t27-evaluate · 0:50
+
+```
+Evaluate against benchmarks
+
+Scoring a model against public test sets. It covers what a benchmark actually is, picking one from the catalogue, choosing the model to score and optionally one to compare it against, checking the cost estimate before you commit, and then reading the result — the headline number and the per-category breakdown under it.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t28-compute · 0:47
+
+```
+Bring your own compute
+
+Surogate gives you compute by default, but you can run on your own instead. You paste a cloud provider's API key, its GPU offers appear, and you can open the backend to see what is actually running. For hardware you already own there is an SSH option. At the end the new backend shows up in both places you pick compute: a training run and a model deployment.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t29-hub · 0:39
+
+```
+Version everything in the Hub
+
+Models, datasets, skills and adapters all live in the Data Hub as versioned repos. You open one to see its files, read Commits to see what changed and when, and tag the version you want to keep so a training run can pin it instead of tracking whatever is newest.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t30-stripe · 0:55
+
+```
+Connect Stripe and set your pricing
+
+Selling access to an agent, with the money going into your own Stripe account. The video works through the checklist in the Monetize tab: connect Stripe, choose a pricing model, add an offer, then see the page buyers open and what happens once they have paid.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t31-buy-link · 1:06
+
+```
+Your agent's landing page and buy link
+
+Building the page people see before they buy. It starts on the Identity tab, generates the page from a layout, then adds and edits blocks by hand and picks a theme. Publishing switches it Live; the video opens the rendered page, copies the buy link, opens that too, and shows the snippet for embedding it on a site you already have.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
+
+### t32-buyer · 0:46
+
+```
+What a buyer sees
+
+The same agent from the other side. Someone opens the buy link, signs in, subscribes through Stripe, and comes back to a banner while their access is activated. Then they chat, with their balance dropping beside the header, until they run low and top up.
+
+Surogate is a platform for building, running and training agents.
+https://surogate.ai
+```
 
 ## Production order
 
