@@ -42,7 +42,7 @@
   background:var(--paper-2); color:var(--txt-3);}
 .st-labs .lab-filter-desk button[aria-pressed="true"] .lab-filter-n{background:rgba(255,255,255,0.16); color:#fff;}
 .st-labs .lab-demo{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:64px;
-  align-items:center; scroll-margin-top:110px;}
+  align-items:center; scroll-margin-top:64px;}
 .st-labs .lab-demo:nth-child(even) .lab-media{order:2;}
 .st-labs .lab-demo[data-open="true"]{grid-template-columns:minmax(0,1fr); gap:28px;}
 .st-labs .lab-demo[data-open="true"] .lab-media{order:2;}
@@ -139,15 +139,16 @@
 /* ════════════════════════════════════════════════════════════════
    Labs sub-nav,the Rune mark,and the /labs/rune scroll story
    ════════════════════════════════════════════════════════════════ */
-.st-labs .lab-subnav{position:sticky; top:64px; z-index:40; background:rgba(255,255,255,0.9);
+/* Dark, to continue the site nav above it into the dark Labs heroes. */
+.st-labs .lab-subnav{position:sticky; top:0; z-index:40; background:rgba(42,16,45,0.94);
   backdrop-filter:blur(10px) saturate(1.4); -webkit-backdrop-filter:blur(10px) saturate(1.4);
-  border-bottom:1px solid var(--line2);}
+  border-bottom:1px solid var(--line-dk);}
 .st-labs .lab-subnav-in{display:flex; gap:28px; overflow-x:auto; scrollbar-width:none; white-space:nowrap;}
 .st-labs .lab-subnav-in::-webkit-scrollbar{display:none;}
-.st-labs .lab-subnav a{padding:13px 0 11px; font-size:15px; font-weight:600; color:var(--txt-3);
+.st-labs .lab-subnav a{padding:13px 0 11px; font-size:15px; font-weight:600; color:var(--txt-d2);
   border-bottom:2px solid transparent; transition:color .2s ease, border-color .2s ease;}
-.st-labs .lab-subnav a:hover{color:var(--txt-1);}
-.st-labs .lab-subnav a[aria-current="page"]{color:var(--txt-1); border-bottom-color:var(--amber);}
+.st-labs .lab-subnav a:hover{color:var(--txt-d1);}
+.st-labs .lab-subnav a[aria-current="page"]{color:var(--txt-d1); border-bottom-color:var(--amber);}
 .st-labs .lab-subnav a:focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
 
 .st-labs .rune-glyph{--glow:0.25; display:block; overflow:visible;

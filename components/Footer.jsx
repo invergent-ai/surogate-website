@@ -1,12 +1,12 @@
 import { Youtube, Linkedin, Instagram } from 'lucide-react';
 import TrackedLink from '@/components/TrackedLink';
+import { CONTACT, mailto } from '@/lib/site';
 
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-brand-border pt-12 pb-10">
       <div className="max-w-container mx-auto px-8">
-        {/* Five columns since the audience pages got their own. The brand
-            column gives up the width rather than squeezing the link lists. */}
+        {/* The brand column gives up the width rather than squeezing the link lists. */}
         <div className="grid gap-10 grid-cols-2 lg:[grid-template-columns:1.6fr_1fr_1fr_1fr_1fr] items-start">
           <div>
             <a href="#top" className="inline-flex items-center text-brand-aubergine">
@@ -17,19 +17,15 @@ export default function Footer() {
             </p>
           </div>
           <FootCol heading="Product" links={[
-            { href: '/#lifecycle', label: 'How it works' },
-            { href: '/#product', label: 'Platform' },
+            { href: '/agents/', label: 'Agents' },
+            { href: '/keel/', label: 'Keel' },
             { href: '/pricing/', label: 'Pricing' },
-            { href: '/#monetize', label: 'Monetization' },
           ]} />
-          <FootCol heading="Professionals" links={[
-            { href: '/for/doctors/', label: 'Doctors' },
-            { href: '/for/teachers/', label: 'Teachers' },
-            { href: '/for/lawyers/', label: 'Lawyers' },
-            { href: '/for/accountants/', label: 'Accountants' },
-            { href: '/for/creators/', label: 'Creators' },
-            { href: '/for/influencers/', label: 'Influencers' },
-            { href: '/agencies/', label: 'Agencies' },
+          <FootCol heading="Partners" links={[
+            { href: '/partners/', label: 'Become a partner' },
+            { href: '/partners/#directory', label: 'Partner directory' },
+            { href: mailto('Find a Surogate partner'), label: 'Find a partner' },
+            { href: CONTACT.discord, label: 'Discord' },
           ]} />
           <FootCol heading="Resources" links={[
             { href: '/labs/', label: 'Labs' },

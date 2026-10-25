@@ -4,27 +4,14 @@ import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { track } from '@/lib/analytics';
+import { NAV, SIGN_IN } from '@/lib/site';
 
-const NAV_LINKS = [
-  { key: 'how', hash: '#lifecycle', label: 'How it works' },
-  { key: 'platform', hash: '#product', label: 'Platform' },
-  { key: 'pricing', href: '/pricing', label: 'Pricing' },
-  { key: 'labs', href: '/labs/', label: 'Labs' },
-  { key: 'docs', href: 'https://docs.surogate.ai', label: 'Docs', external: true },
-];
+const external = (link) => (link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {});
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const onPricing = pathname?.startsWith('/pricing');
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 4);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const pathname = usePathname() || '/';
+  const isCurrent = (link) => !link.external && pathname.startsWith(link.href);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -32,110 +19,100 @@ export default function Nav() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
+    const onKey = (e) => e.key === 'Escape' && setMenuOpen(false);
+    window.addEventListener('keydown', onKey);
     return () => {
       document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
     };
   }, [menuOpen]);
 
-  const home = (hash) => (pathname === '/' ? hash : `/${hash}`);
-  const baseLink = 'font-sans text-lg font-medium transition-colors';
-  const linkCls = (active) =>
-    `${baseLink} ${active ? 'text-brand-aubergine' : 'text-brand-graphite hover:font-bold'}`;
-
-  const resolveHref = (link) => {
-    if (link.href) return link.href;
-    return home(link.hash);
-  };
-
-  const isActive = (link) =>
-    (link.key === 'pricing' && onPricing) || (link.key === 'labs' && pathname?.startsWith('/labs'));
-
+  // Colours carry ! because Labs pages sit inside .st-home, whose `a{color:inherit}`
+  // outranks a utility class.
   return (
-    <header
-      className={`sticky top-0 z-50 bg-white/85 backdrop-blur-md backdrop-saturate-150 transition-[border-color,background] duration-200 border-b ${
-        scrolled || menuOpen ? 'border-brand-border' : 'border-transparent'
-      }`}
-    >
-      <div className="relative max-w-container mx-auto px-8 flex items-center justify-between h-16">
-        <div className="flex items-center gap-8">
-          <a href="/" aria-label="Surogate" className="inline-flex items-center h-7 text-brand-aubergine">
-            <img src="/brand/logo-full-black.svg" alt="Surogate" className="h-12 w-auto block" />
-          </a>
-          <nav aria-label="Primary" className="hidden md:flex items-center gap-7">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.key}
-                href={resolveHref(link)}
-                className={linkCls(isActive(link))}
-                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                onClick={() => track('nav_link_clicked', { label: link.label, location: 'desktop' })}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-md text-brand-aubergine hover:bg-brand-fog transition-colors"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            onClick={() => setMenuOpen((open) => !open)}
+    <header className="relative z-50 bg-brand-aubergine border-b border-white/[0.12] font-sans">
+      <div className="max-w-[1248px] mx-auto px-6 py-4 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <a href="/" className="!text-white no-underline font-extrabold text-xl tracking-[-0.02em]">
+          Surogate
+        </a>
+        <nav aria-label="Primary" className="hidden lg:flex flex-wrap gap-x-6 gap-y-1 flex-auto">
+          {NAV.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              aria-current={isCurrent(link) ? 'page' : undefined}
+              className={`no-underline text-[15px] py-3 ${isCurrent(link) ? '!text-white font-bold' : '!text-white/80 hover:!text-white'}`}
+              onClick={() => track('nav_link_clicked', { label: link.label, location: 'desktop' })}
+              {...external(link)}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        <div className="hidden lg:flex items-center gap-4">
+          <a
+            href={SIGN_IN}
+            className="!text-white no-underline text-[15px] py-3"
+            onClick={() => track('cta_signin_clicked', { location: 'nav' })}
           >
-            {menuOpen ? <X className="h-5 w-5" strokeWidth={2} /> : <Menu className="h-5 w-5" strokeWidth={2} />}
-          </button>
+            Sign in
+          </a>
+          <a
+            href="/partners/"
+            className="inline-flex items-center min-h-[44px] px-[18px] bg-brand-orange !text-brand-aubergine no-underline font-semibold text-[15px]"
+            onClick={() => track('cta_partner_clicked', { location: 'nav' })}
+          >
+            Become a partner
+          </a>
         </div>
+        <button
+          type="button"
+          className="lg:hidden ml-auto inline-flex items-center justify-center w-11 h-11 -mr-2 !text-white"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? <X className="h-6 w-6" strokeWidth={2} /> : <Menu className="h-6 w-6" strokeWidth={2} />}
+        </button>
       </div>
 
       {menuOpen && (
-        <div
-          className="md:hidden fixed inset-0 top-16 z-40 bg-brand-aubergine/15"
-          aria-hidden="true"
-          onClick={() => setMenuOpen(false)}
-        />
+        <div className="lg:hidden fixed inset-0 z-40 bg-brand-aubergine-2/60" aria-hidden="true" onClick={() => setMenuOpen(false)} />
       )}
 
       <nav
         id="mobile-nav"
         aria-label="Mobile"
-        className={`md:hidden absolute left-0 right-0 top-full z-50 border-b border-brand-border bg-white/95 backdrop-blur-md transition-all duration-200 ease-out ${
-          menuOpen
-            ? 'visible opacity-100 translate-y-0'
-            : 'invisible opacity-0 -translate-y-2 pointer-events-none'
+        className={`lg:hidden absolute left-0 right-0 top-full z-50 bg-brand-aubergine border-b border-white/[0.12] transition-all duration-200 ease-out ${
+          menuOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2 pointer-events-none'
         }`}
       >
-        <div className="max-w-container mx-auto px-8 py-5 flex flex-col gap-1">
-          {NAV_LINKS.map((link) => (
+        <div className="px-6 pt-2 pb-6 flex flex-col">
+          {NAV.map((link) => (
             <a
-              key={link.key}
-              href={resolveHref(link)}
-              className={`rounded-md px-3 py-3 text-[15px] font-medium transition-colors ${
-                isActive(link)
-                  ? 'bg-brand-warm text-brand-aubergine'
-                  : 'text-brand-graphite hover:bg-brand-fog hover:text-brand-aubergine'
-              }`}
-              {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              key={link.label}
+              href={link.href}
+              aria-current={isCurrent(link) ? 'page' : undefined}
+              className={`no-underline text-[17px] py-3 border-b border-white/10 ${isCurrent(link) ? '!text-white font-bold' : '!text-white/80'}`}
               onClick={() => {
                 track('nav_link_clicked', { label: link.label, location: 'mobile' });
                 setMenuOpen(false);
               }}
+              {...external(link)}
             >
               {link.label}
             </a>
           ))}
-
-          <a
-            href="https://ops.surogate.ai"
-            className="mt-3 inline-flex items-center justify-center h-11 rounded-md bg-grad-wine-horiz px-5 text-xs font-semibold uppercase tracking-wider-2 text-white border border-brand-wine/40 transition hover:brightness-110"
-            onClick={() => {
-              track('cta_signin_clicked', { location: 'nav_mobile' });
-              setMenuOpen(false);
-            }}
-          >
+          <a href={SIGN_IN} className="no-underline text-[17px] py-3 !text-white" onClick={() => track('cta_signin_clicked', { location: 'nav_mobile' })}>
             Sign in
+          </a>
+          <a
+            href="/partners/"
+            className="mt-3 inline-flex items-center justify-center min-h-[48px] bg-brand-orange !text-brand-aubergine no-underline font-semibold text-base"
+            onClick={() => track('cta_partner_clicked', { location: 'nav_mobile' })}
+          >
+            Become a partner
           </a>
         </div>
       </nav>
