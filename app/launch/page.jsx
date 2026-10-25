@@ -1,13 +1,10 @@
-import LaunchClient from './LaunchClient';
+import Redirect, { redirectMetadata } from '@/components/site/Redirect';
+import { REDIRECTS } from '@/lib/site';
 
-export const metadata = {
-  title: 'Early Access - Surogate',
-  description: 'Limited early access spots for Surogate. Claim yours before the offer closes.',
-  alternates: {
-    canonical: 'https://surogate.ai/launch/',
-  },
-};
+const to = REDIRECTS['/launch/'];
 
-export default function LaunchPage() {
-  return <LaunchClient />;
+export const metadata = redirectMetadata(to);
+
+export default function Moved() {
+  return <Redirect to={to} />;
 }

@@ -17,7 +17,7 @@ export const organization = {
     url: 'https://surogate.ai/brand/logo-full-black.svg',
   },
   description:
-    'The intelligence factory for autonomous agents - train and fine-tune custom expert LLMs you own and build, deploy, and observe autonomous cloud AI agents.',
+    'Surogate makes Surogate Agents, an agentic platform; Keel, which runs agents inside defined processes; and custom language and speech models. It runs in Surogate cloud, on your Kubernetes or air-gapped.',
   email: 'hello@surogate.ai',
   // Add LinkedIn, HuggingFace, Discord, Wikidata, and X URLs here as they are confirmed.
   sameAs: [
@@ -50,7 +50,7 @@ export const website = {
   url: 'https://surogate.ai/',
   name: 'Surogate',
   description:
-    'Train and fine-tune LLMs at practical hardware limits; build and run autonomous cloud AI agents.',
+    'Surogate Agents, Keel and custom models for teams that run agents on their own processes and infrastructure.',
   publisher: { '@id': ORG_ID },
   inLanguage: 'en',
 };
@@ -63,13 +63,13 @@ export const softwareApplication = {
   operatingSystem: 'Web-based',
   url: 'https://surogate.ai/',
   description:
-    'Platform to train and fine-tune custom expert LLMs and to build, deploy, and observe autonomous cloud AI agents. Includes a git-backed model/dataset hub, agent runtime, and developer toolkit.',
+    'Surogate Agents: design, test, govern and run agents for whole teams without writing code, in Surogate cloud or on your own Kubernetes, air-gapped networks included.',
   publisher: { '@id': ORG_ID },
   offers: [
-    { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'USD' },
-    { '@type': 'Offer', name: 'Standard', price: '30', priceCurrency: 'USD', category: 'monthly subscription' },
-    { '@type': 'Offer', name: 'Pro', price: '72', priceCurrency: 'USD', category: 'monthly subscription' },
-    { '@type': 'Offer', name: 'Max', price: '144', priceCurrency: 'USD', category: 'monthly subscription' },
+    { '@type': 'Offer', name: 'Pilot', price: '0', priceCurrency: 'USD', description: 'The first 60 days of every new client' },
+    { '@type': 'Offer', name: 'Production', price: '990', priceCurrency: 'USD', category: 'monthly subscription per client organisation' },
+    { '@type': 'Offer', name: 'Scale', price: '2990', priceCurrency: 'USD', category: 'monthly subscription per client organisation' },
+    { '@type': 'Offer', name: 'Own infrastructure', price: '60000', priceCurrency: 'USD', category: 'yearly licence' },
   ],
 };
 

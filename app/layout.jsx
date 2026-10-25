@@ -33,31 +33,28 @@ export const viewport = {
   themeColor: '#09090b',
 };
 
+const TITLE = 'Surogate - Your workforce, multiplied.';
+const DESCRIPTION =
+  'Every team works with agents that read, check, draft and follow your processes, on your own infrastructure. Surogate Agents, Keel and custom models.';
+
 export const metadata = {
-  title: 'Surogate - Autonomous AI agents that work for you 24/7',
-  description: 'Deploy autonomous AI agents that run in the cloud around the clock - built from how you already work and powered by expert models you own. No code required.',
-  keywords: 'autonomous AI agents, AI agent platform, cloud AI agents, AI agents that work 24/7, expert models, custom LLM fine-tuning, agent automation, monetize AI agents, no-code AI agents',
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: 'AI agent platform, Surogate Agents, Keel, agentic orchestration, agents in processes, custom models, on-premise AI agents, air-gapped AI agents, AI agent partners',
   authors: [{ name: 'Surogate' }],
   robots: 'index, follow',
   openGraph: {
     type: 'website',
     url: 'https://surogate.ai/',
-    title: 'Surogate - Autonomous AI agents that work for you 24/7',
-    description: 'Deploy one agent or hundreds. They run in the cloud 24/7, built from how you work and powered by expert models you own.',
+    title: TITLE,
+    description: DESCRIPTION,
     siteName: 'Surogate',
-    images: [
-      {
-        url: 'https://surogate.ai/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Surogate - Multiply yourself. Train expert models you own. Run autonomous agents 24/7.',
-      },
-    ],
+    images: [{ url: 'https://surogate.ai/og-image.jpg', width: 1200, height: 630, alt: 'Surogate' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Surogate - Autonomous AI agents that work for you 24/7',
-    description: 'Deploy one agent or hundreds. They run in the cloud 24/7, built from how you work and powered by expert models you own.',
+    title: TITLE,
+    description: DESCRIPTION,
     images: ['https://surogate.ai/twitter-image.jpg'],
   },
   alternates: {
