@@ -1,0 +1,65 @@
+/* Page CSS from the design canvas artboard, scoped to .pg-home where it would leak. */
+/* The canvas lays pages out with the browser default content-box; Tailwind resets to
+   border-box, which would take the padding out of every max-width and change wrapping. */
+.pg-home main, .pg-home main *, .pg-home main *::before, .pg-home main *::after { box-sizing: content-box; }
+/* ...and with line-height: normal where an element sets none; Tailwind puts 1.5 on <html>. */
+.pg-home main { line-height: normal; }
+/* globals.css paints every pre purple and borderless with !important; these are the canvas's own panels. */
+.pg-home pre{margin:0;font-family:'JetBrains Mono',ui-monospace,monospace;white-space:pre;overflow-x:auto;
+  background-color:#140814 !important;border:1px solid rgba(255,255,255,0.1) !important}
+/* sg-hero */
+@keyframes sg-chip0-k { 0.0% { transform: translate(0.0px, 0.0px) } 45.1% { transform: translate(-19.9px, 9.4px) } 100.0% { transform: translate(-44.2px, -2.0px) } }
+.sg-chip0 { animation: sg-chip0-k 1.6s linear infinite; animation-delay: 0.0s }
+@keyframes sg-chip1-k { 0.0% { transform: translate(0.0px, 0.0px) } 45.1% { transform: translate(19.9px, 9.4px) } 100.0% { transform: translate(44.2px, -2.0px) } }
+.sg-chip1 { animation: sg-chip1-k 2.0s linear infinite; animation-delay: 0.35s }
+@keyframes sg-chip2-k { 0.0% { transform: translate(0.0px, 0.0px) } 100.0% { transform: translate(24.2px, -11.4px) } }
+.sg-chip2 { animation: sg-chip2-k 2.4000000000000004s linear infinite; animation-delay: 0.7s }
+@keyframes sg-chip3-k { 0.0% { transform: translate(0.0px, 0.0px) } 100.0% { transform: translate(24.2px, -11.4px) } }
+.sg-chip3 { animation: sg-chip3-k 1.6s linear infinite; animation-delay: 1.05s }
+@keyframes sg-chip4-k { 0.0% { transform: translate(0.0px, 0.0px) } 100.0% { transform: translate(-24.2px, -11.4px) } }
+.sg-chip4 { animation: sg-chip4-k 2.0s linear infinite; animation-delay: 1.4s }
+@keyframes sg-chip5-k { 0.0% { transform: translate(0.0px, 0.0px) } 100.0% { transform: translate(-24.2px, -11.4px) } }
+.sg-chip5 { animation: sg-chip5-k 2.4000000000000004s linear infinite; animation-delay: 1.75s }
+@keyframes sg-chip6-k { 0.0% { transform: translate(0.0px, 0.0px) } 100.0% { transform: translate(-15.6px, 7.3px) } }
+.sg-chip6 { animation: sg-chip6-k 1.6s linear infinite; animation-delay: 2.1s }
+@keyframes sg-chip7-k { 0.0% { transform: translate(0.0px, 0.0px) } 100.0% { transform: translate(15.6px, 7.3px) } }
+.sg-chip7 { animation: sg-chip7-k 2.0s linear infinite; animation-delay: 2.45s }
+@keyframes sg-route0 { 0.0% { transform: translate(0.0px, 0.0px); opacity: 1 } 21.8% { transform: translate(43.3px, 20.3px); opacity: 1 } 43.7% { transform: translate(86.6px, 40.7px); opacity: 1 } 71.2% { transform: translate(32.0px, 66.3px); opacity: 1 } 100.0% { transform: translate(-30.3px, 75.2px); opacity: 1 } }
+@keyframes sg-route1 { 0.0% { transform: translate(0.0px, 0.0px); opacity: 1 } 20.9% { transform: translate(43.3px, 20.3px); opacity: 1 } 41.9% { transform: translate(86.6px, 40.7px); opacity: 1 } 84.7% { transform: translate(-11.3px, 45.9px); opacity: 1 } 100.0% { transform: translate(-30.3px, 75.2px); opacity: 1 } }
+.sg-packet0 { animation: sg-route0 5.2s linear infinite }
+.sg-packet1 { animation: sg-route1 5.2s linear infinite; animation-delay: 2.6s }
+@keyframes sg-pulse-k { 0%, 100% { opacity: 1 } 50% { opacity: 0.45 } }
+.sg-pulse { animation: sg-pulse-k 2.4s ease-in-out infinite }
+@keyframes sg-wave-k { from { transform: scaleY(0.35) } to { transform: scaleY(1) } }
+.sg-bar { transform-box: fill-box; transform-origin: 50% 100%; animation: sg-wave-k 0.9s ease-in-out infinite alternate }
+@keyframes sg-layer-k { 0%, 100% { opacity: 0.55 } 30% { opacity: 1 } }
+.sg-layer { animation: sg-layer-k 1.8s ease-in-out infinite }
+@keyframes sg-rail-k { to { stroke-dashoffset: -14 } }
+.sg-rail { animation: sg-rail-k 0.8s linear infinite }
+@keyframes sg-unpack-top { from { transform: translate(0px, 151px) } to { transform: translate(0px, 0px) } }
+@keyframes sg-unpack-bottom { from { transform: translate(0px, -151px) } to { transform: translate(0px, 0px) } }
+.sg-in-slab0 { animation: sg-unpack-top 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both }
+.sg-in-slab2 { animation: sg-unpack-bottom 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both }
+@keyframes sg-rise { from { opacity: 0; transform: translate(0px, 14px) } to { opacity: 1; transform: translate(0px, 0px) } }
+.sg-in-content { animation: sg-rise 0.6s ease-out both }
+@keyframes sg-fade { from { opacity: 0 } to { opacity: 1 } }
+.sg-in-rails { animation: sg-fade 0.5s ease-out 1.5s both }
+.sg-in-shadow { animation: sg-fade 0.8s ease-out 1.2s both }
+@keyframes sg-label-in { from { opacity: 0; transform: translate(-12px, 0px) } to { opacity: 1; transform: translate(0px, 0px) } }
+.sg-in-label { animation: sg-label-in 0.5s ease-out both }
+@keyframes sg-target-k { 0%, 30% { border-color: #ffaf10; background-color: rgba(255,175,16,0.10); box-shadow: 0 0 28px -8px rgba(255,175,16,0.7) } 36%, 100% { border-color: rgba(255,255,255,0.16); background-color: rgba(255,255,255,0.02); box-shadow: 0 0 0 0 rgba(255,175,16,0) } }
+.sg-target { animation: sg-target-k 9s ease-in-out infinite both }
+@media (prefers-reduced-motion: reduce) { .sg-chip0, .sg-chip1, .sg-chip2, .sg-chip3, .sg-chip4, .sg-chip5, .sg-chip6, .sg-chip7, .sg-packet0, .sg-packet1, .sg-pulse, .sg-bar, .sg-rail, .sg-layer, .sg-in-slab0, .sg-in-slab2, .sg-in-content, .sg-in-rails, .sg-in-shadow, .sg-in-label, .sg-target { animation: none } }
+/* /sg-hero */
+/* sg-deploy */
+@keyframes sg-bob-k { 0%, 100% { transform: translate(0px, 0px) } 50% { transform: translate(0px, -5px) } }
+.sg-bob { animation: sg-bob-k 4s ease-in-out infinite }
+@keyframes sg-blink-k { 0%, 100% { opacity: 1 } 50% { opacity: 0.2 } }
+.sg-blink { animation: sg-blink-k 1.6s steps(2, jump-none) infinite }
+@media (prefers-reduced-motion: reduce) { .sg-bob, .sg-blink { animation: none } }
+/* /sg-deploy */
+/* sg-keel */
+@keyframes kf-case-k { 0.0% { transform: translate(0px, 0px); opacity: 1 } 7.9% { transform: translate(0px, 95px); opacity: 1 } 19.1% { transform: translate(135px, 95px); opacity: 1 } 24.1% { transform: translate(135px, 35px); opacity: 1 } 32.9% { transform: translate(240px, 35px); opacity: 1 } 41.6% { transform: translate(345px, 35px); opacity: 1 } 46.6% { transform: translate(345px, 95px); opacity: 1 } 54.5% { transform: translate(440px, 95px); opacity: 1 } 62.0% { transform: translate(530px, 95px); opacity: 1 } 78.0% { transform: translate(722px, 95px); opacity: 1 } 92.0% { transform: translate(890px, 95px); opacity: 1 } 100% { transform: translate(890px, 95px); opacity: 0 } }
+.kf-case { animation: kf-case-k 9s linear infinite }
+@media (prefers-reduced-motion: reduce) { .kf-case { animation: none } }
+/* /sg-keel */

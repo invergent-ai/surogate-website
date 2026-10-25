@@ -34,6 +34,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Check links, anchors and redirects
+        run: npm run check:links
+
       - name: Download install.sh
         run: curl -fsSL -o ./out/install.sh https://github.com/invergent-ai/surogate/raw/refs/heads/main/install.sh
 

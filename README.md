@@ -20,9 +20,9 @@ Use Node 20 or newer (CI builds with 20).
 
 | path | what |
 |---|---|
-| `app/` | routes: `/`, `/pricing`, `/launch`, `/agencies`, `/for/{accountants,creators,doctors,influencers,lawyers,teachers}`, `/labs` (`engine`, `rune`, `rune-examples`, `speech`) |
+| `app/` | routes: `/`, `/agents`, `/keel`, `/partners`, `/pricing`, `/labs` (`engine`, `rune`, `rune-examples`, `speech`); retired URLs are redirect pages listed in `lib/site.js` |
 | `components/` | page sections; `components/film/` holds the Remotion scenes the site also mounts live |
-| `lib/` | data and helpers (`labs.js` is the Labs catalogue, `analytics.js`, `firebase.js`) |
+| `lib/` | data and helpers (`site.js` holds routes, nav, contact and redirects; `labs.js` is the Labs catalogue; `pricing.js`, `analytics.js`) |
 | `public/brand/` | canonical brand masters: marks, lockups, rabbit, burst |
 | `remotion/` | film compositions; see [`VIDEOS.md`](VIDEOS.md) |
 | `functions/` | Firebase Cloud Functions for launch signups; deployed separately, not part of the site build |

@@ -1,0 +1,90 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Agents-2.dc.html": {
+      "expand": "fill",
+      "h": 4400,
+      "title": "Surogate Agents (continued)",
+      "w": 1440,
+      "x": 3040,
+      "y": 5020
+    },
+    "Agents.dc.html": {
+      "expand": "fill",
+      "h": 4900,
+      "title": "Surogate Agents",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    },
+    "Keel.dc.html": {
+      "expand": "fill",
+      "h": 5440,
+      "title": "Keel",
+      "w": 1440,
+      "x": 4560,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 7800,
+      "title": "Homepage",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Pricing.dc.html": {
+      "expand": "fill",
+      "h": 1900,
+      "title": "Pricing",
+      "w": 1440,
+      "x": 1520,
+      "y": 1160
+    },
+    "Sitemap.dc.html": {
+      "h": 1040,
+      "title": "Site map",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "Partners.dc.html": {
+      "expand": "fill",
+      "h": 4600,
+      "title": "Partners",
+      "w": 1440,
+      "x": 6080,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-23T20:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "heading": {
+      "kind": "title1",
+      "maxW": 2960,
+      "text": "Surogate site for deployment partners: proposal",
+      "w": 240,
+      "x": 0,
+      "y": -320
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Agents.dc.html",
+    "Agents-2.dc.html",
+    "Keel.dc.html",
+    "Partners.dc.html",
+    "Sitemap.dc.html",
+    "Pricing.dc.html"
+  ],
+  "pages": [],
+  "title": "Surogate partner landing page"
+}

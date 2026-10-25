@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Surogate Agents, continued</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#9b1f61}a:hover{color:#2a102d}
+/* sg-agents */
+@media (max-width: 980px) { .ag-side, .ag-wide { display: none !important } }
+/* /sg-agents */
+</style>
+</helmet>
+<div style="font-family: Inter, system-ui, sans-serif; color: #2a102d; background: #ffffff; width: 100%; overflow-x: hidden">
+
+<!-- LONG RUNNING -->
+<section style="background: #faf9f7; color: #2a102d; border-top: 1px solid #e6e3eb">
+<div style="max-width: 1200px; margin: 0 auto; padding: 104px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px"><h2 style="margin: 0; font-size: clamp(32px, 3.8vw, 48px); line-height: 1.08; letter-spacing: -0.028em; font-weight: 800">Work that runs for hours, days or months.</h2></div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px"><div style="flex: 1 1 250px; box-sizing: border-box; min-width: 0; background: #ffffff; border: 1px solid #e6e3eb; padding: 26px; display: flex; flex-direction: column; gap: 12px"><p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 600; color: #9b1f61">/goal</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Works until a separate evaluator, reading the evidence, says the goal is met.</p></div><div style="flex: 1 1 250px; box-sizing: border-box; min-width: 0; background: #ffffff; border: 1px solid #e6e3eb; padding: 26px; display: flex; flex-direction: column; gap: 12px"><p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 600; color: #9b1f61">/mission</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Splits an objective into tasks for sub-agents and judges the results against your rubric.</p></div><div style="flex: 1 1 250px; box-sizing: border-box; min-width: 0; background: #ffffff; border: 1px solid #e6e3eb; padding: 26px; display: flex; flex-direction: column; gap: 12px"><p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 600; color: #9b1f61">/loop</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Runs a prompt every few minutes, hours or days.</p></div><div style="flex: 1 1 250px; box-sizing: border-box; min-width: 0; background: #ffffff; border: 1px solid #e6e3eb; padding: 26px; display: flex; flex-direction: column; gap: 12px"><p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 600; color: #9b1f61">/deep-research</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Returns a cited report, researched and written by two sub-agents.</p></div></div>
+<div style="display: flex; flex-wrap: wrap; gap: 36px 40px"><div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Sub-agents that share notes</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Parallel helpers write to a board of checked notes, so a dead end one of them found is not repeated by the next.</p></div><div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Tasks that survive crashes</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">A task is stored and retried up to three times, and each retry reads what went wrong before.</p></div></div>
+<div style="display: flex; flex-direction: column; gap: 22px; padding: 32px; background: #ffffff; border: 1px solid #e6e3eb"><div style="display: flex; flex-direction: column; gap: 8px; max-width: 760px"><p style="margin: 0; font-size: 24px; font-weight: 800">Programs: the agent writes first.</p><p style="margin: 0; font-size: 17px; line-height: 1.6; color: #403e4a">Enrol people in a journey and the agent follows up on the days you choose, on WhatsApp, Slack, Telegram or by phone. It writes each message, reads the replies, and alerts your team when a person is needed.</p></div><svg role="img" aria-label="A program timeline: enrolled on day 0, welcome on day 1, check-in on day 3, reminder on day 7, team alerted on day 8 when there is no reply" viewBox="0 0 950 110" width="100%" style="display: block; height: auto; font-family: Inter, sans-serif"><line x1="70" y1="40" x2="880" y2="40" stroke="#cfc9d6" stroke-width="2"></line><rect x="63" y="33" width="14" height="14" fill="#2a102d"></rect><text x="70" y="76" text-anchor="middle" font-size="14" font-weight="700" fill="#2a102d">Day 0</text><text x="70" y="96" text-anchor="middle" font-size="13" fill="#403e4a">Enrolled</text><rect x="273" y="33" width="14" height="14" fill="#2a102d"></rect><text x="280" y="76" text-anchor="middle" font-size="14" font-weight="700" fill="#2a102d">Day 1</text><text x="280" y="96" text-anchor="middle" font-size="13" fill="#403e4a">Welcome</text><rect x="483" y="33" width="14" height="14" fill="#2a102d"></rect><text x="490" y="76" text-anchor="middle" font-size="14" font-weight="700" fill="#2a102d">Day 3</text><text x="490" y="96" text-anchor="middle" font-size="13" fill="#403e4a">Check-in</text><rect x="693" y="33" width="14" height="14" fill="#2a102d"></rect><text x="700" y="76" text-anchor="middle" font-size="14" font-weight="700" fill="#2a102d">Day 7</text><text x="700" y="96" text-anchor="middle" font-size="13" fill="#403e4a">Reminder</text><rect x="873" y="33" width="14" height="14" fill="#9b1f61"></rect><text x="880" y="76" text-anchor="middle" font-size="14" font-weight="700" fill="#2a102d">Day 8</text><text x="880" y="96" text-anchor="middle" font-size="13" fill="#403e4a">Team alerted</text></svg></div>
+</div>
+</section>
+
+<!-- CHANNELS -->
+<section style="background: #ffffff; color: #2a102d; border-top: 1px solid #e6e3eb">
+<div style="max-width: 1200px; margin: 0 auto; padding: 104px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px"><h2 style="margin: 0; font-size: clamp(32px, 3.8vw, 48px); line-height: 1.08; letter-spacing: -0.028em; font-weight: 800">One agent on nine channels.</h2><p style="margin: 0; font-size: 19px; line-height: 1.6; color: #403e4a">A person who moves from the web to Slack or WhatsApp keeps the same conversations, memory and allowance.</p></div>
+<div style="display: flex; flex-wrap: wrap; gap: 28px 40px"><div style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Web app</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Always on, with your agent's name and logo.</p></div><div style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Website widget</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">A chat bubble on your own site.</p></div><div style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">API</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">OpenAI-compatible. Every call runs the whole agent.</p></div><div style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Slack</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Channels and DMs. It can follow a channel and speak up.</p></div><div style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Microsoft Teams</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">In your own Microsoft tenant.</p></div><div style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">WhatsApp</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Templates, quick replies and native forms.</p></div><div style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Telegram</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Groups, threads and private chats.</p></div><div style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Discord</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Your own bot in your servers.</p></div><div style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Phone</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Inbound calls, in the voice you choose.</p></div></div>
+</div>
+</section>
+
+<!-- IMPROVE -->
+<section style="background: #1a0a1c; color: #ffffff">
+<div style="max-width: 1200px; margin: 0 auto; padding: 104px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px"><h2 style="margin: 0; font-size: clamp(32px, 3.8vw, 48px); line-height: 1.08; letter-spacing: -0.028em; font-weight: 800">Agents that improve from their own sessions.</h2><p style="margin: 0; font-size: 19px; line-height: 1.6; color: rgba(255,255,255,0.78)">Mark sessions as good or bad, and the studio turns them into training data, fine-tunes, scores and experts.</p></div>
+<svg role="img" aria-label="The improvement loop: sessions become datasets, datasets train models, evaluations score them, experts go back into new sessions" viewBox="0 0 1160 190" width="100%" style="display: block; height: auto; font-family: Inter, sans-serif"><rect x="0" y="30" width="196" height="86" fill="#2a102d" stroke="rgba(255,255,255,0.22)"></rect><rect x="0" y="30" width="196" height="3" fill="#ffaf10"></rect><text x="16" y="66" font-size="17" font-weight="700" fill="#ffffff">Sessions</text><text x="16" y="92" font-size="13" fill="rgba(255,255,255,0.7)">Thumbs and quality flags</text><path d="M202 73 H233" stroke="rgba(255,255,255,0.5)" stroke-width="1.6"></path><path d="M232 68 L238 73 L232 78 Z" fill="rgba(255,255,255,0.5)"></path><rect x="241" y="30" width="196" height="86" fill="#2a102d" stroke="rgba(255,255,255,0.22)"></rect><rect x="241" y="30" width="196" height="3" fill="#ffaf10"></rect><text x="257" y="66" font-size="17" font-weight="700" fill="#ffffff">Datasets</text><text x="257" y="92" font-size="13" fill="rgba(255,255,255,0.7)">From sessions or synthetic</text><path d="M443 73 H474" stroke="rgba(255,255,255,0.5)" stroke-width="1.6"></path><path d="M473 68 L479 73 L473 78 Z" fill="rgba(255,255,255,0.5)"></path><rect x="482" y="30" width="196" height="86" fill="#2a102d" stroke="rgba(255,255,255,0.22)"></rect><rect x="482" y="30" width="196" height="3" fill="#ffaf10"></rect><text x="498" y="66" font-size="17" font-weight="700" fill="#ffffff">Training</text><text x="498" y="92" font-size="13" fill="rgba(255,255,255,0.7)">SFT, DPO, GRPO, distill</text><path d="M684 73 H715" stroke="rgba(255,255,255,0.5)" stroke-width="1.6"></path><path d="M714 68 L720 73 L714 78 Z" fill="rgba(255,255,255,0.5)"></path><rect x="723" y="30" width="196" height="86" fill="#2a102d" stroke="rgba(255,255,255,0.22)"></rect><rect x="723" y="30" width="196" height="3" fill="#ffaf10"></rect><text x="739" y="66" font-size="17" font-weight="700" fill="#ffffff">Evaluations</text><text x="739" y="92" font-size="13" fill="rgba(255,255,255,0.7)">40 benchmarks, A/B runs</text><path d="M925 73 H956" stroke="rgba(255,255,255,0.5)" stroke-width="1.6"></path><path d="M955 68 L961 73 L955 78 Z" fill="rgba(255,255,255,0.5)"></path><rect x="964" y="30" width="196" height="86" fill="#2a102d" stroke="rgba(255,255,255,0.22)"></rect><rect x="964" y="30" width="196" height="3" fill="#ffe845"></rect><text x="980" y="66" font-size="17" font-weight="700" fill="#ffffff">Experts</text><text x="980" y="92" font-size="13" fill="rgba(255,255,255,0.7)">Fine-tuned specialists</text><path d="M1062.0 116 V160 H98.0 V124" fill="none" stroke="#ffe845" stroke-width="1.6" stroke-dasharray="5 5"></path><path d="M93.0 126 L98.0 118 L103.0 126 Z" fill="#ffe845"></path><text x="580.0" y="182" text-anchor="middle" font-size="13" fill="rgba(255,255,255,0.7)">The next sessions use the improved agent</text></svg>
+<div style="display: flex; flex-wrap: wrap; gap: 36px 40px"><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.16)"><p style="margin: 0; font-size: 18px; font-weight: 700">Skill optimisation</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.78)">Rewrites a skill against generated tasks and keeps the best version. Nothing changes until you apply it.</p></div><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.16)"><p style="margin: 0; font-size: 18px; font-weight: 700">Experts</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.78)">A skill backed by its own fine-tuned model, which the agent consults in a bounded loop.</p></div><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.16)"><p style="margin: 0; font-size: 18px; font-weight: 700">Any GPU</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.78)">Connect AWS, Azure, GCP, Nebius, RunPod, Modal, Oracle, Vast.ai or your own servers.</p></div></div>
+</div>
+</section>
+
+<!-- COMPARE -->
+<section style="background: #ffffff; color: #2a102d; border-top: 1px solid #e6e3eb">
+<div style="max-width: 1200px; margin: 0 auto; padding: 104px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px"><h2 style="margin: 0; font-size: clamp(32px, 3.8vw, 48px); line-height: 1.08; letter-spacing: -0.028em; font-weight: 800">How it compares.</h2></div>
+<div class="ag-wide" style="display: flex; gap: 40px; padding: 0 0 12px; font-size: 14px; font-weight: 600; color: #403e4a"><span style="flex: 0 0 240px"></span><span style="flex: 1 1 0">Elsewhere</span><span style="flex: 1 1 0">In Surogate Agents</span></div><div style="border-bottom: 1px solid #e6e3eb"><div style="display: flex; flex-wrap: wrap; gap: 10px 40px; padding: 24px 0; border-top: 1px solid #e6e3eb"><div style="flex: 0 0 240px"><p style="margin: 0; font-size: 19px; font-weight: 700">Agent frameworks</p><p style="margin: 4px 0 0; font-size: 14px; color: #403e4a">LangChain, LangGraph</p></div><p style="margin: 0; flex: 1 1 280px; min-width: 0; font-size: 16.5px; line-height: 1.55; color: #403e4a">You write the agent in code, then build sessions, sandboxes, channels and governance around it.</p><p style="margin: 0; flex: 1 1 280px; min-width: 0; font-size: 16.5px; line-height: 1.55; font-weight: 600">Those come with the platform, and agents are built in the studio.</p></div><div style="display: flex; flex-wrap: wrap; gap: 10px 40px; padding: 24px 0; border-top: 1px solid #e6e3eb"><div style="flex: 0 0 240px"><p style="margin: 0; font-size: 19px; font-weight: 700">Coding agents</p><p style="margin: 4px 0 0; font-size: 14px; color: #403e4a">Claude Code, Codex</p></div><p style="margin: 0; flex: 1 1 280px; min-width: 0; font-size: 16.5px; line-height: 1.55; color: #403e4a">One person, on one machine, in one terminal.</p><p style="margin: 0; flex: 1 1 280px; min-width: 0; font-size: 16.5px; line-height: 1.55; font-weight: 600">Whole teams on nine channels, with governance and a record of every step. Claude Code and Codex can run inside a session.</p></div><div style="display: flex; flex-wrap: wrap; gap: 10px 40px; padding: 24px 0; border-top: 1px solid #e6e3eb"><div style="flex: 0 0 240px"><p style="margin: 0; font-size: 19px; font-weight: 700">Managed agent platforms</p></div><p style="margin: 0; flex: 1 1 280px; min-width: 0; font-size: 16.5px; line-height: 1.55; color: #403e4a">The vendor builds and runs the agents on its own cloud.</p><p style="margin: 0; flex: 1 1 280px; min-width: 0; font-size: 16.5px; line-height: 1.55; font-weight: 600">Your team builds them, in your cloud or air-gapped, with any model.</p></div></div>
+</div>
+</section>
+
+<!-- SELL -->
+<section style="background: #faf9f7; color: #2a102d; border-top: 1px solid #e6e3eb">
+<div style="max-width: 1200px; margin: 0 auto; padding: 104px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px"><h2 style="margin: 0; font-size: clamp(32px, 3.8vw, 48px); line-height: 1.08; letter-spacing: -0.028em; font-weight: 800">Sell an agent you built.</h2><p style="margin: 0; font-size: 19px; line-height: 1.6; color: #403e4a">Put a price on it and share a link. Buyers do not need a Surogate account.</p></div>
+<div style="display: flex; flex-wrap: wrap; gap: 36px 40px"><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Your Stripe account</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Subscriptions, usage packs or both, in seven currencies. You are the merchant of record.</p></div><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Pages made for you</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">A buy page at your agent's address, and a landing page you assemble from blocks.</p></div><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #e6e3eb"><p style="margin: 0; font-size: 18px; font-weight: 700">Packages</p><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #403e4a">Each offer unlocks the channels, tools, knowledge and model tier you choose.</p></div></div>
+</div>
+</section>
+
+<!-- CLOSING -->
+<section style="background: #faf9f7; color: #2a102d">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 24px 104px">
+<div style="background: #2a102d; color: #ffffff; padding: 56px 48px; display: flex; flex-wrap: wrap; gap: 28px 48px; align-items: center">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: clamp(30px, 3.4vw, 42px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 800">Build your first agent.</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: rgba(255,255,255,0.8)">Start on the free plan with five agents and no card, or install the platform on your own Kubernetes.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="https://ops.surogate.ai" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; background: {{accent}}; color: #2a102d; text-decoration: none; font-weight: 700; font-size: 16px">Start building</a>
+<a href="https://docs.surogate.ai" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border: 1px solid rgba(255,255,255,0.4); color: #ffffff; text-decoration: none; font-weight: 600; font-size: 16px">Install it yourself</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #1a0a1c; color: rgba(255,255,255,0.74)">
+<div style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-wrap: wrap; gap: 32px 48px">
+<div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; color: #ffffff; font-weight: 800; font-size: 18px">Surogate</p>
+<p style="margin: 0; font-size: 14px">© 2026</p>
+</div>
+<div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<p style="margin: 0 0 4px; color: #ffffff; font-weight: 600">Product</p>
+<a href="#agents" style="color: inherit; text-decoration: none; padding: 4px 0">Agents</a>
+<a href="#keel" style="color: inherit; text-decoration: none; padding: 4px 0">Keel</a>
+<a href="#pricing" style="color: inherit; text-decoration: none; padding: 4px 0">Pricing</a>
+</div>
+<div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<p style="margin: 0 0 4px; color: #ffffff; font-weight: 600">Developers</p>
+<a href="https://docs.surogate.ai" style="color: inherit; text-decoration: none; padding: 4px 0">Docs</a>
+<a href="https://github.com/invergent-ai/surogates" style="color: inherit; text-decoration: none; padding: 4px 0">GitHub</a>
+<a href="#top" style="color: inherit; text-decoration: none; padding: 4px 0">Labs</a>
+</div>
+<div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<p style="margin: 0 0 4px; color: #ffffff; font-weight: 600">Partners</p>
+<a href="#partners" style="color: inherit; text-decoration: none; padding: 4px 0">Become a partner</a>
+<a href="#partners" style="color: inherit; text-decoration: none; padding: 4px 0">Partner directory</a>
+<a href="#partners" style="color: inherit; text-decoration: none; padding: 4px 0">Find a partner</a>
+</div>
+<div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<p style="margin: 0 0 4px; color: #ffffff; font-weight: 600">Company</p>
+<a href="#top" style="color: inherit; text-decoration: none; padding: 4px 0">Contact</a>
+<a href="#top" style="color: inherit; text-decoration: none; padding: 4px 0">Legal</a>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#ffaf10","options":["#ffaf10","#ffe845","#bdccd4"]},"$preview":{"width":1440,"height":4400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#ffaf10' };
+  }
+}
+</script>
+</body>
+</html>
