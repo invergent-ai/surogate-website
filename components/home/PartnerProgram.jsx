@@ -1,3 +1,4 @@
+import TrackedLink from '@/components/TrackedLink';
 import { mailto } from '@/lib/site';
 import InlineSvg from '@/components/site/InlineSvg';
 import { partnerBadges } from '@/components/site/illustrations/partnerBadges';
@@ -51,10 +52,10 @@ export default function PartnerProgram() {
           </div>
           <div className="flex flex-wrap gap-y-[24px] gap-x-[48px] items-center pt-[8px]">
             <div className="flex flex-wrap gap-[12px]">
-              <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href="/partners/">Become a partner</a>
+              <TrackedLink event="cta_agency_clicked" eventProps={{ location: 'home_partners' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href="/partners/">Become a partner</TrackedLink>
               <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] border border-[rgba(255,255,255,0.4)] text-white no-underline font-semibold text-[16px]" href="https://docs.surogate.ai">Read the docs</a>
             </div>
-            <p className="m-0 flex-[1_1_320px] text-[15px] leading-[1.6] text-[rgba(255,255,255,0.76)]">Are you a bank, an insurer or another company looking for agents? <a className="text-white underline" href={mailto('Find a Surogate partner')}>Tell us what you need</a>, and we'll introduce you to a partner.</p>
+            <p className="m-0 flex-[1_1_320px] text-[15px] leading-[1.6] text-[rgba(255,255,255,0.76)]">Are you a bank, an insurer or another company looking for agents? <TrackedLink event="contact_sales_clicked" eventProps={{ location: 'home_partners' }} className="text-white underline" href={mailto('Find a Surogate partner')}>Tell us what you need</TrackedLink>, and we'll introduce you to a partner.</p>
           </div>
         </div>
       </section>

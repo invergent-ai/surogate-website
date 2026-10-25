@@ -1,3 +1,4 @@
+import TrackedLink from '@/components/TrackedLink';
 import PersonalPlans from './PersonalPlans';
 
 export default function ClientPricing() {
@@ -30,7 +31,7 @@ export default function ClientPricing() {
                 <li>50 GB workspace, 200 GB hub storage</li>
                 <li>40 GPU-hours for fine-tuning and evals</li>
               </ul>
-              <a className="mt-auto inline-flex items-center justify-center min-h-[48px] py-0 px-[20px] border border-brand-aubergine text-brand-aubergine no-underline font-semibold" href="https://ops.surogate.ai">Start a pilot</a>
+              <TrackedLink event="pricing_plan_selected" eventProps={{ plan: 'pilot' }} className="mt-auto inline-flex items-center justify-center min-h-[48px] py-0 px-[20px] border border-brand-aubergine text-brand-aubergine no-underline font-semibold" href="https://ops.surogate.ai">Start a pilot</TrackedLink>
             </article>
             <article className="flex-[1_1_300px] min-w-0 bg-white border-2 border-brand-aubergine p-[32px] flex flex-col gap-[20px]">
               <div className="flex flex-col gap-[6px]">
@@ -47,7 +48,7 @@ export default function ClientPricing() {
                 <li>40 GPU-hours for fine-tuning and evals</li>
                 <li>Priority email support</li>
               </ul>
-              <a className="mt-auto inline-flex items-center justify-center min-h-[48px] py-0 px-[20px] bg-brand-aubergine text-white no-underline font-semibold" href="https://ops.surogate.ai">Go to production</a>
+              <TrackedLink event="pricing_plan_selected" eventProps={{ plan: 'production' }} className="mt-auto inline-flex items-center justify-center min-h-[48px] py-0 px-[20px] bg-brand-aubergine text-white no-underline font-semibold" href="https://ops.surogate.ai">Go to production</TrackedLink>
             </article>
             <article className="flex-[1_1_300px] min-w-0 bg-white border border-brand-border p-[32px] flex flex-col gap-[20px]">
               <div className="flex flex-col gap-[6px]">
@@ -65,7 +66,7 @@ export default function ClientPricing() {
                 <li>Single sign-on, roles and audit logs</li>
                 <li>Priority support</li>
               </ul>
-              <a className="mt-auto inline-flex items-center justify-center min-h-[48px] py-0 px-[20px] border border-brand-aubergine text-brand-aubergine no-underline font-semibold" href="https://ops.surogate.ai">Choose Scale</a>
+              <TrackedLink event="pricing_plan_selected" eventProps={{ plan: 'scale' }} className="mt-auto inline-flex items-center justify-center min-h-[48px] py-0 px-[20px] border border-brand-aubergine text-brand-aubergine no-underline font-semibold" href="https://ops.surogate.ai">Choose Scale</TrackedLink>
             </article>
           </div>
           <p className="m-0 text-[15px] leading-[1.6] text-brand-graphite">Models on every plan: bring your own provider and pay it directly, or use ours at the provider's price. More at the usual rates: web browsing $0.08 an hour, GPU $2.00 a GPU-hour, storage $0.0605 per GB a month. Prices include VAT; EU businesses with a VAT ID and customers outside the EU pay the net price.</p>
@@ -114,7 +115,7 @@ export default function ClientPricing() {
             <h2 className="font-sans m-0 text-[24px] font-bold">Building for clients?</h2>
             <p className="m-0 text-[16px] leading-[1.6] text-brand-graphite">Partners pay no plan fee for their own workspace, and earn 30% of every client plan and licence, every month, for as long as the client stays.</p>
           </div>
-          <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href="/partners/">Become a partner</a>
+          <TrackedLink event="cta_agency_clicked" eventProps={{ location: 'pricing' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href="/partners/">Become a partner</TrackedLink>
         </div>
       </section>
     </>

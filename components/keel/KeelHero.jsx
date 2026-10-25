@@ -1,3 +1,4 @@
+import TrackedLink from '@/components/TrackedLink';
 import { mailto } from '@/lib/site';
 
 export default function KeelHero() {
@@ -8,8 +9,8 @@ export default function KeelHero() {
           <h1 className="font-sans m-0 max-w-[900px] text-[clamp(44px,6vw,72px)] leading-[1.0] tracking-[-0.035em] font-extrabold">Processes that run agents.<br />Not the other way around.</h1>
           <p className="m-0 max-w-[760px] text-[21px] leading-[1.5] text-[rgba(255,255,255,0.8)]">Keel runs agents in well-defined processes.</p>
           <div className="flex flex-wrap gap-[12px]">
-            <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href={mailto('Keel demo')}>Book a demo</a>
-            <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] border border-[rgba(255,255,255,0.4)] text-white no-underline font-semibold text-[16px]" href="#pillars">How it works</a>
+            <TrackedLink event="contact_sales_clicked" eventProps={{ location: 'keel_hero' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href={mailto('Keel demo')}>Book a demo</TrackedLink>
+            <TrackedLink event="cta_how_it_works_clicked" eventProps={{ location: 'keel_hero' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] border border-[rgba(255,255,255,0.4)] text-white no-underline font-semibold text-[16px]" href="#pillars">How it works</TrackedLink>
           </div>
         </div>
       </section>

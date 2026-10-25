@@ -54,6 +54,7 @@ export default function Nav() {
           <a
             href={SIGN_IN}
             className="!text-white no-underline text-[15px] py-3"
+            data-event="cta_signin_clicked"
             onClick={() => track('cta_signin_clicked', { location: 'nav' })}
           >
             Sign in
@@ -61,7 +62,8 @@ export default function Nav() {
           <a
             href="/partners/"
             className="inline-flex items-center min-h-[44px] px-[18px] bg-brand-orange !text-brand-aubergine no-underline font-semibold text-[15px]"
-            onClick={() => track('cta_partner_clicked', { location: 'nav' })}
+            data-event="cta_agency_clicked"
+            onClick={() => track('cta_agency_clicked', { location: 'nav' })}
           >
             Become a partner
           </a>
@@ -105,13 +107,15 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
-          <a href={SIGN_IN} className="no-underline text-[17px] py-3 !text-white" onClick={() => track('cta_signin_clicked', { location: 'nav_mobile' })}>
+          <a href={SIGN_IN} className="no-underline text-[17px] py-3 !text-white" data-event="cta_signin_clicked"
+            onClick={() => track('cta_signin_clicked', { location: 'nav_mobile' })}>
             Sign in
           </a>
           <a
             href="/partners/"
             className="mt-3 inline-flex items-center justify-center min-h-[48px] bg-brand-orange !text-brand-aubergine no-underline font-semibold text-base"
-            onClick={() => track('cta_partner_clicked', { location: 'nav_mobile' })}
+            data-event="cta_agency_clicked"
+            onClick={() => track('cta_agency_clicked', { location: 'nav_mobile' })}
           >
             Become a partner
           </a>

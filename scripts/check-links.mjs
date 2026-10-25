@@ -2,6 +2,7 @@
 //   - an internal href or src that resolves to no file,
 //   - an #anchor with no element of that id on its target page,
 //   - an id used twice on one page (inline SVGs share the page's ids),
+//   - a signup, email or Discord link with no named PostHog event (data-event),
 //   - a retired path whose page is not a redirect to its live target that keeps
 //     the query string and names that target as its only canonical.
 //
@@ -60,6 +61,19 @@ for (const [page, s] of html) {
     if (frag && target.endsWith('.html') && !(idsOf.get(target) || []).includes(frag)) {
       problems.push(`${here}: "${ref}" points at #${frag}, which ${urlOf(target)} does not have`);
     }
+  }
+}
+
+// Conversion links (signup, email, Discord) must carry a named PostHog event, so the
+// funnels keyed on cta_signup_clicked, contact_sales_clicked and the rest keep counting.
+// TrackedLink writes its event name as data-event.
+const CONVERSION = /^(https:\/\/ops\.surogate\.ai|mailto:|https:\/\/discord\.gg\/)/;
+for (const [page, s] of html) {
+  if (s.includes('http-equiv="refresh"')) continue;
+  for (const m of s.matchAll(/<a\s([^>]*)>/g)) {
+    const href = (m[1].match(/href="([^"]*)"/) || [])[1] || '';
+    if (CONVERSION.test(href.replace(/&amp;/g, '&')) && !/\sdata-event="[a-z_]+"/.test(' ' + m[1]))
+      problems.push(`${urlOf(page)}: conversion link ${href} has no named event`);
   }
 }
 
