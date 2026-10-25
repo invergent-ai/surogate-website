@@ -1,56 +1,43 @@
-import PricingClient from './PricingClient';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import ClientPricing from '@/components/pricing/ClientPricing';
+import PersonalFaq from '@/components/pricing/PersonalFaq';
 import { JsonLd } from '../structured-data';
-import { FAQS } from '../../components/pricing/PricingFAQ';
+import { PRICING_FAQ } from '@/lib/pricing';
+import { route } from '@/lib/site';
+import './pricing-page.css';
+
+const { title, description } = route('/pricing/');
 
 const faqPage = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   '@id': 'https://surogate.ai/pricing/#faq',
-  mainEntity: FAQS.map((item) => ({
+  mainEntity: PRICING_FAQ.map((item) => ({
     '@type': 'Question',
     name: item.q,
     acceptedAnswer: { '@type': 'Answer', text: item.a },
   })),
 };
 
-const breadcrumb = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://surogate.ai/' },
-    { '@type': 'ListItem', position: 2, name: 'Pricing', item: 'https://surogate.ai/pricing/' },
-  ],
-};
-
 export const metadata = {
-  title: 'Pricing - Surogate',
-  description:
-    'Agents that get work done. One bill, no surprises. Free tier to try it out, paid plans from $19/mo with usage included. Bring your own LLM or train custom models on every paid plan.',
-  alternates: {
-    canonical: 'https://surogate.ai/pricing/',
-  },
-  openGraph: {
-    type: 'website',
-    url: 'https://surogate.ai/pricing/',
-    title: 'Pricing - Surogate',
-    description:
-      'Agents that get work done. One bill, no surprises. Free tier to try it out, paid plans from $19/mo with usage included.',
-    siteName: 'Surogate',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pricing - Surogate',
-    description:
-      'Agents that get work done. One bill, no surprises. Free tier to try it out, paid plans from $19/mo with usage included.',
-  },
+  title,
+  description,
+  alternates: { canonical: 'https://surogate.ai/pricing/' },
+  openGraph: { type: 'website', url: 'https://surogate.ai/pricing/', title, description, siteName: 'Surogate' },
+  twitter: { card: 'summary_large_image', title, description },
 };
 
 export default function PricingPage() {
   return (
-    <>
+    <div className="pg-pricing font-sans text-brand-aubergine bg-white w-full overflow-x-hidden">
       <JsonLd data={faqPage} />
-      <JsonLd data={breadcrumb} />
-      <PricingClient />
-    </>
+      <Nav />
+      <main id="top">
+        <ClientPricing />
+        <PersonalFaq />
+      </main>
+      <Footer />
+    </div>
   );
 }
