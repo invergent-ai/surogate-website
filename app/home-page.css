@@ -4,7 +4,9 @@
 .pg-home main, .pg-home main *, .pg-home main *::before, .pg-home main *::after { box-sizing: content-box; }
 /* ...and with line-height: normal where an element sets none; Tailwind puts 1.5 on <html>. */
 .pg-home main { line-height: normal; }
-.pg-home pre{margin:0;font-family:'JetBrains Mono',ui-monospace,monospace;white-space:pre;overflow-x:auto}
+/* globals.css paints every pre purple and borderless with !important; these are the canvas's own panels. */
+.pg-home pre{margin:0;font-family:'JetBrains Mono',ui-monospace,monospace;white-space:pre;overflow-x:auto;
+  background-color:#140814 !important;border:1px solid rgba(255,255,255,0.1) !important}
 /* sg-hero */
 @keyframes sg-chip0-k { 0.0% { transform: translate(0.0px, 0.0px) } 45.1% { transform: translate(-19.9px, 9.4px) } 100.0% { transform: translate(-44.2px, -2.0px) } }
 .sg-chip0 { animation: sg-chip0-k 1.6s linear infinite; animation-delay: 0.0s }

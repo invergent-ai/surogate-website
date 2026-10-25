@@ -69,15 +69,15 @@ for (const [from, to] of Object.entries(REDIRECTS)) {
   if (!m) problems.push(`${from}: is not a redirect page`);
   else if (m[1] !== to) problems.push(`${from}: redirects to ${m[1]}, expected ${to}`);
   if (!s) continue;
+  // A 0-second refresh already reads as a permanent redirect; noindex next to a canonical
+  // that points elsewhere is a conflicting signal.
+  if (/<meta name="robots" content="[^"]*noindex/.test(s)) problems.push(`${from}: is noindex`);
   // One canonical, the live page: two conflicting ones and search engines ignore both.
-  const [path, hash] = to.split('#');
   const canon = [...s.matchAll(/<link rel="canonical" href="([^"]+)"/g)].map((c) => c[1]);
-  if (canon.length !== 1 || canon[0] !== `https://surogate.ai${path}`)
-    problems.push(`${from}: canonical ${JSON.stringify(canon)}, expected ["https://surogate.ai${path}"]`);
-  // Ad click ids and UTM tags ride on the query string; the redirect has to carry them over,
-  // and keep the visitor's own #hash over the target's.
-  const keep = hash ? `(location.hash||${JSON.stringify('#' + hash)})` : 'location.hash';
-  if (!s.includes(`location.replace(${JSON.stringify(path)}+location.search+${keep})`))
+  if (canon.length !== 1 || canon[0] !== `https://surogate.ai${to}`)
+    problems.push(`${from}: canonical ${JSON.stringify(canon)}, expected ["https://surogate.ai${to}"]`);
+  // Ad click ids and UTM tags ride on the query string; the redirect has to carry them over.
+  if (!s.includes(`location.replace(${JSON.stringify(to)}+location.search+location.hash)`))
     problems.push(`${from}: does not carry the query string and hash to ${to}`);
 }
 

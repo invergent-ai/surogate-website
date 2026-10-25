@@ -1,3 +1,5 @@
+import { mailto } from '@/lib/site';
+
 export default function Directory() {
   return (
     <>
@@ -12,7 +14,7 @@ export default function Directory() {
               <p className="m-0 text-[19px] font-extrabold">Looking for a partner?</p>
               <p className="m-0 text-[15px] leading-[1.55] text-brand-graphite">Tell us what you need, and we'll introduce you to one.</p>
             </div>
-            <a className="inline-flex items-center min-h-[48px] py-0 px-[22px] border border-[rgba(42,16,45,0.35)] text-brand-aubergine no-underline font-semibold text-[16px]" href="mailto:surogate@invergent.ai?subject=Find%20a%20Surogate%20partner">Email us</a>
+            <a className="inline-flex items-center min-h-[48px] py-0 px-[22px] border border-[rgba(42,16,45,0.35)] text-brand-aubergine no-underline font-semibold text-[16px]" href={mailto('Find a Surogate partner')}>Email us</a>
           </div>
         </div>
       </section>

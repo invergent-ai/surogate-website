@@ -6,18 +6,10 @@ import Promises from '@/components/keel/Promises';
 import Pillars from '@/components/keel/Pillars';
 import BoardFlow from '@/components/keel/BoardFlow';
 import KeelClosing from '@/components/keel/KeelClosing';
-import { route } from '@/lib/site';
+import { pageMetadata } from '@/lib/site';
 import './keel-page.css';
 
-const { title, description } = route('/keel/');
-
-export const metadata = {
-  title,
-  description,
-  alternates: { canonical: 'https://surogate.ai/keel/' },
-  openGraph: { type: 'website', url: 'https://surogate.ai/keel/', title, description, siteName: 'Surogate' },
-  twitter: { card: 'summary_large_image', title, description },
-};
+export const metadata = pageMetadata('/keel/');
 
 export default function KeelPage() {
   return (

@@ -31,7 +31,8 @@ export default function Nav() {
   // outranks a utility class.
   return (
     <header className="relative z-50 bg-brand-aubergine border-b border-white/[0.12] font-sans">
-      <div className="max-w-[1248px] mx-auto px-6 py-4 flex flex-wrap items-center gap-x-8 gap-y-4">
+      {/* Positioned above the menu's backdrop, so the bar and its close button stay uncovered. */}
+      <div className="relative z-50 max-w-[1248px] mx-auto px-6 py-4 flex flex-wrap items-center gap-x-8 gap-y-4">
         <a href="/" className="!text-white no-underline font-extrabold text-xl tracking-[-0.02em]">
           Surogate
         </a>

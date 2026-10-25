@@ -20,17 +20,17 @@ export default function HomeHero() {
             <div className="flex flex-col gap-[12px]">
               <p className="m-0 font-mono text-[11.5px] tracking-[0.14em] text-[rgba(255,255,255,0.6)]">RUNS WHERE YOUR DATA LIVES</p>
               <div className="flex flex-wrap gap-[10px]">
-                <div className="sg-target flex-[1_1_150px] min-w-0 border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.02)] pt-[14px] px-[14px] pb-[16px] flex flex-col gap-[10px] [animation-delay:2.4s]">
+                <div className="sg-target flex-[1_1_150px] min-w-0 border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.02)] pt-[14px] px-[14px] pb-[16px] flex flex-col gap-[10px]" style={{ animationDelay: '2.4s' }}>
                   <InlineSvg className="contents" markup={figure1Svg} />
                   <span className="text-[14.5px] font-bold text-white">Surogate cloud</span>
                   <span className="text-[12.5px] leading-[1.45] text-[rgba(255,255,255,0.72)]">We run it. The fastest way to a pilot.</span>
                 </div>
-                <div className="sg-target flex-[1_1_150px] min-w-0 border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.02)] pt-[14px] px-[14px] pb-[16px] flex flex-col gap-[10px] [animation-delay:5.4s]">
+                <div className="sg-target flex-[1_1_150px] min-w-0 border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.02)] pt-[14px] px-[14px] pb-[16px] flex flex-col gap-[10px]" style={{ animationDelay: '5.4s' }}>
                   <InlineSvg className="contents" markup={figure2Svg} />
                   <span className="text-[14.5px] font-bold text-white">Kubernetes</span>
                   <span className="text-[12.5px] leading-[1.45] text-[rgba(255,255,255,0.72)]">Single-tenant, in your cloud or data centre.</span>
                 </div>
-                <div className="sg-target flex-[1_1_150px] min-w-0 border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.02)] pt-[14px] px-[14px] pb-[16px] flex flex-col gap-[10px] [animation-delay:8.4s]">
+                <div className="sg-target flex-[1_1_150px] min-w-0 border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.02)] pt-[14px] px-[14px] pb-[16px] flex flex-col gap-[10px]" style={{ animationDelay: '8.4s' }}>
                   <InlineSvg className="contents" markup={figure3Svg} />
                   <span className="text-[14.5px] font-bold text-white">Air-gapped</span>
                   <span className="text-[12.5px] leading-[1.45] text-[rgba(255,255,255,0.72)]">No internet. Runs on your own models.</span>

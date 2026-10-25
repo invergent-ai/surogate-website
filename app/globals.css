@@ -29,7 +29,8 @@ html {
   h1, h2, h3, h4 {
     @apply font-serif;
   }
-  section[id] {
+  /* Room for the sticky Labs sub-nav; the site nav itself scrolls away. */
+  .st-labs section[id] {
     scroll-margin-top: 80px;
   }
 }

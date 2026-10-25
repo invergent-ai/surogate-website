@@ -7,18 +7,10 @@ import HowItWorks from '@/components/partners/HowItWorks';
 import Tiers from '@/components/partners/Tiers';
 import Directory from '@/components/partners/Directory';
 import PartnersClosing from '@/components/partners/PartnersClosing';
-import { route } from '@/lib/site';
+import { pageMetadata } from '@/lib/site';
 import './partners-page.css';
 
-const { title, description } = route('/partners/');
-
-export const metadata = {
-  title,
-  description,
-  alternates: { canonical: 'https://surogate.ai/partners/' },
-  openGraph: { type: 'website', url: 'https://surogate.ai/partners/', title, description, siteName: 'Surogate' },
-  twitter: { card: 'summary_large_image', title, description },
-};
+export const metadata = pageMetadata('/partners/');
 
 export default function PartnersPage() {
   return (

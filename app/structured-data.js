@@ -2,6 +2,8 @@
 // JS-blind AI crawlers (GPTBot, ClaudeBot, PerplexityBot) and search engines can
 // build an entity graph for Surogate. Injected via a plain <script> tag.
 
+import { CONTACT } from '@/lib/site';
+
 const ORG_ID = 'https://surogate.ai/#organization';
 const WEBSITE_ID = 'https://surogate.ai/#website';
 const SOFTWARE_ID = 'https://surogate.ai/#software';
@@ -18,7 +20,7 @@ export const organization = {
   },
   description:
     'Surogate makes Surogate Agents, an agentic platform; Keel, which runs agents inside defined processes; and custom language and speech models. It runs in Surogate cloud, on your Kubernetes or air-gapped.',
-  email: 'hello@surogate.ai',
+  email: CONTACT.email,
   // Add LinkedIn, HuggingFace, Discord, Wikidata, and X URLs here as they are confirmed.
   sameAs: [
     'https://www.wikidata.org/wiki/Q140385440',
@@ -34,12 +36,12 @@ export const organization = {
     {
       '@type': 'ContactPoint',
       contactType: 'customer support',
-      email: 'hello@surogate.ai',
+      email: CONTACT.email,
     },
     {
       '@type': 'ContactPoint',
       contactType: 'sales',
-      url: 'https://discord.gg/eVTq93BrQ4',
+      url: CONTACT.discord,
     },
   ],
 };

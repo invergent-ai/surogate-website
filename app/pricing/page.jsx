@@ -4,10 +4,8 @@ import ClientPricing from '@/components/pricing/ClientPricing';
 import PersonalFaq from '@/components/pricing/PersonalFaq';
 import { JsonLd } from '../structured-data';
 import { PRICING_FAQ } from '@/lib/pricing';
-import { route } from '@/lib/site';
+import { pageMetadata } from '@/lib/site';
 import './pricing-page.css';
-
-const { title, description } = route('/pricing/');
 
 const faqPage = {
   '@context': 'https://schema.org',
@@ -20,13 +18,7 @@ const faqPage = {
   })),
 };
 
-export const metadata = {
-  title,
-  description,
-  alternates: { canonical: 'https://surogate.ai/pricing/' },
-  openGraph: { type: 'website', url: 'https://surogate.ai/pricing/', title, description, siteName: 'Surogate' },
-  twitter: { card: 'summary_large_image', title, description },
-};
+export const metadata = pageMetadata('/pricing/');
 
 export default function PricingPage() {
   return (

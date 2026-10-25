@@ -1,3 +1,4 @@
+import { mailto } from '@/lib/site';
 import InlineSvg from '@/components/site/InlineSvg';
 import { partnerBadges } from '@/components/site/illustrations/partnerBadges';
 
@@ -53,7 +54,7 @@ export default function PartnerProgram() {
               <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href="/partners/">Become a partner</a>
               <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] border border-[rgba(255,255,255,0.4)] text-white no-underline font-semibold text-[16px]" href="https://docs.surogate.ai">Read the docs</a>
             </div>
-            <p className="m-0 flex-[1_1_320px] text-[15px] leading-[1.6] text-[rgba(255,255,255,0.76)]">Are you a bank, an insurer or another company looking for agents? <a className="text-white underline" href="mailto:surogate@invergent.ai?subject=Find%20a%20Surogate%20partner">Tell us what you need</a>, and we'll introduce you to a partner.</p>
+            <p className="m-0 flex-[1_1_320px] text-[15px] leading-[1.6] text-[rgba(255,255,255,0.76)]">Are you a bank, an insurer or another company looking for agents? <a className="text-white underline" href={mailto('Find a Surogate partner')}>Tell us what you need</a>, and we'll introduce you to a partner.</p>
           </div>
         </div>
       </section>

@@ -6,18 +6,10 @@ import CodeSample from '@/components/home/CodeSample';
 import Delivery from '@/components/home/Delivery';
 import Deployment from '@/components/home/Deployment';
 import PartnerProgram from '@/components/home/PartnerProgram';
-import { route } from '@/lib/site';
+import { pageMetadata } from '@/lib/site';
 import './home-page.css';
 
-const { title, description } = route('/');
-
-export const metadata = {
-  title,
-  description,
-  alternates: { canonical: 'https://surogate.ai/' },
-  openGraph: { type: 'website', url: 'https://surogate.ai/', title, description, siteName: 'Surogate' },
-  twitter: { card: 'summary_large_image', title, description },
-};
+export const metadata = pageMetadata('/');
 
 export default function Home() {
   return (

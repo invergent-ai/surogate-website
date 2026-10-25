@@ -11,19 +11,11 @@ import Improve from '@/components/agents/Improve';
 import Compare from '@/components/agents/Compare';
 import Sell from '@/components/agents/Sell';
 import AgentsClosing from '@/components/agents/AgentsClosing';
-import { route } from '@/lib/site';
+import { pageMetadata } from '@/lib/site';
 import '../home.css';
 import './agents-page.css';
 
-const { title, description } = route('/agents/');
-
-export const metadata = {
-  title,
-  description,
-  alternates: { canonical: 'https://surogate.ai/agents/' },
-  openGraph: { type: 'website', url: 'https://surogate.ai/agents/', title, description, siteName: 'Surogate' },
-  twitter: { card: 'summary_large_image', title, description },
-};
+export const metadata = pageMetadata('/agents/');
 
 export default function AgentsPage() {
   return (

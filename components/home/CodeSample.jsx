@@ -138,14 +138,14 @@ export default function CodeSample() {
               </div>
             </article>
             <article className="flex-[1_1_300px] min-w-0 bg-brand-aubergine-2 border border-[rgba(255,255,255,0.14)] p-[28px] flex flex-col gap-[18px]">
-              <pre className="m-0 p-[14px] bg-[#140814] border border-[rgba(255,255,255,0.1)] text-[#f3eaf3] text-[12px] leading-[1.7]" dangerouslySetInnerHTML={{ __html: pre0 }} />
+              <pre className="m-0 p-[14px] text-[#f3eaf3] text-[12px] leading-[1.7]" dangerouslySetInnerHTML={{ __html: pre0 }} />
               <div className="flex flex-col gap-[6px]">
                 <h3 className="font-sans m-0 text-[20px] font-bold">SDK</h3>
                 <p className="m-0 text-[15px] leading-[1.55] text-[rgba(255,255,255,0.75)]">Agent chat inside your app, or a widget on the client's website.</p>
               </div>
             </article>
             <article className="flex-[1_1_300px] min-w-0 bg-brand-aubergine-2 border border-[rgba(255,255,255,0.14)] p-[28px] flex flex-col gap-[18px]">
-              <pre className="m-0 p-[14px] bg-[#140814] border border-[rgba(255,255,255,0.1)] text-[#f3eaf3] text-[12px] leading-[1.7]" dangerouslySetInnerHTML={{ __html: pre1 }} />
+              <pre className="m-0 p-[14px] text-[#f3eaf3] text-[12px] leading-[1.7]" dangerouslySetInnerHTML={{ __html: pre1 }} />
               <div className="flex flex-col gap-[6px]">
                 <h3 className="font-sans m-0 text-[20px] font-bold">OpenAI-compatible API</h3>
                 <p className="m-0 text-[15px] leading-[1.55] text-[rgba(255,255,255,0.75)]">Every agent answers the OpenAI client the client's developers already use.</p>
