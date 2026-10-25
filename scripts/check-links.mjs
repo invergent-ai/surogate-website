@@ -9,7 +9,7 @@
 //   npm run build && npm run check:links
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
-import { REDIRECTS } from '../lib/site.js';
+import { CONTACT, REDIRECTS, SIGN_IN } from '../lib/site.js';
 
 const OUT = 'out';
 const pages = [];
@@ -67,12 +67,12 @@ for (const [page, s] of html) {
 // Conversion links (signup, email, Discord) must carry a named PostHog event, so the
 // funnels keyed on cta_signup_clicked, contact_sales_clicked and the rest keep counting.
 // TrackedLink writes its event name as data-event.
-const CONVERSION = /^(https:\/\/ops\.surogate\.ai|mailto:|https:\/\/discord\.gg\/)/;
+const CONVERSION = ['mailto:', new URL(SIGN_IN).origin, new URL(CONTACT.discord).origin];
 for (const [page, s] of html) {
   if (s.includes('http-equiv="refresh"')) continue;
   for (const m of s.matchAll(/<a\s([^>]*)>/g)) {
     const href = (m[1].match(/href="([^"]*)"/) || [])[1] || '';
-    if (CONVERSION.test(href.replace(/&amp;/g, '&')) && !/\sdata-event="[a-z_]+"/.test(' ' + m[1]))
+    if (CONVERSION.some((p) => href.startsWith(p)) && !/\sdata-event="[^"]+"/.test(' ' + m[1]))
       problems.push(`${urlOf(page)}: conversion link ${href} has no named event`);
   }
 }
