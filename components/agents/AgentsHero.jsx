@@ -15,8 +15,8 @@ export default function AgentsHero() {
             </div>
           </div>
           <div className="-mb-[96px] relative">
-            {/* The platform tour film, drawn live; its player takes its styles from .st-home in home.css. */}
-            <div className="st-home bg-brand-aubergine-2 border border-[rgba(255,255,255,0.25)] shadow-[0_40px_90px_rgba(0,0,0,0.45)]">
+            {/* The platform tour film, drawn live; its player takes its styles from .st-home in home.css, re-skinned for this dark hero by .tour-frame in agents-page.css. */}
+            <div className="st-home tour-frame">
               <TourFilm />
             </div>
           </div>
