@@ -11,19 +11,19 @@ export default function Tiers() {
             <p className="m-0 text-[19px] leading-[1.6] text-[rgba(255,255,255,0.8)]">Tiers count the clients you have live. There is nothing to apply for.</p>
           </div>
           <div className="flex flex-wrap gap-[1px] bg-[rgba(255,255,255,0.16)] border border-[rgba(255,255,255,0.16)]">
-            <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px]">
+            <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px] items-center text-center">
               <InlineSvg className="contents" markup={partnerBadges.silver} />
               <p className="m-0 font-extrabold text-[20px]">Silver</p>
               <p className="m-0 text-[15px] font-bold text-brand-orange">Sign up, no fee</p>
               <p className="m-0 text-[16px] leading-[1.6] text-[rgba(255,255,255,0.82)]">Partner prices and pilots.</p>
             </div>
-            <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px]">
+            <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px] items-center text-center">
               <InlineSvg className="contents" markup={partnerBadges.gold} />
               <p className="m-0 font-extrabold text-[20px]">Gold</p>
               <p className="m-0 text-[15px] font-bold text-brand-orange">1 client live</p>
               <p className="m-0 text-[16px] leading-[1.6] text-[rgba(255,255,255,0.82)]">Listed in our partner directory, and we send you companies looking for a partner.</p>
             </div>
-            <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px]">
+            <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px] items-center text-center">
               <InlineSvg className="contents" markup={partnerBadges.diamond} />
               <p className="m-0 font-extrabold text-[20px]">Diamond</p>
               <p className="m-0 text-[15px] font-bold text-brand-orange">3 clients live</p>
