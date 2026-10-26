@@ -3,8 +3,9 @@
 > Surogate makes four things: Surogate Agents, a platform to design, test,
 > govern and run agents for whole teams without writing code; Keel, which runs
 > agents inside well-defined processes; the AI Gateway, which puts every model
-> behind one API; and custom language and speech models. All of it runs in
-> Surogate cloud, on your own Kubernetes or air-gapped. Surogate sells direct
+> behind one API; and custom language and speech models. Agents, Keel and the
+> models run in Surogate cloud, on your own Kubernetes or air-gapped; the AI
+> Gateway runs on llm.buzz or on your own Kubernetes. Surogate sells direct
 > and through partners.
 
 ## Pages
