@@ -27,7 +27,7 @@ export default function Deliver() {
               </div>
               <div className="flex-[1_1_300px] min-w-0 bg-white border border-brand-border p-[32px] flex flex-col gap-[10px]">
                 <p className="m-0 text-[22px] font-extrabold tracking-[-0.01em]">AI Gateway</p>
-                <p className="m-0 text-[16px] leading-[1.6] text-brand-graphite">One endpoint for every model the client's teams use, with keys, budgets, guardrails and failover the client controls.</p>
+                <p className="m-0 text-[16px] leading-[1.6] text-brand-graphite">A private gateway for each client: one endpoint for every model its teams use, with keys, budgets, guardrails and failover the client controls.</p>
                 <a className="mt-auto pt-[8px] text-[15px] font-bold text-brand-wine underline" href="/gateway/">See the AI Gateway</a>
               </div>
               <div className="flex-[1_1_300px] min-w-0 bg-white border border-brand-border p-[32px] flex flex-col gap-[10px]">
