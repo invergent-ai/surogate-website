@@ -17,7 +17,7 @@ export default function PartnerProgram() {
             <div className="flex-[1_1_340px] min-w-0 border border-[rgba(255,255,255,0.2)] p-[32px] flex flex-col gap-[8px]">
               <p className="m-0 font-mono text-[13px] text-[rgba(255,255,255,0.72)]">YOUR SHARE</p>
               <p className="m-0 text-[44px] font-extrabold tracking-[-0.03em] text-brand-orange">30%</p>
-              <p className="m-0 text-[16px] leading-[1.6] text-[rgba(255,255,255,0.84)]">of every client's plan or licence, every month, for as long as the client stays. 40% at Diamond. No 12-month cap.</p>
+              <p className="m-0 text-[16px] leading-[1.6] text-[rgba(255,255,255,0.84)]">of every client's plan or licence, every month, for as long as the client pays. 40% at Diamond.</p>
             </div>
             <div className="flex-[1_1_340px] min-w-0 border border-[rgba(255,255,255,0.2)] p-[32px] flex flex-col gap-[8px]">
               <p className="m-0 text-[44px] font-extrabold tracking-[-0.03em] text-brand-orange">$0</p>

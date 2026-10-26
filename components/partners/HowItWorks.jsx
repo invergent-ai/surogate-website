@@ -33,7 +33,7 @@ export default function HowItWorks() {
                 </span>
               </div>
               <p className="m-0 text-[19px] font-extrabold">Pilot</p>
-              <p className="m-0 text-[16px] leading-[1.6] text-brand-graphite">Every new client gets 60 days free.</p>
+              <p className="m-0 text-[16px] leading-[1.6] text-brand-graphite">Every new client gets a 60-day pilot at no cost to them.</p>
             </li>
             <li className="flex-[1_1_200px] min-w-0 flex flex-col gap-[12px] pr-[24px]">
               <div className="flex items-center">
