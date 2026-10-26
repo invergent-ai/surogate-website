@@ -19,6 +19,7 @@ export default function Footer() {
           <FootCol heading="Product" links={[
             { href: '/agents/', label: 'Agents' },
             { href: '/keel/', label: 'Keel' },
+            { href: '/gateway/', label: 'AI Gateway' },
             { href: '/pricing/', label: 'Pricing' },
           ]} />
           <FootCol heading="Partners" links={[
