@@ -28,19 +28,19 @@ export default function PartnerProgram() {
           <div className="flex flex-col gap-[16px]">
             <h3 className="font-sans m-0 text-[22px] font-bold">Your tier depends on how many clients you have live.</h3>
             <div className="flex flex-wrap gap-[1px] bg-[rgba(255,255,255,0.16)] border border-[rgba(255,255,255,0.16)]">
-              <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px]">
+              <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px] items-center text-center">
                 <InlineSvg className="contents" markup={partnerBadges.silver} />
                 <p className="m-0 font-bold text-[18px]">Silver</p>
                 <p className="m-0 font-mono text-[13px] text-brand-orange">sign up, no fee</p>
                 <p className="m-0 text-[15px] leading-[1.6] text-[rgba(255,255,255,0.82)]">Partner prices and pilots.</p>
               </div>
-              <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px]">
+              <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px] items-center text-center">
                 <InlineSvg className="contents" markup={partnerBadges.gold} />
                 <p className="m-0 font-bold text-[18px]">Gold</p>
                 <p className="m-0 font-mono text-[13px] text-brand-orange">1 client live</p>
                 <p className="m-0 text-[15px] leading-[1.6] text-[rgba(255,255,255,0.82)]">Listed in our partner directory, and we send you companies looking for a partner.</p>
               </div>
-              <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px]">
+              <div className="flex-[1_1_280px] min-w-0 bg-brand-aubergine p-[28px] flex flex-col gap-[10px] items-center text-center">
                 <InlineSvg className="contents" markup={partnerBadges.diamond} />
                 <p className="m-0 font-bold text-[18px]">Diamond</p>
                 <p className="m-0 font-mono text-[13px] text-brand-orange">3 clients live</p>
