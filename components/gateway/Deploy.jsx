@@ -6,8 +6,8 @@ export default function Deploy() {
       <section className="bg-white text-brand-aubergine" id="deploy">
         <div className="max-w-[1200px] my-0 mx-auto py-[104px] px-[24px] flex flex-col gap-[48px]">
           <div className="flex flex-col gap-[16px] max-w-[820px]">
-            <h2 className="font-sans m-0 text-[clamp(32px,3.8vw,48px)] leading-[1.08] tracking-[-0.028em] font-extrabold">Keep every call inside your network.</h2>
-            <p className="m-0 text-[19px] leading-[1.6] text-brand-graphite">Use it hosted on llm.buzz, or run it on your own Kubernetes so prompts and keys never leave your infrastructure.</p>
+            <h2 className="font-sans m-0 text-[clamp(32px,3.8vw,48px)] leading-[1.08] tracking-[-0.028em] font-extrabold">Run it in our cloud or in yours.</h2>
+            <p className="m-0 text-[19px] leading-[1.6] text-brand-graphite">Use it hosted on llm.buzz, or run it on your own Kubernetes so keys, budgets and logs stay in your infrastructure, and prompts go only to the providers you allow.</p>
           </div>
           <div className="flex flex-wrap gap-[24px]">
             <div className="flex-[1_1_300px] min-w-0 bg-brand-paper border border-brand-border p-[32px] flex flex-col gap-[10px]">

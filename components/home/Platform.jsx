@@ -1,5 +1,5 @@
 import InlineSvg from '@/components/site/InlineSvg';
-import { figure10Svg, figure11Svg, figure12Svg, figure13Svg, figure14Svg, figure15Svg, figure16Svg, figure17Svg, figure18Svg, figure19Svg, figure20Svg, figure21Svg, figure22Svg, figure23Svg, figure24Svg, figure4Svg, figure5Svg, figure6Svg, figure7Svg, figure8Svg, figure9Svg } from './illustrations';
+import { figure10Svg, figure11Svg, figure12Svg, figure13Svg, figure14Svg, figure15Svg, figure16Svg, figure17Svg, figure18Svg, figure19Svg, figure20Svg, figure21Svg, figure22Svg, figure23Svg, figure24Svg, figure49Svg, figure4Svg, figure50Svg, figure51Svg, figure52Svg, figure53Svg, figure54Svg, figure55Svg, figure5Svg, figure6Svg, figure7Svg, figure8Svg, figure9Svg } from './illustrations';
 
 export default function Platform() {
   return (
@@ -91,6 +91,77 @@ export default function Platform() {
                     <InlineSvg className="contents" markup={figure17Svg} />
                     <p className="m-0 text-[16px] font-bold text-white">Audit and replay</p>
                     <p className="m-0 text-[14px] leading-[1.5] text-[rgba(255,255,255,0.74)]">Every transition recorded and replayable.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-[1_1_100%] min-w-0 bg-brand-aubergine py-[20px] px-[24px] flex flex-col gap-[14px]">
+                <p className="m-0 font-mono text-[13px] tracking-[0.12em] text-[rgba(255,255,255,0.85)]">AI GATEWAY</p>
+                <div className="flex flex-wrap items-center gap-y-[24px] gap-x-[36px]">
+                  <div className="flex-[0_1_300px] min-w-0">
+                    <InlineSvg className="contents" markup={figure49Svg} />
+                  </div>
+                  <div className="flex-[1_1_520px] min-w-0 flex flex-wrap gap-[16px]">
+                    <div className="flex-[1_1_280px] min-w-0 flex flex-col bg-[#3c2741] border border-[rgba(255,255,255,0.4)] py-[22px] px-[24px]">
+                      <div className="flex items-center gap-[8px] flex-wrap mb-[8px]">
+                        <span className="text-[22px] font-extrabold text-white mr-[2px]">One endpoint</span>
+                        <span className="inline-block py-[3px] px-[8px] bg-white text-brand-aubergine-2 text-[11.5px] font-bold leading-[1.3]">OpenAI</span>
+                        <span className="inline-block py-[3px] px-[8px] bg-white text-brand-aubergine-2 text-[11.5px] font-bold leading-[1.3]">Anthropic</span>
+                      </div>
+                      <div className="flex items-center gap-[16px] py-[14px] px-0 border-t border-t-[rgba(255,255,255,0.14)]">
+                        <InlineSvg className="contents" markup={figure50Svg} />
+                        <div className="flex flex-col gap-[2px] min-w-0">
+                          <span className="text-[17px] font-extrabold text-white">Every model, one key</span>
+                          <span className="text-[14px] text-[rgba(255,255,255,0.78)]">Chat, Responses, Messages and embeddings</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-[16px] py-[14px] px-0 border-t border-t-[rgba(255,255,255,0.14)]">
+                        <InlineSvg className="contents" markup={figure51Svg} />
+                        <div className="flex flex-col gap-[2px] min-w-0">
+                          <span className="text-[17px] font-extrabold text-white">Any provider</span>
+                          <span className="text-[14px] text-[rgba(255,255,255,0.78)]">Hosted APIs or your own vLLM</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-[16px] py-[14px] px-0 border-t border-t-[rgba(255,255,255,0.14)]">
+                        <InlineSvg className="contents" markup={figure52Svg} />
+                        <div className="flex flex-col gap-[2px] min-w-0">
+                          <span className="text-[17px] font-extrabold text-white">Failover</span>
+                          <span className="text-[14px] text-[rgba(255,255,255,0.78)]">A failed call moves to the next provider</span>
+                        </div>
+                      </div>
+                      <div className="pt-[14px] border-t border-t-[rgba(255,255,255,0.14)]">
+                        <span className="inline-block py-[3px] px-[8px] bg-brand-orange text-brand-aubergine-2 text-[11.5px] font-bold leading-[1.3]">One API for your teams and agents</span>
+                      </div>
+                    </div>
+                    <div className="flex-[1_1_280px] min-w-0 flex flex-col bg-[#3c2741] border border-[rgba(255,255,255,0.4)] py-[22px] px-[24px]">
+                      <div className="flex items-center gap-[8px] flex-wrap mb-[8px]">
+                        <span className="text-[22px] font-extrabold text-white mr-[2px]">Control</span>
+                        <span className="inline-block py-[3px] px-[8px] bg-white text-brand-aubergine-2 text-[11.5px] font-bold leading-[1.3]">Per key</span>
+                      </div>
+                      <div className="flex items-center gap-[16px] py-[14px] px-0 border-t border-t-[rgba(255,255,255,0.14)]">
+                        <InlineSvg className="contents" markup={figure53Svg} />
+                        <div className="flex flex-col gap-[2px] min-w-0">
+                          <span className="text-[17px] font-extrabold text-white">Keys and budgets</span>
+                          <span className="text-[14px] text-[rgba(255,255,255,0.78)]">Per person, team or agent, with monthly limits</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-[16px] py-[14px] px-0 border-t border-t-[rgba(255,255,255,0.14)]">
+                        <InlineSvg className="contents" markup={figure54Svg} />
+                        <div className="flex flex-col gap-[2px] min-w-0">
+                          <span className="text-[17px] font-extrabold text-white">Guardrails</span>
+                          <span className="text-[14px] text-[rgba(255,255,255,0.78)]">Personal data and keys redacted, answers checked</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-[16px] py-[14px] px-0 border-t border-t-[rgba(255,255,255,0.14)]">
+                        <InlineSvg className="contents" markup={figure55Svg} />
+                        <div className="flex flex-col gap-[2px] min-w-0">
+                          <span className="text-[17px] font-extrabold text-white">Data policy</span>
+                          <span className="text-[14px] text-[rgba(255,255,255,0.78)]">Providers that keep no prompts, or EU-hosted ones</span>
+                        </div>
+                      </div>
+                      <div className="pt-[14px] border-t border-t-[rgba(255,255,255,0.14)]">
+                        <span className="inline-block py-[3px] px-[8px] bg-brand-orange text-brand-aubergine-2 text-[11.5px] font-bold leading-[1.3]">In front of every model you use</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

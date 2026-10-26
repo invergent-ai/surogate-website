@@ -24,7 +24,7 @@ export default function Deployment() {
             <div className="flex-[1_1_300px] min-w-0 p-0 flex flex-col gap-[12px]">
               <InlineSvg className="contents" markup={figure42Svg} />
               <h3 className="font-sans m-0 text-[20px] text-brand-aubergine font-bold">Air-gapped</h3>
-              <p className="m-0 text-[15.5px] leading-[1.55] text-brand-graphite">No internet. The same install, running your own models.</p>
+              <p className="m-0 text-[15.5px] leading-[1.55] text-brand-graphite">No internet. Agents and Keel on the same install, with your own models.</p>
             </div>
           </div>
           <div className="bg-brand-aubergine text-white p-[40px] flex flex-col gap-[20px]">
