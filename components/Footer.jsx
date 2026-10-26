@@ -47,7 +47,7 @@ export default function Footer() {
         <div className="mt-14 pt-6 border-t border-brand-border flex flex-wrap justify-between items-center gap-6 font-mono text-[11px] text-brand-steel tracking-[0.06em]">
           <span>
             © 2026{' '}
-            SIMPLEMINDS S.R.L{' '}
+            INVERGENT S.A.{' '}
             · ALL RIGHTS RESERVED
           </span>
           <span className="inline-flex items-center gap-2">
