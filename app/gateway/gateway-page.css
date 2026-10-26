@@ -1,0 +1,9 @@
+/* Page CSS from the design canvas artboard, scoped to .pg-gateway where it would leak. */
+/* The canvas lays pages out with the browser default content-box; Tailwind resets to
+   border-box, which would take the padding out of every max-width and change wrapping. */
+.pg-gateway main, .pg-gateway main *, .pg-gateway main *::before, .pg-gateway main *::after { box-sizing: content-box; }
+/* ...and with line-height: normal where an element sets none; Tailwind puts 1.5 on <html>. */
+.pg-gateway main { line-height: normal; }
+/* globals.css paints every pre purple and borderless with !important; the sample sits on the panel's own
+   background and scrolls inside its box on a phone instead of widening the page. */
+.pg-gateway pre { overflow-x: auto; background-color: transparent !important; border: 0 !important; }

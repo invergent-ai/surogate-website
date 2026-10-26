@@ -10,6 +10,7 @@
 - [Home](https://surogate.ai/): Your workforce, multiplied. The three products and where they run.
 - [Surogate Agents](https://surogate.ai/agents/): Sessions, sandboxes, tools, skills, knowledge, channels, long-running work, improvement and selling an agent.
 - [Keel](https://surogate.ai/keel/): Processes that run agents. Stages, steps, decision rules, approval limits, audit and replay.
+- [AI Gateway](https://surogate.ai/gateway/): One endpoint for every model. OpenAI, Anthropic and OpenRouter compatible API, keys and grants per caller, budgets, guardrails, provider failover; hosted on llm.buzz or on your own Kubernetes.
 - [Partners](https://surogate.ai/partners/): Build a practice on Surogate. 30% of every client plan and licence, every month; 40% at Diamond.
 - [Pricing](https://surogate.ai/pricing/): One plan per client, models at cost, and single-user plans: Free, Standard $19, Pro $96, Max $190 a month.
 - [Labs](https://surogate.ai/labs/): Surogate Rune, Surogate Speech and Surogate Engine.

@@ -56,6 +56,14 @@
       "w": 1440,
       "x": 6080,
       "y": 0
+    },
+    "Gateway.dc.html": {
+      "expand": "fill",
+      "h": 5811,
+      "title": "AI Gateway",
+      "w": 1440,
+      "x": 6080,
+      "y": 4700
     }
   },
   "createdOnFiles": {
@@ -82,6 +90,7 @@
     "Agents-2.dc.html",
     "Keel.dc.html",
     "Partners.dc.html",
+    "Gateway.dc.html",
     "Sitemap.dc.html",
     "Pricing.dc.html"
   ],
