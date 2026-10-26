@@ -24,16 +24,6 @@ export default function Earn() {
               <dd className="order-[1] m-0 text-[clamp(32px,3.4vw,42px)] leading-[1.05] font-extrabold tracking-[-0.03em] [font-variant-numeric:tabular-nums_lining-nums]">$897<span className="text-[17px] font-semibold tracking-[0] text-brand-graphite"> a month</span>
               </dd>
             </div>
-            <div className="flex-[1_1_220px] min-w-0 flex flex-col gap-[6px] pt-[18px] border-t-[3px] border-t-brand-aubergine">
-              <dt className="order-[2] text-[15px] leading-[1.5] text-brand-graphite">A client on its own infrastructure, $60,000 a year</dt>
-              <dd className="order-[1] m-0 text-[clamp(32px,3.4vw,42px)] leading-[1.05] font-extrabold tracking-[-0.03em] [font-variant-numeric:tabular-nums_lining-nums]">$18,000<span className="text-[17px] font-semibold tracking-[0] text-brand-graphite"> a year</span>
-              </dd>
-            </div>
-            <div className="flex-[1_1_220px] min-w-0 flex flex-col gap-[6px] pt-[18px] border-t-[3px] border-t-brand-aubergine">
-              <dt className="order-[2] text-[15px] leading-[1.5] text-brand-graphite">The same client with Keel, $90,000 a year</dt>
-              <dd className="order-[1] m-0 text-[clamp(32px,3.4vw,42px)] leading-[1.05] font-extrabold tracking-[-0.03em] [font-variant-numeric:tabular-nums_lining-nums]">$27,000<span className="text-[17px] font-semibold tracking-[0] text-brand-graphite"> a year</span>
-              </dd>
-            </div>
           </dl>
           <p className="-mt-[24px] mx-0 mb-0 text-[14px] text-brand-graphite">Figures at 30%. Diamond partners earn 40%.</p>
         </div>

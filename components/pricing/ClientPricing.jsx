@@ -74,20 +74,6 @@ export default function ClientPricing() {
       </section>
       <section className="bg-white">
         <div className="max-w-[1200px] my-0 mx-auto py-[72px] px-[24px] flex flex-wrap gap-[24px]">
-          <article className="flex-[1_1_460px] min-w-0 bg-brand-aubergine text-white p-[36px] flex flex-col gap-[18px]">
-            <p className="m-0 font-mono text-[13px] tracking-[0.14em] text-brand-orange">THE CLIENT'S OWN INFRASTRUCTURE</p>
-            <div className="flex flex-wrap gap-y-[8px] gap-x-[32px] items-baseline">
-              <p className="m-0 text-[44px] font-extrabold tracking-[-0.03em]">$60,000<span className="text-[18px] font-semibold text-[rgba(255,255,255,0.74)]"> / year</span>
-              </p>
-              <p className="m-0 text-[17px] text-[rgba(255,255,255,0.86)]">$90,000 / year with Keel</p>
-            </div>
-            <ul className="m-0 pt-0 pr-0 pb-0 pl-[18px] flex flex-col gap-[8px] text-[15px] leading-[1.5] text-[rgba(255,255,255,0.84)] list-disc">
-              <li>Single-tenant install on the client's Kubernetes, air-gapped networks included</li>
-              <li>No usage metering: sessions, sandboxes and cases run on the client's hardware</li>
-              <li>The client's own models, or its own provider account</li>
-              <li>Installer and every update</li>
-            </ul>
-          </article>
           <article className="flex-[1_1_460px] min-w-0 border border-brand-border p-[36px] flex flex-col gap-[18px]">
             <p className="m-0 font-mono text-[13px] tracking-[0.14em] text-brand-wine">KEEL ON SUROGATE CLOUD</p>
             <p className="m-0 text-[17px] leading-[1.5]">Priced per completed case, on any cloud plan.</p>

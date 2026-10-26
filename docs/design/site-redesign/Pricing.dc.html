@@ -89,20 +89,6 @@ a{color:#9b1f61}a:hover{color:#2a102d}
 <section style="background: #ffffff">
 <div style="max-width: 1200px; margin: 0 auto; padding: 72px 24px; display: flex; flex-wrap: wrap; gap: 24px">
 
-<article style="flex: 1 1 460px; min-width: 0; background: #2a102d; color: #ffffff; padding: 36px; display: flex; flex-direction: column; gap: 18px">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: {{accent}}">THE CLIENT'S OWN INFRASTRUCTURE</p>
-<div style="display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline">
-<p style="margin: 0; font-size: 44px; font-weight: 800; letter-spacing: -0.03em">$60,000<span style="font-size: 18px; font-weight: 600; color: rgba(255,255,255,0.74)"> / year</span></p>
-<p style="margin: 0; font-size: 17px; color: rgba(255,255,255,0.86)">$90,000 / year with Keel</p>
-</div>
-<ul style="margin: 0; padding: 0 0 0 18px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.84)">
-<li>Single-tenant install on the client's Kubernetes, air-gapped networks included</li>
-<li>No usage metering: sessions, sandboxes and cases run on the client's hardware</li>
-<li>The client's own models, or its own provider account</li>
-<li>Installer and every update</li>
-</ul>
-</article>
-
 <article style="flex: 1 1 460px; min-width: 0; border: 1px solid #e6e3eb; padding: 36px; display: flex; flex-direction: column; gap: 18px">
 <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #9b1f61">KEEL ON SUROGATE CLOUD</p>
 <p style="margin: 0; font-size: 17px; line-height: 1.5">Priced per completed case, on any cloud plan.</p>
@@ -136,7 +122,7 @@ a{color:#9b1f61}a:hover{color:#2a102d}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#ffaf10","options":["#ffaf10","#ffe845","#bdccd4"]},"$preview":{"width":1440,"height":1900}}'>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#ffaf10","options":["#ffaf10","#ffe845","#bdccd4"]},"$preview":{"width":1440,"height":2057}}'>
 class Component extends DCLogic {
   renderVals() {
     return { accent: this.props.accent ?? '#ffaf10' };

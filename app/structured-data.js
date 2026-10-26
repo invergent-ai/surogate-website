@@ -71,7 +71,6 @@ export const softwareApplication = {
     { '@type': 'Offer', name: 'Pilot', price: '0', priceCurrency: 'USD', description: 'The first 60 days of every new client' },
     { '@type': 'Offer', name: 'Production', price: '990', priceCurrency: 'USD', category: 'monthly subscription per client organisation' },
     { '@type': 'Offer', name: 'Scale', price: '2990', priceCurrency: 'USD', category: 'monthly subscription per client organisation' },
-    { '@type': 'Offer', name: 'Own infrastructure', price: '60000', priceCurrency: 'USD', category: 'yearly licence' },
   ],
 };
 
