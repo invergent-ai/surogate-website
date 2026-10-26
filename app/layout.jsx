@@ -35,12 +35,12 @@ export const viewport = {
 
 const TITLE = 'Surogate - Your workforce, multiplied.';
 const DESCRIPTION =
-  'Every team works with agents that read, check, draft and follow your processes, on your own infrastructure. Surogate Agents, Keel and custom models.';
+  'Every team works with agents that read, check, draft and follow your processes, on your own infrastructure. Surogate Agents, Keel, the AI Gateway and custom models.';
 
 export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords: 'AI agent platform, Surogate Agents, Keel, agentic orchestration, agents in processes, custom models, on-premise AI agents, air-gapped AI agents, AI agent partners',
+  keywords: 'AI agent platform, AI gateway, LLM gateway, Surogate Agents, Keel, agentic orchestration, agents in processes, custom models, on-premise AI agents, air-gapped AI agents, AI agent partners',
   authors: [{ name: 'Surogate' }],
   robots: 'index, follow',
   openGraph: {

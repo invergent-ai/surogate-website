@@ -36,8 +36,8 @@
 .sg-layer { animation: sg-layer-k 1.8s ease-in-out infinite }
 @keyframes sg-rail-k { to { stroke-dashoffset: -14 } }
 .sg-rail { animation: sg-rail-k 0.8s linear infinite }
-@keyframes sg-unpack-top { from { transform: translate(0px, 151px) } to { transform: translate(0px, 0px) } }
-@keyframes sg-unpack-bottom { from { transform: translate(0px, -151px) } to { transform: translate(0px, 0px) } }
+@keyframes sg-unpack-top { from { transform: translate(0px, 174px) } to { transform: translate(0px, 0px) } }
+@keyframes sg-unpack-bottom { from { transform: translate(0px, -174px) } to { transform: translate(0px, 0px) } }
 .sg-in-slab0 { animation: sg-unpack-top 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both }
 .sg-in-slab2 { animation: sg-unpack-bottom 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both }
 @keyframes sg-rise { from { opacity: 0; transform: translate(0px, 14px) } to { opacity: 1; transform: translate(0px, 0px) } }
@@ -47,9 +47,17 @@
 .sg-in-shadow { animation: sg-fade 0.8s ease-out 1.2s both }
 @keyframes sg-label-in { from { opacity: 0; transform: translate(-12px, 0px) } to { opacity: 1; transform: translate(0px, 0px) } }
 .sg-in-label { animation: sg-label-in 0.5s ease-out both }
-@keyframes sg-target-k { 0%, 30% { border-color: #ffaf10; background-color: rgba(255,175,16,0.10); box-shadow: 0 0 28px -8px rgba(255,175,16,0.7) } 36%, 100% { border-color: rgba(255,255,255,0.16); background-color: rgba(255,255,255,0.02); box-shadow: 0 0 0 0 rgba(255,175,16,0) } }
-.sg-target { animation: sg-target-k 9s ease-in-out infinite both }
-@media (prefers-reduced-motion: reduce) { .sg-chip0, .sg-chip1, .sg-chip2, .sg-chip3, .sg-chip4, .sg-chip5, .sg-chip6, .sg-chip7, .sg-packet0, .sg-packet1, .sg-pulse, .sg-bar, .sg-rail, .sg-layer, .sg-in-slab0, .sg-in-slab2, .sg-in-content, .sg-in-rails, .sg-in-shadow, .sg-in-label, .sg-target { animation: none } }
+@keyframes sg-gwp-k { 0% { transform: translate(0px, 0px); opacity: 0 } 6% { transform: translate(0px, 0px); opacity: 0 } 8% { transform: translate(0.0px, 0.0px); opacity: 1 } 18% { transform: translate(14.7px, -6.9px); opacity: 1 } 26% { transform: translate(29.4px, -13.8px); opacity: 1 } 40% { transform: translate(58.9px, -27.6px); opacity: 1 } 46% { transform: translate(76.5px, -35.9px); opacity: 1 } 58% { transform: translate(32.4px, -56.7px); opacity: 1 } 64% { transform: translate(44.2px, -62.2px); opacity: 1 } 72% { transform: translate(32.4px, -56.7px); opacity: 1 } 82% { transform: translate(61.8px, -42.8px); opacity: 1 } 88% { transform: translate(73.6px, -48.4px); opacity: 1 } 94% { transform: translate(73.6px, -48.4px); opacity: 0 } 100% { transform: translate(73.6px, -48.4px); opacity: 0 } }
+.sg-gwp { animation: sg-gwp-k 6s linear infinite; animation-delay: 2.2s; opacity: 0 }
+@keyframes sg-gwf-k { 0%, 63% { opacity: 0 } 65%, 74% { opacity: 1 } 80%, 100% { opacity: 0 } }
+.sg-gwf { animation: sg-gwf-k 6s linear infinite; animation-delay: 2.2s; opacity: 0 }
+@keyframes sg-gwo-k { 0%, 87% { opacity: 0 } 89%, 97% { opacity: 1 } 100% { opacity: 0 } }
+.sg-gwo { animation: sg-gwo-k 6s linear infinite; animation-delay: 2.2s; opacity: 0 }
+@keyframes sg-unpack-mid-top { from { transform: translate(0px, 58px) } to { transform: translate(0px, 0px) } }
+@keyframes sg-unpack-mid-bottom { from { transform: translate(0px, -58px) } to { transform: translate(0px, 0px) } }
+.sg-in-slab1 { animation: sg-unpack-mid-top 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both }
+.sg-in-slabg { animation: sg-unpack-mid-bottom 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both }
+@media (prefers-reduced-motion: reduce) { .sg-gwp { opacity: 0 !important } .sg-gwf, .sg-gwo { opacity: 1 !important } .sg-in-slab1, .sg-in-slabg, .sg-gwp, .sg-gwf, .sg-gwo, .sg-chip0, .sg-chip1, .sg-chip2, .sg-chip3, .sg-chip4, .sg-chip5, .sg-chip6, .sg-chip7, .sg-packet0, .sg-packet1, .sg-pulse, .sg-bar, .sg-rail, .sg-layer, .sg-in-slab0, .sg-in-slab2, .sg-in-content, .sg-in-rails, .sg-in-shadow, .sg-in-label { animation: none } }
 /* /sg-hero */
 /* sg-deploy */
 @keyframes sg-bob-k { 0%, 100% { transform: translate(0px, 0px) } 50% { transform: translate(0px, -5px) } }

@@ -19,7 +19,7 @@ export const organization = {
     url: 'https://surogate.ai/brand/logo-full-black.svg',
   },
   description:
-    'Surogate makes Surogate Agents, an agentic platform; Keel, which runs agents inside defined processes; and custom language and speech models. It runs in Surogate cloud, on your Kubernetes or air-gapped.',
+    'Surogate makes Surogate Agents, an agentic platform; Keel, which runs agents inside defined processes; the AI Gateway, which puts every model behind one API; and custom language and speech models. It runs in Surogate cloud, on your Kubernetes or air-gapped.',
   email: CONTACT.email,
   // Add LinkedIn, HuggingFace, Discord, Wikidata, and X URLs here as they are confirmed.
   sameAs: [
@@ -52,7 +52,7 @@ export const website = {
   url: 'https://surogate.ai/',
   name: 'Surogate',
   description:
-    'Surogate Agents, Keel and custom models for teams that run agents on their own processes and infrastructure.',
+    'Surogate Agents, Keel, the AI Gateway and custom models for teams that run agents on their own processes and infrastructure.',
   publisher: { '@id': ORG_ID },
   inLanguage: 'en',
 };
