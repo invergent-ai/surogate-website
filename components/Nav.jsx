@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { track } from '@/lib/analytics';
+import TrackedLink from '@/components/TrackedLink';
 import { NAV, SIGN_IN } from '@/lib/site';
 
 const external = (link) => (link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {});
@@ -51,20 +52,22 @@ export default function Nav() {
           ))}
         </nav>
         <div className="hidden lg:flex items-center gap-4">
-          <a
+          <TrackedLink
             href={SIGN_IN}
             className="!text-white no-underline text-[15px] py-3"
-            onClick={() => track('cta_signin_clicked', { location: 'nav' })}
+            event="cta_signin_clicked"
+            eventProps={{ location: 'nav' }}
           >
             Sign in
-          </a>
-          <a
+          </TrackedLink>
+          <TrackedLink
             href="/partners/"
             className="inline-flex items-center min-h-[44px] px-[18px] bg-brand-orange !text-brand-aubergine no-underline font-semibold text-[15px]"
-            onClick={() => track('cta_partner_clicked', { location: 'nav' })}
+            event="cta_agency_clicked"
+            eventProps={{ location: 'nav' }}
           >
             Become a partner
-          </a>
+          </TrackedLink>
         </div>
         <button
           type="button"
@@ -105,16 +108,18 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
-          <a href={SIGN_IN} className="no-underline text-[17px] py-3 !text-white" onClick={() => track('cta_signin_clicked', { location: 'nav_mobile' })}>
+          <TrackedLink href={SIGN_IN} className="no-underline text-[17px] py-3 !text-white"
+            event="cta_signin_clicked" eventProps={{ location: 'nav_mobile' }}>
             Sign in
-          </a>
-          <a
+          </TrackedLink>
+          <TrackedLink
             href="/partners/"
             className="mt-3 inline-flex items-center justify-center min-h-[48px] bg-brand-orange !text-brand-aubergine no-underline font-semibold text-base"
-            onClick={() => track('cta_partner_clicked', { location: 'nav_mobile' })}
+            event="cta_agency_clicked"
+            eventProps={{ location: 'nav_mobile' }}
           >
             Become a partner
-          </a>
+          </TrackedLink>
         </div>
       </nav>
     </header>

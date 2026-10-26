@@ -1,3 +1,4 @@
+import TrackedLink from '@/components/TrackedLink';
 import { PRICING_FAQ } from '@/lib/pricing';
 import { mailto } from '@/lib/site';
 
@@ -9,9 +10,9 @@ export default function PersonalFaq() {
           <h2 className="font-sans m-0 text-[clamp(28px,3vw,36px)] leading-[1.1] tracking-[-0.025em] font-extrabold">Questions about personal plans</h2>
           <p className="m-0 text-[16px] leading-[1.6] text-brand-graphite">
             Can&apos;t find what you&apos;re looking for?{' '}
-            <a href={mailto('Personal plans')} className="underline text-brand-wine hover:text-brand-aubergine">
+            <TrackedLink event="contact_sales_clicked" eventProps={{ location: 'pricing_faq' }} href={mailto('Personal plans')} className="underline text-brand-wine hover:text-brand-aubergine">
               Ask us
-            </a>
+            </TrackedLink>
             .
           </p>
         </div>

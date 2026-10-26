@@ -11,7 +11,9 @@ export default function TrackedLink({ event, eventProps, onClick, children, ...p
   };
 
   return (
-    <a {...props} onClick={handleClick}>
+    // data-event names the conversion in the HTML, so scripts/check-links.mjs can tell
+    // a tracked link from a plain one.
+    <a {...props} data-event={event} onClick={handleClick}>
       {children}
     </a>
   );

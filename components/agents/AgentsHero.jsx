@@ -1,3 +1,4 @@
+import TrackedLink from '@/components/TrackedLink';
 import TourFilm from './TourFilm';
 
 export default function AgentsHero() {
@@ -9,7 +10,7 @@ export default function AgentsHero() {
             <h1 className="font-sans m-0 text-[clamp(44px,6vw,72px)] leading-[1.0] tracking-[-0.035em] font-extrabold">The Factory for Professional agents</h1>
             <p className="m-0 text-[21px] leading-[1.5] text-[rgba(255,255,255,0.8)] max-w-[720px]">Design, test, govern and run agents for whole teams without writing code, in your cloud or on your own hardware.</p>
             <div className="flex flex-wrap gap-[12px]">
-              <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href="https://ops.surogate.ai">Start building</a>
+              <TrackedLink event="cta_signup_clicked" eventProps={{ location: 'agents_hero' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href="https://ops.surogate.ai">Start building</TrackedLink>
               <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] border border-[rgba(255,255,255,0.4)] text-white no-underline font-semibold text-[16px]" href="https://docs.surogate.ai">Read the docs</a>
             </div>
           </div>

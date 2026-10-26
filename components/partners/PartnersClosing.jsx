@@ -1,3 +1,4 @@
+import TrackedLink from '@/components/TrackedLink';
 import { CONTACT, mailto } from '@/lib/site';
 
 export default function PartnersClosing() {
@@ -11,8 +12,8 @@ export default function PartnersClosing() {
               <p className="m-0 text-[18px] leading-[1.6] text-[rgba(255,255,255,0.8)]">Email us or join our Discord. The first 10 partners get Diamond terms for their first 12 months.</p>
             </div>
             <div className="flex flex-wrap gap-[12px]">
-              <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href={mailto('Surogate partner program')}>Email {CONTACT.email}</a>
-              <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] border border-[rgba(255,255,255,0.4)] text-white no-underline font-semibold text-[16px]" href={CONTACT.discord}>Join our Discord</a>
+              <TrackedLink event="cta_agency_clicked" eventProps={{ location: 'partners_closing' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href={mailto('Surogate partner program')}>Email {CONTACT.email}</TrackedLink>
+              <TrackedLink event="reach_out_clicked" eventProps={{ channel: 'discord', location: 'partners_closing' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] border border-[rgba(255,255,255,0.4)] text-white no-underline font-semibold text-[16px]" href={CONTACT.discord}>Join our Discord</TrackedLink>
             </div>
           </div>
         </div>

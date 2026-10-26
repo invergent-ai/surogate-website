@@ -1,3 +1,4 @@
+import TrackedLink from '@/components/TrackedLink';
 export default function AgentsClosing() {
   return (
     <>
@@ -9,7 +10,7 @@ export default function AgentsClosing() {
               <p className="m-0 text-[18px] leading-[1.6] text-[rgba(255,255,255,0.8)]">Start on the free plan with five agents and no card, or install the platform on your own Kubernetes.</p>
             </div>
             <div className="flex flex-wrap gap-[12px]">
-              <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href="https://ops.surogate.ai">Start building</a>
+              <TrackedLink event="cta_signup_clicked" eventProps={{ location: 'agents_closing' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href="https://ops.surogate.ai">Start building</TrackedLink>
               <a className="inline-flex items-center min-h-[52px] py-0 px-[24px] border border-[rgba(255,255,255,0.4)] text-white no-underline font-semibold text-[16px]" href="https://docs.surogate.ai">Install it yourself</a>
             </div>
           </div>
