@@ -30,8 +30,8 @@ function Speak({ action }) {
 // Three rows of two on 24 columns, the wider tile alternating sides so the grid never looks ruled.
 // Each mini UI fills its tile; the name row sits on a soft fade of the tile's own colour. Agents carries a
 // recording, so it sits whole in its 16:10 window above that row.
-const SURFACE = { ivory: 'bg-stone !text-ink', night: 'bg-night !text-cream', ink: 'bg-ink !text-cream' };
-const FADE = { ivory: 'from-stone via-stone/90', night: 'from-night via-night/90', ink: 'from-ink via-ink/90' };
+const SURFACE = { ivory: 'bg-stone !text-ink', night: 'bg-night !text-cream', cream: 'bg-cream !text-ink' };
+const FADE = { ivory: 'from-stone via-stone/90', night: 'from-night via-night/90', cream: 'from-cream via-cream/90' };
 const SPAN = {
   agents: 'lg:col-[span_13/span_13]', surogate: 'lg:col-[span_11/span_11]',
   voice: 'lg:col-[span_11/span_11]', keel: 'lg:col-[span_13/span_13]',
@@ -43,7 +43,7 @@ export default function Bento({ active }) {
     <div className={`${CONTAINER} pb-16 md:pb-24`}>
       <ul className="load-fade m-0 grid list-none gap-3 p-0 md:grid-cols-2 lg:grid-cols-[repeat(24,minmax(0,1fr))]">
         {PRODUCTS.map((p) => {
-          const dark = p.tone !== 'ivory';
+          const dark = p.tone === 'night';
           const on = p.key === active;
           const media = `tile-media absolute ${on ? 'opacity-100' : 'opacity-[.85]'}`;
           return (

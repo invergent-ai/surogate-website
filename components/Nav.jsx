@@ -42,7 +42,7 @@ export function ProductsPanel({ onPick }) {
       </ul>
       <div className="relative h-full overflow-hidden rounded-lg" aria-hidden="true">
         {PRODUCTS.map((p) => (
-          <div key={p.key} className={`absolute inset-0 transition-opacity duration-[170ms] ease-in-out ${{ night: 'bg-night', ink: 'bg-ink' }[p.tone] || 'bg-stone'} ${active === p.key ? 'opacity-100' : 'opacity-0'}`}>
+          <div key={p.key} className={`absolute inset-0 transition-opacity duration-[170ms] ease-in-out ${{ night: 'bg-night', cream: 'bg-cream' }[p.tone] || 'bg-stone'} ${active === p.key ? 'opacity-100' : 'opacity-0'}`}>
             {p.key === 'agents'
               ? <div className="flex h-full items-center p-5"><ProductMedia product={p} still={active !== p.key} /></div>
               : <ProductMedia product={p} still={active !== p.key} />}
