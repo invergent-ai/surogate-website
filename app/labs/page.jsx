@@ -4,23 +4,23 @@ import '../home.css';
 import '../labs.css';
 
 const URL = 'https://surogate.ai/labs/';
-const TITLE = 'Labs - Surogate';
+const TITLE = 'Research - Surogate';
 const DESCRIPTION =
-  'Models the Surogate team trained and published: Rune, an open decision model for text and images, and Surogate Speech for Romanian, each with its demos at work and its numbers. Plus Surogate Engine, the open-source engine that trains and serves them.';
+  'Models the Surogate team trained and published: the Surogate 3.x language models including Surogate 3.7 Flash, Rune, an open decision model for text and images, and Surogate Speech for Romanian. Plus Surogate Engine, the open-source engine that trains and serves them.';
 
 const breadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://surogate.ai/' },
-    { '@type': 'ListItem', position: 2, name: 'Labs', item: URL },
+    { '@type': 'ListItem', position: 2, name: 'Research', item: URL },
   ],
 };
 
 export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords: 'Surogate Labs, Surogate Rune, decision model, Romanian text to speech, Romanian speech recognition, Amami, Jackrabbit, LLM training, LLM serving',
+  keywords: 'Surogate Labs, Surogate 3.7 Flash, Surogate 3.5, Surogate Rune, decision model, Romanian text to speech, Romanian speech recognition, Amami, Jackrabbit, LLM training, LLM serving',
   alternates: { canonical: URL },
   openGraph: { type: 'website', url: URL, title: TITLE, description: DESCRIPTION, siteName: 'Surogate', images: [{ url: 'https://surogate.ai/og-image.jpg', width: 1200, height: 630 }] },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://surogate.ai/twitter-image.jpg'] },

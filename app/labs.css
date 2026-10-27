@@ -752,3 +752,77 @@
   .st-hub .hub-ex-t{margin-top:0; align-self:end;}
   .st-hub .hub-ex-k{align-self:start;}
 }
+
+/* ════════════════════════════════════════════════════════════════
+   v2: the labs pages in the site's system. One layer over the rules above,
+   so every demo, film and fact keeps working: Inter only, calmer type, light
+   heroes with aubergine bands below, pill buttons, sentence case, 16/12 radii.
+   ════════════════════════════════════════════════════════════════ */
+.st-labs{--amber:#ffaf10; --amber-2:#ffe845;}
+.st-home.st-labs{--serif:var(--sans); --wrap:1280px; --pad-x:24px; --paper-2:#f9f8f6; --line2:#e4e4e7;
+  --txt-1:#0a0a0a; --txt-2:rgba(10,10,10,0.65); --txt-3:rgba(10,10,10,0.55); font-size:17px; color:var(--txt-1);}
+@media (max-width:767px){.st-home.st-labs{--pad-x:16px;}}
+.st-home.st-labs *{text-transform:none !important; letter-spacing:0;}
+
+/* The sub-nav: light, under the white site nav, the current page underlined in ink. */
+.st-labs .lab-subnav{position:sticky; top:64px; z-index:40; background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid #e4e4e7;}
+.st-labs .lab-subnav-in{max-width:1280px; margin:0 auto; padding:0 24px; gap:24px;}
+@media (max-width:767px){.st-labs .lab-subnav-in{padding:0 16px;}}
+.st-labs .lab-subnav a{padding:12px 0 10px; font-size:14px; font-weight:500; color:rgba(10,10,10,0.6); text-decoration:none;
+  transition:color 150ms cubic-bezier(.4,0,.2,1), border-color 150ms cubic-bezier(.4,0,.2,1);}
+.st-labs .lab-subnav a:hover{color:#0a0a0a;}
+.st-labs .lab-subnav a[aria-current="page"]{color:#0a0a0a; border-bottom-color:#0a0a0a;}
+.st-labs .lab-subnav a:focus-visible{outline:2px solid var(--amber);}
+
+/* Heroes open light; the dark sections further down stay as aubergine bands. */
+.st-home.st-labs .hero{background:#fff; padding:96px 0 88px;
+  --txt-d1:#0a0a0a; --txt-d2:rgba(10,10,10,0.65); --txt-d3:rgba(10,10,10,0.55); --line-dk:#e4e4e7;}
+.st-home.st-labs .hero-glow, .st-home.st-labs .hero-kicker, .st-home.st-labs .eyebrow{display:none;}
+.st-home.st-labs .hero-title{font-weight:450; font-size:clamp(36px,4.6vw,58px); line-height:1.05; letter-spacing:-0.01em; color:#0a0a0a; max-width:18ch;}
+.st-home.st-labs .hero-title .amber{color:inherit;}
+.st-home.st-labs .hero-sub{font-size:18px; line-height:1.6; margin-top:20px; max-width:56ch;}
+.st-home.st-labs .hero-actions{gap:10px; margin-top:32px;}
+.st-home.st-labs .hero-meta{border-color:#e4e4e7; border-radius:16px; margin-top:48px;}
+.st-home.st-labs .hero-meta .hm{border-color:#e4e4e7;}
+.st-home.st-labs .hero-meta .hm-n{font-weight:450; font-size:30px; color:#0a0a0a;}
+.st-home.st-labs .hero-meta .hm-l{font-size:13px; letter-spacing:0;}
+.st-home.st-labs .hero .btn-ghost{background:#f2f1ef; color:#0a0a0a; border:0;}
+.st-home.st-labs .hero .btn-ghost:hover{background:#e4e4e7;}
+
+/* Sections and type. */
+.st-home.st-labs .sec{padding:96px 0;}
+.st-home.st-labs .sec.tight{padding:80px 0;}
+@media (max-width:767px){.st-home.st-labs .sec, .st-home.st-labs .sec.tight{padding:64px 0;} .st-home.st-labs .hero{padding:56px 0 64px;}}
+.st-home.st-labs .h-section{font-weight:500; font-size:clamp(28px,3.2vw,46px); line-height:1.1; letter-spacing:-0.01em; margin-top:0;}
+.st-home.st-labs .h-section .amber{color:inherit;}
+.st-home.st-labs .lead{font-size:18px; line-height:1.6;}
+
+/* Buttons are pills in sentence case. */
+.st-home.st-labs .btn{border-radius:9999px; font-size:14px; font-weight:500; padding:0 20px; height:44px; gap:6px;
+  transition:filter 150ms cubic-bezier(.4,0,.2,1), background 150ms cubic-bezier(.4,0,.2,1);}
+.st-home.st-labs .btn-primary{background:#0a0a0a; color:#fff;}
+.st-home.st-labs .btn-primary:hover{background:#0a0a0a; filter:brightness(1.4);}
+.st-home.st-labs .dark .btn-primary{background:var(--amber); color:#2a102d;}
+.st-home.st-labs .btn:active{transform:none;}
+
+/* Radii: 16 for tiles, 12 for cards and controls. */
+.st-labs .lab-film, .st-labs .lab-film-open video, .st-labs .lab-sp, .st-speech .sp-stream, .st-speech .sp-cmp,
+.st-engine .en-col, .st-rune .qk, .st-rune .sees-tile, .st-rune .use, .st-rune .dep, .st-rune .dep-speed,
+.st-rune .lb-score, .st-rune .lb-areas, .st-rune .lb-frame, .st-rune .de-in, .st-rune .de-out, .st-rune .cal{border-radius:16px;}
+.st-speech .sp-say, .st-speech .sp-say-btn, .st-speech .sp-row, .st-rune .lb-open, .st-rune .qk-send, .st-rune .qk-get{border-radius:12px;}
+.st-labs .lab-shot, .st-labs .hf-card{border-radius:16px;}
+.st-labs .lab-shot{box-shadow:none;}
+.st-home.st-labs .lab-demo-t{font-weight:500; font-size:clamp(24px,2.4vw,30px); letter-spacing:-0.01em;}
+.st-home.st-labs .lab-demo-d{font-size:17px;}
+.st-home.st-labs .lab-fact-n{font-weight:450; font-size:36px;}
+
+/* No glow at rest, no deep shadows, no coloured tag chips, no rabbit outside its pages. */
+.st-labs .rune-glyph{filter:none;}
+.st-home.st-labs .hero-rabbit, .st-home.st-labs .hero-rings{display:none;}
+.st-labs .lab-film-open video, .st-hub .hub-rune, .st-rune .de-in, .st-rune .de-out, .st-rune .lb-score, .st-rune .cal,
+.st-speech .sp-say[data-on="true"]{box-shadow:none;}
+.st-rune .de-core{box-shadow:inset 0 0 0 1px rgba(255,175,16,0.18);}
+.st-labs .lab-tag{font-family:var(--sans); font-size:13px; font-weight:500; color:rgba(10,10,10,0.6); background:none; border:0; padding:0;}
+.st-labs .dark .lab-tag{color:rgba(243,234,216,0.7);}
+.st-home.st-labs .hero-meta .hm-n, .st-home.st-labs .hero-meta .hm-n em{color:#0a0a0a;}

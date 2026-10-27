@@ -1,130 +1,162 @@
-'use client';
-
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight, ChevronRight } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import useReveal from '@/components/useReveal';
-import { track } from '@/lib/analytics';
-import { ENGINE, RUNE_DEMOS, RUNE_FACTS, SPEECH_MODELS } from '@/lib/labs';
-import EngineCores from './EngineCores';
+import TrackedLink from '@/components/TrackedLink';
+import Button from '@/components/site/Button';
+import Rabbit from '@/components/site/Rabbit';
+import Section, { CONTAINER, H2, SectionHead } from '@/components/site/Section';
+import { ENGINE, RUNE_DEMOS, RUNE_FACTS, SPEECH_MODELS, SUROGATE_LM } from '@/lib/labs';
 import LabsSubnav from './LabsSubnav';
+import RuneFilms from './RuneFilms';
 import RuneGlyph from './RuneGlyph';
-import { ICONS } from './icons';
 
 /*
- * surogate.ai/labs. The hub: one portal per model line and one for the engine that trains and serves
- * them, then the live examples. Each portal leads to its own page (/labs/rune, /labs/speech,
- * /labs/engine); the sub-nav links all of them.
+ * surogate.ai/labs, labelled Research in the menu. Our language models first, then one card per model
+ * line and one for the engine that trains and serves them, each leading to its own page, then Rune at work.
+ * Covers use our own marks in our palette, as on the home page's model cards.
  */
-export default function LabsClient() {
-  useReveal();
 
+const H1 = 'm-0 text-balance text-[36px] font-[450] leading-[1.1] tracking-[-0.01em] text-ink md:text-[48px] md:leading-[1.05] lg:text-[58px]';
+const SPEECH_MARKS = [['/labs/speech/jackrabbit.svg', 'Jackrabbit'], ['/labs/speech/jackrabbit-streaming.svg', 'Streaming'], ['/labs/speech/amami.svg', 'Amami']];
+
+const LINES = [
+  {
+    key: 'rune', href: '/labs/rune/', kind: 'Decision model', name: 'Surogate Rune', go: 'See it decide',
+    line: 'Text or an image in, one of your options out, with a calibrated probability for every one.',
+    facts: RUNE_FACTS.slice(0, 3).map((f) => ({ n: f.n, l: f.l.split(',')[0] })),
+    cover: (
+      <span className="flex h-full items-center justify-center bg-night [&_.rg-ring]:fill-none [&_.rg-ring]:stroke-sun/30 [&_.rg-ring]:[stroke-width:2] [&_.rg-s]:fill-none [&_.rg-s]:stroke-sun [&_.rg-s]:[stroke-linecap:round] [&_.rg-s]:[stroke-linejoin:round] [&_.rg-s]:[stroke-width:9]">
+        <RuneGlyph className="h-20 w-auto overflow-visible" />
+      </span>
+    ),
+  },
+  {
+    key: 'speech', href: '/labs/speech/', kind: 'Speech for agents', name: 'Surogate Speech', go: 'Listen',
+    line: 'Small open speech models that run on a CPU. Jackrabbit listens, Amami speaks.',
+    facts: SPEECH_MODELS.map((m) => ({ n: m.stat.n, l: m.name })),
+    cover: (
+      <span className="grid h-full grid-cols-3 items-center bg-cream px-4">
+        {SPEECH_MARKS.map(([src, label]) => (
+          <span key={label} className="flex flex-col items-center gap-2">
+            <img src={src} alt="" className="h-12 w-12 md:h-14 md:w-14" />
+            <span className="text-[11px] text-aubergine/60">{label}</span>
+          </span>
+        ))}
+      </span>
+    ),
+  },
+  {
+    key: 'engine', href: '/labs/engine/', kind: 'Training and serving, open source', name: 'Surogate Engine', go: 'See the numbers',
+    line: ENGINE.line,
+    facts: ENGINE.facts,
+    cover: (
+      <span className="relative flex h-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#ffd27a] via-sun to-[#e7772a]">
+        <img src="/surogate_rings.svg" alt="" className="spin-slow absolute left-1/2 top-1/2 h-[180%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 opacity-70" />
+        <img src="/brand/logo-full-white.svg" alt="" className="relative h-8 w-auto" />
+      </span>
+    ),
+  },
+];
+
+function Facts({ items, dark = false }) {
   return (
-    <div className="st-home st-labs st-hub bg-white text-brand-aubergine antialiased">
+    <dl className={`m-0 mt-5 border-t ${dark ? 'border-white/10' : 'border-hairline'}`}>
+      {items.map((f) => (
+        <div key={f.l} className={`flex items-baseline gap-3 border-b py-2.5 text-[13px] ${dark ? 'border-white/10' : 'border-hairline'}`}>
+          <dt className={`order-2 ${dark ? 'text-cream/60' : 'text-ink/60'}`}>{f.l}</dt>
+          <dd className={`order-1 m-0 min-w-[92px] font-medium tabular-nums ${dark ? 'text-cream' : 'text-ink'}`}>{f.n}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+export default function LabsClient() {
+  const { flash, family } = SUROGATE_LM;
+  return (
+    <div className="v2 pg-v2 st-labs w-full overflow-x-clip bg-white font-sans text-ink">
       <Nav />
       <LabsSubnav />
 
       <main id="top">
-        <header className="hero hub-hero">
-          <div className="hero-glow" />
-          <div className="wrap">
-            <p className="hero-kicker reveal">Surogate Labs</p>
-            <h1 className="hero-title reveal d1">
-              Our models
-            </h1>
-            <p className="hero-sub reveal d2">
-              A decision model that sees, SOTA Speech-To-Text and Text-To-Speech that run on edge devices, and
-              the open-source engine we train and serve them with.
-            </p>
-          </div>
-        </header>
-
-        <section className="sec hub-portals">
-          <div className="wrap hub-grid">
-            <a className="hub-portal hub-rune reveal" href="/labs/rune/"
-               onClick={() => track('labs_portal_clicked', { portal: 'rune' })}>
-              <span className="hub-edge" aria-hidden="true" />
-              <span className="hub-glyph-wrap" aria-hidden="true">
-                <span className="hub-ripple" />
-                <span className="hub-ripple" />
-                <RuneGlyph className="hub-glyph" />
-              </span>
-              <span className="hub-kind">Decision model</span>
-              <span className="hub-name">Surogate Rune</span>
-              <span className="hub-line">
-                Text or an image in, one of your options out, with a calibrated probability for every one.
-              </span>
-              <span className="hub-facts">
-                {RUNE_FACTS.slice(0, 3).map((f) => (
-                  <span key={f.n}><b>{f.n}</b> {f.l.split(',')[0]}</span>
-                ))}
-              </span>
-              <span className="hub-go">See it decide <ArrowRight size={18} strokeWidth={2} aria-hidden="true" /></span>
-            </a>
-
-            <a className="hub-portal hub-speech reveal d1" href="/labs/speech/"
-               onClick={() => track('labs_portal_clicked', { portal: 'speech' })}>
-              <span className="hub-wave" aria-hidden="true">
-                {Array.from({ length: 22 }, (_, i) => <i key={i} style={{ '--i': i }} />)}
-              </span>
-              <span className="hub-kind">Speech · Romanian</span>
-              <span className="hub-name">Surogate Speech</span>
-              <span className="hub-line">
-                Small open speech models for agents that run on edge devices. Jackrabbit ASR listens, Amami TTS speaks.
-              </span>
-              <span className="hub-facts">
-                {SPEECH_MODELS.map((m) => (
-                  <span key={m.id}><b>{m.stat.n}</b> {m.name}</span>
-                ))}
-              </span>
-              <span className="hub-go">Listen <ArrowRight size={18} strokeWidth={2} aria-hidden="true" /></span>
-            </a>
-
-            <a className="hub-portal hub-engine reveal d2" href="/labs/engine/"
-               onClick={() => track('labs_portal_clicked', { portal: 'engine' })}>
-              <EngineCores className="hub-cores" />
-              <span className="hub-kind">Training &amp; serving · Open source</span>
-              <span className="hub-name">Surogate Engine</span>
-              <span className="hub-line">{ENGINE.line}</span>
-              <span className="hub-facts">
-                {ENGINE.facts.map((f) => (
-                  <span key={f.n}><b>{f.n}</b> {f.l}</span>
-                ))}
-              </span>
-              <span className="hub-go">See the numbers <ArrowRight size={18} strokeWidth={2} aria-hidden="true" /></span>
-            </a>
+        <section className="bg-white">
+          <div className={`${CONTAINER} pt-14 pb-16 md:pt-24 md:pb-20`}>
+            <div className="load-up max-w-[760px]">
+              <h1 className={H1}>Our own models.</h1>
+              <p className="m-0 mt-5 max-w-[56ch] text-[16px] leading-[1.6] text-ink/65 md:text-[18px]">
+                Language models for Romanian and English, speech for agents, a decision model that sees, and the
+                open-source engine that trains and serves them.
+              </p>
+              <div className="mt-8">
+                <Button href="https://huggingface.co/surogate" external size="lg" arrow>Weights on Hugging Face</Button>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="sec tight hub-examples">
-          <div className="wrap">
-            <div className="hub-ex-head reveal">
-              <h2 className="h-section">Rune at work</h2>
-              <a className="lab-textlink" href="/labs/rune-examples/">
-                All the films <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
-              </a>
-            </div>
-            <div className="hub-ex reveal d1">
-              {RUNE_DEMOS.filter((d) => d.film).slice(0, 6).map((d) => {
-                const Icon = ICONS[d.icon];
-                // the film's poster; its silent loop plays while the pointer is on the card
-                const loop = (play) => (e) => {
-                  const v = e.currentTarget.querySelector('video');
-                  if (play) v.play().catch(() => {}); else v.pause();
-                };
-                return (
-                  <a className="hub-ex-card" key={d.slug} href={`/labs/rune-examples/?demo=${d.slug}`}
-                    onMouseEnter={loop(true)} onMouseLeave={loop(false)} onFocus={loop(true)} onBlur={loop(false)}>
-                    <video src={d.film.loop} poster={d.film.poster} muted loop playsInline preload="none"
-                      width="960" height="540" aria-hidden="true" />
-                    <span className="hub-ex-t"><Icon size={16} strokeWidth={2} aria-hidden="true" /> {d.title}</span>
-                    <span className="hub-ex-k">{d.kind}</span>
+        <Section inner="grid gap-3 lg:grid-cols-[1.25fr_1fr]">
+          <a href={flash.href} target="_blank" rel="noopener noreferrer" className="group flex flex-col overflow-hidden rounded-2xl bg-aubergine !text-cream no-underline">
+            <span className="flex aspect-[16/9] items-center justify-center" aria-hidden="true">
+              <span className="tile-media text-sun" style={{ '--rabbit-bg': '#2a102d' }}><Rabbit size={112} /></span>
+            </span>
+            <span className="block p-6 md:p-8">
+              <span className="flex items-center justify-between gap-4">
+                <span className="text-[22px] font-[500] tracking-[-0.01em]">{flash.name}</span>
+                <span className="inline-flex items-center gap-1 text-[13px] text-cream/70 group-hover:text-cream">llm.buzz <ArrowUpRight size={14} className="nudge" /></span>
+              </span>
+              <span className="mt-2 block text-[15px] leading-[1.55] text-cream/70">{flash.line}</span>
+              <Facts items={flash.facts} dark />
+            </span>
+          </a>
+          <div className="flex flex-col rounded-2xl bg-ivory p-6 md:p-8">
+            <h2 className="m-0 text-[22px] font-[500] tracking-[-0.01em]">{family.name}</h2>
+            <p className="m-0 mt-2 text-[15px] leading-[1.55] text-ink/65">{family.line}</p>
+            <ul className="m-0 mt-6 list-none border-t border-hairline p-0">
+              {family.models.map((m) => (
+                <li key={m.repo} className="border-b border-hairline">
+                  <a href={`https://huggingface.co/${m.repo}`} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-4 py-4 !text-ink no-underline">
+                    <span>
+                      <span className="block text-[15px] font-medium">{m.name}</span>
+                      <span className="mt-0.5 block text-[13px] text-ink/60"><span className="tabular-nums text-ink">{m.fact.n}</span> {m.fact.l}</span>
+                    </span>
+                    <ArrowUpRight size={15} className="nudge shrink-0 text-ink/40 group-hover:text-ink" />
                   </a>
-                );
-              })}
-            </div>
+                </li>
+              ))}
+            </ul>
+            <p className="m-0 mt-auto pt-6 text-[12px] leading-[1.5] text-ink/50">Measured by us, as each model card reports it.</p>
           </div>
-        </section>
+        </Section>
+
+        <Section>
+          <SectionHead title="Decisions, speech and the engine." />
+          <ul className="m-0 grid list-none gap-x-3 gap-y-10 p-0 md:grid-cols-3">
+            {LINES.map((x) => (
+              <li key={x.key}>
+                <TrackedLink href={x.href} event="labs_portal_clicked" eventProps={{ portal: x.key }} className="group block !text-ink no-underline">
+                  <span className="block aspect-[16/10] overflow-hidden rounded-xl" aria-hidden="true"><span className="tile-media block h-full">{x.cover}</span></span>
+                  <span className="mt-4 block text-[12px] font-medium text-ink/60">{x.kind}</span>
+                  <span className="mt-1 flex items-center gap-1 text-[18px] font-[500]">{x.name}<ChevronRight size={16} className="nudge text-ink/40 group-hover:text-ink" /></span>
+                  <span className="mt-1.5 block text-[15px] leading-[1.55] text-ink/65">{x.line}</span>
+                  <Facts items={x.facts} />
+                </TrackedLink>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section>
+          <SectionHead title="Rune at work." action={<a href="/labs/rune-examples/" className="text-[14px] font-medium !text-ink no-underline">All the films</a>} />
+          <RuneFilms demos={RUNE_DEMOS.filter((d) => d.film).slice(0, 6)} />
+        </Section>
+
+        <Section tone="aubergine" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 className={H2.feature}>Call our models today.</h2>
+            <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-cream/70">Surogate 3.7 Flash is on llm.buzz, with one key for every model.</p>
+          </div>
+          <Button href="https://llm.buzz" variant="sun" size="lg" external arrow event="cta_api_key_clicked" eventProps={{ location: 'labs_closing' }}>Get an API key</Button>
+        </Section>
       </main>
 
       <Footer />
