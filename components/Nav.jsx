@@ -17,38 +17,49 @@ function MenuLink({ item, onPick }) {
   return (
     <TrackedLink href={item.href} {...ext(item)} event="nav_link_clicked" eventProps={{ label: item.label, location: 'desktop' }}
       onClick={() => onPick(item.label)}
-      className="flex items-center justify-between gap-6 rounded-xl px-3 py-2 text-[15px] !text-ink no-underline hover:bg-stone">
+      className="flex items-center justify-between gap-6 rounded-lg px-3 py-2 text-[14px] !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-stone">
       {item.label}
       {item.external && <ArrowUpRight size={14} className="text-ink/40" />}
     </TrackedLink>
   );
 }
 
+// All six previews stay mounted, stacked in one fixed box, and crossfade: no remount flash, no resize.
 export function ProductsPanel({ onPick }) {
-  const [active, setActive] = useState(PRODUCTS[0]);
+  const [active, setActive] = useState(PRODUCTS[0].key);
   return (
-    <div className="grid h-[500px] w-[760px] grid-cols-[260px_1fr] gap-2 p-2">
-      <ul className="m-0 list-none p-0">
+    <div className="grid h-[480px] w-[760px] grid-cols-[272px_1fr] gap-2 p-2">
+      <ul className="m-0 flex list-none flex-col gap-0.5 p-0">
         {PRODUCTS.map((p) => (
           <li key={p.key}>
-            <a href={p.href} onMouseEnter={() => setActive(p)} onFocus={() => setActive(p)} onClick={() => onPick(p.name)}
-              className={`block rounded-xl px-3 py-2.5 !text-ink no-underline ${active.key === p.key ? 'bg-stone' : ''}`}>
-              <span className="block text-[15px] font-medium">{p.name}</span>
-              <span className="block text-[13px] leading-[1.45] text-ink/55">{p.line}</span>
+            <a href={p.href} onMouseEnter={() => setActive(p.key)} onFocus={() => setActive(p.key)} onClick={() => onPick(p.name)}
+              className={`block rounded-lg px-3 py-2 !text-ink no-underline transition-colors duration-150 ease-in-out ${active === p.key ? 'bg-stone' : ''}`}>
+              <span className="block text-[14px] font-medium">{p.name}</span>
+              <span className="mt-0.5 block text-[13px] leading-[1.45] text-ink/55">{p.line}</span>
             </a>
           </li>
         ))}
       </ul>
-      <div className={`h-full overflow-hidden rounded-xl ${active.tone === 'night' ? 'bg-night' : 'bg-ivory'}`} aria-hidden="true">
-        <ProductMedia key={active.key} product={active} />
+      <div className="relative h-full overflow-hidden rounded-lg" aria-hidden="true">
+        {PRODUCTS.map((p) => (
+          <div key={p.key} className={`absolute inset-0 transition-opacity duration-[170ms] ease-in-out ${{ night: 'bg-night', ink: 'bg-ink' }[p.tone] || 'bg-stone'} ${active === p.key ? 'opacity-100' : 'opacity-0'}`}>
+            {p.key === 'agents'
+              ? <div className="flex h-full items-center p-5"><ProductMedia product={p} still={active !== p.key} /></div>
+              : <ProductMedia product={p} still={active !== p.key} />}
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
+const PANEL = 'rounded-xl border border-ink/[.06] bg-white shadow-[0_16px_48px_-8px_rgba(0,0,0,.22)]';
+
 export default function Nav() {
   const [open, setOpen] = useState(null);
   const [sheet, setSheet] = useState(false);
+  // The products panel holds six live previews, so it is built on first open and then kept for its close animation.
+  const [megaBuilt, setMegaBuilt] = useState(false);
   const pathname = usePathname() || '/';
   const header = useRef(null);
   const burger = useRef(null);
@@ -85,6 +96,7 @@ export default function Nav() {
   const pick = (label) => { track('nav_link_clicked', { label, location: 'desktop' }); close(); };
   const show = (label) => {
     if (open !== label) track('nav_menu_open', { menu: label });
+    if (label === 'Products') setMegaBuilt(true);
     setOpen(label);
   };
   const toggle = (label) => (open === label ? close() : show(label));
@@ -94,7 +106,7 @@ export default function Nav() {
   return (
     <header ref={header} onMouseLeave={() => setOpen(null)}
       className="sticky top-0 z-50 h-16 border-b border-hairline bg-white/85 backdrop-blur-md font-sans">
-      <div className="mx-auto flex h-full max-w-[1248px] items-center gap-8 px-6">
+      <div className="mx-auto flex h-full max-w-[1280px] items-center gap-8 px-4 md:px-6">
         <a href="/" className="shrink-0" aria-label="Surogate home">
           <img src="/brand/logo-full-black.svg" alt="" className="block h-7 w-auto" />
         </a>
@@ -106,21 +118,21 @@ export default function Nav() {
                 {m.href ? (
                   <a href={m.href} onClick={() => pick(m.label)}
                     aria-current={pathname.startsWith(m.href) ? 'page' : undefined}
-                    className="block rounded-full px-3 py-2 text-[15px] !text-ink no-underline hover:bg-stone">{m.label}</a>
+                    className="block rounded-full px-3 py-2 text-[14px] font-medium !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-stone">{m.label}</a>
                 ) : (
                   <>
                     <button type="button" data-menu={m.label} aria-expanded={open === m.label} onClick={press(m.label)}
-                      className="inline-flex items-center gap-1 rounded-full px-3 py-2 text-[15px] text-ink hover:bg-stone">{m.label}<ChevronDown size={14} className={`transition-transform ${open === m.label ? 'rotate-180' : ''}`} />
+                      className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-[14px] font-medium text-ink transition-colors duration-150 ease-in-out hover:bg-stone ${open === m.label ? 'bg-stone' : ''}`}>{m.label}<ChevronDown size={14} className={`text-ink/50 transition-transform duration-150 ease-in-out ${open === m.label ? 'rotate-180' : ''}`} />
                     </button>
-                    {open === m.label && (
-                      <div className="absolute left-0 top-full pt-2">
-                        <div className="rounded-2xl border border-hairline bg-white shadow-[0_24px_60px_-24px_rgba(0,0,0,.25)]">
+                    {(!m.mega || megaBuilt) && (
+                      <div className={`menu-pop absolute left-0 top-full pt-2 ${open === m.label ? 'is-open' : ''}`}>
+                        <div className={PANEL}>
                           {m.mega ? <ProductsPanel onPick={pick} /> : (
                             <div className="w-[260px] p-2">
                               {m.items.map((i) => <MenuLink key={i.label} item={i} onPick={close} />)}
                               {m.more && (
                                 <a href={m.more.href} onClick={() => pick(m.more.label)}
-                                  className="mt-1 flex items-center justify-between rounded-xl bg-stone px-3 py-2 text-[14px] !text-ink no-underline">
+                                  className="mt-1 flex items-center justify-between rounded-lg bg-stone px-3 py-2 text-[14px] !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-hairline">
                                   {m.more.label}<ArrowUpRight size={14} />
                                 </a>
                               )}
@@ -140,23 +152,21 @@ export default function Nav() {
           <Button href={CONTACT_SALES} variant="secondary" event="contact_sales_clicked" eventProps={{ location: 'nav' }}>Contact Sales</Button>
           <div className="relative flex" onMouseEnter={() => setOpen(null)}>
             <TrackedLink href={SIGN_IN} event="cta_signup_clicked" eventProps={{ location: 'nav' }}
-              className="inline-flex h-10 items-center rounded-l-full bg-ink pl-[18px] pr-3 text-[14px] font-medium !text-white no-underline">Try for free</TrackedLink>
+              className="inline-flex h-10 items-center rounded-l-full bg-ink pl-[18px] pr-3 text-[14px] font-medium !text-white no-underline transition duration-150 ease-in-out hover:brightness-90">Try for free</TrackedLink>
             <button type="button" aria-label="More ways to start" aria-expanded={open === 'try'} data-menu="try" onClick={() => toggle('try')}
-              className="inline-flex h-10 items-center rounded-r-full border-l border-white/20 bg-ink pl-2 pr-3 text-white">
+              className="inline-flex h-10 items-center rounded-r-full border-l border-white/20 bg-ink pl-2 pr-3 text-white transition duration-150 ease-in-out hover:brightness-90">
               <ChevronDown size={16} />
             </button>
-            {open === 'try' && (
-              <div className="absolute right-0 top-full pt-2">
-                <div className="w-[240px] rounded-2xl border border-hairline bg-white p-2 shadow-[0_24px_60px_-24px_rgba(0,0,0,.25)]">
-                  {TRY_MENU.map((g) => (
-                    <div key={g.group} className="py-1">
-                      <p className="m-0 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-ink/40">{g.group}</p>
-                      {g.items.map((i) => <MenuLink key={i.label} item={i} onPick={(l) => { track('try_free_option', { option: l }); close(); }} />)}
-                    </div>
-                  ))}
-                </div>
+            <div className={`menu-pop menu-r absolute right-0 top-full pt-2 ${open === 'try' ? 'is-open' : ''}`}>
+              <div className={`w-[240px] p-2 ${PANEL}`}>
+                {TRY_MENU.map((g) => (
+                  <div key={g.group} className="py-1">
+                    <p className="m-0 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-ink/40">{g.group}</p>
+                    {g.items.map((i) => <MenuLink key={i.label} item={i} onPick={(l) => { track('try_free_option', { option: l }); close(); }} />)}
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
           </div>
         </div>
 
