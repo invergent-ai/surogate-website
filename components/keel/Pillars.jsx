@@ -4,7 +4,9 @@ export default function Pillars() {
       <section className="bg-brand-aubergine text-white" id="pillars">
         <div className="max-w-[1200px] my-0 mx-auto py-[104px] px-[24px] flex flex-col gap-[48px]">
           <div className="flex flex-col gap-[16px] max-w-[820px]">
-            <h2 className="font-sans m-0 text-[clamp(32px,3.8vw,48px)] leading-[1.08] tracking-[-0.028em] font-extrabold">Every case runs the way you designed it.</h2>
+            <h2 className="font-sans m-0 text-[clamp(32px,3.8vw,48px)] leading-[1.08] tracking-[-0.028em] font-extrabold">Agents do the work, not the process.
+
+</h2>
             <p className="m-0 text-[19px] leading-[1.6] text-[rgba(255,255,255,0.78)]">Four guarantees let agents take on work where mistakes are costly.</p>
           </div>
           <div className="flex flex-wrap gap-[24px]">
