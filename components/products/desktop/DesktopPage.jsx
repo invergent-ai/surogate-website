@@ -6,7 +6,6 @@ import { DESKTOP } from '@/lib/desktop';
 import Page, { Hero, Lead, UseCases, Closing } from '../Page';
 import Faq from '../Faq';
 import CopyLine from '../CopyLine';
-import LoopOrMock from '../LoopOrMock';
 import { BrowserMock, DesktopMock } from './Mocks';
 
 // Window chrome around a mock or a loop: one 16:10 frame, like the footage everywhere else on the site.
@@ -52,7 +51,7 @@ export default function DesktopPage() {
           <Button href="#uses" size="lg" variant="secondary">See what it can do</Button>
         </>}>
         <div className="mx-auto max-w-[1040px] rounded-2xl bg-ivory p-3 md:p-8">
-          <Window><LoopOrMock src="/media/loops/surogate-desktop.mp4" className="h-full"><DesktopMock /></LoopOrMock></Window>
+          <Window><DesktopMock /></Window>
           <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">A bookkeeper's October folder: the agent matches invoices to the bank export and asks before it goes online.</p>
         </div>
       </Hero>
@@ -70,7 +69,7 @@ export default function DesktopPage() {
               It drives your browser in a profile of its own. Take it over for a sign-in at any moment, and the agent waits until you hand it back.
             </p>
           </div>
-          <Window><LoopOrMock src="/media/loops/surogate-desktop-browser.mp4" className="h-full"><BrowserMock /></LoopOrMock></Window>
+          <Window><BrowserMock /></Window>
         </div>
         <ul className="m-0 mt-16 grid list-none gap-3 p-0 sm:grid-cols-2 lg:mt-24 lg:grid-cols-4">
           {CAN.map(([t, d]) => (
