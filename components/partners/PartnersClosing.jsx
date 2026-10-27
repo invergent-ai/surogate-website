@@ -1,23 +1,21 @@
-import TrackedLink from '@/components/TrackedLink';
+import Section, { H2 } from '@/components/site/Section';
+import Button from '@/components/site/Button';
 import { CONTACT, mailto } from '@/lib/site';
+import { PARTNER_SHARE } from '@/lib/pricing';
 
 export default function PartnersClosing() {
   return (
-    <>
-      <section className="bg-brand-paper text-brand-aubergine" id="contact">
-        <div className="max-w-[1200px] my-0 mx-auto pt-0 px-[24px] pb-[80px]">
-          <div className="bg-brand-aubergine text-white py-[56px] px-[48px] flex flex-wrap gap-y-[28px] gap-x-[48px] items-center">
-            <div className="flex-[1_1_520px] min-w-0 flex flex-col gap-[12px]">
-              <h2 className="font-sans m-0 text-[clamp(30px,3.4vw,42px)] leading-[1.1] tracking-[-0.025em] font-extrabold">Start your practice.</h2>
-              <p className="m-0 text-[18px] leading-[1.6] text-[rgba(255,255,255,0.8)]">Email us or join our Discord. The first 10 partners get Diamond terms for their first 12 months.</p>
-            </div>
-            <div className="flex flex-wrap gap-[12px]">
-              <TrackedLink event="cta_agency_clicked" eventProps={{ location: 'partners_closing' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href={mailto('Surogate partner program')}>Email {CONTACT.email}</TrackedLink>
-              <TrackedLink event="reach_out_clicked" eventProps={{ channel: 'discord', location: 'partners_closing' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] border border-[rgba(255,255,255,0.4)] text-white no-underline font-semibold text-[16px]" href={CONTACT.discord}>Join our Discord</TrackedLink>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+    <Section tone="ivory" id="contact" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+      <div>
+        <h2 className={H2.feature}>Start your practice.</h2>
+        <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-ink/65">
+          The first {PARTNER_SHARE.founding} partners get Diamond terms for their first {PARTNER_SHARE.foundingMonths} months.
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-3">
+        <Button href={mailto('Surogate partner program')} size="lg" arrow event="cta_agency_clicked" eventProps={{ location: 'partners_closing' }}>Email {CONTACT.email}</Button>
+        <Button href={CONTACT.discord} variant="secondary" size="lg" external event="reach_out_clicked" eventProps={{ channel: 'discord', location: 'partners_closing' }}>Join our Discord</Button>
+      </div>
+    </Section>
   );
 }

@@ -1,19 +1,21 @@
-import TrackedLink from '@/components/TrackedLink';
+import Hero from '@/components/solutions/Hero';
+import InlineSvg from '@/components/site/InlineSvg';
+import { oneAgentBuiltOnceAndSvg } from './illustrations';
 import { CONTACT, mailto } from '@/lib/site';
+import { PARTNER_SHARE } from '@/lib/pricing';
 
 export default function PartnersHero() {
   return (
-    <>
-      <section className="bg-brand-aubergine text-white" id="top">
-        <div className="max-w-[1200px] my-0 mx-auto pt-[88px] px-[24px] pb-[104px] flex flex-col gap-[26px]">
-          <h1 className="font-sans m-0 max-w-[900px] text-[clamp(44px,6vw,72px)] leading-[1.0] tracking-[-0.035em] font-extrabold">Build a practice on Surogate.</h1>
-          <p className="m-0 max-w-[760px] text-[21px] leading-[1.5] text-[rgba(255,255,255,0.8)]">Deliver Surogate Agents, Keel, a private AI Gateway and custom models to your clients, and earn 30% of what they pay, every month.</p>
-          <div className="flex flex-wrap gap-[12px]">
-            <TrackedLink event="cta_agency_clicked" eventProps={{ location: 'partners_hero' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] bg-brand-orange text-brand-aubergine no-underline font-bold text-[16px]" href={mailto('Surogate partner program')}>Become a partner</TrackedLink>
-            <TrackedLink event="reach_out_clicked" eventProps={{ channel: 'discord', location: 'partners_hero' }} className="inline-flex items-center min-h-[52px] py-0 px-[24px] border border-[rgba(255,255,255,0.4)] text-white no-underline font-semibold text-[16px]" href={CONTACT.discord}>Join our Discord</TrackedLink>
-          </div>
-        </div>
-      </section>
-    </>
+    <Hero label="Partners" h1="Build a practice on Surogate." location="partners_hero"
+      sub={`Deliver Agents, Keel and custom models to your clients, and earn ${PARTNER_SHARE.base * 100}% of what they pay, every month.`}
+      primary={{ label: 'Become a partner', href: mailto('Surogate partner program'), event: 'cta_agency_clicked' }}
+      secondary={{ label: 'Join our Discord', href: CONTACT.discord, event: 'reach_out_clicked', external: true }}
+      trust={['No fee to join', 'Your workspace has no plan fee', '60-day pilot for every client', `${PARTNER_SHARE.diamond * 100}% at Diamond`]}
+      visual={(
+        <figure className="m-0">
+          <div className="rounded-2xl bg-aubergine p-8 md:p-10"><InlineSvg markup={oneAgentBuiltOnceAndSvg} /></div>
+          <figcaption className="mt-3 text-[13px] text-ink/55">One agent, built once by your team, deployed to every client.</figcaption>
+        </figure>
+      )} />
   );
 }
