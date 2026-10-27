@@ -1,38 +1,70 @@
 # Surogate
 
-> Surogate makes four things: Surogate Agents, a platform to design, test,
-> govern and run agents for whole teams without writing code; Keel, which runs
-> agents inside well-defined processes; the AI Gateway, which puts every model
-> behind one API; and custom language and speech models. Agents, Keel and the
-> models run in Surogate cloud, on your own Kubernetes or air-gapped; the AI
-> Gateway runs on llm.buzz or on your own Kubernetes. Surogate sells direct
+> Surogate is a European AI platform made by Invergent S.A.: agents for whole
+> teams, a desktop agent, voice, business processes, the AI Gateway and the
+> open-source engine we train our own models with, on your hardware or ours.
+> Agents, Keel and our models run in our EU cloud, in your cloud, on your own
+> hardware or air-gapped. The AI Gateway is llm.buzz. Surogate sells directly
 > and through partners.
 
-## Pages
-- [Home](https://surogate.ai/): Your workforce, multiplied. The four products and where they run.
-- [Surogate Agents](https://surogate.ai/agents/): Sessions, sandboxes, tools, skills, knowledge, channels, long-running work, improvement and selling an agent.
-- [Keel](https://surogate.ai/keel/): Processes that run agents. Stages, steps, decision rules, approval limits, audit and replay.
-- [AI Gateway](https://surogate.ai/gateway/): One endpoint for every model. OpenAI, Anthropic and OpenRouter compatible API, keys and grants per caller, budgets, guardrails, provider failover; hosted on llm.buzz or on your own Kubernetes.
+## Products
+- [Agents](https://surogate.ai/agents/): AI colleagues for every team. Design, test, govern and run agents without code, in your cloud or on your own hardware.
+- [Voice](https://surogate.ai/voice/): Voice agents that listen and answer in real time, on speech models we train ourselves.
+- [Keel](https://surogate.ai/keel/): Business processes that run agents. Stages, versioned decision rules, approval limits, audit and replay.
+- [Train](https://surogate.ai/train/): Train and serve your own model on one open-source engine.
+- [AI Gateway](https://surogate.ai/gateway/): llm.buzz, the open market for production inference. One key for every model; providers post their own prices and the router compares them on every request; 0% markup on provider prices; EU-only routing on every plan.
+
+## Research
+- [Research](https://surogate.ai/labs/): Our own models and the engine that trains them.
+- Surogate 3.7 Flash: open weights, text and images in, 1M tokens of context, 32K of output, on [llm.buzz](https://llm.buzz/models/surogate/surogate3.7-flash).
+- Surogate 3.5 2B, 4B and 9B: Romanian-first assistants with thinking in Romanian and English, Apache 2.0, on [Hugging Face](https://huggingface.co/surogate).
+- [Surogate Rune](https://surogate.ai/labs/rune/): an open decision model for text and images. 26B parameters, 4B active; second on the Decision Index 0.2.1 (26 September 2026).
+- [Surogate Speech](https://surogate.ai/labs/speech/): Jackrabbit (speech recognition, 5.69% word error rate on the FLEURS Romanian test) and Amami (text to speech).
+- [Surogate Engine](https://surogate.ai/labs/engine/): training and serving on native C++/CUDA, Apache 2.0. 2.53x the training throughput of Unsloth on one H100; 7.0x the serving throughput of llama.cpp at 16 users on 8 RTX 5090s.
+- [Rune at work](https://surogate.ai/labs/rune-examples/): the Rune demos, filmed.
+
+## Solutions
+- [Use cases](https://surogate.ai/solutions/)
+- [Enterprise](https://surogate.ai/solutions/enterprise/)
+- [Government](https://surogate.ai/solutions/government/)
+- [Banking and insurance](https://surogate.ai/solutions/banking-insurance/)
+- [Professionals](https://surogate.ai/solutions/professionals/)
+- [Custom models](https://surogate.ai/solutions/custom-models/)
+- [Security and trust](https://surogate.ai/security/)
+- [Customer stories](https://surogate.ai/customers/)
+
+## Company
+- [About](https://surogate.ai/company/): Invergent S.A., the team, our values and every release with its date.
+- [News](https://surogate.ai/news/): Dated posts, each naming its source.
 - [Partners](https://surogate.ai/partners/): Build a practice on Surogate. 30% of every client plan and licence, every month; 40% at Diamond.
-- [Pricing](https://surogate.ai/pricing/): One plan per client, models at cost, and single-user plans: Free, Standard $19, Pro $96, Max $190 a month.
-- [Labs](https://surogate.ai/labs/): Surogate Rune, Surogate Speech and Surogate Engine.
-- [Documentation](https://docs.surogate.ai): Agent runtime, hub and developer toolkit.
+- [Careers](https://surogate.ai/careers/)
+- [Contact](https://surogate.ai/contact/): Sales, Partners, Support and Press by email, or Discord.
+- [Pricing](https://surogate.ai/pricing/)
+
+## News
+- [Keel: processes that run agents](https://surogate.ai/news/keel/) (25 Oct 2026)
+- [Surogate 3.7 Flash is on llm.buzz](https://surogate.ai/news/surogate-3-7-flash/) (20 Oct 2026)
+- [llm.buzz, the open market for inference, is public](https://surogate.ai/news/llm-buzz/) (19 Oct 2026)
+- [Jackrabbit and Amami, open speech models for Romanian](https://surogate.ai/news/jackrabbit-and-amami/) (25 Sep 2026)
+- [Surogate Engine 1.5 serves what it trains](https://surogate.ai/news/engine-serving/) (21 Sep 2026)
 
 ## Pricing facts
+- Individual plans: Free, Standard $19, Pro $96, Max $190 a month.
 - Pilot: $0 for the first 60 days of every new client.
 - Production: $990 a month per client organisation ($940 billed yearly). Up to 1,000 agents working at once.
 - Scale: $2,990 a month per client organisation ($2,840 billed yearly). Up to 5,000 agents working at once; single sign-on, roles and audit logs.
 - Keel on Surogate cloud: $0.20 per completed case for the first 10,000 a month, $0.10 up to 100,000, $0.05 beyond.
-- Models: bring your own provider and pay it directly, or use ours at the provider's price.
-
-## Partners
-- Silver: sign up, no fee. Gold: 1 client live, listed in the partner directory. Diamond: 3 clients live, 40% share.
-- Become a partner: email surogate@invergent.ai or join the Discord.
+- Models: bring your own provider and pay it directly, or use llm.buzz at the provider's price.
 
 ## Open source
-- [Surogate Trainer](https://github.com/invergent-ai/surogate): training engine.
-- [Agent harness](https://github.com/invergent-ai/surogates): agent runtime.
+- [Surogate Engine](https://github.com/invergent-ai/surogate): training and serving, Apache 2.0.
+- [Agent runtime](https://github.com/invergent-ai/surogates)
+- [Models on Hugging Face](https://huggingface.co/surogate)
+
+## Company facts
+- INVERGENT S.A., Sos. Pipera 43, Bucharest, Romania. Company number RO31021453.
 
 ## Contact
 - [Email](mailto:surogate@invergent.ai)
 - [Discord](https://discord.gg/eVTq93BrQ4)
+- [Documentation](https://docs.surogate.ai)
