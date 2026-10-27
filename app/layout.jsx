@@ -34,9 +34,9 @@ export const viewport = {
   themeColor: '#09090b',
 };
 
-const TITLE = 'Surogate - Your workforce, multiplied.';
+const TITLE = 'Surogate - Your AI, on your terms';
 const DESCRIPTION =
-  'Every team works with agents that read, check, draft and follow your processes, on your own infrastructure. Surogate Agents, Keel, the AI Gateway and custom models.';
+  'Agents, voice, process automation and your own models, on your hardware or ours. Built in Europe. Surogate Agents, Surogate desktop, Voice, Keel, Train and the API.';
 
 export const metadata = {
   title: TITLE,
