@@ -1,11 +1,13 @@
 import Section, { SectionHead } from '@/components/site/Section';
 
 // A real sequence, so it is numbered; the rail between numbers reads as one process.
-export default function Steps({ title, sub, steps }) {
+const COLS = { 4: 'lg:grid-cols-4', 5: 'lg:grid-cols-5' };
+
+export default function Steps({ title, sub, steps, tone }) {
   return (
-    <Section>
+    <Section tone={tone}>
       <SectionHead title={title} sub={sub} />
-      <ol className="m-0 grid list-none gap-8 p-0 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+      <ol className={`m-0 grid list-none gap-8 p-0 sm:grid-cols-2 lg:gap-0 ${COLS[steps.length]}`}>
         {steps.map((s, i) => (
           <li key={s.name} className="lg:pr-8">
             <span className="flex items-center">
