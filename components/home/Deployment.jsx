@@ -7,7 +7,6 @@ export default function Deployment() {
       <section className="bg-white border-t border-t-brand-border" id="deployment">
         <div className="max-w-[1200px] my-0 mx-auto py-[104px] px-[24px] flex flex-col gap-[48px]">
           <div className="flex flex-col gap-[16px] max-w-[820px]">
-            <p className="m-0 font-mono text-[13px] tracking-[0.14em] text-brand-wine">DEPLOYMENT AND SECURITY</p>
             <h2 className="font-sans m-0 text-[clamp(30px,3.6vw,46px)] leading-[1.08] tracking-[-0.028em] font-extrabold">Runs where the client's data is</h2>
           </div>
           <div className="flex flex-wrap gap-[24px]">

@@ -16,7 +16,6 @@ export default function CodeSample() {
       <section className="bg-brand-aubergine text-white">
         <div className="max-w-[1200px] my-0 mx-auto py-[104px] px-[24px] flex flex-col gap-[40px]">
           <div className="flex flex-col gap-[16px] max-w-[820px]">
-            <p className="m-0 font-mono text-[13px] tracking-[0.14em] text-brand-orange">BUILT FOR ENGINEERS</p>
             <h2 className="font-sans m-0 text-[clamp(30px,3.6vw,46px)] leading-[1.08] tracking-[-0.028em] font-extrabold">What your team gets on day one.</h2>
           </div>
           <div className="flex flex-wrap gap-[12px]">
