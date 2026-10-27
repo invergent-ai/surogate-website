@@ -2,6 +2,7 @@ import { ChevronRight } from 'lucide-react';
 import Section, { H2 } from '@/components/site/Section';
 import RuneGlyph from '@/components/labs/RuneGlyph';
 import { FLASH } from '@/lib/labs';
+import { RABBIT_BOX, RABBIT_FILL, RABBIT_EYE } from '@/components/site/rabbit';
 
 // Covers are typography in our palette, not photos. A date shows only where we have a published one.
 const SPEECH_MARKS = [['/labs/speech/jackrabbit.svg', 'Jackrabbit'], ['/labs/speech/jackrabbit-streaming.svg', 'Streaming'], ['/labs/speech/amami.svg', 'Amami']];
@@ -12,7 +13,7 @@ export const MODELS = [
     cover: (
       <span className="relative flex h-full flex-col items-center justify-center gap-1.5 overflow-hidden bg-aubergine">
         <img src="/surogate_ring_3.svg" alt="" className="absolute left-1/2 top-1/2 h-[220%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 opacity-40" />
-        <img src="/brand/rabbit-amber.svg" alt="" className="relative mb-1 h-12 w-auto" />
+        <svg viewBox={`0 0 ${RABBIT_BOX.w} ${RABBIT_BOX.h}`} aria-hidden="true" className="relative mb-1 h-12 w-auto"><path d={RABBIT_FILL} fill="#ffaf10" /><path d={RABBIT_EYE} fill="#2a102d" /></svg>
         <span className="relative text-[15px] font-medium text-cream">Surogate 3.7 Flash</span>
         <span className="relative text-[12px] text-sun">{FLASH.facts.map((f) => `${f.n} ${f.l}`).slice(0, 2).join(' · ')}</span>
       </span>

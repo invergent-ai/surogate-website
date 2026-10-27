@@ -9,7 +9,7 @@ export default function PartnersBand() {
       <div>
         <h2 className={H2.feature}>Build a practice on Surogate.</h2>
         <p className="mt-4 mb-0 max-w-[46ch] text-[16px] leading-[1.6] text-cream/70">
-          Deliver Surogate Agents, Keel, a private AI Gateway and custom models to your clients, and earn 30% of what they pay, every month.
+          Deliver Surogate Agents, Keel and custom models to your clients, and earn 30% of what they pay every month, 40% at Diamond.
         </p>
         <div className="mt-7"><Button href="/partners/" variant="sun" size="lg" arrow>Become a partner</Button></div>
       </div>
