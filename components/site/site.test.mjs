@@ -66,3 +66,27 @@ test('the nav server-renders every menu trigger and both calls to action', async
   assert.match(html, /data-event="cta_signup_clicked"[^>]*>Try for free/);
   assert.match(html, /aria-label="More ways to start"/);
 });
+
+test('the hero server-renders its first word, so the H1 reads whole without JavaScript', async () => {
+  const html = await render('../home/Hero.jsx', {});
+  assert.match(html, /<h1[^>]*>Your AI, on your terms,[\s\S]*for everything you[\s\S]*run/);
+  assert.match(html, /data-event="cta_signup_clicked"/);
+});
+
+test('the code tabs show the first snippet and mark one tab selected', async () => {
+  const tabs = [{ label: 'Python', code: 'print(1)' }, { label: 'cURL', code: 'curl x' }];
+  const html = await render('./CodeTabs.jsx', { tabs });
+  assert.match(html, /role="tablist"/);
+  assert.match(html, /aria-selected="true"[^>]*>Python/);
+  assert.match(html, /print\(1\)/);
+  assert.doesNotMatch(html, /curl x/);
+});
+
+test('every film card names its demo business and opens the film', async () => {
+  const { FILMS } = await import('../../lib/films.js');
+  const html = await render('../home/Films.jsx', {});
+  for (const f of FILMS) {
+    assert.ok(html.includes(f.business), f.slug);
+    assert.match(html, new RegExp(`aria-label="Watch ${f.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
+  }
+});
