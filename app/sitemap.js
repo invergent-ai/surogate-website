@@ -6,15 +6,19 @@
 export const dynamic = 'force-static';
 
 import { ROUTES } from '@/lib/site';
+import { POSTS } from '@/lib/news';
 
 const BASE_URL = 'https://surogate.ai';
 
 export default function sitemap() {
   const lastModified = new Date();
-  return ROUTES.map(({ path }) => ({
-    url: `${BASE_URL}${path}`,
-    lastModified,
-    changeFrequency: path === '/' ? 'weekly' : 'monthly',
-    priority: path === '/' ? 1.0 : 0.8,
-  }));
+  return [
+    ...ROUTES.map(({ path }) => ({
+      url: `${BASE_URL}${path}`,
+      lastModified,
+      changeFrequency: path === '/' ? 'weekly' : 'monthly',
+      priority: path === '/' ? 1.0 : 0.8,
+    })),
+    ...POSTS.map((p) => ({ url: `${BASE_URL}/news/${p.slug}/`, lastModified: new Date(p.updated || p.date), changeFrequency: 'yearly', priority: 0.6 })),
+  ];
 }

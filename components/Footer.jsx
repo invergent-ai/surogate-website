@@ -12,7 +12,7 @@ export default function Footer() {
           </div>
           {FOOTER.map((col) => (
             <div key={col.heading}>
-              <h2 className="m-0 mb-4 text-[13px] font-medium text-cream/45">{col.heading}</h2>
+              <h2 className="m-0 mb-4 text-[13px] font-medium text-cream/60">{col.heading}</h2>
               <ul className="m-0 list-none p-0 flex flex-col gap-2.5">
                 {col.links.map((l) => (
                   <li key={l.label}>
@@ -25,7 +25,7 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-[13px] text-cream/50">
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-[13px] text-cream/60">
           <span>© 2026 INVERGENT S.A.</span>
           <a href={LINKS.status} target="_blank" rel="noopener noreferrer" className="!text-cream/60 no-underline hover:!text-cream">Status ↗</a>
         </div>
