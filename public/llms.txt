@@ -1,14 +1,15 @@
 # Surogate
 
-> Surogate is a European AI platform made by Invergent S.A.: agents for whole
-> teams, a desktop agent, voice, business processes, the AI Gateway and the
+> Surogate is the European platform for AI colleagues, made by Invergent S.A.
+> Alongside it: Surogate Desktop, Voice, Keel, the AI Gateway and the
 > open-source engine we train our own models with, on your hardware or ours.
-> Agents, Keel and our models run in our EU cloud, in your cloud, on your own
+> Surogate, Keel and our models run in our EU cloud, in your cloud, on your own
 > hardware or air-gapped. The AI Gateway is llm.buzz. Surogate sells directly
 > and through partners.
 
 ## Products
-- [Agents](https://surogate.ai/agents/): AI colleagues for every team. Design, test, govern and run agents without code, in your cloud or on your own hardware.
+- [Surogate](https://surogate.ai/agents/): AI colleagues for every team. Design, test, govern and run agents without code, in your cloud or on your own hardware.
+- [Surogate Desktop](https://surogate.ai/surogate-desktop/): Your Surogate agent, working on the files on your computer.
 - [Voice](https://surogate.ai/voice/): Voice agents that listen and answer in real time, on speech models we train ourselves.
 - [Keel](https://surogate.ai/keel/): Business processes that run agents. Stages, versioned decision rules, approval limits, audit and replay.
 - [Train](https://surogate.ai/train/): Train and serve your own model on one open-source engine.

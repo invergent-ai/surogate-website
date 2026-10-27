@@ -9,7 +9,7 @@ import { POSTS } from '@/lib/news';
 import { JsonLd } from '../structured-data';
 
 export const metadata = meta('/company/', 'Company - Surogate by Invergent',
-  'Invergent S.A. makes Surogate: agents, voice, processes, the AI Gateway and our own models, on your hardware or ours. The team, our values and every release.');
+  'Invergent S.A. makes Surogate, Surogate Desktop, Voice, Keel, the AI Gateway and our own models, on your hardware or ours. The team, our values and every release.');
 
 const ld = {
   '@context': 'https://schema.org',
