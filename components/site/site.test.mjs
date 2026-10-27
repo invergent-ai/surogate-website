@@ -41,3 +41,10 @@ test('the stat strip prints each number with its label', async () => {
   assert.match(html, /7\.0×/);
   assert.match(html, /serving vs\. llama\.cpp/);
 });
+
+test('a loop never autoplays from markup, so reduced motion and offscreen tiles stay still', async () => {
+  const html = await render('./LoopVideo.jsx', { src: '/media/films/x-loop.mp4', poster: '/media/films/x.jpg' });
+  assert.match(html, /<video[^>]*muted=""[^>]*loop=""[^>]*playsInline=""[^>]*preload="none"/);
+  assert.match(html, /poster="\/media\/films\/x\.jpg"/);
+  assert.doesNotMatch(html, /autoplay/i);
+});
