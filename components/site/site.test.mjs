@@ -48,3 +48,12 @@ test('a loop never autoplays from markup, so reduced motion and offscreen tiles 
   assert.match(html, /poster="\/media\/films\/x\.jpg"/);
   assert.doesNotMatch(html, /autoplay/i);
 });
+
+test('every product has media, and a mock reads complete without animation', async () => {
+  const { PRODUCTS } = await import('../../lib/products.js');
+  for (const p of PRODUCTS) {
+    const html = await render('./ProductMedia.jsx', { product: p });
+    assert.ok(html.length > 200, p.key);
+    assert.doesNotMatch(html, /opacity:\s*0/, p.key);
+  }
+});
