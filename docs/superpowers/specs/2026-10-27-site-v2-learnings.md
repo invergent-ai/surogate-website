@@ -23,8 +23,22 @@ Binding for every page. Read this before §3 of `2026-10-27-site-v2-design.md`, 
   CTAs rotate per product together.
 - No icons in menus. No gradient frames around code. No status dots or glowing pills. No coloured tag
   chips. No "early access" (the desktop app is released: `surogate.ai/desktop/install.sh`).
-- The product formerly called "API" is **AI Gateway**, at `/gateway/` (hosted on llm.buzz, self-hosted
-  with Surogate Router). There is no `/api/` page. "Get API key" still links to llm.buzz.
+- The product formerly called "API" is **AI Gateway**, at `/gateway/`, and it IS llm.buzz. There is no
+  `/api/` page. "Get API key" links to llm.buzz.
+  - **Never mention Surogate Router** (private) and never pitch a self-hosted gateway.
+  - What llm.buzz is (source: llm.buzz home, /about, /eu, /enterprise, /providers/join,
+    /blog/a-market-not-a-gateway, fetched 2026-10-27): "the open market for production inference".
+    - A model name is a slot several providers fill. Each provider posts its own price, and the router
+      compares them on every request.
+    - Routing presets: smart, cheapest, fastest, order.
+    - 0% markup on provider prices; one key for every model; failover.
+    - EU-only routing on every plan.
+    - Keys per project with spend limits; zero-retention routing.
+  - Two sides to tell:
+    - **Use any model at better prices** (providers compete).
+    - **Sell your inference**: "List your endpoint at your own price. We send you the callers."
+      (`https://llm.buzz/providers/join`). Anyone who serves or fine-tunes models can list them.
+      This pairs with Train: train your model, serve it, list it.
 - The rabbit is a character only on `/agents/` and `/surogate/` (and the Voice tile, as Amami). The simple rabbit mark is also the Surogate model's mark
   (the Surogate 3.7 Flash cover, owner's request). Nowhere else.
 - Never name a voice or a person in UI copy (no "Doina"). Name the model and the language.
