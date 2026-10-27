@@ -34,7 +34,9 @@ export default function Films() {
           );
         })}
       </ul>
-      <dialog ref={dialog} onClose={() => setFilm(null)} className="w-[min(92vw,720px,85dvh)] rounded-2xl bg-night p-0 backdrop:bg-black/70">
+      {/* The video fills the dialog, so a click landing on the dialog itself is a click on the backdrop. Closing
+          unmounts the video, which stops it, and the browser returns focus to the card that opened it. */}
+      <dialog ref={dialog} onClose={() => setFilm(null)} onClick={(e) => e.target === e.currentTarget && close()} className="w-[min(92vw,720px,85dvh)] rounded-2xl bg-night p-0 backdrop:bg-black/70">
         <div className="aspect-square w-full">
           {film && <video src={filmFiles(film.slug).film} poster={filmFiles(film.slug).poster} controls autoPlay playsInline className="block h-full w-full" />}
         </div>
