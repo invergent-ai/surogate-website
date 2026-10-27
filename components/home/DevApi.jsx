@@ -24,7 +24,7 @@ export default function DevApi() {
           <Button href={LINKS.docs} external variant="glass" size="lg">Read the docs</Button>
         </div>
       </div>
-      <div className="rounded-[22px] bg-grad-sun p-3 md:p-5"><CodeTabs tabs={TABS} /></div>
+      <CodeTabs tabs={TABS} />
     </Section>
   );
 }

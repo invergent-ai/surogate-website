@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 
+// Tall enough for the longest snippet plus a scrollbar, so switching tabs never moves the page.
+const lines = (tabs) => Math.max(...tabs.map((t) => t.code.split('\n').length));
+
 export default function CodeTabs({ tabs }) {
   const [i, setI] = useState(0);
   const [copied, setCopied] = useState(false);
@@ -12,7 +15,7 @@ export default function CodeTabs({ tabs }) {
     setTimeout(() => setCopied(false), 1500);
   };
   return (
-    <div className="overflow-hidden rounded-2xl bg-white text-ink shadow-[0_30px_80px_-30px_rgba(0,0,0,.45)]">
+    <div className="min-w-0 overflow-hidden rounded-[12px] border border-white/10 bg-white text-ink shadow-[0_30px_80px_-30px_rgba(0,0,0,.45)]">
       <div className="flex items-center justify-between border-b border-hairline px-3">
         <div role="tablist" aria-label="Language" className="flex">
           {tabs.map((t, n) => (
@@ -24,7 +27,7 @@ export default function CodeTabs({ tabs }) {
           {copied ? <Check size={14} /> : <Copy size={14} />}{copied ? 'Copied' : 'Copy'}
         </button>
       </div>
-      <pre role="tabpanel" className="m-0 overflow-x-auto !bg-white p-5 font-mono text-[13px] leading-[1.7] text-ink">{tabs[i].code}</pre>
+      <pre role="tabpanel" style={{ height: `calc(${lines(tabs)} * 1.7em + 2.5rem + 16px)` }} className="m-0 overflow-auto !bg-white p-5 font-mono text-[13px] leading-[1.7] text-ink">{tabs[i].code}</pre>
     </div>
   );
 }
