@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { track } from '@/lib/analytics';
 import TrackedLink from '@/components/TrackedLink';
 import Button from '@/components/site/Button';
-import Rabbit from '@/components/site/Rabbit';
 import ProductMedia from '@/components/site/ProductMedia';
 import { PRODUCTS } from '@/lib/products';
 import { CONTACT_SALES, MENUS, SIGN_IN, TRY_MENU } from '@/lib/site';
@@ -25,25 +24,22 @@ function MenuLink({ item, onPick }) {
   );
 }
 
-function ProductsPanel({ onPick }) {
+export function ProductsPanel({ onPick }) {
   const [active, setActive] = useState(PRODUCTS[0]);
   return (
-    <div className="grid w-[760px] grid-cols-[260px_1fr] gap-2 p-2">
+    <div className="grid h-[500px] w-[760px] grid-cols-[260px_1fr] gap-2 p-2">
       <ul className="m-0 list-none p-0">
         {PRODUCTS.map((p) => (
           <li key={p.key}>
             <a href={p.href} onMouseEnter={() => setActive(p)} onFocus={() => setActive(p)} onClick={() => onPick(p.name)}
-              className={`flex gap-3 rounded-xl px-3 py-2.5 !text-ink no-underline ${active.key === p.key ? 'bg-stone' : ''}`}>
-              <Rabbit pose={p.pose} size={28} className="mt-0.5 shrink-0 text-aubergine" />
-              <span>
-                <span className="block text-[15px] font-medium">{p.name}</span>
-                <span className="block text-[13px] leading-[1.45] text-ink/55">{p.line}</span>
-              </span>
+              className={`block rounded-xl px-3 py-2.5 !text-ink no-underline ${active.key === p.key ? 'bg-stone' : ''}`}>
+              <span className="block text-[15px] font-medium">{p.name}</span>
+              <span className="block text-[13px] leading-[1.45] text-ink/55">{p.line}</span>
             </a>
           </li>
         ))}
       </ul>
-      <div className={`flex flex-col justify-center overflow-hidden rounded-xl [&_video]:h-auto ${active.tone === 'night' ? 'bg-night' : 'bg-ivory'}`} aria-hidden="true">
+      <div className={`h-full overflow-hidden rounded-xl ${active.tone === 'night' ? 'bg-night' : 'bg-ivory'}`} aria-hidden="true">
         <ProductMedia key={active.key} product={active} />
       </div>
     </div>
