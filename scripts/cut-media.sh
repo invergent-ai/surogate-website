@@ -11,13 +11,18 @@ mkdir -p "$OUT"
 declare -A AT=( [ursu-whiteboard]=8 [clarke-knee-photo]=6 [vandijk-approval]=13 [pop-glossary-conflict]=6
                 [mette-first-buyer]=9 [ortega-monday-leads]=6 [vandijk-ml-scoreboard]=6 )
 
+# Loops and posters crop the burned-in caption band off the bottom; window-style films fill the frame
+# sideways, so they keep a wider square (the caption still starts below it).
+declare -A SIDE=( [ursu-whiteboard]=0.89 [pop-glossary-conflict]=0.89 [vandijk-approval]=0.89 )
+
 for f in "$SRC"/*-1x1.mp4; do
   slug=$(basename "$f" -1x1.mp4); slug=${slug#??-}
   at=${AT[$slug]:-6}
+  side=${SIDE[$slug]:-0.86}
   ffmpeg -y -v error -i "$f" -vf scale=720:720 -c:v libx264 -crf 28 -preset slow -pix_fmt yuv420p \
     -movflags +faststart -c:a aac -b:a 96k "$OUT/$slug.mp4"
-  ffmpeg -y -v error -ss "$at" -t 6 -i "$f" -an -vf scale=480:480,fps=24 -c:v libx264 -crf 30 -preset slow \
+  ffmpeg -y -v error -ss "$at" -t 6 -i "$f" -an -vf "crop=ih*$side:ih*$side:(iw-ih*$side)/2:0,scale=480:480,fps=24" -c:v libx264 -crf 30 -preset slow \
     -pix_fmt yuv420p -movflags +faststart "$OUT/$slug-loop.mp4"
-  ffmpeg -y -v error -ss "$at" -i "$f" -frames:v 1 -vf scale=720:720 -q:v 4 "$OUT/$slug.jpg"
+  ffmpeg -y -v error -ss "$at" -i "$f" -frames:v 1 -vf "crop=ih*$side:ih*$side:(iw-ih*$side)/2:0,scale=720:720" -q:v 4 "$OUT/$slug.jpg"
   echo "$slug $(du -h "$OUT/$slug.mp4" | cut -f1) loop $(du -h "$OUT/$slug-loop.mp4" | cut -f1)"
 done
