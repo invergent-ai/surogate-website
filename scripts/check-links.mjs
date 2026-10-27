@@ -89,10 +89,13 @@ for (const [from, to] of Object.entries(REDIRECTS)) {
   if (/<meta name="robots" content="[^"]*noindex/.test(s)) problems.push(`${from}: is noindex`);
   // One canonical, the live page: two conflicting ones and search engines ignore both.
   const canon = [...s.matchAll(/<link rel="canonical" href="([^"]+)"/g)].map((c) => c[1]);
-  if (canon.length !== 1 || canon[0] !== `https://surogate.ai${to}`)
-    problems.push(`${from}: canonical ${JSON.stringify(canon)}, expected ["https://surogate.ai${to}"]`);
+  const page = `https://surogate.ai${to.split('#')[0]}`;
+  if (canon.length !== 1 || canon[0] !== page)
+    problems.push(`${from}: canonical ${JSON.stringify(canon)}, expected ["${page}"]`);
   // Ad click ids and UTM tags ride on the query string; the redirect has to carry them over.
-  if (!s.includes(`location.replace(${JSON.stringify(to)}+location.search+location.hash)`))
+  const [path, hash = ''] = to.split('#');
+  const script = `location.replace(${JSON.stringify(path)}+location.search+(location.hash||${JSON.stringify(hash ? `#${hash}` : '')}))`;
+  if (!s.includes(script))
     problems.push(`${from}: does not carry the query string and hash to ${to}`);
 }
 

@@ -1,4 +1,5 @@
 import Section, { H2 } from '@/components/site/Section';
+import TrackedLink from '@/components/TrackedLink';
 import Button from '@/components/site/Button';
 import { CONTACT_SALES, SIGN_IN } from '@/lib/site';
 import { DESKTOP } from '@/lib/desktop';
@@ -100,7 +101,7 @@ export default function DesktopPage() {
         <div>
           <h2 className={H2.list}>Download Surogate Desktop.</h2>
           <p className="mt-3 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-ink/65">Paste one line into a terminal, then open Surogate Desktop from your applications and sign in with your Surogate account.</p>
-          <p className="mt-6 mb-0 text-[14px] text-ink/55">No account yet? <a href={SIGN_IN} className="!text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Create one free</a>, with no card. <a href="/pricing/#individual" className="!text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">See the plans</a>.</p>
+          <p className="mt-6 mb-0 text-[14px] text-ink/55">No account yet? <TrackedLink href={SIGN_IN} event="cta_signup_clicked" eventProps={{ location: 'desktop_install' }} className="!text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Create one free</TrackedLink>, with no card. <a href="/pricing/#individual" className="!text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">See the plans</a>.</p>
           <p className="mt-2 mb-0 text-[14px] text-ink/55">On Windows or a Mac? <a href={CONTACT_SALES} className="!text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Ask us for the installer</a>.</p>
         </div>
         <div className="min-w-0">
