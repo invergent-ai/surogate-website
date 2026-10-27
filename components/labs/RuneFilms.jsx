@@ -23,7 +23,7 @@ export default function RuneFilms({ demos }) {
               <span className="mt-3 flex items-center gap-1.5 text-[14px] font-medium leading-[1.4]">
                 <Icon size={15} strokeWidth={2} aria-hidden="true" className="text-ink/50" />{d.title}
               </span>
-              <span className="mt-0.5 block text-[13px] text-ink/55">{d.kind.replace(' · ', ', ')}</span>
+              <span className="mt-0.5 block text-[13px] text-ink/60">{d.kind.replace(' · ', ', ')}</span>
             </a>
           </li>
         );

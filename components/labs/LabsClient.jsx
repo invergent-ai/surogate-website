@@ -39,7 +39,7 @@ const LINES = [
         {SPEECH_MARKS.map(([src, label]) => (
           <span key={label} className="flex flex-col items-center gap-2">
             <img src={src} alt="" className="h-12 w-12 md:h-14 md:w-14" />
-            <span className="text-[11px] text-aubergine/60">{label}</span>
+            <span className="text-[11px] text-aubergine/70">{label}</span>
           </span>
         ))}
       </span>
@@ -124,7 +124,7 @@ export default function LabsClient() {
                 </li>
               ))}
             </ul>
-            <p className="m-0 mt-auto pt-6 text-[12px] leading-[1.5] text-ink/50">Measured by us, as each model card reports it.</p>
+            <p className="m-0 mt-auto pt-6 text-[12px] leading-[1.5] text-ink/60">Measured by us, as each model card reports it.</p>
           </div>
         </Section>
 
@@ -146,7 +146,7 @@ export default function LabsClient() {
         </Section>
 
         <Section>
-          <SectionHead title="Rune at work." action={<a href="/labs/rune-examples/" className="text-[14px] font-medium !text-ink no-underline">All the films</a>} />
+          <SectionHead title="Rune at work." action={<a href="/labs/rune-examples/" className="inline-flex min-h-11 items-center text-[14px] font-medium !text-ink no-underline">All the films</a>} />
           <RuneFilms demos={RUNE_DEMOS.filter((d) => d.film).slice(0, 6)} />
         </Section>
 

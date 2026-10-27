@@ -21,7 +21,7 @@ const OFFERS = [['Surogate Spark EU', '$0.15', '0.04 s', true], ['Simpleminds EU
 function Gateway({ big }) {
   return (
     <span className={`flex h-full flex-col justify-center bg-ivory ${big ? 'px-[10%]' : 'px-5'}`}>
-      <span className={`font-mono text-ink/55 ${big ? 'text-[13px]' : 'text-[10px]'}`}>surogate/surogate3.7-flash</span>
+      <span className={`font-mono text-ink/60 ${big ? 'text-[13px]' : 'text-[10px]'}`}>surogate/surogate3.7-flash</span>
       <span className={`mt-2 flex flex-col overflow-hidden rounded-lg border border-hairline bg-white ${big ? 'text-[14px]' : 'text-[11px]'}`}>
         {OFFERS.map(([name, price, ttft, picked]) => (
           <span key={name} className={`flex items-center justify-between gap-3 border-hairline [&:not(:first-child)]:border-t ${big ? 'px-4 py-3' : 'px-3 py-2'} ${picked ? 'bg-sun/15' : ''}`}>
@@ -40,7 +40,7 @@ function Speech({ big }) {
       {SPEECH_MARKS.map(([src, label]) => (
         <span key={label} className="flex flex-col items-center gap-2">
           <img src={src} alt="" className={big ? 'h-16 w-16 md:h-24 md:w-24' : 'h-12 w-12 md:h-14 md:w-14'} />
-          <span className={`text-aubergine/60 ${big ? 'text-[13px]' : 'text-[11px]'}`}>{label}</span>
+          <span className={`text-aubergine/70 ${big ? 'text-[13px]' : 'text-[11px]'}`}>{label}</span>
         </span>
       ))}
     </span>

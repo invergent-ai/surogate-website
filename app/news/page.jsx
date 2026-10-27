@@ -31,7 +31,7 @@ export default function NewsPage() {
               <div className="order-2 lg:order-1">
                 <p className="m-0 flex gap-3 text-[13px]">
                   <span className="font-medium">{top.category}</span>
-                  <time dateTime={top.date} className="text-ink/55">{fmtDate(top.date)}</time>
+                  <time dateTime={top.date} className="text-ink/60">{fmtDate(top.date)}</time>
                 </p>
                 <h2 className="m-0 mt-3 text-balance text-[28px] font-[500] leading-[1.15] tracking-[-0.01em] md:text-[40px]">
                   <a href={`/news/${top.slug}/`} className="!text-ink no-underline">{top.title}</a>

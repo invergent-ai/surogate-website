@@ -42,7 +42,7 @@ export function Values() {
     <ol className="m-0 grid list-none overflow-hidden rounded-2xl bg-ivory p-0 md:grid-cols-3">
       {VALUES.map((v, i) => (
         <li key={v.title} className="border-hairline p-6 md:p-8 [&:not(:first-child)]:border-t md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-t-0">
-          <span className="block text-[28px] font-[400] leading-none tracking-[-0.01em] text-ink/30 tabular-nums" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <span className="block text-[28px] font-[400] leading-none tracking-[-0.01em] text-ink/45 tabular-nums" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           <h3 className="m-0 mt-8 text-[18px] font-[500] leading-[1.3]">{v.title}</h3>
           <p className="m-0 mt-2 text-[15px] leading-[1.6] text-ink/65">{v.line}</p>
         </li>
@@ -102,7 +102,7 @@ export function CompanyFacts() {
     <dl className="m-0 border-t border-hairline">
       {rows.map(([k, v]) => (
         <div key={k} className="grid grid-cols-[140px_1fr] gap-4 border-b border-hairline py-3.5 text-[15px]">
-          <dt className="text-ink/55">{k}</dt>
+          <dt className="text-ink/60">{k}</dt>
           <dd className="m-0 text-ink">{v}</dd>
         </div>
       ))}

@@ -8,7 +8,7 @@ export default function NewsCard({ post }) {
       <span className="block aspect-[16/10] overflow-hidden rounded-xl"><Cover kind={post.cover} /></span>
       <span className="mt-4 flex gap-3 text-[12px]">
         <span className="font-medium text-ink">{post.category}</span>
-        <time dateTime={post.date} className="text-ink/55">{fmtDate(post.date)}</time>
+        <time dateTime={post.date} className="text-ink/60">{fmtDate(post.date)}</time>
       </span>
       <span className="mt-1.5 flex items-start gap-1 text-[16px] font-medium leading-[1.4]">
         <span>{post.title}</span><ChevronRight size={16} className="nudge mt-[3px] shrink-0 text-ink/40 group-hover:text-ink" />

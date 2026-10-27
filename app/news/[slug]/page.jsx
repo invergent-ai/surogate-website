@@ -53,7 +53,7 @@ export default async function PostPage({ params }) {
               <a href="/news/" className="group inline-flex min-h-11 items-center gap-1.5 !text-ink/65 no-underline hover:!text-ink">
                 <ArrowLeft size={16} /> All news
               </a>
-              <time dateTime={p.date} className="text-ink/55">{fmtDate(p.date)}</time>
+              <time dateTime={p.date} className="text-ink/60">{fmtDate(p.date)}</time>
             </div>
             <header className="mx-auto mt-10 max-w-[760px] text-center md:mt-16">
               <p className="m-0 text-[13px] font-medium">{p.category}</p>
@@ -86,7 +86,7 @@ export default async function PostPage({ params }) {
           </div>
         </article>
         <Section>
-          <SectionHead title="More news" action={<a href="/news/" className="text-[14px] font-medium !text-ink no-underline">All news</a>} />
+          <SectionHead title="More news" action={<a href="/news/" className="inline-flex min-h-11 items-center text-[14px] font-medium !text-ink no-underline">All news</a>} />
           <NewsGrid posts={more} />
         </Section>
       </main>

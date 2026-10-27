@@ -70,7 +70,7 @@ export default function CompanyPage() {
         </Section>
 
         <Section>
-          <SectionHead title="Latest news." action={<a href="/news/" className="text-[14px] font-medium !text-ink no-underline">All news</a>} />
+          <SectionHead title="Latest news." action={<a href="/news/" className="inline-flex min-h-11 items-center text-[14px] font-medium !text-ink no-underline">All news</a>} />
           <NewsGrid posts={POSTS.slice(0, 3)} />
         </Section>
       </main>
