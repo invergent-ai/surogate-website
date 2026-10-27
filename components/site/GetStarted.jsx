@@ -11,12 +11,12 @@ const PATHS = [
 
 export default function GetStarted({ location }) {
   return (
-    <div className="grid gap-3 md:grid-cols-2">
+    <div className="mx-auto grid max-w-[880px] gap-3 md:grid-cols-2">
       {PATHS.map((p) => (
-        <div key={p.title} className="flex flex-col rounded-2xl bg-ivory p-8">
-          <h3 className="m-0 text-[24px] font-[500]">{p.title}</h3>
-          <ul className="m-0 mt-6 mb-8 list-none p-0 flex flex-col gap-3 text-[15px] text-ink/75">
-            {p.points.map((x) => <li key={x} className="flex gap-2"><Check size={18} className="shrink-0 text-ink" />{x}</li>)}
+        <div key={p.title} className="flex flex-col rounded-2xl bg-ivory p-6 md:p-7">
+          <h3 className="m-0 text-[18px] font-[500]">{p.title}</h3>
+          <ul className="m-0 mt-5 mb-7 flex list-none flex-col gap-2.5 p-0 text-[15px] text-ink/70">
+            {p.points.map((x) => <li key={x} className="flex gap-2.5"><Check size={16} className="mt-[3px] shrink-0 text-ink" />{x}</li>)}
           </ul>
           <Button href={p.cta.href} variant={p.cta.variant} size="lg" event={p.cta.event} eventProps={{ location }} className="mt-auto w-full">
             {p.cta.label}

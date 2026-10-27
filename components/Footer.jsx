@@ -4,7 +4,7 @@ import { FOOTER, LINKS } from '@/lib/site';
 export default function Footer() {
   return (
     <footer className="bg-aubergine text-cream font-sans">
-      <div className="mx-auto max-w-[1200px] px-6 pt-20 pb-10">
+      <div className="mx-auto max-w-[1280px] px-4 pt-16 pb-10 md:px-6 md:pt-20">
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-3 lg:grid-cols-[1.4fr_repeat(6,1fr)]">
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <img src="/brand/logo-full-white.svg" alt="Surogate" className="block h-8 w-auto" />
