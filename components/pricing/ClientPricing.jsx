@@ -6,7 +6,6 @@ export default function ClientPricing() {
     <>
       <section className="bg-brand-aubergine text-white">
         <div className="max-w-[1200px] my-0 mx-auto pt-[80px] px-[24px] pb-[72px] flex flex-col gap-[20px]">
-          <p className="m-0 font-mono text-[13px] tracking-[0.14em] text-brand-orange">PRICING</p>
           <h1 className="font-sans m-0 text-[clamp(38px,5vw,60px)] leading-[1.04] tracking-[-0.033em] font-extrabold max-w-[860px]">One plan per client. Models at cost.</h1>
           <p className="m-0 text-[19px] leading-[1.55] text-[rgba(255,255,255,0.8)] max-w-[760px]">Each client gets its own organisation with unlimited users and agents. The client brings its own model and pays its provider directly, or uses ours at the provider's price with no markup.</p>
           <p className="mt-[8px] mx-0 mb-0 text-[16px] text-[rgba(255,255,255,0.86)]">

@@ -9,7 +9,6 @@ export default function PartnerProgram() {
       <section className="bg-brand-aubergine text-white border-t border-t-[rgba(255,255,255,0.12)]" id="partners">
         <div className="max-w-[1200px] my-0 mx-auto py-[104px] px-[24px] flex flex-col gap-[48px]">
           <div className="flex flex-col gap-[16px] max-w-[860px]">
-            <p className="m-0 font-mono text-[13px] tracking-[0.14em] text-brand-orange">PARTNER PROGRAM</p>
             <h2 className="font-sans m-0 text-[clamp(32px,4vw,52px)] leading-[1.05] tracking-[-0.03em] font-extrabold">Build a practice on Surogate.</h2>
             <p className="m-0 text-[19px] leading-[1.6] text-[rgba(255,255,255,0.82)]">Deliver Surogate to your clients and earn a share of every plan or license they buy.</p>
           </div>
