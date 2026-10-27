@@ -1,84 +1,35 @@
-import { Youtube, Linkedin, Instagram } from 'lucide-react';
 import TrackedLink from '@/components/TrackedLink';
-import { CONTACT, mailto } from '@/lib/site';
+import { FOOTER, LINKS } from '@/lib/site';
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-brand-border pt-12 pb-10">
-      <div className="max-w-container mx-auto px-8">
-        {/* The brand column gives up the width rather than squeezing the link lists. */}
-        <div className="grid gap-10 grid-cols-2 lg:[grid-template-columns:1.6fr_1fr_1fr_1fr_1fr] items-start">
-          <div>
-            <a href="#top" className="inline-flex items-center text-brand-aubergine">
-              <img src="/brand/logo-full-black.svg" alt="Surogate" className="h-9 w-auto block" />
-            </a>
-            <p className="mt-4 text-[13px] text-brand-steel max-w-[32ch] leading-[1.55]">
-              The intelligence factory for autonomous agents. Build, deploy, observe.
-            </p>
+    <footer className="bg-aubergine text-cream font-sans">
+      <div className="mx-auto max-w-[1200px] px-6 pt-20 pb-10">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-3 lg:grid-cols-[1.4fr_repeat(6,1fr)]">
+          <div className="col-span-2 md:col-span-3 lg:col-span-1">
+            <img src="/brand/logo-full-white.svg" alt="Surogate" className="block h-8 w-auto" />
+            <p className="mt-4 max-w-[30ch] text-[14px] leading-[1.6] text-cream/60">Your AI, on your terms. Built in Europe by Invergent.</p>
           </div>
-          <FootCol heading="Product" links={[
-            { href: '/agents/', label: 'Agents' },
-            { href: '/keel/', label: 'Keel' },
-            { href: '/gateway/', label: 'AI Gateway' },
-            { href: '/pricing/', label: 'Pricing' },
-          ]} />
-          <FootCol heading="Partners" links={[
-            { href: '/partners/', label: 'Become a partner' },
-            { href: '/partners/#directory', label: 'Partner directory' },
-            { href: mailto('Find a Surogate partner'), label: 'Find a partner' },
-            { href: CONTACT.discord, label: 'Discord' },
-          ]} />
-          <FootCol heading="Resources" links={[
-            { href: '/labs/', label: 'Labs' },
-            { href: '/labs/rune/', label: 'Rune' },
-            { href: '/labs/speech/', label: 'Speech' },
-            { href: '/labs/engine/', label: 'Engine' },
-            { href: '/labs/rune-examples/', label: 'Rune at work' },
-            { href: 'https://docs.surogate.ai', label: 'Platform Docs' },
-            { href: 'https://github.com/invergent-ai/surogate', label: 'Surogate Trainer' },
-            { href: 'https://github.com/invergent-ai/surogates', label: 'Agent harness' },
-          ]} />
-          <FootCol heading="Social" links={[
-            { href: 'https://www.youtube.com/@Surogate_ai', label: 'YouTube', icon: Youtube },
-            { href: 'https://www.linkedin.com/showcase/surogate', label: 'LinkedIn', icon: Linkedin },
-            { href: 'https://www.instagram.com/surogate.ai/', label: 'Instagram', icon: Instagram },
-          ]} />
+          {FOOTER.map((col) => (
+            <div key={col.heading}>
+              <h2 className="m-0 mb-4 text-[13px] font-medium text-cream/45">{col.heading}</h2>
+              <ul className="m-0 list-none p-0 flex flex-col gap-2.5">
+                {col.links.map((l) => (
+                  <li key={l.label}>
+                    <TrackedLink href={l.href} event="footer_link_clicked" eventProps={{ label: l.label, section: col.heading }}
+                      {...(/^https?:/.test(l.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      className="text-[14px] !text-cream/80 no-underline hover:!text-cream">{l.label}</TrackedLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-
-        <div className="mt-14 pt-6 border-t border-brand-border flex flex-wrap justify-between items-center gap-6 font-mono text-[11px] text-brand-steel tracking-[0.06em]">
-          <span>
-            © 2026{' '}
-            INVERGENT S.A.{' '}
-            · ALL RIGHTS RESERVED
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_0_3px_rgba(34,197,94,0.18)]" />
-            ALL SYSTEMS NORMAL
-          </span>
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-[13px] text-cream/50">
+          <span>© 2026 INVERGENT S.A.</span>
+          <a href={LINKS.status} target="_blank" rel="noopener noreferrer" className="!text-cream/60 no-underline hover:!text-cream">Status ↗</a>
         </div>
       </div>
     </footer>
-  );
-}
-
-function FootCol({ heading, links }) {
-  return (
-    <div>
-      <h5 className="m-0 mb-3.5 font-mono text-[10px] uppercase tracking-wider-2 text-brand-steel font-semibold">
-        {heading}
-      </h5>
-      {links.map((l) => (
-        <TrackedLink
-          key={l.label}
-          event="footer_link_clicked"
-          eventProps={{ label: l.label, section: heading }}
-          href={l.href}
-          className="flex items-center gap-1.5 text-[13.5px] text-brand-graphite py-1 hover:text-brand-aubergine transition-colors"
-        >
-          {l.icon && <l.icon size={14} strokeWidth={2} />}
-          {l.label}
-        </TrackedLink>
-      ))}
-    </div>
   );
 }
