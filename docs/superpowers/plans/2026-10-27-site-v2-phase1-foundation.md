@@ -24,7 +24,7 @@
 - Commits use Conventional Commits with **no Claude attribution trailer** (workspace CLAUDE.md).
 
 **Chrome for `check:layout`:** `google-chrome` is not installed. Use Playwright's Chromium:
-`export CHROME=$HOME/.cache/ms-playwright/chromium-1248/chrome-linux/chrome`
+`export CHROME=$HOME/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome`
 
 ---
 
@@ -1827,7 +1827,7 @@ const DESCRIPTION =
 
 ```bash
 npm test && npm run build && npm run check:links
-export CHROME=$HOME/.cache/ms-playwright/chromium-1248/chrome-linux/chrome
+export CHROME=$HOME/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome
 npm run check:layout / /agents/ /labs/ /pricing/
 ```
 
