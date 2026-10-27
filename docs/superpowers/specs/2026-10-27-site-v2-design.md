@@ -2,6 +2,25 @@
 
 Date: 2026-10-27 · Branch: `feat/site-v2` · Status: draft for review
 
+## 0. Decisions after the first review (2026-10-27)
+
+These override anything below that conflicts.
+
+- **x.ai is the benchmark for clarity, not a template.** Every page needs one element that only we
+  could ship: the deployment switch in the home hero, real product footage, partner tiers, our own
+  research.
+- **The rabbit lives only on the Agents and Surogate pages,** as the character there (like the mascot
+  on x.ai/bot). It does not appear in the menu, on home tiles, in the footer or in general mocks.
+- **The menu has no icons:** product name and one line only. The preview panel has a fixed size.
+- **The hero has no cycling word.** The headline is static: "Your AI, on your terms." Under the buttons
+  sits a "Where should it run?" switch (Our EU cloud, Your cloud, Your hardware, Air-gapped) with a
+  one-line answer.
+- **No gradient frames around code windows.**
+- **No layout shift.** Nothing changes size when it is hovered, clicked or switched.
+- **Videos are new short silent loops:** 4 to 6 seconds, one frame size (16:10), the same window
+  frame, cropped tight on one action, filmed fresh on the local stack. Loops cut from the old shorts
+  are temporary.
+
 ## 1. Why
 
 The current site is written for one reader, "a partner's engineers", and sells four things. We now sell
