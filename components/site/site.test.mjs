@@ -168,3 +168,18 @@ test('every film card names its demo business and opens the film', async () => {
     assert.match(html, new RegExp(`aria-label="Watch ${f.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
   }
 });
+
+test('a partner mark names its tier, its cut gets finer with the tier, and two marks never share an id', async () => {
+  const { PARTNER_FACETS, partnerBadges, partnerMarkSvg } = await import('./illustrations/partnerBadges.js');
+  const counts = ['silver', 'gold', 'diamond'].map((t) => PARTNER_FACETS[t].length);
+  assert.ok(counts[0] > 4 && counts[0] < counts[1] && counts[1] < counts[2], String(counts));
+  for (const [tier, name] of [['silver', 'Silver'], ['gold', 'Gold'], ['diamond', 'Diamond']]) {
+    const html = await render('./PartnerMark.jsx', { tier, interactive: true });
+    assert.match(html, new RegExp(`role="img" aria-label="Surogate ${name} partner"`));
+    assert.doesNotMatch(html, /NaN/);
+    assert.match(partnerBadges[tier], /^<svg role="img"/);
+  }
+  const ids = (s) => [...s.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+  assert.ok(ids(partnerMarkSvg('gold', 'a')).every((id) => !ids(partnerMarkSvg('gold', 'b')).includes(id)));
+  assert.throws(() => partnerMarkSvg('platinum'), /Unknown partner tier/);
+});

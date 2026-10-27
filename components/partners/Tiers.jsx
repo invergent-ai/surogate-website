@@ -1,6 +1,5 @@
 import Section, { H2 } from '@/components/site/Section';
-import InlineSvg from '@/components/site/InlineSvg';
-import { partnerBadges } from '@/components/site/illustrations/partnerBadges';
+import PartnerMark from '@/components/site/PartnerMark';
 import { PARTNER_SHARE } from '@/lib/pricing';
 
 const TIERS = [
@@ -16,8 +15,8 @@ export default function Tiers() {
       <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-cream/70">Tiers count the clients you have live. There is nothing to apply for.</p>
       <ul className="m-0 mt-12 grid list-none border-t border-cream/15 p-0 md:grid-cols-3">
         {TIERS.map((t, i) => (
-          <li key={t.key} className={`border-b border-cream/15 py-8 md:border-b-0 md:pr-8 ${i ? 'md:border-l md:pl-8' : ''} [&_svg]:h-[112px] [&_svg]:w-[112px]`}>
-            <InlineSvg className="contents" markup={partnerBadges[t.key]} />
+          <li key={t.key} className={`border-b border-cream/15 py-8 md:border-b-0 md:pr-8 ${i ? 'md:border-l md:pl-8' : ''}`}>
+            <PartnerMark tier={t.key} size={112} interactive />
             <h3 className="m-0 mt-4 text-[18px] font-[500]">{t.name}</h3>
             <p className="m-0 mt-1 text-[14px] font-medium text-sun">{t.when}</p>
             <p className="m-0 mt-3 text-[15px] leading-[1.6] text-cream/75">{t.gets}</p>
