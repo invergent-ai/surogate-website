@@ -1,0 +1,42 @@
+/* Product pages. One entrance curve and one hover curve (v2.css); every animated element rests on its final
+   frame, so reduced motion shows the finished picture. */
+
+/* Sticky scroller: the step at the viewport's middle is full ink, the rest fade; panels crossfade in one box. */
+.scroll-step { transition: opacity 300ms var(--ease-ui); }
+@media (min-width: 1024px) { .scroll-step:not(.is-on) { opacity: .35; } }
+.scroll-panel { opacity: 0; transition: opacity 400ms var(--ease-out); }
+.scroll-panel.is-on { opacity: 1; }
+
+/* FAQ: the plus turns into a minus. */
+.faq-v { transition: transform 150ms var(--ease-ui); }
+.faq[open] .faq-v { transform: translateX(-50%) scaleY(0); }
+
+/* The closing card's rabbit peeks over its top edge, once, when it scrolls in (first paint only). */
+.peek { animation: peek 900ms var(--ease-out) 300ms both; }
+@keyframes peek { from { transform: translate(-50%, 0); opacity: 0; } }
+
+/* A 12 s story loop for hero mocks: beat N appears at its slot and every beat clears together at the end. */
+.b1, .b2, .b3, .b4, .b5, .b6 { animation: 12s var(--ease-out) infinite both; }
+.b1 { animation-name: b1; } .b2 { animation-name: b2; } .b3 { animation-name: b3; } .b4 { animation-name: b4; } .b5 { animation-name: b5; } .b6 { animation-name: b6; } 
+@keyframes b1 { 0%, 2% { opacity: 0; transform: translateY(6px); } 5%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes b2 { 0%, 13% { opacity: 0; transform: translateY(6px); } 16%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes b3 { 0%, 25% { opacity: 0; transform: translateY(6px); } 28%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes b4 { 0%, 42% { opacity: 0; transform: translateY(6px); } 45%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes b5 { 0%, 58% { opacity: 0; transform: translateY(6px); } 61%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes b6 { 0%, 71% { opacity: 0; transform: translateY(6px); } 74%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* Progress that fills once per loop, on transform. */
+.fill-run { transform-origin: left; animation: fill-run var(--dur, 6s) linear infinite; }
+@keyframes fill-run { from { transform: scaleX(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-step, .scroll-panel, .faq-v { transition: none !important; }
+  .peek, .b1, .b2, .b3, .b4, .b5, .b6, .fill-run { animation: none !important; }
+}
+
+/* Surogate: who holds the browser. The two badges share one box and swap on an 8 s loop. */
+.hold-a { animation: hold-a 8s var(--ease-ui) infinite; }
+.hold-b { opacity: 0; animation: hold-b 8s var(--ease-ui) infinite; }
+@keyframes hold-a { 0%, 45% { opacity: 1; } 50%, 95% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes hold-b { 0%, 45% { opacity: 0; } 50%, 95% { opacity: 1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .hold-a, .hold-b { animation: none !important; } .hold-b { opacity: 0; } }
