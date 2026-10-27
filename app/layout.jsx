@@ -36,12 +36,12 @@ export const viewport = {
 
 const TITLE = 'Surogate - Your AI, on your terms';
 const DESCRIPTION =
-  'Agents, voice, process automation and your own models, on your hardware or ours. Built in Europe. Surogate Agents, Surogate desktop, Voice, Keel, Train and the API.';
+  'Agents, voice, process automation and your own models, on your hardware or ours. Built in Europe. Surogate, Surogate Desktop, Voice, Keel, Train and the AI Gateway.';
 
 export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords: 'AI agent platform, AI gateway, LLM gateway, Surogate Agents, Keel, agentic orchestration, agents in processes, custom models, on-premise AI agents, air-gapped AI agents, AI agent partners',
+  keywords: 'AI agent platform, AI gateway, LLM gateway, Surogate, Surogate Desktop, Keel, agentic orchestration, agents in processes, custom models, on-premise AI agents, air-gapped AI agents, AI agent partners',
   authors: [{ name: 'Surogate' }],
   robots: 'index, follow',
   openGraph: {

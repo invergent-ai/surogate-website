@@ -142,10 +142,11 @@ test('the products menu is text only: no rabbit, no icon', async () => {
   assert.doesNotMatch(nav, /rabbit/i);
 });
 
-test('the code card is white with a hairline on our warm panel, its tabs under it, and the model is Surogate 3.7 Flash', async () => {
+test('the code card is white with a hairline on a flat aubergine panel, its tabs under it, and the model is Surogate 3.7 Flash', async () => {
   const html = await render('../home/DevApi.jsx', {});
   assert.doesNotMatch(html, /bg-grad-/);
-  assert.match(html, /warm-panel[\s\S]*border-hairline bg-white[\s\S]*role="tabpanel"[\s\S]*role="tablist"/);
+  assert.doesNotMatch(html, /warm-panel|gradient/);
+  assert.match(html, /rounded-2xl bg-aubergine[\s\S]*border-hairline bg-white[\s\S]*role="tabpanel"[\s\S]*role="tablist"/);
   assert.match(html, /surogate\/surogate3\.7-flash/);
   for (const n of ['1M', '32K', '$0.15/M']) assert.ok(html.includes(n), n);
 });
@@ -182,4 +183,11 @@ test('a partner mark names its tier, its cut gets finer with the tier, and two m
   const ids = (s) => [...s.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
   assert.ok(ids(partnerMarkSvg('gold', 'a')).every((id) => !ids(partnerMarkSvg('gold', 'b')).includes(id)));
   assert.throws(() => partnerMarkSvg('platinum'), /Unknown partner tier/);
+});
+
+test('structured data names the products right and never pitches a self-hosted gateway', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const json = await readFile(new URL('../../app/structured-data.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(json, /Kubernetes|Surogate Router|Surogate Agents/);
+  assert.match(json, /llm\.buzz/);
 });

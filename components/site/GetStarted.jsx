@@ -3,7 +3,7 @@ import Button from './Button';
 import { CONTACT_SALES, SIGN_IN } from '@/lib/site';
 
 const PATHS = [
-  { title: 'Build on your own', points: ['Start free, no card', 'Agents, API and engine in one account', 'Docs and Discord when you need them'],
+  { title: 'Build on your own', points: ['Start free, no card', 'Surogate, AI Gateway and engine in one account', 'Docs and Discord when you need them'],
     cta: { label: 'Try for free', href: SIGN_IN, variant: 'primary', event: 'cta_signup_clicked' } },
   { title: 'Work with us', points: ['Deployment in your cloud or on your hardware', 'Custom models trained on your data', 'A partner near you, or our own engineers'],
     cta: { label: 'Contact Sales', href: CONTACT_SALES, variant: 'secondary', event: 'contact_sales_clicked' } },

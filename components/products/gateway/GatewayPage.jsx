@@ -127,7 +127,7 @@ export default function GatewayPage() {
           <h2 className={H2.list}>The provider's price. Nothing on top.</h2>
           <p className="mt-3 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-ink/65">Prepaid credit from {MARKET.topUp[0]}. No fee per request or on tokens, and failed attempts are never charged. Invoicing and volume pricing on the Business plan.</p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Button href="/pricing/#api" size="lg" arrow event="pricing_opened" eventProps={{ location: 'gateway_pricing' }}>See API pricing</Button>
+            <Button href="/pricing/#api" size="lg" arrow event="pricing_opened" eventProps={{ location: 'gateway_pricing' }}>See AI Gateway pricing</Button>
           </div>
         </div>
         <div className="min-w-0 self-end"><Facts items={FACTS} /></div>

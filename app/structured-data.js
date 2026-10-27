@@ -19,7 +19,7 @@ export const organization = {
     url: 'https://surogate.ai/brand/logo-full-black.svg',
   },
   description:
-    'Surogate makes Surogate Agents, an agentic platform; Keel, which runs agents inside defined processes; the AI Gateway, which puts every model behind one API; and custom language and speech models. Agents, Keel and the models run in Surogate cloud, on your Kubernetes or air-gapped; the AI Gateway on llm.buzz or on your Kubernetes.',
+    'Surogate is the European platform for AI colleagues, made by Invergent S.A. Alongside it: Surogate Desktop, Voice, Keel, the AI Gateway and the open-source engine we train our own models with. Surogate, Keel and our models run in our EU cloud, in your cloud, on your own hardware or air-gapped. The AI Gateway is llm.buzz, the open market for production inference.',
   email: CONTACT.email,
   // Add LinkedIn, HuggingFace, Discord, Wikidata, and X URLs here as they are confirmed.
   sameAs: [
@@ -52,7 +52,7 @@ export const website = {
   url: 'https://surogate.ai/',
   name: 'Surogate',
   description:
-    'Surogate Agents, Keel, the AI Gateway and custom models for teams that run agents on their own processes and infrastructure.',
+    'Surogate, Surogate Desktop, Voice, Keel, Train and the AI Gateway: AI colleagues and the models behind them, on your hardware or ours.',
   publisher: { '@id': ORG_ID },
   inLanguage: 'en',
 };
@@ -65,7 +65,7 @@ export const softwareApplication = {
   operatingSystem: 'Web-based',
   url: 'https://surogate.ai/',
   description:
-    'Surogate Agents: design, test, govern and run agents for whole teams without writing code, in Surogate cloud or on your own Kubernetes, air-gapped networks included.',
+    'Surogate: AI colleagues for every team. Design, test, govern and run agents without code, in our EU cloud, in your cloud, on your own hardware or air-gapped.',
   publisher: { '@id': ORG_ID },
   offers: [
     { '@type': 'Offer', name: 'Pilot', price: '0', priceCurrency: 'USD', description: 'The first 60 days of every new client' },

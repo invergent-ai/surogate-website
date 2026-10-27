@@ -4,7 +4,7 @@ import InlineSvg from '@/components/site/InlineSvg';
 import { partOfTheKeelBoardSvg, withOnlyInstructionsAnAgentSvg } from '@/components/keel/illustrations';
 import { CONTACT_SALES } from '@/lib/site';
 import { KEEL_PER_CASE } from '@/lib/pricing';
-import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
+import Page, { Hero, Lead, UseCases, Closing } from '../Page';
 import Scroller from '../Scroller';
 import Faq from '../Faq';
 import Films from '../Films';
@@ -30,12 +30,6 @@ const USES = [
   { market: 'Insurance', job: 'KYC files that need a sign-off', line: 'Four-eyes checks apply to agents as they do to staff. An unsure agent stops and asks a person.', href: '/solutions/banking-insurance/' },
   { market: 'Logistics', job: 'Supplier payments', line: 'An agent checks the statement against the payables policy, and the payment waits for a yes.' },
   { market: 'Enterprise', job: 'Work where mistakes are costly', line: 'Every case follows the path you designed, under versioned rules your analysts own.', href: '/solutions/enterprise/' },
-];
-
-// From the Keel design canvas (docs/design/site-redesign/Keel.dc.html).
-const PROOF = [
-  { n: '2,239', l: 'case steps a second from one Keel process, measured on a single laptop' },
-  { n: '1M', l: 'cases open at once, on the same laptop' },
 ];
 
 const PROMISES = [
@@ -109,9 +103,8 @@ export default function KeelPage() {
 
       <Section id="proof" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
         <div>
-          <h2 className={H2.list}>Thousands of case steps a second.</h2>
-          <p className="mt-3 mb-8 max-w-[40ch] text-[16px] leading-[1.6] text-ink/65">And every case leaves a record: who did each step, under which rule.</p>
-          <Facts items={PROOF} />
+          <h2 className={H2.list}>Every case leaves a record.</h2>
+          <p className="mt-3 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-ink/65">Who did each step, under which rule, so any case can be audited and replayed.</p>
         </div>
         <Films slugs={['vandijk-approval']} cols="" />
       </Section>

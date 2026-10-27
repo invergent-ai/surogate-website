@@ -5,7 +5,7 @@ import { PARTNER_SHARE } from '@/lib/pricing';
 const TIERS = [
   { key: 'silver', name: 'Silver', when: 'Sign up, no fee', gets: 'Partner prices and pilots.' },
   { key: 'gold', name: 'Gold', when: '1 client live', gets: 'Listed in our partner directory, and we send you companies looking for a partner.' },
-  { key: 'diamond', name: 'Diamond', when: '3 clients live', gets: `${PARTNER_SHARE.diamond * 100}% share, early access, and a direct line to our engineers.` },
+  { key: 'diamond', name: 'Diamond', when: '3 clients live', gets: `${PARTNER_SHARE.diamond * 100}% share, a first look at new releases, and a direct line to our engineers.` },
 ];
 
 export default function Tiers() {

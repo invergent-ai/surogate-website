@@ -155,7 +155,7 @@ export default function PricingTabs() {
     <>
       <section className="bg-white">
         <div className={`${CONTAINER} pt-14 pb-10 text-center md:pt-20 md:pb-12`}>
-          <h1 className="load-up m-0 text-[36px] font-[450] leading-[1.08] tracking-[-0.01em] md:text-[56px]">Pricing</h1>
+          <h1 className="load-up m-0 text-[36px] font-[450] leading-[1.08] tracking-[-0.01em] md:text-[56px] md:leading-[1.04]">Pricing</h1>
           <p className="load-up mx-auto mt-4 mb-0 max-w-[520px] text-[16px] leading-[1.6] text-ink/65 md:text-[18px]" style={{ '--t': '100ms' }}>
             One price per person or per organisation. Models at the provider’s price.
           </p>
@@ -181,7 +181,7 @@ export default function PricingTabs() {
       </section>
       <section className="bg-white">
         <div className={`${CONTAINER} grid items-start gap-8 py-16 md:py-24 lg:grid-cols-[4fr_8fr] lg:gap-16`}>
-          <h2 className="m-0 text-[28px] font-[500] leading-[1.15] tracking-[-0.01em] md:text-[30px] md:leading-[36px]">Questions about {current.label === 'API' ? 'the API' : `${current.label} plans`}.</h2>
+          <h2 className="m-0 text-[28px] font-[500] leading-[1.15] tracking-[-0.01em] md:text-[30px] md:leading-[36px]">Questions about {current.id === 'api' ? 'the AI Gateway' : `${current.label} plans`}.</h2>
           <FaqList key={tab} items={current.faq} />
         </div>
       </section>

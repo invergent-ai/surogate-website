@@ -5,6 +5,7 @@ import Rabbit from '@/components/site/Rabbit';
 import { VideoFrame } from '@/components/site/ProductMedia';
 import { CONTACT_SALES, SIGN_IN } from '@/lib/site';
 import { TEAM_PLANS, usd } from '@/lib/pricing';
+import { TASK_ATTEMPTS } from '@/lib/products';
 import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
 import Scroller from '../Scroller';
 import Faq from '../Faq';
@@ -29,12 +30,12 @@ const MARKETS = [
 
 const STEPS = [
   { title: 'Set it up without code', line: 'Every part of an agent is a screen in the studio. Change one and the next session uses it, with no rollout.',
-    points: ['Create from a template or a blank agent, running in about 30 seconds', 'The Copilot can take any step, and builds only what you approve'], panel: <SetupPanel /> },
+    points: ['Start from a template or a blank agent, and talk to it straight away', 'The Copilot can take any step, and builds only what you approve'], panel: <SetupPanel /> },
   { title: 'Teach it your work', line: 'Attach skills and knowledge bases. Your documents become a searchable wiki, with the source passage behind every answer.',
-    points: ['Every skill version is kept, and each session records the one it used', 'MCP servers and more than 1,000 Composio toolkits, scanned before the agent sees them'], panel: <KnowledgePanel /> },
+    points: ['Every skill version is kept, and each session records the one it used', 'MCP servers and Composio toolkits, scanned before the agent sees them'], panel: <KnowledgePanel /> },
   { title: 'Put it where your team works', line: 'A person who moves from the web to Slack or WhatsApp keeps the same conversations, memory and allowance.', panel: <ChannelsPanel /> },
   { title: 'Let it run for days', line: 'Goals, missions, loops and deep research run for hours, days or months. Programs follow up with people on the days you choose.',
-    points: ['Sub-agents share a board of checked notes, so a dead end is not repeated', 'A task is stored and retried up to three times, reading what went wrong before'], panel: <LongPanel /> },
+    points: ['Sub-agents share a board of checked notes, so a dead end is not repeated', `A task is stored and gets up to ${TASK_ATTEMPTS} attempts, each reading what went wrong before`], panel: <LongPanel /> },
   { title: 'Keep it inside the rules', line: 'Sensitive calls wait in the approvals inbox. Rules are fixed for each turn, so text injected mid-turn cannot loosen them.',
     points: ['Keys the agent never sees: the proxy adds credentials on the way out', 'Sessions survive crashes, and failed steps are undone in reverse order'], panel: <GovernPanel /> },
   { title: 'Make it better from its own sessions', line: 'Mark sessions as good or bad, and the studio turns them into training data, fine-tunes, scores and experts.',
