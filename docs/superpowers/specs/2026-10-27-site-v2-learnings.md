@@ -23,6 +23,9 @@ Binding for every page. Read this before §3 of `2026-10-27-site-v2-design.md`, 
   CTAs rotate per product together.
 - No icons in menus. No gradient frames around code. No status dots or glowing pills. No coloured tag
   chips. No "early access" (the desktop app is released: `surogate.ai/desktop/install.sh`).
+- Product names (owner, 2026-10-27): the agents platform is **Surogate** (route `/agents/`), the desktop
+  agent is **Surogate Desktop** (route `/surogate-desktop/`; not `/desktop/`, that path serves the installer).
+  Then Voice, Keel, Train, AI Gateway. Never "Agents" as a product name on its own.
 - The product formerly called "API" is **AI Gateway**, at `/gateway/`, and it IS llm.buzz. There is no
   `/api/` page. "Get API key" links to llm.buzz.
   - **Never mention Surogate Router** (private) and never pitch a self-hosted gateway.
