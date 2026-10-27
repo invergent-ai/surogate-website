@@ -9,7 +9,7 @@
 //   npm run build && npm run check:links
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
-import { CONTACT, REDIRECTS, SIGN_IN } from '../lib/site.js';
+import { CONTACT, PENDING, REDIRECTS, SIGN_IN } from '../lib/site.js';
 
 const OUT = 'out';
 const pages = [];
@@ -46,6 +46,7 @@ for (const [page, s] of html) {
     if (!ref || /^(https?:|mailto:|tel:|data:|javascript:|\/\/)/.test(ref)) continue;
     const [pathq, frag] = ref.split('#');
     const path = pathq.split('?')[0];
+    if (PENDING.includes(path)) continue;
     let target = page;
     if (path) {
       if (!path.startsWith('/')) {
