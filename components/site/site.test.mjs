@@ -54,7 +54,7 @@ test('every product has media, and a mock reads complete without animation', asy
   for (const p of PRODUCTS) {
     const html = await render('./ProductMedia.jsx', { product: p });
     assert.ok(html.length > 200, p.key);
-    assert.doesNotMatch(html, /opacity:\s*0/, p.key);
+    assert.doesNotMatch(html.replace(/<style>[\s\S]*?<\/style>/g, ''), /style="[^"]*opacity:\s*0[;"]/, p.key);
   }
 });
 
@@ -67,14 +67,66 @@ test('the nav server-renders every menu trigger and both calls to action', async
   assert.match(html, /aria-label="More ways to start"/);
 });
 
-test('the hero is static: one headline and four places to run it, the first chosen before script loads', async () => {
+test('the hero server-renders the Agents headline as the h1, its typed brief with the sign-up link, and a live region', async () => {
   const html = await render('../home/Hero.jsx', {});
-  assert.match(html, /<h1[^>]*>\s*Your AI, on your terms\.\s*<\/h1>/);
-  assert.match(html, /data-event="cta_signup_clicked"/);
-  assert.match(html, /role="radiogroup"/);
-  const radios = [...html.matchAll(/role="radio" aria-checked="(true|false)"[^>]*>([^<]+)</g)].map((m) => [m[2], m[1]]);
-  assert.deepEqual(radios, [['Our EU cloud', 'true'], ['Your cloud', 'false'], ['Your hardware', 'false'], ['Air-gapped', 'false']]);
-  assert.match(html, /Hosted in the EU\. Start in minutes\./);
+  assert.equal((html.match(/<h1/g) || []).length, 1);
+  assert.match(html, /<h1[^>]*><span class="sr-only">AI colleagues for every team\.<\/span>/);
+  assert.match(html, /id="hero-copy" aria-live="polite"/);
+  assert.match(html, /data-action="brief"[\s\S]*Banking<\/span>[\s\S]*Check each loan file and flag what is missing/);
+  assert.match(html, /href="https:\/\/ops\.surogate\.ai"[^>]*data-event="cta_signup_clicked"[^>]*>Build this agent/);
+  assert.doesNotMatch(html, /role="tablist"|role="radiogroup"|Where should it run|Contact Sales/);
+  assert.equal((html.match(/aria-label="Show /g) || []).length, 6);
+});
+
+test('only Agents has a box; the others are plain calls to action, and the voice one plays a real sample', async () => {
+  const fs = await import('node:fs');
+  const { PRODUCTS } = await import('../../lib/products.js');
+  const { SIGN_IN } = await import('../../lib/site.js');
+  const { amamiSrc } = await import('../../lib/labs.js');
+  const kinds = Object.fromEntries(PRODUCTS.map((p) => [p.key, p.action.kind]));
+  assert.deepEqual(kinds, { agents: 'brief', surogate: 'ctas', voice: 'audio', keel: 'ctas', train: 'ctas', gateway: 'ctas' });
+  assert.equal(PRODUCTS[0].action.primary.href, SIGN_IN);
+  for (const p of PRODUCTS) for (const [m, t] of p.action.briefs || []) assert.ok(`${m} · ${t}`.length <= 64, t);
+  const voice = PRODUCTS.find((p) => p.key === 'voice');
+  assert.ok(fs.existsSync(new URL(`../../public${amamiSrc(voice.action.voice, voice.action.sample)}`, import.meta.url)));
+  const React = (await import('react')).default;
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const { default: HeroAction } = await import('../home/HeroAction.jsx');
+  const v = renderToStaticMarkup(React.createElement(HeroAction, { product: voice, onPlaying: () => {} }));
+  assert.match(v, /<button type="button"[^>]*aria-label="Play: Hear Amami speak Romanian"/);
+  assert.match(v, /<audio[^>]*preload="none"/);
+  assert.doesNotMatch(v, /autoplay/i);
+  for (const p of PRODUCTS) {
+    const html = renderToStaticMarkup(React.createElement(HeroAction, { product: p, onPlaying: () => {} }));
+    const a = p.action;
+    for (const l of [a.primary, a.secondary, a.link].filter(Boolean)) assert.ok(html.includes(`href="${l.href}"`), `${p.key} ${l.label}`);
+    assert.equal(html.includes('rounded-xl border'), a.kind === 'brief', p.key);
+    assert.doesNotMatch(html, /\u2014|base_url|curl -LsSf|early access|Doina/i, p.key);
+  }
+});
+
+test('the announcement pill opens an outside link in a new tab and an inside one in place', async () => {
+  const out = await render('./Pill.jsx', { tag: 'New', title: 'T', text: 'x', href: 'https://llm.buzz/models/x' });
+  assert.match(out, /href="https:\/\/llm\.buzz\/models\/x" target="_blank" rel="noopener noreferrer"/);
+  assert.match(out, /data-event="announcement_clicked"/);
+  const inside = await render('./Pill.jsx', { tag: 'New', text: 'x', href: '/labs/' });
+  assert.doesNotMatch(inside, /target=/);
+});
+
+test('every door links to a live or pending page', async () => {
+  const { ROUTES, PENDING } = await import('../../lib/site.js');
+  const { DOORS } = await import('../home/Doors.jsx');
+  const live = new Set(ROUTES.map((r) => r.path));
+  assert.equal(DOORS.length, 6);
+  for (const d of DOORS) assert.ok(live.has(d.href) || PENDING.includes(d.href), d.href);
+  const html = await render('../home/Doors.jsx', {});
+  for (const d of DOORS) assert.ok(html.includes(`href="${d.href}"`), d.href);
+});
+
+test('research leads with Surogate 3.7 Flash, linked out to llm.buzz', async () => {
+  const html = await render('../home/Research.jsx', {});
+  assert.match(html, /href="https:\/\/llm\.buzz\/models\/surogate\/surogate3\.7-flash" target="_blank"[^>]*>[\s\S]*?Surogate 3\.7 Flash/);
+  assert.ok(html.indexOf('Surogate 3.7 Flash') < html.indexOf('Jackrabbit'));
 });
 
 test('the products menu is text only: no rabbit, no icon', async () => {
@@ -86,12 +138,16 @@ test('the products menu is text only: no rabbit, no icon', async () => {
   const list = html.slice(0, html.indexOf('</ul>'));
   for (const p of PRODUCTS) assert.ok(list.includes(p.name), p.key);
   assert.doesNotMatch(list, /<svg/);
+  const nav = await render('../Nav.jsx', {});
+  assert.doesNotMatch(nav, /rabbit/i);
 });
 
-test('the code window sits on the band with a hairline, not a gradient frame', async () => {
+test('the code card is white with a hairline on our warm panel, its tabs under it, and the model is Surogate 3.7 Flash', async () => {
   const html = await render('../home/DevApi.jsx', {});
   assert.doesNotMatch(html, /bg-grad-/);
-  assert.match(html, /border-white\/10[^"]*"[\s\S]*role="tablist"/);
+  assert.match(html, /warm-panel[\s\S]*border-hairline bg-white[\s\S]*role="tabpanel"[\s\S]*role="tablist"/);
+  assert.match(html, /surogate\/surogate3\.7-flash/);
+  for (const n of ['1M', '32K', '$0.15/M']) assert.ok(html.includes(n), n);
 });
 
 test('the code tabs show the first snippet and mark one tab selected', async () => {
@@ -104,9 +160,10 @@ test('the code tabs show the first snippet and mark one tab selected', async () 
 });
 
 test('every film card names its demo business and opens the film', async () => {
-  const { FILMS } = await import('../../lib/films.js');
+  const { SHOWN } = await import('../home/Films.jsx');
   const html = await render('../home/Films.jsx', {});
-  for (const f of FILMS) {
+  assert.equal(SHOWN.length % 6, 0);
+  for (const f of SHOWN) {
     assert.ok(html.includes(f.business), f.slug);
     assert.match(html, new RegExp(`aria-label="Watch ${f.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
   }

@@ -6,6 +6,9 @@ import Section, { SectionHead } from '@/components/site/Section';
 import LoopVideo from '@/components/site/LoopVideo';
 import { FILMS, filmFiles } from '@/lib/films';
 
+// Six fill two rows of three on desktop and three of two on tablets; the seventh waits for its own section.
+export const SHOWN = FILMS.slice(0, 6);
+
 export default function Films() {
   const dialog = useRef(null);
   const [film, setFilm] = useState(null);
@@ -14,18 +17,18 @@ export default function Films() {
   return (
     <Section>
       <SectionHead title="Watch it work." sub="Real product, filmed on demo businesses. Each one is a job a team hands to an agent." />
-      <ul className="m-0 grid list-none grid-cols-2 gap-3 p-0 md:grid-cols-4">
-        {FILMS.map((f) => {
+      <ul className="m-0 grid list-none gap-x-3 gap-y-8 p-0 sm:grid-cols-2 lg:grid-cols-3">
+        {SHOWN.map((f) => {
           const files = filmFiles(f.slug);
           return (
             <li key={f.slug}>
               <button type="button" aria-label={`Watch ${f.title}`} onClick={() => open(f)} className="group block w-full text-left">
-                <span className="relative block aspect-square overflow-hidden rounded-2xl bg-ivory">
-                  <LoopVideo src={files.loop} poster={files.poster} className="h-full w-full object-cover" />
-                  <span className="absolute bottom-3 left-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink"><Play size={16} /></span>
+                <span className="relative block aspect-[16/10] overflow-hidden rounded-xl bg-stone">
+                  <span className="tile-media block h-full w-full"><LoopVideo src={files.loop} poster={files.poster} className="h-full w-full object-cover" /></span>
+                  <span className="absolute bottom-3 left-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-ink"><Play size={14} /></span>
                 </span>
-                <span className="mt-3 block text-[15px] font-medium text-ink">{f.title}</span>
-                <span className="block text-[13px] text-ink/50">{f.business} · demo</span>
+                <span className="mt-3 block text-[14px] font-medium leading-[1.4] text-ink">{f.title}</span>
+                <span className="mt-0.5 block text-[13px] text-ink/50">{f.business} · demo</span>
               </button>
             </li>
           );

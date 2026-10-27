@@ -177,7 +177,7 @@ Every product page follows the product template above. The patterns come from x.
   "Updated memory · Ursu Tutor", "Handed to · Finance agent", "Held for your OK", "Created routine ·
   Month-end close".
 - **The primary button changes per page:**
-  - Surogate: "Download ▾", or "Request early access" until a public build exists (§8)
+  - Surogate: "Download Surogate" → `/surogate/#install` (the install line and OS notes live there), secondary "See what it can do"
   - Agents: "Start building"
   - Train: a copy box for the install command
   - API: "Get API key"
@@ -493,7 +493,7 @@ Each of these has a default; changing one does not block a phase.
 
 | Item | Default |
 |---|---|
-| Surogate desktop has no public download URL | The CTA is "Request early access" (mailto) until a release URL exists |
+| Surogate desktop download | Released: `curl -fsSL https://surogate.ai/desktop/install.sh \| bash`. The CTA is "Download Surogate" → `/surogate/#install`, pending until that page exists |
 | Contact Sales form | Mailto per team on `/contact/`; a Firestore-backed form later (`functions/` exists) |
 | Privacy and Terms pages (GEO audit) | Not written by us; linked when legal provides the text |
 | Customer names | Anonymized; real names are swapped in as approvals arrive |

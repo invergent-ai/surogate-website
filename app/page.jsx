@@ -1,7 +1,7 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Hero from '@/components/home/Hero';
-import Bento from '@/components/home/Bento';
+import Doors from '@/components/home/Doors';
 import Proof from '@/components/home/Proof';
 import DevApi from '@/components/home/DevApi';
 import Sovereign from '@/components/home/Sovereign';
@@ -20,11 +20,11 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Bento />
-        <Proof />
+        <Doors />
+        <Films />
         <DevApi />
         <Sovereign />
-        <Films />
+        <Proof />
         <Research />
         <PartnersBand />
         <Section>
