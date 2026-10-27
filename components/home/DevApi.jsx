@@ -13,7 +13,7 @@ const TABS = [
 
 export default function DevApi() {
   return (
-    <Section tone="aubergine" inner="grid items-center gap-12 lg:grid-cols-[1fr_1.15fr]">
+    <Section tone="aubergine" inner="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.15fr]">
       <div>
         <h2 className="m-0 text-[clamp(36px,4.4vw,52px)] font-[500] leading-[1.03] tracking-[-0.01em]">One API.<br />Every model.</h2>
         <p className="mt-5 mb-0 max-w-[44ch] text-[18px] leading-[1.6] text-cream/70">

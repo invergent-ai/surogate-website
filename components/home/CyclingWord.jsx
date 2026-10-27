@@ -12,7 +12,7 @@ export default function CyclingWord({ words, every = 2400 }) {
   }, [words, every]);
   return (
     <span className="relative inline-block border-b-[6px] border-sun/70 leading-[0.95]">
-      <span key={i} className="word-in">{words[i]}</span>
+      <span key={i} className={i ? 'word-in' : undefined}>{words[i]}</span>
     </span>
   );
 }

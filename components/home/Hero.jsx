@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section className="bg-white px-6 pt-20 pb-16 text-center md:pt-28">
       <Pill {...ANNOUNCEMENT} />
-      <h1 className="mx-auto mt-8 mb-0 max-w-[16ch] text-[clamp(44px,6.2vw,76px)] font-[460] leading-[1.02] tracking-[-0.015em] text-ink">
+      <h1 className="mx-auto mt-8 mb-0 max-w-[22ch] text-[clamp(44px,6.2vw,76px)] font-[460] leading-[1.02] tracking-[-0.015em] text-ink">
         Your AI, on your terms,<br />for everything you <CyclingWord words={WORDS} />.
       </h1>
       <p className="mx-auto mt-6 mb-0 max-w-[56ch] text-[18px] leading-[1.6] text-ink/70">
