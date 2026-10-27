@@ -13,6 +13,14 @@ export default {
         mono: ['var(--font-mono)', 'JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Courier New', 'monospace'],
       },
       colors: {
+        ink: '#0a0a0a',
+        ivory: '#f9f8f6',
+        stone: '#f2f1ef',
+        hairline: '#e4e4e7',
+        aubergine: '#2a102d',
+        night: '#1a0a1c',
+        cream: '#f3ead8',
+        sun: '#ffaf10',
         brand: {
           orange: '#ffaf10',
           yellow: '#ffe845',

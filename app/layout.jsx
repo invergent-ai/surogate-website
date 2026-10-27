@@ -1,5 +1,6 @@
 import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+import './v2.css';
 import { ThemeProvider } from './providers';
 import { PostHogProvider } from '@/components/PostHogProvider';
 import { siteGraph, JsonLd } from './structured-data';
