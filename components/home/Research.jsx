@@ -12,6 +12,7 @@ export const MODELS = [
     cover: (
       <span className="relative flex h-full flex-col items-center justify-center gap-1.5 overflow-hidden bg-aubergine">
         <img src="/surogate_ring_3.svg" alt="" className="absolute left-1/2 top-1/2 h-[220%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 opacity-40" />
+        <img src="/brand/rabbit-amber.svg" alt="" className="relative mb-1 h-12 w-auto" />
         <span className="relative text-[15px] font-medium text-cream">Surogate 3.7 Flash</span>
         <span className="relative text-[12px] text-sun">{FLASH.facts.map((f) => `${f.n} ${f.l}`).slice(0, 2).join(' · ')}</span>
       </span>
