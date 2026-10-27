@@ -43,7 +43,7 @@ function ProductsPanel({ onPick }) {
           </li>
         ))}
       </ul>
-      <div className={`overflow-hidden rounded-xl ${active.tone === 'night' ? 'bg-night' : 'bg-ivory'}`} aria-hidden="true">
+      <div className={`flex flex-col justify-center overflow-hidden rounded-xl [&_video]:h-auto ${active.tone === 'night' ? 'bg-night' : 'bg-ivory'}`} aria-hidden="true">
         <ProductMedia key={active.key} product={active} />
       </div>
     </div>
@@ -158,8 +158,9 @@ export default function Nav() {
         </button>
       </div>
 
+      {/* The header's backdrop-filter makes it the containing block for fixed children, so the sheet sizes to the viewport itself. */}
       <nav id="mobile-nav" aria-label="Mobile" hidden={!sheet}
-        className="fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-white px-6 pb-10 lg:hidden">
+        className="fixed inset-x-0 top-16 h-[calc(100dvh-4rem)] overflow-y-auto bg-white px-6 pb-10 lg:hidden">
         {MENUS.map((m) => m.href ? (
           <a key={m.label} href={m.href} className="block border-b border-hairline py-4 text-[17px] !text-ink no-underline">{m.label}</a>
         ) : (
