@@ -1,4 +1,4 @@
-import { ArrowUpRight, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { CONTAINER } from '@/components/site/Section';
 import { COMPANY, RELEASES, TEAM, VALUES, fmtRelease } from '@/lib/company';
 
@@ -51,20 +51,36 @@ export function Values() {
   );
 }
 
+const initials = (name) => name.split(' ').map((w) => w[0]).join('');
+const profiles = (t) => [
+  t.linkedin && { label: 'LinkedIn', href: t.linkedin },
+  t.x && { label: 'X', href: `https://x.com/${t.x}` },
+  t.github && { label: 'GitHub', href: `https://github.com/${t.github}` },
+].filter(Boolean);
+
 export function Team() {
   return (
-    <ul className="m-0 grid list-none grid-cols-2 gap-x-3 gap-y-8 p-0 sm:grid-cols-3 lg:grid-cols-5">
+    <ul className="m-0 grid list-none grid-cols-2 gap-x-6 gap-y-12 p-0 lg:grid-cols-4 lg:gap-x-10 lg:gap-y-14">
       {TEAM.map((t) => (
-        <li key={t.name}>
-          <span className="block aspect-square overflow-hidden rounded-2xl bg-ivory">
-            <img src={t.image} alt={`Portrait of ${t.name}`} width="496" height="503" loading="lazy" className="h-full w-full object-contain p-3" />
-          </span>
-          <span className="mt-3 block text-[15px] font-medium">{t.name}</span>
-          <span className="mt-0.5 flex items-center justify-between gap-2 text-[13px] text-ink/60">
-            {t.role}
-            <a href={t.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${t.name} on LinkedIn`} className="inline-flex min-h-11 items-center gap-0.5 !text-ink/60 no-underline hover:!text-ink">
-              LinkedIn <ArrowUpRight size={13} />
-            </a>
+        <li key={t.name} className="group">
+          {t.image ? (
+            <img src={t.image} alt={`Photo of ${t.name}`} width="320" height="320" loading="lazy"
+              className="block size-[72px] rounded-full object-cover ring-1 ring-hairline grayscale transition-[filter] duration-150 ease-[cubic-bezier(.4,0,.2,1)] group-hover:grayscale-0 md:size-24" />
+          ) : (
+            <span role="img" aria-label={t.name} className="flex size-[72px] items-center justify-center rounded-full bg-aubergine text-[22px] font-[450] tracking-[0.02em] text-cream ring-1 ring-hairline md:size-24 md:text-[28px]">
+              {initials(t.name)}
+            </span>
+          )}
+          <span className="mt-5 block text-[15px] font-medium leading-[1.35] text-ink">{t.name}</span>
+          <span className="mt-0.5 block text-[13px] leading-[1.45] text-ink/60">{t.role}</span>
+          {t.works && <span className="mt-2 block text-[13px] leading-[1.5] text-ink/75">Works on {t.works}.</span>}
+          <span className="mt-1 flex flex-wrap gap-x-4">
+            {profiles(t).map((l) => (
+              <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" aria-label={`${t.name} on ${l.label}`}
+                className="inline-flex min-h-11 items-center text-[13px] !text-ink/55 underline decoration-ink/20 underline-offset-[3px] transition-colors duration-150 hover:!text-ink hover:decoration-ink/60">
+                {l.label}
+              </a>
+            ))}
           </span>
         </li>
       ))}
@@ -114,7 +130,7 @@ export const personLd = TEAM.map((t) => ({
   '@type': 'Person',
   name: t.name,
   jobTitle: t.role,
-  image: `https://surogate.ai${t.image}`,
-  sameAs: [t.linkedin],
+  ...(t.image && { image: `https://surogate.ai${t.image}` }),
+  sameAs: profiles(t).map((l) => l.href),
   worksFor: { '@id': 'https://surogate.ai/#organization' },
 }));
