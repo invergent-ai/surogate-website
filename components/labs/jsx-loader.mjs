@@ -21,6 +21,8 @@ function withExtension(file) {
 export async function resolve(specifier, context, nextResolve) {
   let file = null;
   if (specifier.startsWith('@/')) file = path.join(ROOT, specifier.slice(2));
+  // Next ships no exports map, so Node's ESM resolver needs `next/navigation.js`.
+  else if (/^next\/[\w-]+$/.test(specifier)) file = path.join(ROOT, 'node_modules', specifier);
   else if (specifier.startsWith('.') && context.parentURL?.startsWith('file:')) {
     file = path.resolve(path.dirname(fileURLToPath(context.parentURL)), specifier);
   }

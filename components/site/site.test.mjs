@@ -57,3 +57,12 @@ test('every product has media, and a mock reads complete without animation', asy
     assert.doesNotMatch(html, /opacity:\s*0/, p.key);
   }
 });
+
+test('the nav server-renders every menu trigger and both calls to action', async () => {
+  const html = await render('../Nav.jsx', {});
+  for (const label of ['Products', 'Solutions', 'Developer', 'Company']) assert.match(html, new RegExp(`aria-expanded="false"[^>]*>${label}`));
+  assert.match(html, /href="\/pricing\/"/);
+  assert.match(html, /data-event="contact_sales_clicked"[^>]*>Contact Sales/);
+  assert.match(html, /data-event="cta_signup_clicked"[^>]*>Try for free/);
+  assert.match(html, /aria-label="More ways to start"/);
+});

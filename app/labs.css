@@ -140,7 +140,7 @@
    Labs sub-nav,the Rune mark,and the /labs/rune scroll story
    ════════════════════════════════════════════════════════════════ */
 /* Dark, to continue the site nav above it into the dark Labs heroes. */
-.st-labs .lab-subnav{position:sticky; top:0; z-index:40; background:rgba(42,16,45,0.94);
+.st-labs .lab-subnav{position:sticky; top:64px; z-index:40; background:rgba(42,16,45,0.94);
   backdrop-filter:blur(10px) saturate(1.4); -webkit-backdrop-filter:blur(10px) saturate(1.4);
   border-bottom:1px solid var(--line-dk);}
 .st-labs .lab-subnav-in{display:flex; gap:28px; overflow-x:auto; scrollbar-width:none; white-space:nowrap;}
