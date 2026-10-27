@@ -13,8 +13,9 @@ v2 gives every audience a front door, with x.ai's clarity as the benchmark for s
 content stays ours: sovereign, on-prem, European, open source, built by a lab that trains its own models
 and sells through partners.
 
-**Borrowed from x.ai:** a five-menu nav with a live-preview product menu; pill buttons; a near-monochrome
-palette with one rare accent; the product shown working instead of illustrated; repeated page templates;
+**Borrowed from x.ai:** a five-menu nav with a live-preview product menu; pill buttons; a calm light base
+where colour is used on purpose (ours: aubergine bands and orange accents, §4); a product icon that
+becomes a character (ours: the rabbit, §4.1); the product shown working instead of illustrated; repeated page templates;
 developer proof up front (install line, SDK snippet, real prices, status link).
 
 **Ours, with no x.ai equivalent:** sovereignty and on-prem as a headline, not a footnote; the partner
@@ -37,7 +38,7 @@ focus. The order runs from the widest audience to the most technical.
 |---|---|---|---|
 | Agents | AI colleagues for every team, on your own infrastructure. | `/agents/` | An agent answering in a team chat and citing a policy (cut from the Van Dijk approval short) |
 | Surogate | Your AI with its own computer. Works on your files and browser. | `/surogate/` | "month-end is Friday, close out the card": the agent opens files and runs a command |
-| Voice | Voice agents that listen and answer in under 200 ms. | `/voice/` | Live waveform, with the transcript appearing word by word and then the spoken reply |
+| Voice | Voice agents that listen and answer in real time. | `/voice/` | Live waveform, with the transcript appearing word by word and then the spoken reply |
 | Keel | Business processes that run agents, with approvals and audit. | `/keel/` | A case card moving Intake → Review → Approve (the existing BoardFlow drawing) |
 | Train | Train and serve your own model on one engine. | `/train/` | A terminal running `surogate sft config.yaml` while the loss curve falls |
 | API | Every frontier model, one API, 0% markup. | `/api/` | A model price ticker, and a curl call that streams a reply |
@@ -146,14 +147,149 @@ Every solution page uses one **solution template**:
 
 ### 3.2 Products
 
-| Page | Hero | Scroller features | Reused from the current site | New media |
-|---|---|---|---|---|
-| `/agents/` | "AI colleagues for every team." | Setup without code · Skills and knowledge · Channels (web, Slack, Teams, Telegram, WhatsApp) · Long-running missions · Governance and approvals · The improvement loop | TourFilm and its tutorial cuts (t01–t15); `howATurnRunsA`, `everythingInsideYourNetworkStudio`, `theImprovementLoop` drawings; Compare table | Shorts: Van Dijk approval, Clarke knee photo, Ortega Monday leads |
-| `/surogate/` | "Your AI with its own computer." | Works on your files · Runs commands in a sandbox · Uses your browser · Hands off to your team's agents | none | New capture of the desktop app on the local stack (§5) |
-| `/voice/` | "Voice agents that sound local." | Speech-to-text (Jackrabbit) · Text-to-speech (Amami: Doina, Tudor, Radu) · Sub-200 ms turn · On-prem for call centers | Speech demos and audio samples from `/labs/speech/` (`lib/speech-demos.json`) | A Remotion waveform and transcript scene |
-| `/keel/` | "Processes that run agents." | Stages · Approval limits · Audit and replay · Priced per case | Every current Keel illustration; BoardFlow; Pillars | A Van Dijk approval cut |
-| `/train/` | "Train and serve your own model." | `curl … install.sh` box · SFT, distillation, RL · FP8/NVFP4/GGUF · `surogate serve` · Jackalope desktop GUI | `/labs/engine` content (EngineCores); film scenes SceneTrainRun, SceneGrpoCharts, SceneDistillConfig | The Van Dijk ML scoreboard short |
-| `/api/` | "Every frontier model. One API." | OpenAI- and Anthropic-compatible · Routing to the cheapest or fastest provider · 0% markup · EU providers (including Surogate Spark EU) · Works with Claude Code, Codex, OpenCode · **Self-hosted** (`#self-hosted`): the same router inside your network | All Gateway sections and illustrations (Routing, Controls, Compatible, Deploy) | A price-ticker mock |
+Every product page follows the product template above. The patterns come from x.ai's product pages
+(`/bot`, `/voice`, `/build`, `/api/imagine`). The content, mocks and character are ours.
+
+**Shared devices:**
+- **The product plays itself.** The hero is a scripted mock of our real UI, built in React from
+  `components/film/ui`, or a cut from our films. It is never a static screenshot.
+- **The rabbit is in the headline.** The pose glyph sits inline at 1em ("Meet [rabbit] Surogate").
+- **System chips inside threads** carry the claims that would otherwise need a paragraph:
+  "Updated memory · Ursu Tutor", "Handed to · Finance agent", "Held for your OK", "Created routine ·
+  Month-end close".
+- **The primary button changes per page:**
+  - Surogate: "Download ▾", or "Request early access" until a public build exists (§8)
+  - Agents: "Start building"
+  - Train: a copy box for the install command
+  - API: "Get API key"
+- **Every number shown is a fact from `lib/stats.js`,** with its source.
+
+#### `/agents/` · Agents
+
+1. **Hero.** "Meet [rabbit] Agents: AI colleagues for every team." Sub: "Design, test, govern and run agents
+   for whole teams, without code, in your cloud or on your own hardware." Visual: a Studio mock playing
+   itself. On the left, an agent list with coloured rabbit avatars (Support Desk, Approvals, Research,
+   Onboarding). On the right, a thread where an agent works through an approval and ends in "Held for your
+   OK".
+2. **Statement card.** "Brief it like a colleague." An ivory card, with a large rabbit breaking out of its
+   corner.
+3. **Give each agent a job.** A chip picker that re-skins a phone or chat mock with that agent's real
+   output. The jobs come from our seven demo businesses: Tutor (Ursu), Physio check-ins (Clarke), Lead
+   desk (Ortega), Knowledge shop (Mette), Translator (Pop), Approvals (Van Dijk), Model trainer (Van Dijk
+   ML).
+4. **Sticky scroller.** Each step shows a tutorial cut (t01–t15) or a short:
+   - Setup without code
+   - Knowledge and skills
+   - Channels: web, Slack, Teams, Telegram, WhatsApp
+   - Long-running missions and loops
+   - Governance and approvals
+   - The improvement loop
+5. **Works where your team works.** A channel grid. The existing Channels and Runtime sections are
+   restyled.
+6. **Sovereign.** An aubergine band with `everythingInsideYourNetworkStudio`, redrawn in the new style.
+7. **Compare.** The existing table, restyled.
+8. **Watch the stories.** The 7 full films in a lightbox.
+9. **Pricing.** Pilot / Production / Scale cards. Each card leads with its signature capability.
+10. **FAQ.** Sticky title on the left, accordion on the right.
+11. **Closing.** "Meet your first agent." An outlined rabbit peeks up from the footer rule.
+
+#### `/surogate/` · Surogate (desktop)
+
+1. **Hero.** "Meet [rabbit] Surogate: your AI with its own computer." Sub: "It works on your files, runs
+   commands in a sandbox and uses your browser, then hands back finished work." Visual: a desktop-app mock
+   that plays itself, in three steps:
+   - You write "month-end is Friday, close out the card for me."
+   - The timestamp jumps overnight.
+   - A run report appears ("✓ Read 14 files ✓ Matched 212 lines ✓ 3 need you"), ending in "Held for your
+     OK".
+2. **Its own computer.** A sandbox pane with a "You're in control / Surogate is driving" badge that flips
+   as control passes. This is the clearest way to show "its own computer".
+3. **2×2 cards:**
+   - Works on your files: a file tree with diffs.
+   - Uses your browser: it signs in with your permission.
+   - Hands off to your team's agents: "Looping in · Approvals agent".
+   - Remembers: "Updated memory".
+4. **Private by default.** An aubergine band: your files stay on your machine, sandboxed commands, the
+   models you choose (via the API or on-prem).
+5. **Download.** OS-detected rows. Until a public release URL exists, the rows become "Request early
+   access" (mailto).
+6. **FAQ, then a closing CTA** with the footer rabbit peek.
+
+#### `/voice/` · Voice
+
+1. **Hero.** "Voice agents that sound local." Sub: "Speech recognition and voices we train ourselves. Runs
+   on our cloud or inside your call center." Buttons: Contact Sales, and "Listen to the voices" (anchors to
+   the samples).
+2. **Voice avatar.** Voice's own being is the rabbit with sound rings. Its rings pulse with the audio level.
+3. **Sticky scroller.** The panel is a call transcript and waveform, with scenario tabs: Support,
+   Appointments, Collections, Reception. Steps:
+   - Understands Romanian and English (Jackrabbit)
+   - Speaks in local voices (Amami: Doina, Tudor, Radu)
+   - Fast enough for a phone call
+   - Uses your tools mid-call
+   - On-prem for regulated teams
+4. **Bento of mini-UIs:**
+   - A voice picker with real audio samples (from `lib/speech-demos.json`)
+   - A call scrubber with a tool-call marker on the waveform
+   - A playbook editor
+   - A guardrail turn ("I can't read that back, let me verify you another way")
+   - One large real stat: Jackrabbit 5.69% WER on FLEURS-ro
+5. **Benchmark table.** Jackrabbit against Whisper large-v3, with the source cited. The data comes from
+   `/labs/speech/`.
+6. **Closing CTA,** then FAQ.
+7. **Rule for the "under 200 ms" claim.** The menu copy becomes "Voice agents that listen and answer in real
+   time". The 200 ms figure appears only after an end-to-end measurement is in `lib/stats.js`.
+
+#### `/keel/` · Keel
+
+1. **Hero.** "Processes that run agents. Not the other way around." The existing copy stays. Visual: the
+   BoardFlow drawing, restyled into the new palette.
+2. **Teach it once.** A recording bar: "Keel is watching · Supplier onboarding". The steps become stages on
+   a board.
+3. **Sticky scroller.** The panel moves one case card through its stages, with system chips: "Approval
+   limit €10k · routed to Finance", "Audit entry #4812", "Replayed from stage 2". Steps:
+   - Stages
+   - Approval limits
+   - People in the loop
+   - Audit and replay
+   - Runs your agents
+4. **Problem → Promises → Pillars.** The existing content, condensed and restyled.
+5. **Priced per case.** $0.20 / $0.10 / $0.05, shown with bar glyphs.
+6. **The Van Dijk approval film,** then FAQ, then the closing CTA.
+
+#### `/train/` · Train
+
+1. **Hero.** "Train and serve your own model." The hero is the product: a copy box with
+   `curl -fsSL https://surogate.ai/install.sh | bash`, and chips for Docs ↗, GitHub ↗ and Apache-2.0. A
+   spec row below shows real numbers from `/labs/engine`.
+2. **Sticky scroller.** The panel is one dark aubergine terminal replaying each step: `surogate sft
+   config.yaml`, the loss curve, the eval scoreboard, `surogate serve`. Steps:
+   - Your data in
+   - SFT, distillation, RL (GRPO)
+   - FP8 / NVFP4 / GGUF
+   - Evaluate
+   - Serve on the same engine
+3. **Prefer clicking?** Jackalope, the desktop GUI: pick a model, a dataset and GPUs, then Launch. Release
+   downloads ↗.
+4. **Benchmarks.** A table with source chips, from `/labs/engine` (EngineCores).
+5. **The Van Dijk ML scoreboard film:** "Two engineers trained on their own chats."
+6. **We'll train it for you.** An aubergine band linking to `/solutions/custom-models/` and Contact Sales,
+   using the hat-rabbit pose.
+
+#### `/api/` · API
+
+1. **Hero.** "Every frontier model. One API." On the left: sub, Get API key ↗ and Read docs ↗. On the
+   right: a code window in a sun-gradient frame, with Python, TypeScript and cURL tabs and a Copy button.
+2. **A request in motion.** A mock where one request goes in, the router picks a provider, and the price
+   and latency show (rabbit pose: leaping along the request lines).
+3. **Sticky "On this page" bar,** then a 3-step quickstart (key → base URL → call).
+4. **Models and prices.** A short table with real rows, linking to llm.buzz for all of them. 0% token
+   markup and the 5.5% top-up fee are stated plainly.
+5. **Works with Claude Code, Codex and OpenCode,** with a short setup for each.
+6. **EU providers,** including Surogate Spark EU.
+7. **`#self-hosted` (aubergine band).** "Or run the same router inside your network." All Gateway content:
+   Routing, Controls, Compatible, Deploy, with Contact Sales.
+8. **FAQ,** then the "Choose how to get started" pair.
 
 ### 3.3 Solutions
 
@@ -209,12 +345,57 @@ Tokens are defined once, in `tailwind.config.js`, and mirrored as CSS variables 
 | `ivory` | `#f9f8f6` | Cards and tiles (no border, no shadow) |
 | `stone` | `#f2f1ef` | Secondary pill, hovered menu row |
 | `hairline` | `#e4e4e7` | Section dividers |
-| `night` | `#121212` | Terminals and dark tiles |
-| `sun` | `#ffaf10` | The single accent: the "New" tag, highlights, gradient frames, focus rings |
-| `grad-sun` | the existing sun gradient | The code-window frame only |
+| `aubergine` | `#2a102d` | Brand bands: developer split, sovereign, partners, closing CTA, footer |
+| `night` | `#1a0a1c` (aubergine-2) | Terminals and dark tiles. They are aubergine-black, not neutral grey, so even code reads as ours |
+| `cream` | `#f3ead8` | Ink on aubergine: text and rabbit illustrations |
+| `sun` | `#ffaf10` | The accent: the "New" tag, highlights, gradient frames, focus rings, the "live" thing in a drawing |
+| `grad-sun` | the existing sun gradient | The code-window frame and one hero glow |
 
-The aubergine and wine colours are retired from the page chrome. They survive only inside the films,
-which keep their own look.
+The rhythm is light first and aubergine second. Pages open white and ivory for clarity, and roughly every
+third section is a full-bleed aubergine band. That makes aubergine the brand's signature colour instead of
+a wall of dark. Wine is retired.
+
+### 4.1 The rabbit as a character
+
+The star-rabbit (`public/brand/*`, `surogate-mascot.svg`) is used the way x.ai uses the Grok bot icon:
+less a logo pasted in a corner, more a character living in the product.
+
+- **Mark:** the full logo with the rabbit in the nav; the rabbit in its circle (white, aubergine or orange)
+  as the favicon, avatar and app icon.
+- **Agent avatar:** in every UI mock and menu preview, the agent's chat bubble carries the rabbit avatar.
+- **Thinking indicator:** a small CSS animation of the rabbit's ears or tail replaces three dots. Under
+  reduced motion it is static.
+- **One pose per product.** Each pose is the official silhouette (from `public/brand/rabbit.svg`) plus one
+  attribute, drawn as a line glyph used on menu items, tiles, page heroes and the favicon of that page:
+
+  | Product | Pose |
+  |---|---|
+  | Agents | Rabbit and a small crowd (three rabbits in a row): a team |
+  | Surogate | Rabbit inside a window frame with a cursor: "its own computer" |
+  | Voice | Rabbit with sound rings from its ears |
+  | Keel | Rabbit on a track with three stage ticks |
+  | Train | The hat-rabbit (`hat-rabbit.svg`): "pull your own model out of the hat" |
+  | API | Rabbit leaping along a stream of request lines: one endpoint, many models |
+
+- **Our own illustration style.** llm.buzz is only the precedent for the idea (a site that made the mark
+  its own); nothing is taken from its art or code.
+  - On surogate.ai the rabbit lives in this site's language: clean single-weight strokes and flat fills.
+    It is cream on aubergine bands and ink or orange on light, sitting on the 16px-radius cards and pills
+    the rest of the site uses.
+  - Big illustrations (the sovereign deployment ladder, the Research index, product heroes) are drawn
+    fresh in that style, in `components/site/rabbit/`.
+- **One component, many sizes.**
+  - `<Rabbit pose mood size color>` is a single inline SVG. The only parts that move are the eye
+    (blink, glance) and the ear tip (twitch). Colour comes from `--rabbit-fg` and `--rabbit-bg`.
+  - Sizes, from small to large:
+    1. A 1em glyph inline in the H1
+    2. 20–24px agent avatars, one colour per agent from a fixed set of six drawn from the brand palette
+    3. A thinking spinner (an ear twitch on a loop)
+    4. A statement character of about 480px breaking out of a card
+    5. An outline rabbit peeking up from the footer rule on product pages
+  - Agents in a team cluster together as a group of avatars.
+- **Limits:** never more than one rabbit pose per viewport, apart from the menu. The rabbit is never
+  redrawn freehand: every pose starts from the official silhouette path.
 
 - **Type:**
   - Inter for everything. Display at weights 450–500, letter-spacing -1%, line-height 1.0. Body at 400,
@@ -226,7 +407,7 @@ which keep their own look.
 - **Motion:** opacity and transform only. Self-playing loops, the cycling hero word, numbers that count up,
   and the sticky scroller. Everything respects `prefers-reduced-motion`: it shows the final frame, the
   word stops cycling, and video shows its poster image.
-- **Dark mode:** not in v2. The site is light; the dark tiles are designed to be dark.
+- **Dark mode:** not in v2. The site is light with aubergine bands; the dark tiles are designed to be dark.
 
 ## 5. Media plan
 
