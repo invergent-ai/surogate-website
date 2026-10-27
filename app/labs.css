@@ -819,7 +819,6 @@
 
 /* No glow at rest, no deep shadows, no coloured tag chips, no rabbit outside its pages. */
 .st-labs .rune-glyph{filter:none;}
-.st-home.st-labs .hero-rabbit, .st-home.st-labs .hero-rings{display:none;}
 .st-labs .lab-film-open video, .st-hub .hub-rune, .st-rune .de-in, .st-rune .de-out, .st-rune .lb-score, .st-rune .cal,
 .st-speech .sp-say[data-on="true"]{box-shadow:none;}
 .st-rune .de-core{box-shadow:inset 0 0 0 1px rgba(255,175,16,0.18);}

@@ -12,8 +12,6 @@ const TABS = [
   { label: 'cURL', code: `curl ${BASE}/chat/completions \\\n  -H "Authorization: Bearer $LLM_BUZZ_KEY" \\\n  -H "Content-Type: application/json" \\\n  -d '{"model": "${MODEL}",\n       "messages": [{"role": "user", "content": "Hello"}]}'` },
 ];
 
-const CORNERS = ['left-3 top-3', 'right-3 top-3', 'left-3 bottom-3', 'right-3 bottom-3'];
-
 export default function DevApi() {
   return (
     <Section inner="grid grid-cols-1 items-center gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
@@ -38,8 +36,7 @@ export default function DevApi() {
         </dl>
         <p className="m-0 mt-2 text-[12px] text-ink/40">Surogate 3.7 Flash on llm.buzz</p>
       </div>
-      <div className="warm-panel relative min-w-0 rounded-2xl px-4 pt-8 pb-5 md:px-12 md:pt-12 md:pb-7">
-        {CORNERS.map((c) => <span key={c} aria-hidden="true" className={`absolute h-1.5 w-1.5 bg-white/50 ${c}`} />)}
+      <div className="min-w-0 rounded-2xl bg-aubergine px-4 pt-8 pb-5 md:px-10 md:pt-10 md:pb-6">
         <CodeTabs tabs={TABS} />
       </div>
     </Section>

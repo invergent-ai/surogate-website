@@ -57,7 +57,7 @@ export default async function PostPage({ params }) {
             </div>
             <header className="mx-auto mt-10 max-w-[760px] text-center md:mt-16">
               <p className="m-0 text-[13px] font-medium">{p.category}</p>
-              <h1 className="m-0 mt-3 text-balance text-[34px] font-[450] leading-[1.1] tracking-[-0.01em] md:text-[48px] md:leading-[1.05]">{p.title}</h1>
+              <h1 className="m-0 mt-3 text-balance text-[36px] font-[450] leading-[1.08] tracking-[-0.01em] md:text-[56px] md:leading-[1.04]">{p.title}</h1>
               <p className="mx-auto mt-5 mb-0 max-w-[560px] text-balance text-[16px] leading-[1.6] text-ink/65 md:text-[18px]">{p.dek}</p>
               <div className="mt-8"><Button href={p.cta.href} external={p.cta.external} size="lg" arrow>{p.cta.label}</Button></div>
             </header>

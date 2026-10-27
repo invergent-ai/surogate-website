@@ -48,7 +48,6 @@ export default function RuneExamplesClient() {
       <main id="top">
         <header className="hero">
           <div className="hero-glow" />
-          <div className="hero-rabbit" aria-hidden="true" />
           <div className="wrap">
             <p className="hero-kicker reveal">Labs · Rune at work</p>
             <h1 className="hero-title reveal d1">

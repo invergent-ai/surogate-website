@@ -7,11 +7,12 @@ const TONES = {
 export const CONTAINER = 'mx-auto max-w-[1280px] px-4 md:px-6';
 
 // Light sections are told apart by a hairline that stays inside the page: a little wider than the content,
-// never reaching the viewport edges. Coloured sections are told apart by their colour.
+// never reaching the viewport edges. Coloured sections are told apart by their colour, so a light section
+// right after one drops its hairline (app/v2.css, .section-rule).
 export default function Section({ tone = 'light', divider = tone === 'light', id, className = '', inner = '', children }) {
   return (
-    <section id={id} className={`${TONES[tone]} ${className}`}>
-      {divider && <div aria-hidden="true" className="mx-auto h-px w-[calc(100%-32px)] max-w-[1328px] bg-hairline" />}
+    <section id={id} data-tone={tone} className={`${TONES[tone]} ${className}`}>
+      {divider && <div aria-hidden="true" className="section-rule mx-auto h-px w-[calc(100%-32px)] max-w-[1328px] bg-hairline" />}
       <div className={`${CONTAINER} py-16 md:py-24 ${inner}`}>{children}</div>
     </section>
   );

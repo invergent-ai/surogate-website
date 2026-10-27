@@ -26,7 +26,7 @@ export default function NewsPage() {
       <main>
         <section className="bg-white">
           <div className={`${CONTAINER} pt-12 pb-16 md:pt-20 md:pb-24`}>
-            <h1 className="m-0 text-[36px] font-[450] leading-[1.1] tracking-[-0.01em] md:text-[48px]">News</h1>
+            <h1 className="m-0 text-[36px] font-[450] leading-[1.08] tracking-[-0.01em] md:text-[56px] md:leading-[1.04]">News</h1>
             <article className="mt-10 grid items-center gap-8 md:mt-14 lg:grid-cols-[1fr_1.35fr] lg:gap-16">
               <div className="order-2 lg:order-1">
                 <p className="m-0 flex gap-3 text-[13px]">

@@ -123,8 +123,6 @@ export default function DecisionEngine() {
     <div
       ref={root}
       className="de"
-      onMouseEnter={() => { paused.current = true; }}
-      onMouseLeave={() => { paused.current = false; }}
       onFocus={() => { paused.current = true; }}
       onBlur={() => { paused.current = false; }}
     >

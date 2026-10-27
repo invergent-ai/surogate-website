@@ -12,7 +12,7 @@ import { BrowserMock, DesktopMock } from './Mocks';
 // Window chrome around a mock or a loop: one 16:10 frame, like the footage everywhere else on the site.
 function Window({ children }) {
   return (
-    <div className="aspect-[4/5] w-full overflow-hidden rounded-[10px] sm:aspect-[16/10] bg-white shadow-[0_1px_2px_rgba(0,0,0,.06),0_8px_24px_-12px_rgba(0,0,0,.25)] ring-1 ring-ink/[.08]">
+    <div className="aspect-[16/10] w-full overflow-hidden rounded-[10px] bg-white shadow-[0_1px_2px_rgba(0,0,0,.06),0_8px_24px_-12px_rgba(0,0,0,.25)] ring-1 ring-ink/[.08]">
       {children}
     </div>
   );

@@ -15,7 +15,7 @@ export default function Page({ children }) {
   );
 }
 
-export const H1 = 'm-0 text-balance text-[36px] font-[450] leading-[1.08] tracking-[-0.01em] text-ink md:text-[48px] md:leading-[1.05] lg:text-[58px]';
+export const H1 = 'm-0 text-balance text-[36px] font-[450] leading-[1.08] tracking-[-0.01em] text-ink md:text-[56px] md:leading-[1.04]';
 export const SUB = 'mt-5 mb-0 max-w-[620px] text-balance text-[16px] leading-[1.6] text-ink/65 md:text-[18px]';
 
 // The product hero: headline, one line, the actions, then the product itself.
