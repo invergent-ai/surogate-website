@@ -26,8 +26,9 @@ const ATTRIBUTES = {
   ),
   hat: (
     <g fill="currentColor">
-      <rect x="6" y="82" width="60" height="7" rx="3" />
-      <rect x="-4" y="77" width="80" height="6" rx="3" />
+      <rect x="-4" y="44" width="64" height="44" rx="3" />
+      <rect x="-10" y="40" width="80" height="8" rx="4" />
+      <rect x="-4" y="50" width="64" height="7" fill="var(--rabbit-bg, #fff)" />
     </g>
   ),
   stream: (
