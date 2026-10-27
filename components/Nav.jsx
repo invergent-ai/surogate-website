@@ -55,6 +55,7 @@ export default function Nav() {
   const [sheet, setSheet] = useState(false);
   const pathname = usePathname() || '/';
   const header = useRef(null);
+  const burger = useRef(null);
 
   useEffect(() => { setOpen(null); setSheet(false); }, [pathname]);
 
@@ -62,6 +63,7 @@ export default function Nav() {
     const onKey = (e) => {
       if (e.key !== 'Escape') return;
       if (open) header.current?.querySelector(`[data-menu="${open}"]`)?.focus();
+      else if (sheet) burger.current?.focus();
       setOpen(null);
       setSheet(false);
     };
@@ -69,7 +71,14 @@ export default function Nav() {
     window.addEventListener('keydown', onKey);
     window.addEventListener('pointerdown', onDown);
     return () => { window.removeEventListener('keydown', onKey); window.removeEventListener('pointerdown', onDown); };
-  }, [open]);
+  }, [open, sheet]);
+
+  useEffect(() => {
+    const lg = window.matchMedia('(min-width: 1024px)');
+    const onChange = (e) => e.matches && setSheet(false);
+    lg.addEventListener('change', onChange);
+    return () => lg.removeEventListener('change', onChange);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = sheet ? 'hidden' : '';
@@ -78,10 +87,13 @@ export default function Nav() {
 
   const close = () => setOpen(null);
   const pick = (label) => { track('nav_link_clicked', { label, location: 'desktop' }); close(); };
-  const toggle = (label) => {
-    setOpen((cur) => (cur === label ? null : label));
+  const show = (label) => {
     if (open !== label) track('nav_menu_open', { menu: label });
+    setOpen(label);
   };
+  const toggle = (label) => (open === label ? close() : show(label));
+  // Hover already opened the menu, so a mouse click only opens; a keyboard press (detail 0) toggles.
+  const press = (label) => (e) => (e.detail === 0 ? toggle(label) : show(label));
 
   return (
     <header ref={header} onMouseLeave={() => setOpen(null)}
@@ -94,14 +106,14 @@ export default function Nav() {
         <nav aria-label="Primary" className="hidden flex-1 lg:block">
           <ul className="m-0 flex list-none items-center gap-1 p-0">
             {MENUS.map((m) => (
-              <li key={m.label} className="relative" onMouseEnter={() => (m.href ? setOpen(null) : setOpen(m.label))}>
+              <li key={m.label} className="relative" onMouseEnter={() => (m.href ? close() : show(m.label))}>
                 {m.href ? (
                   <a href={m.href} onClick={() => pick(m.label)}
                     aria-current={pathname.startsWith(m.href) ? 'page' : undefined}
                     className="block rounded-full px-3 py-2 text-[15px] !text-ink no-underline hover:bg-stone">{m.label}</a>
                 ) : (
                   <>
-                    <button type="button" data-menu={m.label} aria-expanded={open === m.label} onClick={() => toggle(m.label)}
+                    <button type="button" data-menu={m.label} aria-expanded={open === m.label} onClick={press(m.label)}
                       className="inline-flex items-center gap-1 rounded-full px-3 py-2 text-[15px] text-ink hover:bg-stone">{m.label}<ChevronDown size={14} className={`transition-transform ${open === m.label ? 'rotate-180' : ''}`} />
                     </button>
                     {open === m.label && (
@@ -152,7 +164,7 @@ export default function Nav() {
           </div>
         </div>
 
-        <button type="button" className="ml-auto inline-flex h-11 w-11 items-center justify-center text-ink lg:hidden"
+        <button ref={burger} type="button" className="ml-auto inline-flex h-11 w-11 items-center justify-center text-ink lg:hidden"
           aria-expanded={sheet} aria-controls="mobile-nav" aria-label={sheet ? 'Close menu' : 'Open menu'} onClick={() => setSheet((s) => !s)}>
           {sheet ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -164,8 +176,8 @@ export default function Nav() {
         {MENUS.map((m) => m.href ? (
           <a key={m.label} href={m.href} className="block border-b border-hairline py-4 text-[17px] !text-ink no-underline">{m.label}</a>
         ) : (
-          <details key={m.label} className="border-b border-hairline">
-            <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-[17px]">{m.label}<ChevronDown size={16} /></summary>
+          <details key={m.label} className="group border-b border-hairline">
+            <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-[17px] [&::-webkit-details-marker]:hidden">{m.label}<ChevronDown size={16} className="transition-transform group-open:rotate-180" /></summary>
             <div className="pb-3">
               {(m.mega ? PRODUCTS.map((p) => ({ label: p.name, href: p.href })) : [...m.items, ...(m.more ? [m.more] : [])]).map((i) => (
                 <a key={i.label} href={i.href} {...ext(i)} className="block py-2 text-[15px] !text-ink/75 no-underline">{i.label}</a>
