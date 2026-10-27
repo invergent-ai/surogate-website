@@ -6,9 +6,6 @@
 .rabbit-think { animation: rabbit-hop 0.9s ease-in-out infinite; }
 @keyframes rabbit-hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12%); } }
 
-.word-in { display: inline-block; animation: word-in 0.5s ease both; }
-@keyframes word-in { from { opacity: 0; filter: blur(6px); transform: translateY(0.15em); } }
-
 /* One 9 s loop shared by every mock: step N appears at its slot and all clear together. */
 .seq1, .seq2, .seq3, .seq4 { animation-duration: 9s; animation-iteration-count: infinite; animation-timing-function: ease; }
 .seq1 { animation-name: seq1; } .seq2 { animation-name: seq2; } .seq3 { animation-name: seq3; } .seq4 { animation-name: seq4; }
@@ -27,5 +24,5 @@
 @keyframes mock-draw { 0%, 10% { stroke-dashoffset: 400; } 70%, 100% { stroke-dashoffset: 0; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .rabbit-eye, .rabbit-think, .word-in, .seq1, .seq2, .seq3, .seq4, .mock-bar, .mock-move, .mock-draw { animation: none !important; }
+  .rabbit-eye, .rabbit-think, .seq1, .seq2, .seq3, .seq4, .mock-bar, .mock-move, .mock-draw { animation: none !important; }
 }

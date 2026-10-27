@@ -67,10 +67,31 @@ test('the nav server-renders every menu trigger and both calls to action', async
   assert.match(html, /aria-label="More ways to start"/);
 });
 
-test('the hero server-renders its first word, so the H1 reads whole without JavaScript', async () => {
+test('the hero is static: one headline and four places to run it, the first chosen before script loads', async () => {
   const html = await render('../home/Hero.jsx', {});
-  assert.match(html, /<h1[^>]*>Your AI, on your terms,[\s\S]*for everything you[\s\S]*run/);
+  assert.match(html, /<h1[^>]*>\s*Your AI, on your terms\.\s*<\/h1>/);
   assert.match(html, /data-event="cta_signup_clicked"/);
+  assert.match(html, /role="radiogroup"/);
+  const radios = [...html.matchAll(/role="radio" aria-checked="(true|false)"[^>]*>([^<]+)</g)].map((m) => [m[2], m[1]]);
+  assert.deepEqual(radios, [['Our EU cloud', 'true'], ['Your cloud', 'false'], ['Your hardware', 'false'], ['Air-gapped', 'false']]);
+  assert.match(html, /Hosted in the EU\. Start in minutes\./);
+});
+
+test('the products menu is text only: no rabbit, no icon', async () => {
+  const { PRODUCTS } = await import('../../lib/products.js');
+  const { ProductsPanel } = await import('../Nav.jsx');
+  const React = (await import('react')).default;
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const html = renderToStaticMarkup(React.createElement(ProductsPanel, { onPick: () => {} }));
+  const list = html.slice(0, html.indexOf('</ul>'));
+  for (const p of PRODUCTS) assert.ok(list.includes(p.name), p.key);
+  assert.doesNotMatch(list, /<svg/);
+});
+
+test('the code window sits on the band with a hairline, not a gradient frame', async () => {
+  const html = await render('../home/DevApi.jsx', {});
+  assert.doesNotMatch(html, /bg-grad-/);
+  assert.match(html, /border-white\/10[^"]*"[\s\S]*role="tablist"/);
 });
 
 test('the code tabs show the first snippet and mark one tab selected', async () => {
