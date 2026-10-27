@@ -104,10 +104,30 @@
 
 [data-tone]:not([data-tone="light"]) + section > .section-rule { display: none; }
 
+/* Keel: one case through the process (components/products/keel/CaseFlow.jsx). One 14s run: the case card enters
+   each stage in turn, the approval waits for a person, and the audit trail fills in. The resting styles are the end. */
+.kf-case, .kf-row, .kf-wait, .kf-ok { animation: 14s var(--ease-out) infinite; }
+.kf-c1, .kf-c2, .kf-c3, .kf-wait { opacity: 0; }
+.kf-c1 { animation-name: kf-c1; } .kf-c2 { animation-name: kf-c2; } .kf-c3 { animation-name: kf-c3; } .kf-c4 { animation-name: kf-c4; }
+.kf-wait { animation-name: kf-wait; } .kf-ok { animation-name: kf-ok; }
+.kf-r1 { animation-name: kf-r1; } .kf-r2 { animation-name: kf-r2; } .kf-r3 { animation-name: kf-r3; } .kf-r4 { animation-name: kf-r4; } .kf-r5 { animation-name: kf-r5; }
+@keyframes kf-c1 { 0%, 1% { opacity: 0; transform: translateY(6px); } 4%, 15% { opacity: 1; transform: none; } 18%, 100% { opacity: 0; transform: none; } }
+@keyframes kf-c2 { 0%, 18% { opacity: 0; transform: translateY(6px); } 21%, 33% { opacity: 1; transform: none; } 36%, 100% { opacity: 0; transform: none; } }
+@keyframes kf-c3 { 0%, 36% { opacity: 0; transform: translateY(6px); } 39%, 63% { opacity: 1; transform: none; } 66%, 100% { opacity: 0; transform: none; } }
+@keyframes kf-c4 { 0%, 66% { opacity: 0; transform: translateY(6px); } 69%, 93% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; transform: none; } }
+@keyframes kf-wait { 0%, 39% { opacity: 1; } 52% { opacity: 1; } 55%, 100% { opacity: 0; } }
+@keyframes kf-ok { 0%, 52% { opacity: 0; } 55%, 100% { opacity: 1; } }
+@keyframes kf-r1 { 0%, 4% { opacity: 0; transform: translateY(4px); } 7%, 93% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; } }
+@keyframes kf-r2 { 0%, 22% { opacity: 0; transform: translateY(4px); } 25%, 93% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; } }
+@keyframes kf-r3 { 0%, 40% { opacity: 0; transform: translateY(4px); } 43%, 93% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; } }
+@keyframes kf-r4 { 0%, 55% { opacity: 0; transform: translateY(4px); } 58%, 93% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; } }
+@keyframes kf-r5 { 0%, 70% { opacity: 0; transform: translateY(4px); } 73%, 93% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; } }
+
 @media (prefers-reduced-motion: reduce) {
   .chat-scroll, .rabbit-breathe, .voice-ring, .keel-wander, .keel-glide, .keel-glow, .keel-done, .api-pick, .api-picked,
   .rabbit-eye, .rabbit-think, .seq1, .seq2, .seq3, .seq4, .mock-bar, .mock-move, .mock-draw,
-  .load-up, .load-fade, .hero-w, .hero-l-in, .hero-l-out, .hero-s-in, .hero-s-out, .seg-run, .seg-ghost, .hop-dot, .word-in, .caret, .pop-in, .spark { animation: none !important; }
+  .load-up, .load-fade, .hero-w, .hero-l-in, .hero-l-out, .hero-s-in, .hero-s-out, .seg-run, .seg-ghost, .hop-dot, .word-in, .caret, .pop-in, .spark,
+  .kf-case, .kf-row, .kf-wait, .kf-ok { animation: none !important; }
   .menu-pop, .menu-pop.is-open, .tile-media, .nudge, .arrow-stem { transition: none !important; }
   .group:hover .tile-media { transform: none; }
   .spin-slow { transition: none !important; }

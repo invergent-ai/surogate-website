@@ -1,34 +1,35 @@
 import Section, { H2 } from '@/components/site/Section';
 import Button from '@/components/site/Button';
 import InlineSvg from '@/components/site/InlineSvg';
-import { partOfTheKeelBoardSvg, withOnlyInstructionsAnAgentSvg } from '@/components/keel/illustrations';
+import { withOnlyInstructionsAnAgentSvg } from '@/components/keel/illustrations';
 import { CONTACT_SALES } from '@/lib/site';
 import { KEEL_PER_CASE } from '@/lib/pricing';
 import Page, { Hero, Lead, UseCases, Closing } from '../Page';
 import Scroller from '../Scroller';
 import Faq from '../Faq';
-import Films from '../Films';
 import { reink } from '../ink';
-import { ProcessPanel, RulesPanel, OversightPanel, InfraPanel } from './Panels';
+import { ProcessPanel, RulesPanel, PersonPanel, AuditPanel, InfraPanel } from './Panels';
+import CaseFlow from './CaseFlow';
 
 const STEPS = [
-  { title: 'The process decides what happens next.', line: 'Agents, people, systems and rules each do their own step. No agent can skip ahead or close a case early.', panel: <ProcessPanel /> },
-  { title: 'Decisions come from rules your team owns.', line: 'Approvals, risk scores and routing run on versioned rules that your analysts read and change.', panel: <RulesPanel /> },
-  { title: 'People keep the final say.', line: 'Approval limits and four-eyes checks apply to agents as they do to staff. An unsure agent stops and asks a person.', panel: <OversightPanel /> },
+  { title: 'The process decides what happens next.', line: 'A process is a row of stages. Agents, people, systems and rules each do their own step, and no agent can skip ahead or close a case early.', panel: <ProcessPanel /> },
+  { title: 'Decisions come from rules your team owns.', line: 'Whether an invoice is paid or waits for a person is a versioned rule your team reads and changes, not something the agent decides.', panel: <RulesPanel /> },
+  { title: 'People keep the final say.', line: 'Approval limits and four-eyes checks apply to agents as they do to staff. Over the approval limit, the case waits for a person.', panel: <PersonPanel /> },
   { title: 'It runs where your data lives.', line: 'Use any AI model and connect the systems you already run, in our cloud or in your own data centre.', panel: <InfraPanel /> },
 ];
 
-const BOARD = [
-  ['The board', 'Every process is a row of stages, and each stage holds its steps.'],
-  ['The flow', 'Open a stage to set how its steps connect: who does each one, and where each decision sends the case.'],
-  ['The work', 'Agents and people take the steps in turn. Keel moves each case only along the paths you set.'],
+const PARTS = [
+  ['Stages', 'Every process is a row of stages. A case moves only along the paths you set.'],
+  ['Agents', 'An agent works inside a stage, on the step it has been given.'],
+  ['Approval limits', 'Over the limit, the case waits for a person to decide.'],
+  ['Audit trail', 'Every step is recorded: who did it, under which rule.'],
 ];
 
 // In the words of the solution pages (lib/solutions.js) and the Keel panels below.
 const USES = [
   { market: 'Banking', job: 'Mortgage applications', line: 'An agent reads the payslip and the statement, the scorecard decides, and a loan officer signs within a limit.', href: '/solutions/banking-insurance/' },
   { market: 'Insurance', job: 'KYC files that need a sign-off', line: 'Four-eyes checks apply to agents as they do to staff. An unsure agent stops and asks a person.', href: '/solutions/banking-insurance/' },
-  { market: 'Logistics', job: 'Supplier payments', line: 'An agent checks the statement against the payables policy, and the payment waits for a yes.' },
+  { market: 'Logistics', job: 'Supplier payments', line: 'An agent matches carrier invoices to POs and deliveries. Over the approval limit, the payment waits for a person.' },
   { market: 'Enterprise', job: 'Work where mistakes are costly', line: 'Every case follows the path you designed, under versioned rules your analysts own.', href: '/solutions/enterprise/' },
 ];
 
@@ -58,11 +59,9 @@ export default function KeelPage() {
           <Button href="#how" size="lg" variant="secondary" event="cta_how_it_works_clicked" eventProps={{ location: 'keel_hero' }}>How it works</Button>
         </>}>
         <figure className="m-0 mx-auto max-w-[1100px]">
-          <div className="overflow-hidden rounded-2xl bg-ivory [&_svg]:block [&_svg]:h-auto [&_svg]:w-full">
-            <InlineSvg markup={reink(partOfTheKeelBoardSvg)} />
-          </div>
-          <figcaption className="mx-auto mt-8 grid max-w-[1000px] gap-6 text-left md:grid-cols-3">
-            {BOARD.map(([t, d]) => (
+          <CaseFlow />
+          <figcaption className="mx-auto mt-8 grid max-w-[1100px] gap-6 text-left sm:grid-cols-2 lg:grid-cols-4">
+            {PARTS.map(([t, d]) => (
               <div key={t}><p className="m-0 text-[15px] font-medium">{t}</p><p className="m-0 mt-1.5 text-[14px] leading-[1.55] text-ink/60">{d}</p></div>
             ))}
           </figcaption>
@@ -103,10 +102,10 @@ export default function KeelPage() {
 
       <Section id="proof" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
         <div>
-          <h2 className={H2.list}>Every case leaves a record.</h2>
+          <h2 className={H2.list}>Every case leaves an audit trail.</h2>
           <p className="mt-3 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-ink/65">Who did each step, under which rule, so any case can be audited and replayed.</p>
         </div>
-        <Films slugs={['vandijk-approval']} cols="" />
+        <AuditPanel />
       </Section>
 
       <Section id="pricing" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
