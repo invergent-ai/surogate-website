@@ -26,3 +26,18 @@ test('a titled rabbit is an image with a name; an unknown pose is a bug, not a b
   assert.match(html, /role="img"[^>]*aria-label="Surogate"/);
   await assert.rejects(render('./Rabbit.jsx', { pose: 'flying' }), /Unknown rabbit pose/);
 });
+
+test('a button is a pill link; a tracked one names its event, an outside one opens a new tab', async () => {
+  const plain = await render('./Button.jsx', { href: '/agents/', children: 'Explore' });
+  assert.match(plain, /^<a href="\/agents\/" class="[^"]*rounded-full/);
+  const tracked = await render('./Button.jsx', { href: '/contact/', event: 'contact_sales_clicked', children: 'Contact Sales' });
+  assert.match(tracked, /data-event="contact_sales_clicked"/);
+  const out = await render('./Button.jsx', { href: 'https://llm.buzz', external: true, children: 'Get API key' });
+  assert.match(out, /target="_blank" rel="noopener noreferrer"/);
+});
+
+test('the stat strip prints each number with its label', async () => {
+  const html = await render('./StatStrip.jsx', { items: [{ n: '7.0×', l: 'serving vs. llama.cpp' }] });
+  assert.match(html, /7\.0×/);
+  assert.match(html, /serving vs\. llama\.cpp/);
+});
