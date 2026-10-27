@@ -260,7 +260,7 @@ Every product page follows the product template above. The patterns come from x.
 #### `/train/` · Train
 
 1. **Hero.** "Train and serve your own model." The hero is the product: a copy box with
-   `curl -fsSL https://surogate.ai/install.sh | bash`, and chips for Docs ↗, GitHub ↗ and Apache-2.0. A
+   the install line from `ENGINE.install` in `lib/labs.js`, and chips for Docs ↗, GitHub ↗ and Apache-2.0. A
    spec row below shows real numbers from `/labs/engine`.
 2. **Sticky scroller.** The panel is one dark aubergine terminal replaying each step: `surogate sft
    config.yaml`, the loss curve, the eval scoreboard, `surogate serve`. Steps:
