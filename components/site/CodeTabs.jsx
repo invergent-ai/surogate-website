@@ -35,10 +35,7 @@ export default function CodeTabs({ tabs }) {
   return (
     <div className="min-w-0">
       <div className="overflow-hidden rounded-xl border border-hairline bg-white text-ink shadow-[0_24px_60px_-28px_rgba(26,10,28,.55)]">
-        <div className="flex h-11 items-center justify-between border-b border-hairline pl-4 pr-1.5">
-          <span className="flex gap-1.5" aria-hidden="true">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" /><span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" /><span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-          </span>
+        <div className="flex h-11 items-center justify-end border-b border-hairline pl-4 pr-1.5">
           <button type="button" onClick={copy} className="inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-[13px] text-ink/60 transition-colors duration-150 ease-in-out hover:bg-stone hover:text-ink">
             {copied ? <Check size={14} /> : <Copy size={14} />}{copied ? 'Copied' : 'Copy'}
           </button>
