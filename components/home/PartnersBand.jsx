@@ -4,7 +4,7 @@ import PartnerMark from '@/components/site/PartnerMark';
 
 export default function PartnersBand() {
   return (
-    <Section tone="aubergine" inner="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+    <Section tone="aubergine" rings="-right-[45%] top-[48%] h-[110%] lg:-right-[17%] lg:top-[-40%] lg:h-[180%]" inner="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
       <div>
         <h2 className={H2.feature}>Build a practice on Surogate.</h2>
         <p className="mt-4 mb-0 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">
@@ -13,7 +13,7 @@ export default function PartnersBand() {
         <div className="mt-7"><Button href="/partners/" variant="sun" size="lg" arrow>Become a partner</Button></div>
       </div>
       <div className="flex justify-center gap-3 sm:gap-4">
-        {['silver', 'gold', 'diamond'].map((t) => <PartnerMark key={t} tier={t} size="clamp(80px, 9vw, 120px)" interactive />)}
+        {['silver', 'gold', 'diamond'].map((t) => <PartnerMark key={t} tier={t} size="clamp(80px, 9vw, 120px)" />)}
       </div>
     </Section>
   );

@@ -18,7 +18,7 @@ export default function PricingPage() {
     <Shell>
       <JsonLd data={faq} />
       <PricingTabs />
-      <Section tone="aubergine" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+      <Section tone="aubergine" rings inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
         <div>
           <h2 className={H2.feature}>Building for clients?</h2>
           <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-white/70">

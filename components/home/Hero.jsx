@@ -2,6 +2,7 @@
 
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import Pill from '@/components/site/Pill';
+import Transit from '@/components/site/Rings';
 import { CONTAINER } from '@/components/site/Section';
 import Bento from './Bento';
 import HeroAction, { dwellFor } from './HeroAction';
@@ -67,8 +68,12 @@ export default function Hero() {
   const swap = mode === 'out' ? 'hero-s-out' : mode === 'in' ? 'hero-s-in' : '';
 
   return (
-    <section className="bg-white">
-      <div className={`${CONTAINER} pt-14 pb-12 text-center md:pt-20 md:pb-16`}
+    <section className="relative bg-white">
+      {/* The brand rings stand beside the headline, faded out before they reach the copy. Phones have no room beside it. */}
+      <div aria-hidden="true" className="hero-rings pointer-events-none absolute inset-x-0 top-0 hidden h-[640px] overflow-hidden sm:block">
+        <Transit className="absolute right-[-30%] top-[-8%] h-[640px] w-auto sm:right-[-12%] lg:right-[-7%] lg:top-[-14%] lg:h-[760px]" />
+      </div>
+      <div className={`relative ${CONTAINER} pt-14 pb-12 text-center md:pt-20 md:pb-16`}
         data-paused={paused || undefined}
         onFocus={(e) => e.target.matches(':focus-visible') && setHold((h) => ({ ...h, focus: true }))}
         onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setHold((h) => ({ ...h, focus: false }))}>

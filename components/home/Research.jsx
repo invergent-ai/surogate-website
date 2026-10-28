@@ -46,7 +46,7 @@ export const MODELS = [
 
 export default function Research() {
   return (
-    <Section>
+    <Section divider="orbit">
       <div className="mb-8 flex items-end justify-between gap-6">
         <h2 className={H2.list}>Our own models.</h2>
         <a href="/labs/" className="group inline-flex min-h-11 items-center gap-0.5 text-[14px] font-medium !text-ink no-underline">All research <ChevronRight size={16} className="nudge" /></a>

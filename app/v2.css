@@ -123,11 +123,48 @@
 @keyframes kf-r4 { 0%, 55% { opacity: 0; transform: translateY(4px); } 58%, 93% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; } }
 @keyframes kf-r5 { 0%, 70% { opacity: 0; transform: translateY(4px); } 73%, 93% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; } }
 
+
+/* Brand rings, "Transit" (components/site/Rings.jsx): the rings hold still, three sun arcs travel them while on screen. */
+.transit { display: block; overflow: visible; color: #0a0a0a; }
+.transit .ring { fill: none; stroke: currentColor; stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .16; }
+.transit .arc { fill: none; stroke: #ffaf10; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 5 95; vector-effect: non-scaling-stroke;
+  transform-box: fill-box; transform-origin: center; }
+.transit-loop .arc { animation: transit-turn var(--d) linear var(--del) infinite paused; }
+.transit-loop[data-live] .arc { animation-play-state: running; }
+@keyframes transit-turn { to { transform: rotate(calc(var(--s) * 360deg)); } }
+.transit-hover .ring { opacity: .1; }
+.transit-hover .arc { transition: transform 1600ms var(--ease-out); }
+.group:hover .transit-hover .arc, .group:focus-visible .transit-hover .arc { transform: rotate(calc(var(--s) * 300deg)); }
+/* Home hero: the rings fade towards the centred copy. */
+/* deslop-ignore-next-line 06: a mask that fades the ring hairlines out before the copy; nothing gradient is drawn */
+.hero-rings { -webkit-mask-image: radial-gradient(60% 75% at 100% 30%, #000 45%, transparent 100%); mask-image: radial-gradient(60% 75% at 100% 30%, #000 45%, transparent 100%); }
+.on-dark .transit, .transit.on-dark { color: #fff; }
+.on-dark .transit .ring, .transit.on-dark .ring { opacity: .14; }
+
+/* Orbit progress mark (components/site/Orbit.jsx). */
+.orbit-turn { transform-box: fill-box; transform-origin: center; animation: orbit-turn 1200ms linear infinite; }
+@keyframes orbit-turn { to { transform: rotate(360deg); } }
+
+/* Logo draw-in, once per page load (components/site/Logo.jsx): the star traces, fills, then the rabbit rises. */
+.logo-draw .logo-line { stroke-dasharray: 1 1; animation: logo-trace 1100ms var(--ease-out) both; }
+.logo-draw .logo-star { animation: fade 500ms var(--ease-out) 650ms both; }
+.logo-draw .logo-sun { --y: 22px; animation: rise 900ms var(--ease-out) 650ms both; }
+.logo-draw .logo-wm { animation: fade 700ms var(--ease-out) 150ms both; }
+@keyframes logo-trace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+/* Partner marks arrive once: the rings settle in one by one, then stop (components/site/PartnerMark.jsx). */
+.pm[data-arm] .pm-ring { opacity: 0; }
+.pm[data-arm][data-live] .pm-ring { transform-box: fill-box; transform-origin: center;
+  animation: pm-ring 1200ms var(--ease-out) calc(var(--k) * 140ms) both; }
+@keyframes pm-ring { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: none; } }
+
 @media (prefers-reduced-motion: reduce) {
   .chat-scroll, .rabbit-breathe, .voice-ring, .keel-wander, .keel-glide, .keel-glow, .keel-done, .api-pick, .api-picked,
   .rabbit-eye, .rabbit-think, .seq1, .seq2, .seq3, .seq4, .mock-bar, .mock-move, .mock-draw,
   .load-up, .load-fade, .hero-w, .hero-l-in, .hero-l-out, .hero-s-in, .hero-s-out, .seg-run, .seg-ghost, .hop-dot, .word-in, .caret, .pop-in, .spark,
-  .kf-case, .kf-row, .kf-wait, .kf-ok { animation: none !important; }
+  .kf-case, .kf-row, .kf-wait, .kf-ok, .transit .arc, .orbit-turn, .logo-draw *, .pm-ring { animation: none !important; }
+  .transit .arc { transition: none !important; transform: none !important; }
+  .pm[data-arm] .pm-ring { opacity: 1; }
   .menu-pop, .menu-pop.is-open, .tile-media, .nudge, .arrow-stem { transition: none !important; }
   .group:hover .tile-media { transform: none; }
   .spin-slow { transition: none !important; }

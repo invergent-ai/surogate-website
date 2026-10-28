@@ -61,7 +61,7 @@ export default function CareersPage() {
           <Values />
         </Section>
 
-        <Section tone="aubergine" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <Section tone="aubergine" rings inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 className={H2.feature}>Show us what you built.</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">A repository, a model card or a post you wrote. A short note is enough.</p>

@@ -150,7 +150,7 @@ export default function LabsClient() {
           <RuneFilms demos={RUNE_DEMOS.filter((d) => d.film).slice(0, 6)} />
         </Section>
 
-        <Section tone="aubergine" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <Section tone="aubergine" rings inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 className={H2.feature}>Call our models today.</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Surogate 3.7 Flash is on llm.buzz, with one key for every model.</p>
