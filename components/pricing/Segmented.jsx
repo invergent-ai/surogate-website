@@ -26,7 +26,7 @@ export default function Segmented({ options, value, onChange, label, size = 'md'
     onChange(options[n].id);
     list.current?.children[n + 1]?.focus();
   };
-  const h = size === 'sm' ? 'h-8 px-3 text-[13px]' : 'h-9 px-4 text-[14px] md:px-5';
+  const h = size === 'sm' ? 'h-8 px-3 text-[13px]' : 'h-9 px-3 text-[13px] md:px-5 md:text-[14px]';
   const tab = role === 'tablist';
   return (
     <div ref={list} role={tab ? 'tablist' : 'radiogroup'} aria-label={label} onKeyDown={onKey}

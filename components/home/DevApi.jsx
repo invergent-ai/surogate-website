@@ -16,8 +16,8 @@ export default function DevApi() {
   return (
     <Section inner="grid grid-cols-1 items-center gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
       <div>
-        <p className="m-0 text-[13px] font-medium text-ink/50">For developers</p>
-        <h2 className={`${H2.feature} mt-3`}>One API.<br />Every model.</h2>
+        <p className="m-0 text-[13px] font-medium text-ink/50">AI Gateway, for developers</p>
+        <h2 className={`${H2.feature} mt-3`}>One key.<br />Every model.</h2>
         <p className="mt-4 mb-0 max-w-[42ch] text-[16px] leading-[1.6] text-ink/65">
           OpenAI and Anthropic compatible, with no markup on tokens. Change the base URL and keep your code.
         </p>

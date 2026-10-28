@@ -15,7 +15,7 @@ import { SetupPanel, KnowledgePanel, ChannelsPanel, LongPanel, GovernPanel, Impr
 const RUNTIME = 'https://github.com/invergent-ai/surogates';
 
 const FACTS = [
-  { n: 'About 10 min', l: 'from a blank agent to a live one, with the studio checking each step' },
+  { n: 'No code', l: 'every part of an agent is a screen in the studio, from setup to approvals' },
   { n: '9 channels', l: 'for one agent: web, Slack, Teams, WhatsApp, the phone and more' },
   { n: 'Open source', l: 'runtime on GitHub, so your security team can read every line' },
 ];
