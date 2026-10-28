@@ -1,4 +1,5 @@
 import { RabbitAvatar } from '@/components/site/Rabbit';
+import { VideoFrame } from '@/components/site/ProductMedia';
 
 // The scroller's panels: the studio's own screens, drawn small. Words and numbers come from the agents copy.
 const Card = ({ children, className = '' }) => (
@@ -39,21 +40,15 @@ export function SetupPanel() {
   );
 }
 
-export function KnowledgePanel() {
+// Real footage from the studio, filmed on a demo business, in the same 16:10 window as the hero.
+export function LoopPanel({ name, label }) {
   return (
-    <Frame>
-      <div className="flex w-full max-w-[460px] flex-col gap-3 text-[13px]">
-        <Card className="self-end bg-ink px-4 py-3 !text-white">Can we pay a supplier invoice without a PO number?</Card>
-        <Card className="flex gap-3 px-4 py-3">
-          <RabbitAvatar size={22} />
-          <div>
-            <p className="m-0 leading-[1.5]">No. A supplier invoice is paid only against a purchase order with the same amount.</p>
-            <p className="m-0 mt-2 rounded-md bg-stone px-2.5 py-1.5 text-[12px] text-ink/60">Payables policy, section 4.2</p>
-          </div>
-        </Card>
-        <p className="m-0 px-1 text-[12px] text-ink/45">Every answer carries the passage it came from.</p>
-      </div>
-    </Frame>
+    <div className="flex h-full w-full items-center justify-center p-4 md:p-5">
+      <figure className="m-0 w-full max-w-[640px]">
+        <VideoFrame src={`/media/loops/surogate-${name}.mp4`} poster={`/media/loops/surogate-${name}.jpg`} />
+        <figcaption className="mt-3 text-[13px] text-ink/50">{label}</figcaption>
+      </figure>
+    </div>
   );
 }
 
@@ -98,26 +93,6 @@ export function LongPanel() {
           </div>
         </div>
       </div>
-    </Frame>
-  );
-}
-
-export function GovernPanel() {
-  return (
-    <Frame>
-      <Card className="w-full max-w-[440px] p-5 text-[13px]">
-        <div className="flex items-center gap-2.5">
-          <RabbitAvatar size={22} />
-          <span className="font-medium">Held for your OK</span>
-          <span className="ml-auto text-ink/45">Approvals inbox</span>
-        </div>
-        <p className="m-0 mt-4 text-[15px] leading-[1.45]">Approve payment of €12,400.00 to Brandwijk Tankkaart B.V.?</p>
-        <div className="mt-4 flex flex-col gap-2">
-          <span className="flex h-9 items-center rounded-lg bg-ink px-3 text-white">Approve payment</span>
-          <span className="flex h-9 items-center rounded-lg bg-stone px-3">Hold, I'll look at it</span>
-        </div>
-        <p className="m-0 mt-4 text-[12px] text-ink/45">A grant covers one call, for one hour.</p>
-      </Card>
     </Frame>
   );
 }

@@ -12,7 +12,7 @@ import Faq from '../Faq';
 import { HERO_RINGS, BAND_CLIP, BAND_RINGS } from '../rings';
 import AgentRings from './Rings';
 import JobPicker from './JobPicker';
-import { SetupPanel, KnowledgePanel, ChannelsPanel, LongPanel, GovernPanel, ImprovePanel } from './Panels';
+import { SetupPanel, LoopPanel, ChannelsPanel, LongPanel, ImprovePanel } from './Panels';
 
 const RUNTIME = 'https://github.com/invergent-ai/surogates';
 
@@ -34,12 +34,12 @@ const STEPS = [
   { title: 'Set it up without code', line: 'Every part of an agent is a screen in the studio. Change one and the next session uses it, with no rollout.',
     points: ['Start from a template or a blank agent, and talk to it straight away', 'The Copilot can take any step, and builds only what you approve'], panel: <SetupPanel /> },
   { title: 'Teach it your work', line: 'Attach skills and knowledge bases. Your documents become a searchable wiki, with the source passage behind every answer.',
-    points: ['Every skill version is kept, and each session records the one it used', 'MCP servers and Composio toolkits, scanned before the agent sees them'], panel: <KnowledgePanel /> },
+    points: ['Every skill version is kept, and each session records the one it used', 'MCP servers and Composio toolkits, scanned before the agent sees them'], panel: <LoopPanel name="knowledge" label="A policy handbook attached to the payables agent from the library." /> },
   { title: 'Put it where your team works', line: 'A person who moves from the web to Slack or WhatsApp keeps the same conversations, memory and allowance.', panel: <ChannelsPanel /> },
   { title: 'Let it run for days', line: 'Goals, missions, loops and deep research run for hours, days or months. Programs follow up with people on the days you choose.',
     points: ['Sub-agents share a board of checked notes, so a dead end is not repeated', `A task is stored and gets up to ${TASK_ATTEMPTS} attempts, each reading what went wrong before`], panel: <LongPanel /> },
   { title: 'Keep it inside the rules', line: 'Sensitive calls wait in the approvals inbox. Rules are fixed for each turn, so text injected mid-turn cannot loosen them.',
-    points: ['Keys the agent never sees: the proxy adds credentials on the way out', 'Sessions survive crashes, and failed steps are undone in reverse order'], panel: <GovernPanel /> },
+    points: ['Keys the agent never sees: the proxy adds credentials on the way out', 'Sessions survive crashes, and failed steps are undone in reverse order'], panel: <LoopPanel name="inbox" label="A payment over the limit waits in the inbox until a person approves it." /> },
   { title: 'Make it better from its own sessions', line: 'Mark sessions as good or bad, and the studio turns them into training data, fine-tunes, scores and experts.',
     points: ['Skill optimisation keeps the best version, and nothing changes until you apply it', 'Train on AWS, Azure, GCP, Nebius, RunPod, Modal, Oracle, Vast.ai or your own servers'], panel: <ImprovePanel /> },
 ];
@@ -92,7 +92,7 @@ export default function AgentsPage() {
         rings={<AgentRings className={HERO_RINGS} />}>
         <div className="mx-auto max-w-[880px]">
           <VideoFrame src="/media/loops/agents.mp4" poster="/media/loops/agents.jpg" />
-          <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">An agent asks before it pays a supplier. Filmed on a demo business.</p>
+          <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">The payables agent checks a supplier statement against policy, then asks before it pays. Filmed on a demo business.</p>
         </div>
       </Hero>
 
