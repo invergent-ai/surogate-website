@@ -106,10 +106,10 @@ export default function Hero() {
           </div>
           {/* Six equal segments. Done ones are full and still, upcoming ones empty and still; only the current
               one animates, restarted by its key. On a wrap the full ones fade out together before the first runs. */}
-          <div className="mt-3 flex justify-center gap-1.5">
+          <div className="mt-1 flex justify-center gap-1.5 md:mt-3">
             {PRODUCTS.map((x, n) => (
               <button key={x.key} type="button" aria-label={`Show ${x.name}`} aria-current={n === sel || undefined} onClick={() => jump(n)}
-                className="group flex h-6 items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/25">
+                className="group flex h-10 items-center rounded-full md:h-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/25">
                 <span className="relative block h-[2px] w-6 overflow-hidden rounded-full bg-hairline transition-colors duration-150 group-hover:bg-ink/20">
                   {n === sel ? (
                     <span key={`${n}-${cycle}`} className="seg-run absolute inset-0 bg-ink"
