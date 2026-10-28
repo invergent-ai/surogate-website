@@ -189,7 +189,7 @@ export default function SpeechPageClient() {
             <div className="sp-family" aria-label="The Surogate Speech family">
               {[...RECOGNIZERS, AMAMI].map((m) => (
                 <figure key={m.id}>
-                  <img src={m.mark} alt="" width="80" height="80" />
+                  <img src={m.mark} alt="" width="80" height="80" loading="lazy" decoding="async" />
                   <figcaption>{m.name}</figcaption>
                 </figure>
               ))}
@@ -349,7 +349,7 @@ export default function SpeechPageClient() {
                 const Icon = ICONS[m.icon];
                 return (
                   <article className="lab-sp reveal" key={m.id}>
-                    <img className="sp-card-mark" src={m.mark} alt="" width="64" height="64" />
+                    <img className="sp-card-mark" src={m.mark} alt="" width="64" height="64" loading="lazy" decoding="async" />
                     <span className="lab-tag"><Icon size={14} strokeWidth={2} aria-hidden="true" />{m.kind}</span>
                     <h3 className="lab-sp-t">{m.name}</h3>
                     <p className="lab-sp-d">{m.line}</p>

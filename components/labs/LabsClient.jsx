@@ -39,7 +39,7 @@ const LINES = [
       <span className="grid h-full grid-cols-3 items-center bg-stone px-4">
         {SPEECH_MARKS.map(([src, label]) => (
           <span key={label} className="flex flex-col items-center gap-2">
-            <img src={src} alt="" className="h-12 w-12 md:h-14 md:w-14" />
+            <img src={src} alt="" loading="lazy" decoding="async" className="h-12 w-12 md:h-14 md:w-14" />
             <span className="text-[11px] text-aubergine/70">{label}</span>
           </span>
         ))}
@@ -52,7 +52,7 @@ const LINES = [
     facts: ENGINE.facts,
     cover: (
       <span className="flex h-full items-center justify-center bg-sun">
-        <img src="/brand/logo-full-white.svg" alt="" className="h-8 w-auto" />
+        <img src="/brand/logo-full-white.svg" alt="" loading="lazy" decoding="async" className="h-8 w-auto" />
       </span>
     ),
   },

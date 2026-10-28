@@ -145,7 +145,7 @@ export default function DecisionEngine() {
       <div className="de-stage" role="tabpanel" aria-live="polite" aria-label={`${ex.industry}: ${ex.question} Rune: ${ex.decision}`}>
         <div className="de-in">
           <span className="de-label">Input · {ex.industry}</span>
-          {ex.image && <img className="de-img" src={ex.image} alt="" width="900" height="600" />}
+          {ex.image && <img className="de-img" src={ex.image} alt="" width="900" height="600" loading="lazy" decoding="async" />}
           {fields ? (
             <dl className="de-fields" key={i}>
               {fields.map((f) => (

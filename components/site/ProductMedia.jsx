@@ -15,7 +15,7 @@ export function VideoFrame({ src, poster, still, className = 'w-full' }) {
   const media = 'h-full w-full object-contain';
   return (
     <div className={`aspect-[16/10] max-w-full ${className} overflow-hidden rounded-[10px] bg-white shadow-[0_1px_2px_rgba(0,0,0,.06),0_8px_24px_-12px_rgba(0,0,0,.25)] ring-1 ring-ink/[.08]`}>
-      {still ? <img src={poster} alt="" className={media} /> : <LoopVideo src={src} poster={poster} className={media} />}
+      {still ? <img src={poster} alt="" loading="lazy" decoding="async" className={media} /> : <LoopVideo src={src} poster={poster} className={media} />}
     </div>
   );
 }

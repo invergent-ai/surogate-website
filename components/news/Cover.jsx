@@ -40,7 +40,7 @@ function Speech({ big }) {
     <span className={`grid h-full grid-cols-3 items-center bg-stone ${big ? 'px-[12%]' : 'px-4'}`}>
       {SPEECH_MARKS.map(([src, label]) => (
         <span key={label} className="flex flex-col items-center gap-2">
-          <img src={src} alt="" className={big ? 'h-16 w-16 md:h-24 md:w-24' : 'h-12 w-12 md:h-14 md:w-14'} />
+          <img src={src} alt="" decoding="async" className={big ? 'h-16 w-16 md:h-24 md:w-24' : 'h-12 w-12 md:h-14 md:w-14'} />
           <span className={`text-aubergine/70 ${big ? 'text-[13px]' : 'text-[11px]'}`}>{label}</span>
         </span>
       ))}
@@ -51,7 +51,7 @@ function Speech({ big }) {
 function Engine({ big }) {
   return (
     <span className="flex h-full items-center justify-center bg-sun">
-      <img src="/brand/logo-full-white.svg" alt="" className={`w-auto ${big ? 'h-10 md:h-14' : 'h-8'}`} />
+      <img src="/brand/logo-full-white.svg" alt="" decoding="async" className={`w-auto ${big ? 'h-10 md:h-14' : 'h-8'}`} />
     </span>
   );
 }
