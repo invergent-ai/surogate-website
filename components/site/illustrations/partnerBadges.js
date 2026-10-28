@@ -16,7 +16,8 @@ const RABBIT = `${RABBIT_FILL} ${RABBIT_EYE}`;
 const SWEEP = 'M-5.5 64C-3.5 45 5 30 20 18.5';
 
 // Each tier's art: its bounding box [x, y, w, h] in its own units (measured from the paths), an optical size
-// that evens a tall star against a wide rabbit, whether it is mirrored so every rabbit faces right, and its
+// that evens a tall star against a wide rabbit (Diamond's is sized so its rabbit matches the others', the star
+// filling the ring around it), whether it is mirrored so every rabbit faces right, and its
 // layers per tone as [d, fill, extra attributes?]. Flat fills and fine strokes only.
 const ART = {
   silver: {
@@ -32,11 +33,11 @@ const ART = {
   },
   // The logo's star rabbit, mirrored. The star's thin arms get a stroke of their own colour so they hold at 40px.
   diamond: {
-    box: [496.01, 0, 206.57, 235.03], k: 1.06, flip: true,
+    box: [496.01, 0, 206.57, 235.03], k: 1.24, flip: true,
     layers: (tone) => [[LOGO_STAR, INK[tone], `stroke="${INK[tone]}" stroke-width="6" stroke-linejoin="round"`], [LOGO_RABBIT, SUN, 'class="pm-sun"']],
   },
 };
-// One ring for every tier, in the tier's colour; Diamond alone carries a fine sun ring inside it.
+// One ring for every tier, in the tier's colour.
 const FRAME = {
   silver: (tone) => [STEEL[tone], 0.55],
   gold: (tone) => [tone === 'dark' ? SUN : DEEP, 0.6],
@@ -57,9 +58,8 @@ export function partnerMarkSvg(tier, tone = 'dark') {
     .map(([d, fill, more]) => `<path d="${d}" fill="${fill}"${more ? ` ${more}` : ''}/>`)
     .join('');
   const [ring, o] = FRAME[tier](tone);
-  const accent = tier === 'diamond' ? `<circle cx="48" cy="48" r="42.5" fill="none" stroke="${SUN}" stroke-width=".8"/>` : '';
   // deslop-ignore-next-line 18: a tier mark drawn on the page ground, with no tile behind it
   return `<svg role="img" aria-label="Surogate ${TIERS[tier]} partner" viewBox="0 0 96 96" width="96" height="96" style="display:block">`
-    + `<g class="pm-frame"><circle cx="48" cy="48" r="46" fill="none" stroke="${ring}" stroke-opacity="${o}" stroke-width="1.5"/>${accent}</g>`
+    + `<g class="pm-frame"><circle cx="48" cy="48" r="46" fill="none" stroke="${ring}" stroke-opacity="${o}" stroke-width="1.5"/></g>`
     + `<g class="pm-art"><g transform="${artTransform(tier)}">${paths}</g></g></svg>`;
 }

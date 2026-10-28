@@ -221,7 +221,9 @@ test('every tier sits in one ring, centred at the same size, facing right', asyn
     const [tx, ty, sx, sy] = artTransform(tier).match(/-?[\d.]+/g).map(Number);
     assert.equal(sx < 0, tier === 'diamond', tier);
     assert.ok(Math.abs(tx + (x + w / 2) * sx - 48) < 0.05 && Math.abs(ty + (y + h / 2) * sy - 48) < 0.05, tier);
-    assert.ok(Math.max(w, h) * sy > 53.9 && Math.max(w, h) * sy <= 60, tier);
+    // Diamond's star is drawn larger so the rabbit inside it matches the simple rabbits.
+    const [lo, hi] = tier === 'diamond' ? [64, 72] : [53.9, 60];
+    assert.ok(Math.max(w, h) * sy > lo && Math.max(w, h) * sy <= hi, tier);
   }
 });
 
