@@ -6,6 +6,8 @@ import { BASE_URL, CONTROLS, EU_PROVIDERS, FLASH_MARKET, JOIN, MARKET, SOURCES }
 import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
 import Faq from '../Faq';
 import Market from './Market';
+import { HERO_RINGS, BAND_RINGS } from '../rings';
+import GatewayRings from './Rings';
 
 const MODEL = FLASH_MARKET.model;
 const TABS = [
@@ -57,7 +59,8 @@ export default function GatewayPage() {
         actions={<>
           <Button href={LINKS.apiKey} external size="lg" arrow event="cta_api_key_clicked" eventProps={{ location: 'gateway_hero' }}>Get API key</Button>
           <Button href="#sell" size="lg" variant="secondary">Sell your inference</Button>
-        </>}>
+        </>}
+        rings={<GatewayRings className={HERO_RINGS} />}>
         <div className="mx-auto max-w-[1040px] text-left"><Market /></div>
       </Hero>
 
@@ -76,7 +79,7 @@ export default function GatewayPage() {
                 <div className="min-w-0">
                   <h3 className="m-0 text-[15px] font-[500]">{t}</h3>
                   <p className="m-0 mt-1 text-[14px] leading-[1.55] text-ink/60">{d}</p>
-                  {code && <code className="mt-3 block overflow-x-auto whitespace-nowrap rounded-lg bg-white px-3 py-2 font-mono text-[12px]">{code}</code>}
+                  {code && <code className="mt-3 block overflow-x-auto whitespace-nowrap rounded-lg bg-stone px-3 py-2 font-mono text-[12px]">{code}</code>}
                 </div>
               </li>
             ))}
@@ -88,7 +91,8 @@ export default function GatewayPage() {
         </div>
       </Section>
 
-      <Section tone="aubergine" id="eu" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+      <Section tone="aubergine" id="eu" className="relative isolate overflow-hidden" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+        <GatewayRings dark className={BAND_RINGS} />
         <div>
           <h2 className={H2.feature}>In the EU, on every plan.</h2>
           <p className="mt-4 mb-0 max-w-[44ch] text-[16px] leading-[1.6] text-white/70">
