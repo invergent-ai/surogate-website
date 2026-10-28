@@ -33,7 +33,7 @@ function Brief({ a, round, k }) {
     return () => clearInterval(id);
   }, [text]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <div className="flex h-[104px] w-full items-start gap-3 rounded-xl border border-hairline bg-white py-3 pr-2 pl-4 md:h-14 md:items-center md:py-2 md:gap-4 md:pl-5">
+    <div className="flex h-[112px] w-full items-start gap-3 rounded-xl border border-hairline bg-white py-3 pr-2 pl-4 md:h-14 md:items-center md:py-2 md:gap-4 md:pl-5">
       {/* The market label is as wide as the widest one, so the brief always starts in the same place. */}
       <div className="flex min-w-0 flex-1 flex-col items-start gap-1 md:flex-row md:items-center md:gap-3">
       <span key={market} className="word-in shrink-0 rounded-md bg-ink px-2.5 py-1 text-[12px] font-medium leading-[16px] text-white md:w-[104px] md:text-center">{market}</span>
