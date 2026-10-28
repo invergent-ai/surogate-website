@@ -13,7 +13,7 @@ import { CONTACT_SALES, LINKS } from '@/lib/site';
 import { track } from '@/lib/analytics';
 
 const BILLING = [{ id: 'monthly', label: 'Monthly' }, { id: 'annual', label: 'Yearly' }];
-const ROW = 'flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] md:grid md:overflow-visible md:pb-0';
+const ROW = 'flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] lg:grid lg:overflow-visible lg:pb-0';
 const NOTE = 'm-0 text-[13px] leading-[1.6] text-ink/55';
 
 function Billing({ billing, setBilling }) {
@@ -27,7 +27,7 @@ function Individual({ billing, setBilling }) {
         <p className={NOTE}>One person. Usage included.</p>
         <Billing billing={billing} setBilling={setBilling} />
       </div>
-      <div className={`${ROW} md:grid-cols-4`}>
+      <div className={`${ROW} lg:grid-cols-4`}>
         {PERSONAL_PLANS.map((p) => <PlanCard key={p.id} plan={p} billing={billing} tab="individual" />)}
       </div>
       <p className={`${NOTE} mt-5`}>Prices include VAT. EU businesses with a VAT ID and customers outside the EU pay the net price.</p>
@@ -42,9 +42,9 @@ function Teams({ billing, setBilling }) {
         <p className={NOTE}>Per organisation. Unlimited users and agents.</p>
         <Billing billing={billing} setBilling={setBilling} />
       </div>
-      <div className={`${ROW} md:grid-cols-4`}>
+      <div className={`${ROW} lg:grid-cols-4`}>
         {TEAM_PLANS.map((p) => <PlanCard key={p.id} plan={p} billing={billing} tab="teams" />)}
-        <article className="flex w-[84%] shrink-0 snap-start flex-col rounded-2xl bg-white p-6 ring-1 ring-hairline sm:w-[46%] md:w-auto md:ring-0">
+        <article className="flex w-[84%] shrink-0 snap-start flex-col rounded-2xl bg-white p-6 ring-1 ring-hairline sm:w-[46%] lg:w-auto lg:ring-0">
           <h3 className="m-0 text-[16px] font-[500]">Keel, per case</h3>
           <p className="m-0 mt-2 text-[13px] leading-[1.4] text-ink/55">Per completed case, on any cloud plan.</p>
           <dl className="m-0 mt-5 border-t border-hairline">
@@ -166,14 +166,14 @@ export default function PricingTabs() {
       </section>
       <section className="bg-white">
         {/* Every panel sits in the same grid cell, so the area is always the tallest one's height and nothing below moves.
-            Phones stack the cards, so the tallest panel would leave a screen of white under the short ones: there only the open panel renders. */}
+            Below desktop the cards stack or scroll, so the tallest panel would leave a screen of white under the short ones: there only the open panel renders. */}
         <div className={`${CONTAINER} grid pt-2 pb-10 md:py-14`}>
           {PRICING_TABS.map((t) => {
             const Panel = PANELS[t.id];
             const on = t.id === tab;
             return (
               <div key={t.id} id={t.id} role="tabpanel" aria-label={t.label} inert={!on}
-                className={`min-w-0 [grid-area:1/1] transition-opacity duration-300 ease-[cubic-bezier(.16,1,.3,1)] motion-reduce:transition-none ${on ? 'opacity-100' : 'pointer-events-none opacity-0 max-md:hidden'}`}>
+                className={`min-w-0 [grid-area:1/1] transition-opacity duration-300 ease-[cubic-bezier(.16,1,.3,1)] motion-reduce:transition-none ${on ? 'opacity-100' : 'pointer-events-none opacity-0 max-lg:hidden'}`}>
                 <Panel billing={billing} setBilling={setBilling} />
               </div>
             );
