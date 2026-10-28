@@ -2,7 +2,8 @@
 
 import { ICONS } from './icons';
 
-/* The filmed Rune demos: each poster in a 16:10 window; its silent loop plays while the pointer or focus is on it. */
+/* The filmed Rune demos: each poster in a 16:10 window on a stone tile, contained; its silent loop plays while
+   the pointer or focus is on it. */
 export default function RuneFilms({ demos }) {
   const loop = (play) => (e) => {
     const v = e.currentTarget.querySelector('video');
@@ -16,9 +17,11 @@ export default function RuneFilms({ demos }) {
           <li key={d.slug}>
             <a href={`/labs/rune-examples/?demo=${d.slug}`} className="group block !text-ink no-underline"
               onMouseEnter={loop(true)} onMouseLeave={loop(false)} onFocus={loop(true)} onBlur={loop(false)}>
-              <span className="block aspect-[16/10] overflow-hidden rounded-xl bg-night">
-                <video src={d.film.loop} poster={d.film.poster} muted loop playsInline preload="none"
-                  width="960" height="540" aria-hidden="true" className="h-full w-full object-contain" />
+              <span className="block rounded-xl bg-stone p-[5%]">
+                <span className="block aspect-[16/10] overflow-hidden rounded-[8px] bg-white ring-1 ring-ink/[.08]">
+                  <video src={d.film.loop} poster={d.film.poster} muted loop playsInline preload="none"
+                    width="960" height="540" aria-hidden="true" className="tile-media block h-full w-full object-contain" />
+                </span>
               </span>
               <span className="mt-3 flex items-center gap-1.5 text-[14px] font-medium leading-[1.4]">
                 <Icon size={15} strokeWidth={2} aria-hidden="true" className="text-ink/50" />{d.title}

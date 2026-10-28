@@ -12,7 +12,7 @@ import { track } from '@/lib/analytics';
  * The decision engine: real inputs from different industries go in, the rune fires, a typed decision
  * comes out. Every answer is a real Rune response recorded by labs/spaces/record_industries.py.
  *
- * It advances on its own every few seconds, pauses when off screen or hovered, and each industry can be
+ * It advances on its own every few seconds, waits while off screen or while a tab has focus, and each industry can be
  * picked directly. With reduced motion each example is shown finished and you step through them.
  */
 
@@ -55,7 +55,7 @@ export default function DecisionEngine() {
   const choose = (n) => { setI(n); track('rune_industry_picked', { industry: EXAMPLES[n].industry }); };
 
   // Advance once an example has been watched for HOLD_MS. Only watched time counts (on screen, not
-  // hovered, tab visible), and a pick restarts the clock, so a chosen industry always gets the full hold.
+  // focus elsewhere, tab visible), and a pick restarts the clock, so a chosen industry always gets the full hold.
   const shownAt = useRef(0);
   useEffect(() => { shownAt.current = Date.now(); }, [i]);
   useEffect(() => {
@@ -104,12 +104,9 @@ export default function DecisionEngine() {
         // the ring of runes lights up around the circle, then the R ignites
         .fromTo('.rr-rune', { '--lit': 0 }, { '--lit': 1, duration: 0.18, stagger: { each: 0.035, from: 18 }, ease: 'power1.out' }, 'fire')
         .to('.rr-rune', { '--lit': 0.25, duration: 0.6, stagger: { each: 0.02, from: 18 } }, 'fire+=0.9')
-        // the R never disappears: its strokes smoulder, then ignite one after another
+        // the R never disappears: its strokes come up one after another, then two flat rings open out
         .fromTo('.de-core .rg-s', { opacity: 0.28 }, { opacity: 1, duration: 0.45, stagger: 0.18, ease: 'power2.in' }, 'fire+=0.25')
-        .fromTo('.de-core .rune-glyph', { '--glow': 0.2 }, { '--glow': 1.4, duration: 0.35, ease: 'power2.in' }, 'fire+=0.75')
-        .fromTo('.de-flare', { scale: 0.4, opacity: 0.9 }, { scale: 1.8, opacity: 0, duration: 0.9, ease: 'power2.out', transformOrigin: '50% 50%' }, 'fire+=0.95')
         .fromTo('.de-ring', { scale: 0.7, opacity: 0.8 }, { scale: 1.7, opacity: 0, duration: 1.1, stagger: 0.22, ease: 'power2.out', transformOrigin: '50% 50%' }, 'fire+=0.95')
-        .to('.de-core .rune-glyph', { '--glow': 0.55, duration: 1.2 }, 'fire+=1.3')
         .fromTo('.de-beam-out', { attr: { 'stroke-dashoffset': 1 } }, { attr: { 'stroke-dashoffset': 0 }, duration: 0.5, ease: 'power2.out' }, 'fire+=1.1')
         .fromTo('.de-spark-out', { attr: { cx: 0 }, opacity: 1 }, { attr: { cx: 100 }, duration: 0.5, ease: 'power2.out' }, '<')
         .to('.de-spark-out', { opacity: 0, duration: 0.1 })
@@ -171,7 +168,6 @@ export default function DecisionEngine() {
 
         <div className="de-core" aria-hidden="true">
           <RuneRing />
-          <span className="de-flare" />
           <span className="de-ring" />
           <span className="de-ring" />
           <RuneGlyph />

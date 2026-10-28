@@ -5,6 +5,8 @@ import TrackedLink from '@/components/TrackedLink';
 import Button from '@/components/site/Button';
 import Rabbit from '@/components/site/Rabbit';
 import Section, { CONTAINER, H2, SectionHead } from '@/components/site/Section';
+import { H1 } from '@/components/solutions/Hero';
+import HeroRings, { CLOSING_RINGS } from '@/components/solutions/HeroRings';
 import { ENGINE, RUNE_DEMOS, RUNE_FACTS, SPEECH_MODELS, SUROGATE_LM } from '@/lib/labs';
 import LabsSubnav from './LabsSubnav';
 import RuneFilms from './RuneFilms';
@@ -16,7 +18,6 @@ import RuneGlyph from './RuneGlyph';
  * Covers use our own marks in our palette, as on the home page's model cards.
  */
 
-const H1 = 'm-0 text-balance text-[36px] font-[450] leading-[1.1] tracking-[-0.01em] text-ink md:text-[48px] md:leading-[1.05] lg:text-[58px]';
 const SPEECH_MARKS = [['/labs/speech/jackrabbit.svg', 'Jackrabbit'], ['/labs/speech/jackrabbit-streaming.svg', 'Streaming'], ['/labs/speech/amami.svg', 'Amami']];
 
 const LINES = [
@@ -35,7 +36,7 @@ const LINES = [
     line: 'Small open speech models that run on a CPU. Jackrabbit listens, Amami speaks.',
     facts: SPEECH_MODELS.map((m) => ({ n: m.stat.n, l: m.name })),
     cover: (
-      <span className="grid h-full grid-cols-3 items-center bg-white px-4">
+      <span className="grid h-full grid-cols-3 items-center bg-stone px-4">
         {SPEECH_MARKS.map(([src, label]) => (
           <span key={label} className="flex flex-col items-center gap-2">
             <img src={src} alt="" className="h-12 w-12 md:h-14 md:w-14" />
@@ -50,9 +51,8 @@ const LINES = [
     line: ENGINE.line,
     facts: ENGINE.facts,
     cover: (
-      <span className="relative flex h-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#ffd27a] via-sun to-[#e7772a]">
-        <img src="/surogate_rings.svg" alt="" className="spin-slow absolute left-1/2 top-1/2 h-[180%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 opacity-70" />
-        <img src="/brand/logo-full-white.svg" alt="" className="relative h-8 w-auto" />
+      <span className="flex h-full items-center justify-center bg-sun">
+        <img src="/brand/logo-full-white.svg" alt="" className="h-8 w-auto" />
       </span>
     ),
   },
@@ -79,8 +79,9 @@ export default function LabsClient() {
       <LabsSubnav />
 
       <main id="top">
-        <section className="bg-white">
-          <div className={`${CONTAINER} pt-14 pb-16 md:pt-24 md:pb-20`}>
+        <section className="relative bg-white">
+          <HeroRings at="right-[-24%] top-[-60%] h-[220%] lg:right-[2%] lg:top-[-70%] lg:h-[240%]" />
+          <div className={`${CONTAINER} relative pt-14 pb-16 md:pt-24 md:pb-24`}>
             <div className="load-up max-w-[760px]">
               <h1 className={H1}>Our own models.</h1>
               <p className="m-0 mt-5 max-w-[56ch] text-[16px] leading-[1.6] text-ink/65 md:text-[18px]">
@@ -108,7 +109,7 @@ export default function LabsClient() {
               <Facts items={flash.facts} dark />
             </span>
           </a>
-          <div className="flex flex-col rounded-2xl bg-white p-6 md:p-8">
+          <div className="flex flex-col rounded-2xl bg-stone p-6 md:p-8">
             <h2 className="m-0 text-[22px] font-[500] tracking-[-0.01em]">{family.name}</h2>
             <p className="m-0 mt-2 text-[15px] leading-[1.55] text-ink/65">{family.line}</p>
             <ul className="m-0 mt-6 list-none border-t border-hairline p-0">
@@ -150,7 +151,7 @@ export default function LabsClient() {
           <RuneFilms demos={RUNE_DEMOS.filter((d) => d.film).slice(0, 6)} />
         </Section>
 
-        <Section tone="aubergine" rings inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <Section tone="aubergine" rings={CLOSING_RINGS} inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 className={H2.feature}>Call our models today.</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Surogate 3.7 Flash is on llm.buzz, with one key for every model.</p>

@@ -6,8 +6,8 @@ import { ICONS } from './icons';
 import { track } from '@/lib/analytics';
 import ClampedText from './ClampedText';
 
-/* One demo. A filmed one shows a silent loop while it is on screen; a click opens the whole film in its
-   place. The rest show their screenshot and link to their Space on Hugging Face. */
+/* One demo. A filmed one shows a silent loop while it is on screen; Watch plays the whole film in the same
+   window. The rest show their screenshot and link to their Space on Hugging Face. */
 export default function DemoRow({ demo, hidden = false, start = false }) {
   const [open, setOpen] = useState(false);
   const row = useRef(null);
@@ -37,52 +37,31 @@ export default function DemoRow({ demo, hidden = false, start = false }) {
     // would drop that and hide the row. Open state lives in data-open instead.
     <article className="lab-demo reveal" data-open={open ? 'true' : 'false'} id={demo.slug} hidden={hidden} ref={row}>
       <div className="lab-media">
-        {open ? (
-          <div className="lab-film-open">
-            <video
-              src={film.src}
-              poster={film.poster}
-              controls
-              autoPlay
-              muted
-              playsInline
-              width="1920"
-              height="1080"
-              onEnded={() => track('labs_film_finished', { demo: demo.slug })}
-            />
-          </div>
-        ) : film ? (
-          <button
-            type="button"
-            className="lab-shot lab-film"
-            aria-label={`Watch ${demo.title}`}
-            onClick={() => {
-              setOpen(true);
-              track('labs_film_opened', { demo: demo.slug });
-            }}
-          >
+        {/* Every demo sits in the same 16:10 window, contained, so opening a film never moves the page. */}
+        <div className="lab-window">
+          {open ? (
+            <video src={film.src} poster={film.poster} controls autoPlay muted playsInline width="1920" height="1080"
+              onEnded={() => track('labs_film_finished', { demo: demo.slug })} />
+          ) : film ? (
             <video ref={loop} src={film.loop} poster={film.poster} muted loop playsInline preload="none"
               width="960" height="540" aria-hidden="true" />
-            <span className="lab-play">
-              <Play size={18} strokeWidth={2.25} aria-hidden="true" />
-              Watch
-            </span>
-          </button>
-        ) : (
-          <a
-            className="lab-shot"
-            href={demo.page}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => track('labs_space_link_clicked', { demo: demo.slug, from: 'shot' })}
-          >
+          ) : (
             <img src={demo.shot} alt="" loading="lazy" width="1200" height="800" />
-            <span className="lab-play">
-              <ArrowUpRight size={18} strokeWidth={2.25} aria-hidden="true" />
-              See it on Hugging Face
-            </span>
-          </a>
-        )}
+          )}
+        </div>
+        <div className="lab-media-foot">
+          {film ? (
+            <button type="button" className="lab-watch" aria-label={`Watch ${demo.title}`} disabled={open}
+              onClick={() => { setOpen(true); track('labs_film_opened', { demo: demo.slug }); }}>
+              <Play size={12} aria-hidden="true" />{open ? 'Playing the film' : 'Watch the film'}
+            </button>
+          ) : (
+            <a className="lab-watch" href={demo.page} target="_blank" rel="noopener noreferrer"
+              onClick={() => track('labs_space_link_clicked', { demo: demo.slug, from: 'shot' })}>
+              <ArrowUpRight size={12} aria-hidden="true" />Open the Space
+            </a>
+          )}
+        </div>
       </div>
 
       <div className="lab-text">
@@ -101,7 +80,7 @@ export default function DemoRow({ demo, hidden = false, start = false }) {
           onClick={() => track('labs_space_link_clicked', { demo: demo.slug })}
         >
           The Space on Hugging Face
-          <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
+          <ArrowUpRight size={15} strokeWidth={2} aria-hidden="true" />
         </a>
       </div>
     </article>

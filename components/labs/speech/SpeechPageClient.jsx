@@ -1,16 +1,20 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ArrowRight, ArrowUpRight, Pause, Play } from 'lucide-react';
+import { ArrowUpRight, Pause, Play } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import useReveal from '@/components/useReveal';
+import Button from '@/components/site/Button';
+import Section, { H2, SectionHead } from '@/components/site/Section';
 import { track } from '@/lib/analytics';
 import { SPEECH_ABOUT, SPEECH_LINKS, SPEECH_MODELS, SPEECH_RUN, amamiSrc } from '@/lib/labs';
 import DEMOS from '@/lib/speech-demos.json';
 import LabsSubnav from '../LabsSubnav';
+import LabsHero, { BTN } from '../LabsHero';
 import SheetSelect from '../SheetSelect';
 import { ICONS } from '../icons';
+import { CLOSING_RINGS } from '@/components/solutions/HeroRings';
 
 /*
  * surogate.ai/labs/speech. Every demo is real model output: Amami's clips come from its own worker, the call is
@@ -158,7 +162,7 @@ export default function SpeechPageClient() {
   const turn = callOn ? DEMOS.call.findLastIndex((c) => c.start <= t + 0.05) : -1;
 
   return (
-    <div className="st-home st-labs st-speech bg-white text-brand-aubergine antialiased">
+    <div className="v2 st-home st-labs st-speech w-full bg-white font-sans text-ink">
       <Nav />
       <LabsSubnav />
       <audio
@@ -172,24 +176,17 @@ export default function SpeechPageClient() {
       />
 
       <main id="top">
-        <header className="hero sp-hero">
-          <div className="hero-glow" />
-          <div className="wrap">
-            <p className="hero-kicker">Surogate Speech</p>
-            <h1 className="hero-title">
-              Low-latency <span className="amber">speech models</span>
-            </h1>
-            <p className="hero-sub">
-              Streaming Speech-To-Text and Text-To-Speech that run natively in the Surogate engine, on a CPU or a GPU.
-            </p>
-            <div className="hero-actions">
-              <button type="button" className="btn btn-primary" onClick={() => sayAmami('rg-standup', 'female')}
-                      aria-pressed={isOn('amami:female:rg-standup')}>
-                {isOn('amami:female:rg-standup') ? <Pause size={18} strokeWidth={2} aria-hidden="true" /> : <Play size={18} strokeWidth={2} aria-hidden="true" />}
-                {isOn('amami:female:rg-standup') ? 'Pause Amami' : 'Hear Amami'}
-              </button>
-              <a className="btn btn-ghost" href="#listen">Hear all the demos</a>
-            </div>
+        <LabsHero
+          title="Low-latency speech models."
+          sub="Streaming Speech-To-Text and Text-To-Speech that run natively in the Surogate engine, on a CPU or a GPU."
+          actions={<>
+            <button type="button" className={BTN.primary} onClick={() => sayAmami('rg-standup', 'female')} aria-pressed={isOn('amami:female:rg-standup')}>
+              {isOn('amami:female:rg-standup') ? <Pause size={15} strokeWidth={2.2} aria-hidden="true" /> : <Play size={15} strokeWidth={2.2} aria-hidden="true" />}
+              {isOn('amami:female:rg-standup') ? 'Pause Amami' : 'Hear Amami'}
+            </button>
+            <Button href="#listen" variant="secondary" size="lg">Hear all the demos</Button>
+          </>}
+          visual={(
             <div className="sp-family" aria-label="The Surogate Speech family">
               {[...RECOGNIZERS, AMAMI].map((m) => (
                 <figure key={m.id}>
@@ -198,33 +195,19 @@ export default function SpeechPageClient() {
                 </figure>
               ))}
             </div>
-            <Bars count={HERO_BARS} className="sp-hero-bars" barsRef={heroBars} />
-          </div>
-        </header>
+          )}
+        >
+          <Bars count={HERO_BARS} className="sp-hero-bars" barsRef={heroBars} />
+        </LabsHero>
 
-        <section className="sec tight sp-about">
-          <div className="wrap sp-about-in reveal">
-            <p className="sp-about-line">{SPEECH_ABOUT.line}</p>
-            <div className="sp-about-links">
-              <a className="lab-textlink" href={SPEECH_ABOUT.article} target="_blank" rel="noopener noreferrer">
-                Read the launch article <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
-              </a>
-              <a className="lab-textlink" href={SPEECH_ABOUT.collection} target="_blank" rel="noopener noreferrer">
-                All models on Hugging Face <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
-              </a>
-            </div>
-            <p className="sp-about-note">{SPEECH_ABOUT.license}</p>
-          </div>
-        </section>
+        <Section tone="grey" inner="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-16">
+          <p className="m-0 max-w-[36ch] text-balance text-[22px] font-[450] leading-[1.35] tracking-[-0.01em] md:text-[28px]">{SPEECH_ABOUT.line}</p>
+          <p className="m-0 max-w-[36ch] text-[14px] leading-[1.55] text-ink/60">{SPEECH_ABOUT.license}</p>
+        </Section>
 
-        <section className="sec" id="listen">
-          <div className="wrap">
-            <div className="sec-head reveal sp-head">
-              <img className="sp-head-mark" src={AMAMI.mark} alt="" width="72" height="72" />
-              <p className="eyebrow">{AMAMI.kind}</p>
-              <h2 className="h-section">{AMAMI.name}: realtime voices on two CPU cores.</h2>
-              <p className="lead">{AMAMI.line}</p>
-            </div>
+        <Section id="listen">
+            <img className="sp-head-mark" src={AMAMI.mark} alt="" width="64" height="64" />
+            <SectionHead title={`${AMAMI.name}: realtime voices on two CPU cores.`} sub={AMAMI.line} />
 
             <div className="sp-controls reveal">
               <div className="sp-voice-switch" role="group" aria-label="Voice">
@@ -256,7 +239,7 @@ export default function SpeechPageClient() {
                     </button>
                     {here && (
                       <div className="sp-say-more">
-                        <div className="sp-prog"><i style={{ width: `${Math.min(100, (t / (audio.current?.duration || 1)) * 100)}%` }} /></div>
+                        <div className="sp-prog"><i style={{ transform: `scaleX(${Math.min(1, t / (audio.current?.duration || 1))})` }} /></div>
                         <p className="sp-reads">What Amami reads <span>stress in bold, codes from recorded clips</span></p>
                         <Reading pieces={DEMOS.readings[x.slug]} />
                       </div>
@@ -269,7 +252,6 @@ export default function SpeechPageClient() {
             <div className="sp-call reveal">
               <div className="sp-call-h">
                 <div>
-                  <p className="eyebrow">A whole call</p>
                   <h3 className="sp-call-t">Both sides of this call are Amami.</h3>
                   <p className="sp-call-d">
                     Seven lines, two voices, one bank support call: English words, an SMS code dictated from recorded
@@ -297,19 +279,11 @@ export default function SpeechPageClient() {
                 <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
               </a>
             </div>
-          </div>
-        </section>
+        </Section>
 
-        <section className="sec dark" id="recognize">
-          <div className="wrap">
-            <div className="sec-head reveal">
-              <p className="eyebrow">Speech recognition</p>
-              <h2 className="h-section">Jackrabbit ASR writes it down.</h2>
-              <p className="lead">
-                A 116M-parameter recognizer that writes cased, punctuated text, from a file or live over HTTP or
-                WebSocket. Below, real people reading real sentences.
-              </p>
-            </div>
+        <Section tone="aubergine" id="recognize" className="dark">
+            <SectionHead title="Jackrabbit ASR writes it down."
+              sub="A 116M-parameter recognizer that writes cased, punctuated text, from a file or live over HTTP or WebSocket. Below, real people reading real sentences." />
 
             <div className="sp-stream reveal">
               <div className="sp-stream-h">
@@ -392,41 +366,42 @@ export default function SpeechPageClient() {
                 );
               })}
             </div>
-          </div>
-        </section>
+        </Section>
 
-        <section className="sec" id="run">
-          <div className="wrap">
-            <div className="sec-head reveal">
-              <p className="eyebrow">Run it</p>
-              <h2 className="h-section">One container, one HTTP API.</h2>
-              <p className="lead">From the model cards. Amami runs on CPU only and needs Surogate 1.5.5 or later; drop <code>--gpus all</code> to run Jackrabbit on a CPU too.</p>
+        <Section id="run">
+          <SectionHead title="One container, one HTTP API."
+            sub={<>From the model cards. Amami runs on CPU only and needs Surogate 1.5.5 or later; drop <code>--gpus all</code> to run Jackrabbit on a CPU too.</>} />
+          <div className="lab-code">
+            <div className="lab-pane">
+              <div className="lab-pane-h"><span><b>Speak</b> with Amami</span><span>text to speech</span></div>
+              <pre>{SPEECH_RUN.tts}</pre>
             </div>
-            <div className="lab-code reveal">
-              <div className="lab-pane">
-                <div className="lab-pane-h"><span><b>Speak</b> with Amami</span><span>text to speech</span></div>
-                <pre>{SPEECH_RUN.tts}</pre>
-              </div>
-              <div className="lab-pane">
-                <div className="lab-pane-h"><span><b>Listen</b> with Jackrabbit</span><span>speech to text</span></div>
-                <pre>{SPEECH_RUN.stt}</pre>
-              </div>
-            </div>
-            <div className="lab-reslinks sp-links reveal">
-              {SPEECH_LINKS.map((l) => (
-                <a className="lab-textlink" key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
-                   onClick={() => track('labs_link_clicked', { label: l.label })}>
-                  {l.label}
-                  <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
-                </a>
-              ))}
-              <a className="lab-textlink" href="/labs/rune/">
-                Surogate Rune
-                <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
-              </a>
+            <div className="lab-pane">
+              <div className="lab-pane-h"><span><b>Listen</b> with Jackrabbit</span><span>speech to text</span></div>
+              <pre>{SPEECH_RUN.stt}</pre>
             </div>
           </div>
-        </section>
+          <div className="lab-reslinks">
+            {SPEECH_LINKS.map((l) => (
+              <a className="lab-textlink" key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
+                 onClick={() => track('labs_link_clicked', { label: l.label })}>
+                {l.label}
+                <ArrowUpRight size={15} strokeWidth={2} aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        </Section>
+
+        <Section tone="aubergine" rings={CLOSING_RINGS} inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 className={H2.feature}>Run speech on your own servers.</h2>
+            <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Jackrabbit listens and Amami speaks, from one container, on a CPU or a GPU.</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Button href={SPEECH_ABOUT.collection} variant="sun" size="lg" external arrow event="labs_link_clicked" eventProps={{ label: 'speech_collection' }}>All models on Hugging Face</Button>
+            <Button href={SPEECH_ABOUT.article} variant="glass" size="lg" external>Read the launch article</Button>
+          </div>
+        </Section>
       </main>
 
       <Footer />
