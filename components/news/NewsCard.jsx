@@ -1,3 +1,4 @@
+import Tail from '@/components/site/Tail';
 import { ChevronRight } from 'lucide-react';
 import Cover from './Cover';
 import { fmtDate } from '@/lib/news';
@@ -10,8 +11,8 @@ export default function NewsCard({ post }) {
         <span className="font-medium text-ink">{post.category}</span>
         <time dateTime={post.date} className="text-ink/60">{fmtDate(post.date)}</time>
       </span>
-      <span className="mt-1.5 flex items-start gap-1 text-[16px] font-medium leading-[1.4]">
-        <span>{post.title}</span><ChevronRight size={16} className="nudge mt-[3px] shrink-0 text-ink/40 group-hover:text-ink" />
+      <span className="mt-1.5 block text-[16px] font-medium leading-[1.4]">
+        <Tail text={post.title}><ChevronRight size={16} className="nudge ml-1 inline-block align-[-3px] text-ink/40 group-hover:text-ink" /></Tail>
       </span>
     </a>
   );

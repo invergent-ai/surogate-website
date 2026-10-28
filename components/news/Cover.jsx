@@ -25,7 +25,7 @@ function Gateway({ big }) {
       <span className={`font-mono text-ink/60 ${big ? 'text-[13px]' : 'text-[10px]'}`}>surogate/surogate3.7-flash</span>
       <span className={`mt-2 flex flex-col overflow-hidden rounded-lg border border-hairline bg-white ${big ? 'text-[14px]' : 'text-[11px]'}`}>
         {OFFERS.map(([name, price, ttft, picked]) => (
-          <span key={name} className={`flex items-center justify-between gap-3 border-hairline [&:not(:first-child)]:border-t ${big ? 'px-4 py-3' : 'px-3 py-2'} ${picked ? 'bg-sun/15' : ''}`}>
+          <span key={name} className={`flex items-center justify-between gap-3 border-hairline [&:not(:first-child)]:border-t ${big ? 'px-4 py-3' : 'px-3 py-2'} ${picked ? 'bg-stone shadow-[inset_3px_0_0_#ffaf10]' : ''}`}>
             <span className="font-medium text-ink">{name}</span>
             <span className="flex gap-3 tabular-nums text-ink/60"><span>{price}</span><span>{ttft}</span></span>
           </span>
@@ -59,13 +59,13 @@ function Engine({ big }) {
 // The fixed path from the Keel page, redrawn small: the agent works inside one step.
 function Keel({ big }) {
   return (
-    <span className={`flex h-full items-center justify-center bg-stone ${big ? 'px-[8%]' : 'px-3'}`}>
+    <span className={`flex h-full items-center justify-center bg-stone ${big ? 'px-3 md:px-[8%]' : 'px-3'}`}>
       <span className="flex w-full items-center">
         {STAGES.map(([stage, who], i) => (
           <span key={stage} className="contents">
             {i > 0 && <span className="h-px min-w-2 flex-1 bg-ink/25" />}
-            <span className={`flex shrink-0 flex-col rounded-lg border bg-white ${who === 'Agent' ? 'border-sun' : 'border-hairline'} ${big ? 'gap-2 p-3 md:p-4' : 'gap-1.5 p-2'}`}>
-              <span className={`font-medium text-ink ${big ? 'text-[13px] md:text-[15px]' : 'text-[11px]'}`}>{stage}</span>
+            <span className={`flex shrink-0 flex-col rounded-lg border bg-white ${who === 'Agent' ? 'border-sun' : 'border-hairline'} ${big ? 'gap-1.5 p-2 md:gap-2 md:p-4' : 'gap-1.5 p-2'}`}>
+              <span className={`font-medium text-ink ${big ? 'text-[12px] md:text-[15px]' : 'text-[11px]'}`}>{stage}</span>
               <span className={`self-start rounded-full px-1.5 py-px ${who === 'Agent' ? 'bg-sun text-aubergine' : 'bg-stone text-ink/60'} ${big ? 'text-[11px] md:text-[12px]' : 'text-[9px]'}`}>{who}</span>
             </span>
           </span>
