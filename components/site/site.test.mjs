@@ -192,7 +192,7 @@ test('every film card names its demo business and opens the film', async () => {
   }
 });
 
-test('a partner mark names its tier with its own rabbit: simple, Jackrabbit, the logo star rabbit', async () => {
+test('a partner mark names its tier by its rabbit: simple, with the star\'s arm, the logo star rabbit', async () => {
   const { partnerMarkSvg } = await import('./illustrations/partnerBadges.js');
   const { RABBIT_FILL } = await import('./rabbit.js');
   const { LOGO_RABBIT, LOGO_STAR } = await import('./logo.js');
@@ -204,22 +204,24 @@ test('a partner mark names its tier with its own rabbit: simple, Jackrabbit, the
   }
   const [silver, gold, diamond] = ['silver', 'gold', 'diamond'].map((t) => partnerMarkSvg(t, 'light'));
   assert.ok(silver.includes(RABBIT_FILL) && !silver.includes('#ffaf10'));
-  assert.ok(!gold.includes(RABBIT_FILL) && gold.includes('fill="#ffaf10"'));
+  assert.ok(gold.includes(`d="${RABBIT_FILL} `) && gold.includes('fill="#ffaf10"') && /fill="none" stroke="#c27c00"/.test(gold));
   assert.ok(diamond.includes(`d="${LOGO_STAR}" fill="#0a0a0a"`) && diamond.includes(`d="${LOGO_RABBIT}" fill="#ffaf10"`));
   assert.ok(partnerMarkSvg('diamond', 'dark').includes(`d="${LOGO_STAR}" fill="#ffffff"`));
   assert.throws(() => partnerMarkSvg('platinum'), /Unknown partner tier/);
 });
 
-test('every tier sits in the same ring, centred at the same size', async () => {
+test('every tier sits in one ring, centred at the same size, facing right', async () => {
   const { partnerMarkSvg, artTransform } = await import('./illustrations/partnerBadges.js');
-  const frames = ['silver', 'gold', 'diamond'].map((t) => partnerMarkSvg(t, 'dark').match(/<circle class="pm-frame"[^>]*>/)[0]);
-  assert.equal(new Set(frames).size, 1);
+  const frames = ['silver', 'gold', 'diamond'].map((t) => partnerMarkSvg(t, 'dark').match(/<g class="pm-frame"><circle cx="48" cy="48" r="46"/));
+  assert.ok(frames.every(Boolean));
   // Each art box, mapped through its transform, is centred on (48, 48) and no side exceeds the ring.
-  const BOX = { silver: [1.79, 1.79, 67.48, 69.15], gold: [5.45, 10.29, 69.23, 59.54], diamond: [496.01, 0, 206.57, 235.03] };
+  // Diamond is the logo mirrored, so all three rabbits face right.
+  const BOX = { silver: [1.79, 1.79, 67.48, 69.15], gold: [-6.8, 1.79, 76.07, 69.15], diamond: [496.01, 0, 206.57, 235.03] };
   for (const [tier, [x, y, w, h]] of Object.entries(BOX)) {
-    const [tx, ty, s] = artTransform(tier).match(/-?[\d.]+/g).map(Number);
-    assert.ok(Math.abs(tx + (x + w / 2) * s - 48) < 0.05 && Math.abs(ty + (y + h / 2) * s - 48) < 0.05, tier);
-    assert.ok(Math.max(w, h) * s > 53.9 && Math.max(w, h) * s <= 60, tier);
+    const [tx, ty, sx, sy] = artTransform(tier).match(/-?[\d.]+/g).map(Number);
+    assert.equal(sx < 0, tier === 'diamond', tier);
+    assert.ok(Math.abs(tx + (x + w / 2) * sx - 48) < 0.05 && Math.abs(ty + (y + h / 2) * sy - 48) < 0.05, tier);
+    assert.ok(Math.max(w, h) * sy > 53.9 && Math.max(w, h) * sy <= 60, tier);
   }
 });
 
