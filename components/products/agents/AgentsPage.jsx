@@ -9,6 +9,8 @@ import { TASK_ATTEMPTS } from '@/lib/products';
 import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
 import Scroller from '../Scroller';
 import Faq from '../Faq';
+import { HERO_RINGS, BAND_RINGS } from '../rings';
+import AgentRings from './Rings';
 import JobPicker from './JobPicker';
 import { SetupPanel, KnowledgePanel, ChannelsPanel, LongPanel, GovernPanel, ImprovePanel } from './Panels';
 
@@ -86,8 +88,9 @@ export default function AgentsPage() {
         actions={<>
           <Button href={SIGN_IN} size="lg" arrow event="cta_signup_clicked" eventProps={{ location: 'agents_hero' }}>Start building</Button>
           <Button href={CONTACT_SALES} size="lg" variant="secondary" event="contact_sales_clicked" eventProps={{ location: 'agents_hero' }}>Contact Sales</Button>
-        </>}>
-        <div className="mx-auto max-w-[1040px] rounded-2xl bg-white p-3 md:p-8">
+        </>}
+        rings={<AgentRings className={HERO_RINGS} />}>
+        <div className="mx-auto max-w-[880px]">
           <VideoFrame src="/media/loops/agents.mp4" poster="/media/loops/agents.jpg" />
           <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">An agent asks before it pays a supplier. Filmed on a demo business.</p>
         </div>
@@ -131,13 +134,14 @@ export default function AgentsPage() {
         </ul>
       </Section>
 
-      <Section tone="aubergine" id="sovereign">
+      <Section tone="aubergine" id="sovereign" className="relative isolate overflow-hidden">
+        <AgentRings dark className={BAND_RINGS} />
         <Lead title="Run all of it inside your own network." sub="On-premise or air-gapped, the whole platform runs on your Kubernetes with your models, and no data has to leave your network." />
         <div className="rounded-2xl border border-dashed border-white/25 p-3 md:p-5">
           <p className="m-0 mb-3 px-1 text-[13px] text-white/60">Your network</p>
           <ul className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
             {NETWORK.map(([t, d]) => (
-              <li key={t} className="rounded-xl bg-white/[.06] p-5">
+              <li key={t} className="rounded-xl bg-[#371f3a] p-5">
                 <p className="m-0 text-[15px] font-medium">{t}</p>
                 <p className="m-0 mt-1.5 text-[14px] leading-[1.5] text-white/60">{d}</p>
               </li>
