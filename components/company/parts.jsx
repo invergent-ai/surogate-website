@@ -1,3 +1,4 @@
+import Tail from '@/components/site/Tail';
 import { ChevronRight } from 'lucide-react';
 import { CONTAINER } from '@/components/site/Section';
 import HeroRings from '@/components/solutions/HeroRings';
@@ -20,7 +21,7 @@ export function SplitHero({ title, sub, actions, links }) {
         <div className="load-up">
           <h1 className={H1}>{title}</h1>
           <p className={SUB}>{sub}</p>
-          <div className="mt-8 flex flex-wrap gap-2.5">{actions}</div>
+          <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:gap-2.5">{actions}</div>
         </div>
         {links && (
           <ul className="m-0 list-none p-0 load-up" style={{ '--t': '120ms' }}>
@@ -46,9 +47,9 @@ export function Values() {
   return (
     <ol className="m-0 grid list-none overflow-hidden rounded-2xl bg-white p-0 md:grid-cols-3">
       {VALUES.map((v, i) => (
-        <li key={v.title} className="border-hairline p-6 md:p-8 [&:not(:first-child)]:border-t md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-t-0">
+        <li key={v.title} className="border-hairline py-6 first:pt-0 md:p-8 md:first:pt-8 [&:not(:first-child)]:border-t md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-t-0">
           <span className="block text-[28px] font-[400] leading-none tracking-[-0.01em] text-ink/45 tabular-nums" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-          <h3 className="m-0 mt-8 text-[18px] font-[500] leading-[1.3]">{v.title}</h3>
+          <h3 className="m-0 mt-4 text-[18px] font-[500] leading-[1.3] md:mt-8">{v.title}</h3>
           <p className="m-0 mt-2 text-[15px] leading-[1.6] text-ink/65">{v.line}</p>
         </li>
       ))}
@@ -103,7 +104,7 @@ export function Timeline() {
         {RELEASES.filter((r) => r.date.startsWith(y)).map((r) => (
           <li key={r.title} className="border-white/10 [&:not(:first-child)]:border-t">
             <a href={r.href} {...ext(r.href)} className="group flex min-h-12 items-center justify-between gap-6 py-3 text-[15px] !text-white no-underline">
-              <span className="flex items-center gap-1">{r.title}<ChevronRight size={15} className="nudge shrink-0 text-white/40 group-hover:text-white" /></span>
+              <span><Tail text={r.title}><ChevronRight size={15} className="nudge ml-1 inline-block align-[-2px] text-white/40 group-hover:text-white" /></Tail></span>
               <time dateTime={r.date} className="shrink-0 text-[13px] tabular-nums text-white/55">{fmtRelease(r.date)}</time>
             </a>
           </li>

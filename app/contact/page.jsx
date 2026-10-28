@@ -26,7 +26,7 @@ export default function ContactPage() {
               {CHANNELS.map((c) => (
                 <li key={c.key} className="bg-white">
                   <TrackedLink href={c.href} event={c.event} eventProps={{ channel: 'email', team: c.key, location: 'contact' }}
-                    className="group flex h-full flex-col justify-between gap-10 p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-white md:p-8">
+                    className="group flex h-full flex-col justify-between gap-6 p-6 md:gap-10 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-white md:p-8">
                     <span>
                       <span className="block text-[20px] font-[500]">{c.title}</span>
                       <span className="mt-2 block max-w-[40ch] text-[15px] leading-[1.55] text-ink/60">{c.line}</span>

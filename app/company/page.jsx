@@ -42,7 +42,7 @@ export default function CompanyPage() {
           links={LINKS}
         />
 
-        <Section inner="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-20">
+        <Section inner="grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <h2 className={H2.feature}>Invergent makes Surogate.</h2>
           <div>
             <p className="m-0 text-[17px] leading-[1.65] text-ink/75">{DEFINITION}</p>
