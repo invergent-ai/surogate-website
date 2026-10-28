@@ -9,7 +9,7 @@ import HeroAction, { dwellFor } from './HeroAction';
 import { PRODUCTS } from '@/lib/products';
 import { ANNOUNCEMENT } from '@/lib/site';
 
-const H1 = 'm-0 text-balance text-[36px] font-[450] leading-[1.1] tracking-[-0.01em] text-ink md:text-[48px] md:leading-[1.05] lg:text-[58px]';
+const H1 = 'm-0 text-balance text-[36px] font-[450] leading-[1.1] tracking-[-0.01em] text-ink md:text-[48px] md:leading-[1.05] lg:text-[56px]';
 const SUB = 'mx-auto mt-5 mb-0 max-w-[600px] text-balance text-[16px] leading-[1.6] text-ink/65 md:text-[18px]';
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const exitMs = (text) => 320 + text.length * 8;

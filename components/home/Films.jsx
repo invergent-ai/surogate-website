@@ -24,7 +24,7 @@ export default function Films() {
             <li key={f.slug}>
               <button type="button" aria-label={`Watch ${f.title}`} onClick={() => open(f)} className="group block w-full text-left">
                 <span className="relative block aspect-[16/10] overflow-hidden rounded-xl bg-stone">
-                  <span className="tile-media block h-full w-full"><LoopVideo src={files.loop} poster={files.poster} className="h-full w-full object-cover" /></span>
+                  <span className="tile-media block h-full w-full"><LoopVideo src={files.loop} poster={files.poster} className="h-full w-full object-contain" /></span>
                   <span className="absolute bottom-3 left-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-ink"><Play size={14} /></span>
                 </span>
                 <span className="mt-3 block text-[14px] font-medium leading-[1.4] text-ink">{f.title}</span>
