@@ -54,21 +54,33 @@ export function ProductsPanel({ onPick }) {
   );
 }
 
+// Keeps Tab and Shift+Tab inside the open mobile sheet and its close button.
+function trapFocus(e, nodes) {
+  const items = nodes.filter((n) => n && n.getClientRects().length);
+  const first = items[0], last = items[items.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  else if (!items.includes(document.activeElement)) { e.preventDefault(); first.focus(); }
+}
+
 const PANEL = 'rounded-xl border border-ink/[.06] bg-white shadow-[0_16px_48px_-8px_rgba(0,0,0,.22)]';
 
 export default function Nav() {
   const [open, setOpen] = useState(null);
   const [sheet, setSheet] = useState(false);
+  const [tryOpen, setTryOpen] = useState(false);
   // The products panel holds six live previews, so it is built on first open and then kept for its close animation.
   const [megaBuilt, setMegaBuilt] = useState(false);
   const pathname = usePathname() || '/';
   const header = useRef(null);
   const burger = useRef(null);
+  const sheetRef = useRef(null);
 
   useEffect(() => { setOpen(null); setSheet(false); }, [pathname]);
 
   useEffect(() => {
     const onKey = (e) => {
+      if (e.key === 'Tab' && sheet) return trapFocus(e, [burger.current, ...sheetRef.current.querySelectorAll('a, summary, button')]);
       if (e.key !== 'Escape') return;
       if (open) header.current?.querySelector(`[data-menu="${open}"]`)?.focus();
       else if (sheet) burger.current?.focus();
@@ -89,6 +101,7 @@ export default function Nav() {
   }, []);
 
   useEffect(() => {
+    if (!sheet) setTryOpen(false);
     document.body.style.overflow = sheet ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [sheet]);
@@ -178,7 +191,8 @@ export default function Nav() {
       </div>
 
       {/* The header's backdrop-filter makes it the containing block for fixed children, so the sheet sizes to the viewport itself. */}
-      <nav id="mobile-nav" aria-label="Mobile" hidden={!sheet}
+      {/* A tap on any link closes the sheet, so a same-page anchor does not leave it covering the page. */}
+      <nav ref={sheetRef} id="mobile-nav" aria-label="Mobile" hidden={!sheet} onClick={(e) => e.target.closest('a') && setSheet(false)}
         className="fixed inset-x-0 top-16 h-[calc(100dvh-4rem)] overflow-y-auto bg-white px-6 pb-10 lg:hidden">
         {MENUS.map((m) => m.href ? (
           <a key={m.label} href={m.href} className="block border-b border-hairline py-4 text-[17px] !text-ink no-underline">{m.label}</a>
@@ -187,14 +201,34 @@ export default function Nav() {
             <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-[17px] [&::-webkit-details-marker]:hidden">{m.label}<ChevronDown size={16} className="transition-transform group-open:rotate-180" /></summary>
             <div className="pb-3">
               {(m.mega ? PRODUCTS.map((p) => ({ label: p.name, href: p.href })) : [...m.items, ...(m.more ? [m.more] : [])]).map((i) => (
-                <a key={i.label} href={i.href} {...ext(i)} className="block py-2 text-[15px] !text-ink/75 no-underline">{i.label}</a>
+                <a key={i.label} href={i.href} {...ext(i)} className="block py-2.5 text-[15px] !text-ink/75 no-underline">{i.label}</a>
               ))}
             </div>
           </details>
         ))}
         <div className="mt-6 flex flex-col gap-3">
           <Button href={CONTACT_SALES} variant="secondary" size="lg" event="contact_sales_clicked" eventProps={{ location: 'nav_mobile' }}>Contact Sales</Button>
-          <Button href={SIGN_IN} size="lg" event="cta_signup_clicked" eventProps={{ location: 'nav_mobile' }}>Try for free</Button>
+          <div className="flex">
+            <TrackedLink href={SIGN_IN} event="cta_signup_clicked" eventProps={{ location: 'nav_mobile' }}
+              className="inline-flex h-11 flex-1 items-center justify-center rounded-l-full bg-ink pl-12 text-[14px] font-medium !text-white no-underline">Try for free</TrackedLink>
+            <button type="button" aria-label="More ways to start" aria-expanded={tryOpen} aria-controls="mobile-try" onClick={() => setTryOpen((o) => !o)}
+              className="inline-flex h-11 w-12 items-center justify-center rounded-r-full border-l border-white/20 bg-ink text-white">
+              <ChevronDown size={16} className={`transition-transform duration-150 ease-in-out ${tryOpen ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
+          <div id="mobile-try" hidden={!tryOpen} className="grid grid-cols-2 gap-x-4 gap-y-4 pt-2">
+            {TRY_MENU.map((g) => (
+              <div key={g.group}>
+                <p className="m-0 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-ink/40">{g.group}</p>
+                {g.items.map((i) => (
+                  <TrackedLink key={i.label} href={i.href} {...ext(i)} event="try_free_option" eventProps={{ option: i.label, location: 'nav_mobile' }}
+                    className="flex items-center gap-1 py-2.5 text-[15px] !text-ink/75 no-underline">
+                    {i.label}{i.external && <ArrowUpRight size={13} className="text-ink/40" />}
+                  </TrackedLink>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </nav>
     </header>
