@@ -40,3 +40,27 @@
 @keyframes hold-a { 0%, 45% { opacity: 1; } 50%, 95% { opacity: 0; } 100% { opacity: 1; } }
 @keyframes hold-b { 0%, 45% { opacity: 0; } 50%, 95% { opacity: 1; } 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .hold-a, .hold-b { animation: none !important; } .hold-b { opacity: 0; } }
+
+/* Each product's own rings (RingField.jsx and the pages' Rings.jsx), drawn and paused like Transit (app/v2.css). */
+/* deslop-ignore-next-line 06: masks that fade the ring hairlines out before the copy; nothing gradient is drawn */
+.rf-hero { -webkit-mask-image: linear-gradient(to bottom, transparent 10%, #000 42%); mask-image: linear-gradient(to bottom, transparent 10%, #000 42%); }
+/* deslop-ignore-next-line 06: the same kind of mask, fading the band's rings out before its copy */
+.rf-band { -webkit-mask-image: radial-gradient(45% 70% at 84% 36%, #000 30%, transparent 100%); mask-image: radial-gradient(45% 70% at 84% 36%, #000 30%, transparent 100%); }
+.rf .rf-sun { fill: none; stroke: #ffaf10; stroke-width: 2; stroke-linecap: round; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; }
+
+/* Voice: three sun ripples leave the call in turn and fade as they widen. */
+.rf .rf-ripple { stroke-width: 1; opacity: 0; animation: rf-ripple 9s var(--ease-out) calc(var(--k) * -3s) infinite paused; }
+@keyframes rf-ripple { 0% { opacity: 0; transform: scale(.6); } 12% { opacity: .6; } 100% { opacity: 0; transform: scale(1.18); } }
+
+/* AI Gateway: one request at a time, the router's mark leaves the request along one provider's ring. */
+.rf .rf-pick { stroke-dasharray: 5 95; opacity: 0; transform: rotate(var(--a));
+  animation: rf-pick 12.5s linear calc(var(--k) * 2.5s) infinite paused; }
+@keyframes rf-pick { 0% { opacity: 0; transform: rotate(var(--a)); } 3% { opacity: 1; } 17% { opacity: 1; }
+  20% { opacity: 0; transform: rotate(calc(var(--a) + var(--sweep))); } 100% { opacity: 0; transform: rotate(calc(var(--a) + var(--sweep))); } }
+.rf[data-live] .rf-ripple, .rf[data-live] .rf-pick { animation-play-state: running; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rf .rf-ripple, .rf .rf-pick { animation: none !important; }
+  .rf .rf-ripple { opacity: .35; transform: none; }
+  .rf .rf-pick.rf-first { opacity: 1; transform: rotate(calc(var(--a) + var(--sweep) * .6)); }
+}

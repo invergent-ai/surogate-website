@@ -19,10 +19,11 @@ export const H1 = 'm-0 text-balance text-[36px] font-[450] leading-[1.08] tracki
 export const SUB = 'mt-5 mb-0 max-w-[620px] text-balance text-[16px] leading-[1.6] text-ink/65 md:text-[18px]';
 
 // The product hero: headline, one line, the actions, then the product itself.
-// A rabbit pose sits inline at 1em in the headline on the two pages that have the character.
-export function Hero({ name, title, pose, rest, sub, actions, note, children, id }) {
+// A rabbit pose sits inline at 1em in the headline on the two pages that have the character. `rings` is the
+// page's own ring composition, laid behind the product and faded out before the headline.
+export function Hero({ name, title, pose, rest, sub, actions, note, rings, children, id }) {
   return (
-    <section id={id} className="bg-white">
+    <section id={id} className={`bg-white ${rings ? 'relative overflow-hidden' : ''}`}>
       <div className={`${CONTAINER} pt-14 pb-16 text-center md:pt-20 md:pb-24`}>
         {name && <p className="load-up m-0 mb-4 text-[15px] font-medium text-ink/60" style={{ '--y': '8px', '--d': '600ms' }}>{name}</p>}
         <h1 className={`${H1} load-up`} style={{ '--y': '10px', '--d': '600ms' }}>
@@ -39,7 +40,7 @@ export function Hero({ name, title, pose, rest, sub, actions, note, children, id
         <p className={`${SUB} mx-auto load-up`} style={{ '--y': '12px', '--t': '150ms', '--d': '600ms' }}>{sub}</p>
         <div className="load-up mt-8 flex flex-wrap items-center justify-center gap-3" style={{ '--y': '12px', '--t': '250ms', '--d': '600ms' }}>{actions}</div>
         {note && <p className="m-0 mt-4 text-[13px] text-ink/50">{note}</p>}
-        {children && <div className="load-fade mt-12 md:mt-16" style={{ '--t': '400ms' }}>{children}</div>}
+        {children && <div className="load-fade relative isolate mt-12 md:mt-16" style={{ '--t': '400ms' }}>{rings}{children}</div>}
       </div>
     </section>
   );
