@@ -6,15 +6,18 @@ import TrackedLink from '@/components/TrackedLink';
 import Button, { Arrow } from '@/components/site/Button';
 import { amamiSrc } from '@/lib/labs';
 
-// What sits under the headline. Only Agents has a box, where a brief types itself out; every other
-// product gets its own plain calls to action. Server, no-JS and reduced motion get the finished state.
+// What sits under the headline. Agents has a box where a brief types itself out, Voice one with a line
+// Amami reads; every other product gets its own plain calls to action. Server, no-JS and reduced motion get
+// the finished state.
 export const TYPE_MS = 140;
 export const HOLD_MS = 3000;
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const ext = (l) => (l.external ? { external: true } : {});
 const where = (key) => ({ location: `home_hero_${key}` });
 
-export const briefFor = (a, round) => a.briefs[round % a.briefs.length];
+const pick = (list, round) => list[round % list.length];
+export const briefFor = (a, round) => pick(a.briefs, round);
+export const lineFor = (a, round) => pick(a.lines, round);
 // The slide lasts as long as the headline swap, its brief's typing and the hold, so it never changes mid-sentence.
 export const dwellFor = (a, round) => (a.kind === 'brief' ? 1000 + briefFor(a, round)[1].split(' ').length * TYPE_MS + HOLD_MS : 7000);
 
@@ -56,28 +59,28 @@ function TextLink({ l, k }) {
   );
 }
 
-const WAVE = [5, 9, 14, 8, 12, 16, 7, 11, 6, 10, 15, 9];
-function Speak({ a, k, onPlaying }) {
+// A line a voice agent would say on a call, in the market's chip like a brief, with Amami reading it.
+function Speak({ a, round, onPlaying }) {
+  const { market, slug, ro, en } = lineFor(a, round);
   const audio = useRef(null);
   const [playing, setPlaying] = useState(false);
   useEffect(() => () => onPlaying?.(false), [onPlaying]);
   const set = (v) => { setPlaying(v); onPlaying?.(v); };
   return (
-    <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-      <span className="flex items-center gap-3">
-        <button type="button" onClick={() => (audio.current.paused ? audio.current.play().catch(() => {}) : audio.current.pause())}
-          aria-label={playing ? `Pause: ${a.label}` : `Play: ${a.label}`}
-          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-white transition duration-150 ease-in-out hover:brightness-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-2">
-          {playing ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="translate-x-px" />}
-        </button>
-        <span className="text-[15px] text-ink">{a.label}</span>
-        {/* Space kept for the waveform so it appears without moving anything. */}
-        <span aria-hidden="true" className={`flex h-5 w-[57px] items-center gap-[3px] transition-opacity duration-300 ${playing ? 'opacity-100' : 'opacity-0'}`}>
-          {WAVE.map((h, i) => <span key={i} className={`w-[2px] rounded-full bg-ink/70 ${playing ? 'mock-bar' : ''}`} style={{ height: h, '--i': i }} />)}
-        </span>
-      </span>
-      <TextLink l={a.link} k={k} />
-      <audio ref={audio} src={amamiSrc(a.voice, a.sample)} preload="none" onPlay={() => set(true)} onPause={() => set(false)} onEnded={() => set(false)} />
+    <div className="flex h-[104px] w-full items-center gap-3 rounded-xl border border-hairline bg-white py-3 pr-3 pl-3 md:h-[72px] md:gap-4 md:pr-5">
+      <button type="button" onClick={() => (audio.current.paused ? audio.current.play().catch(() => {}) : audio.current.pause())}
+        aria-label={playing ? `Pause: ${a.label}` : `Play: ${a.label}`}
+        className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-white transition duration-150 ease-in-out hover:brightness-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-2">
+        {playing ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="translate-x-px" />}
+      </button>
+      <div className="flex min-w-0 flex-1 flex-col items-start gap-1 text-left md:flex-row md:items-center md:gap-3">
+        <span key={market} className="word-in shrink-0 rounded-md bg-ink px-2.5 py-1 text-[12px] font-medium leading-[16px] text-white md:w-[104px] md:text-center">{market}</span>
+        <div className="min-w-0 flex-1">
+          <p lang="ro" className="m-0 text-[13px] leading-[1.35] text-ink md:text-[15px]">{ro}</p>
+          <p className="m-0 mt-0.5 hidden text-[12px] leading-[1.35] text-ink/50 md:block">{en}</p>
+        </div>
+      </div>
+      <audio key={slug} ref={audio} src={amamiSrc(a.voice, slug)} preload="none" onPlay={() => set(true)} onPause={() => set(false)} onEnded={() => set(false)} />
     </div>
   );
 }
@@ -100,6 +103,6 @@ function Ctas({ a, k }) {
 export default function HeroAction({ product, round = 0, onPlaying }) {
   const a = product.action;
   if (a.kind === 'brief') return <Brief a={a} round={round} k={product.key} />;
-  if (a.kind === 'audio') return <Speak a={a} k={product.key} onPlaying={onPlaying} />;
+  if (a.kind === 'audio') return <Speak a={a} round={round} onPlaying={onPlaying} />;
   return <Ctas a={a} k={product.key} />;
 }

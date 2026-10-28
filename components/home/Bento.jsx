@@ -11,7 +11,7 @@ function Explore() {
   return <span className="inline-flex items-center gap-1 text-[14px] opacity-70 transition-opacity duration-150 ease-in-out group-hover:opacity-100">Explore <ArrowRight size={14} className="nudge" /></span>;
 }
 
-// Amami speaks when the rabbit is pressed: the same sample as the hero's voice action. A sibling of the
+// Amami speaks when the rabbit is pressed: the voice action's greeting sample. A sibling of the
 // tile's link, laid over the visual, since a button cannot sit inside a link.
 function Speak({ action }) {
   const audio = useRef(null);

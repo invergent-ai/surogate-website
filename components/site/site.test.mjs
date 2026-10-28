@@ -78,31 +78,53 @@ test('the hero server-renders the Agents headline as the h1, its typed brief wit
   assert.equal((html.match(/aria-label="Show /g) || []).length, 6);
 });
 
-test('only Agents has a box; the others are plain calls to action, and the voice one plays a real sample', async () => {
-  const fs = await import('node:fs');
+test('Agents and Voice have a box; the others are plain calls to action', async () => {
   const { PRODUCTS } = await import('../../lib/products.js');
   const { SIGN_IN } = await import('../../lib/site.js');
-  const { amamiSrc } = await import('../../lib/labs.js');
   const kinds = Object.fromEntries(PRODUCTS.map((p) => [p.key, p.action.kind]));
   assert.deepEqual(kinds, { agents: 'brief', surogate: 'ctas', voice: 'audio', keel: 'ctas', train: 'ctas', gateway: 'ctas' });
   assert.equal(PRODUCTS[0].action.primary.href, SIGN_IN);
   for (const p of PRODUCTS) for (const [m, t] of p.action.briefs || []) assert.ok(`${m} · ${t}`.length <= 64, t);
-  const voice = PRODUCTS.find((p) => p.key === 'voice');
-  assert.ok(fs.existsSync(new URL(`../../public${amamiSrc(voice.action.voice, voice.action.sample)}`, import.meta.url)));
   const React = (await import('react')).default;
   const { renderToStaticMarkup } = await import('react-dom/server');
   const { default: HeroAction } = await import('../home/HeroAction.jsx');
-  const v = renderToStaticMarkup(React.createElement(HeroAction, { product: voice, onPlaying: () => {} }));
-  assert.match(v, /<button type="button"[^>]*aria-label="Play: Hear Amami speak Romanian"/);
-  assert.match(v, /<audio[^>]*preload="none"/);
-  assert.doesNotMatch(v, /autoplay/i);
   for (const p of PRODUCTS) {
     const html = renderToStaticMarkup(React.createElement(HeroAction, { product: p, onPlaying: () => {} }));
     const a = p.action;
     for (const l of [a.primary, a.secondary, a.link].filter(Boolean)) assert.ok(html.includes(`href="${l.href}"`), `${p.key} ${l.label}`);
-    assert.equal(html.includes('rounded-xl border'), a.kind === 'brief', p.key);
-    assert.doesNotMatch(html, /\u2014|base_url|curl -LsSf|early access|Doina/i, p.key);
+    assert.equal(html.includes('rounded-xl border'), a.kind !== 'ctas', p.key);
+    assert.doesNotMatch(html, /\u2014|base_url|curl -LsSf|early access|Doina|Tudor|Radu/i, p.key);
   }
+});
+
+test('Voice speaks a Romanian line per Agents market, the next one each time round, each a real Amami recording', async () => {
+  const fs = await import('node:fs');
+  const { PRODUCTS } = await import('../../lib/products.js');
+  const { amamiSrc } = await import('../../lib/labs.js');
+  const { lineFor } = await import('../home/HeroAction.jsx');
+  const brief = PRODUCTS.find((p) => p.key === 'agents').action;
+  const voice = PRODUCTS.find((p) => p.key === 'voice');
+  const a = voice.action;
+  assert.deepEqual(a.lines.map((l) => l.market), brief.briefs.map(([m]) => m));
+  assert.deepEqual([0, 1, 2, 3].map((r) => lineFor(a, r).slug), [...a.lines.map((l) => l.slug), a.lines[0].slug]);
+  for (const s of [...a.lines.map((l) => l.slug), a.sample]) {
+    assert.ok(fs.existsSync(new URL(`../../public${amamiSrc(a.voice, s)}`, import.meta.url)), s);
+  }
+  for (const l of a.lines) {
+    assert.match(l.ro, /[ăâîșț]/, l.slug);
+    assert.ok(l.ro.length <= 100 && l.en.length <= 80, l.slug);
+  }
+  const React = (await import('react')).default;
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const { default: HeroAction } = await import('../home/HeroAction.jsx');
+  a.lines.forEach((l, round) => {
+    const v = renderToStaticMarkup(React.createElement(HeroAction, { product: voice, round, onPlaying: () => {} }));
+    assert.match(v, /<button type="button"[^>]*aria-label="Play: Hear Amami speak Romanian"/);
+    assert.ok(v.includes(`>${l.market}</span>`) && v.includes(`lang="ro"`) && v.includes(l.en.replace(/'/g, '&#x27;')), l.slug);
+    assert.ok(v.includes(l.ro), l.slug);
+    assert.match(v, new RegExp(`<audio[^>]*src="${amamiSrc(a.voice, l.slug)}"[^>]*preload="none"`));
+    assert.doesNotMatch(v, /autoplay/i);
+  });
 });
 
 test('the announcement pill opens an outside link in a new tab and an inside one in place', async () => {
