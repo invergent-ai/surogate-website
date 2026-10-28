@@ -1,7 +1,10 @@
-import '@/components/products/products.css';
-import AgentsPage from '@/components/products/agents/AgentsPage';
-import { productMetadata } from '@/components/products/meta';
+import Redirect, { redirectMetadata } from '@/components/site/Redirect';
+import { REDIRECTS } from '@/lib/site';
 
-export const metadata = productMetadata('/agents/');
+const to = REDIRECTS['/agents/'];
 
-export default AgentsPage;
+export const metadata = redirectMetadata(to);
+
+export default function Moved() {
+  return <Redirect to={to} />;
+}

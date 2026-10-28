@@ -28,7 +28,7 @@ Binding for every page. Read this before §3 of `2026-10-27-site-v2-design.md`, 
 - No icons in menus. No gradient frames around code. No status dots or glowing pills. **No glows of any kind**
   (owner, 2026-10-28): no glowing or pulsing dots, blurred halos, radial light blobs or SVG blur filters. No coloured tag
   chips. No "early access" (the desktop app is released: `surogate.ai/desktop/install.sh`).
-- Product names (owner, 2026-10-27): the agents platform is **Surogate** (route `/agents/`), the desktop
+- Product names (owner, 2026-10-27): the agents platform is **Surogate** (route `/surogate/`; `/agents/` redirects there), the desktop
   agent is **Surogate Desktop** (route `/surogate-desktop/`; not `/desktop/`, that path serves the installer).
   Then Voice, Keel, Train, AI Gateway. Never "Agents" as a product name on its own.
 - The product formerly called "API" is **AI Gateway**, at `/gateway/`, and it IS llm.buzz. There is no
@@ -47,7 +47,7 @@ Binding for every page. Read this before §3 of `2026-10-27-site-v2-design.md`, 
     - **Sell your inference**: "List your endpoint at your own price. We send you the callers."
       (`https://llm.buzz/providers/join`). Anyone who serves or fine-tunes models can list them.
       This pairs with Train: train your model, serve it, list it.
-- The rabbit is a character only on `/agents/` and `/surogate/` (and the Voice tile, as Amami). The simple rabbit mark is also the Surogate model's mark
+- The rabbit is a character only on `/surogate/` and `/surogate-desktop/` (and the Voice tile, as Amami). The simple rabbit mark is also the Surogate model's mark
   (the Surogate 3.7 Flash cover, owner's request). Nowhere else.
 - Never name a voice or a person in UI copy (no "Doina"). Name the model and the language.
 

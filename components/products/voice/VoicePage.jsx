@@ -20,7 +20,7 @@ const USES = [
   { market: 'Banking', job: 'A call center that reads codes right', line: 'Amounts and dates in words, IBANs and codes one character at a time.', href: '/solutions/banking-insurance/' },
   { market: 'Insurance', job: 'Claims lines that answer in Romanian', line: 'Jackrabbit writes each call down as cased, punctuated Romanian, ready for the claim file.', href: '/solutions/banking-insurance/' },
   { market: 'Public sector', job: 'Citizens who call in Romanian', line: 'Both models run on a CPU, inside your network, with no connection out.', href: '/solutions/government/' },
-  { market: 'Any team', job: 'A phone number for an agent', line: 'Phone is one of the nine channels in Surogate, with the agent\'s skills and approvals behind it.', href: '/agents/' },
+  { market: 'Any team', job: 'A phone number for an agent', line: 'Phone is one of the nine channels in Surogate, with the agent\'s skills and approvals behind it.', href: '/surogate/' },
 ];
 
 const MODELS = [

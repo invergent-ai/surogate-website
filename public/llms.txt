@@ -8,7 +8,7 @@
 > and through partners.
 
 ## Products
-- [Surogate](https://surogate.ai/agents/): AI colleagues for every team. Design, test, govern and run agents without code, in your cloud or on your own hardware.
+- [Surogate](https://surogate.ai/surogate/): AI colleagues for every team. Design, test, govern and run agents without code, in your cloud or on your own hardware.
 - [Surogate Desktop](https://surogate.ai/surogate-desktop/): Your Surogate agent, working on the files on your computer.
 - [Voice](https://surogate.ai/voice/): Voice agents that listen and answer in real time, on speech models we train ourselves.
 - [Keel](https://surogate.ai/keel/): Business processes that run agents. Stages, versioned decision rules, approval limits, audit and replay.

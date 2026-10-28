@@ -3,7 +3,7 @@ import Section, { SectionHead } from '@/components/site/Section';
 
 // The AI Gateway is llm.buzz: one key, the providers' own prices. It is never pitched as self-hosted.
 const STACK = [
-  { name: 'Surogate', line: "AI colleagues for every team, designed, tested and governed without code, working with the client's skills, knowledge and channels.", href: '/agents/' },
+  { name: 'Surogate', line: "AI colleagues for every team, designed, tested and governed without code, working with the client's skills, knowledge and channels.", href: '/surogate/' },
   { name: 'Surogate Desktop', line: 'The agent on each person\'s own computer: it works on the files in folders they choose, runs commands in a sandbox and uses their browser.', href: '/surogate-desktop/' },
   { name: 'Keel', line: 'Processes where agents, people and systems each do their step, under rules and approval limits the client owns.', href: '/keel/' },
   { name: 'AI Gateway', line: 'Every model on one key, at the price each provider posts, with a spend limit per project.', href: '/gateway/' },

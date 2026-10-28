@@ -53,11 +53,11 @@ test('no page says early access, names a voice, or uses a word the copy rules ba
   }
 });
 
-test('products go by their names: Surogate, never Agents alone, and the desktop app lives at /surogate-desktop/', async () => {
+test('products go by their names: Surogate at /surogate/, never Agents alone, and the desktop app at /surogate-desktop/', async () => {
   for (const key of Object.keys(PAGES)) {
     const h = await main(key);
     assert.doesNotMatch(h.replace(/<[^>]+>/g, ' '), /Surogate Agents|See Agents|Surogate Router/, key);
-    assert.doesNotMatch(h, /href="\/surogate\/|media\/loops\/surogate\.mp4/, key);
+    assert.doesNotMatch(h, /href="\/agents\/|media\/loops\/surogate\.mp4/, key);
   }
   assert.match(await main('agents'), /Meet[\s\S]*Surogate\./);
   assert.match(await main('desktop'), /Surogate Desktop/);
