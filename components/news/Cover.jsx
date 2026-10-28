@@ -1,7 +1,8 @@
 import Rabbit from '@/components/site/Rabbit';
 
 // Post covers: our palette and our own marks, drawn in code, in the same language as the home page's
-// "Our own models" cards. No photos. `big` is the featured and post-page size.
+// "Our own models" cards. No photos, and no rings: covers stay clean. Light covers sit on stone so they
+// read as a picture on the white page. `big` is the featured and post-page size.
 
 const SPEECH_MARKS = [['/labs/speech/jackrabbit.svg', 'Jackrabbit'], ['/labs/speech/jackrabbit-streaming.svg', 'Streaming'], ['/labs/speech/amami.svg', 'Amami']];
 const STAGES = [['Intake', 'System'], ['Checks', 'Agent'], ['Decision', 'Rule'], ['Offer', 'Person']];
@@ -20,7 +21,7 @@ function Flash({ big }) {
 const OFFERS = [['Surogate Spark EU', '$0.15', '0.04 s', true], ['Simpleminds EU', '$0.10', '0.07 s', false]];
 function Gateway({ big }) {
   return (
-    <span className={`flex h-full flex-col justify-center bg-white ${big ? 'px-[10%]' : 'px-5'}`}>
+    <span className={`flex h-full flex-col justify-center bg-stone ${big ? 'px-[10%]' : 'px-5'}`}>
       <span className={`font-mono text-ink/60 ${big ? 'text-[13px]' : 'text-[10px]'}`}>surogate/surogate3.7-flash</span>
       <span className={`mt-2 flex flex-col overflow-hidden rounded-lg border border-hairline bg-white ${big ? 'text-[14px]' : 'text-[11px]'}`}>
         {OFFERS.map(([name, price, ttft, picked]) => (
@@ -36,7 +37,7 @@ function Gateway({ big }) {
 
 function Speech({ big }) {
   return (
-    <span className={`grid h-full grid-cols-3 items-center bg-white ${big ? 'px-[12%]' : 'px-4'}`}>
+    <span className={`grid h-full grid-cols-3 items-center bg-stone ${big ? 'px-[12%]' : 'px-4'}`}>
       {SPEECH_MARKS.map(([src, label]) => (
         <span key={label} className="flex flex-col items-center gap-2">
           <img src={src} alt="" className={big ? 'h-16 w-16 md:h-24 md:w-24' : 'h-12 w-12 md:h-14 md:w-14'} />
@@ -49,9 +50,8 @@ function Speech({ big }) {
 
 function Engine({ big }) {
   return (
-    <span className="relative flex h-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#ffd27a] via-sun to-[#e7772a]">
-      <img src="/surogate_rings.svg" alt="" className="spin-slow absolute left-1/2 top-1/2 h-[180%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 opacity-70" />
-      <img src="/brand/logo-full-white.svg" alt="" className={`relative w-auto ${big ? 'h-10 md:h-14' : 'h-8'}`} />
+    <span className="flex h-full items-center justify-center bg-sun">
+      <img src="/brand/logo-full-white.svg" alt="" className={`w-auto ${big ? 'h-10 md:h-14' : 'h-8'}`} />
     </span>
   );
 }
@@ -59,7 +59,7 @@ function Engine({ big }) {
 // The fixed path from the Keel page, redrawn small: the agent works inside one step.
 function Keel({ big }) {
   return (
-    <span className={`flex h-full items-center justify-center bg-white ${big ? 'px-[8%]' : 'px-3'}`}>
+    <span className={`flex h-full items-center justify-center bg-stone ${big ? 'px-[8%]' : 'px-3'}`}>
       <span className="flex w-full items-center">
         {STAGES.map(([stage, who], i) => (
           <span key={stage} className="contents">
