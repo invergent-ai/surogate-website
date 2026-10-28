@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { Play, X } from 'lucide-react';
 import LoopVideo from '@/components/site/LoopVideo';
 import { RabbitAvatar } from '@/components/site/Rabbit';
+import FilmVideo from '@/components/site/FilmVideo';
 import { FILMS, filmFiles } from '@/lib/films';
 
 // One job per demo business, each filmed on the local stack. The chip picks the job; the window shows that
@@ -64,7 +65,7 @@ export default function JobPicker() {
       </div>
       <dialog ref={dialog} onClose={() => setOpen(false)} className="w-[min(92vw,720px,85dvh)] rounded-2xl bg-night p-0 backdrop:bg-black/70">
         <div className="aspect-square w-full">
-          {open && <video src={filmFiles(film.slug).film} poster={filmFiles(film.slug).poster} controls autoPlay playsInline className="block h-full w-full" />}
+          {open && <FilmVideo slug={film.slug} />}
         </div>
         <button type="button" onClick={() => dialog.current?.close()} aria-label="Close film" className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink"><X size={18} /></button>
       </dialog>

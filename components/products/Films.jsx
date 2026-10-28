@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { Play, X } from 'lucide-react';
 import LoopVideo from '@/components/site/LoopVideo';
+import FilmVideo from '@/components/site/FilmVideo';
 import { FILMS, filmFiles } from '@/lib/films';
 
 // Film cards whose loop plays muted in place; a click opens the whole film with sound in a dialog.
@@ -32,7 +33,7 @@ export default function Films({ slugs, cols = 'sm:grid-cols-2 lg:grid-cols-3' })
       </ul>
       <dialog ref={dialog} onClose={() => setFilm(null)} className="w-[min(92vw,720px,85dvh)] rounded-2xl bg-night p-0 backdrop:bg-black/70">
         <div className="aspect-square w-full">
-          {film && <video src={filmFiles(film.slug).film} poster={filmFiles(film.slug).poster} controls autoPlay playsInline className="block h-full w-full" />}
+          {film && <FilmVideo slug={film.slug} />}
         </div>
         <button type="button" onClick={() => dialog.current?.close()} aria-label="Close film" className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink"><X size={18} /></button>
       </dialog>

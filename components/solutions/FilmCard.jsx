@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { Play, X } from 'lucide-react';
 import { VideoFrame } from '@/components/site/ProductMedia';
+import FilmVideo from '@/components/site/FilmVideo';
 import { FILMS, filmFiles } from '@/lib/films';
 
 // A film's 16:10 loop in its window; a click plays the full (square) film in a dialog.
@@ -27,7 +28,7 @@ export default function FilmCard({ slug, caption, id }) {
       </button>
       <dialog ref={dialog} onClose={() => setOpen(false)} className="w-[min(92vw,720px,85dvh)] rounded-2xl bg-night p-0 backdrop:bg-black/70">
         <div className="aspect-square w-full">
-          {open && <video src={files.film} poster={files.poster} controls autoPlay playsInline className="block h-full w-full" />}
+          {open && <FilmVideo slug={slug} />}
         </div>
         <button type="button" onClick={close} aria-label="Close film" className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink"><X size={18} /></button>
       </dialog>
