@@ -1,0 +1,89 @@
+/* The Keel board loop (components/keel/BoardFlow.jsx): one 20 s run, played only while the figure is on
+   screen. The resting style of every part is the finished case, so off screen and under reduced motion the
+   board shows it paid, the flow open and the whole trail written. Transform and opacity only. */
+
+.kb-lane { container-type: inline-size; --p: 6px; }
+@media (min-width: 640px) { .kb-lane { --p: 8px; } }
+.kb-case { --x: calc((100cqw - 24px) / 4 + 8px); margin-left: var(--p); width: calc((100cqw - 24px) / 4 - 2 * var(--p));
+  transform: translateX(calc(var(--x) * 3)); backface-visibility: hidden; }
+
+.kb-st { opacity: 0; } .kb-st5 { opacity: 1; }
+.kb-on, .kb-who, .kb-wait { opacity: 0; }
+.kb-bar { opacity: 0; }
+
+.kb[data-live] :is(.kb-case, .kb-st, .kb-sel, .kb-flow, .kb-on, .kb-path, .kb-end, .kb-who, .kb-wait, .kb-ok, .kb-row, .kb-cap, .kb-bar) {
+  animation: 20s var(--ease-out, cubic-bezier(.16, 1, .3, 1)) infinite both; }
+
+.kb[data-live] .kb-case { animation-name: kb-case; }
+@keyframes kb-case {
+  0% { opacity: 0; transform: translate(0, 8px); }
+  3%, 12% { opacity: 1; transform: translate(0, 0); }
+  17%, 76% { opacity: 1; transform: translateX(var(--x)); }
+  81%, 86% { opacity: 1; transform: translateX(calc(var(--x) * 2)); }
+  91%, 96% { opacity: 1; transform: translateX(calc(var(--x) * 3)); }
+  100% { opacity: 0; transform: translateX(calc(var(--x) * 3)); }
+}
+
+.kb[data-live] .kb-st1 { animation-name: kb-st1; } .kb[data-live] .kb-st2 { animation-name: kb-st2; }
+.kb[data-live] .kb-st3 { animation-name: kb-st3; } .kb[data-live] .kb-st4 { animation-name: kb-st4; }
+.kb[data-live] .kb-st5 { animation-name: kb-st5; }
+@keyframes kb-st1 { 0%, 14% { opacity: 1; } 16%, 100% { opacity: 0; } }
+@keyframes kb-st2 { 0%, 14% { opacity: 0; } 16%, 55% { opacity: 1; } 57%, 100% { opacity: 0; } }
+@keyframes kb-st3 { 0%, 55% { opacity: 0; } 57%, 69% { opacity: 1; } 71%, 100% { opacity: 0; } }
+@keyframes kb-st4 { 0%, 69% { opacity: 0; } 71%, 80% { opacity: 1; } 82%, 100% { opacity: 0; } }
+@keyframes kb-st5 { 0%, 80% { opacity: 0; } 82%, 100% { opacity: 1; } }
+
+/* The board opens its Check stage: the column and the flow pane take an ink edge, the flow comes forward. */
+.kb[data-live] .kb-sel { animation-name: kb-sel; }
+@keyframes kb-sel { 0%, 19% { opacity: 0; } 23%, 93% { opacity: 1; } 98%, 100% { opacity: 0; } }
+.kb[data-live] .kb-flow { animation-name: kb-flow; }
+@keyframes kb-flow { 0%, 19% { opacity: .3; transform: scale(.97); } 26%, 94% { opacity: 1; transform: none; } 100% { opacity: .3; transform: scale(.97); } }
+
+/* The work, step by step: agent, the PO check, the limit, the person, then ready to pay. */
+.kb[data-live] .kb-s1 { animation-name: kb-s1; } .kb[data-live] .kb-d1 { animation-name: kb-d1; }
+.kb[data-live] .kb-d2 { animation-name: kb-d2; } .kb[data-live] .kb-s2 { animation-name: kb-s2; }
+@keyframes kb-s1 { 0%, 33% { opacity: 0; } 35%, 45% { opacity: 1; } 48%, 100% { opacity: 0; } }
+@keyframes kb-d1 { 0%, 45% { opacity: 0; } 47%, 51% { opacity: 1; } 54%, 100% { opacity: 0; } }
+@keyframes kb-d2 { 0%, 52% { opacity: 0; } 54%, 58% { opacity: 1; } 61%, 100% { opacity: 0; } }
+@keyframes kb-s2 { 0%, 59% { opacity: 0; } 61%, 74% { opacity: 1; } 77%, 100% { opacity: 0; } }
+
+.kb[data-live] .kb-p1 { animation-name: kb-p1; } .kb[data-live] .kb-p2 { animation-name: kb-p2; }
+.kb[data-live] .kb-p3 { animation-name: kb-p3; } .kb[data-live] .kb-p4 { animation-name: kb-p4; }
+.kb[data-live] .kb-end { animation-name: kb-end; }
+@keyframes kb-p1 { 0%, 45% { opacity: 0; } 47%, 95% { opacity: 1; } 99%, 100% { opacity: 0; } }
+@keyframes kb-p2 { 0%, 50% { opacity: 0; } 52%, 95% { opacity: 1; } 99%, 100% { opacity: 0; } }
+@keyframes kb-p3 { 0%, 57% { opacity: 0; } 59%, 95% { opacity: 1; } 99%, 100% { opacity: 0; } }
+@keyframes kb-p4 { 0%, 72% { opacity: 0; } 74%, 95% { opacity: 1; } 99%, 100% { opacity: 0; } }
+@keyframes kb-end { 0%, 73% { opacity: 0; } 75%, 95% { opacity: 1; } 99%, 100% { opacity: 0; } }
+
+.kb[data-live] .kb-who { animation-name: kb-who; } .kb[data-live] .kb-wait { animation-name: kb-wait; }
+.kb[data-live] .kb-ok { animation-name: kb-ok; }
+@keyframes kb-who { 0%, 59% { opacity: 1; } 61%, 96% { opacity: 0; } 99%, 100% { opacity: 1; } }
+@keyframes kb-wait { 0%, 59% { opacity: 0; } 61%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+@keyframes kb-ok { 0%, 70% { opacity: 0; } 72%, 95% { opacity: 1; } 99%, 100% { opacity: 0; } }
+
+/* The audit trail fills as each step is done. */
+.kb[data-live] .kb-r1 { animation-name: kb-r1; } .kb[data-live] .kb-r2 { animation-name: kb-r2; }
+.kb[data-live] .kb-r3 { animation-name: kb-r3; } .kb[data-live] .kb-r4 { animation-name: kb-r4; }
+.kb[data-live] .kb-r5 { animation-name: kb-r5; }
+@keyframes kb-r1 { 0%, 5% { opacity: 0; transform: translateY(4px); } 8%, 94% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+@keyframes kb-r2 { 0%, 45% { opacity: 0; transform: translateY(4px); } 48%, 94% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+@keyframes kb-r3 { 0%, 55% { opacity: 0; transform: translateY(4px); } 58%, 94% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+@keyframes kb-r4 { 0%, 72% { opacity: 0; transform: translateY(4px); } 75%, 94% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+@keyframes kb-r5 { 0%, 83% { opacity: 0; transform: translateY(4px); } 86%, 94% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+
+/* The captions follow the loop: the board, then the flow, then the work. */
+.kb[data-live] .kb-c1 { animation-name: kb-c1; } .kb[data-live] .kb-c2 { animation-name: kb-c2; }
+.kb[data-live] .kb-c3 { animation-name: kb-c3; }
+.kb[data-live] .kb-c1 .kb-bar { animation-name: kb-b1; } .kb[data-live] .kb-c2 .kb-bar { animation-name: kb-b2; }
+.kb[data-live] .kb-c3 .kb-bar { animation-name: kb-b3; }
+@keyframes kb-c1 { 0%, 19% { opacity: 1; } 22%, 97% { opacity: .4; } 100% { opacity: 1; } }
+@keyframes kb-c2 { 0%, 19% { opacity: .4; } 22%, 33% { opacity: 1; } 36%, 100% { opacity: .4; } }
+@keyframes kb-c3 { 0%, 33% { opacity: .4; } 36%, 95% { opacity: 1; } 99%, 100% { opacity: .4; } }
+@keyframes kb-b1 { 0%, 19% { opacity: 1; } 22%, 97% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes kb-b2 { 0%, 19% { opacity: 0; } 22%, 33% { opacity: 1; } 36%, 100% { opacity: 0; } }
+@keyframes kb-b3 { 0%, 33% { opacity: 0; } 36%, 95% { opacity: 1; } 99%, 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .kb[data-live] * { animation: none !important; }
+}
