@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { track } from '@/lib/analytics';
 import TrackedLink from '@/components/TrackedLink';
 import Button from '@/components/site/Button';
+import Logo from '@/components/site/Logo';
 import ProductMedia from '@/components/site/ProductMedia';
 import { PRODUCTS } from '@/lib/products';
 import { CONTACT_SALES, MENUS, SIGN_IN, TRY_MENU } from '@/lib/site';
@@ -108,7 +109,7 @@ export default function Nav() {
       className="sticky top-0 z-50 h-16 border-b border-hairline bg-white/85 backdrop-blur-md font-sans">
       <div className="mx-auto flex h-full max-w-[1280px] items-center gap-8 px-4 md:px-6">
         <a href="/" className="shrink-0" aria-label="Surogate home">
-          <img src="/brand/logo-full-black.svg" alt="" className="block h-7 w-auto" />
+          <Logo draw small title="" className="block h-7 w-auto text-ink" />
         </a>
 
         <nav aria-label="Primary" className="hidden flex-1 lg:block">

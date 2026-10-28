@@ -1,4 +1,5 @@
 import TrackedLink from '@/components/TrackedLink';
+import Logo from '@/components/site/Logo';
 import { FOOTER, LINKS } from '@/lib/site';
 
 export default function Footer() {
@@ -7,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1280px] px-4 pt-16 pb-10 md:px-6 md:pt-20">
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-3 lg:grid-cols-[1.4fr_repeat(6,1fr)]">
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <img src="/brand/logo-full-white.svg" alt="Surogate" className="block h-8 w-auto" />
+            <Logo small className="block h-8 w-auto text-white" />
             <p className="mt-4 max-w-[30ch] text-[14px] leading-[1.6] text-white/60">Your AI, on your terms. Built in Europe by Invergent.</p>
           </div>
           {FOOTER.map((col) => (
