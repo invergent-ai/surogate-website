@@ -12,9 +12,9 @@ export default function PartnersClosing() {
           The first {PARTNER_SHARE.founding} partners get Diamond terms for their first {PARTNER_SHARE.foundingMonths} months.
         </p>
       </div>
-      <div className="flex flex-wrap gap-3">
-        <Button href={mailto('Surogate partner program')} variant="sun" size="lg" arrow event="cta_agency_clicked" eventProps={{ location: 'partners_closing' }}>Email {CONTACT.email}</Button>
-        <Button href={CONTACT.discord} variant="glass" size="lg" external event="reach_out_clicked" eventProps={{ channel: 'discord', location: 'partners_closing' }}>Join our Discord</Button>
+      <div className="flex w-full flex-wrap gap-3 sm:w-auto">
+        <Button href={mailto('Surogate partner program')} variant="sun" size="lg" arrow event="cta_agency_clicked" eventProps={{ location: 'partners_closing' }} className="max-sm:w-full">Email {CONTACT.email}</Button>
+        <Button href={CONTACT.discord} variant="glass" size="lg" external event="reach_out_clicked" eventProps={{ channel: 'discord', location: 'partners_closing' }} className="max-sm:w-full">Join our Discord</Button>
       </div>
     </Section>
   );

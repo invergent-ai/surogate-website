@@ -162,8 +162,8 @@ export default function RunePageClient() {
             title="A decision model that sees."
             sub="Give Rune text, data or an image, a question and your options. It answers with one of them and a calibrated probability for every one, in a single pass. Open weights, so it runs on your own cards."
             actions={<>
-              <Button href="#what" size="lg" arrow event="rune_cta_clicked" eventProps={{ cta: 'what' }}>See how it works</Button>
-              <Button href={RUNE.model} variant="secondary" size="lg" external event="rune_cta_clicked" eventProps={{ cta: 'huggingface' }}>Open on Hugging Face</Button>
+              <Button href="#what" size="lg" arrow event="rune_cta_clicked" eventProps={{ cta: 'what' }} className="max-sm:w-full">See how it works</Button>
+              <Button href={RUNE.model} variant="secondary" size="lg" external event="rune_cta_clicked" eventProps={{ cta: 'huggingface' }} className="max-sm:w-full">Open on Hugging Face</Button>
             </>}
             visual={<RuneGlyph className="rune-hero-glyph" label="Rune" />}
           />

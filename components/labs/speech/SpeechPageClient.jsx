@@ -396,9 +396,9 @@ export default function SpeechPageClient() {
             <h2 className={H2.feature}>Run speech on your own servers.</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Jackrabbit listens and Amami speaks, from one container, on a CPU or a GPU.</p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Button href={SPEECH_ABOUT.collection} variant="sun" size="lg" external arrow event="labs_link_clicked" eventProps={{ label: 'speech_collection' }}>All models on Hugging Face</Button>
-            <Button href={SPEECH_ABOUT.article} variant="glass" size="lg" external>Read the launch article</Button>
+          <div className="flex w-full flex-wrap gap-3 sm:w-auto">
+            <Button href={SPEECH_ABOUT.collection} variant="sun" size="lg" external arrow event="labs_link_clicked" eventProps={{ label: 'speech_collection' }} className="max-sm:w-full">All models on Hugging Face</Button>
+            <Button href={SPEECH_ABOUT.article} variant="glass" size="lg" external className="max-sm:w-full">Read the launch article</Button>
           </div>
         </Section>
       </main>
