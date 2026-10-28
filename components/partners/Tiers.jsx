@@ -16,7 +16,7 @@ export default function Tiers() {
       <ul className="m-0 mt-12 grid list-none border-t border-white/15 p-0 md:grid-cols-3">
         {TIERS.map((t, i) => (
           <li key={t.key} className={`border-b border-white/15 py-8 md:border-b-0 md:pr-8 ${i ? 'md:border-l md:pl-8' : ''}`}>
-            <PartnerMark tier={t.key} size={112} interactive />
+            <PartnerMark tier={t.key} size={112} />
             <h3 className="m-0 mt-4 text-[18px] font-[500]">{t.name}</h3>
             <p className="m-0 mt-1 text-[14px] font-medium text-sun">{t.when}</p>
             <p className="m-0 mt-3 text-[15px] leading-[1.6] text-white/75">{t.gets}</p>

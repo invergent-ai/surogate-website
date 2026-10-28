@@ -192,19 +192,28 @@ test('every film card names its demo business and opens the film', async () => {
   }
 });
 
-test('a partner mark names its tier, its cut gets finer with the tier, and two marks never share an id', async () => {
-  const { PARTNER_FACETS, partnerBadges, partnerMarkSvg } = await import('./illustrations/partnerBadges.js');
-  const counts = ['silver', 'gold', 'diamond'].map((t) => PARTNER_FACETS[t].length);
-  assert.ok(counts[0] > 4 && counts[0] < counts[1] && counts[1] < counts[2], String(counts));
-  for (const [tier, name] of [['silver', 'Silver'], ['gold', 'Gold'], ['diamond', 'Diamond']]) {
-    const html = await render('./PartnerMark.jsx', { tier, interactive: true });
+test('a partner mark names its tier, counts it in rings pinned to one point, and reads in both tones', async () => {
+  const { partnerRings, partnerMarkSvg } = await import('./illustrations/partnerBadges.js');
+  for (const [tier, name, n] of [['silver', 'Silver', 1], ['gold', 'Gold', 2], ['diamond', 'Diamond', 3]]) {
+    const html = await render('./PartnerMark.jsx', { tier });
     assert.match(html, new RegExp(`role="img" aria-label="Surogate ${name} partner"`));
-    assert.doesNotMatch(html, /NaN/);
-    assert.match(partnerBadges[tier], /^<svg role="img"/);
+    assert.equal((html.match(/class="pm-ring"/g) || []).length, n, tier);
+    assert.doesNotMatch(html, /NaN|\sid="/);
+    assert.notEqual(partnerMarkSvg(tier, 'dark'), partnerMarkSvg(tier, 'light'));
+    // Every ring touches the same point under the tail: centre distance minus radius is constant.
+    const gaps = partnerRings(tier).map(({ cx, cy, r }) => Math.hypot(cx - 17, cy - 79) - r);
+    assert.ok(gaps.every((g) => Math.abs(g) < 0.05), String(gaps));
   }
-  const ids = (s) => [...s.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
-  assert.ok(ids(partnerMarkSvg('gold', 'a')).every((id) => !ids(partnerMarkSvg('gold', 'b')).includes(id)));
   assert.throws(() => partnerMarkSvg('platinum'), /Unknown partner tier/);
+});
+
+test('the logo is the official paths with a sun rabbit, and only a drawing logo carries the trace line', async () => {
+  const { LOGO_RABBIT } = await import('./logo.js');
+  const still = await render('./Logo.jsx', {});
+  assert.match(still, /role="img" aria-label="Surogate"/);
+  assert.ok(still.includes(`d="${LOGO_RABBIT}" fill="#ffaf10"`));
+  assert.doesNotMatch(still, /logo-line|logo-draw/);
+  assert.match(await render('./Logo.jsx', { draw: true }), /class="[^"]*logo-draw[\s\S]*class="logo-line"/);
 });
 
 test('structured data names the products right and never pitches a self-hosted gateway', async () => {
