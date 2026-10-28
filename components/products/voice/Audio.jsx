@@ -91,7 +91,7 @@ export function Voices() {
       <div role="tablist" aria-label="Voice" className="flex w-fit rounded-full bg-stone p-1">
         {VOICES.map((v) => (
           <button key={v.key} type="button" role="tab" aria-selected={v.key === voice} onClick={() => setVoice(v.key)}
-            className={`h-9 rounded-full px-4 text-[14px] font-medium transition-colors duration-150 ease-in-out ${v.key === voice ? 'bg-white text-ink shadow-[0_0_0_1px_rgba(10,10,10,.06)]' : 'text-ink/60 hover:text-ink'}`}>{v.name}</button>
+            className={`h-11 md:h-9 rounded-full px-4 text-[14px] font-medium transition-colors duration-150 ease-in-out ${v.key === voice ? 'bg-white text-ink shadow-[0_0_0_1px_rgba(10,10,10,.06)]' : 'text-ink/60 hover:text-ink'}`}>{v.name}</button>
         ))}
       </div>
       <ul className="m-0 mt-6 list-none border-b border-hairline p-0">

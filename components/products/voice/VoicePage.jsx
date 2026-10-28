@@ -110,7 +110,7 @@ export default function VoicePage() {
         <div className="grid gap-8 md:grid-cols-2 md:gap-6">
           {LOOPS.map(([name, label]) => (
             <figure key={name} className="m-0 min-w-0">
-              <VideoFrame src={`/media/loops/voice-${name}.mp4`} poster={`/media/loops/voice-${name}.jpg`} eager={false} />
+              <VideoFrame src={`/media/loops/voice-${name}.mp4`} poster={`/media/loops/voice-${name}.jpg`} eager={false} className="-mx-4 w-[calc(100%+2rem)] max-w-none sm:mx-0 sm:w-full" />
               <figcaption className="mt-3 text-[13px] text-ink/50">{label} Filmed on a demo business, with a made-up number.</figcaption>
             </figure>
           ))}

@@ -45,7 +45,7 @@ export default function DesktopPage() {
         </>}
         rings={<DesktopRings className={HERO_RINGS} />}>
         <div className="mx-auto max-w-[880px]">
-          <VideoFrame src="/media/loops/surogate-desktop-files.mp4" poster="/media/loops/surogate-desktop-files.jpg" />
+          <VideoFrame src="/media/loops/surogate-desktop-files.mp4" poster="/media/loops/surogate-desktop-files.jpg" className="-mx-4 w-[calc(100%+2rem)] max-w-none sm:mx-0 sm:w-full" />
           <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">A freight company's folder of scanned invoices: the agent reads each one, files it by supplier and logs it in a spreadsheet. Filmed on a demo business.</p>
         </div>
       </Hero>
@@ -64,7 +64,7 @@ export default function DesktopPage() {
             </p>
           </div>
           <figure className="m-0">
-            <VideoFrame src="/media/loops/surogate-desktop-browser.mp4" poster="/media/loops/surogate-desktop-browser.jpg" eager={false} />
+            <VideoFrame src="/media/loops/surogate-desktop-browser.mp4" poster="/media/loops/surogate-desktop-browser.jpg" eager={false} className="-mx-4 w-[calc(100%+2rem)] max-w-none sm:mx-0 sm:w-full" />
             <figcaption className="mt-3 text-[13px] text-ink/50">The agent opens a supplier portal, you sign in yourself, then hand the browser back and it reads off the open invoices. Filmed on a demo portal.</figcaption>
           </figure>
         </div>
