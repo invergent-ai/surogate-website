@@ -207,6 +207,22 @@ test('a partner mark names its tier, counts it in rings pinned to one point, and
   assert.throws(() => partnerMarkSvg('platinum'), /Unknown partner tier/);
 });
 
+test('the rabbit is the same size and place in every tier; only Diamond has a sun inner ring, a set stone and a shine', async () => {
+  const { partnerMarkSvg, RABBIT_AT } = await import('./illustrations/partnerBadges.js');
+  for (const tone of ['dark', 'light']) {
+    for (const tier of ['silver', 'gold', 'diamond']) {
+      const svg = partnerMarkSvg(tier, tone);
+      assert.equal((svg.match(/transform="([^"]+)"/g) || []).join(), `transform="${RABBIT_AT}"`, `${tier} ${tone}`);
+      assert.equal(/pm-stone|pm-shine/.test(svg), tier === 'diamond', `${tier} ${tone}`);
+    }
+    const rings = [...partnerMarkSvg('diamond', tone).matchAll(/class="pm-ring"[^>]*stroke="([^"]+)"/g)].map((m) => m[1]);
+    assert.equal(rings.length, 3);
+    assert.match(rings[2], /^#(ffaf10|d48a00)$/, tone);
+    assert.doesNotMatch(rings[0], /^#(ffaf10|d48a00)$/, tone);
+    assert.match(partnerMarkSvg('diamond', tone), /class="pm-shine"[^>]*opacity="0"/, 'the shine is hidden until it runs');
+  }
+});
+
 test('the logo is the official paths with a sun rabbit, and only a drawing logo carries the trace line', async () => {
   const { LOGO_RABBIT } = await import('./logo.js');
   const still = await render('./Logo.jsx', {});
