@@ -44,7 +44,7 @@ export default function CareersPage() {
           <ul className="m-0 grid list-none gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline p-0 sm:grid-cols-2">
             {WORK.map((w) => (
               <li key={w.title} className="bg-white">
-                <a href={w.href} target="_blank" rel="noopener noreferrer" className="group flex h-full items-start justify-between gap-6 p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-ivory">
+                <a href={w.href} target="_blank" rel="noopener noreferrer" className="group flex h-full items-start justify-between gap-6 p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-white">
                   <span>
                     <span className="block text-[16px] font-medium">{w.title}</span>
                     <span className="mt-1.5 block text-[15px] leading-[1.55] text-ink/60">{w.line}</span>
@@ -64,7 +64,7 @@ export default function CareersPage() {
         <Section tone="aubergine" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 className={H2.feature}>Show us what you built.</h2>
-            <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-cream/70">A repository, a model card or a post you wrote. A short note is enough.</p>
+            <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">A repository, a model card or a post you wrote. A short note is enough.</p>
           </div>
           <Button href={APPLY} variant="sun" size="lg" arrow event="reach_out_clicked" eventProps={{ channel: 'email', location: 'careers_closing' }}>Write to us</Button>
         </Section>

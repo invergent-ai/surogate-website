@@ -14,10 +14,10 @@ import CopyLine from '../CopyLine';
 // The terminal every step replays in: aubergine-black, so even code reads as ours.
 function Term({ lines, children }) {
   return (
-    <div className="flex h-full w-full flex-col p-5 font-mono text-[12px] leading-[1.75] text-cream/85 md:p-8 md:text-[13px]">
-      <span aria-hidden="true" className="mb-4 flex gap-1.5"><i className="h-2.5 w-2.5 rounded-full bg-cream/15" /><i className="h-2.5 w-2.5 rounded-full bg-cream/15" /><i className="h-2.5 w-2.5 rounded-full bg-cream/15" /></span>
+    <div className="flex h-full w-full flex-col p-5 font-mono text-[12px] leading-[1.75] text-white/85 md:p-8 md:text-[13px]">
+      <span aria-hidden="true" className="mb-4 flex gap-1.5"><i className="h-2.5 w-2.5 rounded-full bg-white/15" /><i className="h-2.5 w-2.5 rounded-full bg-white/15" /><i className="h-2.5 w-2.5 rounded-full bg-white/15" /></span>
       <pre className="m-0 overflow-hidden whitespace-pre-wrap !bg-transparent !p-0 font-mono !text-inherit">{lines.map((l, i) => (
-        <span key={i} className={`b${Math.min(i + 1, 6)} block ${l.startsWith('$') ? 'text-cream' : l.startsWith('#') ? 'text-cream/45' : 'text-cream/70'}`}>
+        <span key={i} className={`b${Math.min(i + 1, 6)} block ${l.startsWith('$') ? 'text-white' : l.startsWith('#') ? 'text-white/45' : 'text-white/70'}`}>
           {l.startsWith('$') ? <><span className="text-sun">$</span>{l.slice(1)}</> : l || ' '}
         </span>
       ))}</pre>
@@ -112,7 +112,7 @@ export default function TrainPage() {
             <span className="text-ink/55">Apache 2.0</span>
           </div>
         </>}>
-        <div className="mx-auto max-w-[1040px] rounded-2xl bg-ivory p-3 md:p-8">
+        <div className="mx-auto max-w-[1040px] rounded-2xl bg-white p-3 md:p-8">
           <VideoFrame src={filmFiles('vandijk-ml-scoreboard').loop} poster={filmFiles('vandijk-ml-scoreboard').poster} />
           <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">A team scores its fine-tunes against a big model, on questions the training chats never asked. Filmed on a demo business.</p>
         </div>
@@ -128,7 +128,7 @@ export default function TrainPage() {
         <Scroller steps={STEPS} dark={false} panelClass="!bg-night" />
       </Section>
 
-      <Section tone="ivory" inner="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+      <Section tone="grey" inner="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
         <div>
           <h2 className={H2.list}>Prefer a window to a terminal?</h2>
           <p className="mt-3 mb-0 max-w-[56ch] text-[16px] leading-[1.6] text-ink/65">Jackalope is the desktop app for the engine. Pick a model, pick a dataset, click your GPUs, hit Launch, and watch the loss fall, live. Linux, macOS and Windows.</p>
@@ -149,8 +149,8 @@ export default function TrainPage() {
       <Section tone="aubergine" id="pricing" inner="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
         <div>
           <h2 className={H2.feature}>Free to run. Or we train it for you.</h2>
-          <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-cream/70">The engine is Apache 2.0, free on your own GPUs. On our cloud a GPU costs {GPU.price} {GPU.per}. Or bring your data, and the team that builds the engine trains, evaluates and serves the model.</p>
-          <p className="mt-5 mb-0 text-[14px] text-cream/60"><a href="/pricing/#enterprise" className="!text-cream underline decoration-cream/30 underline-offset-4 hover:decoration-cream">See pricing</a></p>
+          <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-white/70">The engine is Apache 2.0, free on your own GPUs. On our cloud a GPU costs {GPU.price} {GPU.per}. Or bring your data, and the team that builds the engine trains, evaluates and serves the model.</p>
+          <p className="mt-5 mb-0 text-[14px] text-white/60"><a href="/pricing/#enterprise" className="!text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">See pricing</a></p>
         </div>
         <Button href={CONTACT_SALES} variant="sun" size="lg" arrow event="contact_sales_clicked" eventProps={{ location: 'train_custom' }}>Contact Sales</Button>
       </Section>

@@ -1,7 +1,7 @@
 const TONES = {
   light: 'bg-white text-ink',
-  ivory: 'bg-ivory text-ink',
-  aubergine: 'bg-aubergine text-cream',
+  grey: 'bg-stone text-ink',
+  aubergine: 'bg-aubergine text-white',
 };
 
 export const CONTAINER = 'mx-auto max-w-[1280px] px-4 md:px-6';

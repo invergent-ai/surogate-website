@@ -64,7 +64,7 @@ export default function CompanyPage() {
         <Section tone="aubergine" inner="flex flex-col gap-14">
           <div className="max-w-[640px]">
             <h2 className={H2.list}>Every release, dated.</h2>
-            <p className="m-0 mt-3 text-[16px] leading-[1.6] text-cream/65">Each line links the public record it is dated from.</p>
+            <p className="m-0 mt-3 text-[16px] leading-[1.6] text-white/65">Each line links the public record it is dated from.</p>
           </div>
           <Timeline />
         </Section>

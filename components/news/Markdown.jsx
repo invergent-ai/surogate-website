@@ -43,7 +43,7 @@ export function blocks(src) {
 export default function Markdown({ source }) {
   return blocks(source).map((b, i) => {
     if (b.type === 'h2') return <h2 key={i} className="m-0 mt-12 text-[22px] font-[500] leading-[1.25] tracking-[-0.01em] text-ink md:text-[24px]">{b.text}</h2>;
-    if (b.type === 'code') return <pre key={i} className="m-0 mt-6 overflow-x-auto rounded-xl bg-night p-5 font-mono text-[13px] leading-[1.6] text-cream/90"><code>{b.text}</code></pre>;
+    if (b.type === 'code') return <pre key={i} className="m-0 mt-6 overflow-x-auto rounded-xl bg-night p-5 font-mono text-[13px] leading-[1.6] text-white/90"><code>{b.text}</code></pre>;
     if (b.type === 'ul') return (
       <ul key={i} className="m-0 mt-5 flex list-none flex-col gap-3 p-0">
         {b.items.map((x, j) => <li key={j} className="relative pl-5 before:absolute before:left-0 before:top-[0.7em] before:h-px before:w-2.5 before:bg-ink/40">{inline(x)}</li>)}

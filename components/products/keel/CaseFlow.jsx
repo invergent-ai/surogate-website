@@ -6,7 +6,7 @@ import { CASE, STAGES, AUDIT } from './vandijk';
 // so nothing moves the layout; reduced motion shows the end: the case paid and the whole trail written.
 export default function CaseFlow() {
   return (
-    <div className="rounded-2xl bg-ivory p-3 text-left text-[13px] sm:p-6 md:p-8">
+    <div className="rounded-2xl bg-white p-3 text-left text-[13px] sm:p-6 md:p-8">
       <p className="m-0 px-1 pb-3 text-ink/55 sm:pb-5">Supplier payments at {CASE.business}, a demo business</p>
       <ol className="m-0 grid list-none grid-cols-2 gap-2 p-0 sm:gap-3 lg:grid-cols-4">
         {STAGES.map((s, i) => (

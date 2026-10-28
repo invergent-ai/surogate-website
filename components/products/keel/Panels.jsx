@@ -20,7 +20,7 @@ export function ProcessPanel() {
   return (
     <Frame>
       <figure className="m-0 w-full max-w-[560px]">
-        <div className="overflow-hidden rounded-xl bg-[#faf9f7] [&_svg]:block [&_svg]:h-auto [&_svg]:w-full"><InlineSvg markup={board} /></div>
+        <div className="overflow-hidden rounded-xl bg-[#fafafa] [&_svg]:block [&_svg]:h-auto [&_svg]:w-full"><InlineSvg markup={board} /></div>
         <figcaption className="mt-3 text-[13px] text-ink/55">The board: a process is a row of stages. Open a stage to set how its steps connect.</figcaption>
       </figure>
     </Frame>
@@ -33,7 +33,7 @@ export function RulesPanel() {
     <Frame>
       <Card className="w-full max-w-[480px] overflow-hidden text-[13px]">
         <p className="m-0 px-4 py-3 font-medium">Supplier payment rule</p>
-        <div className="grid grid-cols-[1.3fr_1fr_1fr] gap-3 border-t border-hairline bg-ivory px-4 py-2 text-[12px] text-ink/50"><span>Invoice</span><span>Amount</span><span>Next step</span></div>
+        <div className="grid grid-cols-[1.3fr_1fr_1fr] gap-3 border-t border-hairline bg-white px-4 py-2 text-[12px] text-ink/50"><span>Invoice</span><span>Amount</span><span>Next step</span></div>
         {RULES.map((r) => (
           <div key={r.join()} className="grid grid-cols-[1.3fr_1fr_1fr] gap-3 border-t border-hairline px-4 py-2.5">
             {r.map((c, i) => <span key={i} className={i === 2 ? 'font-medium' : ''}>{c}</span>)}

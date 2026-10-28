@@ -25,15 +25,15 @@ export default function CustomModelsPage() {
       <Section tone="aubergine" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
         <div>
           <h2 className={H2.feature}>We train our own first.</h2>
-          <p className="mt-4 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-cream/70">Our speech models and our engine are the proof: published, measured, and open to check.</p>
+          <p className="mt-4 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-white/70">Our speech models and our engine are the proof: published, measured, and open to check.</p>
         </div>
-        <ul className="m-0 list-none border-t border-cream/15 p-0">
+        <ul className="m-0 list-none border-t border-white/15 p-0">
           {OUR_MODELS.map((m) => (
             <li key={m.name}>
-              <a href={m.href} className="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-cream/15 py-5 !text-cream no-underline">
+              <a href={m.href} className="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-white/15 py-5 !text-white no-underline">
                 <span className="text-[15px] font-medium">{m.name}</span>
                 <span className="row-span-2 text-[28px] font-[450] tracking-[-0.01em] [font-variant-numeric:tabular-nums] md:text-[32px]">{m.n}</span>
-                <span className="flex items-center gap-1 text-[13px] text-cream/55">{m.l}<ChevronRight size={14} className="nudge shrink-0" /></span>
+                <span className="flex items-center gap-1 text-[13px] text-white/55">{m.l}<ChevronRight size={14} className="nudge shrink-0" /></span>
               </a>
             </li>
           ))}

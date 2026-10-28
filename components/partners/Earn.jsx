@@ -10,7 +10,7 @@ export default function Earn() {
     <Section id="earn">
       <SectionHead title="Your share grows with every client."
         sub={`${PARTNER_SHARE.base * 100}% of each client's plan or licence, every month, for as long as the client stays. ${PARTNER_SHARE.diamond * 100}% at Diamond, with no 12-month cap.`} />
-      <figure className="m-0 overflow-hidden rounded-2xl bg-ivory">
+      <figure className="m-0 overflow-hidden rounded-2xl bg-white">
         <InlineSvg markup={yourWorkspaceOnTheLeftSvg} />
       </figure>
       <dl className="m-0 mt-10 grid gap-8 sm:grid-cols-2">

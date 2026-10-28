@@ -50,10 +50,10 @@ export default function SecurityPage() {
       <Section tone="aubergine" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
         <div>
           <h2 className={H2.feature}>On our cloud.</h2>
-          <p className="mt-4 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-cream/70">Hosted in the EU. What we do, and do not do, with what you put there.</p>
+          <p className="mt-4 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-white/70">Hosted in the EU. What we do, and do not do, with what you put there.</p>
         </div>
-        <ul className="m-0 list-none border-t border-cream/15 p-0">
-          {CLOUD.map((x) => <li key={x} className="border-b border-cream/15 py-5 text-[16px] leading-[1.55] text-cream/85">{x}</li>)}
+        <ul className="m-0 list-none border-t border-white/15 p-0">
+          {CLOUD.map((x) => <li key={x} className="border-b border-white/15 py-5 text-[16px] leading-[1.55] text-white/85">{x}</li>)}
         </ul>
       </Section>
       <Section>
@@ -61,7 +61,7 @@ export default function SecurityPage() {
         <ul className="m-0 grid list-none gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline p-0 sm:grid-cols-2 lg:grid-cols-4">
           {REPOS.map((r) => (
             <li key={r.name} className="bg-white">
-              <a href={r.href} target="_blank" rel="noopener noreferrer" className="group flex h-full flex-col p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-ivory">
+              <a href={r.href} target="_blank" rel="noopener noreferrer" className="group flex h-full flex-col p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-white">
                 <span className="flex items-center justify-between text-[16px] font-medium">{r.name}<ArrowUpRight size={16} className="text-ink/40 group-hover:text-ink" /></span>
                 <span className="mt-1.5 text-[14px] leading-[1.55] text-ink/60">{r.line}</span>
               </a>

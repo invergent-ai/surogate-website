@@ -12,7 +12,7 @@ export default function Market() {
   const pick = pickFor(preset);
   const p = PRESETS.find((x) => x.key === preset);
   return (
-    <div className="rounded-2xl bg-ivory p-4 md:p-8">
+    <div className="rounded-2xl bg-white p-4 md:p-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <p className="m-0 flex items-center gap-2 text-[14px]">
           <span className="text-ink/50">Request</span>

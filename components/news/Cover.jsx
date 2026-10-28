@@ -11,7 +11,7 @@ function Flash({ big }) {
   return (
     <span className="flex h-full flex-col items-center justify-center gap-3 bg-aubergine">
       <span className="text-sun" style={{ '--rabbit-bg': '#2a102d' }}><Rabbit size={big ? 136 : 64} /></span>
-      <span className={`font-medium tracking-[0.01em] text-cream/80 ${big ? 'text-[15px]' : 'text-[13px]'}`}>Surogate 3.7 Flash</span>
+      <span className={`font-medium tracking-[0.01em] text-white/80 ${big ? 'text-[15px]' : 'text-[13px]'}`}>Surogate 3.7 Flash</span>
     </span>
   );
 }
@@ -20,7 +20,7 @@ function Flash({ big }) {
 const OFFERS = [['Surogate Spark EU', '$0.15', '0.04 s', true], ['Simpleminds EU', '$0.10', '0.07 s', false]];
 function Gateway({ big }) {
   return (
-    <span className={`flex h-full flex-col justify-center bg-ivory ${big ? 'px-[10%]' : 'px-5'}`}>
+    <span className={`flex h-full flex-col justify-center bg-white ${big ? 'px-[10%]' : 'px-5'}`}>
       <span className={`font-mono text-ink/60 ${big ? 'text-[13px]' : 'text-[10px]'}`}>surogate/surogate3.7-flash</span>
       <span className={`mt-2 flex flex-col overflow-hidden rounded-lg border border-hairline bg-white ${big ? 'text-[14px]' : 'text-[11px]'}`}>
         {OFFERS.map(([name, price, ttft, picked]) => (
@@ -36,7 +36,7 @@ function Gateway({ big }) {
 
 function Speech({ big }) {
   return (
-    <span className={`grid h-full grid-cols-3 items-center bg-cream ${big ? 'px-[12%]' : 'px-4'}`}>
+    <span className={`grid h-full grid-cols-3 items-center bg-white ${big ? 'px-[12%]' : 'px-4'}`}>
       {SPEECH_MARKS.map(([src, label]) => (
         <span key={label} className="flex flex-col items-center gap-2">
           <img src={src} alt="" className={big ? 'h-16 w-16 md:h-24 md:w-24' : 'h-12 w-12 md:h-14 md:w-14'} />
@@ -59,7 +59,7 @@ function Engine({ big }) {
 // The fixed path from the Keel page, redrawn small: the agent works inside one step.
 function Keel({ big }) {
   return (
-    <span className={`flex h-full items-center justify-center bg-ivory ${big ? 'px-[8%]' : 'px-3'}`}>
+    <span className={`flex h-full items-center justify-center bg-white ${big ? 'px-[8%]' : 'px-3'}`}>
       <span className="flex w-full items-center">
         {STAGES.map(([stage, who], i) => (
           <span key={stage} className="contents">

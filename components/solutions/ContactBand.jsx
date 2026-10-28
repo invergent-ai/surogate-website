@@ -5,7 +5,7 @@ import { CONTACT_SALES } from '@/lib/site';
 // Every solution page ends here: one line, one note, one action.
 export default function ContactBand({ title = 'Talk to us about your setup.', note = 'A partner near you, or our own engineers.', location }) {
   return (
-    <Section tone="ivory">
+    <Section tone="grey">
       <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
         <div>
           <h2 className={H2.feature}>{title}</h2>

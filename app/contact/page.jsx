@@ -26,7 +26,7 @@ export default function ContactPage() {
               {CHANNELS.map((c) => (
                 <li key={c.key} className="bg-white">
                   <TrackedLink href={c.href} event={c.event} eventProps={{ channel: 'email', team: c.key, location: 'contact' }}
-                    className="group flex h-full flex-col justify-between gap-10 p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-ivory md:p-8">
+                    className="group flex h-full flex-col justify-between gap-10 p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-white md:p-8">
                     <span>
                       <span className="block text-[20px] font-[500]">{c.title}</span>
                       <span className="mt-2 block max-w-[40ch] text-[15px] leading-[1.55] text-ink/60">{c.line}</span>
@@ -42,7 +42,7 @@ export default function ContactPage() {
         <Section tone="aubergine" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 className={H2.feature}>Rather chat?</h2>
-            <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-cream/70">Ask about agents, models or the engine on our Discord.</p>
+            <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Ask about agents, models or the engine on our Discord.</p>
           </div>
           <Button href={CONTACT.discord} variant="sun" size="lg" external arrow event="reach_out_clicked" eventProps={{ channel: 'discord', location: 'contact' }}>Join our Discord</Button>
         </Section>

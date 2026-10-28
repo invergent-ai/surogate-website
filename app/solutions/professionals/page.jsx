@@ -30,7 +30,7 @@ export default function ProfessionalsPage() {
         secondary={{ label: 'See personal plans', href: '/pricing/#individual' }}
         trust={PROFESSIONS.map((p) => ({ label: p.name, href: `#${p.id}` }))} />
       {PROFESSIONS.map((p, i) => (
-        <Section key={p.id} id={p.id} tone={i % 2 ? 'ivory' : 'light'} className="scroll-mt-16"
+        <Section key={p.id} id={p.id} tone={i % 2 ? 'grey' : 'light'} className="scroll-mt-16"
           inner="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className={i % 2 ? 'lg:order-2' : ''}>
             <h2 className={H2.feature}>{p.h2}</h2>
@@ -45,13 +45,13 @@ export default function ProfessionalsPage() {
       <Section tone="aubergine" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
         <div>
           <h2 className={H2.feature}>Sell your agent.</h2>
-          <p className="mt-4 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-cream/70">
+          <p className="mt-4 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-white/70">
             Clients subscribe to you, and the money goes to your account. From {SELLING_PLAN.name}, ${SELLING_PLAN.price.monthly} a month.
           </p>
           <div className="mt-7"><Button href="/pricing/#individual" variant="sun" size="lg" arrow>Compare plans</Button></div>
         </div>
-        <ul className="m-0 list-none border-t border-cream/15 p-0">
-          {SELL.map((x) => <li key={x} className="border-b border-cream/15 py-5 text-[16px] leading-[1.55] text-cream/85">{x}</li>)}
+        <ul className="m-0 list-none border-t border-white/15 p-0">
+          {SELL.map((x) => <li key={x} className="border-b border-white/15 py-5 text-[16px] leading-[1.55] text-white/85">{x}</li>)}
         </ul>
       </Section>
       <Section>
@@ -66,7 +66,7 @@ export default function ProfessionalsPage() {
           ))}
         </ul>
       </Section>
-      <Section tone="ivory">
+      <Section tone="grey">
         <SectionHead title="Choose how to get started." align="center" />
         <GetStarted location={location} />
       </Section>

@@ -164,7 +164,7 @@ export default function PricingTabs() {
           </div>
         </div>
       </section>
-      <section className="bg-ivory">
+      <section className="bg-white">
         {/* Every panel sits in the same grid cell, so the area is always the tallest one's height and nothing below moves. */}
         <div className={`${CONTAINER} grid py-10 md:py-14`}>
           {PRICING_TABS.map((t) => {

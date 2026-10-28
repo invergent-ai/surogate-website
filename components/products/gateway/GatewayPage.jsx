@@ -76,7 +76,7 @@ export default function GatewayPage() {
                 <div className="min-w-0">
                   <h3 className="m-0 text-[15px] font-[500]">{t}</h3>
                   <p className="m-0 mt-1 text-[14px] leading-[1.55] text-ink/60">{d}</p>
-                  {code && <code className="mt-3 block overflow-x-auto whitespace-nowrap rounded-lg bg-ivory px-3 py-2 font-mono text-[12px]">{code}</code>}
+                  {code && <code className="mt-3 block overflow-x-auto whitespace-nowrap rounded-lg bg-white px-3 py-2 font-mono text-[12px]">{code}</code>}
                 </div>
               </li>
             ))}
@@ -91,21 +91,21 @@ export default function GatewayPage() {
       <Section tone="aubergine" id="eu" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
         <div>
           <h2 className={H2.feature}>In the EU, on every plan.</h2>
-          <p className="mt-4 mb-0 max-w-[44ch] text-[16px] leading-[1.6] text-cream/70">
+          <p className="mt-4 mb-0 max-w-[44ch] text-[16px] leading-[1.6] text-white/70">
             Name EU providers in a request and it stays with them. If none of them can answer, the request is refused and sent nowhere else.
           </p>
-          <p className="mt-6 mb-0 text-[13px] text-cream/50">From <a href={SOURCES.eu} target="_blank" rel="noopener noreferrer" className="!text-cream/70 underline decoration-cream/30 underline-offset-4">llm.buzz/eu</a>, 27 Oct 2026.</p>
+          <p className="mt-6 mb-0 text-[13px] text-white/50">From <a href={SOURCES.eu} target="_blank" rel="noopener noreferrer" className="!text-white/70 underline decoration-white/30 underline-offset-4">llm.buzz/eu</a>, 27 Oct 2026.</p>
         </div>
         <div className="min-w-0">
-          <ul className="m-0 list-none border-b border-cream/15 p-0">
+          <ul className="m-0 list-none border-b border-white/15 p-0">
             {EU_PROVIDERS.map((p) => (
-              <li key={p.name} className="grid gap-1 border-t border-cream/15 py-4 sm:grid-cols-[160px_1fr] sm:gap-6">
+              <li key={p.name} className="grid gap-1 border-t border-white/15 py-4 sm:grid-cols-[160px_1fr] sm:gap-6">
                 <span className="text-[15px] font-medium">{p.name}</span>
-                <span className="text-[14px] leading-[1.5] text-cream/60">{p.policy}</span>
+                <span className="text-[14px] leading-[1.5] text-white/60">{p.policy}</span>
               </li>
             ))}
           </ul>
-          <pre className="m-0 mt-6 overflow-x-auto rounded-xl !bg-night p-4 font-mono text-[12px] leading-[1.7] text-cream/85 md:text-[13px]">{`extra_body={"provider": {"only": [
+          <pre className="m-0 mt-6 overflow-x-auto rounded-xl !bg-night p-4 font-mono text-[12px] leading-[1.7] text-white/85 md:text-[13px]">{`extra_body={"provider": {"only": [
   "scaleway/eu", "simpleminds-eu/eu", "surogate-spark/eu"]}}`}</pre>
         </div>
       </Section>
@@ -114,7 +114,7 @@ export default function GatewayPage() {
         <Lead title="Built for a whole company." sub="Keys, limits, data policy and logs, from the console or the API." />
         <ul className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
           {CONTROLS.map(([t, d]) => (
-            <li key={t} className="rounded-2xl bg-ivory p-6">
+            <li key={t} className="rounded-2xl bg-white p-6">
               <h3 className="m-0 text-[15px] font-[500]">{t}</h3>
               <p className="m-0 mt-2 text-[14px] leading-[1.55] text-ink/60">{d}</p>
             </li>
@@ -133,7 +133,7 @@ export default function GatewayPage() {
         <div className="min-w-0 self-end"><Facts items={FACTS} /></div>
       </Section>
 
-      <Section tone="ivory" id="sell" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+      <Section tone="grey" id="sell" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
         <div>
           <h2 className={H2.feature}>Sell your inference.</h2>
           <p className="mt-4 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-ink/65">{JOIN.line} llm.buzz takes {JOIN.cut} of your price.</p>

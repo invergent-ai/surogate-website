@@ -21,13 +21,13 @@ export default function PricingPage() {
       <Section tone="aubergine" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
         <div>
           <h2 className={H2.feature}>Building for clients?</h2>
-          <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-cream/70">
+          <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-white/70">
             Partners pay no plan fee for their own workspace, and earn {PARTNER_SHARE.base * 100}% of every client plan, every month, for as long as the client stays.
           </p>
         </div>
         <Button href="/partners/" variant="sun" size="lg" arrow event="cta_agency_clicked" eventProps={{ location: 'pricing' }} className="shrink-0">Become a partner</Button>
       </Section>
-      <Section tone="ivory">
+      <Section tone="grey">
         <SectionHead title="Choose how to get started." align="center" />
         <GetStarted location="pricing_closing" />
       </Section>

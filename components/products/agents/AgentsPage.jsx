@@ -87,7 +87,7 @@ export default function AgentsPage() {
           <Button href={SIGN_IN} size="lg" arrow event="cta_signup_clicked" eventProps={{ location: 'agents_hero' }}>Start building</Button>
           <Button href={CONTACT_SALES} size="lg" variant="secondary" event="contact_sales_clicked" eventProps={{ location: 'agents_hero' }}>Contact Sales</Button>
         </>}>
-        <div className="mx-auto max-w-[1040px] rounded-2xl bg-ivory p-3 md:p-8">
+        <div className="mx-auto max-w-[1040px] rounded-2xl bg-white p-3 md:p-8">
           <VideoFrame src="/media/loops/agents.mp4" poster="/media/loops/agents.jpg" />
           <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">An agent asks before it pays a supplier. Filmed on a demo business.</p>
         </div>
@@ -101,14 +101,14 @@ export default function AgentsPage() {
       </Section>
 
       <Section divider={false} inner="!py-6 md:!py-10">
-        <div className="relative overflow-hidden rounded-2xl bg-ivory px-6 py-14 md:px-16 md:py-24">
+        <div className="relative overflow-hidden rounded-2xl bg-white px-6 py-14 md:px-16 md:py-24">
           <div className="relative z-10 max-w-[520px]">
             <h2 className={H2.feature}>Brief it like a colleague.</h2>
             <p className="mt-4 mb-0 text-[16px] leading-[1.6] text-ink/65 md:text-[18px]">
               Say what the agent is for. The Copilot shows a plan, builds only what you approve, and anything that reaches people or money needs its own yes.
             </p>
           </div>
-          <span aria-hidden="true" className="absolute -right-10 -bottom-16 hidden text-ink/90 md:block" style={{ '--rabbit-bg': '#f9f8f6' }}>
+          <span aria-hidden="true" className="absolute -right-10 -bottom-16 hidden text-ink/90 md:block" style={{ '--rabbit-bg': '#fafafa' }}>
             <Rabbit size={440} />
           </span>
         </div>
@@ -133,18 +133,18 @@ export default function AgentsPage() {
 
       <Section tone="aubergine" id="sovereign">
         <Lead title="Run all of it inside your own network." sub="On-premise or air-gapped, the whole platform runs on your Kubernetes with your models, and no data has to leave your network." />
-        <div className="rounded-2xl border border-dashed border-cream/25 p-3 md:p-5">
-          <p className="m-0 mb-3 px-1 text-[13px] text-cream/60">Your network</p>
+        <div className="rounded-2xl border border-dashed border-white/25 p-3 md:p-5">
+          <p className="m-0 mb-3 px-1 text-[13px] text-white/60">Your network</p>
           <ul className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
             {NETWORK.map(([t, d]) => (
               <li key={t} className="rounded-xl bg-white/[.06] p-5">
                 <p className="m-0 text-[15px] font-medium">{t}</p>
-                <p className="m-0 mt-1.5 text-[14px] leading-[1.5] text-cream/60">{d}</p>
+                <p className="m-0 mt-1.5 text-[14px] leading-[1.5] text-white/60">{d}</p>
               </li>
             ))}
           </ul>
         </div>
-        <p className="m-0 mt-6 text-[14px] text-cream/60">The runtime is open source: <a href={RUNTIME} target="_blank" rel="noopener noreferrer" className="!text-cream underline decoration-cream/30 underline-offset-4 hover:decoration-cream">github.com/invergent-ai/surogates</a></p>
+        <p className="m-0 mt-6 text-[14px] text-white/60">The runtime is open source: <a href={RUNTIME} target="_blank" rel="noopener noreferrer" className="!text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">github.com/invergent-ai/surogates</a></p>
       </Section>
 
       <Section id="proof">
@@ -163,7 +163,7 @@ export default function AgentsPage() {
         ))}
       </Section>
 
-      <Section tone="ivory" id="pricing">
+      <Section tone="grey" id="pricing">
         <Lead title="One plan per client organisation." sub="Unlimited users and agents on every plan. Models at the provider's price, or bring your own." />
         <ul className="m-0 grid list-none gap-3 p-0 md:grid-cols-3">
           {PLANS.map((p) => (

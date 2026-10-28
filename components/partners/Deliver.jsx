@@ -12,7 +12,7 @@ const STACK = [
 
 export default function Deliver() {
   return (
-    <Section tone="ivory" id="deliver">
+    <Section tone="grey" id="deliver">
       <SectionHead title="Deliver the whole stack."
         sub="Run it on our cloud or on the client's own Kubernetes. Surogate, Keel and the models also run air-gapped." />
       <ul className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-5">

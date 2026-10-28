@@ -28,7 +28,7 @@ export function SetupPanel() {
         </div>
         <ul className="m-0 list-none p-0">
           {TABS.map(([t, d], i) => (
-            <li key={t} className={`flex items-baseline gap-3 border-t border-hairline px-4 py-2 first:border-t-0 ${i === 1 ? 'bg-ivory' : ''}`}>
+            <li key={t} className={`flex items-baseline gap-3 border-t border-hairline px-4 py-2 first:border-t-0 ${i === 1 ? 'bg-white' : ''}`}>
               <span className={`w-[118px] shrink-0 ${i === 1 ? 'font-medium' : ''}`}>{t}</span>
               <span className="min-w-0 truncate text-ink/50">{d}</span>
             </li>
@@ -81,7 +81,7 @@ export function LongPanel() {
       <div className="w-full max-w-[460px]">
         <Card className="overflow-hidden text-[13px]">
           {MODES.map(([c, d], i) => (
-            <div key={c} className={`flex items-baseline gap-3 border-t border-hairline px-4 py-2.5 first:border-t-0 ${i === 0 ? 'bg-ivory' : ''}`}>
+            <div key={c} className={`flex items-baseline gap-3 border-t border-hairline px-4 py-2.5 first:border-t-0 ${i === 0 ? 'bg-white' : ''}`}>
               <code className="w-[112px] shrink-0 font-mono text-[12px]">{c}</code><span className="text-ink/55">{d}</span>
             </div>
           ))}
@@ -91,7 +91,7 @@ export function LongPanel() {
             <span aria-hidden="true" className="absolute inset-x-1 top-[5px] h-px bg-ink/15" />
             {[['Day 0', 'Enrolled'], ['Day 1', 'Welcome'], ['Day 3', 'Check-in'], ['Day 7', 'Reminder'], ['Day 8', 'Team alerted']].map(([d, l], i) => (
               <span key={d} className="relative flex flex-col items-center gap-1.5">
-                <span className={`h-[11px] w-[11px] rounded-full border-2 border-ivory ${i === 4 ? 'bg-sun' : 'bg-ink'}`} />
+                <span className={`h-[11px] w-[11px] rounded-full border-2 border-white ${i === 4 ? 'bg-sun' : 'bg-ink'}`} />
                 <span className="font-medium text-ink">{d}</span><span>{l}</span>
               </span>
             ))}

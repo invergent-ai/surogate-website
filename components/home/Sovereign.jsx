@@ -13,7 +13,7 @@ const SAME = [
 
 export default function Sovereign() {
   return (
-    <Section tone="ivory">
+    <Section tone="grey">
       <SectionHead title="Runs where your data must stay." />
       <ul className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-4">
         {SAME.map((s) => (

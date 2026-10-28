@@ -77,7 +77,7 @@ export default function Rabbit({ pose = 'plain', size = 24, title, think = false
 }
 
 // The agent's avatar in chat mocks: the rabbit in a filled circle.
-export function RabbitAvatar({ size = 22, bg = '#2a102d', ink = '#2a102d', body = '#f3ead8', think = false }) {
+export function RabbitAvatar({ size = 22, bg = '#2a102d', ink = '#2a102d', body = '#ffffff', think = false }) {
   return (
     <span
       className="inline-flex shrink-0 items-center justify-center rounded-full"

@@ -25,7 +25,7 @@ export default function KeelMock() {
         <circle className="keel-glow" cx="186" cy="140" r="10" fill="#ffaf10" />
         {STOPS.map(([x, label, anchor]) => (
           <g key={label}>
-            <circle cx={x} cy="140" r="3.5" fill={x === 186 ? '#ffaf10' : '#f2f1ef'} stroke={x === 186 ? '#ffaf10' : 'currentColor'} strokeWidth="1.5" />
+            <circle cx={x} cy="140" r="3.5" fill={x === 186 ? '#ffaf10' : '#f4f4f5'} stroke={x === 186 ? '#ffaf10' : 'currentColor'} strokeWidth="1.5" />
             <text x={anchor === 'start' ? 6 : anchor === 'end' ? 294 : x} y="162" textAnchor={anchor} fontSize="12" fill="currentColor" fontWeight={x === 186 ? 600 : 400}>
               {label}{anchor === 'end' && <tspan className="keel-done" dx="4" fill="#1f9d63">✓</tspan>}
             </text>

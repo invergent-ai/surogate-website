@@ -50,7 +50,7 @@ export default function DesktopPage() {
           <Button href="#install" size="lg" arrow event="download_clicked" eventProps={{ location: 'desktop_hero' }}>Download</Button>
           <Button href="#uses" size="lg" variant="secondary">See what it can do</Button>
         </>}>
-        <div className="mx-auto max-w-[1040px] rounded-2xl bg-ivory p-3 md:p-8">
+        <div className="mx-auto max-w-[1040px] rounded-2xl bg-white p-3 md:p-8">
           <Window><DesktopMock /></Window>
           <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">A bookkeeper's October folder: the agent matches invoices to the bank export and asks before it goes online.</p>
         </div>
@@ -73,7 +73,7 @@ export default function DesktopPage() {
         </div>
         <ul className="m-0 mt-16 grid list-none gap-3 p-0 sm:grid-cols-2 lg:mt-24 lg:grid-cols-4">
           {CAN.map(([t, d]) => (
-            <li key={t} className="rounded-2xl bg-ivory p-6">
+            <li key={t} className="rounded-2xl bg-white p-6">
               <h3 className="m-0 text-[15px] font-[500]">{t}</h3>
               <p className="m-0 mt-2 text-[14px] leading-[1.55] text-ink/60">{d}</p>
             </li>
@@ -84,13 +84,13 @@ export default function DesktopPage() {
       <Section tone="aubergine" id="private" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
         <div>
           <h2 className={H2.feature}>Private by design.</h2>
-          <p className="mt-4 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-cream/70">It sees the folder you give it, runs in a sandbox and asks before it goes anywhere new.</p>
+          <p className="mt-4 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-white/70">It sees the folder you give it, runs in a sandbox and asks before it goes anywhere new.</p>
         </div>
-        <ul className="m-0 list-none border-b border-cream/15 p-0">
+        <ul className="m-0 list-none border-b border-white/15 p-0">
           {DESKTOP.safe.map(([t, d]) => (
-            <li key={t} className="border-t border-cream/15 py-5">
+            <li key={t} className="border-t border-white/15 py-5">
               <p className="m-0 text-[15px] font-medium">{t}</p>
-              <p className="m-0 mt-1.5 text-[14px] leading-[1.55] text-cream/65">{d}</p>
+              <p className="m-0 mt-1.5 text-[14px] leading-[1.55] text-white/65">{d}</p>
             </li>
           ))}
         </ul>
@@ -109,7 +109,7 @@ export default function DesktopPage() {
             {DESKTOP.requirements.map((r) => <li key={r} className="border-t border-hairline py-3.5 text-[15px] leading-[1.5] text-ink/70">{r}</li>)}
           </ul>
           <p className="m-0 mt-6 text-[13px] text-ink/50">On a network that inspects TLS, give the installer your company's CA:</p>
-          <code className="mt-2 block overflow-x-auto whitespace-nowrap rounded-lg bg-ivory px-3 py-2.5 font-mono text-[12px]">{DESKTOP.caCert}</code>
+          <code className="mt-2 block overflow-x-auto whitespace-nowrap rounded-lg bg-white px-3 py-2.5 font-mono text-[12px]">{DESKTOP.caCert}</code>
         </div>
       </Section>
 

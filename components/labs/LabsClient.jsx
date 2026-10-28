@@ -35,7 +35,7 @@ const LINES = [
     line: 'Small open speech models that run on a CPU. Jackrabbit listens, Amami speaks.',
     facts: SPEECH_MODELS.map((m) => ({ n: m.stat.n, l: m.name })),
     cover: (
-      <span className="grid h-full grid-cols-3 items-center bg-cream px-4">
+      <span className="grid h-full grid-cols-3 items-center bg-white px-4">
         {SPEECH_MARKS.map(([src, label]) => (
           <span key={label} className="flex flex-col items-center gap-2">
             <img src={src} alt="" className="h-12 w-12 md:h-14 md:w-14" />
@@ -63,8 +63,8 @@ function Facts({ items, dark = false }) {
     <dl className={`m-0 mt-5 border-t ${dark ? 'border-white/10' : 'border-hairline'}`}>
       {items.map((f) => (
         <div key={f.l} className={`flex items-baseline gap-3 border-b py-2.5 text-[13px] ${dark ? 'border-white/10' : 'border-hairline'}`}>
-          <dt className={`order-2 ${dark ? 'text-cream/60' : 'text-ink/60'}`}>{f.l}</dt>
-          <dd className={`order-1 m-0 min-w-[92px] font-medium tabular-nums ${dark ? 'text-cream' : 'text-ink'}`}>{f.n}</dd>
+          <dt className={`order-2 ${dark ? 'text-white/60' : 'text-ink/60'}`}>{f.l}</dt>
+          <dd className={`order-1 m-0 min-w-[92px] font-medium tabular-nums ${dark ? 'text-white' : 'text-ink'}`}>{f.n}</dd>
         </div>
       ))}
     </dl>
@@ -95,20 +95,20 @@ export default function LabsClient() {
         </section>
 
         <Section inner="grid gap-3 lg:grid-cols-[1.25fr_1fr]">
-          <a href={flash.href} target="_blank" rel="noopener noreferrer" className="group flex flex-col overflow-hidden rounded-2xl bg-aubergine !text-cream no-underline">
+          <a href={flash.href} target="_blank" rel="noopener noreferrer" className="group flex flex-col overflow-hidden rounded-2xl bg-aubergine !text-white no-underline">
             <span className="flex aspect-[16/9] items-center justify-center" aria-hidden="true">
               <span className="tile-media text-sun" style={{ '--rabbit-bg': '#2a102d' }}><Rabbit size={112} /></span>
             </span>
             <span className="block p-6 md:p-8">
               <span className="flex items-center justify-between gap-4">
                 <span className="text-[22px] font-[500] tracking-[-0.01em]">{flash.name}</span>
-                <span className="inline-flex items-center gap-1 text-[13px] text-cream/70 group-hover:text-cream">llm.buzz <ArrowUpRight size={14} className="nudge" /></span>
+                <span className="inline-flex items-center gap-1 text-[13px] text-white/70 group-hover:text-white">llm.buzz <ArrowUpRight size={14} className="nudge" /></span>
               </span>
-              <span className="mt-2 block text-[15px] leading-[1.55] text-cream/70">{flash.line}</span>
+              <span className="mt-2 block text-[15px] leading-[1.55] text-white/70">{flash.line}</span>
               <Facts items={flash.facts} dark />
             </span>
           </a>
-          <div className="flex flex-col rounded-2xl bg-ivory p-6 md:p-8">
+          <div className="flex flex-col rounded-2xl bg-white p-6 md:p-8">
             <h2 className="m-0 text-[22px] font-[500] tracking-[-0.01em]">{family.name}</h2>
             <p className="m-0 mt-2 text-[15px] leading-[1.55] text-ink/65">{family.line}</p>
             <ul className="m-0 mt-6 list-none border-t border-hairline p-0">
@@ -153,7 +153,7 @@ export default function LabsClient() {
         <Section tone="aubergine" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 className={H2.feature}>Call our models today.</h2>
-            <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-cream/70">Surogate 3.7 Flash is on llm.buzz, with one key for every model.</p>
+            <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Surogate 3.7 Flash is on llm.buzz, with one key for every model.</p>
           </div>
           <Button href="https://llm.buzz" variant="sun" size="lg" external arrow event="cta_api_key_clicked" eventProps={{ location: 'labs_closing' }}>Get an API key</Button>
         </Section>

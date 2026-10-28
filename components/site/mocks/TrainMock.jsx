@@ -26,17 +26,17 @@ const CSS = [
 
 export default function TrainMock() {
   return (
-    <div className="flex h-full flex-col gap-2 px-5 py-5 font-mono text-[12px] text-cream">
+    <div className="flex h-full flex-col gap-2 px-5 py-5 font-mono text-[12px] text-white">
       <style>{CSS}</style>
       <p className="m-0 whitespace-nowrap"><span className="text-sun">$ </span>surogate sft config.yaml</p>
       <div className="relative min-h-0 flex-1 overflow-hidden">
         <div className="tr-up absolute inset-x-0 top-0">
           {LOG.map((l, i) => (
-            <p key={i} className={`tr-l${i} m-0 h-[18px] overflow-hidden whitespace-pre leading-[18px] ${l.startsWith('::') ? 'text-cream' : 'text-cream/65'}`}>{l}</p>
+            <p key={i} className={`tr-l${i} m-0 h-[18px] overflow-hidden whitespace-pre leading-[18px] ${l.startsWith('::') ? 'text-white' : 'text-white/65'}`}>{l}</p>
           ))}
         </div>
         <div className="tr-chart absolute inset-x-0 bottom-0 flex flex-col gap-1" style={{ top: KEEP * LH + 8 }}>
-          <p className="m-0 text-right text-cream/65">step {lastStep}/{TOTAL} · loss {lastLoss.toFixed(2)}</p>
+          <p className="m-0 text-right text-white/65">step {lastStep}/{TOTAL} · loss {lastLoss.toFixed(2)}</p>
           <svg viewBox="0 0 400 120" preserveAspectRatio="none" className="min-h-0 w-full flex-1" aria-hidden="true">
             <defs>
               <linearGradient id="train-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#ffaf10" stopOpacity=".28" /><stop offset="1" stopColor="#ffaf10" stopOpacity="0" /></linearGradient>

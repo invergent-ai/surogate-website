@@ -39,7 +39,7 @@ export function SplitHero({ title, sub, actions, links }) {
 
 export function Values() {
   return (
-    <ol className="m-0 grid list-none overflow-hidden rounded-2xl bg-ivory p-0 md:grid-cols-3">
+    <ol className="m-0 grid list-none overflow-hidden rounded-2xl bg-white p-0 md:grid-cols-3">
       {VALUES.map((v, i) => (
         <li key={v.title} className="border-hairline p-6 md:p-8 [&:not(:first-child)]:border-t md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-t-0">
           <span className="block text-[28px] font-[400] leading-none tracking-[-0.01em] text-ink/45 tabular-nums" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
@@ -67,7 +67,7 @@ export function Team() {
             <img src={t.image} alt={`Photo of ${t.name}`} width="320" height="320" loading="lazy"
               className="block size-[72px] rounded-full object-cover ring-1 ring-hairline grayscale transition-[filter] duration-150 ease-[cubic-bezier(.4,0,.2,1)] group-hover:grayscale-0 md:size-24" />
           ) : (
-            <span role="img" aria-label={t.name} className="flex size-[72px] items-center justify-center rounded-full bg-aubergine text-[22px] font-[450] tracking-[0.02em] text-cream ring-1 ring-hairline md:size-24 md:text-[28px]">
+            <span role="img" aria-label={t.name} className="flex size-[72px] items-center justify-center rounded-full bg-aubergine text-[22px] font-[450] tracking-[0.02em] text-white ring-1 ring-hairline md:size-24 md:text-[28px]">
               {initials(t.name)}
             </span>
           )}
@@ -93,13 +93,13 @@ export function Timeline() {
   const years = [...new Set(RELEASES.map((r) => r.date.slice(0, 4)))];
   return years.map((y) => (
     <div key={y} className="grid gap-4 md:grid-cols-[200px_1fr] md:gap-10">
-      <h3 className="m-0 text-[30px] font-[450] leading-none tracking-[-0.01em] text-cream md:text-[40px]">{y}</h3>
+      <h3 className="m-0 text-[30px] font-[450] leading-none tracking-[-0.01em] text-white md:text-[40px]">{y}</h3>
       <ul className="m-0 list-none p-0">
         {RELEASES.filter((r) => r.date.startsWith(y)).map((r) => (
           <li key={r.title} className="border-white/10 [&:not(:first-child)]:border-t">
-            <a href={r.href} {...ext(r.href)} className="group flex min-h-12 items-center justify-between gap-6 py-3 text-[15px] !text-cream no-underline">
-              <span className="flex items-center gap-1">{r.title}<ChevronRight size={15} className="nudge shrink-0 text-cream/40 group-hover:text-cream" /></span>
-              <time dateTime={r.date} className="shrink-0 text-[13px] tabular-nums text-cream/55">{fmtRelease(r.date)}</time>
+            <a href={r.href} {...ext(r.href)} className="group flex min-h-12 items-center justify-between gap-6 py-3 text-[15px] !text-white no-underline">
+              <span className="flex items-center gap-1">{r.title}<ChevronRight size={15} className="nudge shrink-0 text-white/40 group-hover:text-white" /></span>
+              <time dateTime={r.date} className="shrink-0 text-[13px] tabular-nums text-white/55">{fmtRelease(r.date)}</time>
             </a>
           </li>
         ))}

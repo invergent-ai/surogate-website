@@ -14,13 +14,13 @@ export const MODELS = [
       <span className="relative flex h-full flex-col items-center justify-center gap-1.5 overflow-hidden bg-aubergine">
         <img src="/surogate_ring_3.svg" alt="" className="absolute left-1/2 top-1/2 h-[220%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 opacity-40" />
         <svg viewBox={`0 0 ${RABBIT_BOX.w} ${RABBIT_BOX.h}`} aria-hidden="true" className="relative mb-1 h-12 w-auto"><path d={RABBIT_FILL} fill="#ffaf10" /><path d={RABBIT_EYE} fill="#2a102d" /></svg>
-        <span className="relative text-[15px] font-medium text-cream">Surogate 3.7 Flash</span>
+        <span className="relative text-[15px] font-medium text-white">Surogate 3.7 Flash</span>
         <span className="relative text-[12px] text-sun">{FLASH.facts.map((f) => `${f.n} ${f.l}`).slice(0, 2).join(' · ')}</span>
       </span>
     ) },
   { name: 'Speech', title: 'Jackrabbit and Amami, our Romanian speech models', category: 'Speech', date: 'Sep 25, 2026', href: '/labs/speech/',
     cover: (
-      <span className="grid h-full grid-cols-3 items-center bg-cream px-4">
+      <span className="grid h-full grid-cols-3 items-center bg-white px-4">
         {SPEECH_MARKS.map(([src, label]) => (
           <span key={label} className="flex flex-col items-center gap-2">
             <img src={src} alt="" className="h-12 w-12 md:h-14 md:w-14" />

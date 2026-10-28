@@ -79,7 +79,7 @@ export default function KeelPage() {
         </div>
         <div>
           <h2 className={H2.feature}>An agent with instructions still improvises.</h2>
-          <p className="mt-4 mb-0 max-w-[44ch] text-[16px] leading-[1.6] text-cream/70">In Keel every case follows the path you designed, and the agent only works on the step it has been given.</p>
+          <p className="mt-4 mb-0 max-w-[44ch] text-[16px] leading-[1.6] text-white/70">In Keel every case follows the path you designed, and the agent only works on the step it has been given.</p>
         </div>
       </Section>
 
@@ -88,7 +88,7 @@ export default function KeelPage() {
         <Scroller steps={STEPS} />
       </Section>
 
-      <Section tone="ivory">
+      <Section tone="grey">
         <Lead title="Run agentic processes safely." sub="Agents, employees and systems together, from the first form to the final decision." />
         <ul className="m-0 grid list-none gap-3 p-0 md:grid-cols-2">
           {PROMISES.map(([t, d]) => (

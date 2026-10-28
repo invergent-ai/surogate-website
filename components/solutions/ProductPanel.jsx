@@ -1,7 +1,7 @@
 import ProductMedia from '@/components/site/ProductMedia';
 import { product } from '@/lib/solutions';
 
-const SURFACE = { ivory: 'bg-stone text-ink', night: 'bg-night text-cream', ink: 'bg-ink text-cream' };
+const SURFACE = { grey: 'bg-stone text-ink', night: 'bg-night text-white', ink: 'bg-ink text-white' };
 
 // A product's live drawing on its own surface, at a fixed height so the hero never moves.
 export default function ProductPanel({ k, caption }) {

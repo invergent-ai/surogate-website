@@ -57,7 +57,7 @@ export default function VoicePage() {
         <Lead title="Three small models, one job each." sub="Jackrabbit to listen and Amami to speak, open on Hugging Face." />
         <ul className="m-0 grid list-none gap-3 p-0 md:grid-cols-3">
           {MODELS.map(({ m, does, line }) => (
-            <li key={m.id} className="flex flex-col rounded-2xl bg-ivory p-6">
+            <li key={m.id} className="flex flex-col rounded-2xl bg-white p-6">
               <img src={m.mark} alt="" width="48" height="48" className="h-12 w-12" />
               <p className="m-0 mt-5 text-[13px] text-ink/50">{does}</p>
               <h3 className="m-0 mt-1 text-[15px] font-[500]">{m.name}</h3>
@@ -99,15 +99,15 @@ export default function VoicePage() {
       <Section tone="aubergine" id="on-prem" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
         <div>
           <h2 className={H2.feature}>Inside your call center.</h2>
-          <p className="mt-4 mb-0 max-w-[42ch] text-[16px] leading-[1.6] text-cream/70">Both models are served by the Surogate engine, on your own servers, so recordings stay in your network.</p>
+          <p className="mt-4 mb-0 max-w-[42ch] text-[16px] leading-[1.6] text-white/70">Both models are served by the Surogate engine, on your own servers, so recordings stay in your network.</p>
           <div className="mt-7"><Button href={CONTACT_SALES} variant="sun" size="lg" arrow event="contact_sales_clicked" eventProps={{ location: 'voice_onprem' }}>Contact Sales</Button></div>
-          <p className="m-0 mt-5 text-[14px] text-cream/60"><a href="/pricing/#enterprise" className="!text-cream underline decoration-cream/30 underline-offset-4 hover:decoration-cream">Enterprise pricing</a></p>
+          <p className="m-0 mt-5 text-[14px] text-white/60"><a href="/pricing/#enterprise" className="!text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">Enterprise pricing</a></p>
         </div>
         <div className="flex min-w-0 flex-col gap-3">
           {[['Speak', SPEECH_RUN.tts], ['Listen', SPEECH_RUN.stt]].map(([t, code]) => (
             <div key={t} className="min-w-0 rounded-xl bg-night">
-              <p className="m-0 border-b border-cream/10 px-4 py-2.5 text-[12px] text-cream/50">{t}</p>
-              <pre className="m-0 overflow-x-auto !bg-transparent p-4 font-mono text-[12px] leading-[1.7] text-cream/85">{code}</pre>
+              <p className="m-0 border-b border-white/10 px-4 py-2.5 text-[12px] text-white/50">{t}</p>
+              <pre className="m-0 overflow-x-auto !bg-transparent p-4 font-mono text-[12px] leading-[1.7] text-white/85">{code}</pre>
             </div>
           ))}
         </div>

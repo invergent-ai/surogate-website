@@ -16,8 +16,10 @@ Binding for every page. Read this before §3 of `2026-10-27-site-v2-design.md`, 
 - Container 1280 + 24px gutters (16 on mobile). Sections 96px vertical (64 mobile).
 - Type is smaller and calmer than you think. H1 ≤ 60px desktop, 36 mobile. H2 30–48. Body 16–18.
   Inside cards and tiles: 12–15px. Nothing at hero scale inside a tile.
-- Palette: ivory/stone surfaces, ink text, aubergine bands (about every third section) and the aubergine
-  footer, sun orange as the accent only. Radii: 16 tiles, 12 cards, full pills. Hairline `#e4e4e7`.
+- Palette (owner, 2026-10-28): pure white page, neutral grey `stone` #f4f4f5 for bands and tiles, ring
+  `silver` #e4e7eb, black `ink` for text and buttons, aubergine bands (about every third section) and the
+  aubergine footer, sun gold #ffaf10 as the only accent. **Never cream, ivory, beige or any warm off-white**,
+  and text on dark surfaces is pure white. Radii: 16 tiles, 12 cards, full pills. Hairline `#e4e4e7`.
 - Divider lines live inside the container, never edge to edge.
 - Hero: no cycling single word, no "where should it run" switch (both rejected). The headline and its
   CTAs rotate per product together.

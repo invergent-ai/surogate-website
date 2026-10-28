@@ -60,12 +60,12 @@ const COLS = { 2: 'lg:grid-cols-2', 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4' };
 // Facts in a row under a hairline, small: the numbers a buyer asks for, each with its condition.
 export function Facts({ items, dark = false }) {
   return (
-    <dl className={`m-0 grid gap-6 border-t pt-6 sm:grid-cols-2 ${COLS[items.length]} ${dark ? 'border-cream/15' : 'border-hairline'}`}>
+    <dl className={`m-0 grid gap-6 border-t pt-6 sm:grid-cols-2 ${COLS[items.length]} ${dark ? 'border-white/15' : 'border-hairline'}`}>
       {items.map((f) => (
         <div key={f.l}>
           <dt className="sr-only">{f.l}</dt>
           <dd className="m-0 text-[28px] font-[450] leading-none tracking-[-0.01em] tabular-nums md:text-[32px]">{f.n}</dd>
-          <dd className={`m-0 mt-2 text-[14px] leading-[1.5] ${dark ? 'text-cream/60' : 'text-ink/55'}`}>{f.l}</dd>
+          <dd className={`m-0 mt-2 text-[14px] leading-[1.5] ${dark ? 'text-white/60' : 'text-ink/55'}`}>{f.l}</dd>
         </div>
       ))}
     </dl>
@@ -90,8 +90,8 @@ export function UseCases({ items }) {
         return (
           <li key={job} className="flex">
             {href
-              ? <a href={href} className="group flex w-full flex-col rounded-2xl bg-ivory p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-stone">{body}</a>
-              : <div className="flex w-full flex-col rounded-2xl bg-ivory p-6">{body}</div>}
+              ? <a href={href} className="group flex w-full flex-col rounded-2xl bg-white p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-stone">{body}</a>
+              : <div className="flex w-full flex-col rounded-2xl bg-white p-6">{body}</div>}
           </li>
         );
       })}
@@ -104,9 +104,9 @@ export function Closing({ title, line, action, peek }) {
   return (
     <section className="bg-white">
       <div className={`${CONTAINER} pb-16 md:pb-24`}>
-        <div className="relative mt-10 rounded-2xl bg-ivory px-6 pt-14 pb-12 text-center md:px-12 md:pt-20 md:pb-16">
+        <div className="relative mt-10 rounded-2xl bg-white px-6 pt-14 pb-12 text-center md:px-12 md:pt-20 md:pb-16">
           {peek && (
-            <span aria-hidden="true" className="peek absolute left-1/2 top-0 h-[64px] w-[64px] -translate-x-1/2 -translate-y-[58%] text-ink" style={{ '--rabbit-bg': '#f9f8f6' }}>
+            <span aria-hidden="true" className="peek absolute left-1/2 top-0 h-[64px] w-[64px] -translate-x-1/2 -translate-y-[58%] text-ink" style={{ '--rabbit-bg': '#fafafa' }}>
               <Rabbit pose={peek} size={64} />
             </span>
           )}

@@ -17,7 +17,7 @@ export default function Doors() {
       <ul className="m-0 grid list-none gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline p-0 sm:grid-cols-2 lg:grid-cols-3">
         {DOORS.map((d) => (
           <li key={d.href} className="bg-white">
-            <a href={d.href} className="group flex h-full items-start justify-between gap-6 p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-ivory">
+            <a href={d.href} className="group flex h-full items-start justify-between gap-6 p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-white">
               <span>
                 <span className="block text-[16px] font-medium">{d.name}</span>
                 <span className="mt-1.5 block text-[15px] leading-[1.55] text-ink/60">{d.line}</span>

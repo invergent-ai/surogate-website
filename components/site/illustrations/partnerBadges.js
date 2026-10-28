@@ -15,7 +15,7 @@ const RIDGE = [[16, 11], [30, 12], [44, 15], [55, 19], [38, 27], [27, 38], [17, 
 const RAMP = {
   silver: ['#55606a', '#7f8b94', '#aeb8bf', '#d8dee2', '#f4f6f7'],
   gold: ['#6b3a00', '#a86405', '#e29a12', '#ffc54a', '#fff0c2'],
-  // Steel-blue at the dark end so Diamond holds on ivory as well as on aubergine.
+  // Steel-blue at the dark end so Diamond holds on white as well as on aubergine.
   diamond: ['#2c4562', '#5f86a8', '#a9cde3', '#e3f3fc', '#ffffff'],
 };
 const FIRE = ['#ff8fbf', '#ffcc66', '#7fe8c2', '#8fb8ff', '#c79bff'];

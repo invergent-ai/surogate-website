@@ -5,7 +5,7 @@ import { PARTNER_SHARE } from '@/lib/pricing';
 
 export default function PartnersClosing() {
   return (
-    <Section tone="ivory" id="contact" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+    <Section tone="grey" id="contact" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
       <div>
         <h2 className={H2.feature}>Start your practice.</h2>
         <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-ink/65">

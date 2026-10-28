@@ -4,7 +4,7 @@ import { product } from '@/lib/solutions';
 
 export default function Products({ keys, title = 'What it runs on.' }) {
   return (
-    <Section tone="ivory">
+    <Section tone="grey">
       <SectionHead title={title} />
       <ul className={`m-0 grid list-none gap-3 p-0 sm:grid-cols-2 ${keys.length > 2 ? 'lg:grid-cols-4' : ''}`}>
         {keys.map((k) => {
