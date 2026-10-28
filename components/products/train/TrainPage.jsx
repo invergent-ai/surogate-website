@@ -10,6 +10,8 @@ import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
 import Scroller from '../Scroller';
 import Faq from '../Faq';
 import CopyLine from '../CopyLine';
+import { HERO_RINGS, BAND_RINGS } from '../rings';
+import TrainRings from './Rings';
 
 // The terminal every step replays in: aubergine-black, so even code reads as ours.
 function Term({ lines, children }) {
@@ -111,8 +113,9 @@ export default function TrainPage() {
             <a href={ENGINE.repo} target="_blank" rel="noopener noreferrer" className="group inline-flex min-h-11 items-center gap-1 font-medium !text-ink no-underline">GitHub <ArrowUpRight size={14} className="nudge" /></a>
             <span className="text-ink/55">Apache 2.0</span>
           </div>
-        </>}>
-        <div className="mx-auto max-w-[1040px] rounded-2xl bg-white p-3 md:p-8">
+        </>}
+        rings={<TrainRings className={HERO_RINGS} />}>
+        <div className="mx-auto max-w-[880px]">
           <VideoFrame src={filmFiles('vandijk-ml-scoreboard').loop} poster={filmFiles('vandijk-ml-scoreboard').poster} />
           <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">A team scores its fine-tunes against a big model, on questions the training chats never asked. Filmed on a demo business.</p>
         </div>
@@ -133,7 +136,7 @@ export default function TrainPage() {
           <h2 className={H2.list}>Prefer a window to a terminal?</h2>
           <p className="mt-3 mb-0 max-w-[56ch] text-[16px] leading-[1.6] text-ink/65">Jackalope is the desktop app for the engine. Pick a model, pick a dataset, click your GPUs, hit Launch, and watch the loss fall, live. Linux, macOS and Windows.</p>
         </div>
-        <Button href={LINKS.jackalope} external size="lg" variant="secondary" arrow event="jackalope_clicked" eventProps={{ location: 'train_jackalope' }}>Download Jackalope</Button>
+        <Button href={LINKS.jackalope} external size="lg" arrow event="jackalope_clicked" eventProps={{ location: 'train_jackalope' }}>Download Jackalope</Button>
       </Section>
 
       <Section id="benchmarks">
@@ -146,7 +149,8 @@ export default function TrainPage() {
         <p className="m-0 mt-6 text-[13px] text-ink/50">From the engine's README and its <a href={ENGINE.links[1].href} target="_blank" rel="noopener noreferrer" className="!text-ink/70 underline decoration-ink/25 underline-offset-4">training</a> and <a href={ENGINE.links[2].href} target="_blank" rel="noopener noreferrer" className="!text-ink/70 underline decoration-ink/25 underline-offset-4">serving</a> benchmarks.</p>
       </Section>
 
-      <Section tone="aubergine" id="pricing" inner="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+      <Section tone="aubergine" id="pricing" className="relative isolate overflow-hidden" inner="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+        <TrainRings dark className={BAND_RINGS} />
         <div>
           <h2 className={H2.feature}>Free to run. Or we train it for you.</h2>
           <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-white/70">The engine is Apache 2.0, free on your own GPUs. On our cloud a GPU costs {GPU.price} {GPU.per}. Or bring your data, and the team that builds the engine trains, evaluates and serves the model.</p>
