@@ -137,12 +137,7 @@
   ],
   "ag-bank": [
    {
-    "text": "Ați prim+it trei mii p+atru s+ute d+oisprezece lei și ș+apte bani în c+ontul Revolut pe c+incisprezece m+artie d+ouă mii douăz+eci și ș+ase. Mai dor+iți și altceva?"
-   }
-  ],
-  "ag-courier": [
-   {
-    "text": "Col+etul de la eMAG a plec+at din dep+ozit și aj+unge m+âine cu Sameday, +între +orele z+ece și d+ouăsprezece."
+    "text": "Ați prim+it trei mii p+atru s+ute d+oisprezece lei și ș+apte bani în c+ontul Liv+ada pe c+incisprezece m+artie d+ouă mii douăz+eci și ș+ase. Mai dor+iți și altceva?"
    }
   ],
   "ag-doctor": [
@@ -152,7 +147,7 @@
   ],
   "ag-food": [
    {
-    "text": "Com+anda de pe Glovo c+ostă optz+eci și ș+apte de lei și cinciz+eci de bani și livrat+orul aj+unge în aproximat+iv douăz+eci de min+ute."
+    "text": "Com+anda de pe Gust+ar c+ostă optz+eci și ș+apte de lei și cinciz+eci de bani și livrat+orul aj+unge în aproximat+iv douăz+eci de min+ute."
    }
   ],
   "cd-cnp": [
@@ -250,7 +245,7 @@
   ],
   "call-1": [
    {
-    "text": "B+ună z+iua, ați sun+at la sup+ortul Revolut. Cu ce vă pot ajut+a?"
+    "text": "B+ună z+iua, ați sun+at la sup+ortul B+ăncii Liv+ada. Cu ce vă pot ajut+a?"
    }
   ],
   "call-2": [
@@ -283,7 +278,7 @@
   ],
   "call-5": [
    {
-    "text": "Mulțum+esc, v-am verific+at. Am reset+at acc+esul, iar pl+ata de d+ouă s+ute patruz+eci și n+ouă de lei și nouăz+eci de bani c+ătre eMAG ap+are ca finaliz+ată."
+    "text": "Mulțum+esc, v-am verific+at. Am reset+at acc+esul, iar pl+ata de d+ouă s+ute patruz+eci și n+ouă de lei și nouăz+eci de bani c+ătre R+aftul ap+are ca finaliz+ată."
    }
   ],
   "call-6": [
@@ -302,41 +297,41 @@
    "voice": "female",
    "start": 0.0,
    "role": "Agent",
-   "text": "Bună ziua, ați sunat la suportul Revolut. Cu ce vă pot ajuta?"
+   "text": "Bună ziua, ați sunat la suportul Băncii Livada. Cu ce vă pot ajuta?"
   },
   {
    "voice": "male",
-   "start": 5.19,
+   "start": 5.02,
    "role": "Caller",
    "text": "Bună! Nu mai pot să intru în app de la ultimul update."
   },
   {
    "voice": "female",
-   "start": 9.64,
+   "start": 8.98,
    "role": "Agent",
    "text": "Vă trimit acum un cod prin SMS. Vă rog să mi-l citiți."
   },
   {
    "voice": "male",
-   "start": 14.07,
+   "start": 12.92,
    "role": "Caller",
    "text": "Codul este 7XK-492-QPA."
   },
   {
    "voice": "female",
-   "start": 22.12,
+   "start": 20.38,
    "role": "Agent",
-   "text": "Mulțumesc, v-am verificat. Am resetat accesul, iar plata de 249,90 lei către eMAG apare ca finalizată."
+   "text": "Mulțumesc, v-am verificat. Am resetat accesul, iar plata de 249,90 lei către Raftul apare ca finalizată."
   },
   {
    "voice": "male",
-   "start": 31.49,
+   "start": 29.62,
    "role": "Caller",
    "text": "Super, mersi! Mai am un call la zece, așa că închid."
   },
   {
    "voice": "female",
-   "start": 36.36,
+   "start": 33.6,
    "role": "Agent",
    "text": "Cu plăcere! O zi frumoasă și spor la meeting!"
   }
