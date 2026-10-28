@@ -9,13 +9,16 @@ import { POSTS } from '@/lib/news';
 import { JsonLd } from '../structured-data';
 
 export const metadata = meta('/company/', 'Company - Surogate by Invergent',
-  'Invergent S.A. makes Surogate, Surogate Desktop, Voice, Keel, the AI Gateway and our own models, on your hardware or ours. The team, our values and every release.');
+  'Invergent S.A. makes Surogate, Surogate Desktop, Voice, Keel, the AI Gateway and our own models, on your hardware or ours. Our values and every release.');
+
+// The team section is parked until the owner says to show it; the data and photos stay in lib/company.js.
+const SHOW_TEAM = false;
 
 const ld = {
   '@context': 'https://schema.org',
   '@graph': [
     { '@type': 'AboutPage', url: 'https://surogate.ai/company/', name: 'About Surogate', about: { '@id': 'https://surogate.ai/#organization' } },
-    ...personLd,
+    ...(SHOW_TEAM ? personLd : []),
   ],
 };
 
@@ -56,10 +59,12 @@ export default function CompanyPage() {
           <Values />
         </Section>
 
-        <Section>
-          <SectionHead title="The team." />
-          <Team />
-        </Section>
+        {SHOW_TEAM && (
+          <Section>
+            <SectionHead title="The team." />
+            <Team />
+          </Section>
+        )}
 
         <Section tone="aubergine" inner="flex flex-col gap-14">
           <div className="max-w-[640px]">
