@@ -19,7 +19,7 @@ const RINGS_AT = 'bottom-[6%] -right-[3%] h-auto w-[26%] xl:w-[32%]';
 export default function Section({ tone = 'light', divider = tone === 'light', rings = false, id, className = '', inner = '', children }) {
   const rule = 'section-rule mx-auto w-[calc(100%-32px)] max-w-[1328px]';
   return (
-    <section id={id} data-tone={tone} className={`${TONES[tone]} ${rings ? 'relative overflow-hidden' : ''} ${className}`}>
+    <section id={id} data-tone={tone} className={`${TONES[tone]} ${id ? 'scroll-mt-16' : ''} ${rings ? 'relative overflow-hidden' : ''} ${className}`}>
       {divider === 'orbit' ? <OrbitDivider className={`${rule} text-ink`} />
         : divider && <div aria-hidden="true" className={`${rule} h-px bg-hairline`} />}
       {rings && <Transit className={`absolute max-lg:!hidden ${RINGS_AT} ${tone === 'aubergine' ? 'on-dark' : ''}`} />}
@@ -40,7 +40,7 @@ export function SectionHead({ title, sub, align = 'left', action }) {
     <div className={`mb-10 flex flex-wrap items-end justify-between gap-6 ${center ? 'flex-col !items-center text-center' : ''}`}>
       <div className={`max-w-[640px] ${center ? 'mx-auto' : ''}`}>
         <h2 className={H2.list}>{title}</h2>
-        {sub && <p className="mt-3 mb-0 text-balance text-[16px] leading-[1.6] opacity-65">{sub}</p>}
+        {sub && <p className="mt-3 mb-0 text-pretty text-[16px] md:text-balance leading-[1.6] opacity-65">{sub}</p>}
       </div>
       {action}
     </div>
