@@ -17,7 +17,6 @@ import TrainRings from './Rings';
 function Term({ lines, children }) {
   return (
     <div className="flex h-full w-full flex-col p-5 font-mono text-[12px] leading-[1.75] text-white/85 md:p-8 md:text-[13px]">
-      <span aria-hidden="true" className="mb-4 flex gap-1.5"><i className="h-2.5 w-2.5 rounded-full bg-white/15" /><i className="h-2.5 w-2.5 rounded-full bg-white/15" /><i className="h-2.5 w-2.5 rounded-full bg-white/15" /></span>
       <pre className="m-0 overflow-hidden whitespace-pre-wrap !bg-transparent !p-0 font-mono !text-inherit">{lines.map((l, i) => (
         <span key={i} className={`b${Math.min(i + 1, 6)} block ${l.startsWith('$') ? 'text-white' : l.startsWith('#') ? 'text-white/45' : 'text-white/70'}`}>
           {l.startsWith('$') ? <><span className="text-sun">$</span>{l.slice(1)}</> : l || ' '}
