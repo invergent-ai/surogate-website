@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react';
 import { partnerMarkSvg } from './illustrations/partnerBadges.js';
 import { useLive } from './Rings';
 
-// The markup is the finished mark. Once mounted it arms (rings hidden) and, the first time it is on screen,
-// the rings settle in one by one and stop. Reduced motion never arms, so it keeps the finished mark.
+// The markup is the finished mark. Once mounted it arms (hidden) and, the first time it is on screen, the
+// ring fades in and the rabbit settles into it, once. Reduced motion never arms, so it keeps the finished mark.
 export default function PartnerMark({ tier, tone = 'dark', size = 96, className = '' }) {
   const ref = useRef(null);
   useEffect(() => {

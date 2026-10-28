@@ -145,27 +145,24 @@
 .logo-draw .logo-wm { animation: fade 700ms var(--ease-out) 150ms both; }
 @keyframes logo-trace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 
-/* Partner marks arrive once: the rings settle in one by one, then stop (components/site/PartnerMark.jsx). */
-.pm[data-arm] .pm-ring { opacity: 0; }
-.pm[data-arm][data-live] .pm-ring { transform-box: fill-box; transform-origin: center;
-  animation: pm-ring 1200ms var(--ease-out) calc(var(--k) * 140ms) both; }
-@keyframes pm-ring { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: none; } }
-/* Diamond only: once the rings settle, a shine runs the outer ring from the pin to the far side and the glint opens. */
-.pm-shine { opacity: 0; transform-box: fill-box; transform-origin: center; }
-.pm-stone { transform-box: fill-box; transform-origin: center; }
-.pm[data-arm] .pm-stone { opacity: 0; }
-.pm[data-arm][data-live] .pm-shine { animation: pm-shine 1300ms var(--ease-out) 450ms both; }
-.pm[data-arm][data-live] .pm-stone { animation: pm-stone 900ms var(--ease-out) 1250ms both; }
-@keyframes pm-shine { from { opacity: 0; transform: rotate(119deg); } 20%, 70% { opacity: 1; } to { opacity: 0; transform: rotate(299deg); } }
-@keyframes pm-stone { from { opacity: 0; transform: scale(.3); } to { opacity: 1; transform: none; } }
+/* Partner marks arrive once (components/site/PartnerMark.jsx): the ring fades in, the rabbit settles into it,
+   and on Diamond the sun rabbit rises into the star as it does in the logo. */
+.pm-art, .pm-sun { transform-box: fill-box; transform-origin: center; }
+.pm[data-arm] :is(.pm-frame, .pm-art, .pm-sun) { opacity: 0; }
+.pm[data-arm][data-live] .pm-frame { animation: pm-in 700ms var(--ease-out) both; }
+.pm[data-arm][data-live] .pm-art { animation: pm-art 900ms var(--ease-out) 120ms both; }
+.pm[data-arm][data-live] .pm-sun { animation: pm-sun 900ms var(--ease-out) 520ms both; }
+@keyframes pm-in { to { opacity: 1; } }
+@keyframes pm-art { from { transform: translateY(4px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes pm-sun { from { transform: translateY(22px); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   .chat-scroll, .rabbit-breathe, .keel-wander, .keel-glide, .keel-done, .api-pick, .api-picked,
   .rabbit-eye, .rabbit-think, .seq1, .seq2, .seq3, .seq4, .mock-bar, .mock-move, .mock-draw,
   .load-up, .load-fade, .hero-w, .hero-l-in, .hero-l-out, .hero-s-in, .hero-s-out, .seg-run, .seg-ghost, .hop-dot, .word-in, .caret, .pop-in, .spark,
-  .kf-case, .kf-row, .kf-wait, .kf-ok, .transit .arc, .orbit-turn, .logo-draw *, .pm-ring, .pm-shine, .pm-stone { animation: none !important; }
+  .kf-case, .kf-row, .kf-wait, .kf-ok, .transit .arc, .orbit-turn, .logo-draw *, .pm-frame, .pm-art, .pm-sun { animation: none !important; }
   .transit .arc { transition: none !important; transform: none !important; }
-  .pm[data-arm] .pm-ring, .pm[data-arm] .pm-stone { opacity: 1; }
+  .pm[data-arm] :is(.pm-frame, .pm-art, .pm-sun) { opacity: 1; }
   .menu-pop, .menu-pop.is-open, .tile-media, .nudge, .arrow-stem { transition: none !important; }
   .group:hover .tile-media { transform: none; }
   .spin-slow { transition: none !important; }

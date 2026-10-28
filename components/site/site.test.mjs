@@ -192,34 +192,34 @@ test('every film card names its demo business and opens the film', async () => {
   }
 });
 
-test('a partner mark names its tier, counts it in rings pinned to one point, and reads in both tones', async () => {
-  const { partnerRings, partnerMarkSvg } = await import('./illustrations/partnerBadges.js');
-  for (const [tier, name, n] of [['silver', 'Silver', 1], ['gold', 'Gold', 2], ['diamond', 'Diamond', 3]]) {
+test('a partner mark names its tier with its own rabbit: simple, Jackrabbit, the logo star rabbit', async () => {
+  const { partnerMarkSvg } = await import('./illustrations/partnerBadges.js');
+  const { RABBIT_FILL } = await import('./rabbit.js');
+  const { LOGO_RABBIT, LOGO_STAR } = await import('./logo.js');
+  for (const [tier, name] of [['silver', 'Silver'], ['gold', 'Gold'], ['diamond', 'Diamond']]) {
     const html = await render('./PartnerMark.jsx', { tier });
     assert.match(html, new RegExp(`role="img" aria-label="Surogate ${name} partner"`));
-    assert.equal((html.match(/class="pm-ring"/g) || []).length, n, tier);
-    assert.doesNotMatch(html, /NaN|\sid="/);
-    assert.notEqual(partnerMarkSvg(tier, 'dark'), partnerMarkSvg(tier, 'light'));
-    // Every ring touches the same point under the tail: centre distance minus radius is constant.
-    const gaps = partnerRings(tier).map(({ cx, cy, r }) => Math.hypot(cx - 17, cy - 79) - r);
-    assert.ok(gaps.every((g) => Math.abs(g) < 0.05), String(gaps));
+    assert.doesNotMatch(html, /NaN|\sid="|Gradient|filter|blur/i, tier);
+    assert.notEqual(partnerMarkSvg(tier, 'dark'), partnerMarkSvg(tier, 'light'), tier);
   }
+  const [silver, gold, diamond] = ['silver', 'gold', 'diamond'].map((t) => partnerMarkSvg(t, 'light'));
+  assert.ok(silver.includes(RABBIT_FILL) && !silver.includes('#ffaf10'));
+  assert.ok(!gold.includes(RABBIT_FILL) && gold.includes('fill="#ffaf10"'));
+  assert.ok(diamond.includes(`d="${LOGO_STAR}" fill="#0a0a0a"`) && diamond.includes(`d="${LOGO_RABBIT}" fill="#ffaf10"`));
+  assert.ok(partnerMarkSvg('diamond', 'dark').includes(`d="${LOGO_STAR}" fill="#ffffff"`));
   assert.throws(() => partnerMarkSvg('platinum'), /Unknown partner tier/);
 });
 
-test('the rabbit is the same size and place in every tier; only Diamond has a sun inner ring, a set stone and a shine', async () => {
-  const { partnerMarkSvg, RABBIT_AT } = await import('./illustrations/partnerBadges.js');
-  for (const tone of ['dark', 'light']) {
-    for (const tier of ['silver', 'gold', 'diamond']) {
-      const svg = partnerMarkSvg(tier, tone);
-      assert.equal((svg.match(/transform="([^"]+)"/g) || []).join(), `transform="${RABBIT_AT}"`, `${tier} ${tone}`);
-      assert.equal(/pm-stone|pm-shine/.test(svg), tier === 'diamond', `${tier} ${tone}`);
-    }
-    const rings = [...partnerMarkSvg('diamond', tone).matchAll(/class="pm-ring"[^>]*stroke="([^"]+)"/g)].map((m) => m[1]);
-    assert.equal(rings.length, 3);
-    assert.match(rings[2], /^#(ffaf10|d48a00)$/, tone);
-    assert.doesNotMatch(rings[0], /^#(ffaf10|d48a00)$/, tone);
-    assert.match(partnerMarkSvg('diamond', tone), /class="pm-shine"[^>]*opacity="0"/, 'the shine is hidden until it runs');
+test('every tier sits in the same ring, centred at the same size', async () => {
+  const { partnerMarkSvg, artTransform } = await import('./illustrations/partnerBadges.js');
+  const frames = ['silver', 'gold', 'diamond'].map((t) => partnerMarkSvg(t, 'dark').match(/<circle class="pm-frame"[^>]*>/)[0]);
+  assert.equal(new Set(frames).size, 1);
+  // Each art box, mapped through its transform, is centred on (48, 48) and no side exceeds the ring.
+  const BOX = { silver: [1.79, 1.79, 67.48, 69.15], gold: [5.45, 10.29, 69.23, 59.54], diamond: [496.01, 0, 206.57, 235.03] };
+  for (const [tier, [x, y, w, h]] of Object.entries(BOX)) {
+    const [tx, ty, s] = artTransform(tier).match(/-?[\d.]+/g).map(Number);
+    assert.ok(Math.abs(tx + (x + w / 2) * s - 48) < 0.05 && Math.abs(ty + (y + h / 2) * s - 48) < 0.05, tier);
+    assert.ok(Math.max(w, h) * s > 53.9 && Math.max(w, h) * s <= 60, tier);
   }
 });
 
