@@ -26,13 +26,13 @@ export default function Segmented({ options, value, onChange, label, size = 'md'
     onChange(options[n].id);
     list.current?.children[n + 1]?.focus();
   };
-  const h = size === 'sm' ? 'h-8 px-3 text-[13px]' : 'h-9 px-3 text-[13px] md:px-5 md:text-[14px]';
+  const h = size === 'sm' ? 'h-10 px-3 text-[13px] md:h-8' : 'h-10 px-2 text-[13px] min-[380px]:px-3 md:h-9 md:px-5 md:text-[14px]';
   const tab = role === 'tablist';
   return (
     <div ref={list} role={tab ? 'tablist' : 'radiogroup'} aria-label={label} onKeyDown={onKey}
       className="relative inline-flex rounded-full bg-stone p-1">
       <span aria-hidden="true" style={thumb ? { left: thumb.left, width: thumb.width } : { opacity: 0 }}
-        className={`absolute top-1 rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,.08),0_0_0_1px_rgba(0,0,0,.04)] transition-[left,width] duration-300 ease-[cubic-bezier(.16,1,.3,1)] motion-reduce:transition-none ${size === 'sm' ? 'h-8' : 'h-9'}`} />
+        className={`absolute top-1 rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,.08),0_0_0_1px_rgba(0,0,0,.04)] transition-[left,width] duration-300 ease-[cubic-bezier(.16,1,.3,1)] motion-reduce:transition-none ${size === 'sm' ? 'h-10 md:h-8' : 'h-10 md:h-9'}`} />
       {options.map((o, n) => (
         <button key={o.id} type="button" role={tab ? 'tab' : 'radio'} {...(tab ? { 'aria-selected': n === i, 'aria-controls': controls?.(o.id) } : { 'aria-checked': n === i })}
           tabIndex={n === i ? 0 : -1} onClick={() => onChange(o.id)}

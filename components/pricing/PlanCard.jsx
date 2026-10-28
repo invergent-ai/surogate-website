@@ -7,7 +7,7 @@ import { priceLines, usd } from '@/lib/pricing';
 export default function PlanCard({ plan, billing, tab }) {
   const { amount, perMonth, note } = priceLines(plan, billing);
   return (
-    <article className={`flex w-[84%] shrink-0 snap-start flex-col rounded-2xl p-6 sm:w-[46%] md:w-auto ${plan.featured ? 'bg-white ring-1 ring-ink/15' : 'bg-white'}`}>
+    <article className={`flex w-[84%] shrink-0 snap-start flex-col rounded-2xl p-6 sm:w-[46%] md:w-auto ${plan.featured ? 'bg-white ring-1 ring-ink/15' : 'bg-white ring-1 ring-hairline md:ring-0'}`}>
       <h3 className="m-0 flex items-baseline justify-between gap-3 text-[16px] font-[500]">
         {plan.name}
         {plan.badge && <span className="text-[12px] font-normal text-ink/50">{plan.badge}</span>}

@@ -44,7 +44,7 @@ function Teams({ billing, setBilling }) {
       </div>
       <div className={`${ROW} md:grid-cols-4`}>
         {TEAM_PLANS.map((p) => <PlanCard key={p.id} plan={p} billing={billing} tab="teams" />)}
-        <article className="flex w-[84%] shrink-0 snap-start flex-col rounded-2xl bg-white p-6 sm:w-[46%] md:w-auto">
+        <article className="flex w-[84%] shrink-0 snap-start flex-col rounded-2xl bg-white p-6 ring-1 ring-hairline sm:w-[46%] md:w-auto md:ring-0">
           <h3 className="m-0 text-[16px] font-[500]">Keel, per case</h3>
           <p className="m-0 mt-2 text-[13px] leading-[1.4] text-ink/55">Per completed case, on any cloud plan.</p>
           <dl className="m-0 mt-5 border-t border-hairline">
@@ -165,14 +165,15 @@ export default function PricingTabs() {
         </div>
       </section>
       <section className="bg-white">
-        {/* Every panel sits in the same grid cell, so the area is always the tallest one's height and nothing below moves. */}
-        <div className={`${CONTAINER} grid py-10 md:py-14`}>
+        {/* Every panel sits in the same grid cell, so the area is always the tallest one's height and nothing below moves.
+            Phones stack the cards, so the tallest panel would leave a screen of white under the short ones: there only the open panel renders. */}
+        <div className={`${CONTAINER} grid pt-2 pb-10 md:py-14`}>
           {PRICING_TABS.map((t) => {
             const Panel = PANELS[t.id];
             const on = t.id === tab;
             return (
               <div key={t.id} id={t.id} role="tabpanel" aria-label={t.label} inert={!on}
-                className={`min-w-0 [grid-area:1/1] transition-opacity duration-300 ease-[cubic-bezier(.16,1,.3,1)] motion-reduce:transition-none ${on ? 'opacity-100' : 'pointer-events-none opacity-0'}`}>
+                className={`min-w-0 [grid-area:1/1] transition-opacity duration-300 ease-[cubic-bezier(.16,1,.3,1)] motion-reduce:transition-none ${on ? 'opacity-100' : 'pointer-events-none opacity-0 max-md:hidden'}`}>
                 <Panel billing={billing} setBilling={setBilling} />
               </div>
             );
