@@ -30,7 +30,7 @@ export default function Scroller({ steps, dark = false, panelClass = '' }) {
                 {s.points.map((p) => <li key={p} className="flex gap-2"><span aria-hidden="true" className={`mt-[9px] h-px w-3 shrink-0 ${dark ? 'bg-white/40' : 'bg-ink/30'}`} />{p}</li>)}
               </ul>
             )}
-            <div className={`${box} mt-6 grid min-h-[260px] lg:hidden [&>*]:min-w-0`}>{s.panel}</div>
+            <div className={`${box} mt-6 grid min-h-[160px] md:min-h-[260px] lg:hidden [&>*]:min-w-0`}>{s.panel}</div>
           </li>
         ))}
       </ol>
