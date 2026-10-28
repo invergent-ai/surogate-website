@@ -719,3 +719,11 @@
 .st-labs .lab-watch:hover{background:var(--line2);}
 .st-labs .lab-watch:disabled{cursor:default; color:var(--txt-3); background:#fff;}
 .st-labs .lab-watch:focus-visible{outline:2px solid var(--amber); outline-offset:2px;}
+
+/* Phones: code scrolls sideways instead of breaking tokens mid-word, and the small pills grow to a thumb's height.
+   This sits last so it outranks the flat-control rules above, which share its specificity. */
+@media (max-width:640px){
+  .st-labs .lab-pane pre{white-space:pre; overflow-wrap:normal; overflow-x:auto;}
+  .st-labs .lab-watch{height:40px; padding:0 14px;}
+  .st-speech .sp-tabs button,.st-speech .sp-voice-switch button,.st-labs .segmented button,.st-rune .de-next{min-height:40px;}
+}
