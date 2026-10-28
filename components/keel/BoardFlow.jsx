@@ -57,13 +57,15 @@ const Diamond = ({ cx, cy, on }) => {
 };
 
 // The opened Check stage. Paths the case does not take stay dashed grey; the one it takes is laid over in sun.
+// On phones the SVG is drawn 440/394 wider and shifted left so the empty margins (x < 10, x > 404) fall outside
+// the clipped frame and the labels read larger.
 function Flow() {
   const line = { fill: 'none', stroke: INK, strokeWidth: 1.5, markerEnd: 'url(#kb-a)' };
   const idle = { fill: 'none', stroke: SILVER, strokeWidth: 1.5, strokeDasharray: '4 4', markerEnd: 'url(#kb-ag)' };
   const taken = (cls) => ({ className: `kb-path ${cls}`, fill: 'none', stroke: SUN, strokeWidth: 2, markerEnd: 'url(#kb-as)' });
   const label = { fontSize: 12, fill: INK, fillOpacity: 0.55 };
   return (
-    <svg viewBox="0 0 440 410" className="block h-auto w-full" role="img"
+    <svg viewBox="0 0 440 410" className="-ml-[2.5%] block h-auto w-[111.7%] max-w-none sm:ml-0 sm:w-full" role="img"
       aria-label={`The Check stage: an agent matches the invoice to the PO, the approval limit sends ${CASE.amount} to a person, finance approves, and it is ready to pay.`}>
       <defs>
         <Arrow id="kb-a" fill={INK} /><Arrow id="kb-ag" fill={SILVER} /><Arrow id="kb-as" fill={SUN} />
@@ -133,11 +135,11 @@ export default function BoardFlow() {
           </p>
           <div className="relative grid grid-cols-4 gap-2">
             {STAGES.map((s, i) => (
-              <div key={s.name} className="relative min-w-0 rounded-xl bg-white p-1.5 pb-[84px] sm:p-2 sm:pb-[84px]">
+              <div key={s.name} className="relative min-w-0 rounded-xl bg-white p-1 pb-[84px] sm:p-2 sm:pb-[84px]">
                 <p className="m-0 px-1 pt-0.5 pb-2 text-[12px] font-medium sm:text-[13px]">{s.name}</p>
                 <ul className="m-0 grid list-none gap-1.5 p-0">
                   {s.steps.map(([step, who]) => (
-                    <li key={step} className="rounded-lg bg-stone px-1.5 py-1.5 text-[10.5px] leading-[1.3] sm:px-2 sm:text-[12px]">
+                    <li key={step} className="rounded-lg bg-stone px-1 py-1.5 text-[12px] leading-[1.3] [hyphens:auto] sm:px-2">
                       {step}<span className="mt-0.5 hidden text-[11px] text-ink/50 sm:block">{who}</span>
                     </li>
                   ))}
@@ -146,9 +148,9 @@ export default function BoardFlow() {
               </div>
             ))}
             <div aria-hidden="true" className="kb-lane pointer-events-none absolute inset-x-0 bottom-2">
-              <div className="kb-case flex h-[68px] flex-col justify-center rounded-lg border-[1.5px] border-sun bg-white px-1 sm:px-2.5">
+              <div className="kb-case flex h-[68px] flex-col justify-center rounded-lg border-[1.5px] border-sun bg-white px-[3px] sm:px-2.5">
                 <span className="hidden truncate text-[11px] tabular-nums text-ink/55 sm:block">{CASE.invoice}</span>
-                <span className="text-[10px] font-medium tabular-nums sm:text-[13px]">{CASE.amount}</span>
+                <span className="text-[10px] font-medium tabular-nums tracking-[-0.02em] sm:text-[13px] sm:tracking-normal">{CASE.amount}</span>
                 <span className="grid text-[10px] leading-[1.25] text-ink/70 sm:text-[11.5px]">
                   {STATUS.map((t, k) => <span key={t} className={`kb-st kb-st${k + 1} [grid-area:1/1]`}>{t}</span>)}
                 </span>
@@ -170,7 +172,7 @@ export default function BoardFlow() {
         <div className="relative flex flex-col rounded-2xl bg-white p-3 ring-1 ring-silver md:p-4">
           <span aria-hidden="true" className="kb-sel pointer-events-none absolute inset-0 rounded-2xl border-[1.5px] border-ink" />
           <p className="m-0 mb-2 px-1 text-[12px] text-ink/55 md:text-[13px]"><span className="font-medium text-ink">Check</span>, opened: how its steps connect</p>
-          <div className="kb-flow mx-auto my-auto w-full max-w-[420px]"><Flow /></div>
+          <div className="kb-flow mx-auto my-auto w-full max-w-[420px] overflow-hidden sm:overflow-visible"><Flow /></div>
         </div>
       </div>
 

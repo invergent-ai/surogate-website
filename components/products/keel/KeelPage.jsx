@@ -2,7 +2,7 @@ import { DEPLOYMENTS } from '@/lib/solutions';
 import Section, { H2, CONTAINER } from '@/components/site/Section';
 import Button, { Arrow } from '@/components/site/Button';
 import InlineSvg from '@/components/site/InlineSvg';
-import { withOnlyInstructionsAnAgentSvg } from '@/components/keel/illustrations';
+import { withOnlyInstructionsAnAgentSvg, withOnlyInstructionsAnAgentPhoneSvg } from '@/components/keel/illustrations';
 import BoardFlow from '@/components/keel/BoardFlow';
 import { CONTACT_SALES } from '@/lib/site';
 import Page, { H1, SUB, Lead } from '../Page';
@@ -75,7 +75,7 @@ const PILLARS = [
             <div key={step} className="flex min-w-0 flex-1 items-center">
               {i > 0 && <span aria-hidden="true" className="h-[1.5px] w-1.5 shrink-0 bg-sun sm:w-3.5" />}
               <div className={`flex min-w-0 flex-1 flex-col gap-1 rounded-lg px-1.5 py-2 sm:px-2.5 ${who === 'Agent' ? 'border-[1.5px] border-sun' : 'border border-white/20'}`}>
-                <span className="text-[11px] text-white/55">{who}</span>
+                <span className="text-[12px] text-white/55">{who}</span>
                 <span className="text-[12px] font-medium sm:text-[13px]">{step}</span>
               </div>
             </div>
@@ -157,7 +157,8 @@ export default function KeelPage() {
 
       <Section tone="aubergine" inner="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div className="mx-auto w-full max-w-[520px] [&_svg]:h-auto [&_svg]:w-full">
-          <InlineSvg markup={withOnlyInstructionsAnAgentSvg} />
+          <InlineSvg markup={withOnlyInstructionsAnAgentPhoneSvg} className="sm:hidden" />
+          <InlineSvg markup={withOnlyInstructionsAnAgentSvg} className="hidden sm:block" />
         </div>
         <div>
           <h2 className={H2.feature}>An agent with instructions still improvises.</h2>
