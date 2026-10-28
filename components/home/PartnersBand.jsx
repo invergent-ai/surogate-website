@@ -4,7 +4,7 @@ import PartnerMark from '@/components/site/PartnerMark';
 
 export default function PartnersBand() {
   return (
-    <Section tone="aubergine" rings="-right-[45%] top-[48%] h-[110%] lg:-right-[17%] lg:top-[-40%] lg:h-[180%]" inner="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+    <Section tone="aubergine" inner="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
       <div>
         <h2 className={H2.feature}>Build a practice on Surogate.</h2>
         <p className="mt-4 mb-0 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">

@@ -10,6 +10,3 @@ export default function HeroRings({ at }) {
   );
 }
 
-// Closing bands: the rings rise from inside the band and end above its lower edge, so where the band meets
-// the aubergine footer nothing is cut; only the top edge, against the page above, crops them.
-export const CLOSING_RINGS = 'right-[-45%] bottom-[6%] h-[150%] md:right-[-8%] md:h-[200%] lg:right-[-2%]';

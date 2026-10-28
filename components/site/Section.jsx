@@ -12,16 +12,17 @@ export const CONTAINER = 'mx-auto max-w-[1280px] px-4 md:px-6';
 // Light sections are told apart by a hairline that stays inside the page: a little wider than the content,
 // never reaching the viewport edges. Coloured sections are told apart by their colour, so a light section
 // right after one drops its hairline (app/v2.css, .section-rule). `divider="orbit"` marks one turn in a page.
-// `rings` lays the brand rings behind a closing band: below the copy on phones, at the right edge from md up.
-// A string places them instead.
-const RINGS_AT = '-right-[40%] top-[30%] h-[120%] md:-right-[8%] md:top-[-55%] md:h-[210%] lg:-right-[6%]';
+// `rings` lays the brand rings behind a closing band, whose copy and actions stack on the left. The rings rise
+// from inside the band and end above its lower edge, so only the top edge crops them and nothing is cut where
+// the band meets the footer. They stay right of the copy, so below lg, where there is no room, they are left out.
+const RINGS_AT = 'bottom-[6%] -right-[3%] h-auto w-[26%] xl:w-[32%]';
 export default function Section({ tone = 'light', divider = tone === 'light', rings = false, id, className = '', inner = '', children }) {
   const rule = 'section-rule mx-auto w-[calc(100%-32px)] max-w-[1328px]';
   return (
     <section id={id} data-tone={tone} className={`${TONES[tone]} ${rings ? 'relative overflow-hidden' : ''} ${className}`}>
       {divider === 'orbit' ? <OrbitDivider className={`${rule} text-ink`} />
         : divider && <div aria-hidden="true" className={`${rule} h-px bg-hairline`} />}
-      {rings && <Transit className={`absolute w-auto ${typeof rings === 'string' ? rings : RINGS_AT} ${tone === 'aubergine' ? 'on-dark' : ''}`} />}
+      {rings && <Transit className={`absolute max-lg:!hidden ${RINGS_AT} ${tone === 'aubergine' ? 'on-dark' : ''}`} />}
       <div className={`${CONTAINER} py-16 md:py-24 ${rings ? 'relative' : ''} ${inner}`}>{children}</div>
     </section>
   );

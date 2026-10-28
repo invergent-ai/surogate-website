@@ -1,13 +1,12 @@
 import Section, { H2 } from '@/components/site/Section';
 import Button from '@/components/site/Button';
 import { CONTACT_SALES } from '@/lib/site';
-import { CLOSING_RINGS } from '@/components/solutions/HeroRings';
 
 // Every solution page ends here, on the aubergine band with the brand rings: one line, one note, one action.
 export default function ContactBand({ title = 'Talk to us about your setup.', note = 'A partner near you, or our own engineers.', location }) {
   return (
-    <Section tone="aubergine" rings={CLOSING_RINGS}>
-      <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+    <Section tone="aubergine" rings>
+      <div className="flex flex-col items-start gap-6">
         <div>
           <h2 className={H2.feature}>{title}</h2>
           <p className="mt-4 mb-0 text-[16px] leading-[1.6] text-white/70">{note}</p>

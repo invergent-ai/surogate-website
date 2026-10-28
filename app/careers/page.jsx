@@ -6,7 +6,6 @@ import Section, { H2, SectionHead } from '@/components/site/Section';
 import { SplitHero, Values } from '@/components/company/parts';
 import { meta } from '@/lib/company';
 import { mailto } from '@/lib/site';
-import { CLOSING_RINGS } from '@/components/solutions/HeroRings';
 
 export const metadata = meta('/careers/', 'Careers - Surogate',
   'Work on agents, speech and language models, and the open-source engine that trains them, at Invergent in Bucharest.');
@@ -62,7 +61,7 @@ export default function CareersPage() {
           <Values />
         </Section>
 
-        <Section tone="aubergine" rings={CLOSING_RINGS} inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <Section tone="aubergine" rings inner="flex flex-col items-start gap-6">
           <div>
             <h2 className={H2.feature}>Show us what you built.</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">A repository, a model card or a post you wrote. A short note is enough.</p>

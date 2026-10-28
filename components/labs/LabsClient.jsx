@@ -6,7 +6,7 @@ import Button from '@/components/site/Button';
 import Rabbit from '@/components/site/Rabbit';
 import Section, { CONTAINER, H2, SectionHead } from '@/components/site/Section';
 import { H1 } from '@/components/solutions/Hero';
-import HeroRings, { CLOSING_RINGS } from '@/components/solutions/HeroRings';
+import HeroRings from '@/components/solutions/HeroRings';
 import { ENGINE, RUNE_DEMOS, RUNE_FACTS, SPEECH_MODELS, SUROGATE_LM } from '@/lib/labs';
 import LabsSubnav from './LabsSubnav';
 import RuneFilms from './RuneFilms';
@@ -151,7 +151,7 @@ export default function LabsClient() {
           <RuneFilms demos={RUNE_DEMOS.filter((d) => d.film).slice(0, 6)} />
         </Section>
 
-        <Section tone="aubergine" rings={CLOSING_RINGS} inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <Section tone="aubergine" rings inner="flex flex-col items-start gap-6">
           <div>
             <h2 className={H2.feature}>Call our models today.</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Surogate 3.7 Flash is on llm.buzz, with one key for every model.</p>

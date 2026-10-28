@@ -2,11 +2,10 @@ import Section, { H2 } from '@/components/site/Section';
 import Button from '@/components/site/Button';
 import { CONTACT, mailto } from '@/lib/site';
 import { PARTNER_SHARE } from '@/lib/pricing';
-import { CLOSING_RINGS } from '@/components/solutions/HeroRings';
 
 export default function PartnersClosing() {
   return (
-    <Section tone="aubergine" rings={CLOSING_RINGS} id="contact" inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+    <Section tone="aubergine" rings id="contact" inner="flex flex-col items-start gap-6">
       <div>
         <h2 className={H2.feature}>Start your practice.</h2>
         <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-white/70">

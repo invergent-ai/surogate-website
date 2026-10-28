@@ -14,7 +14,6 @@ import LabsSubnav from '../LabsSubnav';
 import LabsHero, { BTN } from '../LabsHero';
 import SheetSelect from '../SheetSelect';
 import { ICONS } from '../icons';
-import { CLOSING_RINGS } from '@/components/solutions/HeroRings';
 
 /*
  * surogate.ai/labs/speech. Every demo is real model output: Amami's clips come from its own worker, the call is
@@ -392,7 +391,7 @@ export default function SpeechPageClient() {
           </div>
         </Section>
 
-        <Section tone="aubergine" rings={CLOSING_RINGS} inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <Section tone="aubergine" rings inner="flex flex-col items-start gap-6">
           <div>
             <h2 className={H2.feature}>Run speech on your own servers.</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Jackrabbit listens and Amami speaks, from one container, on a CPU or a GPU.</p>

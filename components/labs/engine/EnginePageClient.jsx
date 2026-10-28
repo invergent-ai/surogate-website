@@ -11,7 +11,6 @@ import { ENGINE } from '@/lib/labs';
 import EngineCores from '../EngineCores';
 import LabsSubnav from '../LabsSubnav';
 import LabsHero, { HeroFacts } from '../LabsHero';
-import { CLOSING_RINGS } from '@/components/solutions/HeroRings';
 
 /*
  * surogate.ai/labs/engine. The training and serving framework the models are built with. Every number and
@@ -138,7 +137,7 @@ export default function EnginePageClient() {
           </div>
         </Section>
 
-        <Section tone="aubergine" rings={CLOSING_RINGS} inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <Section tone="aubergine" rings inner="flex flex-col items-start gap-6">
           <div>
             <h2 className={H2.feature}>Run it on your own GPUs.</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Open source under Apache 2.0, the engine we train our own models on.</p>

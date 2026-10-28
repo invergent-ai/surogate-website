@@ -7,7 +7,6 @@ import Section, { H2 } from '@/components/site/Section';
 import { CompanyFacts, H1, SUB } from '@/components/company/parts';
 import { CONTAINER } from '@/components/site/Section';
 import { CHANNELS, CONTACT, meta } from '@/lib/company';
-import { CLOSING_RINGS } from '@/components/solutions/HeroRings';
 
 export const metadata = meta('/contact/', 'Contact - Surogate',
   'Write to Sales, Partners, Support or Press at Surogate, or talk to the team on Discord.');
@@ -40,7 +39,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <Section tone="aubergine" rings={CLOSING_RINGS} inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <Section tone="aubergine" rings inner="flex flex-col items-start gap-6">
           <div>
             <h2 className={H2.feature}>Rather chat?</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Ask about agents, models or the engine on our Discord.</p>

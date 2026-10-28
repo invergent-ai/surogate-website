@@ -19,7 +19,6 @@ import SeesArt from './SeesArt';
 import Calibration from './Calibration';
 import DecisionEngine, { pct } from './DecisionEngine';
 import Segmented from '../Segmented';
-import { CLOSING_RINGS } from '@/components/solutions/HeroRings';
 
 /*
  * surogate.ai/labs/rune. What Rune is, what it does and where it fits, from the launch post and the
@@ -297,7 +296,7 @@ export default function RunePageClient() {
           <p className="dep-note" data-reveal>{DEPLOY.hardware} {DEPLOY.note}</p>
         </Section>
 
-        <Section tone="aubergine" rings={CLOSING_RINGS} inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <Section tone="aubergine" rings inner="flex flex-col items-start gap-6">
           <div>
             <h2 className={H2.feature}>Watch Rune at work.</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Cameras, robot arms, invoices and claims, with the answers Rune really gave.</p>

@@ -5,7 +5,9 @@ import { FOOTER, LINKS } from '@/lib/site';
 export default function Footer() {
   return (
     <footer className="bg-aubergine text-white font-sans">
-      <div className="mx-auto max-w-[1280px] px-4 pt-16 pb-10 md:px-6 md:pt-20">
+      <div className="mx-auto max-w-[1280px] px-4 pb-10 md:px-6">
+        {/* An aubergine closing band runs straight into the footer; this hairline keeps them two things. */}
+        <div aria-hidden="true" className="mb-16 h-px bg-white/10 md:mb-20" />
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-3 lg:grid-cols-[1.4fr_repeat(6,1fr)]">
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <Logo small className="block h-8 w-auto text-white" />

@@ -13,7 +13,6 @@ import DemoFilter from './DemoFilter';
 import DemoRow from './DemoRow';
 import LabsSubnav from './LabsSubnav';
 import LabsHero, { HeroFacts } from './LabsHero';
-import { CLOSING_RINGS } from '@/components/solutions/HeroRings';
 
 /*
  * surogate.ai/labs/rune-examples. Rune at work: each demo filmed from its HF Space with the answers Rune
@@ -100,7 +99,7 @@ export default function RuneExamplesClient() {
           </a>
         </Section>
 
-        <Section tone="aubergine" rings={CLOSING_RINGS} inner="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <Section tone="aubergine" rings inner="flex flex-col items-start gap-6">
           <div>
             <h2 className={H2.feature}>Run Rune on your own cards.</h2>
             <p className="m-0 mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/70">Weights under Apache 2.0, served by the Surogate engine.</p>
