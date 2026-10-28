@@ -2,7 +2,8 @@ import Section, { H2 } from '@/components/site/Section';
 import Button from '@/components/site/Button';
 import { CONTACT_SALES } from '@/lib/site';
 import { SPEECH_ABOUT, SPEECH_RUN } from '@/lib/labs';
-import { AMAMI, FLEURS_WER, JACKRABBIT, STREAMING } from '@/lib/voice';
+import { AMAMI, FLEURS_WER, JACKRABBIT, PHONE, STREAMING } from '@/lib/voice';
+import { VideoFrame } from '@/components/site/ProductMedia';
 import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
 import Faq from '../Faq';
 import { Call, Voices } from './Audio';
@@ -27,6 +28,11 @@ const MODELS = [
   { m: JACKRABBIT, does: 'Listens', line: 'Writes cased, punctuated Romanian text from recordings. 116M parameters, comfortable on a CPU.' },
   { m: STREAMING, does: 'Listens live', line: 'Shows words as you speak, then a final sentence when you pause, over HTTP or WebSocket.' },
   { m: AMAMI, does: 'Speaks', line: 'Stress where native speakers put it, the English words Romanians use at work said the English way, and codes dictated one character at a time.' },
+];
+
+const LOOPS = [
+  ['line', 'A tutoring school gives its agent a number and a Romanian greeting.'],
+  ['sound', 'A school office behind the voice, how to say BAC, and callers remembered.'],
 ];
 
 const FAQ = [
@@ -97,6 +103,26 @@ export default function VoicePage() {
           ))}
         </ul>
         <p className="m-0 mt-5 max-w-[880px] text-[13px] leading-[1.55] text-ink/50">Jackrabbit with CTC decoding and a 4-gram language model; each model through the same evaluation code. Every transcript is in the <a href={FLEURS_WER.source} target="_blank" rel="noopener noreferrer" className="!text-ink/70 underline decoration-ink/25 underline-offset-4">evaluation dataset</a>. Recordings: FLEURS by Google, CC BY 4.0.</p>
+      </Section>
+
+      <Section id="phone">
+        <Lead title="Then give an agent a phone number." sub="The same models answer calls for a Surogate agent, with its skills and approvals behind them." />
+        <div className="grid gap-8 md:grid-cols-2 md:gap-6">
+          {LOOPS.map(([name, label]) => (
+            <figure key={name} className="m-0 min-w-0">
+              <VideoFrame src={`/media/loops/voice-${name}.mp4`} poster={`/media/loops/voice-${name}.jpg`} eager={false} />
+              <figcaption className="mt-3 text-[13px] text-ink/50">{label} Filmed on a demo business, with a made-up number.</figcaption>
+            </figure>
+          ))}
+        </div>
+        <ul className="m-0 mt-14 grid list-none gap-x-10 gap-y-8 p-0 sm:grid-cols-2 lg:grid-cols-3">
+          {PHONE.map(({ t, d }) => (
+            <li key={t} className="border-t border-hairline pt-5">
+              <h3 className="m-0 text-[15px] font-[500]">{t}</h3>
+              <p className="m-0 mt-2 text-[14px] leading-[1.55] text-ink/60">{d}</p>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <Section tone="aubergine" id="on-prem" className="relative isolate overflow-hidden" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
