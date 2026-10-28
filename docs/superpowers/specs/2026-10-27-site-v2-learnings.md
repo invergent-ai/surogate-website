@@ -23,7 +23,8 @@ Binding for every page. Read this before §3 of `2026-10-27-site-v2-design.md`, 
 - Divider lines live inside the container, never edge to edge.
 - Hero: no cycling single word, no "where should it run" switch (both rejected). The headline and its
   CTAs rotate per product together.
-- No icons in menus. No gradient frames around code. No status dots or glowing pills. No coloured tag
+- No icons in menus. No gradient frames around code. No status dots or glowing pills. **No glows of any kind**
+  (owner, 2026-10-28): no glowing or pulsing dots, blurred halos, radial light blobs or SVG blur filters. No coloured tag
   chips. No "early access" (the desktop app is released: `surogate.ai/desktop/install.sh`).
 - Product names (owner, 2026-10-27): the agents platform is **Surogate** (route `/agents/`), the desktop
   agent is **Surogate Desktop** (route `/surogate-desktop/`; not `/desktop/`, that path serves the installer).
