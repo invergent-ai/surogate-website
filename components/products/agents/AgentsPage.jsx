@@ -9,7 +9,7 @@ import { TASK_ATTEMPTS } from '@/lib/products';
 import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
 import Scroller from '../Scroller';
 import Faq from '../Faq';
-import { HERO_RINGS, BAND_RINGS } from '../rings';
+import { HERO_RINGS, BAND_CLIP, BAND_RINGS } from '../rings';
 import AgentRings from './Rings';
 import JobPicker from './JobPicker';
 import { SetupPanel, KnowledgePanel, ChannelsPanel, LongPanel, GovernPanel, ImprovePanel } from './Panels';
@@ -135,7 +135,7 @@ export default function AgentsPage() {
       </Section>
 
       <Section tone="aubergine" id="sovereign" className="relative isolate overflow-hidden">
-        <AgentRings dark className={BAND_RINGS} />
+        <div className={BAND_CLIP}><AgentRings dark className={BAND_RINGS} /></div>
         <Lead title="Run all of it inside your own network." sub="On-premise or air-gapped, the whole platform runs on your Kubernetes with your models, and no data has to leave your network." />
         <div className="rounded-2xl border border-dashed border-white/25 p-3 md:p-5">
           <p className="m-0 mb-3 px-1 text-[13px] text-white/60">Your network</p>

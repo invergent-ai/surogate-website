@@ -6,7 +6,7 @@ import { BASE_URL, CONTROLS, EU_PROVIDERS, FLASH_MARKET, JOIN, MARKET, SOURCES }
 import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
 import Faq from '../Faq';
 import Market from './Market';
-import { HERO_RINGS, BAND_RINGS } from '../rings';
+import { HERO_RINGS_UNDER, BAND_CLIP, BAND_RINGS } from '../rings';
 import GatewayRings from './Rings';
 
 const MODEL = FLASH_MARKET.model;
@@ -60,8 +60,8 @@ export default function GatewayPage() {
           <Button href={LINKS.apiKey} external size="lg" arrow event="cta_api_key_clicked" eventProps={{ location: 'gateway_hero' }}>Get API key</Button>
           <Button href="#sell" size="lg" variant="secondary">Sell your inference</Button>
         </>}
-        rings={<GatewayRings className={HERO_RINGS} />}>
-        <div className="mx-auto max-w-[1040px] text-left"><Market /></div>
+        rings={<GatewayRings className={HERO_RINGS_UNDER} />}>
+        <div className="mx-auto max-w-[1040px] pb-0 text-left md:pb-28"><Market /></div>
       </Hero>
 
       <Section id="uses">
@@ -92,7 +92,7 @@ export default function GatewayPage() {
       </Section>
 
       <Section tone="aubergine" id="eu" className="relative isolate overflow-hidden" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
-        <GatewayRings dark className={BAND_RINGS} />
+        <div className={BAND_CLIP}><GatewayRings dark className={BAND_RINGS} /></div>
         <div>
           <h2 className={H2.feature}>In the EU, on every plan.</h2>
           <p className="mt-4 mb-0 max-w-[44ch] text-[16px] leading-[1.6] text-white/70">

@@ -10,7 +10,7 @@ import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
 import Scroller from '../Scroller';
 import Faq from '../Faq';
 import CopyLine from '../CopyLine';
-import { HERO_RINGS, BAND_RINGS } from '../rings';
+import { HERO_RINGS, BAND_CLIP, BAND_RINGS } from '../rings';
 import TrainRings from './Rings';
 
 // The terminal every step replays in: aubergine-black, so even code reads as ours.
@@ -150,7 +150,7 @@ export default function TrainPage() {
       </Section>
 
       <Section tone="aubergine" id="pricing" className="relative isolate overflow-hidden" inner="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
-        <TrainRings dark className={BAND_RINGS} />
+        <div className={BAND_CLIP}><TrainRings dark className={BAND_RINGS} /></div>
         <div>
           <h2 className={H2.feature}>Free to run. Or we train it for you.</h2>
           <p className="mt-4 mb-0 max-w-[52ch] text-[16px] leading-[1.6] text-white/70">The engine is Apache 2.0, free on your own GPUs. On our cloud a GPU costs {GPU.price} {GPU.per}. Or bring your data, and the team that builds the engine trains, evaluates and serves the model.</p>

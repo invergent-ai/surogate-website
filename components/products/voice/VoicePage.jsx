@@ -6,7 +6,7 @@ import { AMAMI, FLEURS_WER, JACKRABBIT, STREAMING } from '@/lib/voice';
 import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
 import Faq from '../Faq';
 import { Call, Voices } from './Audio';
-import { HERO_RINGS, BAND_RINGS } from '../rings';
+import { HERO_RINGS, BAND_CLIP, BAND_RINGS } from '../rings';
 import VoiceRings from './Rings';
 
 const FACTS = [
@@ -100,7 +100,7 @@ export default function VoicePage() {
       </Section>
 
       <Section tone="aubergine" id="on-prem" className="relative isolate overflow-hidden" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
-        <VoiceRings dark className={BAND_RINGS} />
+        <div className={BAND_CLIP}><VoiceRings dark className={BAND_RINGS} /></div>
         <div>
           <h2 className={H2.feature}>Inside your call center.</h2>
           <p className="mt-4 mb-0 max-w-[42ch] text-[16px] leading-[1.6] text-white/70">Both models are served by the Surogate engine, on your own servers, so recordings stay in your network.</p>

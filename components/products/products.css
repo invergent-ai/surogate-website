@@ -42,10 +42,26 @@
 @media (prefers-reduced-motion: reduce) { .hold-a, .hold-b { animation: none !important; } .hold-b { opacity: 0; } }
 
 /* Each product's own rings (RingField.jsx and the pages' Rings.jsx), drawn and paused like Transit (app/v2.css). */
-/* deslop-ignore-next-line 06: masks that fade the ring hairlines out before the copy; nothing gradient is drawn */
-.rf-hero { -webkit-mask-image: linear-gradient(to bottom, transparent 10%, #000 42%); mask-image: linear-gradient(to bottom, transparent 10%, #000 42%); }
-/* deslop-ignore-next-line 06: the same kind of mask, fading the band's rings out before its copy */
-.rf-band { -webkit-mask-image: radial-gradient(45% 70% at 84% 36%, #000 30%, transparent 100%); mask-image: radial-gradient(45% 70% at 84% 36%, #000 30%, transparent 100%); }
+/* Rings never run under text, controls or media: the hero's show only outside its content column (--col wide), and
+   fade in from the top; a band's show only beyond the 1232px content edge. */
+/* Rings never run under text, controls or media: the hero's show only outside its content column (--col wide), and
+   fade in from the top; a band's show only beyond the 1232px content edge. */
+.rf-col { --col: 880px;
+/* deslop-ignore-next-line 06: a mask that clips the ring hairlines away from the content; nothing gradient is drawn */
+  --side: linear-gradient(to right, #000 calc(50% - var(--col) / 2 - 64px), transparent calc(50% - var(--col) / 2 - 24px), transparent calc(50% + var(--col) / 2 + 24px), #000 calc(50% + var(--col) / 2 + 64px));
+/* deslop-ignore-next-line 06: a mask that clips the ring hairlines away from the content; nothing gradient is drawn */
+  --top: linear-gradient(to bottom, transparent 4%, #000 30%);
+  /* deslop-ignore-next-line 06: a mask that clips the ring hairlines away from the content; nothing gradient is drawn */
+  -webkit-mask-image: var(--top), var(--side); mask-image: var(--top), var(--side);
+  -webkit-mask-composite: source-in; mask-composite: intersect; }
+.rf-col.rf-under { --col: 1040px;
+/* deslop-ignore-next-line 06: a mask that clips the ring hairlines away from the content; nothing gradient is drawn */
+  --below: linear-gradient(to bottom, transparent 66.5%, #000 68.5%);
+  /* deslop-ignore-next-line 06: a mask that clips the ring hairlines away from the content; nothing gradient is drawn */
+  -webkit-mask-image: var(--top), var(--below), var(--side); mask-image: var(--top), var(--below), var(--side);
+  -webkit-mask-composite: source-in, source-over; mask-composite: intersect, add; }
+/* deslop-ignore-next-line 06: a mask that clips the ring hairlines away from the content; nothing gradient is drawn */
+.rf-band { -webkit-mask-image: linear-gradient(to right, transparent calc(50% + 640px), #000 calc(50% + 680px)); mask-image: linear-gradient(to right, transparent calc(50% + 640px), #000 calc(50% + 680px)); }
 .rf .rf-sun { fill: none; stroke: #ffaf10; stroke-width: 2; stroke-linecap: round; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; }
 
 /* Voice: three sun ripples leave the call in turn and fade as they widen. */

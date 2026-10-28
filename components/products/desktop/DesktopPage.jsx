@@ -5,7 +5,7 @@ import { CONTACT_SALES, SIGN_IN } from '@/lib/site';
 import { DESKTOP } from '@/lib/desktop';
 import Page, { Hero, Lead, UseCases, Closing } from '../Page';
 import Faq from '../Faq';
-import { HERO_RINGS, BAND_RINGS } from '../rings';
+import { HERO_RINGS, BAND_CLIP, BAND_RINGS } from '../rings';
 import DesktopRings from './Rings';
 import CopyLine from '../CopyLine';
 import { BrowserMock, DesktopMock } from './Mocks';
@@ -85,7 +85,7 @@ export default function DesktopPage() {
       </Section>
 
       <Section tone="aubergine" id="private" className="relative isolate overflow-hidden" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
-        <DesktopRings dark className={BAND_RINGS} />
+        <div className={BAND_CLIP}><DesktopRings dark className={BAND_RINGS} /></div>
         <div>
           <h2 className={H2.feature}>Private by design.</h2>
           <p className="mt-4 mb-0 max-w-[40ch] text-[16px] leading-[1.6] text-white/70">It sees the folder you give it, runs in a sandbox and asks before it goes anywhere new.</p>
