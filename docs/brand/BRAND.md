@@ -732,7 +732,11 @@ through `TrackedLink` (every CTA carries a PostHog event); `external` opens a ne
   a pointer down outside closes. Panels pop from 96% scale (`.menu-pop`).
 - **Products mega menu:** 760 × 480, a 272px list (name 14px medium, line 13px at 55%) and a preview that
   crossfades in 170ms. All six previews stay mounted in one box (no remount flash, no resize) and the panel is
-  built on first open. Each preview sits on its bento tone. No icons.
+  built on first open. Each preview sits on its bento tone. No icons. Surogate shows its footage padded in a
+  `VideoFrame` (`isFootage`); the inactive one shows its poster only (`still`). **Surogate Desktop is the
+  exception: its preview is `SurogateMock`**, a 12-message chat (filing scanned invoices) that fills the whole
+  panel and drifts upward on a 22s loop, user bubbles in ink, agent bubbles in silver, edges faded by `.fade-y`.
+  The other four show their mocks.
 - **Plain menus:** 260px, rows 14px with ↗ on external links; Solutions ends in a stone "Explore all use
   cases" row.
 - **Try for free split pill:** the main part (`rounded-l-full`, ink) goes to `ops.surogate.ai`; the chevron
@@ -789,7 +793,13 @@ underneath as soft pills on the aubergine panel. Props: `tabs` (`{label, code}`)
 `components/site/ProductMedia.jsx`. `VideoFrame` is the window every UI recording sits in: exactly 16:10,
 radius 10, a soft shadow and an 8% ink ring, media `object-contain`. Props: `src` (string or array of
 fallbacks), `poster`, `still` (poster only), `className`, `eager` (default true; pass `false` below the fold).
-`ProductMedia` picks the product's footage or live mock (`components/site/mocks/*`).
+
+`ProductMedia` (props `product`, `still`, `fit`) picks what a product shows. A `FOOTAGE` map gives real
+footage to **Surogate** (`agents`: `/media/loops/agents.mp4`, falling back to the Van Dijk film loop) and
+**Surogate Desktop** (`surogate`: `/media/loops/surogate-desktop-files.mp4`), each in a `VideoFrame`. Every
+other product gets its live mock (`components/site/mocks/{Voice,Keel,Train,Gateway}Mock.jsx`).
+`isFootage(key)` tells callers which kind they hold, so the bento and the menu can give footage room around
+its 16:10 window and let a mock fill the box.
 
 ```jsx
 <VideoFrame src="/media/loops/agents.mp4" poster="/media/loops/agents.jpg" />
@@ -902,10 +912,11 @@ place it by hand anywhere else.
 
 ### Bento tiles
 
-`components/home/Bento.jsx`. Six product tiles, each a link: the product's media or mock filling the tile,
-then a 64px name row (15px medium name, "Explore →" at 70%) on a short fade of the tile's own colour. Tones:
-grey, night (Train), silver (AI Gateway). Surogate's footage sits whole in its 16:10 window above the name
-row. The Voice tile's rabbit is a sibling button that plays Amami's greeting (a button cannot sit inside a
+`components/home/Bento.jsx`. Six product tiles, each a link: the product's media, then a 64px name row
+(15px medium name, "Explore →" at 70%) on a short fade of the tile's own colour. Tones: grey, night (Train),
+silver (AI Gateway). **Surogate and Surogate Desktop show real footage** (`isFootage`), each whole in its
+16:10 window inset 20px above the name row and sized to the tile with container units
+(`w-[min(100cqw,160cqh)]`); the other four mocks fill the tile. The Voice tile's rabbit is a sibling button that plays Amami's greeting (a button cannot sit inside a
 link). The current hero product's tile gets a 1px ring (ink 15%, or white 20% on night).
 
 Don't: rings, arcs, symbols or a rabbit on any tile but Voice; a lift or shadow on hover; hero-size type.
@@ -937,10 +948,12 @@ the title in 600, a muted line, a ↗ in a stone circle. Used once, above the ho
 
 ### Mocks
 
-`components/site/mocks/{Surogate,Voice,Keel,Train,Gateway}Mock.jsx`: live drawings of each product's UI for
-tiles and menu previews, where real footage does not exist yet. Each reads complete without animation
-(`site.test.mjs`). Replace a mock with real footage as soon as it is filmed (Surogate Desktop already was,
-commit `dbb3253`).
+`components/site/mocks/{Voice,Keel,Train,Gateway}Mock.jsx`: live drawings of each product's UI for tiles and
+menu previews, where real footage does not exist yet. Each reads complete without animation (`site.test.mjs`).
+Replace a mock with real footage as soon as it is filmed: Surogate Desktop's page and bento tile already were
+(commits `dbb3253`, `5f783cb`). `SurogateMock.jsx` remains only as the Desktop menu preview (see Nav); the thread
+is drawn twice and moves one copy's height, so no message is on screen twice, and it stops under reduced
+motion.
 
 ---
 
