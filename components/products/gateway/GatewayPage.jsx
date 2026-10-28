@@ -116,9 +116,9 @@ export default function GatewayPage() {
 
       <Section id="controls">
         <Lead title="Built for a whole company." sub="Keys, limits, data policy and logs, from the console or the API." />
-        <ul className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="m-0 grid list-none p-0 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
           {CONTROLS.map(([t, d]) => (
-            <li key={t} className="rounded-2xl bg-white p-6">
+            <li key={t} className="border-t border-hairline py-5 sm:rounded-2xl sm:border-0 sm:bg-white sm:p-6">
               <h3 className="m-0 text-[15px] font-[500]">{t}</h3>
               <p className="m-0 mt-2 text-[14px] leading-[1.55] text-ink/60">{d}</p>
             </li>

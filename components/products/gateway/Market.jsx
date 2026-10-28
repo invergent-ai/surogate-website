@@ -21,7 +21,7 @@ export default function Market() {
         <div role="tablist" aria-label="Routing preset" className="flex rounded-full bg-stone p-1">
           {PRESETS.map((x) => (
             <button key={x.key} type="button" role="tab" aria-selected={x.key === preset} onClick={() => setPreset(x.key)}
-              className={`h-8 rounded-full px-3.5 text-[13px] font-medium transition-colors duration-150 ease-in-out ${x.key === preset ? 'bg-white text-ink shadow-[0_0_0_1px_rgba(10,10,10,.06)]' : 'text-ink/60 hover:text-ink'}`}>{x.label}</button>
+              className={`h-10 rounded-full px-4 text-[13px] sm:h-8 sm:px-3.5 font-medium transition-colors duration-150 ease-in-out ${x.key === preset ? 'bg-white text-ink shadow-[0_0_0_1px_rgba(10,10,10,.06)]' : 'text-ink/60 hover:text-ink'}`}>{x.label}</button>
           ))}
         </div>
       </div>
@@ -31,9 +31,9 @@ export default function Market() {
             <tr className="h-9 text-left text-[12px] text-ink/50">
               <th className="px-2 sm:px-4 font-normal">Provider</th>
               <th className="hidden px-2 sm:px-4 font-normal sm:table-cell">Region</th>
-              <th className="px-2 sm:px-4 text-right font-normal">Input / M</th>
-              <th className="px-2 sm:px-4 text-right font-normal">Output / M</th>
-              <th className="px-2 sm:px-4 text-right font-normal">First token</th>
+              <th className="whitespace-nowrap px-2 sm:px-4 text-right font-normal">Input<span className="hidden sm:inline"> / M</span></th>
+              <th className="whitespace-nowrap px-2 sm:px-4 text-right font-normal">Output<span className="hidden sm:inline"> / M</span></th>
+              <th className="whitespace-nowrap px-2 sm:px-4 text-right font-normal">First token</th>
             </tr>
           </thead>
           <tbody className="relative">
