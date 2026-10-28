@@ -73,7 +73,7 @@ export function Team() {
           )}
           <span className="mt-5 block text-[15px] font-medium leading-[1.35] text-ink">{t.name}</span>
           <span className="mt-0.5 block text-[13px] leading-[1.45] text-ink/60">{t.role}</span>
-          {t.works && <span className="mt-2 block text-[13px] leading-[1.5] text-ink/75">Works on {t.works}.</span>}
+          {t.bio && <span className="mt-2 block text-[13px] leading-[1.5] text-ink/75">{t.bio}</span>}
           <span className="mt-1 flex flex-wrap gap-x-4">
             {profiles(t).map((l) => (
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" aria-label={`${t.name} on ${l.label}`}
