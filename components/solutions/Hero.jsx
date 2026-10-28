@@ -17,14 +17,14 @@ export default function Hero({ label, h1, sub, trust = [], primary, secondary, l
         {label && <p className="load-up m-0 text-[14px] font-medium text-ink/55">{label}</p>}
         <h1 className={`${H1} load-up mt-3`} style={{ '--t': '60ms', '--d': '650ms' }}>{h1}</h1>
         <p className="load-up mt-5 mb-0 max-w-[560px] text-balance text-[17px] leading-[1.6] text-ink/65 md:text-[18px]" style={{ '--t': '160ms', '--d': '650ms' }}>{sub}</p>
-        <div className="load-up mt-8 flex flex-wrap gap-3" style={{ '--t': '260ms', '--d': '650ms' }}>
+        <div className="load-up mt-8 grid gap-3 sm:flex sm:flex-wrap" style={{ '--t': '260ms', '--d': '650ms' }}>
           <Button href={main.href} size="lg" arrow event={main.event} external={main.external} eventProps={{ location }}>{main.label}</Button>
           {secondary && <Button href={secondary.href} size="lg" variant="secondary" event={secondary.event} external={secondary.external} eventProps={{ location }}>{secondary.label}</Button>}
         </div>
         {trust.length > 0 && (
           <ul className="load-fade m-0 mt-12 grid max-w-[560px] list-none grid-cols-2 gap-x-6 gap-y-2.5 border-t border-hairline p-0 pt-5 text-[14px] text-ink/60" style={{ '--t': '400ms' }}>
             {trust.map((t) => (t.href
-              ? <li key={t.label}><a href={t.href} className="group inline-flex min-h-6 items-center gap-1 font-medium !text-ink no-underline">{t.label}<Arrow /></a></li>
+              ? <li key={t.label}><a href={t.href} className="group inline-flex min-h-10 items-center gap-1 font-medium !text-ink no-underline md:min-h-6">{t.label}<Arrow /></a></li>
               : <li key={t}>{t}</li>))}
           </ul>
         )}

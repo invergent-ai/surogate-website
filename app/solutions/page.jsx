@@ -57,8 +57,8 @@ export default function SolutionsPage() {
                   <td className="text-[13px] text-ink/55 md:py-4 md:pr-6 md:text-[15px] md:text-ink/70">{u.industry}</td>
                   <td className="col-span-2 row-start-2 pt-1 font-medium md:py-4 md:pr-6">{u.job}</td>
                   <td className="col-start-2 row-start-1 text-right text-[13px] text-ink/55 md:py-4 md:pr-6 md:text-left md:text-[15px] md:text-ink/70">{product(u.product).name}</td>
-                  <td className="col-span-2 row-start-3 pt-2 md:py-4 md:text-right">
-                    <a href={href} className="group inline-flex min-h-6 items-center gap-0.5 whitespace-nowrap text-[14px] font-medium !text-ink no-underline">
+                  <td className="col-span-2 row-start-3 pt-1 md:py-4 md:text-right">
+                    <a href={href} className="group inline-flex min-h-10 items-center gap-0.5 whitespace-nowrap text-[14px] md:min-h-6 font-medium !text-ink no-underline">
                       {u.film ? 'Watch the film' : 'Open the page'}<ChevronRight size={15} className="nudge" />
                     </a>
                   </td>

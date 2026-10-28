@@ -69,7 +69,7 @@ export default function SecurityPage() {
           ))}
         </ul>
       </Section>
-      <Section id="disclosure" inner="grid items-start gap-8 lg:grid-cols-[4fr_8fr] lg:gap-16">
+      <Section id="disclosure" inner="grid items-start gap-4 lg:grid-cols-[4fr_8fr] lg:gap-16">
         <h2 className={H2.list}>Found a vulnerability?</h2>
         <div>
           <p className="m-0 max-w-[56ch] text-[16px] leading-[1.6] text-ink/70">

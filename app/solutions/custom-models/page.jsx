@@ -1,3 +1,4 @@
+import Tail from '@/components/site/Tail';
 import { ChevronRight } from 'lucide-react';
 import Shell from '@/components/solutions/Shell';
 import Hero from '@/components/solutions/Hero';
@@ -32,8 +33,8 @@ export default function CustomModelsPage() {
             <li key={m.name}>
               <a href={m.href} className="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-white/15 py-5 !text-white no-underline">
                 <span className="text-[15px] font-medium">{m.name}</span>
-                <span className="row-span-2 text-[28px] font-[450] tracking-[-0.01em] [font-variant-numeric:tabular-nums] md:text-[32px]">{m.n}</span>
-                <span className="flex items-center gap-1 text-[13px] text-white/55">{m.l}<ChevronRight size={14} className="nudge shrink-0" /></span>
+                <span className="text-[28px] leading-none md:row-span-2 md:leading-normal font-[450] tracking-[-0.01em] [font-variant-numeric:tabular-nums] md:text-[32px]">{m.n}</span>
+                <span className="col-span-2 text-[13px] text-white/55 md:col-span-1"><Tail text={m.l}><ChevronRight size={14} className="nudge ml-1 inline-block align-[-2px]" /></Tail></span>
               </a>
             </li>
           ))}

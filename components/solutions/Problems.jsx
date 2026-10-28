@@ -4,7 +4,7 @@ import Section, { SectionHead } from '@/components/site/Section';
 export default function Problems({ title = 'What it answers.', items }) {
   return (
     <Section>
-      <div className="grid items-start gap-8 lg:grid-cols-[4fr_8fr] lg:gap-16">
+      <div className="grid items-start lg:grid-cols-[4fr_8fr] lg:gap-16">
         <SectionHead title={title} />
         <dl className="m-0 border-t border-hairline">
           {items.map((x) => (
