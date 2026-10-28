@@ -64,8 +64,6 @@
 .chat-scroll { animation: chat-scroll 22s linear infinite; }
 .rabbit-breathe { animation: breathe 3.2s ease-in-out infinite; }
 @keyframes breathe { 50% { transform: scale(1.04); } }
-.voice-ring { animation: ring 2.4s var(--ease-out) infinite; }
-@keyframes ring { from { transform: scale(.85); opacity: .9; } to { transform: scale(1.5); opacity: 0; } }
 
 /* Keel tile: the case walks the four stages; each stage lights as it arrives; the rail fills behind it. */
 /* Keel tile: above, a dot wanders to dead ends; below, it glides the fixed path and waits at the agent step. */
@@ -130,9 +128,6 @@
 .transit-loop .arc { animation: transit-turn var(--d) linear var(--del) infinite paused; }
 .transit-loop[data-live] .arc { animation-play-state: running; }
 @keyframes transit-turn { to { transform: rotate(calc(var(--s) * 360deg)); } }
-.transit-hover .ring { opacity: .1; }
-.transit-hover .arc { transition: transform 1600ms var(--ease-out); }
-.group:hover .transit-hover .arc, .group:focus-visible .transit-hover .arc { transform: rotate(calc(var(--s) * 300deg)); }
 /* Home hero: the rings fade towards the centred copy. */
 /* deslop-ignore-next-line 06: a mask that fades the ring hairlines out before the copy; nothing gradient is drawn */
 .hero-rings { -webkit-mask-image: radial-gradient(60% 75% at 100% 30%, #000 45%, transparent 100%); mask-image: radial-gradient(60% 75% at 100% 30%, #000 45%, transparent 100%); }
@@ -165,11 +160,11 @@
 @keyframes pm-stone { from { opacity: 0; transform: scale(.3); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .chat-scroll, .rabbit-breathe, .voice-ring, .keel-wander, .keel-glide, .keel-done, .api-pick, .api-picked,
+  .chat-scroll, .rabbit-breathe, .keel-wander, .keel-glide, .keel-done, .api-pick, .api-picked,
   .rabbit-eye, .rabbit-think, .seq1, .seq2, .seq3, .seq4, .mock-bar, .mock-move, .mock-draw,
   .load-up, .load-fade, .hero-w, .hero-l-in, .hero-l-out, .hero-s-in, .hero-s-out, .seg-run, .seg-ghost, .hop-dot, .word-in, .caret, .pop-in, .spark,
   .kf-case, .kf-row, .kf-wait, .kf-ok, .transit .arc, .orbit-turn, .logo-draw *, .pm-ring, .pm-shine, .pm-stone { animation: none !important; }
-  .transit .arc { transition: none !important; transform: rotate(var(--a0, 0deg)) !important; }
+  .transit .arc { transition: none !important; transform: none !important; }
   .pm[data-arm] .pm-ring, .pm[data-arm] .pm-stone { opacity: 1; }
   .menu-pop, .menu-pop.is-open, .tile-media, .nudge, .arrow-stem { transition: none !important; }
   .group:hover .tile-media { transform: none; }

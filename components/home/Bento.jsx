@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import ProductMedia from '@/components/site/ProductMedia';
-import Transit from '@/components/site/Rings';
 import { CONTAINER } from '@/components/site/Section';
 import { PRODUCTS } from '@/lib/products';
 import { amamiSrc } from '@/lib/labs';
@@ -48,10 +47,8 @@ export default function Bento({ active }) {
           const on = p.key === active;
           const media = `tile-media absolute ${on ? 'opacity-100' : 'opacity-[.85]'}`;
           return (
-            <li key={p.key} className={`relative ${SPAN[p.key]}`}>
+            <li key={p.key} className={`group relative ${SPAN[p.key]}`}>
               <a href={p.href} className={`group relative block h-[220px] overflow-hidden rounded-2xl no-underline transition-shadow duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 md:h-[280px] lg:h-[300px] ${on ? (dark ? 'ring-1 ring-white/20' : 'ring-1 ring-ink/15') : ''} ${SURFACE[p.tone]}`}>
-                {/* Behind the media: the rings show in the tile's open space, and an arc runs once on hover. */}
-                <Transit mode="hover" className={`absolute right-[-10%] top-[-8%] h-[130%] w-auto ${dark ? 'on-dark' : ''}`} />
                 {p.key === 'agents'
                   ? <div className={`${media} inset-x-5 top-5 bottom-14 flex items-center justify-center [container-type:size]`} aria-hidden="true"><ProductMedia product={p} fit="w-[min(100cqw,160cqh)]" /></div>
                   : <div className={`${media} inset-x-0 top-0 bottom-10`} aria-hidden="true"><ProductMedia product={p} /></div>}

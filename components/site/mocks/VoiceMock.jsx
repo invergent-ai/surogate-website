@@ -2,14 +2,11 @@ import Rabbit from '../Rabbit';
 
 const BARS = [5, 9, 14, 20, 12, 22, 26, 16, 20, 10, 18, 24, 14, 8, 12, 18];
 
-// Both sides of a call: Jackrabbit listens, Amami speaks. The rabbit is Amami's character, breathing,
-// with sound rings going out from it.
+// Both sides of a call: Jackrabbit listens, Amami speaks. The rabbit is Amami's character, breathing.
 export default function VoiceMock() {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-2 px-5">
       <span className="relative flex h-20 w-20 items-center justify-center text-aubergine" style={{ '--rabbit-bg': '#f4f4f5' }}>
-        <span className="voice-ring absolute inset-1 rounded-full border border-sun/50" />
-        <span className="voice-ring absolute inset-1 rounded-full border border-sun/50" style={{ animationDelay: '1.2s' }} />
         <span className="rabbit-breathe relative"><Rabbit pose="voice" size={72} /></span>
       </span>
       <span className="flex h-4 items-center gap-[2px]" aria-hidden="true">
