@@ -65,7 +65,7 @@ export default function DesktopPage() {
           </div>
           <figure className="m-0">
             <VideoFrame src="/media/loops/surogate-desktop-browser.mp4" poster="/media/loops/surogate-desktop-browser.jpg" eager={false} />
-            <figcaption className="mt-3 text-[13px] text-ink/50">The agent opens a supplier portal, you sign in yourself, then hand the browser back and it reads off the open invoices. A demo portal on this computer.</figcaption>
+            <figcaption className="mt-3 text-[13px] text-ink/50">The agent opens a supplier portal, you sign in yourself, then hand the browser back and it reads off the open invoices. Filmed on a demo portal.</figcaption>
           </figure>
         </div>
         <ul className="m-0 mt-16 grid list-none gap-3 p-0 sm:grid-cols-2 lg:mt-24 lg:grid-cols-4">
