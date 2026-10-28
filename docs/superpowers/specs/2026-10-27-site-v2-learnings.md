@@ -21,6 +21,8 @@ Binding for every page. Read this before §3 of `2026-10-27-site-v2-design.md`, 
   aubergine footer, sun gold #ffaf10 as the only accent. **Never cream, ivory, beige or any warm off-white**,
   and text on dark surfaces is pure white. Radii: 16 tiles, 12 cards, full pills. Hairline `#e4e4e7`.
 - Divider lines live inside the container, never edge to edge.
+- Rings (owner, 2026-10-28) only as a quiet hero background and in aubergine closing bands. Never inside cards,
+  tiles, panels, covers or media boxes: boxes stay clean.
 - Hero: no cycling single word, no "where should it run" switch (both rejected). The headline and its
   CTAs rotate per product together.
 - No icons in menus. No gradient frames around code. No status dots or glowing pills. **No glows of any kind**
