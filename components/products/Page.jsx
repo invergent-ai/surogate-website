@@ -78,21 +78,21 @@ const UCOLS = { 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4' };
 // Who runs it and for what: one tile per market, small type, the whole tile a link when a page tells more.
 export function UseCases({ items }) {
   return (
-    <ul className={`m-0 grid list-none gap-3 p-0 sm:grid-cols-2 ${UCOLS[items.length] || 'lg:grid-cols-4'}`}>
+    <ul className={`m-0 grid list-none p-0 sm:grid-cols-2 sm:gap-x-6 md:gap-3 ${UCOLS[items.length] || 'lg:grid-cols-4'}`}>
       {items.map(({ market, job, line, href }) => {
         const body = (
           <>
             <p className="m-0 text-[13px] text-ink/50">{market}</p>
             <h3 className="m-0 mt-2 text-[15px] font-[500] leading-[1.4]">{job}</h3>
             <p className="m-0 mt-2 text-[14px] leading-[1.55] text-ink/60">{line}</p>
-            {href && <span className="mt-auto inline-flex items-center gap-1 pt-5 text-[13px] font-medium text-ink">Read more <ArrowRight size={13} className="nudge" /></span>}
+            {href && <span className="mt-auto inline-flex min-h-10 items-center gap-1 pt-2 text-[13px] md:min-h-0 md:pt-5 font-medium text-ink">Read more <ArrowRight size={13} className="nudge" /></span>}
           </>
         );
         return (
-          <li key={job} className="flex">
+          <li key={job} className="flex border-t border-hairline md:border-0">
             {href
-              ? <a href={href} className="group flex w-full flex-col rounded-2xl bg-white p-6 !text-ink no-underline transition-colors duration-150 ease-in-out hover:bg-stone">{body}</a>
-              : <div className="flex w-full flex-col rounded-2xl bg-white p-6">{body}</div>}
+              ? <a href={href} className="group flex w-full flex-col py-5 !text-ink no-underline transition-colors duration-150 ease-in-out md:rounded-2xl md:bg-white md:p-6 md:hover:bg-stone">{body}</a>
+              : <div className="flex w-full flex-col py-5 md:rounded-2xl md:bg-white md:p-6">{body}</div>}
           </li>
         );
       })}
