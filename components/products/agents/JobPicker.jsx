@@ -20,6 +20,9 @@ const COLORS = ['#2a102d', '#a85d00', '#5b4a3a', '#3d1d42', '#0a0a0a', '#6b4f2a'
 
 export default function JobPicker() {
   const [i, setI] = useState(0);
+  // Only footage that has been picked is mounted, so the page opens with one poster, not six.
+  const [seen, setSeen] = useState([0]);
+  const pick = (n) => { setI(n); setSeen((s) => (s.includes(n) ? s : [...s, n])); };
   const dialog = useRef(null);
   const [open, setOpen] = useState(false);
   const film = FILMS.find((f) => f.slug === JOBS[i].slug);
@@ -29,7 +32,7 @@ export default function JobPicker() {
       <div>
         <div role="tablist" aria-label="Markets" className="flex flex-wrap gap-2">
           {JOBS.map((j, n) => (
-            <button key={j.slug} type="button" role="tab" aria-selected={n === i} onClick={() => setI(n)}
+            <button key={j.slug} type="button" role="tab" aria-selected={n === i} onClick={() => pick(n)}
               className={`inline-flex h-9 items-center gap-2 rounded-full pr-3.5 text-[14px] transition-colors duration-150 ease-in-out ${n === i ? 'bg-ink pl-1.5 text-white' : 'bg-stone pl-3.5 text-ink hover:bg-hairline'}`}>
               {n === i && <RabbitAvatar size={24} bg="#fff" ink={COLORS[n]} body="#fff" />}
               {j.job}
@@ -54,7 +57,7 @@ export default function JobPicker() {
           const f = filmFiles(j.slug);
           return (
             <div key={j.slug} aria-hidden="true" className={`absolute inset-0 transition-opacity duration-500 ${n === i ? 'opacity-100' : 'opacity-0'}`}>
-              {Math.abs(n - i) <= 1 || n === i ? <LoopVideo src={f.loop} poster={f.poster} className="h-full w-full object-contain" /> : <img src={f.poster} alt="" className="h-full w-full object-contain" />}
+              {seen.includes(n) && <LoopVideo src={f.loop} poster={f.poster} className="h-full w-full object-contain" />}
             </div>
           );
         })}
