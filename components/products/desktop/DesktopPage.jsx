@@ -8,16 +8,7 @@ import Faq from '../Faq';
 import { HERO_RINGS, BAND_CLIP, BAND_RINGS } from '../rings';
 import DesktopRings from './Rings';
 import CopyLine from '../CopyLine';
-import { BrowserMock, DesktopMock } from './Mocks';
-
-// Window chrome around a mock or a loop: one 16:10 frame, like the footage everywhere else on the site.
-function Window({ children }) {
-  return (
-    <div className="aspect-[16/10] w-full overflow-hidden rounded-[10px] bg-white shadow-[0_1px_2px_rgba(0,0,0,.06),0_8px_24px_-12px_rgba(0,0,0,.25)] ring-1 ring-ink/[.08]">
-      {children}
-    </div>
-  );
-}
+import { VideoFrame } from '@/components/site/ProductMedia';
 
 // Jobs built from what the app does (lib/desktop.js): real folders, a sandbox, your browser.
 const USES = [
@@ -54,8 +45,8 @@ export default function DesktopPage() {
         </>}
         rings={<DesktopRings className={HERO_RINGS} />}>
         <div className="mx-auto max-w-[880px]">
-          <Window><DesktopMock /></Window>
-          <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">A bookkeeper's October folder: the agent matches invoices to the bank export and asks before it goes online.</p>
+          <VideoFrame src="/media/loops/surogate-desktop-files.mp4" poster="/media/loops/surogate-desktop-files.jpg" />
+          <p className="m-0 mt-3 text-left text-[13px] text-ink/50 md:mt-4">A freight company's folder of scanned invoices: the agent reads each one, files it by supplier and logs it in a spreadsheet. Filmed on a demo business.</p>
         </div>
       </Hero>
 
@@ -72,7 +63,10 @@ export default function DesktopPage() {
               It drives your browser in a profile of its own. Take it over for a sign-in at any moment, and the agent waits until you hand it back.
             </p>
           </div>
-          <Window><BrowserMock /></Window>
+          <figure className="m-0">
+            <VideoFrame src="/media/loops/surogate-desktop-browser.mp4" poster="/media/loops/surogate-desktop-browser.jpg" eager={false} />
+            <figcaption className="mt-3 text-[13px] text-ink/50">The agent opens a supplier portal, you sign in yourself, then hand the browser back and it reads off the open invoices. A demo portal on this computer.</figcaption>
+          </figure>
         </div>
         <ul className="m-0 mt-16 grid list-none gap-3 p-0 sm:grid-cols-2 lg:mt-24 lg:grid-cols-4">
           {CAN.map(([t, d]) => (
