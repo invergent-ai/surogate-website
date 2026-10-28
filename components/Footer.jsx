@@ -15,13 +15,13 @@ export default function Footer() {
           </div>
           {FOOTER.map((col) => (
             <div key={col.heading}>
-              <h2 className="m-0 mb-4 text-[13px] font-medium text-white/60">{col.heading}</h2>
-              <ul className="m-0 list-none p-0 flex flex-col gap-2.5">
+              <h2 className="m-0 mb-2 text-[13px] md:mb-4 font-medium text-white/60">{col.heading}</h2>
+              <ul className="m-0 list-none p-0 flex flex-col md:gap-2.5">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <TrackedLink href={l.href} event="footer_link_clicked" eventProps={{ label: l.label, section: col.heading }}
                       {...(/^https?:/.test(l.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      className="text-[14px] !text-white/80 no-underline hover:!text-white">{l.label}</TrackedLink>
+                      className="block py-2.5 text-[14px] !text-white/80 no-underline hover:!text-white md:inline md:py-0">{l.label}</TrackedLink>
                   </li>
                 ))}
               </ul>
