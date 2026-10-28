@@ -1,17 +1,22 @@
 import { ChevronRight } from 'lucide-react';
 import { CONTAINER } from '@/components/site/Section';
+import HeroRings from '@/components/solutions/HeroRings';
 import { COMPANY, RELEASES, TEAM, VALUES, fmtRelease } from '@/lib/company';
 
-export const H1 = 'm-0 text-balance text-[36px] font-[450] leading-[1.1] tracking-[-0.01em] text-ink md:text-[48px] md:leading-[1.05] lg:text-[58px]';
+export const H1 = 'm-0 text-balance text-[36px] font-[450] leading-[1.08] tracking-[-0.01em] text-ink md:text-[56px] md:leading-[1.04]';
+// Where the company family's heroes carry the brand rings: low on the right, rising from below the fold.
+export const RINGS_AT = 'right-[-20%] top-[-10%] h-[180%] lg:right-[-4%] lg:top-[-30%] lg:h-[200%]';
 export const SUB = 'm-0 mt-5 max-w-[52ch] text-[16px] leading-[1.6] text-ink/65 md:text-[18px]';
 
 const ext = (href) => (/^https?:/.test(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {});
 
 // A split hero: the headline and its actions on the left, a short list of where to go next on the right.
+// Without the list, the brand rings take the right half.
 export function SplitHero({ title, sub, actions, links }) {
   return (
-    <section className="bg-white">
-      <div className={`${CONTAINER} grid gap-12 pt-14 pb-16 md:pt-24 md:pb-24 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:gap-16`}>
+    <section className={`bg-white ${links ? '' : 'relative'}`}>
+      {!links && <HeroRings at={RINGS_AT} />}
+      <div className={`${CONTAINER} relative grid gap-12 pt-14 pb-16 md:pt-24 md:pb-24 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:gap-16`}>
         <div className="load-up">
           <h1 className={H1}>{title}</h1>
           <p className={SUB}>{sub}</p>

@@ -1,15 +1,18 @@
 import Button, { Arrow } from '@/components/site/Button';
 import { CONTAINER } from '@/components/site/Section';
 import { CONTACT_SALES } from '@/lib/site';
+import HeroRings from './HeroRings';
 
 export const H1 = 'm-0 max-w-[16ch] text-balance text-[36px] font-[450] leading-[1.08] tracking-[-0.01em] md:text-[56px] md:leading-[1.04]';
 
 // Left-aligned: who it is for, the headline, one primary action, and the facts a buyer checks first.
+// Without a visual, the brand rings rise quietly behind the right half.
 export default function Hero({ label, h1, sub, trust = [], primary, secondary, location, visual }) {
   const main = primary || { label: 'Contact Sales', href: CONTACT_SALES, event: 'contact_sales_clicked' };
   return (
-    <section className="bg-white">
-      <div className={`${CONTAINER} grid items-center gap-12 pt-14 pb-16 md:pt-24 md:pb-24 ${visual ? 'lg:grid-cols-[1fr_1fr] lg:gap-16' : ''}`}>
+    <section className={`bg-white ${visual ? '' : 'relative'}`}>
+      {!visual && <HeroRings at="right-[-18%] top-[-40%] h-[170%] lg:right-[-6%] lg:top-[-55%] lg:h-[190%]" />}
+      <div className={`${CONTAINER} relative grid items-center gap-12 pt-14 pb-16 md:pt-24 md:pb-24 ${visual ? 'lg:grid-cols-[1fr_1fr] lg:gap-16' : ''}`}>
         <div>
         {label && <p className="load-up m-0 text-[14px] font-medium text-ink/55">{label}</p>}
         <h1 className={`${H1} load-up mt-3`} style={{ '--t': '60ms', '--d': '650ms' }}>{h1}</h1>
