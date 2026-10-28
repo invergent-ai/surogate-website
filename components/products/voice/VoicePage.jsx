@@ -6,6 +6,8 @@ import { AMAMI, FLEURS_WER, JACKRABBIT, STREAMING } from '@/lib/voice';
 import Page, { Hero, Lead, Facts, UseCases, Closing } from '../Page';
 import Faq from '../Faq';
 import { Call, Voices } from './Audio';
+import { HERO_RINGS, BAND_RINGS } from '../rings';
+import VoiceRings from './Rings';
 
 const FACTS = [
   { n: '5.69%', l: 'word error rate for Jackrabbit on the FLEURS Romanian test' },
@@ -44,7 +46,8 @@ export default function VoicePage() {
         actions={<>
           <Button href={CONTACT_SALES} size="lg" arrow event="contact_sales_clicked" eventProps={{ location: 'voice_hero' }}>Contact Sales</Button>
           <Button href="#voices" size="lg" variant="secondary">Listen to the voices</Button>
-        </>}>
+        </>}
+        rings={<VoiceRings className={HERO_RINGS} />}>
         <Call />
       </Hero>
 
@@ -96,7 +99,8 @@ export default function VoicePage() {
         <p className="m-0 mt-5 max-w-[880px] text-[13px] leading-[1.55] text-ink/50">Jackrabbit with CTC decoding and a 4-gram language model; each model through the same evaluation code. Every transcript is in the <a href={FLEURS_WER.source} target="_blank" rel="noopener noreferrer" className="!text-ink/70 underline decoration-ink/25 underline-offset-4">evaluation dataset</a>. Recordings: FLEURS by Google, CC BY 4.0.</p>
       </Section>
 
-      <Section tone="aubergine" id="on-prem" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+      <Section tone="aubergine" id="on-prem" className="relative isolate overflow-hidden" inner="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+        <VoiceRings dark className={BAND_RINGS} />
         <div>
           <h2 className={H2.feature}>Inside your call center.</h2>
           <p className="mt-4 mb-0 max-w-[42ch] text-[16px] leading-[1.6] text-white/70">Both models are served by the Surogate engine, on your own servers, so recordings stay in your network.</p>
