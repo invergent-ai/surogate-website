@@ -46,9 +46,6 @@
 .group:hover .arrow-stem, .group:focus-visible .arrow-stem { opacity: 1; }
 
 /* Tile mini-UIs: soft edges, a thread that drifts up, Amami breathing. */
-.fade-y { -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); }
-@keyframes chat-scroll { to { transform: translateY(-50%); } }
-.chat-scroll { animation: chat-scroll 22s linear infinite; }
 .rabbit-breathe { animation: breathe 3.2s ease-in-out infinite; }
 @keyframes breathe { 50% { transform: scale(1.04); } }
 
@@ -110,7 +107,7 @@
 @keyframes pm-sun { from { transform: translateY(22px); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .chat-scroll, .rabbit-breathe, .rabbit-eye, .rabbit-think, .mock-bar, .mock-draw,
+  .rabbit-breathe, .rabbit-eye, .rabbit-think, .mock-bar, .mock-draw,
   .load-up, .load-fade, .hero-w, .hero-l-in, .hero-l-out, .hero-s-in, .hero-s-out, .seg-run, .seg-ghost, .word-in, .caret, .spark,
   .transit .arc, .orbit-turn, .logo-draw *, .pm-frame, .pm-art, .pm-sun { animation: none !important; }
   .transit .arc { transition: none !important; transform: none !important; }

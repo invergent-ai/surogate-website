@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import ProductMedia from '@/components/site/ProductMedia';
+import ProductMedia, { isFootage } from '@/components/site/ProductMedia';
 import { CONTAINER } from '@/components/site/Section';
 import { PRODUCTS } from '@/lib/products';
 import { amamiSrc } from '@/lib/labs';
@@ -49,7 +49,7 @@ export default function Bento({ active }) {
           return (
             <li key={p.key} className={`group relative ${SPAN[p.key]}`}>
               <a href={p.href} className={`group relative block h-[220px] overflow-hidden rounded-2xl no-underline transition-shadow duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 md:h-[280px] lg:h-[300px] ${on ? (dark ? 'ring-1 ring-white/20' : 'ring-1 ring-ink/15') : ''} ${SURFACE[p.tone]}`}>
-                {p.key === 'agents'
+                {isFootage(p.key)
                   ? <div className={`${media} inset-x-5 top-5 bottom-14 flex items-center justify-center [container-type:size]`} aria-hidden="true"><ProductMedia product={p} fit="w-[min(100cqw,160cqh)]" /></div>
                   : <div className={`${media} inset-x-0 top-0 bottom-10`} aria-hidden="true"><ProductMedia product={p} /></div>}
                 <div className={`absolute inset-x-0 bottom-0 flex h-16 items-end justify-between bg-gradient-to-t px-5 pb-4 ${FADE[p.tone]} to-transparent`}>
