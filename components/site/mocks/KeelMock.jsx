@@ -22,7 +22,6 @@ export default function KeelMock() {
         <path d="M0 92H300" stroke="currentColor" strokeOpacity=".1" />
         <text x="0" y="110" fontSize="12" fontWeight="600" fill="currentColor">With Keel</text>
         <path d="M14 140H286" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <circle className="keel-glow" cx="186" cy="140" r="10" fill="#ffaf10" />
         {STOPS.map(([x, label, anchor]) => (
           <g key={label}>
             <circle cx={x} cy="140" r="3.5" fill={x === 186 ? '#ffaf10' : '#f4f4f5'} stroke={x === 186 ? '#ffaf10' : 'currentColor'} strokeWidth="1.5" />

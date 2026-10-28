@@ -73,8 +73,6 @@
 .keel-wander { transform: translate(102px, 26px); animation: keel-wander 6s var(--ease-out) infinite; }
 @keyframes keel-glide { 0% { transform: translateX(0); opacity: 0; } 6% { transform: translateX(0); opacity: 1; } 22% { transform: translateX(82px); } 38%, 62% { transform: translateX(172px); } 80% { transform: translateX(272px); opacity: 1; } 96% { transform: translateX(272px); opacity: 1; } 100% { transform: translateX(272px); opacity: 0; } }
 .keel-glide { transform: translateX(272px); animation: keel-glide 6s var(--ease-out) infinite; }
-@keyframes keel-glow { 0%, 34% { opacity: 0; } 42%, 58% { opacity: .3; } 68%, 100% { opacity: 0; } }
-.keel-glow { opacity: 0; animation: keel-glow 6s var(--ease-ui) infinite; }
 @keyframes keel-done { 0%, 78% { opacity: 0; } 84%, 96% { opacity: 1; } 100% { opacity: 0; } }
 .keel-done { animation: keel-done 6s var(--ease-ui) infinite; }
 /* API tile: the highlight starts on the cheapest provider and glides to the one the router picks. */
@@ -167,7 +165,7 @@
 @keyframes pm-stone { from { opacity: 0; transform: scale(.3); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .chat-scroll, .rabbit-breathe, .voice-ring, .keel-wander, .keel-glide, .keel-glow, .keel-done, .api-pick, .api-picked,
+  .chat-scroll, .rabbit-breathe, .voice-ring, .keel-wander, .keel-glide, .keel-done, .api-pick, .api-picked,
   .rabbit-eye, .rabbit-think, .seq1, .seq2, .seq3, .seq4, .mock-bar, .mock-move, .mock-draw,
   .load-up, .load-fade, .hero-w, .hero-l-in, .hero-l-out, .hero-s-in, .hero-s-out, .seg-run, .seg-ghost, .hop-dot, .word-in, .caret, .pop-in, .spark,
   .kf-case, .kf-row, .kf-wait, .kf-ok, .transit .arc, .orbit-turn, .logo-draw *, .pm-ring, .pm-shine, .pm-stone { animation: none !important; }
