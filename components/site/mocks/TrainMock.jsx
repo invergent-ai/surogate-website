@@ -4,7 +4,7 @@
 // frame for reduced motion; the loop fades back in 300ms with the command still on screen.
 const TOTAL = 3000;
 const STEPS = [[200, 1.8421, 0.9312], [400, 1.5106, 0.884], [600, 1.3372, 0.7915], [800, 1.2264, 0.7408], [1000, 1.1593, 0.7021], [1200, 1.1207, 0.6833]];
-const step = ([n, loss, norm]) => `:: step ${String(n).padStart(7)} [${((n / TOTAL) * 100).toFixed(1).padStart(5)}%] \\ loss ${loss.toFixed(4)} | norm  ${norm.toFixed(4)}`;
+const step = ([n, loss, norm]) => [`:: step ${String(n).padStart(7)} [${((n / TOTAL) * 100).toFixed(1).padStart(5)}%] \\ loss ${loss.toFixed(4)}`, ` | norm  ${norm.toFixed(4)}`];
 const LOG = ['[Dataset]', ' train:  2.4M tokens', ' eval:   120k tokens', "Starting training run 'support-ro'...", ...STEPS.map(step)];
 const [lastStep, lastLoss] = STEPS[STEPS.length - 1];
 const KEEP = 2;
@@ -21,6 +21,8 @@ const CSS = [
   `@keyframes tr-up{0%,32%{transform:none}40%,100%{transform:translateY(-${UP}px)}}.tr-up{transform:translateY(-${UP}px);animation:tr-up 7s ${EASE} infinite}`,
   `@keyframes tr-chart{0%,36%{opacity:0}44%,96%{opacity:1}100%{opacity:0}}.tr-chart{animation:tr-chart 7s ${EASE} infinite}`,
   `@keyframes tr-draw{0%,38%{stroke-dashoffset:400}62%,100%{stroke-dashoffset:0}}.tr-draw{animation:tr-draw 7s ${EASE} infinite}`,
+  // A narrow panel (a phone, a small tile) drops each step's norm so the line ends on the loss instead of being cut.
+  '.tr-log{container-type:inline-size}@container (max-width:389px){.tr-norm{display:none}}',
   '@media (prefers-reduced-motion:reduce){[class*="tr-"]{animation:none!important}}',
 ].join('');
 
@@ -29,10 +31,12 @@ export default function TrainMock() {
     <div className="flex h-full flex-col gap-2 px-5 py-5 font-mono text-[12px] text-white">
       <style>{CSS}</style>
       <p className="m-0 whitespace-nowrap"><span className="text-sun">$ </span>surogate sft config.yaml</p>
-      <div className="relative min-h-0 flex-1 overflow-hidden">
+      <div className="tr-log relative min-h-0 flex-1 overflow-hidden">
         <div className="tr-up absolute inset-x-0 top-0">
           {LOG.map((l, i) => (
-            <p key={i} className={`tr-l${i} m-0 h-[18px] overflow-hidden whitespace-pre leading-[18px] ${l.startsWith('::') ? 'text-white' : 'text-white/65'}`}>{l}</p>
+            <p key={i} className={`tr-l${i} m-0 h-[18px] overflow-hidden whitespace-pre leading-[18px] ${Array.isArray(l) ? 'text-white' : 'text-white/65'}`}>
+              {Array.isArray(l) ? <>{l[0]}<span className="tr-norm">{l[1]}</span></> : l}
+            </p>
           ))}
         </div>
         <div className="tr-chart absolute inset-x-0 bottom-0 flex flex-col gap-1" style={{ top: KEEP * LH + 8 }}>
