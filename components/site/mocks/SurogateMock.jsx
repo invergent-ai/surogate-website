@@ -27,7 +27,7 @@ function Thread({ hidden }) {
 // window is shorter than one copy, so a message is never on screen twice.
 export default function SurogateMock() {
   return (
-    <div className="fade-y absolute inset-0 overflow-hidden px-6 text-[13px]">
+    <div className="fade-y absolute inset-x-0 top-0 bottom-6 overflow-hidden px-6 text-[13px]">
       <div className="chat-scroll">
         <Thread />
         <Thread hidden />

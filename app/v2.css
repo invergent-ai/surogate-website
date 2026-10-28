@@ -45,7 +45,7 @@
 .arrow-stem { opacity: 0; transition: opacity 150ms var(--ease-ui); }
 .group:hover .arrow-stem, .group:focus-visible .arrow-stem { opacity: 1; }
 
-/* Mini-UIs: soft edges, a thread that drifts up (the Desktop menu preview), Amami breathing. */
+/* Mini-UIs: soft edges, a thread that drifts up (Surogate Desktop), Amami breathing. */
 .fade-y { -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); }
 @keyframes chat-scroll { to { transform: translateY(-50%); } }
 .chat-scroll { animation: chat-scroll 22s linear infinite; }

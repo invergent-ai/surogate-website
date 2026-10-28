@@ -1,16 +1,17 @@
 import LoopVideo from './LoopVideo';
+import SurogateMock from './mocks/SurogateMock';
 import VoiceMock from './mocks/VoiceMock';
 import KeelMock from './mocks/KeelMock';
 import TrainMock from './mocks/TrainMock';
 import GatewayMock from './mocks/GatewayMock';
 import { filmFiles } from '@/lib/films';
 
-const MOCKS = { voice: VoiceMock, keel: KeelMock, train: TrainMock, gateway: GatewayMock };
+const MOCKS = { surogate: SurogateMock, voice: VoiceMock, keel: KeelMock, train: TrainMock, gateway: GatewayMock };
 
 // Footage is a UI recording, so it is never cropped: it sits whole in its own 16:10 window, framed like a
 // screen, and whoever places it gives it room. still: the poster only, for a preview not being looked at.
 // eager: false below the fold, so the poster waits until the window is near.
-// Surogate and Surogate Desktop are real footage; the others are live drawings of their UI.
+// Surogate is real footage; the others, Desktop's scrolling chat included, are live drawings of their UI.
 export function VideoFrame({ src, poster, still, className = 'w-full', eager = true }) {
   const media = 'h-full w-full object-contain';
   return (
@@ -22,7 +23,6 @@ export function VideoFrame({ src, poster, still, className = 'w-full', eager = t
 
 const FOOTAGE = {
   agents: { src: ['/media/loops/agents.mp4', filmFiles('vandijk-approval').loop], poster: '/media/loops/agents.jpg' },
-  surogate: { src: '/media/loops/surogate-desktop-files.mp4', poster: '/media/loops/surogate-desktop-files.jpg' },
 };
 export const isFootage = (key) => key in FOOTAGE;
 

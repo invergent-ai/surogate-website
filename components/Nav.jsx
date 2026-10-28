@@ -8,7 +8,6 @@ import TrackedLink from '@/components/TrackedLink';
 import Button from '@/components/site/Button';
 import Logo from '@/components/site/Logo';
 import ProductMedia, { isFootage } from '@/components/site/ProductMedia';
-import SurogateMock from '@/components/site/mocks/SurogateMock';
 import { PRODUCTS } from '@/lib/products';
 import { CONTACT_SALES, MENUS, SIGN_IN, TRY_MENU } from '@/lib/site';
 
@@ -45,7 +44,7 @@ export function ProductsPanel({ onPick }) {
       <div className="relative h-full overflow-hidden rounded-lg" aria-hidden="true">
         {PRODUCTS.map((p) => (
           <div key={p.key} className={`absolute inset-0 transition-opacity duration-[170ms] ease-in-out ${{ night: 'bg-night', silver: 'bg-silver' }[p.tone] || 'bg-stone'} ${active === p.key ? 'opacity-100' : 'opacity-0'}`}>
-            {p.key === 'surogate' ? <SurogateMock /> : isFootage(p.key)
+            {isFootage(p.key)
               ? <div className="flex h-full items-center p-5"><ProductMedia product={p} still={active !== p.key} /></div>
               : <ProductMedia product={p} still={active !== p.key} />}
           </div>
