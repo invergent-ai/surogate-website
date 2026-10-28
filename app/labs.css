@@ -65,8 +65,6 @@
 .st-labs .hf-card:focus-visible{outline:3px solid var(--amber); outline-offset:4px;}
 .st-labs .hf-card-h{display:flex; align-items:center; gap:16px;}
 .st-labs .hf-avatar{flex:none;}
-.st-labs .hf-title{white-space:nowrap;}
-.st-labs .hf-title-logo{display:inline-block; height:0.9em; width:auto; vertical-align:-0.08em; margin-left:0.04em;}
 .st-labs .hf-repo{font-family:var(--mono); font-size:clamp(16px,2vw,21px); overflow-wrap:anywhere;}
 .st-labs .hf-org{color:rgba(255,255,255,0.6); margin-right:6px;}
 .st-labs .hf-go{margin-left:auto; flex:none; color:var(--amber);}
@@ -75,7 +73,6 @@
 .st-labs .hf-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
 .st-labs .hf-tag{padding:6px 12px; border-radius:999px; font-size:14px; font-weight:600;
   background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.88);}
-.st-labs .lab-actions{display:flex; flex-wrap:wrap; gap:14px; margin-top:28px;}
 .st-labs .lab-sp{display:flex; flex-direction:column; gap:16px; padding:30px; border-radius:20px;
   background:rgba(255,255,255,0.04); border:1px solid var(--line-dk);}
 .st-labs .lab-sp-t{font-family:var(--serif); font-weight:600; font-size:30px; line-height:1.1; color:var(--txt-d1); margin:0;}
@@ -258,7 +255,6 @@
 @media (prefers-reduced-motion:reduce){
   .st-engine .en-bar i,.st-engine .en-bar-v,.st-engine .en-row-h b{transition:none;}
 }
-.st-engine .en-engines{background:var(--paper-2);}
 .st-engine .en-cols{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; margin-top:56px;}
 .st-engine .en-col{padding:36px; border-radius:20px; background:var(--paper); border:1px solid var(--line2);}
 .st-engine .en-col-t{margin:0; font-family:var(--serif); font-weight:600; font-size:30px; line-height:1.1; color:var(--txt-1);}
@@ -290,7 +286,6 @@
   border:1px solid var(--amber-line); border-radius:999px; padding:3px 10px;}
 .st-rune .qk-title{margin:0; font-family:var(--serif); font-weight:600; font-size:26px; color:var(--txt-1);}
 /* What comes back */
-.st-rune .rn-caps{background:var(--paper-2);}
 .st-rune .cap-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; margin-top:56px;
   background:var(--line2); border:1px solid var(--line2); border-radius:22px; overflow:hidden;}
 .st-rune .cap{padding:32px; background:var(--paper);}
@@ -315,7 +310,6 @@
 .st-rune .use{padding:24px; border:1px solid var(--line2); border-radius:20px; background:var(--paper);
   transition:border-color .2s ease;}
 .st-rune .use:hover{border-color:var(--amber-line);}
-.st-rune .use-ic{display:grid; place-items:center; width:42px; height:42px; border-radius:12px; background:var(--amber-soft); color:var(--amber-ink);}
 .st-rune .use-t{margin:16px 0 0; font-weight:700; font-size:17px; color:var(--txt-1);}
 .st-rune .use-d{margin:8px 0 0; font-size:15px; line-height:1.5; color:var(--txt-2);}
 
@@ -332,8 +326,6 @@
 .st-rune .dep-terms li{padding:8px 14px; border-radius:999px; border:1px solid var(--line-dk); font-size:14.5px; color:var(--txt-d1);}
 .st-rune .dep-cmd{margin-top:28px;}
 .st-rune .dep-note{margin:16px 0 0; font-size:14.5px; line-height:1.55; color:var(--txt-d3); max-width:80ch;}
-.st-rune .rn-next-in{display:flex; flex-wrap:wrap; align-items:center; gap:14px 26px;}
-.st-rune .rn-next-in .lab-textlink{margin-top:0;}
 
 @media (max-width:1023px){
   .st-rune .qk-grid,.st-rune .dep-grid{grid-template-columns:minmax(0,1fr);}

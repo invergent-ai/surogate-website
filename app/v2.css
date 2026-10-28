@@ -40,8 +40,6 @@
 /* Bento and card hovers: the media drifts, the arrow nudges. No lifts, no shadows. */
 .tile-media { transition: transform 500ms cubic-bezier(0, 0, .2, 1), opacity 500ms var(--ease-out); }
 .group:hover .tile-media { transform: scale(1.02); }
-.spin-slow { transition: transform 6s linear; }
-.group:hover .spin-slow { transform: translate(-50%, -50%) rotate(40deg); }
 .nudge { transition: transform 150ms var(--ease-ui); }
 .group:hover .nudge, .group:focus-visible .nudge { transform: translateX(2px); }
 .arrow-stem { opacity: 0; transition: opacity 150ms var(--ease-ui); }
@@ -119,5 +117,4 @@
   .pm[data-arm] :is(.pm-frame, .pm-art, .pm-sun) { opacity: 1; }
   .menu-pop, .menu-pop.is-open, .tile-media, .nudge, .arrow-stem { transition: none !important; }
   .group:hover .tile-media { transform: none; }
-  .spin-slow { transition: none !important; }
 }

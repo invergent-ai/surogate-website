@@ -56,21 +56,6 @@ html {
       transition: none;
     }
   }
-  .has-sun-mark {
-    background-image: linear-gradient(135deg, #ffaf10 0%, #ffe845 100%);
-    background-repeat: no-repeat;
-    background-size: 100% 38%;
-    background-position: 0 88%;
-    padding: 0 6px;
-  }
-}
-
-.codeblock {
-  background: rgb(43, 43, 43);
-}
-
-.language-bash {
-  @apply text-[10px] sm:text-[12px] md:text-[14px];
 }
 
 pre {
