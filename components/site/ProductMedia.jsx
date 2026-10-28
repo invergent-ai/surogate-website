@@ -10,12 +10,13 @@ const MOCKS = { surogate: SurogateMock, voice: VoiceMock, keel: KeelMock, train:
 
 // Footage is a UI recording, so it is never cropped: it sits whole in its own 16:10 window, framed like a
 // screen, and whoever places it gives it room. still: the poster only, for a preview not being looked at.
+// eager: false below the fold, so the poster waits until the window is near.
 // Agents is real footage: the new loop, falling back to the film cut. The others are live drawings of their UI.
-export function VideoFrame({ src, poster, still, className = 'w-full' }) {
+export function VideoFrame({ src, poster, still, className = 'w-full', eager = true }) {
   const media = 'h-full w-full object-contain';
   return (
     <div className={`aspect-[16/10] max-w-full ${className} overflow-hidden rounded-[10px] bg-white shadow-[0_1px_2px_rgba(0,0,0,.06),0_8px_24px_-12px_rgba(0,0,0,.25)] ring-1 ring-ink/[.08]`}>
-      {still ? <img src={poster} alt="" loading="lazy" decoding="async" className={media} /> : <LoopVideo src={src} poster={poster} className={media} />}
+      {still ? <img src={poster} alt="" loading="lazy" decoding="async" className={media} /> : <LoopVideo src={src} poster={poster} eager={eager} className={media} />}
     </div>
   );
 }

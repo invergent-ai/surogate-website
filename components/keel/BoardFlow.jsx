@@ -186,7 +186,7 @@ export default function BoardFlow() {
           ))}
         </div>
         <div className="rounded-2xl bg-stone p-4 md:p-5">
-          <VideoFrame src={film.loop} poster={film.poster} />
+          <VideoFrame eager={false} src={film.loop} poster={film.poster} />
           <p className="m-0 mt-3 text-[13px] text-ink/55">The person's step, as filmed: approve payment of {CASE.amount} to {CASE.supplier}</p>
         </div>
       </div>

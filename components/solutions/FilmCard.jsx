@@ -16,7 +16,7 @@ export default function FilmCard({ slug, caption, id }) {
   return (
     <figure id={id} className="m-0 scroll-mt-20">
       <button type="button" aria-label={`Watch ${f.title}`} onClick={() => { setOpen(true); dialog.current?.showModal(); }} className="group block w-full text-left">
-        <VideoFrame src={files.loop} poster={files.poster} />
+        <VideoFrame eager={false} src={files.loop} poster={files.poster} />
         <span className="mt-3 flex items-start justify-between gap-4">
           <span>
             <span className="block text-[14px] font-medium leading-[1.4] text-ink">{caption || f.title}</span>

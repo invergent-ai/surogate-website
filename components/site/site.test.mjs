@@ -45,8 +45,10 @@ test('the stat strip prints each number with its label', async () => {
 test('a loop never autoplays from markup, so reduced motion and offscreen tiles stay still', async () => {
   const html = await render('./LoopVideo.jsx', { src: '/media/films/x-loop.mp4', poster: '/media/films/x.jpg' });
   assert.match(html, /<video[^>]*muted=""[^>]*loop=""[^>]*playsInline=""[^>]*preload="none"/);
-  assert.match(html, /poster="\/media\/films\/x\.jpg"/);
   assert.doesNotMatch(html, /autoplay/i);
+  assert.doesNotMatch(html, /poster=/, 'below the fold the poster waits until the window is near');
+  const eager = await render('./LoopVideo.jsx', { src: '/media/films/x-loop.mp4', poster: '/media/films/x.jpg', eager: true });
+  assert.match(eager, /poster="\/media\/films\/x\.jpg"/);
 });
 
 test('every product has media, and a mock reads complete without animation', async () => {
