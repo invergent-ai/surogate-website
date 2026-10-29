@@ -60,13 +60,8 @@
 .seg-ghost { animation: seg-ghost 300ms var(--ease-out) both; }
 [data-paused] .seg-run { animation-play-state: paused; }
 
-/* The action bar's typing: words arrive softly, the caret breathes. */
-@keyframes word-in { from { opacity: 0; } }
-.word-in { animation: word-in 260ms var(--ease-out) both; }
 .spark { stroke-dasharray: 100; animation: spark 1.8s var(--ease-out) both; }
 @keyframes spark { from { stroke-dashoffset: 100; } }
-@keyframes caret { 50% { opacity: .15; } }
-.caret { animation: caret 1.1s ease-in-out infinite; }
 
 [data-tone]:not([data-tone="light"]) + section > .section-rule { display: none; }
 
@@ -79,7 +74,7 @@
 .transit-loop .arc { animation: transit-turn var(--d) linear var(--del) infinite paused; }
 .transit-loop[data-live] .arc { animation-play-state: running; }
 @keyframes transit-turn { to { transform: rotate(calc(var(--s) * 360deg)); } }
-/* Home hero: the rings fade towards the centred copy, and out before the first bento row. */
+/* Home hero: the rings fade towards the centred copy, and out before the hero's lower edge. */
 /* deslop-ignore-next-line 06: a mask that fades the ring hairlines out before the copy; nothing gradient is drawn */
 .hero-rings { -webkit-mask-image: radial-gradient(60% 75% at 100% 30%, #000 45%, transparent 100%), linear-gradient(#000 55%, transparent 90%);
   mask-image: radial-gradient(60% 75% at 100% 30%, #000 45%, transparent 100%), linear-gradient(#000 55%, transparent 90%);
@@ -111,7 +106,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .chat-scroll, .rabbit-breathe, .rabbit-eye, .rabbit-think, .mock-bar, .mock-draw,
-  .load-up, .load-fade, .hero-w, .hero-l-in, .hero-l-out, .hero-s-in, .hero-s-out, .seg-run, .seg-ghost, .word-in, .caret, .spark,
+  .load-up, .load-fade, .hero-w, .hero-l-in, .hero-l-out, .hero-s-in, .hero-s-out, .seg-run, .seg-ghost, .spark,
   .transit .arc, .orbit-turn, .logo-draw *, .pm-frame, .pm-art, .pm-sun { animation: none !important; }
   .transit .arc { transition: none !important; transform: none !important; }
   .pm[data-arm] :is(.pm-frame, .pm-art, .pm-sun) { opacity: 1; }

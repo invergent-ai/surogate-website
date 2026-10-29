@@ -1,15 +1,12 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Hero from '@/components/home/Hero';
-import Doors from '@/components/home/Doors';
-import Proof from '@/components/home/Proof';
-import DevApi from '@/components/home/DevApi';
-import Sovereign from '@/components/home/Sovereign';
+import Results from '@/components/home/Results';
 import Films from '@/components/home/Films';
-import Research from '@/components/home/Research';
-import PartnersBand from '@/components/home/PartnersBand';
-import Section, { SectionHead } from '@/components/site/Section';
-import GetStarted from '@/components/site/GetStarted';
+import Sovereign from '@/components/home/Sovereign';
+import Platform from '@/components/home/Bento';
+import Doors from '@/components/home/Doors';
+import Closing from '@/components/home/Closing';
 import { pageMetadata } from '@/lib/site';
 
 export const metadata = pageMetadata('/');
@@ -20,17 +17,12 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Doors />
+        <Results />
         <Films />
-        <DevApi />
         <Sovereign />
-        <Proof />
-        <Research />
-        <PartnersBand />
-        <Section>
-          <SectionHead title="Choose how to get started." align="center" />
-          <GetStarted location="home_closing" />
-        </Section>
+        <Platform />
+        <Doors />
+        <Closing />
       </main>
       <Footer />
     </div>
