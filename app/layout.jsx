@@ -34,7 +34,7 @@ export const viewport = {
   themeColor: '#09090b',
 };
 
-const TITLE = 'Surogate - Your AI, on your terms';
+const TITLE = 'Surogate - Frontier-level automation on your own infrastructure';
 const DESCRIPTION =
   'Agents, voice, process automation and your own models, on your hardware or ours. Built in Europe. Surogate, Surogate Desktop, Voice, Keel, Train and the AI Gateway.';
 

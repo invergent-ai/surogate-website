@@ -7,8 +7,7 @@ import LoopVideo from '@/components/site/LoopVideo';
 import FilmVideo from '@/components/site/FilmVideo';
 import { FILMS, filmFiles } from '@/lib/films';
 
-// Six fill two rows of three on desktop and three of two on tablets; the seventh waits for its own section.
-export const SHOWN = FILMS.slice(0, 6);
+export const SHOWN = FILMS.filter((f) => f.enterprise);
 
 export default function Films() {
   const dialog = useRef(null);
@@ -17,8 +16,8 @@ export default function Films() {
   const close = () => { dialog.current?.close(); setFilm(null); };
   return (
     <Section>
-      <SectionHead title="Watch it work." sub="Real product, filmed on demo businesses. Each one is a job a team hands to an agent." />
-      <ul className="m-0 grid list-none gap-x-3 gap-y-8 p-0 sm:grid-cols-2 lg:grid-cols-3">
+      <SectionHead wide title="Watch it work." sub="Real product, filmed on demo businesses. Each one is a job a team hands to an agent." />
+      <ul className="m-0 grid list-none gap-x-3 gap-y-8 p-0 sm:grid-cols-2">
         {SHOWN.map((f) => {
           const files = filmFiles(f.slug);
           return (

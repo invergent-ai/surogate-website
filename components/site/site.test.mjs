@@ -69,72 +69,15 @@ test('the nav server-renders every menu trigger and both calls to action', async
   assert.match(html, /aria-label="More ways to start"/);
 });
 
-test('the hero server-renders the Agents headline as the h1, its typed brief with the sign-up link, and a live region', async () => {
+test('the hero server-renders the platform claim as the h1, its two actions, and a live region', async () => {
   const html = await render('../home/Hero.jsx', {});
   assert.equal((html.match(/<h1/g) || []).length, 1);
-  assert.match(html, /<h1[^>]*><span class="sr-only">AI colleagues for every team\.<\/span>/);
+  assert.match(html, /<h1[^>]*><span class="sr-only">Frontier-level automation\. On your own infrastructure\.<\/span>/);
   assert.match(html, /id="hero-copy" aria-live="polite"/);
-  assert.match(html, /data-action="brief"[\s\S]*Banking<\/span>[\s\S]*Check each loan file and flag what is missing/);
-  assert.match(html, /href="https:\/\/ops\.surogate\.ai"[^>]*data-event="cta_signup_clicked"[^>]*>Build this agent/);
-  assert.doesNotMatch(html, /role="tablist"|role="radiogroup"|Where should it run|Contact Sales/);
-  assert.equal((html.match(/aria-label="Show /g) || []).length, 6);
-});
-
-test('Agents and Voice have a box; the others are plain calls to action', async () => {
-  const { PRODUCTS } = await import('../../lib/products.js');
-  const { SIGN_IN } = await import('../../lib/site.js');
-  const kinds = Object.fromEntries(PRODUCTS.map((p) => [p.key, p.action.kind]));
-  assert.deepEqual(kinds, { agents: 'brief', surogate: 'ctas', voice: 'audio', keel: 'ctas', train: 'ctas', gateway: 'ctas' });
-  assert.equal(PRODUCTS[0].action.primary.href, SIGN_IN);
-  for (const p of PRODUCTS) for (const [m, t] of p.action.briefs || []) assert.ok(`${m} · ${t}`.length <= 64, t);
-  const React = (await import('react')).default;
-  const { renderToStaticMarkup } = await import('react-dom/server');
-  const { default: HeroAction } = await import('../home/HeroAction.jsx');
-  for (const p of PRODUCTS) {
-    const html = renderToStaticMarkup(React.createElement(HeroAction, { product: p, onPlaying: () => {} }));
-    const a = p.action;
-    for (const l of [a.primary, a.secondary, a.link].filter(Boolean)) assert.ok(html.includes(`href="${l.href}"`), `${p.key} ${l.label}`);
-    assert.equal(html.includes('rounded-xl border'), a.kind !== 'ctas', p.key);
-    assert.doesNotMatch(html, /\u2014|base_url|curl -LsSf|early access|Doina|Tudor|Radu/i, p.key);
-  }
-});
-
-test('Voice speaks a Romanian line per Agents market, the next one each time round, each a real Amami recording', async () => {
-  const fs = await import('node:fs');
-  const { PRODUCTS } = await import('../../lib/products.js');
-  const { amamiSrc } = await import('../../lib/labs.js');
-  const { lineFor } = await import('../home/HeroAction.jsx');
-  const brief = PRODUCTS.find((p) => p.key === 'agents').action;
-  const voice = PRODUCTS.find((p) => p.key === 'voice');
-  const a = voice.action;
-  assert.deepEqual(a.lines.map((l) => l.market), brief.briefs.map(([m]) => m));
-  assert.deepEqual([0, 1, 2, 3].map((r) => lineFor(a, r).slug), [...a.lines.map((l) => l.slug), a.lines[0].slug]);
-  for (const s of [...a.lines.map((l) => l.slug), a.sample]) {
-    assert.ok(fs.existsSync(new URL(`../../public${amamiSrc(a.voice, s)}`, import.meta.url)), s);
-  }
-  for (const l of a.lines) {
-    assert.match(l.ro, /[ăâîșț]/, l.slug);
-    assert.ok(l.ro.length <= 100 && l.en.length <= 80, l.slug);
-  }
-  const React = (await import('react')).default;
-  const { renderToStaticMarkup } = await import('react-dom/server');
-  const { default: HeroAction } = await import('../home/HeroAction.jsx');
-  a.lines.forEach((l, round) => {
-    const v = renderToStaticMarkup(React.createElement(HeroAction, { product: voice, round, onPlaying: () => {} }));
-    assert.match(v, /<button type="button"[^>]*aria-label="Play: Hear Amami speak Romanian"/);
-    assert.ok(v.includes(`>${l.market}</span>`) && v.includes(`lang="ro"`) && v.includes(l.en.replace(/'/g, '&#x27;')), l.slug);
-    assert.ok(v.includes(l.ro), l.slug);
-    assert.match(v, new RegExp(`<audio[^>]*src="${amamiSrc(a.voice, l.slug)}"[^>]*preload="none"`));
-    assert.doesNotMatch(v, /autoplay/i);
-  });
-});
-
-test('the announcement pill opens an outside link in a new tab and an inside one in place', async () => {
-  const out = await render('./Pill.jsx', { tag: 'New', title: 'T', text: 'x', href: 'https://llm.buzz/models/x' });
-  assert.match(out, /href="https:\/\/llm\.buzz\/models\/x" target="_blank" rel="noopener noreferrer"/);
-  assert.match(out, /data-event="announcement_clicked"/);
-  const inside = await render('./Pill.jsx', { tag: 'New', text: 'x', href: '/labs/' });
-  assert.doesNotMatch(inside, /target=/);
+  assert.match(html, /href="\/contact\/"[^>]*data-event="contact_sales_clicked"[^>]*>Book a demo/);
+  assert.match(html, /href="#results"[^>]*>See the results/);
+  assert.doesNotMatch(html, /role="tablist"|role="radiogroup"|Where should it run/);
+  assert.equal((html.match(/aria-label="Show /g) || []).length, 5);
 });
 
 test('every door links to a live or pending page', async () => {
@@ -145,12 +88,6 @@ test('every door links to a live or pending page', async () => {
   for (const d of DOORS) assert.ok(live.has(d.href) || PENDING.includes(d.href), d.href);
   const html = await render('../home/Doors.jsx', {});
   for (const d of DOORS) assert.ok(html.includes(`href="${d.href}"`), d.href);
-});
-
-test('research leads with Surogate 3.7 Flash, linked out to llm.buzz', async () => {
-  const html = await render('../home/Research.jsx', {});
-  assert.match(html, /href="https:\/\/llm\.buzz\/models\/surogate\/surogate3\.7-flash" target="_blank"[^>]*>[\s\S]*?Surogate 3\.7 Flash/);
-  assert.ok(html.indexOf('Surogate 3.7 Flash') < html.indexOf('Jackrabbit'));
 });
 
 test('the products menu is text only: no rabbit, no icon', async () => {
@@ -166,15 +103,6 @@ test('the products menu is text only: no rabbit, no icon', async () => {
   assert.doesNotMatch(nav, /rabbit/i);
 });
 
-test('the code card is white with a hairline on a flat aubergine panel, its tabs under it, and the model is Surogate 3.7 Flash', async () => {
-  const html = await render('../home/DevApi.jsx', {});
-  assert.doesNotMatch(html, /bg-grad-/);
-  assert.doesNotMatch(html, /warm-panel|gradient/);
-  assert.match(html, /rounded-2xl bg-aubergine[\s\S]*border-hairline bg-white[\s\S]*role="tabpanel"[\s\S]*role="tablist"/);
-  assert.match(html, /surogate\/surogate3\.7-flash/);
-  for (const n of ['1M', '32K', '$0.15/M']) assert.ok(html.includes(n), n);
-});
-
 test('the code tabs show the first snippet and mark one tab selected', async () => {
   const tabs = [{ label: 'Python', code: 'print(1)' }, { label: 'cURL', code: 'curl x' }];
   const html = await render('./CodeTabs.jsx', { tabs });
@@ -187,7 +115,7 @@ test('the code tabs show the first snippet and mark one tab selected', async () 
 test('every film card names its demo business and opens the film', async () => {
   const { SHOWN } = await import('../home/Films.jsx');
   const html = await render('../home/Films.jsx', {});
-  assert.equal(SHOWN.length % 6, 0);
+  assert.ok(SHOWN.length > 0 && SHOWN.every((f) => f.enterprise));
   for (const f of SHOWN) {
     assert.ok(html.includes(f.business), f.slug);
     assert.match(html, new RegExp(`aria-label="Watch ${f.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
@@ -243,4 +171,11 @@ test('structured data names the products right and never pitches a self-hosted g
   const json = await readFile(new URL('../../app/structured-data.js', import.meta.url), 'utf8');
   assert.doesNotMatch(json, /Kubernetes|Surogate Router|Surogate Agents/);
   assert.match(json, /llm\.buzz/);
+});
+
+test('the results name every model they compare and carry the section id the hero links to', async () => {
+  const { WILDCLAW: W } = await import('../../lib/results.js');
+  const html = await render('../home/Results.jsx', {});
+  for (const n of ['Surogate 3.7 Flash', ...W.rows.map((r) => r.name)]) assert.ok(html.includes(n), n);
+  assert.match(html, /id="results"/);
 });

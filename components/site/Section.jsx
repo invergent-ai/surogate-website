@@ -34,13 +34,14 @@ export const H2 = {
   list: 'm-0 text-[28px] font-[500] leading-[1.15] tracking-[-0.01em] md:text-[30px] md:leading-[36px]',
 };
 
-export function SectionHead({ title, sub, align = 'left', action }) {
+// `wide` lets the line under the title run the full container width instead of a balanced 640px column.
+export function SectionHead({ title, sub, align = 'left', action, wide = false }) {
   const center = align === 'center';
   return (
     <div className={`mb-10 flex flex-wrap items-end justify-between gap-6 ${center ? 'flex-col !items-center text-center' : ''}`}>
-      <div className={`max-w-[640px] ${center ? 'mx-auto' : ''}`}>
+      <div className={`${wide ? '' : 'max-w-[640px]'} ${center ? 'mx-auto' : ''}`}>
         <h2 className={H2.list}>{title}</h2>
-        {sub && <p className="mt-3 mb-0 text-pretty text-[16px] md:text-balance leading-[1.6] opacity-65">{sub}</p>}
+        {sub && <p className={`mt-3 mb-0 text-pretty text-[16px] leading-[1.6] opacity-65 ${wide ? '' : 'md:text-balance'}`}>{sub}</p>}
       </div>
       {action}
     </div>
