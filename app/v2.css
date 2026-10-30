@@ -90,6 +90,9 @@
 .logo-draw .logo-line { stroke-dasharray: 1 1; animation: logo-trace 1100ms var(--ease-out) both; }
 .logo-draw .logo-star { animation: fade 500ms var(--ease-out) 650ms both; }
 .logo-draw .logo-sun { --y: 22px; animation: rise 900ms var(--ease-out) 650ms both; }
+.footer-mark .fm-line { stroke-dasharray: 1 1; stroke-dashoffset: 1; }
+.footer-mark[data-live] .fm-line { animation: fm-draw 2600ms cubic-bezier(.5,0,.2,1) var(--del, 0ms) both; }
+@keyframes fm-draw { to { stroke-dashoffset: 0; } }
 .logo-draw .logo-wm { animation: fade 700ms var(--ease-out) 150ms both; }
 @keyframes logo-trace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 
@@ -107,9 +110,96 @@
 @media (prefers-reduced-motion: reduce) {
   .chat-scroll, .rabbit-breathe, .rabbit-eye, .rabbit-think, .mock-bar, .mock-draw,
   .load-up, .load-fade, .hero-w, .hero-l-in, .hero-l-out, .hero-s-in, .hero-s-out, .seg-run, .seg-ghost, .spark,
-  .transit .arc, .orbit-turn, .logo-draw *, .pm-frame, .pm-art, .pm-sun { animation: none !important; }
+  .transit .arc, .orbit-turn, .logo-draw *, .footer-mark .fm-line, .pm-frame, .pm-art, .pm-sun { animation: none !important; }
+  .footer-mark .fm-line { stroke-dashoffset: 0; }
   .transit .arc { transition: none !important; transform: none !important; }
   .pm[data-arm] :is(.pm-frame, .pm-art, .pm-sun) { opacity: 1; }
   .menu-pop, .menu-pop.is-open, .tile-media, .nudge, .arrow-stem { transition: none !important; }
   .group:hover .tile-media { transform: none; }
+}
+
+/* Head to head (components/home/Results.jsx): the bars grow from zero once, top row first. */
+.rank-bar { transform-origin: left; }
+.rank:not([data-seen]) .rank-bar { transform: scaleX(0); }
+.rank[data-seen] .rank-bar { transition: transform 1100ms var(--ease-out) calc(var(--i) * 70ms); }
+@media (prefers-reduced-motion: reduce) { .rank .rank-bar { transform: none !important; transition: none !important; } }
+
+/* Platform console audit trail: each new entry rises in. */
+.audit-in { animation: rise 500ms var(--ease-out) both; --y: 6px; }
+@media (prefers-reduced-motion: reduce) { .audit-in { animation: none; } }
+
+/* Industries (components/home/Industries.jsx): panels crossfade; inside a still frame the photo drifts slowly,
+   the title settles and the glass panel rises after it. The active tab's gold line is its timer. */
+.ind-panel { opacity: 0; visibility: hidden; transition: opacity 900ms var(--ease-out), visibility 0s 900ms; }
+.ind-panel.is-on { opacity: 1; visibility: visible; transition: opacity 900ms var(--ease-out), visibility 0s; }
+.ind-photo { transform: scale(1.04); }
+.ind-panel.is-on .ind-photo { animation: ind-drift 9s cubic-bezier(.33, 0, .2, 1) both; }
+@keyframes ind-drift { from { transform: scale(1.14) translate3d(1.5%, 0, 0); } to { transform: scale(1.04) translate3d(0, 0, 0); } }
+.ind-panel.is-on .ind-title { animation: rise 1000ms var(--ease-out) 150ms both; --y: 24px; }
+.ind-panel.is-on .ind-sub { animation: rise 1000ms var(--ease-out) 320ms both; --y: 14px; }
+/* The trace: gold contours open outward from the centre, the duotone rises beneath, the lines settle to an etch. */
+.ind-trace { -webkit-mask: radial-gradient(circle, #000 42%, transparent 58%) center / 0% 0% no-repeat; mask: radial-gradient(circle, #000 42%, transparent 58%) center / 0% 0% no-repeat; opacity: .28; }
+.ind-panel.is-on .ind-trace { animation: ind-trace-in 2200ms cubic-bezier(.5, 0, .2, 1) 150ms both, ind-trace-settle 1600ms var(--ease-out) 2400ms both; }
+@keyframes ind-trace-in { from { opacity: 1; } to { opacity: 1; -webkit-mask-size: 320% 320%; mask-size: 320% 320%; } }
+@keyframes ind-trace-settle { from { opacity: 1; -webkit-mask-size: 320% 320%; mask-size: 320% 320%; } to { opacity: .28; -webkit-mask-size: 320% 320%; mask-size: 320% 320%; } }
+.ind-panel.is-on .ind-duo { animation: fade 1800ms var(--ease-out) 1700ms both; }
+@keyframes ind-run { from { transform: scaleX(0); } }
+.ind-run { transform-origin: left; animation: ind-run var(--dwell) linear both; }
+@media (prefers-reduced-motion: reduce) {
+  .ind-panel, .ind-panel.is-on { transition: none; }
+  .ind-panel.is-on :is(.ind-photo, .ind-title, .ind-sub, .ind-trace, .ind-duo) { animation: none; }
+  .ind-trace { -webkit-mask: none; mask: none; }
+}
+
+/* Platform console audit trail: each new entry rises in. */
+.audit-in { animation: rise 500ms var(--ease-out) both; --y: 6px; }
+@media (prefers-reduced-motion: reduce) { .audit-in { animation: none; } }
+
+/* Gold photo (components/site/GoldPhoto.jsx): the industries panel's motion, run once when first on screen. */
+.gold-photo .gp-drift { transform: scale(1.04); }
+.gold-photo:not([data-live]) :is(.gp-duo) { opacity: 0; }
+.gold-photo .gp-trace { -webkit-mask: radial-gradient(circle, #000 42%, transparent 58%) center / 320% 320% no-repeat; mask: radial-gradient(circle, #000 42%, transparent 58%) center / 320% 320% no-repeat; opacity: .28; }
+.gold-photo:not([data-live]) .gp-trace { -webkit-mask-size: 0% 0%; mask-size: 0% 0%; opacity: 1; }
+.gold-photo[data-live] .gp-drift { animation: gp-drift 10s cubic-bezier(.33, 0, .2, 1) both; }
+@keyframes gp-drift { from { transform: scale(1.14); } to { transform: scale(1.04); } }
+.gold-photo[data-live] .gp-trace { animation: ind-trace-in 2200ms cubic-bezier(.5, 0, .2, 1) 150ms both, ind-trace-settle 1600ms var(--ease-out) 2400ms both; }
+.gold-photo[data-live] .gp-duo { animation: fade 1800ms var(--ease-out) 1700ms both; }
+@media (prefers-reduced-motion: reduce) {
+  .gold-photo *, .gold-photo[data-live] * { animation: none !important; }
+  .gold-photo:not([data-live]) .gp-duo { opacity: 1; }
+  .gold-photo .gp-trace, .gold-photo:not([data-live]) .gp-trace { -webkit-mask: none; mask: none; opacity: .28; }
+}
+
+/* Layers: every value comes from the scroll (see Layers.jsx): --land lowers a plate into place, --focus lights the one
+   being read in gold, --draw traces its etching, --m sets the mark on top. No transitions, so it never lags the page. */
+.ly { --mx: 0; --my: 0; }
+.ly-plate { --land: 0; --drop: 1; --focus: 0; --draw: 0; --depth: 0; opacity: calc(.12 + .5 * var(--land) + .38 * var(--focus));
+  transform: translate(calc(var(--mx) * var(--depth) * -7px), calc(var(--drop) * -56px + var(--my) * var(--depth) * -4px));
+  transition: transform 260ms var(--ease-out); will-change: transform, opacity; }
+/* Light runs along the lines of the plate in focus: short gold dashes travelling the etching. */
+.ly-flow { stroke: #ffe9b8; opacity: calc(var(--focus) * var(--focus)); }
+.ly-flow .ly-etch { stroke-dasharray: .07 .93; stroke-dashoffset: 0; animation: ly-flow 2.8s linear infinite; }
+.ly-flow .ly-etch:nth-child(2n) { animation-duration: 3.6s; animation-delay: -1.2s; }
+.ly-flow .ly-etch:nth-child(3n) { animation-duration: 4.4s; animation-delay: -2.1s; }
+@keyframes ly-flow { to { stroke-dashoffset: -1; } }
+/* The whole stack breathes: a slow rise and fall, so it is never quite still. */
+.ly-float { animation: ly-float 7s ease-in-out infinite; }
+@keyframes ly-float { 50% { transform: translateY(-8px); } }
+.ly-face { stroke: rgba(255,255,255,.3); stroke-width: 1; stroke-opacity: var(--land); }
+.ly-ghost { stroke: rgba(255,255,255,.4); stroke-width: 1; stroke-dasharray: 4 6; opacity: calc(1 - var(--land)); }
+.ly-edge { stroke: #ffaf10; stroke-width: 1.4; opacity: var(--focus); }
+.ly-side { fill: rgba(255,255,255,.07); stroke: rgba(255,255,255,.14); stroke-width: 1; }
+.ly-side-r { fill: rgba(255,255,255,.03); }
+.ly-etch { stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 1; stroke-dashoffset: calc(1 - var(--draw)); }
+.ly-etch-white { stroke: rgba(255,255,255,.5); opacity: calc(.55 + .45 * var(--focus)); }
+.ly-etch-gold { stroke: #ffaf10; opacity: var(--focus); }
+.ly-spine { stroke: #ffaf10; stroke-opacity: .4; stroke-width: 1; stroke-dasharray: 1 1; stroke-dashoffset: calc(1 - var(--p, 0)); }
+.ly-mark { --m: 0; }
+.ly-mark-star { stroke: rgba(255,255,255,.75); stroke-width: 2.6; stroke-dasharray: 1 1; stroke-dashoffset: calc(1 - var(--m)); }
+.ly-mark-rabbit { fill: #ffaf10; opacity: clamp(0, calc(var(--m) * 2 - 1), 1); transform-box: fill-box;
+  transform: translateY(calc((1 - var(--m)) * 30px)); }
+.ly-step { --near: 1; --off: 0; }
+@media (prefers-reduced-motion: reduce) { .ly-float, .ly-flow .ly-etch { animation: none; } .ly-flow { display: none; } .ly-plate { transition: none; } }
+@media (min-width: 1024px) {
+  .ly-step > * { opacity: calc(.2 + .8 * var(--near)); transform: translateY(calc(var(--off) * 28px)); will-change: transform, opacity; }
 }

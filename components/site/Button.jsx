@@ -6,8 +6,9 @@ const VARIANTS = {
   secondary: 'bg-stone !text-ink hover:bg-hairline',
   sun: 'bg-sun !text-aubergine hover:brightness-90',
   glass: 'bg-white/10 !text-white hover:bg-white/15',
+  link: '!h-auto !px-0 !text-ink underline decoration-ink/20 underline-offset-[6px] hover:decoration-ink',
 };
-const SIZES = { md: 'h-10 px-[18px] text-[14px] gap-1.5', lg: 'h-11 px-5 text-[14px] gap-1.5' };
+const SIZES = { md: 'h-10 px-[18px] text-[14px] gap-2', lg: 'h-12 px-6 text-[15px] gap-2.5' };
 
 // A chevron whose stem fades in on hover, so it reads as › at rest and → on intent.
 export function Arrow({ size = 14 }) {
@@ -20,7 +21,7 @@ export function Arrow({ size = 14 }) {
 }
 
 export default function Button({ href, variant = 'primary', size = 'md', arrow = false, event, eventProps, external, className = '', children }) {
-  const cls = `group inline-flex items-center justify-center rounded-full font-medium no-underline whitespace-nowrap transition duration-150 ease-in-out ${VARIANTS[variant]} ${SIZES[size]} ${className}`;
+  const cls = `group inline-flex items-center justify-center rounded-[6px] font-medium no-underline whitespace-nowrap transition duration-150 ease-in-out ${VARIANTS[variant]} ${SIZES[size]} ${className}`;
   const ext = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
   const body = <>{children}{arrow && <Arrow />}</>;
   if (event) return <TrackedLink href={href} className={cls} event={event} eventProps={eventProps} {...ext}>{body}</TrackedLink>;

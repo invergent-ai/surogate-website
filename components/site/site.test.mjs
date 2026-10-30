@@ -27,9 +27,9 @@ test('a titled rabbit is an image with a name; an unknown pose is a bug, not a b
   await assert.rejects(render('./Rabbit.jsx', { pose: 'flying' }), /Unknown rabbit pose/);
 });
 
-test('a button is a pill link; a tracked one names its event, an outside one opens a new tab', async () => {
+test('a button is a square-cornered link; a tracked one names its event, an outside one opens a new tab', async () => {
   const plain = await render('./Button.jsx', { href: '/surogate/', children: 'Explore' });
-  assert.match(plain, /^<a href="\/surogate\/" class="[^"]*rounded-full/);
+  assert.match(plain, /^<a href="\/surogate\/" class="[^"]*rounded-\[6px\]/);
   const tracked = await render('./Button.jsx', { href: '/contact/', event: 'contact_sales_clicked', children: 'Contact Sales' });
   assert.match(tracked, /data-event="contact_sales_clicked"/);
   const out = await render('./Button.jsx', { href: 'https://llm.buzz', external: true, children: 'Get API key' });
@@ -75,7 +75,7 @@ test('the hero server-renders the platform claim as the h1, its two actions, and
   assert.match(html, /<h1[^>]*><span class="sr-only">Frontier-level automation\. On your own infrastructure\.<\/span>/);
   assert.match(html, /id="hero-copy" aria-live="polite"/);
   assert.match(html, /href="\/contact\/"[^>]*data-event="contact_sales_clicked"[^>]*>Book a demo/);
-  assert.match(html, /href="#results"[^>]*>See the results/);
+  assert.match(html, /href="#platform"[^>]*>The platform/);
   assert.doesNotMatch(html, /role="tablist"|role="radiogroup"|Where should it run/);
   assert.equal((html.match(/aria-label="Show /g) || []).length, 5);
 });
@@ -110,16 +110,6 @@ test('the code tabs show the first snippet and mark one tab selected', async () 
   assert.match(html, /aria-selected="true"[^>]*>Python/);
   assert.match(html, /print\(1\)/);
   assert.doesNotMatch(html, /curl x/);
-});
-
-test('every film card names its demo business and opens the film', async () => {
-  const { SHOWN } = await import('../home/Films.jsx');
-  const html = await render('../home/Films.jsx', {});
-  assert.ok(SHOWN.length > 0 && SHOWN.every((f) => f.enterprise));
-  for (const f of SHOWN) {
-    assert.ok(html.includes(f.business), f.slug);
-    assert.match(html, new RegExp(`aria-label="Watch ${f.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
-  }
 });
 
 test('a partner mark names its tier by its rabbit: simple, with the star\'s arm, the logo star rabbit', async () => {

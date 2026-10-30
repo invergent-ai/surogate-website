@@ -3,7 +3,8 @@
 import { Fragment, useEffect, useState } from 'react';
 import Transit from '@/components/site/Rings';
 import { CONTAINER } from '@/components/site/Section';
-import Button from '@/components/site/Button';
+import { ArrowRight } from 'lucide-react';
+import TrackedLink from '@/components/TrackedLink';
 import { CONTACT_SALES } from '@/lib/site';
 
 const H1 = 'm-0 text-balance text-[36px] font-[450] leading-[1.1] tracking-[-0.01em] text-ink md:text-[48px] md:leading-[1.05] lg:text-[56px]';
@@ -13,29 +14,40 @@ const exitMs = (text) => 320 + text.length * 8;
 const DWELL_MS = 7000;
 
 // Every slide argues the same claim: the first states it, the rest give one reason each, in the order the page proves them.
+// Each slide carries its own actions and they change with it. Only Book a demo is a button; everything else is a quiet link.
 const DEMO = { label: 'Book a demo', href: CONTACT_SALES, event: 'contact_sales_clicked' };
-const RESULTS = { label: 'See the results', href: '#results' };
 const SLIDES = [
   { key: 'claim', name: 'the claim', headline: 'Frontier-level automation. On your own infrastructure.', sub: 'Trained on your work. Running in your data centre.',
-    primary: DEMO, secondary: RESULTS },
+    primary: DEMO, link: { label: 'The platform', href: '#platform' } },
   { key: 'results', name: 'the results', headline: 'Surogate 3.7 Flash matches frontier models.', sub: 'Kimi K3, GLM 5.2, Claude Opus 4.6 and Gemini 3.1 Pro, on agent tasks.',
-    primary: RESULTS },
+    link: { label: 'Benchmark results', href: '#results' } },
   { key: 'process', name: 'the process', headline: 'Processes that run agents. Not the other way around.', sub: 'Keel runs agents in well-defined business processes.',
-    primary: { label: 'See how Keel works', href: '/keel/' } },
+    link: { label: 'Inside Keel', href: '/keel/' } },
   { key: 'model', name: 'the model', headline: 'Make the model yours.', sub: 'Build a dataset from your agents\' chats and fine-tune without writing code.',
-    primary: { label: 'See how Train works', href: '/train/' } },
+    link: { label: 'Train your own model', href: '/train/' } },
   { key: 'deploy', name: 'where it runs', headline: 'Runs where your data is.', sub: 'Our EU cloud, your cloud, your hardware or air-gapped, with the same agents and audit trail.',
-    primary: DEMO },
+    primary: DEMO, link: { label: 'Deployment options', href: '/security/' } },
 ];
 
-// Two pills side by side at 390 need a little less padding than the desktop size.
-function Actions({ slide }) {
-  const props = (l) => ({ href: l.href, size: 'lg', event: l.event || 'hero_action_clicked', eventProps: { location: `home_hero_${slide.key}` }, className: 'max-sm:!px-4' });
+// The solid action: black, square-cornered, the arrow the one gold thing on it.
+function Primary({ slide }) {
+  const l = slide.primary;
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-      <Button {...props(slide.primary)} arrow>{slide.primary.label}</Button>
-      {slide.secondary && <Button {...props(slide.secondary)} variant="secondary">{slide.secondary.label}</Button>}
-    </div>
+    <TrackedLink href={l.href} event={l.event || 'hero_action_clicked'} eventProps={{ location: `home_hero_${slide.key}` }}
+      className="group inline-flex h-11 items-center gap-2.5 rounded-[7px] bg-ink pl-5 pr-4 text-[14px] font-medium !text-white no-underline shadow-[inset_0_1px_0_rgba(255,255,255,.14),0_1px_2px_rgba(0,0,0,.25),0_8px_24px_-12px_rgba(0,0,0,.5)] transition-colors duration-150 hover:bg-[#1f1f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sun focus-visible:ring-offset-2">
+      {l.label}<ArrowRight size={16} strokeWidth={2.2} className="nudge text-sun" />
+    </TrackedLink>
+  );
+}
+
+// The quiet link: plain text and a gold arrow that steps forward on intent.
+function SlideLink({ slide }) {
+  const l = slide.link;
+  return (
+    <TrackedLink href={l.href} event="hero_action_clicked" eventProps={{ location: `home_hero_${slide.key}` }}
+      className="slide-link group relative inline-flex items-center gap-2 py-1.5 text-[15px] font-medium !text-ink no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/25">
+      {l.label}<ArrowRight size={16} strokeWidth={2.2} className="nudge text-sun" />
+    </TrackedLink>
   );
 }
 
@@ -116,11 +128,12 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="load-up mx-auto mt-8 max-w-[720px]" style={{ '--y': '12px', '--t': '400ms', '--d': '650ms' }}>
+        <div className="load-up mx-auto mt-9 max-w-[720px]" style={{ '--y': '12px', '--t': '400ms', '--d': '650ms' }}>
           {/* One reserved footprint for every slide's actions, so nothing below moves when they change. */}
           <div className="flex h-14 items-center justify-center">
-            <div key={shown} className={`w-full ${swap}`}>
-              <Actions slide={p} />
+            <div key={shown} className={`flex flex-wrap items-center justify-center gap-x-8 gap-y-3 ${swap}`}>
+              {p.primary && <Primary slide={p} />}
+              {p.link && <SlideLink slide={p} />}
             </div>
           </div>
           {/* One equal segment per slide. Done ones are full and still, upcoming ones empty and still; only the current

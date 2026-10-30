@@ -32,3 +32,5 @@ out/
 
 # Raw Space captures for the Rune films (labs/spaces/film); only the rendered films are kept
 public/labs/films/raw/
+
+.playwright-mcp/
